@@ -396,7 +396,8 @@ namespace SANSANG.Class
                 string Details = "";
                 bool IsWithdrawal = false;
                 decimal Balance = 0;
-                decimal Balances = 0;
+                decimal BalanceNew = 0;
+
 
                 for (int Rounds = 0; Rounds < Datas.Count; Rounds++)
                 {
@@ -432,7 +433,7 @@ namespace SANSANG.Class
                     };
 
                     Balance = CheckBalance(Accounts.CIMB4401, Function.MoveNumberStringComma(Datas[Rounds].Amount), IsWithdrawal);
-                    Balances = CheckBalance(Accounts.CIMB4401, Function.MoveNumberStringComma(Datas[Rounds].Amount), !IsWithdrawal);
+                    BalanceNew = decimal.Parse(Function.MoveNumberStringComma(Datas[Rounds].Balance));
 
                     if (!Function.IsDuplicate(
                             Table.Statments,
@@ -443,7 +444,7 @@ namespace SANSANG.Class
                             Value5: Function.RemoveComma(Datas[Rounds].Amount),
                             Value6: Function.RemoveComma(Datas[Rounds].Balance)))
                     {
-                        if (Balance == Balances)
+                        if (Balance == BalanceNew)
                         {
                             db.Operations(Store.ManageStatement, Parameter, out Error);
                             Messages = "";
