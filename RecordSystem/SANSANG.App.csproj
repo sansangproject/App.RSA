@@ -1,0 +1,1038 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7B440E6D-920E-4360-A6E1-2D0577BF2770}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RecordSystemApplication</RootNamespace>
+    <AssemblyName>RecordSystemApplication</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>C:\Users\tuath\Desktop\RSA\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <TargetCulture>en-US</TargetCulture>
+    <ProductName>RSA</ProductName>
+    <PublisherName>RSA</PublisherName>
+    <SuiteName>RSA</SuiteName>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>SANSANG.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Sansang.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Application|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Application\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>6E4BE8F4C131F1D07B8C4CA0F66D5CC184E6D730</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>SANSANG.App_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BarcodeStandard, Version=2.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\BarcodeLib.2.4.0\lib\netstandard2.0\BarcodeStandard.dll</HintPath>
+    </Reference>
+    <Reference Include="DevComponents.DotNetBar2">
+      <HintPath>..\Utilites\App.Dll\DevComponents.DotNetBar2.dll</HintPath>
+    </Reference>
+    <Reference Include="Grpc.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d754f35622e28bad, processorArchitecture=MSIL">
+      <HintPath>..\packages\Grpc.Core.2.44.0\lib\net45\Grpc.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Grpc.Core.Api, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d754f35622e28bad, processorArchitecture=MSIL">
+      <HintPath>..\packages\Grpc.Core.Api.2.44.0\lib\net45\Grpc.Core.Api.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Utilites\App.Dll\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1484.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1484.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebDesign, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.WebDesign.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1484.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>App.Dll\Microsoft.VisualStudio.TestTools.UITest.Extension.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Utilites\App.Dll\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="QRCoder, Version=1.4.3.0, Culture=neutral, PublicKeyToken=c4ed5b9ae8358a28, processorArchitecture=MSIL">
+      <HintPath>..\packages\QRCoder.1.4.3\lib\net40\QRCoder.dll</HintPath>
+    </Reference>
+    <Reference Include="RadControlSpy, Version=2013.2.612.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>App.Dll\RadControlSpy.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.Barcode">
+      <HintPath>..\Utilites\App.Dll\Spire.Barcode.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing.Common, Version=4.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Drawing.Common.5.0.2\lib\net461\System.Drawing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=5.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.5.0.1\lib\net461\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=5.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.5.0.2\lib\net461\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.WinControls, Version=2013.2.612.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>App.Dll\Telerik.WinControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.UI, Version=2013.2.612.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>App.Dll\Telerik.WinControls.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.UI.Design, Version=2013.2.612.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>App.Dll\Telerik.WinControls.UI.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="TelerikCommon, Version=2013.2.612.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>App.Dll\TelerikCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="TelerikData, Version=2013.2.612.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>App.Dll\TelerikData.dll</HintPath>
+    </Reference>
+    <Reference Include="VisualStyleBuilder.Design, Version=2013.2.612.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Utilites\App.Dll\VisualStyleBuilder.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="Zen.Barcode.Core">
+      <HintPath>..\Utilites\App.Dll\Zen.Barcode.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.Data\dsRSA.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsRSA.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Electricity\FrmElectricitys.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Electricity\FrmElectricitys.Designer.cs">
+      <DependentUpon>FrmElectricitys.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Electricity\FrmMEAMA00.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Electricity\FrmMEAMA00.Designer.cs">
+      <DependentUpon>FrmMEAMA00.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Electricity\FrmMEARE00.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Electricity\FrmMEARE00.Designer.cs">
+      <DependentUpon>FrmMEARE00.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Image\FrmImportImage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Image\FrmImportImage.Designer.cs">
+      <DependentUpon>FrmImportImage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Image\FrmManageImage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Image\FrmManageImage.Designer.cs">
+      <DependentUpon>FrmManageImage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Image\FrmShowImage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Image\FrmShowImage.Designer.cs">
+      <DependentUpon>FrmShowImage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Knowledge\FrmKnowledgeBanknote.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Knowledge\FrmKnowledgeBanknote.Designer.cs">
+      <DependentUpon>FrmKnowledgeBanknote.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Manage\FrmManageAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Manage\FrmManageAccount.Designer.cs">
+      <DependentUpon>FrmManageAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Manage\FrmManageAddress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Manage\FrmManageAddress.Designer.cs">
+      <DependentUpon>FrmManageAddress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Manage\FrmManageBank.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Manage\FrmManageBank.Designer.cs">
+      <DependentUpon>FrmManageBank.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Manage\FrmManageBranch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Manage\FrmManageBranch.Designer.cs">
+      <DependentUpon>FrmManageBranch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Manage\FrmManageCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Manage\FrmManageCard.Designer.cs">
+      <DependentUpon>FrmManageCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Manage\FrmManagePay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Manage\FrmManagePay.Designer.cs">
+      <DependentUpon>FrmManagePay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Manage\FrmManagePaySub.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Manage\FrmManagePaySub.Designer.cs">
+      <DependentUpon>FrmManagePaySub.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Manage\FrmManageProductStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Manage\FrmManageProductStatus.Designer.cs">
+      <DependentUpon>FrmManageProductStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Manage\FrmManageProductType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Manage\FrmManageProductType.Designer.cs">
+      <DependentUpon>FrmManageProductType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Manage\FrmMangeImage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Manage\FrmMangeImage.Designer.cs">
+      <DependentUpon>FrmMangeImage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Manage\FrmMangeLogo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Manage\FrmMangeLogo.Designer.cs">
+      <DependentUpon>FrmMangeLogo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Manage\FrmMangeMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Manage\FrmMangeMenu.Designer.cs">
+      <DependentUpon>FrmMangeMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Manage\FrmMangeMoney.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Manage\FrmMangeMoney.Designer.cs">
+      <DependentUpon>FrmMangeMoney.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Manage\FrmMangeShop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Manage\FrmMangeShop.Designer.cs">
+      <DependentUpon>FrmMangeShop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Manage\FrmMangeStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Manage\FrmMangeStatus.Designer.cs">
+      <DependentUpon>FrmMangeStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Manage\FrmMangeThailand.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Manage\FrmMangeThailand.Designer.cs">
+      <DependentUpon>FrmMangeThailand.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Manage\FrmMangeUnit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Manage\FrmMangeUnit.Designer.cs">
+      <DependentUpon>FrmMangeUnit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Manage\FrmMangeUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Manage\FrmMangeUser.Designer.cs">
+      <DependentUpon>FrmMangeUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Member\FrmSaveMember.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Member\FrmSaveMember.Designer.cs">
+      <DependentUpon>FrmSaveMember.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Movie\FrmSeeMovie.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Movie\FrmSeeMovie.Designer.cs">
+      <DependentUpon>FrmSeeMovie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Patient\FrmDENRE00.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Patient\FrmDENRE00.Designer.cs">
+      <DependentUpon>FrmDENRE00.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Patient\FrmDENSA00.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Patient\FrmDENSA00.Designer.cs">
+      <DependentUpon>FrmDENSA00.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Patient\FrmPATMA00.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Patient\FrmPATMA00.Designer.cs">
+      <DependentUpon>FrmPATMA00.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Patient\FrmPATSA00.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Patient\FrmPATSA00.Designer.cs">
+      <DependentUpon>FrmPATSA00.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Payment\FrmPayment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Payment\FrmPayment.Designer.cs">
+      <DependentUpon>FrmPayment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Print\FrmPrintAddress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Print\FrmPrintAddress.Designer.cs">
+      <DependentUpon>FrmPrintAddress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Print\FrmPrintTag.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Print\FrmPrintTag.Designer.cs">
+      <DependentUpon>FrmPrintTag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Products\FrmProducts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Products\FrmProducts.Designer.cs">
+      <DependentUpon>FrmProducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Save\FrmExpenses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Save\FrmExpenses.Designer.cs">
+      <DependentUpon>FrmExpenses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Search\FrmSearchHospital.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Search\FrmSearchHospital.Designer.cs">
+      <DependentUpon>FrmSearchHospital.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Search\FrmSearchProvince.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Search\FrmSearchProvince.Designer.cs">
+      <DependentUpon>FrmSearchProvince.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Search\FrmSearchSchool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Search\FrmSearchSchool.Designer.cs">
+      <DependentUpon>FrmSearchSchool.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Search\FrmSearchTemple.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Search\FrmSearchTemple.Designer.cs">
+      <DependentUpon>FrmSearchTemple.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Setting\FrmAPPID00.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Setting\FrmAPPID00.Designer.cs">
+      <DependentUpon>FrmAPPID00.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Setting\FrmChkError.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Setting\FrmChkError.Designer.cs">
+      <DependentUpon>FrmChkError.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Setting\FrmChkID.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Setting\FrmChkID.Designer.cs">
+      <DependentUpon>FrmChkID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Setting\FrmSettingPath.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Setting\FrmSettingPath.Designer.cs">
+      <DependentUpon>FrmSettingPath.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Theme\FrmMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Theme\FrmMaster.Designer.cs">
+      <DependentUpon>FrmMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Tracking\FrmAddress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Tracking\FrmAddress.Designer.cs">
+      <DependentUpon>FrmAddress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Tracking\FrmTracks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Tracking\FrmTracks.Designer.cs">
+      <DependentUpon>FrmTracks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Tracking\FrmTrackPost.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Tracking\FrmTrackPost.Designer.cs">
+      <DependentUpon>FrmTrackPost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Shop\FrmShopRegister.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Shop\FrmShopRegister.Designer.cs">
+      <DependentUpon>FrmShopRegister.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Login\FrmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Login\FrmLogin.Designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Login\FrmWelcome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Login\FrmWelcome.Designer.cs">
+      <DependentUpon>FrmWelcome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Menu\FrmMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Menu\FrmMenu.Designer.cs">
+      <DependentUpon>FrmMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Save\FrmCredits.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Save\FrmCredits.Designer.cs">
+      <DependentUpon>FrmCredits.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Save\FrmDebts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Save\FrmDebts.Designer.cs">
+      <DependentUpon>FrmDebts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Save\FrmPoints.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Save\FrmPoints.Designer.cs">
+      <DependentUpon>FrmPoints.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Save\FrmFlights.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Save\FrmFlights.Designer.cs">
+      <DependentUpon>FrmFlights.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Save\FrmMoneys.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Save\FrmMoneys.Designer.cs">
+      <DependentUpon>FrmMoneys.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Save\FrmRebates.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Save\FrmRebates.Designer.cs">
+      <DependentUpon>FrmRebates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Save\FrmStatements.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Save\FrmStatements.Designer.cs">
+      <DependentUpon>FrmStatements.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Stamp\FrmSaveStamp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Stamp\FrmSaveStamp.Designer.cs">
+      <DependentUpon>FrmSaveStamp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Utility\FrmBarQRCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Utility\FrmBarQRCode.Designer.cs">
+      <DependentUpon>FrmBarQRCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Utility\FrmCalLoan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Utility\FrmCalLoan.Designer.cs">
+      <DependentUpon>FrmCalLoan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Utility\FrmImageEditer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Utility\FrmImageEditer.Designer.cs">
+      <DependentUpon>FrmImageEditer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Water\FrmMWAMA00.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Water\FrmMWAMA00.Designer.cs">
+      <DependentUpon>FrmMWAMA00.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Water\FrmMWARE00.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Water\FrmMWARE00.Designer.cs">
+      <DependentUpon>FrmMWARE00.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Water\FrmMWASA00.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Water\FrmMWASA00.Designer.cs">
+      <DependentUpon>FrmMWASA00.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Progress\FrmAnimatedProgress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Progress\FrmAnimatedProgress.Designer.cs">
+      <DependentUpon>FrmAnimatedProgress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="App.Program\Application\Electricity\FrmElectricitys.resx">
+      <DependentUpon>FrmElectricitys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Electricity\FrmMEAMA00.resx">
+      <DependentUpon>FrmMEAMA00.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Electricity\FrmMEARE00.resx">
+      <DependentUpon>FrmMEARE00.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Image\FrmImportImage.resx">
+      <DependentUpon>FrmImportImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Image\FrmManageImage.resx">
+      <DependentUpon>FrmManageImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Image\FrmShowImage.resx">
+      <DependentUpon>FrmShowImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Knowledge\FrmKnowledgeBanknote.resx">
+      <DependentUpon>FrmKnowledgeBanknote.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Manage\FrmManageAccount.resx">
+      <DependentUpon>FrmManageAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Manage\FrmManageAddress.resx">
+      <DependentUpon>FrmManageAddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Manage\FrmManageBank.resx">
+      <DependentUpon>FrmManageBank.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Manage\FrmManageBranch.resx">
+      <DependentUpon>FrmManageBranch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Manage\FrmManageCard.resx">
+      <DependentUpon>FrmManageCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Manage\FrmManagePay.resx">
+      <DependentUpon>FrmManagePay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Manage\FrmManagePaySub.resx">
+      <DependentUpon>FrmManagePaySub.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Manage\FrmManageProductStatus.resx">
+      <DependentUpon>FrmManageProductStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Manage\FrmManageProductType.resx">
+      <DependentUpon>FrmManageProductType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Manage\FrmMangeImage.resx">
+      <DependentUpon>FrmMangeImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Manage\FrmMangeLogo.resx">
+      <DependentUpon>FrmMangeLogo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Manage\FrmMangeMenu.resx">
+      <DependentUpon>FrmMangeMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Manage\FrmMangeMoney.resx">
+      <DependentUpon>FrmMangeMoney.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Manage\FrmMangeShop.resx">
+      <DependentUpon>FrmMangeShop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Manage\FrmMangeStatus.resx">
+      <DependentUpon>FrmMangeStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Manage\FrmMangeThailand.resx">
+      <DependentUpon>FrmMangeThailand.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Manage\FrmMangeUnit.resx">
+      <DependentUpon>FrmMangeUnit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Manage\FrmMangeUser.resx">
+      <DependentUpon>FrmMangeUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Member\FrmSaveMember.resx">
+      <DependentUpon>FrmSaveMember.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Movie\FrmSeeMovie.resx">
+      <DependentUpon>FrmSeeMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Patient\FrmDENRE00.resx">
+      <DependentUpon>FrmDENRE00.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Patient\FrmDENSA00.resx">
+      <DependentUpon>FrmDENSA00.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Patient\FrmPATMA00.resx">
+      <DependentUpon>FrmPATMA00.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Patient\FrmPATSA00.resx">
+      <DependentUpon>FrmPATSA00.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Payment\FrmPayment.resx">
+      <DependentUpon>FrmPayment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Print\FrmPrintAddress.resx">
+      <DependentUpon>FrmPrintAddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Print\FrmPrintTag.resx">
+      <DependentUpon>FrmPrintTag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Products\FrmProducts.resx">
+      <DependentUpon>FrmProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Save\FrmExpenses.resx">
+      <DependentUpon>FrmExpenses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Search\FrmSearchHospital.resx">
+      <DependentUpon>FrmSearchHospital.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Search\FrmSearchProvince.resx">
+      <DependentUpon>FrmSearchProvince.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Search\FrmSearchSchool.resx">
+      <DependentUpon>FrmSearchSchool.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Search\FrmSearchTemple.resx">
+      <DependentUpon>FrmSearchTemple.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Setting\FrmAPPID00.resx">
+      <DependentUpon>FrmAPPID00.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Setting\FrmChkError.resx">
+      <DependentUpon>FrmChkError.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Setting\FrmChkID.resx">
+      <DependentUpon>FrmChkID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Setting\FrmSettingPath.resx">
+      <DependentUpon>FrmSettingPath.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Theme\FrmMaster.resx">
+      <DependentUpon>FrmMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Tracking\FrmAddress.resx">
+      <DependentUpon>FrmAddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Tracking\FrmTracks.resx">
+      <DependentUpon>FrmTracks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Tracking\FrmTrackPost.resx">
+      <DependentUpon>FrmTrackPost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Shop\FrmShopRegister.resx">
+      <DependentUpon>FrmShopRegister.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Login\FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Login\FrmWelcome.resx">
+      <DependentUpon>FrmWelcome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Menu\FrmMenu.resx">
+      <DependentUpon>FrmMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Save\FrmCredits.resx">
+      <DependentUpon>FrmCredits.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Save\FrmDebts.resx">
+      <DependentUpon>FrmDebts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Save\FrmPoints.resx">
+      <DependentUpon>FrmPoints.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Save\FrmFlights.resx">
+      <DependentUpon>FrmFlights.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Save\FrmMoneys.resx">
+      <DependentUpon>FrmMoneys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Save\FrmRebates.resx">
+      <DependentUpon>FrmRebates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Save\FrmStatements.resx">
+      <DependentUpon>FrmStatements.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Stamp\FrmSaveStamp.resx">
+      <DependentUpon>FrmSaveStamp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Utility\FrmBarQRCode.resx">
+      <DependentUpon>FrmBarQRCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Utility\FrmCalLoan.resx">
+      <DependentUpon>FrmCalLoan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Utility\FrmImageEditer.resx">
+      <DependentUpon>FrmImageEditer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Water\FrmMWAMA00.resx">
+      <DependentUpon>FrmMWAMA00.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Water\FrmMWARE00.resx">
+      <DependentUpon>FrmMWARE00.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Water\FrmMWASA00.resx">
+      <DependentUpon>FrmMWASA00.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Progress\FrmAnimatedProgress.resx">
+      <DependentUpon>FrmAnimatedProgress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Report\rptEnvelope.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="App.Data\dsRSA.xsc">
+      <DependentUpon>dsRSA.xsd</DependentUpon>
+    </None>
+    <None Include="App.Data\dsRSA.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsRSA.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="App.Data\dsRSA.xss">
+      <DependentUpon>dsRSA.xsd</DependentUpon>
+    </None>
+    <None Include="App.Font\DMSans-Bold.ttf" />
+    <None Include="App.Font\DMSans-BoldItalic.ttf" />
+    <None Include="App.Font\DMSans-Italic.ttf" />
+    <None Include="App.Font\DMSans-Medium.ttf" />
+    <None Include="App.Font\DMSans-MediumItalic.ttf" />
+    <None Include="App.Font\DMSans-Regular.ttf" />
+    <None Include="App.Font\Mitr-Bold.ttf" />
+    <None Include="App.Font\Mitr-ExtraLight.ttf" />
+    <None Include="App.Font\Mitr-Light.ttf" />
+    <None Include="App.Font\Mitr-Medium.ttf" />
+    <None Include="App.Font\Mitr-Regular.ttf" />
+    <None Include="App.Font\Mitr-SemiBold.ttf" />
+    <None Include="packages.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App.Resources\FrmCredits.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.Resources\FrmDebts.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.Resources\FrmMangeLogo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.Resources\FrmStatments.png" />
+    <Content Include="App.Resources\RDDBMenu0.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.Resources\RDDBMenu1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.Resources\RDDBMenu10.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.Resources\RDDBMenu11.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.Resources\RDDBMenu12.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.Resources\RDDBMenu13.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.Resources\RDDBMenu14.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.Resources\RDDBMenu15.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.Resources\RDDBMenu17.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.Resources\RDDBMenu18.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.Resources\RDDBMenu19.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.Resources\RDDBMenu2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.Resources\RDDBMenu20.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.Resources\RDDBMenu21.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.Resources\RDDBMenu3.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.Resources\RDDBMenu4.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.Resources\RDDBMenu5.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.Resources\RDDBMenu6.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.Resources\RDDBMenu7.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.Resources\RDDBMenu8.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.Resources\RDDBMenu9.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.Resources\RSABanner.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Setting.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sansang.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App.Image\" />
+    <Folder Include="App.Program\Master\" />
+    <Folder Include="App.Program\Report\" />
+    <Folder Include="App.Program\Theme\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Utilites\SANSANG.Utility.csproj">
+      <Project>{a64604f0-1580-4a2b-be70-fdb0f2aee327}</Project>
+      <Name>SANSANG.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Grpc.Core.2.44.0\build\net45\Grpc.Core.targets" Condition="Exists('..\packages\Grpc.Core.2.44.0\build\net45\Grpc.Core.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Grpc.Core.2.44.0\build\net45\Grpc.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Grpc.Core.2.44.0\build\net45\Grpc.Core.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

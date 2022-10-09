@@ -1,0 +1,96 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SANSANG.Constant
+{
+    public class CultureConstant
+    {
+        public string Arabic = "ar-SA";
+        public string Bulgarian = "bg-BG";
+        public string Catalan = "ca-ES";
+        public string Czech = "cs-CZ";
+        public string Danish = "da-DK";
+        public string German = "de-DE";
+        public string Greek = "el-GR";
+        public string English = "en-US";
+        public string Spanish = "es-ES";
+        public string Finnish = "fi-FI";
+        public string French = "fr-FR";
+        public string Hebrew = "he-IL";
+        public string Hungarian = "hu-HU";
+        public string Icelandic = "is-IS";
+        public string Italian = "it-IT";
+        public string Japanese = "ja-JP";
+        public string Korean = "ko-KR";
+        public string Dutch = "nl-NL";
+        public string Norwegian = "nb-NO";
+        public string Polish = "pl-PL";
+        public string Portuguese = "pt-BR";
+        public string Romanian = "ro-RO";
+        public string Russian = "ru-RU";
+        public string Croatian = "hr-HR";
+        public string Slovak = "sk-SK";
+        public string Albanian = "sq-AL";
+        public string Swedish = "sv-SE";
+        public string Thai = "th-TH";
+        public string Turkish = "tr-TR";
+        public string Urdu = "ur-PK";
+        public string Indonesian = "id-ID";
+        public string Ukrainian = "uk-UA";
+        public string Belarusian = "be-BY";
+        public string Slovenian = "sl-SI";
+        public string Estonian = "et-EE";
+        public string Latvian = "lv-LV";
+        public string Lithuanian = "lt-LT";
+        public string Persian = "fa-IR";
+        public string Vietnamese = "vi-VN";
+        public string Armenian = "hy-AM";
+        public string Azeri = "az-Latn-AZ";
+
+        public string AR = "ar";
+        public string BG = "bg";
+        public string CA = "ca";
+        public string CS = "cs";
+        public string DA = "da";
+        public string DE = "de";
+        public string EL = "el";
+        public string EN = "en";
+        public string ES = "es";
+        public string FI = "fi";
+        public string FR = "fr";
+        public string HE = "he";
+        public string HU = "hu";
+        public string IS = "is";
+        public string IT = "it";
+        public string JA = "ja";
+        public string KO = "ko";
+        public string NL = "nl";
+        public string NO = "no";
+        public string PL = "pl";
+        public string PT = "pt";
+        public string RO = "ro";
+        public string RU = "ru";
+        public string HR = "hr";
+        public string SK = "sk";
+        public string SQ = "sq";
+        public string SV = "sv";
+        public string TH = "th";
+        public string TR = "tr";
+        public string UR = "ur";
+        public string ID = "id";
+        public string UK = "uk";
+        public string BE = "be";
+        public string SL = "sl";
+        public string ET = "et";
+        public string LV = "lv";
+        public string LT = "lt";
+        public string FA = "fa";
+        public string VI = "vi";
+        public string HY = "hy";
+        public string ZH = "zh-CHS";
+        public string AZ = "az";
+    }
+}
