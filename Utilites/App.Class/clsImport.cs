@@ -108,9 +108,9 @@ namespace SANSANG.Class
                 }
 
                 Data.Date = Statements[0];
-                Data.Amount = Statements[2];
-                Data.Balance = Statements[3];
-                Data.Channel = Statements[4];
+                Data.Amount = Function.MoveNumberStringComma(Statements[2]);
+                Data.Balance = Function.MoveNumberStringComma(Statements[3]);
+                Data.Channel = Statements[4].Substring(0,6);
 
                 DataList.Add(Data);
                 Row++;
