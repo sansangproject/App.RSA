@@ -248,12 +248,13 @@ namespace SANSANG
             {
                 if (Function.GetComboId(cbbMoney) != "0" && Function.GetComboId(cbbAccount) != "0" && Function.GetComboId(cbbTransactions) != "0" && !string.IsNullOrEmpty(txtAmount.Text))
                 {
-                    if (!Function.IsDuplicates(Table.Statments, 
-                        Date.GetDate(dtp: dtDate, Format: 4), 
-                        Date.GetTime(dtp: dtTime, Format: 2), 
-                        Function.GetComboId(cbbAccount), 
-                        Function.GetComboId(cbbTransactions), 
-                        txtAmount.Text, Detail: GetDetails()))
+                    if (!Function.IsDuplicates(Table.Statments,
+                        cbbMoney.Text,
+                        Function.GetComboId(cbbAccount),
+                        Function.GetComboId(cbbTransactions),
+                        Date.GetDate(dtp: dtDate, Format: 4),
+                        Function.RemoveComma(txtAmount.Text),
+                        Function.RemoveComma("0.00")))
                     {
                         txtCode.Text = Function.GetCodes(Table.StatmentId, "", "Generated");
 
