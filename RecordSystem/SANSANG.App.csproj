@@ -379,11 +379,11 @@
     <Compile Include="App.Program\Application\Manage\FrmMangeUser.Designer.cs">
       <DependentUpon>FrmMangeUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="App.Program\Application\Member\FrmSaveMember.cs">
+    <Compile Include="App.Program\Application\Member\FrmMembers.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="App.Program\Application\Member\FrmSaveMember.Designer.cs">
-      <DependentUpon>FrmSaveMember.cs</DependentUpon>
+    <Compile Include="App.Program\Application\Member\FrmMembers.Designer.cs">
+      <DependentUpon>FrmMembers.cs</DependentUpon>
     </Compile>
     <Compile Include="App.Program\Application\Movie\FrmSeeMovie.cs">
       <SubType>Form</SubType>
@@ -710,8 +710,8 @@
     <EmbeddedResource Include="App.Program\Application\Manage\FrmMangeUser.resx">
       <DependentUpon>FrmMangeUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="App.Program\Application\Member\FrmSaveMember.resx">
-      <DependentUpon>FrmSaveMember.cs</DependentUpon>
+    <EmbeddedResource Include="App.Program\Application\Member\FrmMembers.resx">
+      <DependentUpon>FrmMembers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="App.Program\Application\Movie\FrmSeeMovie.resx">
       <DependentUpon>FrmSeeMovie.cs</DependentUpon>

@@ -374,7 +374,11 @@ namespace SANSANG
                 FrmProducts Frm = new FrmProducts(UserId, UserName, UserSurname, UserType);
                 Frm.Show();
             }
-
+            else if (((RadMenuItem)sender).Name == "SAVME00")
+            {
+                FrmMembers Frm = new FrmMembers(UserId, UserName, UserSurname, UserType);
+                Frm.Show();
+            }
             Log.WriteLogData("MENU", ((RadMenuItem)sender).Name, UserId, "Open");
 
         }
