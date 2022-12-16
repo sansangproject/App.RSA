@@ -8,6 +8,7 @@ using SANSANG.Utilites.App.Forms;
 using System.Drawing;
 using System.Linq;
 using System.Globalization;
+using System.Threading.Tasks;
 
 namespace SANSANG
 {
@@ -908,7 +909,7 @@ namespace SANSANG
                                 string Months = dtValue.ToString("MM");
 
                                 Lists = string.Concat(Years, Months);
-
+                                  
                                 string Codes = Function.GetCodes(Table.TrackingsId, "1049", "Generated");
 
                                 if (Codes != "" && !Function.IsDuplicates(Table.Depts, Lists, txtAccount.Text, txtName.Text, Function.GetComboId(cbbProvider), Detail: "Bill " + txtName.Text + " (" + Lists + ") duplicate."))
@@ -944,6 +945,8 @@ namespace SANSANG
                                     Error += Error;
                                     Codes = "";
                                 }
+
+                                Task.Delay(1000).Wait();
                             }
 
                             if (string.IsNullOrEmpty(Error))
