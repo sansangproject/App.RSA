@@ -348,7 +348,7 @@ namespace SANSANG.Class
                     {"@Operation", Operation},
                 };
 
-                db.Get("[fn].[GeneratedId]", Parameter, out Error, out dt);
+                db.Get(Store.FnGeneratedId, Parameter, out Error, out dt);
                 return dt.Rows[0][0].ToString();
 
             }
@@ -433,11 +433,13 @@ namespace SANSANG.Class
                     {"@Value2",     strValue2},
                     {"@Value3",     strValue3},
                     {"@Value4",     strValue4},
-                    {"@Value5",     ""}
+                    {"@Value5",     ""},
+                    {"@Value6",     ""},
+                    {"@Value7",     ""},
                 };
 
                 db.Get(Store.FnGetDataDuplicate, Parameter, out Error, out dt);
-                return Convert.ToInt32(dt.Rows[0]["ROW"].ToString());
+                return string.IsNullOrEmpty(Error) ? Convert.ToInt32(dt.Rows[0]["ROW"].ToString()) : 1;
             }
             catch (Exception)
             {
