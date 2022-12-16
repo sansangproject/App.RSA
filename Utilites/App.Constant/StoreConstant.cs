@@ -56,8 +56,7 @@ namespace SANSANG.Constant
         public static string GetBankLogo = "[GetPath]";
         public static string GetBankBalance = "[GetBankBalance]";
         public static string GeneratedId = "[GeneratedId]";
-        public static string GetTopId = "[GetTopId]";
-        
+
         public string ManagePath = string.Format(Stores, SPR, Path);
         public string ManageUser = string.Format(Stores, SPR, User);
         public string ManageMenu = string.Format(Stores, SPR, Menu);
