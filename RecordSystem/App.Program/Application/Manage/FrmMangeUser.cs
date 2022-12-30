@@ -24,7 +24,7 @@ namespace SANSANG
         private clsInsert Insert = new clsInsert();
         private clsFunction Fn = new clsFunction();
         private clsMessage Message = new clsMessage();
-       private dbConnection db = new dbConnection();
+        private dbConnection db = new dbConnection();
         private clsDataList List = new clsDataList();
         private clsCryption Cryption = new clsCryption();
         private clsSendMail TSSSendMail = new clsSendMail();

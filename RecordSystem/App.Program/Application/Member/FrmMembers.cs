@@ -5,8 +5,6 @@ using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Security.Cryptography;
 using System.Windows.Forms;
 using DevComponents.AdvTree;
-using Microsoft.Reporting.Map.WebForms.BingMaps;
-using Microsoft.VisualBasic.ApplicationServices;
 using SANSANG.Class;
 using SANSANG.Constant;
 using SANSANG.Database;
@@ -78,7 +76,7 @@ namespace SANSANG
             List.GetLists(cbbStatus, string.Format(DataList.StatusId, "0"));
             List.GetLists(cbbShop, string.Format(DataList.ShopId));
             List.GetLists(cbbCard, string.Format(DataList.CardId));
-            List.GetList(cbbUser, string.Format(DataList.Users));
+            List.GetLists(cbbUser, string.Format(DataList.UserId));
 
             pbMain.Enabled = true;
             Clear();
@@ -154,7 +152,6 @@ namespace SANSANG
                     {"@UserName", Search ? txtUser.Text : ""},
                     {"@Name", Search ? txtName.Text : ""},
                     {"@Surname", Search ? txtSurname.Text : ""},
-                    {"@Number", Search ? txtNumber.Text : ""},
                     {"@Password", ""},
                     {"@Email", Search ? rdbGMail.Checked ? "@gmail" : rdbHMail.Checked ? "@hotmail" : "" : ""},
                     {"@Status", Search ? Function.GetComboId(cbbStatus) : "0"},
@@ -190,7 +187,6 @@ namespace SANSANG
                 strCondition += txtUser.Text != "" ? ", ผู้ใช้: " + txtUser.Text : "";
                 strCondition += txtName.Text != "" ? ", ชื่อ: " + txtName.Text : "";
                 strCondition += txtSurname.Text != "" ? ", นามสกุล: " + txtSurname.Text : "";
-                strCondition += txtNumber.Text != "" ? ", รหัสสมาชิก: " + txtNumber.Text : "";
                 strCondition += txtEmail.Text != "" ? ", อีเมล: " + txtEmail.Text : "";
                 strCondition += txtWeb.Text != "" ? ", เว็บไซต์: " + txtWeb.Text : "";
                 strCondition += rdbPoint.Checked ? ", สะสมแต้ม" : "";
@@ -225,7 +221,6 @@ namespace SANSANG
                         {"@UserName", ""},
                         {"@Name", ""},
                         {"@Surname", ""},
-                        {"@Number", ""},
                         {"@Password", ""},
                         {"@Email", ""},
                         {"@Status", "0"},
@@ -255,8 +250,8 @@ namespace SANSANG
             {
                 if (Function.GetRows(dt) > 0)
                 {
-                    cbbShop.SelectedValue = dt.Rows[0]["ShopId"].ToString();
                     cbbStatus.SelectedValue = dt.Rows[0]["Status"].ToString();
+                    cbbShop.SelectedValue = dt.Rows[0]["ShopId"].ToString();
                     cbbUser.SelectedValue = dt.Rows[0]["UserId"].ToString();
                     cbbCard.SelectedValue = dt.Rows[0]["CardId"].ToString();
                     txtId.Text = dt.Rows[0]["Id"].ToString();
@@ -264,7 +259,6 @@ namespace SANSANG
 
                     txtName.Text = dt.Rows[0]["Names"].ToString();
                     txtSurname.Text = dt.Rows[0]["Surnames"].ToString();
-                    txtNumber.Text = dt.Rows[0]["Number"].ToString();
                     txtEmail.Text = dt.Rows[0]["Email"].ToString();
                     txtPhone.Text = dt.Rows[0]["Phone"].ToString();
                     txtUser.Text = dt.Rows[0]["Usernames"].ToString();
@@ -304,7 +298,7 @@ namespace SANSANG
                 {
                     if (!Function.IsDuplicates(Table.Members, Function.GetComboId(cbbUser), Function.GetComboId(cbbShop), Detail: "Member of " + cbbShop.Text + " (" + txtUser.Text + ")"))
                     {
-                        txtCode.Text = Function.GetCodes(Table.MembertId, "", "Generated");
+                        txtCode.Text = Function.GetCodes(Table.UserId, "", "Generated");
 
                         Parameter = new string[,]
                         {
@@ -314,7 +308,6 @@ namespace SANSANG
                             {"@UserName", txtUser.Text},
                             {"@Name", txtName.Text},
                             {"@Surname", txtSurname.Text},
-                            {"@Number", txtNumber.Text},
                             {"@Password", Cryption.Encrypt(txtPassword.Text)},
                             {"@Email", txtEmail.Text},
                             {"@Status", Function.GetComboId(cbbStatus)},
@@ -324,14 +317,14 @@ namespace SANSANG
                             {"@Operation", Operation.InsertAbbr},
                             {"@CardId", Function.GetComboId(cbbCard)},
                             {"@ShopId", Function.GetComboId(cbbShop)},
-                            {"@UserId", AddUser()},
+                            {"@UserId", Function.GetComboId(cbbUser)},
                             {"@Website", txtWeb.Text},
                         };
 
                         if (Insert.Add(AppCode, AppName, UserId, Store.ManageMember, Parameter, txtCode.Text, Details: "Member of " + cbbShop.Text + " (" + txtUser.Text + ")"))
                         {
                             Clear();
-                            List.GetList(cbbUser, string.Format(DataList.Users));
+                            List.GetLists(cbbUser, string.Format(DataList.UserId, "Type", "1001"));
                         }
                     }
                 }
@@ -352,17 +345,14 @@ namespace SANSANG
             {
                 if ((Function.GetComboId(cbbStatus) != "0") && !string.IsNullOrEmpty(txtId.Text))
                 {
-                    if (UpdateUser())
+                    Parameter = new string[,]
                     {
-                        Parameter = new string[,]
-                        {
                         {"@Id", txtId.Text},
                         {"@Code", txtCode.Text},
                         {"@Phone", txtPhone.Text},
                         {"@UserName", txtUser.Text},
                         {"@Name", txtName.Text},
                         {"@Surname", txtSurname.Text},
-                        {"@Number", txtNumber.Text},
                         {"@Password", Cryption.Encrypt(txtPassword.Text)},
                         {"@Email", txtEmail.Text},
                         {"@Status", Function.GetComboId(cbbStatus)},
@@ -374,18 +364,17 @@ namespace SANSANG
                         {"@ShopId", Function.GetComboId(cbbShop)},
                         {"@UserId", Function.GetComboId(cbbUser)},
                         {"@Website", txtWeb.Text},
-                        };
+                    };
 
-                        if (Edit.Update(AppCode, AppName, UserId, Store.ManageMember, Parameter, txtCode.Text, Details: "Member of " + cbbShop.Text + " (" + txtUser.Text + ")"))
-                        {
-                            Clear();
-                            List.GetList(cbbUser, string.Format(DataList.Users));
-                        }
-                        else
-                        {
-                            Message.ShowRequestData();
-                        }
+                    if (Edit.Update(AppCode, AppName, UserId, Store.ManageMember, Parameter, txtCode.Text, Details: "Member of " + cbbShop.Text + " (" + txtUser.Text + ")"))
+                    {
+                        Clear();
+                        List.GetLists(cbbUser, string.Format(DataList.UserId, "Type", "1001"));
                     }
+                }
+                else
+                {
+                    Message.ShowRequestData();
                 }
             }
             catch (Exception ex)
@@ -445,12 +434,10 @@ namespace SANSANG
             if (!Function.IsDefault(cbbShop))
             {
                 Images.Show(pbImage, Function.GetComboId(cbbShop));
-                cbbStatus.SelectedValue = "1000";
             }
             else
             {
                 Images.ShowDefault(pbImage);
-                cbbStatus.SelectedValue = "0";
             }
 
             btnSearch.Focus();
@@ -527,13 +514,12 @@ namespace SANSANG
                 {
                     txtUser.Text = "";
                     txtPassword.Text = "";
-                    var UserCoed = cbbUser.Text.Split(new string[] { "(", ")" }, StringSplitOptions.RemoveEmptyEntries);
 
                     Parameter = new string[,]
                     {
                         {"@Id", ""},
-                        {"@Code", UserCoed[0].TrimEnd()},
-                        {"@Name", UserCoed[1].TrimEnd()},
+                        {"@Code", cbbUser.Text},
+                        {"@Name", ""},
                         {"@Surname", ""},
                         {"@Password", ""},
                         {"@Email", ""},
@@ -550,74 +536,14 @@ namespace SANSANG
 
                     txtUser.Text = dt.Rows[0]["Code"].ToString();
                     txtPassword.Text = Cryption.Decrypt(dt.Rows[0]["Password"].ToString());
-                    txtName.Text = dt.Rows[0]["Name"].ToString();
-                    txtSurname.Text = dt.Rows[0]["Surname"].ToString();
+                    txtName.Text = dt.Rows[0]["Names"].ToString();
+                    txtSurname.Text = dt.Rows[0]["Surnames"].ToString();
                     txtEmail.Text = dt.Rows[0]["Email"].ToString();
                 }
             }
             catch (Exception ex)
             {
                 Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
-            }
-        }
-
-        private string AddUser()
-        {
-            try
-            {
-                Parameter = new string[,]
-                {
-                    {"@Id", ""},
-                    {"@Code", txtUser.Text},
-                    {"@Name", txtName.Text},
-                    {"@Surname", txtSurname.Text},
-                    {"@Password", Cryption.Encrypt(txtPassword.Text)},
-                    {"@Email", txtEmail.Text},
-                    {"@Type", "1001"},
-                    {"@Status", Function.GetComboId(cbbStatus)},
-                    {"@Sex", "A"},
-                    {"@User", "1000"},
-                    {"@IsActive", "1"},
-                    {"@IsDelete", "0"},
-                    {"@Operation", Operation.InsertAbbr}
-                };
-
-                return Insert.Add(AppCode, AppName, UserId, Store.ManageUser, Parameter);
-            }
-            catch (Exception ex)
-            {
-                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
-                return "";
-            }
-        }
-
-        private bool UpdateUser()
-        {
-            try
-            {
-                Parameter = new string[,]
-                {
-                    {"@Id", Function.GetComboId(cbbUser)},
-                    {"@Code", txtUser.Text},
-                    {"@Name", txtName.Text},
-                    {"@Surname", txtSurname.Text},
-                    {"@Password", Cryption.Encrypt(txtPassword.Text)},
-                    {"@Email", txtEmail.Text},
-                    {"@Type", "1001"},
-                    {"@Status", Function.GetComboId(cbbStatus)},
-                    {"@Sex", "A"},
-                    {"@User", "1000"},
-                    {"@IsActive", "1"},
-                    {"@IsDelete", "0"},
-                    {"@Operation", Operation.UpdateAbbr}
-                };
-
-                return string.IsNullOrEmpty(Edit.Update(AppCode, AppName, UserId, Store.ManageUser, Parameter))? true : false;
-            }
-            catch (Exception ex)
-            {
-                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
-                return false;
             }
         }
     }
