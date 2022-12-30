@@ -37,7 +37,8 @@ namespace SANSANG.Constant
         public static string Credit = "[Credits]";
         public static string Statement = "[Statements]";
         public static string Product = "[Products]";
-        
+        public static string Member = "[Members]";
+
         public static string GetMasterList = "[GetListMaster]";
         public static string GetList = "[GetList]";
 
@@ -71,6 +72,7 @@ namespace SANSANG.Constant
         public string ManageCredit = string.Format(Stores, SPR, Credit);
         public string ManageStatement = string.Format(Stores, SPR, Statement);
         public string ManageProduct = string.Format(Stores, SPR, Product);
+        public string ManageMember = string.Format(Stores, SPR, Member);
 
         public string DeleteData = string.Format(Stores, SPR, Delete);
 

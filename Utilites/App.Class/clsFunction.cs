@@ -408,9 +408,12 @@ namespace SANSANG.Class
 
                 if (NumberOfDuplicate > 0)
                 {
-                    Message.MessageConfirmation("N", "", Detail);
-                    var Popup = new FrmMessagesBoxOK(Message.strOperation, Message.strMes, "OK", Id: Message.strImage);
-                    Popup.ShowDialog();
+                    if (Detail != "")
+                    {
+                        Message.MessageConfirmation("N", "", Detail);
+                        var Popup = new FrmMessagesBoxOK(Message.strOperation, Message.strMes, "OK", Id: Message.strImage);
+                        Popup.ShowDialog();
+                    }
                     return true;
                 }
 
@@ -795,6 +798,14 @@ namespace SANSANG.Class
                 {
                     ComboBoxs.SelectedValue = 0;
                 }
+
+                RadioButton RadioButtons = Controls as RadioButton;
+
+                if (RadioButtons != null)
+                {
+                    RadioButtons.Checked = true;
+                }
+
             }
         }
 
@@ -2089,37 +2100,39 @@ namespace SANSANG.Class
             }
         }
 
-        public string ConvertPhoneNumber(string strNumber)
+        public string ConvertPhoneNumber(string phoneNumber)
         {
             try
             {
                 string numberOnly = "";
-
-                for (int i = 0; i < strNumber.Length; i++)
+                
+                for (int i = 0; i < phoneNumber.Length; i++)
                 {
-                    if (Char.IsDigit(strNumber[i]))
-                        numberOnly += strNumber[i];
+                    if (Char.IsDigit(phoneNumber[i]))
+                        numberOnly += phoneNumber[i];
                 }
 
                 Int64 intNumber = Convert.ToInt64(numberOnly);
-                string PhoneNumber = _formatToDigit(10, numberOnly);
+                string strNumber = Convert.ToString(intNumber);
 
                 //Mobile//
-                if (PhoneNumber.Length == 10)
+                if (strNumber.Length == 9)
                 {
-                    return string.Format("{0}-{1}-{2}", PhoneNumber.Substring(0, 3), PhoneNumber.Substring(3, 3), PhoneNumber.Substring(6, 4));
+                    return Regex.Replace(strNumber, @"(\d{2})(\d{3})(\d{4})", "0" + "$1 $2 $3");
                 }
 
                 //Phone//
-                if (PhoneNumber.Substring(1, 1) == "0")
+                if (strNumber.Length == 8)
                 {
-                    if (PhoneNumber.Substring(2, 1) == "2")  //02-591-5032
+                    //BKK//
+                    if (strNumber.Substring(0, 1) == "2")
                     {
-                        return string.Format("{0}-{1}-{2}", PhoneNumber.Substring(1, 2), PhoneNumber.Substring(3, 3), PhoneNumber.Substring(6, 4));
+                        return Regex.Replace(strNumber, @"(\d{4})(\d{4})", "0 " + "$1 $2");
                     }
-                    else //032-681-105
+                    //UPC//
+                    else
                     {
-                        return string.Format("{0}-{1}-{2}", PhoneNumber.Substring(1, 3), PhoneNumber.Substring(4, 3), PhoneNumber.Substring(7, 3));
+                        return Regex.Replace(strNumber, @"(\d{2})(\d{3})(\d{3})", "0" + "$1 $2 $3");
                     }
                 }
 
@@ -2127,7 +2140,7 @@ namespace SANSANG.Class
             }
             catch
             {
-                return strNumber;
+                return phoneNumber;
             }
         }
 
