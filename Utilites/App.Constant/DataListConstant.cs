@@ -20,6 +20,7 @@ namespace SANSANG.Constant
         public string CardId = "[dbo].[Cards] Display Id IsCredit 1";
         public string BankId = "[mst].[Bank] Short Id IsCredit 1";
         public string ProductTypeId = "[mst].[ProductType] Display Id Status 1000";
+        public string UserId = "[mst].[User] Code Id Type 1001";
 
         public string ProvinceId = "[mst].[Province] Name Id {0} {1}";
         public string AmphoeId = "[mst].[Amphoe] Name Id {0} {1}";
@@ -80,7 +81,6 @@ namespace SANSANG.Constant
         public string Credit = "Credit";
         public string Logo = "Logo";
         public string UserType = "UserType";
-        public string UserId = "UserId";
         public string PaymentSub = "PaymentSub";
         public string Coin = "Coin";
         public string Member = "Member";
