@@ -1004,6 +1004,7 @@
     <Folder Include="App.Program\Master\" />
     <Folder Include="App.Program\Report\" />
     <Folder Include="App.Program\Theme\" />
+    <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="stdole">
