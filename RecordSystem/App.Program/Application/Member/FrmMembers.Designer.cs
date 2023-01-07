@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMembers));
             this.txtName = new System.Windows.Forms.TextBox();
             this.lblName = new System.Windows.Forms.Label();
@@ -40,11 +40,18 @@
             this.lblHSearch = new System.Windows.Forms.Label();
             this.lblCondition = new System.Windows.Forms.Label();
             this.txtCount = new System.Windows.Forms.TextBox();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.btnClear = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
             this.gbForm = new System.Windows.Forms.GroupBox();
+            this.rdbPoint = new System.Windows.Forms.RadioButton();
+            this.label17 = new System.Windows.Forms.Label();
+            this.rdbPointAll = new System.Windows.Forms.RadioButton();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.btnSearchs = new System.Windows.Forms.Button();
+            this.rdbOMail = new System.Windows.Forms.RadioButton();
+            this.label15 = new System.Windows.Forms.Label();
+            this.rdbHMail = new System.Windows.Forms.RadioButton();
+            this.rdbGMail = new System.Windows.Forms.RadioButton();
             this.pbImage = new System.Windows.Forms.PictureBox();
             this.txtId = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -53,7 +60,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.lable12 = new System.Windows.Forms.Label();
-            this.rdbOMail = new System.Windows.Forms.RadioButton();
             this.label10 = new System.Windows.Forms.Label();
             this.cbbUser = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -66,14 +72,15 @@
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
             this.label20 = new System.Windows.Forms.Label();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.cbShowPass = new System.Windows.Forms.CheckBox();
-            this.rdbGMail = new System.Windows.Forms.RadioButton();
-            this.rdbHMail = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -89,10 +96,7 @@
             this.pbBanner = new System.Windows.Forms.PictureBox();
             this.pbMain = new System.Windows.Forms.PictureBox();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.rdbPointAll = new System.Windows.Forms.RadioButton();
-            this.rdbPoint = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.gbForm.SuspendLayout();
@@ -101,17 +105,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbBanner)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMain)).BeginInit();
             this.groupBox1.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtName
             // 
             this.txtName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.txtName.Location = new System.Drawing.Point(420, 147);
+            this.txtName.Location = new System.Drawing.Point(562, 232);
             this.txtName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(137, 21);
+            this.txtName.Size = new System.Drawing.Size(173, 21);
             this.txtName.TabIndex = 1;
             this.txtName.TabStop = false;
             // 
@@ -119,7 +122,7 @@
             // 
             this.lblName.AutoSize = true;
             this.lblName.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.lblName.Location = new System.Drawing.Point(40, 234);
+            this.lblName.Location = new System.Drawing.Point(48, 222);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(34, 20);
             this.lblName.TabIndex = 16;
@@ -129,7 +132,7 @@
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.lblStatus.Location = new System.Drawing.Point(40, 307);
+            this.lblStatus.Location = new System.Drawing.Point(48, 295);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(45, 20);
             this.lblStatus.TabIndex = 18;
@@ -140,10 +143,10 @@
             this.cbbStatus.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cbbStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.cbbStatus.FormattingEnabled = true;
-            this.cbbStatus.Location = new System.Drawing.Point(106, 305);
+            this.cbbStatus.Location = new System.Drawing.Point(146, 302);
             this.cbbStatus.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbbStatus.Name = "cbbStatus";
-            this.cbbStatus.Size = new System.Drawing.Size(159, 28);
+            this.cbbStatus.Size = new System.Drawing.Size(225, 28);
             this.cbbStatus.TabIndex = 0;
             // 
             // lblSearch
@@ -167,14 +170,14 @@
             this.GridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.GridView.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.GridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.GridView.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.GridView.DefaultCellStyle = dataGridViewCellStyle1;
             this.GridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.GridView.Location = new System.Drawing.Point(19, 46);
             this.GridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -242,67 +245,21 @@
             this.txtCount.TabStop = false;
             this.txtCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // btnAdd
-            // 
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdd.ForeColor = System.Drawing.Color.Transparent;
-            this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
-            this.btnAdd.Location = new System.Drawing.Point(57, 6);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(36, 36);
-            this.btnAdd.TabIndex = 9;
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.AddData);
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEdit.ForeColor = System.Drawing.Color.Transparent;
-            this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
-            this.btnEdit.Location = new System.Drawing.Point(96, 6);
-            this.btnEdit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(36, 36);
-            this.btnEdit.TabIndex = 10;
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.EditData);
-            // 
-            // btnClear
-            // 
-            this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClear.ForeColor = System.Drawing.Color.Transparent;
-            this.btnClear.Image = ((System.Drawing.Image)(resources.GetObject("btnClear.Image")));
-            this.btnClear.Location = new System.Drawing.Point(180, 6);
-            this.btnClear.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(36, 36);
-            this.btnClear.TabIndex = 12;
-            this.btnClear.Tag = "เคลียร์";
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.ClearData);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.ForeColor = System.Drawing.Color.Transparent;
-            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
-            this.btnDelete.Location = new System.Drawing.Point(138, 6);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(36, 36);
-            this.btnDelete.TabIndex = 11;
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.DeleteData);
-            // 
             // gbForm
             // 
             this.gbForm.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gbForm.BackColor = System.Drawing.Color.White;
-            this.gbForm.Controls.Add(this.groupBox3);
+            this.gbForm.Controls.Add(this.rdbPointAll);
+            this.gbForm.Controls.Add(this.rdbPoint);
             this.gbForm.Controls.Add(this.groupBox1);
+            this.gbForm.Controls.Add(this.label17);
+            this.gbForm.Controls.Add(this.label18);
+            this.gbForm.Controls.Add(this.label9);
+            this.gbForm.Controls.Add(this.label16);
+            this.gbForm.Controls.Add(this.btnSearchs);
+            this.gbForm.Controls.Add(this.label15);
             this.gbForm.Controls.Add(this.pbImage);
             this.gbForm.Controls.Add(this.txtId);
             this.gbForm.Controls.Add(this.label11);
@@ -321,7 +278,6 @@
             this.gbForm.Controls.Add(this.groupBox2);
             this.gbForm.Controls.Add(this.cbShowPass);
             this.gbForm.Controls.Add(this.label1);
-            this.gbForm.Controls.Add(this.label9);
             this.gbForm.Controls.Add(this.label8);
             this.gbForm.Controls.Add(this.label5);
             this.gbForm.Controls.Add(this.label4);
@@ -347,12 +303,146 @@
             this.gbForm.TabIndex = 46;
             this.gbForm.TabStop = false;
             // 
+            // rdbPoint
+            // 
+            this.rdbPoint.AccessibleName = "rdbPoint";
+            this.rdbPoint.AutoSize = true;
+            this.rdbPoint.ForeColor = System.Drawing.Color.Gray;
+            this.rdbPoint.Location = new System.Drawing.Point(1018, 231);
+            this.rdbPoint.Name = "rdbPoint";
+            this.rdbPoint.Size = new System.Drawing.Size(55, 24);
+            this.rdbPoint.TabIndex = 125;
+            this.rdbPoint.Text = "สะสม";
+            this.rdbPoint.UseVisualStyleBackColor = true;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Mitr Light", 8.5F);
+            this.label17.ForeColor = System.Drawing.Color.Gray;
+            this.label17.Location = new System.Drawing.Point(836, 238);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(56, 19);
+            this.label17.TabIndex = 134;
+            this.label17.Text = "สะสมแต้ม";
+            // 
+            // rdbPointAll
+            // 
+            this.rdbPointAll.AccessibleName = "rdbPoint";
+            this.rdbPointAll.AutoSize = true;
+            this.rdbPointAll.Checked = true;
+            this.rdbPointAll.ForeColor = System.Drawing.Color.Gray;
+            this.rdbPointAll.Location = new System.Drawing.Point(942, 231);
+            this.rdbPointAll.Name = "rdbPointAll";
+            this.rdbPointAll.Size = new System.Drawing.Size(67, 24);
+            this.rdbPointAll.TabIndex = 126;
+            this.rdbPointAll.Text = "ทั้งหมด";
+            this.rdbPointAll.UseVisualStyleBackColor = true;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label18.Location = new System.Drawing.Point(836, 221);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(43, 20);
+            this.label18.TabIndex = 133;
+            this.label18.Text = "Point:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Mitr Light", 8.5F);
+            this.label9.ForeColor = System.Drawing.Color.Gray;
+            this.label9.Location = new System.Drawing.Point(448, 200);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(49, 19);
+            this.label9.TabIndex = 132;
+            this.label9.Text = "รหัสผ่าน";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label16.Location = new System.Drawing.Point(448, 183);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(69, 20);
+            this.label16.TabIndex = 131;
+            this.label16.Text = "Password:";
+            // 
+            // btnSearchs
+            // 
+            this.btnSearchs.BackColor = System.Drawing.Color.Transparent;
+            this.btnSearchs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearchs.ForeColor = System.Drawing.Color.Transparent;
+            this.btnSearchs.Image = ((System.Drawing.Image)(resources.GetObject("btnSearchs.Image")));
+            this.btnSearchs.Location = new System.Drawing.Point(345, 160);
+            this.btnSearchs.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnSearchs.Name = "btnSearchs";
+            this.btnSearchs.Size = new System.Drawing.Size(22, 17);
+            this.btnSearchs.TabIndex = 130;
+            this.btnSearchs.UseVisualStyleBackColor = false;
+            this.btnSearchs.Click += new System.EventHandler(this.SearchData);
+            // 
+            // rdbOMail
+            // 
+            this.rdbOMail.AccessibleName = "rdbMail";
+            this.rdbOMail.AutoSize = true;
+            this.rdbOMail.Checked = true;
+            this.rdbOMail.ForeColor = System.Drawing.Color.Gray;
+            this.rdbOMail.Location = new System.Drawing.Point(6, 14);
+            this.rdbOMail.Name = "rdbOMail";
+            this.rdbOMail.Size = new System.Drawing.Size(64, 24);
+            this.rdbOMail.TabIndex = 111;
+            this.rdbOMail.TabStop = true;
+            this.rdbOMail.Text = "Other";
+            this.rdbOMail.UseVisualStyleBackColor = true;
+            this.rdbOMail.CheckedChanged += new System.EventHandler(this.rdChecked);
+            this.rdbOMail.Click += new System.EventHandler(this.rdChecked);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Mitr Light", 8.5F);
+            this.label15.ForeColor = System.Drawing.Color.Gray;
+            this.label15.Location = new System.Drawing.Point(448, 164);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(42, 19);
+            this.label15.TabIndex = 129;
+            this.label15.Text = "ชื่อผู้ใช้";
+            // 
+            // rdbHMail
+            // 
+            this.rdbHMail.AccessibleName = "rdbMail";
+            this.rdbHMail.AutoSize = true;
+            this.rdbHMail.ForeColor = System.Drawing.Color.Gray;
+            this.rdbHMail.Location = new System.Drawing.Point(76, 14);
+            this.rdbHMail.Name = "rdbHMail";
+            this.rdbHMail.Size = new System.Drawing.Size(74, 24);
+            this.rdbHMail.TabIndex = 4;
+            this.rdbHMail.Text = "Hotmail";
+            this.rdbHMail.UseVisualStyleBackColor = true;
+            this.rdbHMail.CheckedChanged += new System.EventHandler(this.rdChecked);
+            // 
+            // rdbGMail
+            // 
+            this.rdbGMail.AccessibleName = "rdbMail";
+            this.rdbGMail.AutoSize = true;
+            this.rdbGMail.ForeColor = System.Drawing.Color.Gray;
+            this.rdbGMail.Location = new System.Drawing.Point(156, 14);
+            this.rdbGMail.Name = "rdbGMail";
+            this.rdbGMail.Size = new System.Drawing.Size(60, 24);
+            this.rdbGMail.TabIndex = 5;
+            this.rdbGMail.Text = "Gmail";
+            this.rdbGMail.UseVisualStyleBackColor = true;
+            this.rdbGMail.CheckedChanged += new System.EventHandler(this.rdChecked);
+            // 
             // pbImage
             // 
             this.pbImage.Image = ((System.Drawing.Image)(resources.GetObject("pbImage.Image")));
-            this.pbImage.Location = new System.Drawing.Point(1093, 143);
+            this.pbImage.Location = new System.Drawing.Point(1157, 156);
             this.pbImage.Name = "pbImage";
-            this.pbImage.Size = new System.Drawing.Size(203, 184);
+            this.pbImage.Size = new System.Drawing.Size(161, 168);
             this.pbImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbImage.TabIndex = 120;
             this.pbImage.TabStop = false;
@@ -362,7 +452,7 @@
             this.txtId.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtId.Enabled = false;
             this.txtId.ForeColor = System.Drawing.Color.Red;
-            this.txtId.Location = new System.Drawing.Point(215, 134);
+            this.txtId.Location = new System.Drawing.Point(264, 114);
             this.txtId.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(69, 21);
@@ -375,7 +465,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Mitr Light", 8.5F);
             this.label11.ForeColor = System.Drawing.Color.Gray;
-            this.label11.Location = new System.Drawing.Point(330, 246);
+            this.label11.Location = new System.Drawing.Point(836, 201);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(55, 19);
             this.label11.TabIndex = 117;
@@ -385,7 +475,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label14.Location = new System.Drawing.Point(330, 226);
+            this.label14.Location = new System.Drawing.Point(836, 184);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(49, 20);
             this.label14.TabIndex = 116;
@@ -395,10 +485,10 @@
             // 
             this.txtWeb.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtWeb.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.txtWeb.Location = new System.Drawing.Point(420, 221);
+            this.txtWeb.Location = new System.Drawing.Point(940, 195);
             this.txtWeb.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtWeb.Name = "txtWeb";
-            this.txtWeb.Size = new System.Drawing.Size(173, 21);
+            this.txtWeb.Size = new System.Drawing.Size(188, 21);
             this.txtWeb.TabIndex = 115;
             this.txtWeb.TabStop = false;
             // 
@@ -407,7 +497,7 @@
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Mitr Light", 8.5F);
             this.label13.ForeColor = System.Drawing.Color.Gray;
-            this.label13.Location = new System.Drawing.Point(331, 284);
+            this.label13.Location = new System.Drawing.Point(836, 165);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(45, 19);
             this.label13.TabIndex = 114;
@@ -418,7 +508,7 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Mitr Light", 8.5F);
             this.label12.ForeColor = System.Drawing.Color.Gray;
-            this.label12.Location = new System.Drawing.Point(331, 203);
+            this.label12.Location = new System.Drawing.Point(448, 310);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(45, 19);
             this.label12.TabIndex = 113;
@@ -429,34 +519,18 @@
             this.lable12.AutoSize = true;
             this.lable12.Font = new System.Drawing.Font("Mitr Light", 8.5F);
             this.lable12.ForeColor = System.Drawing.Color.Gray;
-            this.lable12.Location = new System.Drawing.Point(331, 167);
+            this.lable12.Location = new System.Drawing.Point(448, 239);
             this.lable12.Name = "lable12";
             this.lable12.Size = new System.Drawing.Size(41, 19);
             this.lable12.TabIndex = 112;
             this.lable12.Text = "Name";
-            // 
-            // rdbOMail
-            // 
-            this.rdbOMail.AccessibleName = "rdbMail";
-            this.rdbOMail.AutoSize = true;
-            this.rdbOMail.Checked = true;
-            this.rdbOMail.ForeColor = System.Drawing.Color.Gray;
-            this.rdbOMail.Location = new System.Drawing.Point(42, 18);
-            this.rdbOMail.Name = "rdbOMail";
-            this.rdbOMail.Size = new System.Drawing.Size(64, 24);
-            this.rdbOMail.TabIndex = 111;
-            this.rdbOMail.TabStop = true;
-            this.rdbOMail.Text = "Other";
-            this.rdbOMail.UseVisualStyleBackColor = true;
-            this.rdbOMail.CheckedChanged += new System.EventHandler(this.rdChecked);
-            this.rdbOMail.Click += new System.EventHandler(this.rdChecked);
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Mitr Light", 8.5F);
             this.label10.ForeColor = System.Drawing.Color.Gray;
-            this.label10.Location = new System.Drawing.Point(40, 288);
+            this.label10.Location = new System.Drawing.Point(48, 276);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(54, 19);
             this.label10.TabIndex = 109;
@@ -466,10 +540,10 @@
             // 
             this.cbbUser.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cbbUser.FormattingEnabled = true;
-            this.cbbUser.Location = new System.Drawing.Point(106, 269);
+            this.cbbUser.Location = new System.Drawing.Point(146, 266);
             this.cbbUser.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbbUser.Name = "cbbUser";
-            this.cbbUser.Size = new System.Drawing.Size(178, 28);
+            this.cbbUser.Size = new System.Drawing.Size(225, 28);
             this.cbbUser.TabIndex = 0;
             this.cbbUser.TabStop = false;
             this.cbbUser.SelectedIndexChanged += new System.EventHandler(this.cbbUser_SelectedIndexChanged);
@@ -479,7 +553,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Mitr Light", 8.5F);
             this.label7.ForeColor = System.Drawing.Color.Gray;
-            this.label7.Location = new System.Drawing.Point(40, 249);
+            this.label7.Location = new System.Drawing.Point(48, 239);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(35, 19);
             this.label7.TabIndex = 107;
@@ -489,10 +563,10 @@
             // 
             this.cbbCard.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cbbCard.FormattingEnabled = true;
-            this.cbbCard.Location = new System.Drawing.Point(106, 234);
+            this.cbbCard.Location = new System.Drawing.Point(146, 229);
             this.cbbCard.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbbCard.Name = "cbbCard";
-            this.cbbCard.Size = new System.Drawing.Size(178, 28);
+            this.cbbCard.Size = new System.Drawing.Size(225, 28);
             this.cbbCard.TabIndex = 106;
             // 
             // label6
@@ -500,7 +574,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Mitr Light", 8.5F);
             this.label6.ForeColor = System.Drawing.Color.Gray;
-            this.label6.Location = new System.Drawing.Point(40, 322);
+            this.label6.Location = new System.Drawing.Point(48, 312);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(46, 19);
             this.label6.TabIndex = 105;
@@ -511,7 +585,7 @@
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("Mitr Light", 8.5F);
             this.label29.ForeColor = System.Drawing.Color.Gray;
-            this.label29.Location = new System.Drawing.Point(40, 211);
+            this.label29.Location = new System.Drawing.Point(48, 201);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(37, 19);
             this.label29.TabIndex = 104;
@@ -603,6 +677,19 @@
             this.label21.TabIndex = 96;
             this.label21.Text = "Ctrl+E";
             // 
+            // btnAdd
+            // 
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.ForeColor = System.Drawing.Color.Transparent;
+            this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
+            this.btnAdd.Location = new System.Drawing.Point(57, 6);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(36, 36);
+            this.btnAdd.TabIndex = 9;
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.AddData);
+            // 
             // btnSearch
             // 
             this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -618,6 +705,33 @@
             this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.SearchData);
             // 
+            // btnClear
+            // 
+            this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClear.ForeColor = System.Drawing.Color.Transparent;
+            this.btnClear.Image = ((System.Drawing.Image)(resources.GetObject("btnClear.Image")));
+            this.btnClear.Location = new System.Drawing.Point(180, 6);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(36, 36);
+            this.btnClear.TabIndex = 12;
+            this.btnClear.Tag = "เคลียร์";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.ClearData);
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEdit.ForeColor = System.Drawing.Color.Transparent;
+            this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
+            this.btnEdit.Location = new System.Drawing.Point(96, 6);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(36, 36);
+            this.btnEdit.TabIndex = 10;
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.EditData);
+            // 
             // label20
             // 
             this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -630,6 +744,19 @@
             this.label20.Size = new System.Drawing.Size(39, 13);
             this.label20.TabIndex = 93;
             this.label20.Text = "Ctrl+S";
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelete.ForeColor = System.Drawing.Color.Transparent;
+            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
+            this.btnDelete.Location = new System.Drawing.Point(138, 6);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(36, 36);
+            this.btnDelete.TabIndex = 11;
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.DeleteData);
             // 
             // btnExit
             // 
@@ -651,65 +778,29 @@
             // 
             this.cbShowPass.AutoSize = true;
             this.cbShowPass.ForeColor = System.Drawing.Color.Gray;
-            this.cbShowPass.Location = new System.Drawing.Point(660, 327);
+            this.cbShowPass.Location = new System.Drawing.Point(743, 194);
             this.cbShowPass.Name = "cbShowPass";
-            this.cbShowPass.Size = new System.Drawing.Size(82, 24);
+            this.cbShowPass.Size = new System.Drawing.Size(61, 24);
             this.cbShowPass.TabIndex = 102;
-            this.cbShowPass.Text = "แสดงรหัส";
+            this.cbShowPass.Text = "Show";
             this.cbShowPass.UseVisualStyleBackColor = true;
             this.cbShowPass.CheckedChanged += new System.EventHandler(this.cbShowPass_CheckedChanged);
-            // 
-            // rdbGMail
-            // 
-            this.rdbGMail.AccessibleName = "rdbMail";
-            this.rdbGMail.AutoSize = true;
-            this.rdbGMail.ForeColor = System.Drawing.Color.Gray;
-            this.rdbGMail.Location = new System.Drawing.Point(192, 18);
-            this.rdbGMail.Name = "rdbGMail";
-            this.rdbGMail.Size = new System.Drawing.Size(60, 24);
-            this.rdbGMail.TabIndex = 5;
-            this.rdbGMail.Text = "Gmail";
-            this.rdbGMail.UseVisualStyleBackColor = true;
-            this.rdbGMail.CheckedChanged += new System.EventHandler(this.rdChecked);
-            // 
-            // rdbHMail
-            // 
-            this.rdbHMail.AccessibleName = "rdbMail";
-            this.rdbHMail.AutoSize = true;
-            this.rdbHMail.ForeColor = System.Drawing.Color.Gray;
-            this.rdbHMail.Location = new System.Drawing.Point(112, 18);
-            this.rdbHMail.Name = "rdbHMail";
-            this.rdbHMail.Size = new System.Drawing.Size(74, 24);
-            this.rdbHMail.TabIndex = 4;
-            this.rdbHMail.Text = "Hotmail";
-            this.rdbHMail.UseVisualStyleBackColor = true;
-            this.rdbHMail.CheckedChanged += new System.EventHandler(this.rdChecked);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label1.Location = new System.Drawing.Point(40, 273);
+            this.label1.Location = new System.Drawing.Point(48, 259);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(48, 20);
             this.label1.TabIndex = 16;
             this.label1.Text = "สมาชิก:";
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label9.Location = new System.Drawing.Point(331, 339);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(69, 20);
-            this.label9.TabIndex = 16;
-            this.label9.Text = "Password:";
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label8.Location = new System.Drawing.Point(331, 310);
+            this.label8.Location = new System.Drawing.Point(448, 147);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(40, 20);
             this.label8.TabIndex = 16;
@@ -719,7 +810,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label5.Location = new System.Drawing.Point(331, 264);
+            this.label5.Location = new System.Drawing.Point(836, 148);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(56, 20);
             this.label5.TabIndex = 16;
@@ -729,7 +820,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label4.Location = new System.Drawing.Point(331, 183);
+            this.label4.Location = new System.Drawing.Point(448, 293);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(38, 20);
             this.label4.TabIndex = 16;
@@ -739,7 +830,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label3.Location = new System.Drawing.Point(331, 147);
+            this.label3.Location = new System.Drawing.Point(448, 222);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(55, 20);
             this.label3.TabIndex = 16;
@@ -749,7 +840,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label2.Location = new System.Drawing.Point(40, 196);
+            this.label2.Location = new System.Drawing.Point(48, 184);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(47, 20);
             this.label2.TabIndex = 16;
@@ -760,7 +851,7 @@
             this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.txtPassword.Location = new System.Drawing.Point(420, 332);
+            this.txtPassword.Location = new System.Drawing.Point(562, 194);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
@@ -771,7 +862,7 @@
             // 
             this.txtUser.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtUser.ForeColor = System.Drawing.Color.Navy;
-            this.txtUser.Location = new System.Drawing.Point(420, 295);
+            this.txtUser.Location = new System.Drawing.Point(562, 158);
             this.txtUser.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(173, 21);
@@ -781,11 +872,11 @@
             // 
             this.txtPhone.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtPhone.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.txtPhone.Location = new System.Drawing.Point(420, 258);
+            this.txtPhone.Location = new System.Drawing.Point(940, 158);
             this.txtPhone.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPhone.MaxLength = 1000;
             this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(173, 21);
+            this.txtPhone.Size = new System.Drawing.Size(188, 21);
             this.txtPhone.TabIndex = 6;
             this.txtPhone.Leave += new System.EventHandler(this.txtPhone_Leave);
             // 
@@ -794,43 +885,41 @@
             this.txtEmail.BackColor = System.Drawing.Color.White;
             this.txtEmail.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.txtEmail.Location = new System.Drawing.Point(420, 184);
+            this.txtEmail.Location = new System.Drawing.Point(562, 305);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(187, 21);
+            this.txtEmail.Size = new System.Drawing.Size(173, 21);
             this.txtEmail.TabIndex = 3;
             // 
             // txtSurname
             // 
             this.txtSurname.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtSurname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.txtSurname.Location = new System.Drawing.Point(574, 147);
+            this.txtSurname.Location = new System.Drawing.Point(562, 268);
             this.txtSurname.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtSurname.Name = "txtSurname";
-            this.txtSurname.Size = new System.Drawing.Size(190, 21);
+            this.txtSurname.Size = new System.Drawing.Size(173, 21);
             this.txtSurname.TabIndex = 2;
             // 
             // txtCode
             // 
             this.txtCode.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtCode.Enabled = false;
             this.txtCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.txtCode.Location = new System.Drawing.Point(513, 134);
+            this.txtCode.Location = new System.Drawing.Point(146, 158);
             this.txtCode.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtCode.Name = "txtCode";
-            this.txtCode.Size = new System.Drawing.Size(107, 21);
+            this.txtCode.Size = new System.Drawing.Size(187, 21);
             this.txtCode.TabIndex = 0;
             this.txtCode.TabStop = false;
-            this.txtCode.Visible = false;
             // 
             // cbbShop
             // 
             this.cbbShop.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cbbShop.FormattingEnabled = true;
-            this.cbbShop.Location = new System.Drawing.Point(106, 196);
+            this.cbbShop.Location = new System.Drawing.Point(146, 192);
             this.cbbShop.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbbShop.Name = "cbbShop";
-            this.cbbShop.Size = new System.Drawing.Size(178, 28);
+            this.cbbShop.Size = new System.Drawing.Size(225, 28);
             this.cbbShop.TabIndex = 0;
             this.cbbShop.SelectedIndexChanged += new System.EventHandler(this.cbbShop_SelectedIndexChanged);
             // 
@@ -853,6 +942,7 @@
             this.pbMain.BackColor = System.Drawing.Color.White;
             this.pbMain.Enabled = false;
             this.pbMain.ErrorImage = null;
+            this.pbMain.Image = global::RecordSystemApplication.Properties.Resources.FrmMember;
             this.pbMain.Location = new System.Drawing.Point(0, 85);
             this.pbMain.Name = "pbMain";
             this.pbMain.Size = new System.Drawing.Size(1326, 286);
@@ -863,54 +953,16 @@
             // 
             this.openFileDialog.FileName = "openFileDialog1";
             // 
-            // rdbPointAll
-            // 
-            this.rdbPointAll.AccessibleName = "rdbPoint";
-            this.rdbPointAll.AutoSize = true;
-            this.rdbPointAll.Checked = true;
-            this.rdbPointAll.ForeColor = System.Drawing.Color.Gray;
-            this.rdbPointAll.Location = new System.Drawing.Point(42, 25);
-            this.rdbPointAll.Name = "rdbPointAll";
-            this.rdbPointAll.Size = new System.Drawing.Size(67, 24);
-            this.rdbPointAll.TabIndex = 126;
-            this.rdbPointAll.TabStop = true;
-            this.rdbPointAll.Text = "ทั้งหมด";
-            this.rdbPointAll.UseVisualStyleBackColor = true;
-            // 
-            // rdbPoint
-            // 
-            this.rdbPoint.AccessibleName = "rdbPoint";
-            this.rdbPoint.AutoSize = true;
-            this.rdbPoint.ForeColor = System.Drawing.Color.Gray;
-            this.rdbPoint.Location = new System.Drawing.Point(112, 25);
-            this.rdbPoint.Name = "rdbPoint";
-            this.rdbPoint.Size = new System.Drawing.Size(55, 24);
-            this.rdbPoint.TabIndex = 125;
-            this.rdbPoint.Text = "สะสม";
-            this.rdbPoint.UseVisualStyleBackColor = true;
-            // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.rdbPoint);
-            this.groupBox1.Controls.Add(this.rdbPointAll);
-            this.groupBox1.Location = new System.Drawing.Point(717, 226);
+            this.groupBox1.Controls.Add(this.rdbOMail);
+            this.groupBox1.Controls.Add(this.rdbGMail);
+            this.groupBox1.Controls.Add(this.rdbHMail);
+            this.groupBox1.Location = new System.Drawing.Point(745, 291);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(285, 58);
-            this.groupBox1.TabIndex = 127;
+            this.groupBox1.Size = new System.Drawing.Size(230, 42);
+            this.groupBox1.TabIndex = 135;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Point";
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.rdbOMail);
-            this.groupBox3.Controls.Add(this.rdbHMail);
-            this.groupBox3.Controls.Add(this.rdbGMail);
-            this.groupBox3.Location = new System.Drawing.Point(717, 167);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(285, 48);
-            this.groupBox3.TabIndex = 128;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Mail";
             // 
             // FrmMembers
             // 
@@ -941,8 +993,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbMain)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -971,7 +1021,6 @@
         private System.Windows.Forms.TextBox txtSurname;
         private System.Windows.Forms.RadioButton rdbGMail;
         private System.Windows.Forms.RadioButton rdbHMail;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
@@ -1010,7 +1059,12 @@
         private System.Windows.Forms.PictureBox pbMain;
         private System.Windows.Forms.RadioButton rdbPointAll;
         private System.Windows.Forms.RadioButton rdbPoint;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Button btnSearchs;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label16;
         private System.Windows.Forms.GroupBox groupBox1;
     }
 }
