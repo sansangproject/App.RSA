@@ -41,17 +41,18 @@
             this.lblCondition = new System.Windows.Forms.Label();
             this.txtCount = new System.Windows.Forms.TextBox();
             this.gbForm = new System.Windows.Forms.GroupBox();
-            this.rdbPoint = new System.Windows.Forms.RadioButton();
-            this.label17 = new System.Windows.Forms.Label();
             this.rdbPointAll = new System.Windows.Forms.RadioButton();
+            this.rdbPoint = new System.Windows.Forms.RadioButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rdbOMail = new System.Windows.Forms.RadioButton();
+            this.rdbGMail = new System.Windows.Forms.RadioButton();
+            this.rdbHMail = new System.Windows.Forms.RadioButton();
+            this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.btnSearchs = new System.Windows.Forms.Button();
-            this.rdbOMail = new System.Windows.Forms.RadioButton();
             this.label15 = new System.Windows.Forms.Label();
-            this.rdbHMail = new System.Windows.Forms.RadioButton();
-            this.rdbGMail = new System.Windows.Forms.RadioButton();
             this.pbImage = new System.Windows.Forms.PictureBox();
             this.txtId = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -96,15 +97,17 @@
             this.pbBanner = new System.Windows.Forms.PictureBox();
             this.pbMain = new System.Windows.Forms.PictureBox();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtNumber = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.gbForm.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBanner)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMain)).BeginInit();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtName
@@ -186,7 +189,7 @@
             this.GridView.RowHeadersVisible = false;
             this.GridView.RowHeadersWidth = 51;
             this.GridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GridView.Size = new System.Drawing.Size(1227, 360);
+            this.GridView.Size = new System.Drawing.Size(1450, 360);
             this.GridView.TabIndex = 40;
             this.GridView.TabStop = false;
             this.GridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CellContentClick);
@@ -204,7 +207,7 @@
             this.groupBox2.ForeColor = System.Drawing.Color.Gray;
             this.groupBox2.Location = new System.Drawing.Point(7, 359);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1263, 420);
+            this.groupBox2.Size = new System.Drawing.Size(1486, 420);
             this.groupBox2.TabIndex = 43;
             this.groupBox2.TabStop = false;
             // 
@@ -237,7 +240,7 @@
             this.txtCount.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtCount.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.txtCount.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.txtCount.Location = new System.Drawing.Point(893, 18);
+            this.txtCount.Location = new System.Drawing.Point(1116, 18);
             this.txtCount.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtCount.Name = "txtCount";
             this.txtCount.Size = new System.Drawing.Size(327, 21);
@@ -251,6 +254,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gbForm.BackColor = System.Drawing.Color.White;
+            this.gbForm.Controls.Add(this.label19);
+            this.gbForm.Controls.Add(this.label26);
+            this.gbForm.Controls.Add(this.txtNumber);
             this.gbForm.Controls.Add(this.rdbPointAll);
             this.gbForm.Controls.Add(this.rdbPoint);
             this.gbForm.Controls.Add(this.groupBox1);
@@ -299,32 +305,9 @@
             this.gbForm.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.gbForm.Location = new System.Drawing.Point(0, -10);
             this.gbForm.Name = "gbForm";
-            this.gbForm.Size = new System.Drawing.Size(1302, 793);
+            this.gbForm.Size = new System.Drawing.Size(1525, 793);
             this.gbForm.TabIndex = 46;
             this.gbForm.TabStop = false;
-            // 
-            // rdbPoint
-            // 
-            this.rdbPoint.AccessibleName = "rdbPoint";
-            this.rdbPoint.AutoSize = true;
-            this.rdbPoint.ForeColor = System.Drawing.Color.Gray;
-            this.rdbPoint.Location = new System.Drawing.Point(1018, 231);
-            this.rdbPoint.Name = "rdbPoint";
-            this.rdbPoint.Size = new System.Drawing.Size(55, 24);
-            this.rdbPoint.TabIndex = 125;
-            this.rdbPoint.Text = "สะสม";
-            this.rdbPoint.UseVisualStyleBackColor = true;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Mitr Light", 8.5F);
-            this.label17.ForeColor = System.Drawing.Color.Gray;
-            this.label17.Location = new System.Drawing.Point(836, 238);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(56, 19);
-            this.label17.TabIndex = 134;
-            this.label17.Text = "สะสมแต้ม";
             // 
             // rdbPointAll
             // 
@@ -332,18 +315,95 @@
             this.rdbPointAll.AutoSize = true;
             this.rdbPointAll.Checked = true;
             this.rdbPointAll.ForeColor = System.Drawing.Color.Gray;
-            this.rdbPointAll.Location = new System.Drawing.Point(942, 231);
+            this.rdbPointAll.Location = new System.Drawing.Point(1007, 267);
             this.rdbPointAll.Name = "rdbPointAll";
             this.rdbPointAll.Size = new System.Drawing.Size(67, 24);
             this.rdbPointAll.TabIndex = 126;
+            this.rdbPointAll.TabStop = true;
             this.rdbPointAll.Text = "ทั้งหมด";
             this.rdbPointAll.UseVisualStyleBackColor = true;
+            // 
+            // rdbPoint
+            // 
+            this.rdbPoint.AccessibleName = "rdbPoint";
+            this.rdbPoint.AutoSize = true;
+            this.rdbPoint.ForeColor = System.Drawing.Color.Gray;
+            this.rdbPoint.Location = new System.Drawing.Point(1083, 267);
+            this.rdbPoint.Name = "rdbPoint";
+            this.rdbPoint.Size = new System.Drawing.Size(55, 24);
+            this.rdbPoint.TabIndex = 125;
+            this.rdbPoint.Text = "สะสม";
+            this.rdbPoint.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.rdbOMail);
+            this.groupBox1.Controls.Add(this.rdbGMail);
+            this.groupBox1.Controls.Add(this.rdbHMail);
+            this.groupBox1.Location = new System.Drawing.Point(745, 291);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(221, 42);
+            this.groupBox1.TabIndex = 135;
+            this.groupBox1.TabStop = false;
+            // 
+            // rdbOMail
+            // 
+            this.rdbOMail.AccessibleName = "rdbMail";
+            this.rdbOMail.AutoSize = true;
+            this.rdbOMail.Checked = true;
+            this.rdbOMail.ForeColor = System.Drawing.Color.Gray;
+            this.rdbOMail.Location = new System.Drawing.Point(6, 14);
+            this.rdbOMail.Name = "rdbOMail";
+            this.rdbOMail.Size = new System.Drawing.Size(64, 24);
+            this.rdbOMail.TabIndex = 111;
+            this.rdbOMail.TabStop = true;
+            this.rdbOMail.Text = "Other";
+            this.rdbOMail.UseVisualStyleBackColor = true;
+            this.rdbOMail.CheckedChanged += new System.EventHandler(this.rdChecked);
+            this.rdbOMail.Click += new System.EventHandler(this.rdChecked);
+            // 
+            // rdbGMail
+            // 
+            this.rdbGMail.AccessibleName = "rdbMail";
+            this.rdbGMail.AutoSize = true;
+            this.rdbGMail.ForeColor = System.Drawing.Color.Gray;
+            this.rdbGMail.Location = new System.Drawing.Point(156, 14);
+            this.rdbGMail.Name = "rdbGMail";
+            this.rdbGMail.Size = new System.Drawing.Size(60, 24);
+            this.rdbGMail.TabIndex = 5;
+            this.rdbGMail.Text = "Gmail";
+            this.rdbGMail.UseVisualStyleBackColor = true;
+            this.rdbGMail.CheckedChanged += new System.EventHandler(this.rdChecked);
+            // 
+            // rdbHMail
+            // 
+            this.rdbHMail.AccessibleName = "rdbMail";
+            this.rdbHMail.AutoSize = true;
+            this.rdbHMail.ForeColor = System.Drawing.Color.Gray;
+            this.rdbHMail.Location = new System.Drawing.Point(76, 14);
+            this.rdbHMail.Name = "rdbHMail";
+            this.rdbHMail.Size = new System.Drawing.Size(74, 24);
+            this.rdbHMail.TabIndex = 4;
+            this.rdbHMail.Text = "Hotmail";
+            this.rdbHMail.UseVisualStyleBackColor = true;
+            this.rdbHMail.CheckedChanged += new System.EventHandler(this.rdChecked);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Mitr Light", 8.5F);
+            this.label17.ForeColor = System.Drawing.Color.Gray;
+            this.label17.Location = new System.Drawing.Point(897, 274);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(56, 19);
+            this.label17.TabIndex = 134;
+            this.label17.Text = "สะสมแต้ม";
             // 
             // label18
             // 
             this.label18.AutoSize = true;
             this.label18.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label18.Location = new System.Drawing.Point(836, 221);
+            this.label18.Location = new System.Drawing.Point(897, 257);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(43, 20);
             this.label18.TabIndex = 133;
@@ -384,22 +444,6 @@
             this.btnSearchs.UseVisualStyleBackColor = false;
             this.btnSearchs.Click += new System.EventHandler(this.SearchData);
             // 
-            // rdbOMail
-            // 
-            this.rdbOMail.AccessibleName = "rdbMail";
-            this.rdbOMail.AutoSize = true;
-            this.rdbOMail.Checked = true;
-            this.rdbOMail.ForeColor = System.Drawing.Color.Gray;
-            this.rdbOMail.Location = new System.Drawing.Point(6, 14);
-            this.rdbOMail.Name = "rdbOMail";
-            this.rdbOMail.Size = new System.Drawing.Size(64, 24);
-            this.rdbOMail.TabIndex = 111;
-            this.rdbOMail.TabStop = true;
-            this.rdbOMail.Text = "Other";
-            this.rdbOMail.UseVisualStyleBackColor = true;
-            this.rdbOMail.CheckedChanged += new System.EventHandler(this.rdChecked);
-            this.rdbOMail.Click += new System.EventHandler(this.rdChecked);
-            // 
             // label15
             // 
             this.label15.AutoSize = true;
@@ -411,36 +455,10 @@
             this.label15.TabIndex = 129;
             this.label15.Text = "ชื่อผู้ใช้";
             // 
-            // rdbHMail
-            // 
-            this.rdbHMail.AccessibleName = "rdbMail";
-            this.rdbHMail.AutoSize = true;
-            this.rdbHMail.ForeColor = System.Drawing.Color.Gray;
-            this.rdbHMail.Location = new System.Drawing.Point(76, 14);
-            this.rdbHMail.Name = "rdbHMail";
-            this.rdbHMail.Size = new System.Drawing.Size(74, 24);
-            this.rdbHMail.TabIndex = 4;
-            this.rdbHMail.Text = "Hotmail";
-            this.rdbHMail.UseVisualStyleBackColor = true;
-            this.rdbHMail.CheckedChanged += new System.EventHandler(this.rdChecked);
-            // 
-            // rdbGMail
-            // 
-            this.rdbGMail.AccessibleName = "rdbMail";
-            this.rdbGMail.AutoSize = true;
-            this.rdbGMail.ForeColor = System.Drawing.Color.Gray;
-            this.rdbGMail.Location = new System.Drawing.Point(156, 14);
-            this.rdbGMail.Name = "rdbGMail";
-            this.rdbGMail.Size = new System.Drawing.Size(60, 24);
-            this.rdbGMail.TabIndex = 5;
-            this.rdbGMail.Text = "Gmail";
-            this.rdbGMail.UseVisualStyleBackColor = true;
-            this.rdbGMail.CheckedChanged += new System.EventHandler(this.rdChecked);
-            // 
             // pbImage
             // 
             this.pbImage.Image = ((System.Drawing.Image)(resources.GetObject("pbImage.Image")));
-            this.pbImage.Location = new System.Drawing.Point(1157, 156);
+            this.pbImage.Location = new System.Drawing.Point(1327, 157);
             this.pbImage.Name = "pbImage";
             this.pbImage.Size = new System.Drawing.Size(161, 168);
             this.pbImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -465,7 +483,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Mitr Light", 8.5F);
             this.label11.ForeColor = System.Drawing.Color.Gray;
-            this.label11.Location = new System.Drawing.Point(836, 201);
+            this.label11.Location = new System.Drawing.Point(897, 237);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(55, 19);
             this.label11.TabIndex = 117;
@@ -475,7 +493,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label14.Location = new System.Drawing.Point(836, 184);
+            this.label14.Location = new System.Drawing.Point(897, 220);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(49, 20);
             this.label14.TabIndex = 116;
@@ -485,7 +503,7 @@
             // 
             this.txtWeb.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtWeb.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.txtWeb.Location = new System.Drawing.Point(940, 195);
+            this.txtWeb.Location = new System.Drawing.Point(1006, 232);
             this.txtWeb.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtWeb.Name = "txtWeb";
             this.txtWeb.Size = new System.Drawing.Size(188, 21);
@@ -497,7 +515,7 @@
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Mitr Light", 8.5F);
             this.label13.ForeColor = System.Drawing.Color.Gray;
-            this.label13.Location = new System.Drawing.Point(836, 165);
+            this.label13.Location = new System.Drawing.Point(897, 201);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(45, 19);
             this.label13.TabIndex = 114;
@@ -607,7 +625,7 @@
             this.panel1.Controls.Add(this.label20);
             this.panel1.Controls.Add(this.btnDelete);
             this.panel1.Controls.Add(this.btnExit);
-            this.panel1.Location = new System.Drawing.Point(1012, 14);
+            this.panel1.Location = new System.Drawing.Point(1235, 14);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(264, 68);
             this.panel1.TabIndex = 103;
@@ -810,7 +828,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label5.Location = new System.Drawing.Point(836, 148);
+            this.label5.Location = new System.Drawing.Point(897, 184);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(56, 20);
             this.label5.TabIndex = 16;
@@ -872,7 +890,7 @@
             // 
             this.txtPhone.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtPhone.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.txtPhone.Location = new System.Drawing.Point(940, 158);
+            this.txtPhone.Location = new System.Drawing.Point(1006, 195);
             this.txtPhone.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPhone.MaxLength = 1000;
             this.txtPhone.Name = "txtPhone";
@@ -931,7 +949,7 @@
             this.pbBanner.Image = global::RecordSystemApplication.Properties.Resources.RSABanner;
             this.pbBanner.Location = new System.Drawing.Point(-1, 8);
             this.pbBanner.Name = "pbBanner";
-            this.pbBanner.Size = new System.Drawing.Size(1287, 79);
+            this.pbBanner.Size = new System.Drawing.Size(1510, 79);
             this.pbBanner.TabIndex = 110;
             this.pbBanner.TabStop = false;
             // 
@@ -945,7 +963,7 @@
             this.pbMain.Image = global::RecordSystemApplication.Properties.Resources.FrmMember;
             this.pbMain.Location = new System.Drawing.Point(0, 85);
             this.pbMain.Name = "pbMain";
-            this.pbMain.Size = new System.Drawing.Size(1326, 286);
+            this.pbMain.Size = new System.Drawing.Size(1549, 286);
             this.pbMain.TabIndex = 123;
             this.pbMain.TabStop = false;
             // 
@@ -953,23 +971,44 @@
             // 
             this.openFileDialog.FileName = "openFileDialog1";
             // 
-            // groupBox1
+            // txtNumber
             // 
-            this.groupBox1.Controls.Add(this.rdbOMail);
-            this.groupBox1.Controls.Add(this.rdbGMail);
-            this.groupBox1.Controls.Add(this.rdbHMail);
-            this.groupBox1.Location = new System.Drawing.Point(745, 291);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(230, 42);
-            this.groupBox1.TabIndex = 135;
-            this.groupBox1.TabStop = false;
+            this.txtNumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtNumber.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.txtNumber.Location = new System.Drawing.Point(1006, 158);
+            this.txtNumber.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtNumber.Name = "txtNumber";
+            this.txtNumber.Size = new System.Drawing.Size(188, 21);
+            this.txtNumber.TabIndex = 136;
+            this.txtNumber.TabStop = false;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Mitr Light", 8.5F);
+            this.label19.ForeColor = System.Drawing.Color.Gray;
+            this.label19.Location = new System.Drawing.Point(897, 162);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(62, 19);
+            this.label19.TabIndex = 138;
+            this.label19.Text = "รหัสสมาชิก";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label26.Location = new System.Drawing.Point(897, 145);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(59, 20);
+            this.label26.TabIndex = 137;
+            this.label26.Text = "Number:";
             // 
             // FrmMembers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DimGray;
-            this.ClientSize = new System.Drawing.Size(1280, 781);
+            this.ClientSize = new System.Drawing.Size(1503, 781);
             this.Controls.Add(this.gbForm);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
@@ -986,13 +1025,13 @@
             this.groupBox2.PerformLayout();
             this.gbForm.ResumeLayout(false);
             this.gbForm.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBanner)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMain)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1066,5 +1105,8 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.TextBox txtNumber;
     }
 }
