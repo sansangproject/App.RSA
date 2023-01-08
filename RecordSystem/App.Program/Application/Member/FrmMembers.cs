@@ -152,6 +152,7 @@ namespace SANSANG
                     {"@UserName", Search ? txtUser.Text : ""},
                     {"@Name", Search ? txtName.Text : ""},
                     {"@Surname", Search ? txtSurname.Text : ""},
+                    {"@Number", Search ? txtNumber.Text : ""},
                     {"@Password", ""},
                     {"@Email", Search ? rdbGMail.Checked ? "@gmail" : rdbHMail.Checked ? "@hotmail" : "" : ""},
                     {"@Status", Search ? Function.GetComboId(cbbStatus) : "0"},
@@ -187,6 +188,7 @@ namespace SANSANG
                 strCondition += txtUser.Text != "" ? ", ผู้ใช้: " + txtUser.Text : "";
                 strCondition += txtName.Text != "" ? ", ชื่อ: " + txtName.Text : "";
                 strCondition += txtSurname.Text != "" ? ", นามสกุล: " + txtSurname.Text : "";
+                strCondition += txtNumber.Text != "" ? ", รหัสสมาชิก: " + txtNumber.Text : "";
                 strCondition += txtEmail.Text != "" ? ", อีเมล: " + txtEmail.Text : "";
                 strCondition += txtWeb.Text != "" ? ", เว็บไซต์: " + txtWeb.Text : "";
                 strCondition += rdbPoint.Checked ? ", สะสมแต้ม" : "";
@@ -221,6 +223,7 @@ namespace SANSANG
                         {"@UserName", ""},
                         {"@Name", ""},
                         {"@Surname", ""},
+                        {"@Number", ""},
                         {"@Password", ""},
                         {"@Email", ""},
                         {"@Status", "0"},
@@ -259,6 +262,7 @@ namespace SANSANG
 
                     txtName.Text = dt.Rows[0]["Names"].ToString();
                     txtSurname.Text = dt.Rows[0]["Surnames"].ToString();
+                    txtNumber.Text = dt.Rows[0]["Number"].ToString();
                     txtEmail.Text = dt.Rows[0]["Email"].ToString();
                     txtPhone.Text = dt.Rows[0]["Phone"].ToString();
                     txtUser.Text = dt.Rows[0]["Usernames"].ToString();
@@ -308,6 +312,7 @@ namespace SANSANG
                             {"@UserName", txtUser.Text},
                             {"@Name", txtName.Text},
                             {"@Surname", txtSurname.Text},
+                            {"@Number", txtNumber.Text},
                             {"@Password", Cryption.Encrypt(txtPassword.Text)},
                             {"@Email", txtEmail.Text},
                             {"@Status", Function.GetComboId(cbbStatus)},
@@ -353,6 +358,7 @@ namespace SANSANG
                         {"@UserName", txtUser.Text},
                         {"@Name", txtName.Text},
                         {"@Surname", txtSurname.Text},
+                        {"@Number", txtNumber.Text},
                         {"@Password", Cryption.Encrypt(txtPassword.Text)},
                         {"@Email", txtEmail.Text},
                         {"@Status", Function.GetComboId(cbbStatus)},
