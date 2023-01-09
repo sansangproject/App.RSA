@@ -806,6 +806,13 @@ namespace SANSANG.Class
                     RadioButtons.Checked = true;
                 }
 
+                CheckBox CheckBoxs = Controls as CheckBox;
+
+                if (CheckBoxs != null)
+                {
+                    CheckBoxs.Checked = false;
+                }
+
             }
         }
 

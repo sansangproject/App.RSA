@@ -1098,6 +1098,7 @@
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(171, 21);
             this.txtPhone.TabIndex = 153;
+            this.txtPhone.Leave += new System.EventHandler(this.txtPhone_Leave);
             // 
             // cbbStatus
             // 
