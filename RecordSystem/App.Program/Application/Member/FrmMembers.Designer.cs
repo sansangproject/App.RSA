@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMembers));
             this.txtName = new System.Windows.Forms.TextBox();
             this.lblName = new System.Windows.Forms.Label();
@@ -41,6 +41,9 @@
             this.lblCondition = new System.Windows.Forms.Label();
             this.txtCount = new System.Windows.Forms.TextBox();
             this.gbForm = new System.Windows.Forms.GroupBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.txtNumber = new System.Windows.Forms.TextBox();
             this.rdbPointAll = new System.Windows.Forms.RadioButton();
             this.rdbPoint = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -97,9 +100,6 @@
             this.pbBanner = new System.Windows.Forms.PictureBox();
             this.pbMain = new System.Windows.Forms.PictureBox();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.txtNumber = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.gbForm.SuspendLayout();
@@ -173,14 +173,14 @@
             this.GridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.GridView.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.GridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.GridView.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.GridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.GridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.GridView.Location = new System.Drawing.Point(19, 46);
             this.GridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -309,6 +309,38 @@
             this.gbForm.TabIndex = 46;
             this.gbForm.TabStop = false;
             // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Mitr Light", 8.5F);
+            this.label19.ForeColor = System.Drawing.Color.Gray;
+            this.label19.Location = new System.Drawing.Point(890, 162);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(53, 19);
+            this.label19.TabIndex = 138;
+            this.label19.Text = "Number";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label26.Location = new System.Drawing.Point(890, 145);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(71, 20);
+            this.label26.TabIndex = 137;
+            this.label26.Text = "รหัสสมาชิก:";
+            // 
+            // txtNumber
+            // 
+            this.txtNumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtNumber.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.txtNumber.Location = new System.Drawing.Point(1006, 158);
+            this.txtNumber.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtNumber.Name = "txtNumber";
+            this.txtNumber.Size = new System.Drawing.Size(188, 21);
+            this.txtNumber.TabIndex = 136;
+            this.txtNumber.TabStop = false;
+            // 
             // rdbPointAll
             // 
             this.rdbPointAll.AccessibleName = "rdbPoint";
@@ -393,7 +425,7 @@
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Mitr Light", 8.5F);
             this.label17.ForeColor = System.Drawing.Color.Gray;
-            this.label17.Location = new System.Drawing.Point(897, 274);
+            this.label17.Location = new System.Drawing.Point(890, 274);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(56, 19);
             this.label17.TabIndex = 134;
@@ -403,7 +435,7 @@
             // 
             this.label18.AutoSize = true;
             this.label18.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label18.Location = new System.Drawing.Point(897, 257);
+            this.label18.Location = new System.Drawing.Point(890, 257);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(43, 20);
             this.label18.TabIndex = 133;
@@ -483,7 +515,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Mitr Light", 8.5F);
             this.label11.ForeColor = System.Drawing.Color.Gray;
-            this.label11.Location = new System.Drawing.Point(897, 237);
+            this.label11.Location = new System.Drawing.Point(890, 237);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(55, 19);
             this.label11.TabIndex = 117;
@@ -493,7 +525,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label14.Location = new System.Drawing.Point(897, 220);
+            this.label14.Location = new System.Drawing.Point(890, 220);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(49, 20);
             this.label14.TabIndex = 116;
@@ -515,7 +547,7 @@
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Mitr Light", 8.5F);
             this.label13.ForeColor = System.Drawing.Color.Gray;
-            this.label13.Location = new System.Drawing.Point(897, 201);
+            this.label13.Location = new System.Drawing.Point(890, 201);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(45, 19);
             this.label13.TabIndex = 114;
@@ -828,7 +860,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label5.Location = new System.Drawing.Point(897, 184);
+            this.label5.Location = new System.Drawing.Point(890, 184);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(56, 20);
             this.label5.TabIndex = 16;
@@ -970,38 +1002,6 @@
             // openFileDialog
             // 
             this.openFileDialog.FileName = "openFileDialog1";
-            // 
-            // txtNumber
-            // 
-            this.txtNumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtNumber.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.txtNumber.Location = new System.Drawing.Point(1006, 158);
-            this.txtNumber.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtNumber.Name = "txtNumber";
-            this.txtNumber.Size = new System.Drawing.Size(188, 21);
-            this.txtNumber.TabIndex = 136;
-            this.txtNumber.TabStop = false;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Mitr Light", 8.5F);
-            this.label19.ForeColor = System.Drawing.Color.Gray;
-            this.label19.Location = new System.Drawing.Point(897, 162);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(62, 19);
-            this.label19.TabIndex = 138;
-            this.label19.Text = "รหัสสมาชิก";
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label26.Location = new System.Drawing.Point(897, 145);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(59, 20);
-            this.label26.TabIndex = 137;
-            this.label26.Text = "Number:";
             // 
             // FrmMembers
             // 

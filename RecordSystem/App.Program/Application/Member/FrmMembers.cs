@@ -253,8 +253,8 @@ namespace SANSANG
             {
                 if (Function.GetRows(dt) > 0)
                 {
-                    cbbStatus.SelectedValue = dt.Rows[0]["Status"].ToString();
                     cbbShop.SelectedValue = dt.Rows[0]["ShopId"].ToString();
+                    cbbStatus.SelectedValue = dt.Rows[0]["Status"].ToString();
                     cbbUser.SelectedValue = dt.Rows[0]["UserId"].ToString();
                     cbbCard.SelectedValue = dt.Rows[0]["CardId"].ToString();
                     txtId.Text = dt.Rows[0]["Id"].ToString();
@@ -440,10 +440,12 @@ namespace SANSANG
             if (!Function.IsDefault(cbbShop))
             {
                 Images.Show(pbImage, Function.GetComboId(cbbShop));
+                cbbStatus.SelectedValue = "1000";
             }
             else
             {
                 Images.ShowDefault(pbImage);
+                cbbStatus.SelectedValue = "0";
             }
 
             btnSearch.Focus();
