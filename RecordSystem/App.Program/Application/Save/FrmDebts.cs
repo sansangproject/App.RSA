@@ -822,6 +822,7 @@ namespace SANSANG
                 Function.ClearAll(gbForm);
                 cbbType.SelectedValue = 9;
                 cbbMonth.SelectedIndex = IndexCurrentMonth + 1;
+                cb_Month.Checked = true;
                 Search(true);
             }
         }
@@ -835,6 +836,7 @@ namespace SANSANG
                 Function.ClearAll(gbForm);
                 cbbType.SelectedValue = 9;
                 cbbMonth.SelectedIndex = IndexCurrentMonth - 1;
+                cb_Month.Checked = true;
                 Search(true);
             }
         }
