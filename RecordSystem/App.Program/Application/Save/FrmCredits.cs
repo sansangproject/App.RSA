@@ -5,6 +5,8 @@ using SANSANG.Class;
 using SANSANG.Database;
 using SANSANG.Constant;
 using System.Drawing;
+using System.Diagnostics;
+using System.Web.Services.Description;
 
 namespace SANSANG
 {
@@ -215,6 +217,14 @@ namespace SANSANG
                         , "จำนวนเงิน", 120, true, mr, mr
                         , "", 0, false, mc, mc
                         );
+
+                    foreach (DataGridViewRow dgvr in GridView.Rows)
+                    {
+                        if (Convert.ToDouble(dgvr.Cells[5].Value) < 0)
+                        {
+                            dgvr.DefaultCellStyle.ForeColor = Color.Red;
+                        }
+                    }
 
                     txtCount.Text = Function.ShowNumberOfData(dt.Rows.Count);
                     GridView.Focus();
