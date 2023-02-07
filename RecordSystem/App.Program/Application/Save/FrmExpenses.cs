@@ -56,6 +56,7 @@ namespace SANSANG
         private bool ShowNext;
         private string Error = "";
         private double Credit = 0;
+        private double TotalCredit = 0;
         private double Debit = 0;
         private string Details = "";
         private string Items = "";
@@ -790,11 +791,12 @@ namespace SANSANG
 
                 db.Gets(Store.FnGetBalanceSearch, Parameter, out Error, out ds);
                 Credit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumCredit"].ToString()));
+                TotalCredit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["TotalCredit"].ToString()));
                 Debit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumDebit"].ToString()));
 
-                lblBalance.Text = "รวมทั้งสิ้น";
-                txtTotalReal.Text = string.Format("{0:#,##0.00}", Debit - Credit);
-                txtSumCredit.Text = string.Format("{0:#,##0.00}", Credit);
+                lblBalance.Text = "คงเหลือ";
+                txtTotalReal.Text = string.Format("{0:#,##0.00}", Debit - (Credit > TotalCredit ? Credit : TotalCredit));
+                txtSumCredit.Text = string.Format("{0:#,##0.00}", Credit > TotalCredit ? Credit : TotalCredit);
                 txtSumDebit.Text = string.Format("{0:#,##0.00}", Debit);
                 txtPayStatus.Text = "";
             }

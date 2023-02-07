@@ -285,7 +285,7 @@ namespace SANSANG
                 strCondition += txtName.Text != "" ? ", รายการ: " + txtName.Text : "";
                 strCondition += Function.GetComboId(cbbProvider) != "0" ? ", ผู้ให้บริการ: " + cbbProvider.Text : "";
                 strCondition += txtAccount.Text != "" ? ", บัญชี: " + txtAccount.Text : "";
-                strCondition += Function.GetComboId(cbbType) != "9" ? ", ประเถท: " + cbbType.Text : "";
+                strCondition += Function.GetComboId(cbbType) != "9" ? ", ประเภท: " + cbbType.Text : "";
                 strCondition += txtAmount.Text != "" ? ", จำนวนเงิน: " + txtAmount.Text : "";
                 strCondition += cb_Due.Checked == true ? ", วันที่ต้องชำระ: " + Date.GetDate(dtp: dtDueDate, Format: 4) : "";
                 strCondition += txtPayment.Text != "" ? ", ยอดชำระ: " + txtPayment.Text : "";
