@@ -36,8 +36,9 @@ namespace SANSANG.Constant
         public string AccountId = "Account";
         public string Banks = "Bank";
         public string Transactions = "Transaction";
+        public string Users = "Users";
 
-
+        
 
 
 
