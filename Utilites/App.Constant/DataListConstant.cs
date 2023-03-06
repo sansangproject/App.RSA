@@ -12,8 +12,8 @@ namespace SANSANG.Constant
         public string MoneyId = "[mst].[Money] Display Id Status 1000";
         public string StatusId = "[mst].[Status] Name Id Type {0}";
         public string UnitId = "[mst].[Unit] Display Id Status 1000";
-        public string CategoryId = "[mst].[Category] Display Id Status 1000";
-        public string ItemId = "[mst].[Item] Display Id CategoryId {0}";
+        public string PaymentId = "[mst].[Payment] Display Id Status 1000";
+        public string PaymentSubId = "[mst].[PaymentSub] Display Id PaymentId {0}";
         public string PathId = "[mst].[Path] Detail Id Status 1000";
         public string LogoId = "[mst].[Logo] NameEn Id Status 1000";
         public string ShopId = "[mst].[Shop] Display Id Status 1000";
@@ -37,12 +37,8 @@ namespace SANSANG.Constant
         public string Banks = "Bank";
         public string Transactions = "Transaction";
         public string Users = "Users";
-        public string UserAccounts = "UserAccounts";
+
         
-        public string Workdays = "Workdays";
-        public string Accounts = "Account";
-        public string Members = "Members";
-        public string PayTypes = "PayTypes";
 
 
 
