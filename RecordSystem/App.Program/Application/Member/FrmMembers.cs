@@ -76,7 +76,7 @@ namespace SANSANG
             List.GetLists(cbbStatus, string.Format(DataList.StatusId, "0"));
             List.GetLists(cbbShop, string.Format(DataList.ShopId));
             List.GetLists(cbbCard, string.Format(DataList.CardId));
-            List.GetLists(cbbUser, string.Format(DataList.UserId));
+            List.GetList(cbbUser, string.Format(DataList.Users));
 
             pbMain.Enabled = true;
             Clear();
@@ -329,7 +329,7 @@ namespace SANSANG
                         if (Insert.Add(AppCode, AppName, UserId, Store.ManageMember, Parameter, txtCode.Text, Details: "Member of " + cbbShop.Text + " (" + txtUser.Text + ")"))
                         {
                             Clear();
-                            List.GetLists(cbbUser, string.Format(DataList.UserId, "Type", "1001"));
+                            List.GetList(cbbUser, string.Format(DataList.Users));
                         }
                     }
                 }
