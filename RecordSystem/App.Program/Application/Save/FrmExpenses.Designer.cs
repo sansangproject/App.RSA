@@ -32,10 +32,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.pbHide = new System.Windows.Forms.PictureBox();
+            this.txtSumWallet = new System.Windows.Forms.TextBox();
             this.btnCopy = new System.Windows.Forms.Button();
             this.pb_Receipt_True = new System.Windows.Forms.PictureBox();
             this.pb_Receipt_False = new System.Windows.Forms.PictureBox();
-            this.pbHide = new System.Windows.Forms.PictureBox();
             this.btnCarry = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.pnButton = new System.Windows.Forms.Panel();
@@ -69,7 +70,6 @@
             this.txtReceipt = new System.Windows.Forms.TextBox();
             this.label32 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
-            this.txtSumWallet = new System.Windows.Forms.TextBox();
             this.btnPre = new System.Windows.Forms.Button();
             this.txtDetails = new System.Windows.Forms.TextBox();
             this.txtItem = new System.Windows.Forms.TextBox();
@@ -131,9 +131,9 @@
             this.txtId = new System.Windows.Forms.TextBox();
             this.cb_Receipt = new System.Windows.Forms.CheckBox();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbHide)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Receipt_True)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Receipt_False)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbHide)).BeginInit();
             this.pnButton.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Date_False)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Date_True)).BeginInit();
@@ -158,7 +158,6 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox4.BackColor = System.Drawing.Color.White;
-            this.groupBox4.Controls.Add(this.pbHide);
             this.groupBox4.Controls.Add(this.txtSumWallet);
             this.groupBox4.Controls.Add(this.btnCopy);
             this.groupBox4.Controls.Add(this.pb_Receipt_True);
@@ -238,11 +237,34 @@
             this.groupBox4.Controls.Add(this.btnBrowse);
             this.groupBox4.Controls.Add(this.txtId);
             this.groupBox4.Controls.Add(this.cb_Receipt);
+            this.groupBox4.Controls.Add(this.pbHide);
             this.groupBox4.Location = new System.Drawing.Point(-3, -12);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(1491, 814);
             this.groupBox4.TabIndex = 46;
             this.groupBox4.TabStop = false;
+            // 
+            // pbHide
+            // 
+            this.pbHide.Enabled = false;
+            this.pbHide.Location = new System.Drawing.Point(884, 262);
+            this.pbHide.Name = "pbHide";
+            this.pbHide.Size = new System.Drawing.Size(315, 120);
+            this.pbHide.TabIndex = 225;
+            this.pbHide.TabStop = false;
+            this.pbHide.Visible = false;
+            // 
+            // txtSumWallet
+            // 
+            this.txtSumWallet.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtSumWallet.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.txtSumWallet.ForeColor = System.Drawing.Color.DarkGray;
+            this.txtSumWallet.Location = new System.Drawing.Point(1004, 305);
+            this.txtSumWallet.Name = "txtSumWallet";
+            this.txtSumWallet.Size = new System.Drawing.Size(75, 21);
+            this.txtSumWallet.TabIndex = 112;
+            this.txtSumWallet.TabStop = false;
+            this.txtSumWallet.Text = "00,000.00";
             // 
             // btnCopy
             // 
@@ -279,16 +301,6 @@
             this.pb_Receipt_False.TabStop = false;
             this.pb_Receipt_False.Visible = false;
             this.pb_Receipt_False.Click += new System.EventHandler(this.Ticker);
-            // 
-            // pbHide
-            // 
-            this.pbHide.Enabled = false;
-            this.pbHide.Location = new System.Drawing.Point(884, 262);
-            this.pbHide.Name = "pbHide";
-            this.pbHide.Size = new System.Drawing.Size(315, 120);
-            this.pbHide.TabIndex = 225;
-            this.pbHide.TabStop = false;
-            this.pbHide.Visible = false;
             // 
             // btnCarry
             // 
@@ -730,18 +742,6 @@
             this.label33.TabIndex = 113;
             this.label33.Text = "ใบเสร็จ";
             // 
-            // txtSumWallet
-            // 
-            this.txtSumWallet.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtSumWallet.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.txtSumWallet.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtSumWallet.Location = new System.Drawing.Point(1004, 305);
-            this.txtSumWallet.Name = "txtSumWallet";
-            this.txtSumWallet.Size = new System.Drawing.Size(61, 21);
-            this.txtSumWallet.TabIndex = 112;
-            this.txtSumWallet.TabStop = false;
-            this.txtSumWallet.Text = "0.00";
-            // 
             // btnPre
             // 
             this.btnPre.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -991,7 +991,7 @@
             this.txtSumBank.Size = new System.Drawing.Size(87, 21);
             this.txtSumBank.TabIndex = 1;
             this.txtSumBank.TabStop = false;
-            this.txtSumBank.Text = "0.00";
+            this.txtSumBank.Text = "00,000.00";
             this.txtSumBank.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSumBank.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTotalRealkeyPress);
             this.txtSumBank.Leave += new System.EventHandler(this.txtTotalReal_Leave);
@@ -1533,9 +1533,9 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmKeyDown);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbHide)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Receipt_True)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Receipt_False)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbHide)).EndInit();
             this.pnButton.ResumeLayout(false);
             this.pnButton.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Date_False)).EndInit();
