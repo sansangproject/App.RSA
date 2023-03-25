@@ -158,10 +158,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox4.BackColor = System.Drawing.Color.White;
+            this.groupBox4.Controls.Add(this.pbHide);
+            this.groupBox4.Controls.Add(this.txtSumWallet);
             this.groupBox4.Controls.Add(this.btnCopy);
             this.groupBox4.Controls.Add(this.pb_Receipt_True);
             this.groupBox4.Controls.Add(this.pb_Receipt_False);
-            this.groupBox4.Controls.Add(this.pbHide);
             this.groupBox4.Controls.Add(this.btnCarry);
             this.groupBox4.Controls.Add(this.button1);
             this.groupBox4.Controls.Add(this.pnButton);
@@ -181,7 +182,6 @@
             this.groupBox4.Controls.Add(this.txtReceipt);
             this.groupBox4.Controls.Add(this.label32);
             this.groupBox4.Controls.Add(this.label33);
-            this.groupBox4.Controls.Add(this.txtSumWallet);
             this.groupBox4.Controls.Add(this.btnPre);
             this.groupBox4.Controls.Add(this.txtDetails);
             this.groupBox4.Controls.Add(this.txtItem);
@@ -737,7 +737,7 @@
             this.txtSumWallet.ForeColor = System.Drawing.Color.DarkGray;
             this.txtSumWallet.Location = new System.Drawing.Point(1004, 305);
             this.txtSumWallet.Name = "txtSumWallet";
-            this.txtSumWallet.Size = new System.Drawing.Size(57, 21);
+            this.txtSumWallet.Size = new System.Drawing.Size(61, 21);
             this.txtSumWallet.TabIndex = 112;
             this.txtSumWallet.TabStop = false;
             this.txtSumWallet.Text = "0.00";
