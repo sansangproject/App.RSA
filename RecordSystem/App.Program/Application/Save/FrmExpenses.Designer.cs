@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmExpenses));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmExpenses));
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.txtSumWallet = new System.Windows.Forms.TextBox();
             this.btnCopy = new System.Windows.Forms.Button();
             this.pb_Receipt_True = new System.Windows.Forms.PictureBox();
             this.pb_Receipt_False = new System.Windows.Forms.PictureBox();
+            this.pbHide = new System.Windows.Forms.PictureBox();
             this.btnCarry = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.pnButton = new System.Windows.Forms.Panel();
@@ -69,6 +69,7 @@
             this.txtReceipt = new System.Windows.Forms.TextBox();
             this.label32 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
+            this.txtSumWallet = new System.Windows.Forms.TextBox();
             this.btnPre = new System.Windows.Forms.Button();
             this.txtDetails = new System.Windows.Forms.TextBox();
             this.txtItem = new System.Windows.Forms.TextBox();
@@ -102,9 +103,9 @@
             this.lblBalance = new System.Windows.Forms.Label();
             this.cbbStatus = new System.Windows.Forms.ComboBox();
             this.txtTotalReal = new System.Windows.Forms.TextBox();
-            this.pbMoney = new System.Windows.Forms.PictureBox();
-            this.pbCategorys = new System.Windows.Forms.PictureBox();
-            this.pbItems = new System.Windows.Forms.PictureBox();
+            this.pbAddCashType = new System.Windows.Forms.PictureBox();
+            this.pbAddPayType = new System.Windows.Forms.PictureBox();
+            this.pbAddSubPayType = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.DataGridView0 = new System.Windows.Forms.DataGridView();
             this.picExcel0 = new System.Windows.Forms.PictureBox();
@@ -120,8 +121,8 @@
             this.dtExpense = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.cbbMoney = new System.Windows.Forms.ComboBox();
-            this.cbbCategory = new System.Windows.Forms.ComboBox();
-            this.cbbItem = new System.Windows.Forms.ComboBox();
+            this.cbbPay = new System.Windows.Forms.ComboBox();
+            this.cbbPaySub = new System.Windows.Forms.ComboBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pbBanner = new System.Windows.Forms.PictureBox();
             this.cb_Paysub = new System.Windows.Forms.CheckBox();
@@ -129,19 +130,18 @@
             this.btnBrowse = new System.Windows.Forms.Button();
             this.txtId = new System.Windows.Forms.TextBox();
             this.cb_Receipt = new System.Windows.Forms.CheckBox();
-            this.pbHide = new System.Windows.Forms.PictureBox();
-            this.pbUnits = new System.Windows.Forms.PictureBox();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Receipt_True)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Receipt_False)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbHide)).BeginInit();
             this.pnButton.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Date_False)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Date_True)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Paysub_False)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Paysub_True)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbMoney)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbCategorys)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbItems)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbAddCashType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbAddPayType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbAddSubPayType)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView0)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picExcel0)).BeginInit();
@@ -150,8 +150,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.picExcel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBanner)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbHide)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbUnits)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox4
@@ -160,7 +158,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox4.BackColor = System.Drawing.Color.White;
-            this.groupBox4.Controls.Add(this.pbUnits);
+            this.groupBox4.Controls.Add(this.pbHide);
             this.groupBox4.Controls.Add(this.txtSumWallet);
             this.groupBox4.Controls.Add(this.btnCopy);
             this.groupBox4.Controls.Add(this.pb_Receipt_True);
@@ -217,9 +215,9 @@
             this.groupBox4.Controls.Add(this.lblBalance);
             this.groupBox4.Controls.Add(this.cbbStatus);
             this.groupBox4.Controls.Add(this.txtTotalReal);
-            this.groupBox4.Controls.Add(this.pbMoney);
-            this.groupBox4.Controls.Add(this.pbCategorys);
-            this.groupBox4.Controls.Add(this.pbItems);
+            this.groupBox4.Controls.Add(this.pbAddCashType);
+            this.groupBox4.Controls.Add(this.pbAddPayType);
+            this.groupBox4.Controls.Add(this.pbAddSubPayType);
             this.groupBox4.Controls.Add(this.groupBox1);
             this.groupBox4.Controls.Add(this.label2);
             this.groupBox4.Controls.Add(this.groupBox5);
@@ -231,8 +229,8 @@
             this.groupBox4.Controls.Add(this.dtExpense);
             this.groupBox4.Controls.Add(this.label4);
             this.groupBox4.Controls.Add(this.cbbMoney);
-            this.groupBox4.Controls.Add(this.cbbCategory);
-            this.groupBox4.Controls.Add(this.cbbItem);
+            this.groupBox4.Controls.Add(this.cbbPay);
+            this.groupBox4.Controls.Add(this.cbbPaySub);
             this.groupBox4.Controls.Add(this.pictureBox2);
             this.groupBox4.Controls.Add(this.pbBanner);
             this.groupBox4.Controls.Add(this.cb_Paysub);
@@ -240,24 +238,11 @@
             this.groupBox4.Controls.Add(this.btnBrowse);
             this.groupBox4.Controls.Add(this.txtId);
             this.groupBox4.Controls.Add(this.cb_Receipt);
-            this.groupBox4.Controls.Add(this.pbHide);
             this.groupBox4.Location = new System.Drawing.Point(-3, -12);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(1491, 814);
             this.groupBox4.TabIndex = 46;
             this.groupBox4.TabStop = false;
-            // 
-            // txtSumWallet
-            // 
-            this.txtSumWallet.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtSumWallet.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.txtSumWallet.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtSumWallet.Location = new System.Drawing.Point(1004, 305);
-            this.txtSumWallet.Name = "txtSumWallet";
-            this.txtSumWallet.Size = new System.Drawing.Size(75, 21);
-            this.txtSumWallet.TabIndex = 112;
-            this.txtSumWallet.TabStop = false;
-            this.txtSumWallet.Text = "00,000.00";
             // 
             // btnCopy
             // 
@@ -294,6 +279,16 @@
             this.pb_Receipt_False.TabStop = false;
             this.pb_Receipt_False.Visible = false;
             this.pb_Receipt_False.Click += new System.EventHandler(this.Ticker);
+            // 
+            // pbHide
+            // 
+            this.pbHide.Enabled = false;
+            this.pbHide.Location = new System.Drawing.Point(884, 262);
+            this.pbHide.Name = "pbHide";
+            this.pbHide.Size = new System.Drawing.Size(315, 120);
+            this.pbHide.TabIndex = 225;
+            this.pbHide.TabStop = false;
+            this.pbHide.Visible = false;
             // 
             // btnCarry
             // 
@@ -735,6 +730,18 @@
             this.label33.TabIndex = 113;
             this.label33.Text = "ใบเสร็จ";
             // 
+            // txtSumWallet
+            // 
+            this.txtSumWallet.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtSumWallet.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.txtSumWallet.ForeColor = System.Drawing.Color.DarkGray;
+            this.txtSumWallet.Location = new System.Drawing.Point(1004, 305);
+            this.txtSumWallet.Name = "txtSumWallet";
+            this.txtSumWallet.Size = new System.Drawing.Size(61, 21);
+            this.txtSumWallet.TabIndex = 112;
+            this.txtSumWallet.TabStop = false;
+            this.txtSumWallet.Text = "0.00";
+            // 
             // btnPre
             // 
             this.btnPre.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -984,7 +991,7 @@
             this.txtSumBank.Size = new System.Drawing.Size(87, 21);
             this.txtSumBank.TabIndex = 1;
             this.txtSumBank.TabStop = false;
-            this.txtSumBank.Text = "00,000.00";
+            this.txtSumBank.Text = "0.00";
             this.txtSumBank.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSumBank.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTotalRealkeyPress);
             this.txtSumBank.Leave += new System.EventHandler(this.txtTotalReal_Leave);
@@ -1140,38 +1147,38 @@
             this.txtTotalReal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTotalRealkeyPress);
             this.txtTotalReal.Leave += new System.EventHandler(this.txtTotalReal_Leave);
             // 
-            // pbMoney
+            // pbAddCashType
             // 
-            this.pbMoney.Image = ((System.Drawing.Image)(resources.GetObject("pbMoney.Image")));
-            this.pbMoney.Location = new System.Drawing.Point(367, 271);
-            this.pbMoney.Name = "pbMoney";
-            this.pbMoney.Size = new System.Drawing.Size(22, 22);
-            this.pbMoney.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbMoney.TabIndex = 7;
-            this.pbMoney.TabStop = false;
-            this.pbMoney.Click += new System.EventHandler(this.pbAddCashType_Click);
+            this.pbAddCashType.Image = ((System.Drawing.Image)(resources.GetObject("pbAddCashType.Image")));
+            this.pbAddCashType.Location = new System.Drawing.Point(367, 271);
+            this.pbAddCashType.Name = "pbAddCashType";
+            this.pbAddCashType.Size = new System.Drawing.Size(22, 22);
+            this.pbAddCashType.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbAddCashType.TabIndex = 7;
+            this.pbAddCashType.TabStop = false;
+            this.pbAddCashType.Click += new System.EventHandler(this.pbAddCashType_Click);
             // 
-            // pbCategorys
+            // pbAddPayType
             // 
-            this.pbCategorys.Image = ((System.Drawing.Image)(resources.GetObject("pbCategorys.Image")));
-            this.pbCategorys.Location = new System.Drawing.Point(367, 202);
-            this.pbCategorys.Name = "pbCategorys";
-            this.pbCategorys.Size = new System.Drawing.Size(22, 20);
-            this.pbCategorys.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbCategorys.TabIndex = 7;
-            this.pbCategorys.TabStop = false;
-            this.pbCategorys.Click += new System.EventHandler(this.pbAddPayType_Click);
+            this.pbAddPayType.Image = ((System.Drawing.Image)(resources.GetObject("pbAddPayType.Image")));
+            this.pbAddPayType.Location = new System.Drawing.Point(367, 202);
+            this.pbAddPayType.Name = "pbAddPayType";
+            this.pbAddPayType.Size = new System.Drawing.Size(22, 20);
+            this.pbAddPayType.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbAddPayType.TabIndex = 7;
+            this.pbAddPayType.TabStop = false;
+            this.pbAddPayType.Click += new System.EventHandler(this.pbAddPayType_Click);
             // 
-            // pbItems
+            // pbAddSubPayType
             // 
-            this.pbItems.Image = ((System.Drawing.Image)(resources.GetObject("pbItems.Image")));
-            this.pbItems.Location = new System.Drawing.Point(367, 237);
-            this.pbItems.Name = "pbItems";
-            this.pbItems.Size = new System.Drawing.Size(22, 20);
-            this.pbItems.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbItems.TabIndex = 7;
-            this.pbItems.TabStop = false;
-            this.pbItems.Click += new System.EventHandler(this.pbAddSubPayType_Click);
+            this.pbAddSubPayType.Image = ((System.Drawing.Image)(resources.GetObject("pbAddSubPayType.Image")));
+            this.pbAddSubPayType.Location = new System.Drawing.Point(367, 237);
+            this.pbAddSubPayType.Name = "pbAddSubPayType";
+            this.pbAddSubPayType.Size = new System.Drawing.Size(22, 20);
+            this.pbAddSubPayType.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbAddSubPayType.TabIndex = 7;
+            this.pbAddSubPayType.TabStop = false;
+            this.pbAddSubPayType.Click += new System.EventHandler(this.pbAddSubPayType_Click);
             // 
             // groupBox1
             // 
@@ -1401,35 +1408,35 @@
             this.cbbMoney.Text = ":: Loading ::";
             this.cbbMoney.SelectedIndexChanged += new System.EventHandler(this.cbbMoney_SelectedIndexChanged);
             // 
-            // cbbCategory
+            // cbbPay
             // 
-            this.cbbCategory.Enabled = false;
-            this.cbbCategory.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.cbbCategory.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.cbbCategory.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.cbbCategory.FormattingEnabled = true;
-            this.cbbCategory.Location = new System.Drawing.Point(187, 194);
-            this.cbbCategory.Name = "cbbCategory";
-            this.cbbCategory.Size = new System.Drawing.Size(177, 28);
-            this.cbbCategory.TabIndex = 1;
-            this.cbbCategory.Text = ":: Loading ::";
-            this.cbbCategory.SelectedIndexChanged += new System.EventHandler(this.cbbPay_SelectedIndexChanged);
+            this.cbbPay.Enabled = false;
+            this.cbbPay.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.cbbPay.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.cbbPay.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.cbbPay.FormattingEnabled = true;
+            this.cbbPay.Location = new System.Drawing.Point(187, 194);
+            this.cbbPay.Name = "cbbPay";
+            this.cbbPay.Size = new System.Drawing.Size(177, 28);
+            this.cbbPay.TabIndex = 1;
+            this.cbbPay.Text = ":: Loading ::";
+            this.cbbPay.SelectedIndexChanged += new System.EventHandler(this.cbbPay_SelectedIndexChanged);
             // 
-            // cbbItem
+            // cbbPaySub
             // 
-            this.cbbItem.AccessibleRole = System.Windows.Forms.AccessibleRole.Clock;
-            this.cbbItem.Enabled = false;
-            this.cbbItem.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.cbbItem.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.cbbItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.cbbItem.FormattingEnabled = true;
-            this.cbbItem.Location = new System.Drawing.Point(187, 230);
-            this.cbbItem.Name = "cbbItem";
-            this.cbbItem.Size = new System.Drawing.Size(177, 28);
-            this.cbbItem.TabIndex = 2;
-            this.cbbItem.TabStop = false;
-            this.cbbItem.Text = ":: Loading ::";
-            this.cbbItem.SelectedIndexChanged += new System.EventHandler(this.cbbPaySub_SelectedIndexChanged);
+            this.cbbPaySub.AccessibleRole = System.Windows.Forms.AccessibleRole.Clock;
+            this.cbbPaySub.Enabled = false;
+            this.cbbPaySub.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.cbbPaySub.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.cbbPaySub.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.cbbPaySub.FormattingEnabled = true;
+            this.cbbPaySub.Location = new System.Drawing.Point(187, 230);
+            this.cbbPaySub.Name = "cbbPaySub";
+            this.cbbPaySub.Size = new System.Drawing.Size(177, 28);
+            this.cbbPaySub.TabIndex = 2;
+            this.cbbPaySub.TabStop = false;
+            this.cbbPaySub.Text = ":: Loading ::";
+            this.cbbPaySub.SelectedIndexChanged += new System.EventHandler(this.cbbPaySub_SelectedIndexChanged);
             // 
             // pictureBox2
             // 
@@ -1506,26 +1513,6 @@
             this.cb_Receipt.TabIndex = 228;
             this.cb_Receipt.UseVisualStyleBackColor = true;
             // 
-            // pbHide
-            // 
-            this.pbHide.Enabled = false;
-            this.pbHide.Location = new System.Drawing.Point(884, 262);
-            this.pbHide.Name = "pbHide";
-            this.pbHide.Size = new System.Drawing.Size(315, 120);
-            this.pbHide.TabIndex = 225;
-            this.pbHide.TabStop = false;
-            this.pbHide.Visible = false;
-            // 
-            // pbUnits
-            // 
-            this.pbUnits.Image = ((System.Drawing.Image)(resources.GetObject("pbUnits.Image")));
-            this.pbUnits.Location = new System.Drawing.Point(683, 237);
-            this.pbUnits.Name = "pbUnits";
-            this.pbUnits.Size = new System.Drawing.Size(22, 22);
-            this.pbUnits.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbUnits.TabIndex = 235;
-            this.pbUnits.TabStop = false;
-            // 
             // FrmExpenses
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -1548,15 +1535,16 @@
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Receipt_True)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Receipt_False)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbHide)).EndInit();
             this.pnButton.ResumeLayout(false);
             this.pnButton.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Date_False)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Date_True)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Paysub_False)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Paysub_True)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbMoney)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbCategorys)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbItems)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbAddCashType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbAddPayType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbAddSubPayType)).EndInit();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView0)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picExcel0)).EndInit();
@@ -1565,8 +1553,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.picExcel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBanner)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbHide)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbUnits)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1583,8 +1569,8 @@
         private System.Windows.Forms.DateTimePicker dtExpense;
         private System.Windows.Forms.ComboBox cbbMoney;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cbbItem;
-        private System.Windows.Forms.ComboBox cbbCategory;
+        private System.Windows.Forms.ComboBox cbbPaySub;
+        private System.Windows.Forms.ComboBox cbbPay;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblBalance;
@@ -1593,9 +1579,9 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.PictureBox pbCategorys;
-        private System.Windows.Forms.PictureBox pbMoney;
-        private System.Windows.Forms.PictureBox pbItems;
+        private System.Windows.Forms.PictureBox pbAddPayType;
+        private System.Windows.Forms.PictureBox pbAddCashType;
+        private System.Windows.Forms.PictureBox pbAddSubPayType;
         private System.Windows.Forms.Button btnSeach;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView DataGridView1;
@@ -1672,6 +1658,5 @@
         private System.Windows.Forms.PictureBox pb_Paysub_False;
         private System.Windows.Forms.CheckBox cb_Receipt;
         private System.Windows.Forms.Button btnCopy;
-        private System.Windows.Forms.PictureBox pbUnits;
     }
 }
