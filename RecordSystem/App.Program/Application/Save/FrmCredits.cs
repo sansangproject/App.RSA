@@ -7,6 +7,7 @@ using SANSANG.Constant;
 using System.Drawing;
 using System.Diagnostics;
 using System.Web.Services.Description;
+using System.ComponentModel;
 
 namespace SANSANG
 {
@@ -593,16 +594,19 @@ namespace SANSANG
             double Total = 0;
             double TotalUsed = 0;
             double TotalPayment = 0;
+            double CreditLimit = Convert.ToDouble(Setting.GetCreditLimit());
+            double Outstanding = Convert.ToDouble(Setting.GetOutstanding());
+            double CreditBalance = CreditLimit - Outstanding;
 
             if (string.IsNullOrEmpty(Error) && Function.GetRows(Data) > 0)
             {
                 TotalUsed = Convert.ToDouble(string.IsNullOrEmpty(Data.Rows[0]["TotalUsed"].ToString())? "0.00" : Data.Rows[0]["TotalUsed"].ToString());
                 TotalPayment = Convert.ToDouble(string.IsNullOrEmpty(Data.Rows[0]["TotalPayment"].ToString()) ? "0.00" : Data.Rows[0]["TotalPayment"].ToString());
             }
-
-            Total = (TotalPayment - Convert.ToDouble(Setting.GetChargeLotus())) - TotalUsed;
+             
+            Total = ((CreditBalance + TotalPayment) - TotalUsed);
             txtSumCredit.Text = string.Format("{0:#,##0.00}", Total);
-            txtUseCredit.Text = string.Format("{0:#,##0.00}", TotalUsed);
+            txtUseCredit.Text = string.Format("{0:#,##0.00}", TotalUsed);  
         }
 
         public string GetDetails()

@@ -498,5 +498,21 @@ namespace SANSANG
                 btnExit.Focus();
             }
         }
+
+        private void txtMobile_Leave(object sender, EventArgs e)
+        {
+            if (txtMobile.Text != "")
+            {
+                txtMobile.Text = Function.ConvertPhoneNumber(txtMobile.Text);
+            }
+        }
+
+        private void txtPhone_Leave(object sender, EventArgs e)
+        {
+            if (txtPhone.Text != "")
+            {
+                txtPhone.Text = Function.ConvertPhoneNumber(txtPhone.Text);
+            }
+        }
     }
 }

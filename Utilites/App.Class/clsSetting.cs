@@ -289,9 +289,9 @@ namespace SANSANG.Class
             return wallets;
         }
 
-        public decimal GetChargeLotus()
+        public decimal GetOutstanding()
         {
-            decimal charge = 0;
+            decimal balance = 0;
             string settingPath = Path.Combine(appPath, filePath);
 
             if (File.Exists(settingPath))
@@ -302,16 +302,40 @@ namespace SANSANG.Class
                 {
                     switch (valueNode.Name.ToString())
                     {
-                        case "ChargeLotus":
-                            charge = Convert.ToDecimal(valueNode.InnerText);
+                        case "Outstanding":
+                            balance = Convert.ToDecimal(valueNode.InnerText);
                             break;
                     }
                 }
             }
 
-            return charge;
+            return balance;
         }
 
+
+        public decimal GetCreditLimit()
+        {
+            decimal limit = 0;
+            string settingPath = Path.Combine(appPath, filePath);
+
+            if (File.Exists(settingPath))
+            {
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.Load(settingPath);
+                foreach (XmlNode valueNode in xmlDoc.DocumentElement)
+                {
+                    switch (valueNode.Name.ToString())
+                    {
+                        case "CreditLimit":
+                            limit = Convert.ToDecimal(valueNode.InnerText);
+                            break;
+                    }
+                }
+            }
+
+            return limit;
+        }
+        
         public string GetUrlAPIToken()
         {
             string settingPath = Path.Combine(appPath, filePath);
