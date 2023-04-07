@@ -439,6 +439,12 @@
     <Compile Include="App.Program\Application\Products\FrmProducts.Designer.cs">
       <DependentUpon>FrmProducts.cs</DependentUpon>
     </Compile>
+    <Compile Include="App.Program\Application\Save\FrmGolds.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Save\FrmGolds.Designer.cs">
+      <DependentUpon>FrmGolds.cs</DependentUpon>
+    </Compile>
     <Compile Include="App.Program\Application\Save\FrmExpenses.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -739,6 +745,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="App.Program\Application\Products\FrmProducts.resx">
       <DependentUpon>FrmProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Save\FrmGolds.resx">
+      <DependentUpon>FrmGolds.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="App.Program\Application\Save\FrmExpenses.resx">
       <DependentUpon>FrmExpenses.cs</DependentUpon>
