@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 
 namespace SANSANG.Constant
 {
@@ -39,6 +40,9 @@ namespace SANSANG.Constant
         public static string Product = "[Products]";
         public static string Member = "[Members]";
 
+        public static string Workday = "[Workday]";
+        public static string Gold = "[Golds]";
+
         public static string GetMasterList = "[GetListMaster]";
         public static string GetList = "[GetList]";
 
@@ -73,6 +77,9 @@ namespace SANSANG.Constant
         public string ManageStatement = string.Format(Stores, SPR, Statement);
         public string ManageProduct = string.Format(Stores, SPR, Product);
         public string ManageMember = string.Format(Stores, SPR, Member);
+
+        public string ManageWorkday = string.Format(Stores, SPR, Workday);
+        public string ManageGold = string.Format(Stores, SPR, Gold);
 
         public string DeleteData = string.Format(Stores, SPR, Delete);
 
