@@ -17,7 +17,6 @@ using System.Globalization;
 using DevComponents.DotNetBar;
 using System.Windows.Media;
 using static Telerik.WinControls.UI.ValueMapper;
-using static SANSANG.Class.clsFunction;
 
 namespace SANSANG
 {
@@ -73,6 +72,7 @@ namespace SANSANG
             Timer.Interval = (2000);
             Timer.Tick += new EventHandler(LoadList);
             Timer.Start();
+
         }
 
         private void LoadList(object sender, EventArgs e)
@@ -125,7 +125,7 @@ namespace SANSANG
                 {"@MemberId", Search? Function.GetComboId(cbbMember) : "0"},
                 {"@AccountId", Search? Function.GetComboId(cbbAccount) : "0"},
                 {"@WorkdayId", Search? Function.GetComboId(cbbMonth) : "0"},
-                {"@Date", Search? cb_Date.Checked? Date.GetDate(dtp: dtDate, Format: 4) : "" : ""},
+                {"@Date", ""},
                 {"@List", ""},
                 {"@Days", "0"},
                 {"@Month", "0"},
@@ -183,6 +183,7 @@ namespace SANSANG
                     dtGrid = dt.DefaultView.ToTable(true, "SNo", "Dates", "WorkingDay", "GoldPriceBuys", "GoldPriceSells", "GoldReceive", "Id");
 
                     DataGridViewContentAlignment mc = DataGridViewContentAlignment.MiddleCenter;
+                    DataGridViewContentAlignment ml = DataGridViewContentAlignment.MiddleLeft;
                     DataGridViewContentAlignment mr = DataGridViewContentAlignment.MiddleRight;
 
                     Function.showGridViewFormatFromStore(dtGrid, GridView,
@@ -463,16 +464,7 @@ namespace SANSANG
                 }
                 if (keyCode == "Enter")
                 {
-                    Form Frm = (Form)sender;
-
-                    if (Frm.ActiveControl.Text == txtGoldPriceSell.Text)
-                    {
-                        CalculateGoldReceive();
-                    }
-                    else
-                    {
-                        Search(true);
-                    }
+                    Search(true);
                 }
             }
             catch (Exception ex)
@@ -508,8 +500,7 @@ namespace SANSANG
             }
 
             txtSumMoney.Text = string.Format("{0:#,##0.00}", MoneyTotal);
-            var Number = (string.Format("{0:#,##0.0000}", GoldTotal));
-            txtSumGold.Text = Function.FillFromRight(Number, 8);
+            txtSumGold.Text = string.Format("{0:#,##0.000000}", GoldTotal);
         }
 
         public string GetDetails()
@@ -593,14 +584,21 @@ namespace SANSANG
 
         private void txtGoldPriceSell_Leave(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtGoldPriceSell.Text))
+            try
             {
-                txtReceive.Text = "";
+                double num = Convert.ToDouble(txtGoldPriceSell.Text);
+                txtGoldPriceSell.Text = String.Format("{0:n}", num);
+                GetGoldReceive();
             }
-            else
+            catch (Exception ex)
             {
-                CalculateGoldReceive();
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
             }
+        }
+
+        private void txtGoldPriceSell_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
         }
 
         private void txtGoldPriceBuy_Leave(object sender, EventArgs e)
@@ -609,20 +607,6 @@ namespace SANSANG
             {
                 double num = Convert.ToDouble(txtGoldPriceBuy.Text);
                 txtGoldPriceBuy.Text = String.Format("{0:n}", num);
-            }
-            catch (Exception ex)
-            {
-                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
-            }
-        }
-
-        private void CalculateGoldReceive()
-        {
-            try
-            {
-                double num = Convert.ToDouble(txtGoldPriceSell.Text);
-                txtGoldPriceSell.Text = String.Format("{0:n}", num);
-                GetGoldReceive();
             }
             catch (Exception ex)
             {

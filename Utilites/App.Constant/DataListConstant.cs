@@ -38,7 +38,10 @@ namespace SANSANG.Constant
         public string Transactions = "Transaction";
         public string Users = "Users";
 
-        
+        public string Workdays = "Workdays";
+        public string Accounts = "Account";
+        public string Members = "Members";
+
 
 
 
