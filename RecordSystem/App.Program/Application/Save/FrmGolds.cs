@@ -72,7 +72,6 @@ namespace SANSANG
             Timer.Interval = (2000);
             Timer.Tick += new EventHandler(LoadList);
             Timer.Start();
-
         }
 
         private void LoadList(object sender, EventArgs e)
@@ -464,7 +463,16 @@ namespace SANSANG
                 }
                 if (keyCode == "Enter")
                 {
-                    Search(true);
+                    Form Frm = (Form)sender;
+
+                    if (Frm.ActiveControl.Text == txtGoldPriceSell.Text)
+                    {
+                        CalculateGoldReceive();
+                    }
+                    else
+                    {
+                        Search(true);
+                    }
                 }
             }
             catch (Exception ex)
@@ -584,21 +592,12 @@ namespace SANSANG
 
         private void txtGoldPriceSell_Leave(object sender, EventArgs e)
         {
-            try
-            {
-                double num = Convert.ToDouble(txtGoldPriceSell.Text);
-                txtGoldPriceSell.Text = String.Format("{0:n}", num);
-                GetGoldReceive();
-            }
-            catch (Exception ex)
-            {
-                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
-            }
+            CalculateGoldReceive();
         }
 
         private void txtGoldPriceSell_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            CalculateGoldReceive();
         }
 
         private void txtGoldPriceBuy_Leave(object sender, EventArgs e)
@@ -607,6 +606,20 @@ namespace SANSANG
             {
                 double num = Convert.ToDouble(txtGoldPriceBuy.Text);
                 txtGoldPriceBuy.Text = String.Format("{0:n}", num);
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }
+        }
+
+        private void CalculateGoldReceive()
+        {
+            try
+            {
+                double num = Convert.ToDouble(txtGoldPriceSell.Text);
+                txtGoldPriceSell.Text = String.Format("{0:n}", num);
+                GetGoldReceive();
             }
             catch (Exception ex)
             {
