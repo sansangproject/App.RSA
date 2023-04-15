@@ -230,7 +230,7 @@
             // 
             this.lblProEN.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lblProEN.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lblProEN.Font = new System.Drawing.Font("Josefin Sans", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProEN.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblProEN.ForeColor = System.Drawing.Color.IndianRed;
             this.lblProEN.Location = new System.Drawing.Point(445, 13);
             this.lblProEN.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
