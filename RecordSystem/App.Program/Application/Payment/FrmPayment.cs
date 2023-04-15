@@ -347,6 +347,11 @@ namespace RecordSystemApplication.App.Program.Application.Payment
                 }
             }
         }
+
+        private void btnPaste_Click(object sender, EventArgs e)
+        {
+            txtReceipt.Text = Clipboard.GetText();
+        }
     }
 }
 

@@ -113,7 +113,7 @@ namespace SANSANG.Class
             DataTable dt = new DataTable();
             DataRow dr;
 
-            dt.Columns.Add("Index");
+            dt.Columns.Add("Id");
             dt.Columns.Add("Value");
 
             dr = dt.NewRow();
@@ -207,7 +207,7 @@ namespace SANSANG.Class
             dr["Value"] = years.ToString();
             dt.Rows.Add(dr);
 
-            for (int i = 10; i >= 1; i--)
+            for (int i = 12; i >= 1; i--)
             {
                 dr = dt.NewRow();
                 dr["Id"] = Convert.ToString(years - i);

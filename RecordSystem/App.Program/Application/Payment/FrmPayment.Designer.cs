@@ -64,6 +64,7 @@ namespace RecordSystemApplication.App.Program.Application.Payment
             this.cbbPayment1 = new System.Windows.Forms.TextBox();
             this.btnEdit = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.btnPaste = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbQrcode)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -450,7 +451,7 @@ namespace RecordSystemApplication.App.Program.Application.Payment
             this.txtReceipt.ForeColor = System.Drawing.Color.Black;
             this.txtReceipt.Location = new System.Drawing.Point(22, 21);
             this.txtReceipt.Name = "txtReceipt";
-            this.txtReceipt.Size = new System.Drawing.Size(333, 21);
+            this.txtReceipt.Size = new System.Drawing.Size(304, 21);
             this.txtReceipt.TabIndex = 236;
             this.txtReceipt.TabStop = false;
             this.txtReceipt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtReff_KeyPress);
@@ -542,6 +543,7 @@ namespace RecordSystemApplication.App.Program.Application.Payment
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.btnPaste);
             this.groupBox5.Controls.Add(this.txtReceipt);
             this.groupBox5.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.groupBox5.ForeColor = System.Drawing.Color.Teal;
@@ -551,6 +553,22 @@ namespace RecordSystemApplication.App.Program.Application.Payment
             this.groupBox5.TabIndex = 239;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "เลขอ้างอิง";
+            // 
+            // btnPaste
+            // 
+            this.btnPaste.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnPaste.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPaste.Font = new System.Drawing.Font("Mitr", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPaste.ForeColor = System.Drawing.Color.White;
+            this.btnPaste.Image = ((System.Drawing.Image)(resources.GetObject("btnPaste.Image")));
+            this.btnPaste.Location = new System.Drawing.Point(332, 21);
+            this.btnPaste.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnPaste.Name = "btnPaste";
+            this.btnPaste.Size = new System.Drawing.Size(23, 21);
+            this.btnPaste.TabIndex = 242;
+            this.btnPaste.TabStop = false;
+            this.btnPaste.UseVisualStyleBackColor = false;
+            this.btnPaste.Click += new System.EventHandler(this.btnPaste_Click);
             // 
             // FrmPayment
             // 
@@ -618,5 +636,6 @@ namespace RecordSystemApplication.App.Program.Application.Payment
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtAmount1;
+        private System.Windows.Forms.Button btnPaste;
     }
 }

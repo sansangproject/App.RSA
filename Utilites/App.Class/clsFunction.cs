@@ -928,6 +928,62 @@ namespace SANSANG.Class
             }
         }
 
+        public string FillFromRight(string Number, int MaxLength)
+        {
+            string Numbers = Number;
+            char RepeateThis = '0';
+
+            try
+            {
+                var format = "{0:-" + (MaxLength) + ":" + RepeateThis + "}";
+                Numbers = string.Format(new PaddedStringFormatInfo(), format, Number);
+            }
+            catch
+            {
+                return "";
+            }
+
+            return Numbers;
+        }
+
+        public sealed class PaddedStringFormatInfo : IFormatProvider, ICustomFormatter
+        {
+            public object GetFormat(Type formatType)
+            {
+                if (typeof(ICustomFormatter).Equals(formatType)) return this;
+                return null;
+            }
+
+            public string Format(string format, object arg, IFormatProvider formatProvider)
+            {
+                if (arg == null)
+                    throw new ArgumentNullException("Argument cannot be null");
+
+                string[] args;
+                if (format != null)
+                    args = format.Split(':');
+                else
+                    return arg.ToString();
+
+                if (args.Length == 1)
+                    String.Format("{0, " + format + "}", arg);
+
+                int padLength = 0;
+
+                if (!int.TryParse(args[0], out padLength))
+                    throw new ArgumentException("Padding lenght should be an integer");
+                switch (args.Length)
+                {
+                    case 2:
+                        if (padLength > 0)
+                            return (arg as string).PadLeft(padLength, args[1][0]);
+                        return (arg as string).PadRight(padLength * -1, args[1][0]);
+                    default:
+                        return string.Format("{0," + format + "}", arg);
+                }
+            }
+        }
+
 
 
 
