@@ -517,8 +517,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.label40);
-            this.groupBox2.Controls.Add(this.txtSumMoney);
             this.groupBox2.Controls.Add(this.label39);
+            this.groupBox2.Controls.Add(this.txtSumMoney);
             this.groupBox2.Controls.Add(this.txtSumGold);
             this.groupBox2.Controls.Add(this.lblHSearch);
             this.groupBox2.Controls.Add(this.lblCondition);
@@ -540,7 +540,7 @@
             this.label40.AutoSize = true;
             this.label40.Font = new System.Drawing.Font("Mitr Light", 7F);
             this.label40.ForeColor = System.Drawing.Color.DimGray;
-            this.label40.Location = new System.Drawing.Point(78, 387);
+            this.label40.Location = new System.Drawing.Point(78, 384);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(38, 15);
             this.label40.TabIndex = 206;
@@ -552,7 +552,7 @@
             this.txtSumMoney.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtSumMoney.Font = new System.Drawing.Font("Mitr Light", 13F);
             this.txtSumMoney.ForeColor = System.Drawing.Color.DarkGoldenrod;
-            this.txtSumMoney.Location = new System.Drawing.Point(2, 394);
+            this.txtSumMoney.Location = new System.Drawing.Point(2, 391);
             this.txtSumMoney.Name = "txtSumMoney";
             this.txtSumMoney.Size = new System.Drawing.Size(113, 28);
             this.txtSumMoney.TabIndex = 203;
@@ -566,7 +566,7 @@
             this.label39.AutoSize = true;
             this.label39.Font = new System.Drawing.Font("Mitr Light", 7F);
             this.label39.ForeColor = System.Drawing.Color.DimGray;
-            this.label39.Location = new System.Drawing.Point(1329, 387);
+            this.label39.Location = new System.Drawing.Point(1329, 384);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(69, 15);
             this.label39.TabIndex = 205;
@@ -578,7 +578,7 @@
             this.txtSumGold.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtSumGold.Font = new System.Drawing.Font("Mitr Light", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSumGold.ForeColor = System.Drawing.Color.DarkGoldenrod;
-            this.txtSumGold.Location = new System.Drawing.Point(1252, 394);
+            this.txtSumGold.Location = new System.Drawing.Point(1252, 391);
             this.txtSumGold.Name = "txtSumGold";
             this.txtSumGold.Size = new System.Drawing.Size(145, 27);
             this.txtSumGold.TabIndex = 204;
@@ -601,7 +601,7 @@
             // 
             this.lblCondition.AutoSize = true;
             this.lblCondition.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.lblCondition.ForeColor = System.Drawing.Color.Gray;
+            this.lblCondition.ForeColor = System.Drawing.Color.DarkGoldenrod;
             this.lblCondition.Location = new System.Drawing.Point(66, 25);
             this.lblCondition.Name = "lblCondition";
             this.lblCondition.Size = new System.Drawing.Size(49, 20);
@@ -664,7 +664,7 @@
             this.GridView.ReadOnly = true;
             this.GridView.RowHeadersVisible = false;
             this.GridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GridView.Size = new System.Drawing.Size(1378, 320);
+            this.GridView.Size = new System.Drawing.Size(1378, 306);
             this.GridView.TabIndex = 40;
             this.GridView.TabStop = false;
             this.GridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CellContentClick);

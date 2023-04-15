@@ -17,6 +17,7 @@ using System.Globalization;
 using DevComponents.DotNetBar;
 using System.Windows.Media;
 using static Telerik.WinControls.UI.ValueMapper;
+using static SANSANG.Class.clsFunction;
 
 namespace SANSANG
 {
@@ -124,7 +125,7 @@ namespace SANSANG
                 {"@MemberId", Search? Function.GetComboId(cbbMember) : "0"},
                 {"@AccountId", Search? Function.GetComboId(cbbAccount) : "0"},
                 {"@WorkdayId", Search? Function.GetComboId(cbbMonth) : "0"},
-                {"@Date", ""},
+                {"@Date", Search? cb_Date.Checked? Date.GetDate(dtp: dtDate, Format: 4) : "" : ""},
                 {"@List", ""},
                 {"@Days", "0"},
                 {"@Month", "0"},
@@ -508,7 +509,8 @@ namespace SANSANG
             }
 
             txtSumMoney.Text = string.Format("{0:#,##0.00}", MoneyTotal);
-            txtSumGold.Text = string.Format("{0:#,##0.000000}", GoldTotal);
+            var Number = (string.Format("{0:#,##0.0000}", GoldTotal));
+            txtSumGold.Text = Function.FillFromRight(Number, 8);
         }
 
         public string GetDetails()
