@@ -790,9 +790,19 @@ namespace SANSANG
                 ShowDataGridView(ds);
 
                 db.Gets(Store.FnGetBalanceSearch, Parameter, out Error, out ds);
-                Credit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumCredit"].ToString()));
-                TotalCredit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["TotalCredit"].ToString()));
-                Debit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumDebit"].ToString()));
+
+                if (string.IsNullOrEmpty(Error))
+                {
+                    Credit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumCredit"].ToString()));
+                    TotalCredit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["TotalCredit"].ToString()));
+                    Debit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumDebit"].ToString()));
+                }
+                else
+                {
+                    Credit = 0.00;
+                    TotalCredit = 0.00;
+                    Debit = 0.00;
+                }
 
                 lblBalance.Text = "คงเหลือ";
                 txtTotalReal.Text = string.Format("{0:#,##0.00}", Debit - (Credit > TotalCredit ? Credit : TotalCredit));
