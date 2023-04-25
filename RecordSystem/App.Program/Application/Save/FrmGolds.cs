@@ -628,5 +628,13 @@ namespace SANSANG
                 Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
             }
         }
+
+        private void txtGoldPriceSell_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtGoldPriceSell.Text))
+            {
+                txtReceive.Text = "";
+            }
+        }
     }
 }
