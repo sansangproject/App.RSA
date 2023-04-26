@@ -594,12 +594,14 @@ namespace SANSANG
 
         private void txtGoldPriceSell_Leave(object sender, EventArgs e)
         {
-            CalculateGoldReceive();
-        }
-
-        private void txtGoldPriceSell_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            CalculateGoldReceive();
+            if (string.IsNullOrEmpty(txtGoldPriceSell.Text))
+            {
+                txtReceive.Text = "";
+            }
+            else
+            {
+                CalculateGoldReceive();
+            }
         }
 
         private void txtGoldPriceBuy_Leave(object sender, EventArgs e)
@@ -626,14 +628,6 @@ namespace SANSANG
             catch (Exception ex)
             {
                 Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
-            }
-        }
-
-        private void txtGoldPriceSell_KeyPress_1(object sender, KeyPressEventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtGoldPriceSell.Text))
-            {
-                txtReceive.Text = "";
             }
         }
     }
