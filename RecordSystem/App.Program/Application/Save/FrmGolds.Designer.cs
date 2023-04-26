@@ -1025,7 +1025,6 @@
             this.txtGoldPriceSell.Size = new System.Drawing.Size(113, 26);
             this.txtGoldPriceSell.TabIndex = 1;
             this.txtGoldPriceSell.TabStop = false;
-            this.txtGoldPriceSell.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGoldPriceSell_KeyPress_1);
             this.txtGoldPriceSell.Leave += new System.EventHandler(this.txtGoldPriceSell_Leave);
             // 
             // cbbStatus
