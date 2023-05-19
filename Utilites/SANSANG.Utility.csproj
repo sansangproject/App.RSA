@@ -210,6 +210,7 @@
     <Compile Include="App.Constant\ApiConstant.cs" />
     <Compile Include="App.Database\dbConnection.cs" />
     <Compile Include="App.Model\BalancesModel.cs" />
+    <Compile Include="App.Model\BAYSTModel.cs" />
     <Compile Include="App.Model\KTBSTModel.cs" />
     <Compile Include="App.Model\SCBSTModel.cs" />
     <Compile Include="App.Model\TMBSTModel.cs" />

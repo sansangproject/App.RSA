@@ -4,11 +4,15 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
 using System.IO;
+using System.Runtime.Remoting.Channels;
+using System.Windows.Documents;
 using System.Windows.Forms;
+using DevComponents.DotNetBar;
 using SANSANG.Constant;
 using SANSANG.Database;
 using SANSANG.Utilites.App.Forms;
 using SANSANG.Utilites.App.Model;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace SANSANG.Class
 {
@@ -76,6 +80,10 @@ namespace SANSANG.Class
                 else if (AccountId == Accounts.SCB2378)
                 {
                     SCB(Files);
+                }
+                else if (AccountId == Accounts.BAY5954)
+                {
+                    BAY(Files);
                 }
             }
         }
@@ -380,6 +388,72 @@ namespace SANSANG.Class
                     else
                     {
                         Message.MessageResult("IM", "ER", err);
+                    }
+                }
+            }
+        }
+
+        private void BAY(string Files)
+        {
+            string DateImports = "";
+            var DataList = new List<BAYSTModel>();
+
+            var LogFile = File.ReadAllLines(Files);
+            var LogList = new List<string>(LogFile);
+            int Rows = LogList.Count - 1;
+            int Row = 0;
+
+            foreach (var Value in LogList)
+            {
+                BAYSTModel Data = new BAYSTModel();
+                string[] Statements = Value.Split(new char[0]);
+
+                DateImports += Row == 0 ? Statements[0].ToString() : "";
+                DateImports += Row == Rows ? " - " + Statements[0].ToString() : "";
+
+
+                int Length = (Statements.Length);
+                string Details = "";
+
+                Data.Date = Statements[0];
+                Data.Time = Statements[1];
+                Data.Item = Statements[2];
+                Data.Amount = Function.MoveNumberStringComma(Statements[3]);
+                Data.Balance = Function.MoveNumberStringComma(Statements[4]);
+                Data.Channel = Statements[5];
+
+                for (int i = 6; i < Length; i++)
+                {
+                    Details += i == 6 ? "" : " ";
+                    Details += Statements[i];
+                }
+
+                Data.Detail = Details;
+
+                DataList.Add(Data);
+                Row++;
+            }
+
+            Message.MessageConfirmation("I", "Import BAY Statment", DateImports);
+
+            using (var Popup = new FrmMessagesBox(Message.strOperation, Message.strMes, "YES", "NO", Message.strImage))
+            {
+                var Result = Popup.ShowDialog();
+                string Error = "";
+
+                if (Result == DialogResult.Yes)
+                {
+                    Popup.Close();
+
+                    AddBAYStatment(DataList, AccountId, out Error);
+
+                    if (Error == "")
+                    {
+                        Message.MessageResult("IM", "C", Error);
+                    }
+                    else
+                    {
+                        Message.MessageResult("IM", "ER", Error);
                     }
                 }
             }
@@ -820,6 +894,92 @@ namespace SANSANG.Class
             {
                 Log.WriteLogData("IMPORT", "SCB", "Import", ex.Message);
                 err = ex.Message;
+            }
+        }
+
+        public void AddBAYStatment(List<BAYSTModel> Datas, string AccountId, out string Error)
+        {
+            try
+            {
+                string Codes = "";
+                string PaymentId = "";
+                string Item = "";
+                string Detail = "";
+                string Display = "";
+                bool IsWithdrawal = false;
+
+                decimal BalanceNow = 0;
+                decimal BalanceNew = 0;
+
+                for (int Rounds = 0; Rounds < Datas.Count; Rounds++)
+                {
+                    Codes = Function.GetCodes(Table.StatmentId, "", "Generated");
+                    Function.GetPayments(Datas[Rounds].Item, out PaymentId, out Item, out Detail, out Display, out IsWithdrawal);
+
+                    DateTime DateTime = Convert.ToDateTime(Datas[Rounds].Date);
+
+                    string[,] Parameter = new string[,]
+                    {
+                        {"@Id", ""},
+                        {"@Code", Codes},
+                        {"@Status", "1000"},
+                        {"@User", "1004"},
+                        {"@IsActive", "1"},
+                        {"@IsDelete", "0"},
+                        {"@Operation", Operation.InsertAbbr},
+                        {"@AccountId", AccountId},
+                        {"@Date", Dates.GetDate(dt : DateTime, Format : 4)},
+                        {"@Time", Datas[Rounds].Time},
+                        {"@PaymentId", PaymentId},
+                        {"@Item", Item},
+                        {"@MoneyId", "1192"},
+                        {"@Branch", ""},
+                        {"@Channel", Datas[Rounds].Channel},
+                        {"@Withdrawal", IsWithdrawal? Datas[Rounds].Amount : "0.00"},
+                        {"@Deposit", !IsWithdrawal? Datas[Rounds].Amount : "0.00"},
+                        {"@Balance", Datas[Rounds].Balance},
+                        {"@Number", ""},
+                        {"@Detail", Detail},
+                        {"@Display", Display},
+                        {"@Reference", ""},
+                    };
+
+                    BalanceNow = CheckBalance(Accounts.BAY5954, Function.MoveNumberStringComma(Datas[Rounds].Amount), IsWithdrawal);
+                    BalanceNew = decimal.Parse(Function.MoveNumberStringComma(Datas[Rounds].Balance));
+
+                    if (!Function.IsDuplicate(
+                            Table.Statments,
+                            Value1: "BAY",
+                            Value2: AccountId,
+                            Value3: PaymentId,
+                            Value4: Dates.GetDate(dt: DateTime, Format: 4),
+                            Value5: Datas[Rounds].Amount,
+                            Value6: Datas[Rounds].Balance))
+                    {
+                        if (BalanceNow == BalanceNew)
+                        {
+                            db.Operations(Store.ManageStatement, Parameter, out Error);
+                            Messages = "";
+                        }
+                        else
+                        {
+                            Messages = string.Format("Balance does not match. ({0})", BalanceNow);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        Messages = "Last statment is duplicate.";
+                        break;
+                    }
+                }
+
+                Error = Messages;
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData("IMPORT", "BAY", "Import", ex.Message);
+                Error = ex.Message;
             }
         }
 
