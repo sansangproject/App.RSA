@@ -13,10 +13,12 @@ namespace SANSANG.Constant
         public string TMB = "BST-011-1";
         public string KBANK = "BST-004-1";
         public string SCB = "BST-014-1";
-        public string BBL = "BST-002-1";
+        public string BBL = "BST-002-1"; 
+        public string BAY = "BST-025-1";
 
         public string CIMB4401 = "1033";
         public string KTB6064 = "1025";
+        public string BAY5954 = "1035";
 
         public string BBL7621 = "";
         public string BBL8716 = "";
@@ -42,5 +44,7 @@ namespace SANSANG.Constant
         public string KBANKs = "KBANK";
         public string SCBs = "SCB";
         public string BBLs = "BBL";
+        public string BAYs = "BAY";
+
     }
 }
