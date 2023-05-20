@@ -938,7 +938,7 @@ namespace SANSANG.Class
                         {"@Deposit", !IsWithdrawal? Datas[Rounds].Amount : "0.00"},
                         {"@Balance", Datas[Rounds].Balance},
                         {"@Number", ""},
-                        {"@Detail", Detail},
+                        {"@Detail", Datas[Rounds].Detail},
                         {"@Display", Display},
                         {"@Reference", ""},
                     };
@@ -962,13 +962,13 @@ namespace SANSANG.Class
                         }
                         else
                         {
-                            Messages = string.Format("Balance does not match. ({0})", BalanceNow);
+                            Messages = string.Format("Balance does not match. ({0})", String.Format("{0:n}", BalanceNow));
                             break;
                         }
                     }
                     else
                     {
-                        Messages = string.Format("{0} | {1}{2}{3} is duplicate.", Datas[Rounds].Date, Item, Environment.NewLine, string.Format("{0:#,##0.00}", BalanceNow));
+                        Messages = string.Format("{0} | {1}{2}{3} is duplicate.", Datas[Rounds].Date, Item, Environment.NewLine, String.Format("{0:n}", BalanceNew));
                         break;
                     }
                 }
