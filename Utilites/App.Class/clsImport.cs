@@ -411,7 +411,6 @@ namespace SANSANG.Class
                 DateImports += Row == 0 ? Statements[0].ToString() : "";
                 DateImports += Row == Rows ? " - " + Statements[0].ToString() : "";
 
-
                 int Length = (Statements.Length);
                 string Details = "";
 
@@ -914,7 +913,7 @@ namespace SANSANG.Class
                 for (int Rounds = 0; Rounds < Datas.Count; Rounds++)
                 {
                     Codes = Function.GetCodes(Table.StatmentId, "", "Generated");
-                    Function.GetPayments(Datas[Rounds].Item, out PaymentId, out Item, out Detail, out Display, out IsWithdrawal);
+                    Function.GetPaymentByName(Datas[Rounds].Item, "1070", out PaymentId, out Item, out Detail, out Display, out IsWithdrawal);
 
                     DateTime DateTime = Convert.ToDateTime(Datas[Rounds].Date);
 
@@ -931,7 +930,7 @@ namespace SANSANG.Class
                         {"@Date", Dates.GetDate(dt : DateTime, Format : 4)},
                         {"@Time", Datas[Rounds].Time},
                         {"@PaymentId", PaymentId},
-                        {"@Item", Item},
+                        {"@Item", "รายการเดินบัญชี"},
                         {"@MoneyId", "1192"},
                         {"@Branch", ""},
                         {"@Channel", Datas[Rounds].Channel},
@@ -969,7 +968,7 @@ namespace SANSANG.Class
                     }
                     else
                     {
-                        Messages = "Last statment is duplicate.";
+                        Messages = string.Format("{0} | {1}{2}{3} is duplicate.", Datas[Rounds].Date, Item, Environment.NewLine, string.Format("{0:#,##0.00}", BalanceNow));
                         break;
                     }
                 }

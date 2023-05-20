@@ -287,6 +287,45 @@ namespace SANSANG.Class
             }
         }
 
+        public void GetPaymentByName(string Codes, string Payments, out string PaymentId, out string Items, out string Details, out string Displays, out bool IsWithdrawal)
+        {
+            try
+            {
+                Parameter = new string[,]
+                {
+                    {"@Id", ""},
+                    {"@Code", ""},
+                    {"@Status", "0"},
+                    {"@User", ""},
+                    {"@IsActive", ""},
+                    {"@IsDelete", ""},
+                    {"@Operation", "S"},
+                    {"@Name", Codes},
+                    {"@NameEn", ""},
+                    {"@Display", ""},
+                    {"@Detail", ""},
+                    {"@PaymentId", Payments},
+                    {"@IsDebit", ""},
+                };
+
+                db.Get(Store.ManagePaymentSub, Parameter, out Error, out dt);
+
+                PaymentId = dt.Rows[0]["Id"].ToString();
+                Items = dt.Rows[0]["NameEn"].ToString();
+                Details = dt.Rows[0]["Detail"].ToString();
+                Displays = dt.Rows[0]["NameEn"].ToString() + " | " + dt.Rows[0]["Name"].ToString();
+                IsWithdrawal = Convert.ToBoolean(dt.Rows[0]["IsDebit"].ToString()) ? false : true;
+            }
+            catch (Exception)
+            {
+                PaymentId = "";
+                Items = "";
+                Details = "";
+                Displays = "";
+                IsWithdrawal = false;
+            }
+        }
+
         public string ConvertBoolToString(bool Bools)
         {
             try
@@ -364,6 +403,7 @@ namespace SANSANG.Class
             try
             {
                 int NumberOfDuplicate = 0;
+
                 Parameter = new string[,]
                 {
                     {"@Table",      Table},
@@ -377,6 +417,7 @@ namespace SANSANG.Class
                 };
 
                 db.Get(Store.FnGetDataDuplicate, Parameter, out Error, out dt);
+
                 NumberOfDuplicate = string.IsNullOrEmpty(Error) ? Convert.ToInt32(dt.Rows[0]["ROW"].ToString()) : 1;
                 return NumberOfDuplicate > 0 ? true : false;
             }
