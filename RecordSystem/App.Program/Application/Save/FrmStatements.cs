@@ -174,6 +174,9 @@ namespace SANSANG
                 strCondition += txtDetail.Text != "" ? ", รายละเอียด: " + txtDetail.Text : "";
                 strCondition += txtDisplay.Text != "" ? ", แสดงผล: " + txtDisplay.Text : "";
                 strCondition += txtBranch.Text != "" ? ", สาขา: " + txtBranch.Text : "";
+                strCondition += txtItem.Text != "" ? ", รายการ: " + txtItem.Text : "";
+                strCondition += txtReference.Text != "" ? ", เลขอ้างอิง: " + txtReference.Text : "";
+                strCondition += txtChannel.Text != "" ? ", ช่องทาง: " + txtChannel.Text : "";
 
                 strCondition += Function.GetComboId(cbbStatus) != "0" ? ", สถานะ: " + cbbStatus.Text : "";
 
@@ -210,7 +213,7 @@ namespace SANSANG
             {
                 GridView.DataSource = null;
                 DataTable dtGrid = new DataTable();
-                dtGrid = dt.DefaultView.ToTable(true, "SNo", "Dates", "Displays", "Moneys", "Values", "Balances", "Id");
+                dtGrid = dt.DefaultView.ToTable(true, "SNo", "Dates", "Displays", "Channel", "Moneys", "Values", "Balances", "Id");
 
                 DataGridViewContentAlignment mc = DataGridViewContentAlignment.MiddleCenter;
                 DataGridViewContentAlignment ml = DataGridViewContentAlignment.MiddleLeft;
@@ -220,6 +223,7 @@ namespace SANSANG
                       "ลำดับ", 50, true, mr, mc
                     , "วันที่ | เวลา", 120, true, ml, ml
                     , "รายการ", 300, true, ml, ml
+                    , "ช่องทาง", 300, true, ml, ml
                     , "ประเภทเงิน", 120, true, ml, ml
                     , "จำนวนเงิน", 200, true, mr, mr
                     , "คงเหลือ", 200, true, mr, mr
@@ -458,6 +462,28 @@ namespace SANSANG
         {
             string Accounts = Function.selectedValue(cbbAccount);
             cbbBankName.SelectedValue = Images.GetBankLogo(pbLogo, Accounts);
+
+            if (!IsStart)
+            {
+                dtDate.Value = DateTime.Today;
+                dtTime.Text = "00:00:00";
+                txtBalance.Text = "0.00";
+
+                txtCode.Text = "";
+                txtItem.Text = "";
+                txtAmount.Text = "";
+                txtNumber.Text = "";
+                txtDetail.Text = "";
+                txtDisplay.Text = "";
+                txtReference.Text = "";
+                txtBranch.Text = "";
+                txtChannel.Text = "";
+
+                cbbStatus.SelectedValue = 0;
+                cbbTransactions.SelectedValue = 0;
+                cbbMoney.SelectedValue = 0;
+                Search(false);
+            }
         }
 
         private void GetTransactions()
@@ -491,9 +517,9 @@ namespace SANSANG
                     Withdrawals = string.Format("{0:#,##0.00}", double.Parse(Convert.ToString(dt.Rows[0]["Withdrawals"].ToString())));
                     Balances = string.Format("{0:#,##0.00}", double.Parse(Convert.ToString(dt.Rows[0]["Balances"].ToString())));
                 }
-                    txtDeposit.Text = Deposits;
-                    txtWithdrawal.Text = Withdrawals;
-                    txtBalance.Text = Balances;
+                txtDeposit.Text = Deposits;
+                txtWithdrawal.Text = Withdrawals;
+                txtBalance.Text = Balances;
             }
             catch
             {
