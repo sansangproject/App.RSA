@@ -1,13 +1,16 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Runtime.Remoting.Channels;
 using System.Windows.Documents;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
+using PdfSharp.Pdf.Content.Objects;
 using SANSANG.Constant;
 using SANSANG.Database;
 using SANSANG.Utilites.App.Forms;
@@ -151,35 +154,61 @@ namespace SANSANG.Class
 
         private void KTB(string Files)
         {
-            string DateImports = "";
+            string DateStart = "";
+            string DateEnd = "";
+
+            KTBSTModel data = new KTBSTModel();
             var DataList = new List<KTBSTModel>();
             var LogFile = File.ReadAllLines(Files);
             var LogList = new List<string>(LogFile);
-
             int countRows = LogList.Count - 1;
-            int row = 0;
+            int row = 1;
 
             foreach (var value in LogList)
             {
-                KTBSTModel data = new KTBSTModel();
                 string[] statements = value.Split(new char[0]);
 
-                DateImports += row == 0 ? statements[0].ToString() : "";
-                DateImports += row == countRows ? " - " + statements[0].ToString() : "";
+                DateStart += row == 1 ? statements[0].ToString() : "";
+                DateEnd += row == countRows ? statements[0].ToString() : "";
 
-                data.Date = statements[0];
-                data.Time = statements[1];
-                data.Payment = statements[2];
-                data.Detail = statements[3];
-                data.Amount = statements[4];
-                data.Balance = statements[5];
-                data.Branch = statements[6];
+                if (row % 2 == 0)
+                {
+                    string second = (Convert.ToInt32(Convert.ToDouble(data.Balance)) % 60).ToString("D2");
+                    data.Time = string.Concat(statements[0].ToString(), ":", second);
+                    DataList.Add(data);
+                    data = new KTBSTModel();
+                }
+                else
+                {
+                    int count = statements.Count();
 
-                DataList.Add(data);
+                    int IndexOfPaymentStart = value.IndexOf("(") + 1;
+                    string Payments = value.Remove(0, IndexOfPaymentStart);
+
+                    int IndexOfPaymentEnd = Payments.IndexOf(")");
+                    string PaymentCode = Payments.Substring(0, IndexOfPaymentEnd);
+
+                    data.Date = statements[0].Replace("/2", "/202");
+                    data.Payment = PaymentCode;
+                    data.Branch = statements[count - 1];
+                    data.Balance = statements[count - 2];
+                    data.Amount = statements[count - 3];
+
+                    int Start = 0;
+                    int LengthOfPayment = PaymentCode.Length + 1;
+                    
+                    Start = value.IndexOf("(" + PaymentCode + ")") + 2;
+
+                    string Detail = value.Remove(0, (Start + LengthOfPayment));
+                    string Details = Detail.Substring(0, Detail.IndexOf(data.Amount) - 1);
+
+                    data.Detail = Details;
+                }
+
                 row++;
             }
 
-            Message.MessageConfirmation("I", "IMPORT KTB STATMENT", DateImports);
+            Message.MessageConfirmation("I", "IMPORT KTB STATMENT", string.Concat(DateEnd, " - ", DateStart));
 
             using (var Popup = new FrmMessagesBox(Message.strOperation, Message.strMes, "YES", "NO", Message.strImage))
             {
@@ -189,6 +218,7 @@ namespace SANSANG.Class
                 if (result == DialogResult.Yes)
                 {
                     Popup.Close();
+
                     AddKTBStatment(DataList, AccountId, out err);
 
                     if (err == "")
@@ -735,11 +765,10 @@ namespace SANSANG.Class
                 decimal Balance = 0;
                 decimal BalanceNew = 0;
 
-                for (int Rounds = 0; Rounds < Datas.Count; Rounds++)
+                for (int Rounds = (Datas.Count - 1); Rounds >= 0; Rounds--)
                 {
                     Codes = Function.GetCodes(Table.StatmentId, "", "Generated");
                     Function.GetPayments(Datas[Rounds].Payment, out PaymentId, out Items, out Details, out Displays, out IsWithdrawal);
-                    DateTime DateTime = Convert.ToDateTime(Datas[Rounds].Date);
 
                     string[,] Parameter = new string[,]
                     {
@@ -751,7 +780,7 @@ namespace SANSANG.Class
                         {"@IsDelete", "0"},
                         {"@Operation", Operation.InsertAbbr},
                         {"@AccountId", Banks},
-                        {"@Date", Dates.GetDate(dt : DateTime, Format : 4)},
+                        {"@Date", Dates.GetDate(dt: Convert.ToDateTime(Datas[Rounds].Date), Format: 4)},
                         {"@Time", Datas[Rounds].Time},
                         {"@PaymentId", PaymentId},
                         {"@Item", Items},
@@ -761,9 +790,9 @@ namespace SANSANG.Class
                         {"@Withdrawal", IsWithdrawal? Function.RemoveComma(Datas[Rounds].Amount) : "0.00"},
                         {"@Deposit", !IsWithdrawal? Function.RemoveComma(Datas[Rounds].Amount) : "0.00"},
                         {"@Balance", Datas[Rounds].Balance},
-                        {"@Number", Datas[Rounds].Detail},
-                        {"@Detail", Details},
-                        {"@Display", Displays},
+                        {"@Number", ""},
+                        {"@Detail", Datas[Rounds].Detail},
+                        {"@Display", Details},
                         {"@Reference", ""},
                     };
 
@@ -772,10 +801,10 @@ namespace SANSANG.Class
 
                     if (!Function.IsDuplicate(
                             Table.Statments,
-                            Value1: "KTB",
+                            Value1: "KTB-IMPORT",
                             Value2: AccountId,
                             Value3: PaymentId,
-                            Value4: Dates.GetDate(dt: DateTime, Format: 4),
+                            Value4: Dates.GetDate(dt: Convert.ToDateTime(Datas[Rounds].Date), Format: 4),
                             Value5: Function.RemoveComma(Datas[Rounds].Amount),
                             Value6: Function.RemoveComma(Datas[Rounds].Balance),
                             Value7: Function.RemoveComma(Datas[Rounds].Time)))
