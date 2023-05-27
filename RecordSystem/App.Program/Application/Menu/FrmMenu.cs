@@ -384,7 +384,11 @@ namespace SANSANG
                 FrmGolds Frm = new FrmGolds(UserId, UserName, UserSurname, UserType);
                 Frm.Show();
             }
-
+            else if (((RadMenuItem)sender).Name == "MANCA00")
+            {
+                FrmManageCategory Frm = new FrmManageCategory(UserId, UserName, UserSurname, UserType);
+                Frm.Show();
+            }
             Log.WriteLogData("MENU", ((RadMenuItem)sender).Name, UserId, "Open");
 
         }
