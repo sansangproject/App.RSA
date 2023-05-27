@@ -95,7 +95,7 @@ namespace SANSANG
                     Function.showGridViewFormatFromStore(dtGrid, GridView,
                         "ลำดับ", 50, true, mc, mc
                         , "รหัส", 150, true, ml, ml
-                        , "ชื่อประเภท", 200, true, ml, ml
+                        , "ประเภท", 200, true, ml, ml
                         , "Category", 200, true, ml, ml
                         , "สถานะ", 100, true, ml, ml
                         , "ข้อมูล ณ วันที่", 150, true, mc, mc
@@ -158,7 +158,7 @@ namespace SANSANG
                 string strCondition = "";
 
                 strCondition += txtCode.Text != "" ? ", รหัสอ้างอิง: " + txtCode.Text : "";
-                strCondition += txtName.Text != "" ? ", ชื่อประเภท: " + txtName.Text : "";
+                strCondition += txtName.Text != "" ? ", ประเภท: " + txtName.Text : "";
                 strCondition += txtNameEn.Text != "" ? ", ชื่ออังกฤษ: " + txtNameEn.Text : "";
                 strCondition += txtDisplay.Text != "" ? ", ชื่อที่แสดง: " + txtDisplay.Text : "";
                 strCondition += cbbStatus.Text != ":: กรุณาเลือก ::" ? ", สถานะ: " + cbbStatus.Text : "";
@@ -177,6 +177,7 @@ namespace SANSANG
             {
                 if (Function.GetRows(dt) > 0)
                 {
+                    pb_Thai_False.Visible = true;
                     txtId.Text = dt.Rows[0]["Id"].ToString();
                     txtCode.Text = dt.Rows[0]["Code"].ToString();
                     txtName.Text = dt.Rows[0]["Name"].ToString();
@@ -184,20 +185,6 @@ namespace SANSANG
                     txtDisplay.Text = dt.Rows[0]["Display"].ToString();
                     lblDisplay.Text = dt.Rows[0]["Display"].ToString();
                     cbbStatus.SelectedValue = dt.Rows[0]["Status"].ToString();
-
-                    if(txtDisplay.Text == txtNameEn.Text)
-                    {
-                        cb_Thai.Checked = true;
-                        pb_Thai_True.Show();
-                        pb_Thai_False.Hide();
-                    }
-                    else
-                    {
-                        pb_Thai_True.Hide();
-                        pb_Thai_False.Show();
-                        cb_Thai.Checked = false;
-                    }
-
                     GridView.Focus();
                 }
             }

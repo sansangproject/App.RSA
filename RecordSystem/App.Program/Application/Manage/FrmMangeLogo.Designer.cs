@@ -819,7 +819,7 @@
             this.pbMain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pbMain.Enabled = false;
-            this.pbMain.Image = global::RecordSystemApplication.Properties.Resources.FrmMangeLogo;
+            this.pbMain.Image = ((System.Drawing.Image)(resources.GetObject("pbMain.Image")));
             this.pbMain.Location = new System.Drawing.Point(0, 85);
             this.pbMain.Name = "pbMain";
             this.pbMain.Size = new System.Drawing.Size(1326, 286);
