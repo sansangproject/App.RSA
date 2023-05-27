@@ -301,17 +301,17 @@
     <Compile Include="App.Program\Application\Manage\FrmManageCard.Designer.cs">
       <DependentUpon>FrmManageCard.cs</DependentUpon>
     </Compile>
-    <Compile Include="App.Program\Application\Manage\FrmManagePay.cs">
+    <Compile Include="App.Program\Application\Manage\FrmManageCategory.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="App.Program\Application\Manage\FrmManagePay.Designer.cs">
-      <DependentUpon>FrmManagePay.cs</DependentUpon>
+    <Compile Include="App.Program\Application\Manage\FrmManageCategory.Designer.cs">
+      <DependentUpon>FrmManageCategory.cs</DependentUpon>
     </Compile>
-    <Compile Include="App.Program\Application\Manage\FrmManagePaySub.cs">
+    <Compile Include="App.Program\Application\Manage\FrmManageItem.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="App.Program\Application\Manage\FrmManagePaySub.Designer.cs">
-      <DependentUpon>FrmManagePaySub.cs</DependentUpon>
+    <Compile Include="App.Program\Application\Manage\FrmManageItem.Designer.cs">
+      <DependentUpon>FrmManageItem.cs</DependentUpon>
     </Compile>
     <Compile Include="App.Program\Application\Manage\FrmManageProductStatus.cs">
       <SubType>Form</SubType>
@@ -677,11 +677,11 @@
     <EmbeddedResource Include="App.Program\Application\Manage\FrmManageCard.resx">
       <DependentUpon>FrmManageCard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="App.Program\Application\Manage\FrmManagePay.resx">
-      <DependentUpon>FrmManagePay.cs</DependentUpon>
+    <EmbeddedResource Include="App.Program\Application\Manage\FrmManageCategory.resx">
+      <DependentUpon>FrmManageCategory.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="App.Program\Application\Manage\FrmManagePaySub.resx">
-      <DependentUpon>FrmManagePaySub.cs</DependentUpon>
+    <EmbeddedResource Include="App.Program\Application\Manage\FrmManageItem.resx">
+      <DependentUpon>FrmManageItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="App.Program\Application\Manage\FrmManageProductStatus.resx">
       <DependentUpon>FrmManageProductStatus.cs</DependentUpon>
@@ -911,9 +911,11 @@
     <Content Include="App.Resources\FrmDebts.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="App.Resources\FrmMangeCategory.png" />
     <Content Include="App.Resources\FrmMangeLogo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="App.Resources\FrmMember.jpg" />
     <Content Include="App.Resources\FrmStatments.png" />
     <Content Include="App.Resources\RDDBMenu0.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -1011,7 +1013,6 @@
     <Folder Include="App.Program\Master\" />
     <Folder Include="App.Program\Report\" />
     <Folder Include="App.Program\Theme\" />
-    <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="stdole">

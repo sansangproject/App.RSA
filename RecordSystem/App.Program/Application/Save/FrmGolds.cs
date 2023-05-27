@@ -183,7 +183,6 @@ namespace SANSANG
                     dtGrid = dt.DefaultView.ToTable(true, "SNo", "Dates", "WorkingDay", "GoldPriceBuys", "GoldPriceSells", "GoldReceive", "Id");
 
                     DataGridViewContentAlignment mc = DataGridViewContentAlignment.MiddleCenter;
-                    DataGridViewContentAlignment ml = DataGridViewContentAlignment.MiddleLeft;
                     DataGridViewContentAlignment mr = DataGridViewContentAlignment.MiddleRight;
 
                     Function.showGridViewFormatFromStore(dtGrid, GridView,

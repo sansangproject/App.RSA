@@ -20,6 +20,9 @@ namespace SANSANG.Constant
         public string UserId = "1035";
         public string GoldId = "1073";
 
+        public string ItemId = "1020";
+        public string CategoryId = "1019";
+
         public string Expenses = "[dbo].[Expenses]";
         public string Payments = "[dbo].[Payments]";
         public string Address = "[dbo].[Address]";
@@ -28,6 +31,9 @@ namespace SANSANG.Constant
         public string Depts = "[dbo].[Debts]";
         public string Products = "[dbo].[Products]";
         public string Members = "[dbo].[Members]";
+
+        public string Item = "[mst].[Item]";
+        public string Category = "[mst].[Category]";
 
         public string Logo = "[mst].[Logo]";
         public string Shop = "[mst].[Shop]";

@@ -104,7 +104,7 @@ namespace SANSANG
 
             List.GetLists(cbbMoney, DataList.MoneyId);
             List.GetLists(cbbStatus, string.Format(DataList.StatusId, "0"));
-            List.GetLists(cbbPay, DataList.PaymentId);
+            List.GetLists(cbbPay, DataList.CategoryId);
             List.GetLists(cbbUnit, DataList.UnitId);
 
             cbbMoney.Enabled = true;
@@ -286,7 +286,7 @@ namespace SANSANG
             {
                 if (!Start)
                 {
-                    List.GetLists(cbbPaySub, string.Format(DataList.PaymentSubId, cbbPay.SelectedValue.ToString()));
+                    List.GetLists(cbbPaySub, string.Format(DataList.ItemId, cbbPay.SelectedValue.ToString()));
                     cbbMoney.SelectedValue = "0";
 
                     txtDetails.Text = "";
@@ -820,8 +820,8 @@ namespace SANSANG
         {
             try
             {
-                //FrmManagePay FrmManagePay = new FrmManagePay(UserId, UserName, UserSurname, UserType);
-                //FrmManagePay.Show();
+                FrmManageCategory FrmManageCategory = new FrmManageCategory(UserId, UserName, UserSurname, UserType);
+                FrmManageCategory.Show();
             }
             catch (Exception ex)
             {
