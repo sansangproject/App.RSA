@@ -355,8 +355,8 @@ namespace SANSANG.Class
                 };
 
                 db.Get(Store.FnGetMoneyBalance, Parameter, out Error, out dt);
-
-                return string.Format("{0:#,##0.00}", double.Parse(Convert.ToString(dt.Rows[0]["Sum"].ToString())));
+                double Amount = double.Parse(Convert.ToString(dt.Rows[0]["Sum"].ToString()));
+                return string.Format("{0:#,##0.00}", Math.Abs(Amount));
             }
             catch (Exception)
             {
