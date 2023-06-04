@@ -1238,6 +1238,31 @@ namespace SANSANG.Class
             }
         }
 
+        public string GetRunningId(string table, string column)
+        {
+            DataTable dt = new DataTable();
+            string strErr = "";
+
+            try
+            {
+                string Id = "";
+
+                string[,] Parameter = new string[,]
+                {
+                    {"@Table", table},
+                    {"@Column", column},
+                };
+
+                db.Get(Store.FnGetTopId, Parameter, out strErr, out dt);
+                Id = strErr != ""? string.Format("{0:0000}", Convert.ToInt32(dt.Rows[0][column].ToString())) : "";
+                return Id;
+            }
+            catch (Exception)
+            {
+                return "";
+            }
+        }
+
         public string getId(string table, string column, string IDName)
         {
             DataTable dt = new DataTable();
@@ -1594,34 +1619,6 @@ namespace SANSANG.Class
         //    }
         //}
 
-        public string getIdRunning(string table, string column, string IDName)
-        {
-            DataTable dt = new DataTable();
-            string strErr = "";
-
-
-            try
-            {
-                string id = "";
-                string row = "";
-
-                string[,] Parameter = new string[,]
-                {
-                    {"@Table", table},
-                    {"@Column", column},
-                };
-
-                db.Get("Spr_F_GetTopId", Parameter, out strErr, out dt);
-
-                row = String.Format("{0:0000}", Convert.ToInt32(dt.Rows[0][column].ToString()));
-                id = IDName + row;
-                return id;
-            }
-            catch (Exception)
-            {
-                return "";
-            }
-        }
 
         public string setStringNull(string str, string sign, string value)
         {

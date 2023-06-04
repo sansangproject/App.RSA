@@ -56,6 +56,7 @@ namespace SANSANG.Constant
         public static string GetBankLogo = "[GetPath]";
         public static string GetBankBalance = "[GetBankBalance]";
         public static string GeneratedId = "[GeneratedId]";
+        public static string GetTopId = "[GetTopId]";
         
         public string ManagePath = string.Format(Stores, SPR, Path);
         public string ManageUser = string.Format(Stores, SPR, User);
@@ -96,5 +97,6 @@ namespace SANSANG.Constant
         public string FnGetBankLogo = string.Format(Stores, FN, GetBankLogo);
         public string FnGetBankBalance = string.Format(Stores, FN, GetBankBalance);
         public string FnGeneratedId = string.Format(Stores, FN, GeneratedId);
+        public string FnGetTopId = string.Format(Stores, FN, GetTopId);
     }
 }

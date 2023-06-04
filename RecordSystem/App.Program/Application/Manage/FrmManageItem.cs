@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Data;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 using SANSANG.Class;
 using SANSANG.Constant;
 using SANSANG.Database;
@@ -36,6 +38,7 @@ namespace SANSANG
         private clsLog Log = new clsLog();
         private clsImage Images = new clsImage();
         private TableConstant Table = new TableConstant();
+        private ColumnConstant Column = new ColumnConstant();
         private FrmAnimatedProgress Loading = new FrmAnimatedProgress(25);
         private clsHelpper Helper = new clsHelpper();
         private Timer Timer = new Timer();
@@ -64,6 +67,8 @@ namespace SANSANG
             List.GetLists(cbbStatus, string.Format(DataList.StatusId, "0"));
             List.GetLists(cbbCategory, string.Format(DataList.CategoryId, "0"));
             List.GetList(cbbType, DataList.PayTypes);
+            pb_Thai_True.Hide();
+            pb_Thai_False.Show();
             gbForm.Enabled = true;
             Clear();
             Timer.Stop();
@@ -87,7 +92,7 @@ namespace SANSANG
                 else
                 {
                     DataTable dtGrid = new DataTable();
-                    dtGrid = dt.DefaultView.ToTable(true, "SNo", "Code", "Name", "Categorys", "Types", "Dates", "Id");
+                    dtGrid = dt.DefaultView.ToTable(true, "SNo", "Code", "Display", "Categorys", "Types", "Dates", "Id");
 
                     DataGridViewContentAlignment mc = DataGridViewContentAlignment.MiddleCenter;
                     DataGridViewContentAlignment ml = DataGridViewContentAlignment.MiddleLeft;
@@ -95,7 +100,7 @@ namespace SANSANG
                     Function.showGridViewFormatFromStore(dtGrid, GridView,
                         "ลำดับ", 50, true, mc, mc
                         , "รหัส", 150, true, ml, ml
-                        , "รายการ", 200, true, ml, ml
+                        , "ชื่อรายการ", 200, true, ml, ml
                         , "ประเภท", 200, true, ml, ml
                         , "สถานะ", 100, true, ml, ml
                         , "ข้อมูล ณ วันที่", 150, true, mc, mc
@@ -183,19 +188,32 @@ namespace SANSANG
             {
                 if (Function.GetRows(dt) > 0)
                 {
-                    
+
                     txtId.Text = dt.Rows[0]["Id"].ToString();
                     txtCode.Text = dt.Rows[0]["Code"].ToString();
                     txtName.Text = dt.Rows[0]["Name"].ToString();
                     txtNameEn.Text = dt.Rows[0]["NameEn"].ToString();
                     txtDisplay.Text = dt.Rows[0]["Display"].ToString();
                     txtDetail.Text = dt.Rows[0]["Detail"].ToString();
-                    
+
                     lblDisplay.Text = dt.Rows[0]["Display"].ToString();
 
                     cbbCategory.SelectedValue = dt.Rows[0]["CategoryId"].ToString();
                     cbbStatus.SelectedValue = dt.Rows[0]["Status"].ToString();
                     cbbType.SelectedValue = dt.Rows[0]["PayTypes"].ToString();
+
+                    if (txtDisplay.Text == txtNameEn.Text)
+                    {
+                        cb_Thai.Checked = true;
+                        pb_Thai_True.Show();
+                        pb_Thai_False.Hide();
+                    }
+                    else
+                    {
+                        pb_Thai_True.Hide();
+                        pb_Thai_False.Show();
+                        cb_Thai.Checked = false;
+                    }
 
                     GridView.Focus();
                 }
@@ -354,6 +372,33 @@ namespace SANSANG
             if (keyCode == "Enter")
             {
                 Search(true);
+            }
+        }
+
+        private void Ticker(object sender, EventArgs e)
+        {
+            lblDisplay.Text = string.Empty;
+            txtDisplay.Text = string.Empty;
+
+            if (Helper.CheckboxTicker(sender, this))
+            {
+                txtDisplay.Text = txtNameEn.Text;
+                lblDisplay.Text = txtNameEn.Text;
+            }
+            else
+            {
+                txtDisplay.Text = txtName.Text;
+                lblDisplay.Text = txtName.Text;
+            }
+        }
+
+        private void txtCode_Leave(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtCode.Text) && txtCode.Text.Count() == 3)
+            {
+                string Code = txtCode.Text;
+                string NewCode = Function.GetRunningId(Table.Item, Column.ItemId);
+                txtCode.Text = NewCode == "" ? Code : string.Concat(Code, NewCode);
             }
         }
     }
