@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmManageItem));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnSearch = new System.Windows.Forms.Button();
             this.cbbCategory = new System.Windows.Forms.ComboBox();
             this.cbbStatus = new System.Windows.Forms.ComboBox();
@@ -49,8 +49,10 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.gbForm = new System.Windows.Forms.GroupBox();
-            this.cbbType = new System.Windows.Forms.ComboBox();
             this.lblDisplay = new System.Windows.Forms.TextBox();
+            this.pb_Thai_True = new System.Windows.Forms.PictureBox();
+            this.pb_Thai_False = new System.Windows.Forms.PictureBox();
+            this.cbbType = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.txtDisplay = new System.Windows.Forms.TextBox();
@@ -80,18 +82,16 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.pbBanner = new System.Windows.Forms.PictureBox();
             this.txtId = new System.Windows.Forms.TextBox();
-            this.pb_Thai_False = new System.Windows.Forms.PictureBox();
-            this.pb_Thai_True = new System.Windows.Forms.PictureBox();
             this.cb_Thai = new System.Windows.Forms.CheckBox();
             this.gbForm.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Thai_True)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Thai_False)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picExcel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMain)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBanner)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_Thai_False)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_Thai_True)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSearch
@@ -345,18 +345,6 @@
             this.gbForm.TabIndex = 46;
             this.gbForm.TabStop = false;
             // 
-            // cbbType
-            // 
-            this.cbbType.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.cbbType.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.cbbType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.cbbType.FormattingEnabled = true;
-            this.cbbType.Location = new System.Drawing.Point(619, 193);
-            this.cbbType.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbbType.Name = "cbbType";
-            this.cbbType.Size = new System.Drawing.Size(223, 28);
-            this.cbbType.TabIndex = 214;
-            // 
             // lblDisplay
             // 
             this.lblDisplay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -369,6 +357,39 @@
             this.lblDisplay.Size = new System.Drawing.Size(1013, 147);
             this.lblDisplay.TabIndex = 213;
             this.lblDisplay.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // pb_Thai_True
+            // 
+            this.pb_Thai_True.Image = ((System.Drawing.Image)(resources.GetObject("pb_Thai_True.Image")));
+            this.pb_Thai_True.Location = new System.Drawing.Point(375, 280);
+            this.pb_Thai_True.Name = "pb_Thai_True";
+            this.pb_Thai_True.Size = new System.Drawing.Size(19, 19);
+            this.pb_Thai_True.TabIndex = 216;
+            this.pb_Thai_True.TabStop = false;
+            this.pb_Thai_True.Click += new System.EventHandler(this.Ticker);
+            // 
+            // pb_Thai_False
+            // 
+            this.pb_Thai_False.Image = ((System.Drawing.Image)(resources.GetObject("pb_Thai_False.Image")));
+            this.pb_Thai_False.Location = new System.Drawing.Point(375, 280);
+            this.pb_Thai_False.Name = "pb_Thai_False";
+            this.pb_Thai_False.Size = new System.Drawing.Size(19, 19);
+            this.pb_Thai_False.TabIndex = 215;
+            this.pb_Thai_False.TabStop = false;
+            this.pb_Thai_False.Visible = false;
+            this.pb_Thai_False.Click += new System.EventHandler(this.Ticker);
+            // 
+            // cbbType
+            // 
+            this.cbbType.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.cbbType.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.cbbType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.cbbType.FormattingEnabled = true;
+            this.cbbType.Location = new System.Drawing.Point(619, 193);
+            this.cbbType.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbbType.Name = "cbbType";
+            this.cbbType.Size = new System.Drawing.Size(223, 28);
+            this.cbbType.TabIndex = 214;
             // 
             // label14
             // 
@@ -517,14 +538,14 @@
             this.GridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.GridView.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.GridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.DarkSeaGreen;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.GridView.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.DarkSeaGreen;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.GridView.DefaultCellStyle = dataGridViewCellStyle1;
             this.GridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.GridView.Location = new System.Drawing.Point(19, 46);
             this.GridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -776,27 +797,6 @@
             this.txtId.Size = new System.Drawing.Size(169, 21);
             this.txtId.TabIndex = 206;
             // 
-            // pb_Thai_False
-            // 
-            this.pb_Thai_False.Image = ((System.Drawing.Image)(resources.GetObject("pb_Thai_False.Image")));
-            this.pb_Thai_False.Location = new System.Drawing.Point(375, 280);
-            this.pb_Thai_False.Name = "pb_Thai_False";
-            this.pb_Thai_False.Size = new System.Drawing.Size(19, 19);
-            this.pb_Thai_False.TabIndex = 215;
-            this.pb_Thai_False.TabStop = false;
-            this.pb_Thai_False.Visible = false;
-            this.pb_Thai_False.Click += new System.EventHandler(this.Ticker);
-            // 
-            // pb_Thai_True
-            // 
-            this.pb_Thai_True.Image = ((System.Drawing.Image)(resources.GetObject("pb_Thai_True.Image")));
-            this.pb_Thai_True.Location = new System.Drawing.Point(375, 280);
-            this.pb_Thai_True.Name = "pb_Thai_True";
-            this.pb_Thai_True.Size = new System.Drawing.Size(19, 19);
-            this.pb_Thai_True.TabIndex = 216;
-            this.pb_Thai_True.TabStop = false;
-            this.pb_Thai_True.Click += new System.EventHandler(this.Ticker);
-            // 
             // cb_Thai
             // 
             this.cb_Thai.AutoSize = true;
@@ -816,14 +816,18 @@
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FrmManageItem";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmLoad);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmKeyDown);
             this.gbForm.ResumeLayout(false);
             this.gbForm.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Thai_True)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Thai_False)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).EndInit();
@@ -832,8 +836,6 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBanner)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_Thai_False)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_Thai_True)).EndInit();
             this.ResumeLayout(false);
 
         }
