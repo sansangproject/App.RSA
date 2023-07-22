@@ -747,7 +747,7 @@ namespace SANSANG
                 {
                     DataGridViewRow row = this.GridView.Rows[e.RowIndex];
                     Change = true;
-
+                    lblService.Text = "";
                     Parameter = new string[,]
                     {
                         {"@Id", row.Cells["Id"].Value.ToString()},

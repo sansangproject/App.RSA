@@ -50,9 +50,27 @@
             this.lblHSearch = new System.Windows.Forms.Label();
             this.lblCondition = new System.Windows.Forms.Label();
             this.txtCount = new System.Windows.Forms.TextBox();
-            this.txtNumberNow = new System.Windows.Forms.TextBox();
+            this.txtRowNumber = new System.Windows.Forms.TextBox();
             this.picExcel = new System.Windows.Forms.PictureBox();
             this.gbForm = new System.Windows.Forms.GroupBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txtId = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtLocation = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label48 = new System.Windows.Forms.Label();
+            this.txtNameEn = new System.Windows.Forms.TextBox();
+            this.btnBrowse = new System.Windows.Forms.Button();
+            this.cbbPath = new System.Windows.Forms.ComboBox();
+            this.cbbType = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
@@ -67,25 +85,7 @@
             this.btnClear = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.pbBanner = new System.Windows.Forms.PictureBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label48 = new System.Windows.Forms.Label();
-            this.txtNameEn = new System.Windows.Forms.TextBox();
-            this.btnBrowse = new System.Windows.Forms.Button();
-            this.cbbPath = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.cbbType = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtLocation = new System.Windows.Forms.TextBox();
             this.pbMain = new System.Windows.Forms.PictureBox();
-            this.txtId = new System.Windows.Forms.TextBox();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
@@ -291,7 +291,7 @@
             this.groupBox2.Controls.Add(this.lblHSearch);
             this.groupBox2.Controls.Add(this.lblCondition);
             this.groupBox2.Controls.Add(this.txtCount);
-            this.groupBox2.Controls.Add(this.txtNumberNow);
+            this.groupBox2.Controls.Add(this.txtRowNumber);
             this.groupBox2.Controls.Add(this.GridView);
             this.groupBox2.Controls.Add(this.picExcel);
             this.groupBox2.ForeColor = System.Drawing.Color.Gray;
@@ -338,20 +338,20 @@
             this.txtCount.TabStop = false;
             this.txtCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // txtNumberNow
+            // txtRowNumber
             // 
-            this.txtNumberNow.AcceptsReturn = true;
-            this.txtNumberNow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNumberNow.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtNumberNow.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.txtNumberNow.ForeColor = System.Drawing.Color.MediumSeaGreen;
-            this.txtNumberNow.Location = new System.Drawing.Point(862, 18);
-            this.txtNumberNow.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtNumberNow.Name = "txtNumberNow";
-            this.txtNumberNow.Size = new System.Drawing.Size(377, 21);
-            this.txtNumberNow.TabIndex = 199;
-            this.txtNumberNow.TabStop = false;
-            this.txtNumberNow.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtRowNumber.AcceptsReturn = true;
+            this.txtRowNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtRowNumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtRowNumber.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.txtRowNumber.ForeColor = System.Drawing.Color.MediumSeaGreen;
+            this.txtRowNumber.Location = new System.Drawing.Point(862, 18);
+            this.txtRowNumber.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtRowNumber.Name = "txtRowNumber";
+            this.txtRowNumber.Size = new System.Drawing.Size(377, 21);
+            this.txtRowNumber.TabIndex = 199;
+            this.txtRowNumber.TabStop = false;
+            this.txtRowNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // picExcel
             // 
@@ -413,6 +413,203 @@
             this.gbForm.Size = new System.Drawing.Size(1302, 793);
             this.gbForm.TabIndex = 46;
             this.gbForm.TabStop = false;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.label15.ForeColor = System.Drawing.Color.DarkSeaGreen;
+            this.label15.Location = new System.Drawing.Point(426, 316);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(52, 20);
+            this.label15.TabIndex = 200;
+            this.label15.Text = "Status";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.ForeColor = System.Drawing.Color.Gray;
+            this.label16.Location = new System.Drawing.Point(433, 299);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(45, 20);
+            this.label16.TabIndex = 199;
+            this.label16.Text = "สถานะ:";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.label14.ForeColor = System.Drawing.Color.DarkSeaGreen;
+            this.label14.Location = new System.Drawing.Point(431, 204);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(47, 20);
+            this.label14.TabIndex = 198;
+            this.label14.Text = "Folder";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.label13.ForeColor = System.Drawing.Color.DarkSeaGreen;
+            this.label13.Location = new System.Drawing.Point(440, 279);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(38, 20);
+            this.label13.TabIndex = 197;
+            this.label13.Text = "Path";
+            // 
+            // txtId
+            // 
+            this.txtId.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtId.Enabled = false;
+            this.txtId.ForeColor = System.Drawing.Color.Red;
+            this.txtId.Location = new System.Drawing.Point(359, 106);
+            this.txtId.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtId.Name = "txtId";
+            this.txtId.Size = new System.Drawing.Size(69, 21);
+            this.txtId.TabIndex = 9;
+            this.txtId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtId.Visible = false;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.label12.ForeColor = System.Drawing.Color.DarkSeaGreen;
+            this.label12.Location = new System.Drawing.Point(413, 240);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(65, 20);
+            this.label12.TabIndex = 196;
+            this.label12.Text = "File/Type";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.label11.ForeColor = System.Drawing.Color.DarkSeaGreen;
+            this.label11.Location = new System.Drawing.Point(415, 168);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(63, 20);
+            this.label11.TabIndex = 195;
+            this.label11.Text = "Location";
+            // 
+            // txtLocation
+            // 
+            this.txtLocation.BackColor = System.Drawing.Color.White;
+            this.txtLocation.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtLocation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.txtLocation.Location = new System.Drawing.Point(522, 158);
+            this.txtLocation.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtLocation.Name = "txtLocation";
+            this.txtLocation.Size = new System.Drawing.Size(429, 21);
+            this.txtLocation.TabIndex = 15;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.label10.ForeColor = System.Drawing.Color.DarkSeaGreen;
+            this.label10.Location = new System.Drawing.Point(36, 205);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(68, 20);
+            this.label10.TabIndex = 194;
+            this.label10.Text = "Category";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.Gray;
+            this.label1.Location = new System.Drawing.Point(421, 151);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(57, 20);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "ที่อยู่ภาพ:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.label7.ForeColor = System.Drawing.Color.DarkSeaGreen;
+            this.label7.Location = new System.Drawing.Point(44, 313);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(60, 20);
+            this.label7.TabIndex = 192;
+            this.label7.Text = "Website";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.label6.ForeColor = System.Drawing.Color.DarkSeaGreen;
+            this.label6.Location = new System.Drawing.Point(60, 240);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(44, 20);
+            this.label6.TabIndex = 191;
+            this.label6.Text = "Name";
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.label48.ForeColor = System.Drawing.Color.DarkSeaGreen;
+            this.label48.Location = new System.Drawing.Point(63, 168);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(41, 20);
+            this.label48.TabIndex = 190;
+            this.label48.Text = "Code";
+            // 
+            // txtNameEn
+            // 
+            this.txtNameEn.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtNameEn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.txtNameEn.Location = new System.Drawing.Point(148, 270);
+            this.txtNameEn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtNameEn.Name = "txtNameEn";
+            this.txtNameEn.Size = new System.Drawing.Size(220, 21);
+            this.txtNameEn.TabIndex = 87;
+            // 
+            // btnBrowse
+            // 
+            this.btnBrowse.BackColor = System.Drawing.Color.Transparent;
+            this.btnBrowse.ForeColor = System.Drawing.Color.Black;
+            this.btnBrowse.Location = new System.Drawing.Point(955, 156);
+            this.btnBrowse.Name = "btnBrowse";
+            this.btnBrowse.Size = new System.Drawing.Size(30, 24);
+            this.btnBrowse.TabIndex = 54;
+            this.btnBrowse.Text = "...";
+            this.btnBrowse.UseVisualStyleBackColor = false;
+            this.btnBrowse.Click += new System.EventHandler(this.Browse);
+            // 
+            // cbbPath
+            // 
+            this.cbbPath.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.cbbPath.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.cbbPath.FormattingEnabled = true;
+            this.cbbPath.Location = new System.Drawing.Point(522, 266);
+            this.cbbPath.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbbPath.Name = "cbbPath";
+            this.cbbPath.Size = new System.Drawing.Size(177, 28);
+            this.cbbPath.TabIndex = 50;
+            // 
+            // cbbType
+            // 
+            this.cbbType.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.cbbType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.cbbType.FormattingEnabled = true;
+            this.cbbType.Location = new System.Drawing.Point(148, 192);
+            this.cbbType.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbbType.Name = "cbbType";
+            this.cbbType.Size = new System.Drawing.Size(177, 28);
+            this.cbbType.TabIndex = 20;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.Color.Gray;
+            this.label8.Location = new System.Drawing.Point(55, 296);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(49, 20);
+            this.label8.TabIndex = 18;
+            this.label8.Text = "เว็บไซต์:";
             // 
             // panel2
             // 
@@ -617,190 +814,6 @@
             this.pbBanner.TabIndex = 79;
             this.pbBanner.TabStop = false;
             // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.label15.ForeColor = System.Drawing.Color.DarkSeaGreen;
-            this.label15.Location = new System.Drawing.Point(426, 316);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(52, 20);
-            this.label15.TabIndex = 200;
-            this.label15.Text = "Status";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.ForeColor = System.Drawing.Color.Gray;
-            this.label16.Location = new System.Drawing.Point(433, 299);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(45, 20);
-            this.label16.TabIndex = 199;
-            this.label16.Text = "สถานะ:";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.label14.ForeColor = System.Drawing.Color.DarkSeaGreen;
-            this.label14.Location = new System.Drawing.Point(431, 204);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(47, 20);
-            this.label14.TabIndex = 198;
-            this.label14.Text = "Folder";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.label13.ForeColor = System.Drawing.Color.DarkSeaGreen;
-            this.label13.Location = new System.Drawing.Point(440, 279);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(38, 20);
-            this.label13.TabIndex = 197;
-            this.label13.Text = "Path";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.label12.ForeColor = System.Drawing.Color.DarkSeaGreen;
-            this.label12.Location = new System.Drawing.Point(413, 240);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(65, 20);
-            this.label12.TabIndex = 196;
-            this.label12.Text = "File/Type";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.label11.ForeColor = System.Drawing.Color.DarkSeaGreen;
-            this.label11.Location = new System.Drawing.Point(415, 168);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(63, 20);
-            this.label11.TabIndex = 195;
-            this.label11.Text = "Location";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.label10.ForeColor = System.Drawing.Color.DarkSeaGreen;
-            this.label10.Location = new System.Drawing.Point(36, 205);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(68, 20);
-            this.label10.TabIndex = 194;
-            this.label10.Text = "Category";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.label7.ForeColor = System.Drawing.Color.DarkSeaGreen;
-            this.label7.Location = new System.Drawing.Point(44, 313);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(60, 20);
-            this.label7.TabIndex = 192;
-            this.label7.Text = "Website";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.label6.ForeColor = System.Drawing.Color.DarkSeaGreen;
-            this.label6.Location = new System.Drawing.Point(60, 240);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(44, 20);
-            this.label6.TabIndex = 191;
-            this.label6.Text = "Name";
-            // 
-            // label48
-            // 
-            this.label48.AutoSize = true;
-            this.label48.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.label48.ForeColor = System.Drawing.Color.DarkSeaGreen;
-            this.label48.Location = new System.Drawing.Point(63, 168);
-            this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(41, 20);
-            this.label48.TabIndex = 190;
-            this.label48.Text = "Code";
-            // 
-            // txtNameEn
-            // 
-            this.txtNameEn.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtNameEn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.txtNameEn.Location = new System.Drawing.Point(148, 270);
-            this.txtNameEn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtNameEn.Name = "txtNameEn";
-            this.txtNameEn.Size = new System.Drawing.Size(220, 21);
-            this.txtNameEn.TabIndex = 87;
-            // 
-            // btnBrowse
-            // 
-            this.btnBrowse.BackColor = System.Drawing.Color.Transparent;
-            this.btnBrowse.ForeColor = System.Drawing.Color.Black;
-            this.btnBrowse.Location = new System.Drawing.Point(955, 156);
-            this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(30, 24);
-            this.btnBrowse.TabIndex = 54;
-            this.btnBrowse.Text = "...";
-            this.btnBrowse.UseVisualStyleBackColor = false;
-            this.btnBrowse.Click += new System.EventHandler(this.Browse);
-            // 
-            // cbbPath
-            // 
-            this.cbbPath.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.cbbPath.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.cbbPath.FormattingEnabled = true;
-            this.cbbPath.Location = new System.Drawing.Point(522, 266);
-            this.cbbPath.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbbPath.Name = "cbbPath";
-            this.cbbPath.Size = new System.Drawing.Size(177, 28);
-            this.cbbPath.TabIndex = 50;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.ForeColor = System.Drawing.Color.Gray;
-            this.label8.Location = new System.Drawing.Point(55, 296);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(49, 20);
-            this.label8.TabIndex = 18;
-            this.label8.Text = "เว็บไซต์:";
-            // 
-            // cbbType
-            // 
-            this.cbbType.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.cbbType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.cbbType.FormattingEnabled = true;
-            this.cbbType.Location = new System.Drawing.Point(148, 192);
-            this.cbbType.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbbType.Name = "cbbType";
-            this.cbbType.Size = new System.Drawing.Size(177, 28);
-            this.cbbType.TabIndex = 20;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.Gray;
-            this.label1.Location = new System.Drawing.Point(421, 151);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 20);
-            this.label1.TabIndex = 16;
-            this.label1.Text = "ที่อยู่ภาพ:";
-            // 
-            // txtLocation
-            // 
-            this.txtLocation.BackColor = System.Drawing.Color.White;
-            this.txtLocation.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtLocation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.txtLocation.Location = new System.Drawing.Point(522, 158);
-            this.txtLocation.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtLocation.Name = "txtLocation";
-            this.txtLocation.Size = new System.Drawing.Size(429, 21);
-            this.txtLocation.TabIndex = 15;
-            // 
             // pbMain
             // 
             this.pbMain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -812,19 +825,6 @@
             this.pbMain.Size = new System.Drawing.Size(1326, 286);
             this.pbMain.TabIndex = 46;
             this.pbMain.TabStop = false;
-            // 
-            // txtId
-            // 
-            this.txtId.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtId.Enabled = false;
-            this.txtId.ForeColor = System.Drawing.Color.Red;
-            this.txtId.Location = new System.Drawing.Point(359, 106);
-            this.txtId.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(69, 21);
-            this.txtId.TabIndex = 9;
-            this.txtId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtId.Visible = false;
             // 
             // openFileDialog
             // 
@@ -908,7 +908,7 @@
         private System.Windows.Forms.TextBox txtNameEn;
         private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox txtNumberNow;
+        private System.Windows.Forms.TextBox txtRowNumber;
         private System.Windows.Forms.Label lblHSearch;
         private System.Windows.Forms.Label lblCondition;
         private System.Windows.Forms.TextBox txtCount;
