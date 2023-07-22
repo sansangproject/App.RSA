@@ -42,7 +42,7 @@ namespace SANSANG.Constant
         public string Workdays = "Workdays";
         public string Accounts = "Account";
         public string Members = "Members";
-
+        public string PayTypes = "PayTypes";
 
 
 

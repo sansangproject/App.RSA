@@ -201,6 +201,7 @@
     <Compile Include="App.Constant\StoreConstant.cs" />
     <Compile Include="App.Constant\IdConstant.cs" />
     <Compile Include="App.Constant\GenderConstant.cs" />
+    <Compile Include="App.Constant\ColumnConstant.cs" />
     <Compile Include="App.Constant\TableConstant.cs" />
     <Compile Include="App.Constant\PathConstant.cs" />
     <Compile Include="App.Constant\TransactionConstant.cs" />

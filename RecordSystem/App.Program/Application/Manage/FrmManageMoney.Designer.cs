@@ -1,6 +1,6 @@
 ﻿namespace SANSANG
 {
-    partial class FrmManageItem
+    partial class FrmManageMoney
     {
         /// <summary>
         /// Required designer variable.
@@ -28,37 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmManageItem));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.cbbCategory = new System.Windows.Forms.ComboBox();
-            this.cbbStatus = new System.Windows.Forms.ComboBox();
-            this.txtName = new System.Windows.Forms.TextBox();
-            this.lblStatus = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblID = new System.Windows.Forms.Label();
-            this.txtCode = new System.Windows.Forms.TextBox();
-            this.lblName = new System.Windows.Forms.Label();
-            this.txtDetail = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmManageMoney));
             this.gbForm = new System.Windows.Forms.GroupBox();
             this.lblDisplay = new System.Windows.Forms.TextBox();
-            this.pb_Thai_True = new System.Windows.Forms.PictureBox();
-            this.pb_Thai_False = new System.Windows.Forms.PictureBox();
-            this.cbbType = new System.Windows.Forms.ComboBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.txtDisplay = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtNameEn = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lblHSearch = new System.Windows.Forms.Label();
             this.lblCondition = new System.Windows.Forms.Label();
@@ -66,7 +39,6 @@
             this.txtNumberNow = new System.Windows.Forms.TextBox();
             this.GridView = new System.Windows.Forms.DataGridView();
             this.picExcel = new System.Windows.Forms.PictureBox();
-            this.pbMain = new System.Windows.Forms.PictureBox();
             this.pbMenu = new System.Windows.Forms.Panel();
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
@@ -81,223 +53,37 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.pbBanner = new System.Windows.Forms.PictureBox();
+            this.pb_Thai_True = new System.Windows.Forms.PictureBox();
+            this.pb_Thai_False = new System.Windows.Forms.PictureBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txtDisplay = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtNameEn = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.lblName = new System.Windows.Forms.Label();
+            this.txtCode = new System.Windows.Forms.TextBox();
+            this.lblID = new System.Windows.Forms.Label();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.cbbStatus = new System.Windows.Forms.ComboBox();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.pbMain = new System.Windows.Forms.PictureBox();
             this.txtId = new System.Windows.Forms.TextBox();
             this.cb_Thai = new System.Windows.Forms.CheckBox();
             this.gbForm.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_Thai_True)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_Thai_False)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picExcel)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbMain)).BeginInit();
             this.pbMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBanner)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Thai_True)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Thai_False)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbMain)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.BackColor = System.Drawing.Color.Transparent;
-            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearch.ForeColor = System.Drawing.Color.Transparent;
-            this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
-            this.btnSearch.Location = new System.Drawing.Point(341, 158);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(21, 18);
-            this.btnSearch.TabIndex = 21;
-            this.btnSearch.UseVisualStyleBackColor = false;
-            this.btnSearch.Click += new System.EventHandler(this.SearchData);
-            // 
-            // cbbCategory
-            // 
-            this.cbbCategory.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.cbbCategory.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.cbbCategory.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.cbbCategory.FormattingEnabled = true;
-            this.cbbCategory.Location = new System.Drawing.Point(147, 193);
-            this.cbbCategory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbbCategory.Name = "cbbCategory";
-            this.cbbCategory.Size = new System.Drawing.Size(222, 28);
-            this.cbbCategory.TabIndex = 5;
-            // 
-            // cbbStatus
-            // 
-            this.cbbStatus.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.cbbStatus.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.cbbStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.cbbStatus.FormattingEnabled = true;
-            this.cbbStatus.Location = new System.Drawing.Point(619, 308);
-            this.cbbStatus.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbbStatus.Name = "cbbStatus";
-            this.cbbStatus.Size = new System.Drawing.Size(223, 28);
-            this.cbbStatus.TabIndex = 6;
-            // 
-            // txtName
-            // 
-            this.txtName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtName.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.txtName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.txtName.Location = new System.Drawing.Point(147, 235);
-            this.txtName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(222, 21);
-            this.txtName.TabIndex = 2;
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.lblStatus.ForeColor = System.Drawing.Color.DarkSeaGreen;
-            this.lblStatus.Location = new System.Drawing.Point(534, 299);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(43, 20);
-            this.lblStatus.TabIndex = 18;
-            this.lblStatus.Text = "สถานะ";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.label4.ForeColor = System.Drawing.Color.DarkSeaGreen;
-            this.label4.Location = new System.Drawing.Point(489, 184);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(88, 20);
-            this.label4.TabIndex = 18;
-            this.label4.Text = "รายรับรายจ่าย";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.label2.ForeColor = System.Drawing.Color.DarkSeaGreen;
-            this.label2.Location = new System.Drawing.Point(55, 185);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(48, 20);
-            this.label2.TabIndex = 18;
-            this.label2.Text = "ประเภท";
-            // 
-            // lblID
-            // 
-            this.lblID.AutoSize = true;
-            this.lblID.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.lblID.ForeColor = System.Drawing.Color.DarkSeaGreen;
-            this.lblID.Location = new System.Drawing.Point(71, 146);
-            this.lblID.Name = "lblID";
-            this.lblID.Size = new System.Drawing.Size(32, 20);
-            this.lblID.TabIndex = 10;
-            this.lblID.Text = "รหัส";
-            // 
-            // txtCode
-            // 
-            this.txtCode.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtCode.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.txtCode.ForeColor = System.Drawing.Color.SeaGreen;
-            this.txtCode.Location = new System.Drawing.Point(147, 158);
-            this.txtCode.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtCode.Name = "txtCode";
-            this.txtCode.Size = new System.Drawing.Size(183, 21);
-            this.txtCode.TabIndex = 1;
-            this.txtCode.Leave += new System.EventHandler(this.txtCode_Leave);
-            // 
-            // lblName
-            // 
-            this.lblName.AutoSize = true;
-            this.lblName.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.lblName.ForeColor = System.Drawing.Color.DarkSeaGreen;
-            this.lblName.Location = new System.Drawing.Point(52, 223);
-            this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(51, 20);
-            this.lblName.TabIndex = 16;
-            this.lblName.Text = "รายการ";
-            // 
-            // txtDetail
-            // 
-            this.txtDetail.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtDetail.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.txtDetail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.txtDetail.Location = new System.Drawing.Point(619, 234);
-            this.txtDetail.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtDetail.Multiline = true;
-            this.txtDetail.Name = "txtDetail";
-            this.txtDetail.Size = new System.Drawing.Size(223, 61);
-            this.txtDetail.TabIndex = 4;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.label1.ForeColor = System.Drawing.Color.DarkSeaGreen;
-            this.label1.Location = new System.Drawing.Point(508, 223);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 20);
-            this.label1.TabIndex = 16;
-            this.label1.Text = "รายละเอียด";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label8.Location = new System.Drawing.Point(62, 161);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(41, 20);
-            this.label8.TabIndex = 112;
-            this.label8.Text = "Code";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label3.Location = new System.Drawing.Point(35, 200);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(68, 20);
-            this.label3.TabIndex = 113;
-            this.label3.Text = "Category";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label5.Location = new System.Drawing.Point(67, 238);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(36, 20);
-            this.label5.TabIndex = 114;
-            this.label5.Text = "Item";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label9.Location = new System.Drawing.Point(531, 238);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(46, 20);
-            this.label9.TabIndex = 115;
-            this.label9.Text = "Detail";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label10.Location = new System.Drawing.Point(525, 314);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(52, 20);
-            this.label10.TabIndex = 116;
-            this.label10.Text = "Status";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label11.Location = new System.Drawing.Point(539, 199);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(38, 20);
-            this.label11.TabIndex = 117;
-            this.label11.Text = "Type";
             // 
             // gbForm
             // 
@@ -306,37 +92,28 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gbForm.BackColor = System.Drawing.Color.White;
             this.gbForm.Controls.Add(this.lblDisplay);
+            this.gbForm.Controls.Add(this.groupBox2);
+            this.gbForm.Controls.Add(this.pbMenu);
+            this.gbForm.Controls.Add(this.pbBanner);
             this.gbForm.Controls.Add(this.pb_Thai_True);
             this.gbForm.Controls.Add(this.pb_Thai_False);
-            this.gbForm.Controls.Add(this.cbbType);
             this.gbForm.Controls.Add(this.label14);
             this.gbForm.Controls.Add(this.label15);
             this.gbForm.Controls.Add(this.txtDisplay);
             this.gbForm.Controls.Add(this.label6);
             this.gbForm.Controls.Add(this.label7);
             this.gbForm.Controls.Add(this.txtNameEn);
-            this.gbForm.Controls.Add(this.groupBox2);
-            this.gbForm.Controls.Add(this.label11);
             this.gbForm.Controls.Add(this.label10);
-            this.gbForm.Controls.Add(this.label9);
             this.gbForm.Controls.Add(this.label5);
-            this.gbForm.Controls.Add(this.label3);
             this.gbForm.Controls.Add(this.label8);
-            this.gbForm.Controls.Add(this.label1);
-            this.gbForm.Controls.Add(this.txtDetail);
             this.gbForm.Controls.Add(this.lblName);
             this.gbForm.Controls.Add(this.txtCode);
             this.gbForm.Controls.Add(this.lblID);
-            this.gbForm.Controls.Add(this.label2);
-            this.gbForm.Controls.Add(this.label4);
             this.gbForm.Controls.Add(this.lblStatus);
             this.gbForm.Controls.Add(this.txtName);
             this.gbForm.Controls.Add(this.cbbStatus);
-            this.gbForm.Controls.Add(this.cbbCategory);
             this.gbForm.Controls.Add(this.btnSearch);
             this.gbForm.Controls.Add(this.pbMain);
-            this.gbForm.Controls.Add(this.pbMenu);
-            this.gbForm.Controls.Add(this.pbBanner);
             this.gbForm.Controls.Add(this.txtId);
             this.gbForm.Controls.Add(this.cb_Thai);
             this.gbForm.Location = new System.Drawing.Point(0, -10);
@@ -351,111 +128,12 @@
             this.lblDisplay.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lblDisplay.Font = new System.Drawing.Font("Mitr Light", 70F);
             this.lblDisplay.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblDisplay.Location = new System.Drawing.Point(220, 188);
+            this.lblDisplay.Location = new System.Drawing.Point(105, 190);
             this.lblDisplay.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lblDisplay.Name = "lblDisplay";
-            this.lblDisplay.Size = new System.Drawing.Size(1013, 147);
-            this.lblDisplay.TabIndex = 213;
+            this.lblDisplay.Size = new System.Drawing.Size(1123, 147);
+            this.lblDisplay.TabIndex = 251;
             this.lblDisplay.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // pb_Thai_True
-            // 
-            this.pb_Thai_True.Image = ((System.Drawing.Image)(resources.GetObject("pb_Thai_True.Image")));
-            this.pb_Thai_True.Location = new System.Drawing.Point(375, 280);
-            this.pb_Thai_True.Name = "pb_Thai_True";
-            this.pb_Thai_True.Size = new System.Drawing.Size(19, 19);
-            this.pb_Thai_True.TabIndex = 216;
-            this.pb_Thai_True.TabStop = false;
-            this.pb_Thai_True.Click += new System.EventHandler(this.Ticker);
-            // 
-            // pb_Thai_False
-            // 
-            this.pb_Thai_False.Image = ((System.Drawing.Image)(resources.GetObject("pb_Thai_False.Image")));
-            this.pb_Thai_False.Location = new System.Drawing.Point(375, 280);
-            this.pb_Thai_False.Name = "pb_Thai_False";
-            this.pb_Thai_False.Size = new System.Drawing.Size(19, 19);
-            this.pb_Thai_False.TabIndex = 215;
-            this.pb_Thai_False.TabStop = false;
-            this.pb_Thai_False.Visible = false;
-            this.pb_Thai_False.Click += new System.EventHandler(this.Ticker);
-            // 
-            // cbbType
-            // 
-            this.cbbType.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.cbbType.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.cbbType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.cbbType.FormattingEnabled = true;
-            this.cbbType.Location = new System.Drawing.Point(619, 193);
-            this.cbbType.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbbType.Name = "cbbType";
-            this.cbbType.Size = new System.Drawing.Size(223, 28);
-            this.cbbType.TabIndex = 214;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label14.Location = new System.Drawing.Point(49, 315);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(54, 20);
-            this.label14.TabIndex = 212;
-            this.label14.Text = "Display";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.label15.ForeColor = System.Drawing.Color.DarkSeaGreen;
-            this.label15.Location = new System.Drawing.Point(63, 300);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(40, 20);
-            this.label15.TabIndex = 211;
-            this.label15.Text = "แสดง";
-            // 
-            // txtDisplay
-            // 
-            this.txtDisplay.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtDisplay.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.txtDisplay.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.txtDisplay.Location = new System.Drawing.Point(147, 311);
-            this.txtDisplay.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtDisplay.Name = "txtDisplay";
-            this.txtDisplay.Size = new System.Drawing.Size(222, 21);
-            this.txtDisplay.TabIndex = 210;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label6.Location = new System.Drawing.Point(49, 277);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(54, 20);
-            this.label6.TabIndex = 209;
-            this.label6.Text = "English";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.label7.ForeColor = System.Drawing.Color.DarkSeaGreen;
-            this.label7.Location = new System.Drawing.Point(27, 262);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(76, 20);
-            this.label7.TabIndex = 208;
-            this.label7.Text = "ภาษาอังกฤษ";
-            // 
-            // txtNameEn
-            // 
-            this.txtNameEn.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtNameEn.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.txtNameEn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.txtNameEn.Location = new System.Drawing.Point(147, 274);
-            this.txtNameEn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtNameEn.Name = "txtNameEn";
-            this.txtNameEn.Size = new System.Drawing.Size(222, 21);
-            this.txtNameEn.TabIndex = 207;
             // 
             // groupBox2
             // 
@@ -473,7 +151,7 @@
             this.groupBox2.Location = new System.Drawing.Point(6, 354);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(1270, 433);
-            this.groupBox2.TabIndex = 200;
+            this.groupBox2.TabIndex = 250;
             this.groupBox2.TabStop = false;
             // 
             // lblHSearch
@@ -538,14 +216,14 @@
             this.GridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.GridView.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.GridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.DarkSeaGreen;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.GridView.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.DarkSeaGreen;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.GridView.DefaultCellStyle = dataGridViewCellStyle3;
             this.GridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.GridView.Location = new System.Drawing.Point(19, 46);
             this.GridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -569,19 +247,6 @@
             this.picExcel.TabStop = false;
             this.picExcel.Visible = false;
             // 
-            // pbMain
-            // 
-            this.pbMain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbMain.BackColor = System.Drawing.Color.White;
-            this.pbMain.Enabled = false;
-            this.pbMain.Image = ((System.Drawing.Image)(resources.GetObject("pbMain.Image")));
-            this.pbMain.Location = new System.Drawing.Point(-2, 86);
-            this.pbMain.Name = "pbMain";
-            this.pbMain.Size = new System.Drawing.Size(1331, 275);
-            this.pbMain.TabIndex = 199;
-            this.pbMain.TabStop = false;
-            // 
             // pbMenu
             // 
             this.pbMenu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -601,7 +266,7 @@
             this.pbMenu.Location = new System.Drawing.Point(1012, 14);
             this.pbMenu.Name = "pbMenu";
             this.pbMenu.Size = new System.Drawing.Size(264, 68);
-            this.pbMenu.TabIndex = 157;
+            this.pbMenu.TabIndex = 248;
             // 
             // label25
             // 
@@ -782,8 +447,222 @@
             this.pbBanner.Location = new System.Drawing.Point(-1, 8);
             this.pbBanner.Name = "pbBanner";
             this.pbBanner.Size = new System.Drawing.Size(1287, 79);
-            this.pbBanner.TabIndex = 156;
+            this.pbBanner.TabIndex = 247;
             this.pbBanner.TabStop = false;
+            // 
+            // pb_Thai_True
+            // 
+            this.pb_Thai_True.Image = ((System.Drawing.Image)(resources.GetObject("pb_Thai_True.Image")));
+            this.pb_Thai_True.Location = new System.Drawing.Point(374, 240);
+            this.pb_Thai_True.Name = "pb_Thai_True";
+            this.pb_Thai_True.Size = new System.Drawing.Size(17, 17);
+            this.pb_Thai_True.TabIndex = 245;
+            this.pb_Thai_True.TabStop = false;
+            this.pb_Thai_True.Click += new System.EventHandler(this.Ticker);
+            // 
+            // pb_Thai_False
+            // 
+            this.pb_Thai_False.Image = ((System.Drawing.Image)(resources.GetObject("pb_Thai_False.Image")));
+            this.pb_Thai_False.Location = new System.Drawing.Point(374, 240);
+            this.pb_Thai_False.Name = "pb_Thai_False";
+            this.pb_Thai_False.Size = new System.Drawing.Size(17, 17);
+            this.pb_Thai_False.TabIndex = 244;
+            this.pb_Thai_False.TabStop = false;
+            this.pb_Thai_False.Visible = false;
+            this.pb_Thai_False.Click += new System.EventHandler(this.Ticker);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label14.Location = new System.Drawing.Point(47, 277);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(54, 20);
+            this.label14.TabIndex = 241;
+            this.label14.Text = "Display";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.label15.ForeColor = System.Drawing.Color.DarkSeaGreen;
+            this.label15.Location = new System.Drawing.Point(61, 262);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(40, 20);
+            this.label15.TabIndex = 240;
+            this.label15.Text = "แสดง";
+            // 
+            // txtDisplay
+            // 
+            this.txtDisplay.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtDisplay.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.txtDisplay.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.txtDisplay.Location = new System.Drawing.Point(146, 274);
+            this.txtDisplay.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtDisplay.Name = "txtDisplay";
+            this.txtDisplay.Size = new System.Drawing.Size(222, 21);
+            this.txtDisplay.TabIndex = 239;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label6.Location = new System.Drawing.Point(47, 239);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(54, 20);
+            this.label6.TabIndex = 238;
+            this.label6.Text = "English";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.label7.ForeColor = System.Drawing.Color.DarkSeaGreen;
+            this.label7.Location = new System.Drawing.Point(25, 224);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(76, 20);
+            this.label7.TabIndex = 237;
+            this.label7.Text = "ภาษาอังกฤษ";
+            // 
+            // txtNameEn
+            // 
+            this.txtNameEn.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtNameEn.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.txtNameEn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.txtNameEn.Location = new System.Drawing.Point(146, 235);
+            this.txtNameEn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtNameEn.Name = "txtNameEn";
+            this.txtNameEn.Size = new System.Drawing.Size(222, 21);
+            this.txtNameEn.TabIndex = 236;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label10.Location = new System.Drawing.Point(49, 315);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(52, 20);
+            this.label10.TabIndex = 234;
+            this.label10.Text = "Status";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label5.Location = new System.Drawing.Point(38, 200);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(63, 20);
+            this.label5.TabIndex = 232;
+            this.label5.Text = "Payment";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label8.Location = new System.Drawing.Point(60, 161);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(41, 20);
+            this.label8.TabIndex = 230;
+            this.label8.Text = "Code";
+            // 
+            // lblName
+            // 
+            this.lblName.AutoSize = true;
+            this.lblName.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.lblName.ForeColor = System.Drawing.Color.DarkSeaGreen;
+            this.lblName.Location = new System.Drawing.Point(29, 185);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(72, 20);
+            this.lblName.TabIndex = 224;
+            this.lblName.Text = "ประเภทชำระ";
+            // 
+            // txtCode
+            // 
+            this.txtCode.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtCode.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.txtCode.ForeColor = System.Drawing.Color.SeaGreen;
+            this.txtCode.Location = new System.Drawing.Point(146, 158);
+            this.txtCode.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtCode.Name = "txtCode";
+            this.txtCode.Size = new System.Drawing.Size(183, 21);
+            this.txtCode.TabIndex = 218;
+            // 
+            // lblID
+            // 
+            this.lblID.AutoSize = true;
+            this.lblID.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.lblID.ForeColor = System.Drawing.Color.DarkSeaGreen;
+            this.lblID.Location = new System.Drawing.Point(69, 146);
+            this.lblID.Name = "lblID";
+            this.lblID.Size = new System.Drawing.Size(32, 20);
+            this.lblID.TabIndex = 223;
+            this.lblID.Text = "รหัส";
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.lblStatus.ForeColor = System.Drawing.Color.DarkSeaGreen;
+            this.lblStatus.Location = new System.Drawing.Point(58, 300);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(43, 20);
+            this.lblStatus.TabIndex = 226;
+            this.lblStatus.Text = "สถานะ";
+            // 
+            // txtName
+            // 
+            this.txtName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtName.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.txtName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.txtName.Location = new System.Drawing.Point(146, 196);
+            this.txtName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(222, 21);
+            this.txtName.TabIndex = 219;
+            // 
+            // cbbStatus
+            // 
+            this.cbbStatus.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.cbbStatus.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.cbbStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.cbbStatus.FormattingEnabled = true;
+            this.cbbStatus.Location = new System.Drawing.Point(145, 309);
+            this.cbbStatus.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbbStatus.Name = "cbbStatus";
+            this.cbbStatus.Size = new System.Drawing.Size(223, 28);
+            this.cbbStatus.TabIndex = 222;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.BackColor = System.Drawing.Color.Transparent;
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearch.ForeColor = System.Drawing.Color.Transparent;
+            this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
+            this.btnSearch.Location = new System.Drawing.Point(340, 158);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(21, 18);
+            this.btnSearch.TabIndex = 229;
+            this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.SearchData);
+            // 
+            // pbMain
+            // 
+            this.pbMain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbMain.BackColor = System.Drawing.Color.White;
+            this.pbMain.Enabled = false;
+            this.pbMain.Image = ((System.Drawing.Image)(resources.GetObject("pbMain.Image")));
+            this.pbMain.Location = new System.Drawing.Point(-2, 86);
+            this.pbMain.Name = "pbMain";
+            this.pbMain.Size = new System.Drawing.Size(1331, 275);
+            this.pbMain.TabIndex = 249;
+            this.pbMain.TabStop = false;
             // 
             // txtId
             // 
@@ -791,22 +670,22 @@
             this.txtId.Enabled = false;
             this.txtId.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.txtId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.txtId.Location = new System.Drawing.Point(161, 112);
+            this.txtId.Location = new System.Drawing.Point(222, 116);
             this.txtId.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(169, 21);
-            this.txtId.TabIndex = 206;
+            this.txtId.TabIndex = 252;
             // 
             // cb_Thai
             // 
             this.cb_Thai.AutoSize = true;
-            this.cb_Thai.Location = new System.Drawing.Point(423, 145);
+            this.cb_Thai.Location = new System.Drawing.Point(376, 206);
             this.cb_Thai.Name = "cb_Thai";
             this.cb_Thai.Size = new System.Drawing.Size(15, 14);
-            this.cb_Thai.TabIndex = 217;
+            this.cb_Thai.TabIndex = 246;
             this.cb_Thai.UseVisualStyleBackColor = true;
             // 
-            // FrmManageItem
+            // FrmManageMoney
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -818,7 +697,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "FrmManageItem";
+            this.Name = "FrmManageMoney";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -826,42 +705,41 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmKeyDown);
             this.gbForm.ResumeLayout(false);
             this.gbForm.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_Thai_True)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_Thai_False)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picExcel)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbMain)).EndInit();
             this.pbMenu.ResumeLayout(false);
             this.pbMenu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBanner)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Thai_True)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Thai_False)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbMain)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.ComboBox cbbCategory;
-        private System.Windows.Forms.ComboBox cbbStatus;
-        private System.Windows.Forms.TextBox txtName;
-        private System.Windows.Forms.Label lblStatus;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label lblID;
-        private System.Windows.Forms.TextBox txtCode;
-        private System.Windows.Forms.Label lblName;
-        private System.Windows.Forms.TextBox txtDetail;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.GroupBox gbForm;
-        private System.Windows.Forms.PictureBox pbBanner;
+        private System.Windows.Forms.PictureBox pb_Thai_True;
+        private System.Windows.Forms.PictureBox pb_Thai_False;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox txtDisplay;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtNameEn;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.TextBox txtCode;
+        private System.Windows.Forms.Label lblID;
+        private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.ComboBox cbbStatus;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.CheckBox cb_Thai;
         private System.Windows.Forms.Panel pbMenu;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label24;
@@ -875,6 +753,7 @@
         private System.Windows.Forms.Button btnSearchs;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.PictureBox pbBanner;
         private System.Windows.Forms.PictureBox pbMain;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label lblHSearch;
@@ -883,17 +762,7 @@
         private System.Windows.Forms.TextBox txtNumberNow;
         private System.Windows.Forms.DataGridView GridView;
         private System.Windows.Forms.PictureBox picExcel;
-        private System.Windows.Forms.TextBox txtId;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtNameEn;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox txtDisplay;
         private System.Windows.Forms.TextBox lblDisplay;
-        private System.Windows.Forms.ComboBox cbbType;
-        private System.Windows.Forms.PictureBox pb_Thai_False;
-        private System.Windows.Forms.PictureBox pb_Thai_True;
-        private System.Windows.Forms.CheckBox cb_Thai;
+        private System.Windows.Forms.TextBox txtId;
     }
 }

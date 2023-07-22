@@ -1,24 +1,24 @@
 ﻿using System;
 using System.Data;
-using System.Runtime.CompilerServices;
-using System.Text.RegularExpressions;
+using System.Drawing;
 using System.Windows.Forms;
 using SANSANG.Class;
 using SANSANG.Constant;
 using SANSANG.Database;
-using SANSANG.Utilites.App.Forms;
+using SANSANG.Utilites.App.Global;
+using SANSANG.Utilites.App.Model;
 
 namespace SANSANG
 {
-    public partial class FrmManageCategory : Form
+    public partial class FrmManageLogo : Form
     {
         public string UserId;
         public string UserName;
         public string UserSurname;
         public string UserType;
 
-        public string AppCode = "MANCA00";
-        public string AppName = "FrmManageCategory";
+        public string AppCode = "MANLG00";
+        public string AppName = "FrmMangeLogo";
         public string Error = "";
 
         private DataTable dt = new DataTable();
@@ -36,12 +36,12 @@ namespace SANSANG
         private clsLog Log = new clsLog();
         private clsImage Images = new clsImage();
         private TableConstant Table = new TableConstant();
-        private FrmAnimatedProgress Loading = new FrmAnimatedProgress(25);
-        private clsHelpper Helper = new clsHelpper();
+        private FrmAnimatedProgress Loading = new FrmAnimatedProgress(20);
         private Timer Timer = new Timer();
+
         public string[,] Parameter = new string[,] { };
 
-        public FrmManageCategory(string UserIdLogin, string UserNameLogin, string UserSurNameLogin, string UserTypeLogin)
+        public FrmManageLogo(string UserIdLogin, string UserNameLogin, string UserSurNameLogin, string UserTypeLogin)
         {
             InitializeComponent();
 
@@ -62,9 +62,10 @@ namespace SANSANG
         private void LoadList(object sender, EventArgs e)
         {
             List.GetLists(cbbStatus, string.Format(DataList.StatusId, "0"));
-            pb_Thai_True.Hide();
-            pb_Thai_False.Show();
-            gbForm.Enabled = true;
+            List.GetLists(cbbType, string.Format(DataList.StatusId, "5"));
+            List.GetLists(cbbPath, DataList.PathId);
+
+            pbMain.Enabled = true;
             Clear();
             Timer.Stop();
         }
@@ -72,6 +73,7 @@ namespace SANSANG
         public void Clear()
         {
             Function.ClearAll(gbForm);
+            Images.ShowDefault(pbLogo);
             Search(false);
         }
 
@@ -86,21 +88,22 @@ namespace SANSANG
                 }
                 else
                 {
+                    GridView.DataSource = null;
                     DataTable dtGrid = new DataTable();
-                    dtGrid = dt.DefaultView.ToTable(true, "SNo", "Code", "Name", "NameEn", "StatusName", "Date", "Id");
+                    dtGrid = dt.DefaultView.ToTable(true, "SNo", "Code", "NameEn", "Web", "TypeName", "Dates", "Id");
 
-                    DataGridViewContentAlignment mc = DataGridViewContentAlignment.MiddleCenter;
-                    DataGridViewContentAlignment ml = DataGridViewContentAlignment.MiddleLeft;
+                DataGridViewContentAlignment mc = DataGridViewContentAlignment.MiddleCenter;
+                DataGridViewContentAlignment ml = DataGridViewContentAlignment.MiddleLeft;
 
-                    Function.showGridViewFormatFromStore(dtGrid, GridView,
-                        "ลำดับ", 50, true, mc, mc
-                        , "รหัส", 150, true, ml, ml
-                        , "ชื่อประเภท", 200, true, ml, ml
-                        , "Category", 200, true, ml, ml
-                        , "สถานะ", 100, true, ml, ml
-                        , "ข้อมูล ณ วันที่", 150, true, mc, mc
-                        , "", 0, false, mc, mc
-                        );
+                Function.showGridViewFormatFromStore(dtGrid, GridView,
+                      " ลำดับ", 50, true, mc, mc
+                    , "รหัส", 100, true, ml, ml
+                    , "โลโก้", 150, true, ml, ml
+                    , "เว็บไซต์", 150, true, ml, ml
+                    , "ประเภท", 100, true, ml, ml
+                    , "ข้อมูล ณ วันที่", 150, true, mc, mc
+                    , "", 0, false, mc, mc
+                );
 
                     txtCount.Text = Function.ShowNumberOfData(dt.Rows.Count);
                     GridView.Focus();
@@ -131,18 +134,23 @@ namespace SANSANG
                     {"@Id", Search ? txtId.Text : ""},
                     {"@Code", Search ? txtCode.Text : ""},
                     {"@Name", Search ? txtName.Text : ""},
-                    {"@NameEn", Search ? txtNameEn.Text : ""},
                     {"@Status", Search ? Function.GetComboId(cbbStatus) : "0"},
-                    {"@Display", Search ? txtDisplay.Text : ""},
-                    {"@User", ""},
-                    {"@IsActive", "1"},
-                    {"@IsDelete", "0"},
+                    {"@User", Search ? "" : ""},
+                    {"@IsActive", Search ? "" : ""},
+                    {"@IsDelete", Search ? "" : ""},
                     {"@Operation", Operation.SelectAbbr},
+                    {"@NameEn", Search ? txtNameEn.Text : ""},
+                    {"@Web", Search ? txtWeb.Text : ""},
+                    {"@FileName", Search ? txtFileName.Text : ""},
+                    {"@FileType", Search ? txtFileType.Text : ""},
+                    {"@FileLocation", Search ? txtLocation.Text : ""},
+                    {"@PathId", Search ? Function.GetComboId(cbbPath) : "0"},
+                    {"@TypeId", Search ? Function.GetComboId(cbbType) : "0"},
                 };
 
                 string Condition = Function.ShowConditons(GetCondition());
                 lblCondition.Text = Condition == "" ? "ทั้งหมด" : Condition;
-                db.Get(Store.ManageCategory, Parameter, out Error, out dt);
+                db.Get(Store.ManageLogo, Parameter, out Error, out dt);
                 ShowGridView(dt);
             }
             catch (Exception ex)
@@ -158,10 +166,14 @@ namespace SANSANG
                 string strCondition = "";
 
                 strCondition += txtCode.Text != "" ? ", รหัสอ้างอิง: " + txtCode.Text : "";
-                strCondition += txtName.Text != "" ? ", ชื่อประเภท: " + txtName.Text : "";
-                strCondition += txtNameEn.Text != "" ? ", ชื่ออังกฤษ: " + txtNameEn.Text : "";
-                strCondition += txtDisplay.Text != "" ? ", ชื่อที่แสดง: " + txtDisplay.Text : "";
-                strCondition += cbbStatus.Text != ":: กรุณาเลือก ::" ? ", สถานะ: " + cbbStatus.Text : "";
+                strCondition += Function.GetComboId(cbbType) != "0" ? ", ประเภท: " + cbbType.Text : "";
+                strCondition += txtName.Text != "" ? ", ชื่อโลโก้: " + txtName.Text : "";
+                strCondition += txtNameEn.Text != "" ? ", ชื่อโลโก้ (อังกฤษ): " + txtNameEn.Text : "";
+                strCondition += txtFileName.Text != "" ? ", ชื่อไฟล์: " + txtFileName.Text + txtFileType.Text : "";
+                strCondition += txtWeb.Text != "" ? ", เว็บ: " + txtWeb.Text : "";
+                strCondition += Function.GetComboId(cbbPath) != "0" ? ", ตำแหน่ง: " + cbbPath.Text : "";
+                strCondition += Function.GetComboId(cbbStatus) != "0" ? ", สถานะ: " + cbbStatus.Text : "";
+
                 return strCondition;
             }
             catch (Exception ex)
@@ -171,65 +183,97 @@ namespace SANSANG
             }
         }
 
+        private void CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow RowIndex = this.GridView.Rows[e.RowIndex];
+
+                Parameter = new string[,]
+                {
+                    {"@Id", RowIndex.Cells["Id"].Value.ToString()},
+                    {"@Code", ""},
+                    {"@Name", ""},
+                    {"@Status", "0"},
+                    {"@User", ""},
+                    {"@IsActive", ""},
+                    {"@IsDelete", ""},
+                    {"@Operation", Operation.SelectAbbr},
+                    {"@NameEn", ""},
+                    {"@Web", ""},
+                    {"@FileName", ""},
+                    {"@FileType", ""},
+                    {"@FileLocation", ""},
+                    {"@PathId", "0"},
+                    {"@TypeId", "0"},
+                };
+
+                db.Get(Store.ManageLogo, Parameter, out Error, out dt);
+                ShowData(dt);
+            }
+        }
+
         private void ShowData(DataTable dt)
         {
             try
             {
                 if (Function.GetRows(dt) > 0)
                 {
+                    cbbType.SelectedValue = dt.Rows[0]["TypeId"].ToString();
+                    cbbPath.SelectedValue = dt.Rows[0]["PathId"].ToString();
+                    cbbStatus.SelectedValue = dt.Rows[0]["Status"].ToString();
                     txtId.Text = dt.Rows[0]["Id"].ToString();
                     txtCode.Text = dt.Rows[0]["Code"].ToString();
                     txtName.Text = dt.Rows[0]["Name"].ToString();
                     txtNameEn.Text = dt.Rows[0]["NameEn"].ToString();
-                    txtDisplay.Text = dt.Rows[0]["Display"].ToString();
-                    lblDisplay.Text = dt.Rows[0]["Display"].ToString();
-                    cbbStatus.SelectedValue = dt.Rows[0]["Status"].ToString();
+                    txtWeb.Text = dt.Rows[0]["Web"].ToString();
+                    txtFileName.Text = dt.Rows[0]["FileName"].ToString();
+                    txtFileType.Text = dt.Rows[0]["FileType"].ToString();
+                    txtFolder.Text = dt.Rows[0]["Locations"].ToString();
+                    txtLocation.Text = dt.Rows[0]["Locations"].ToString();
 
-                    if(txtDisplay.Text == txtNameEn.Text)
-                    {
-                        cb_Thai.Checked = true;
-                        pb_Thai_True.Show();
-                        pb_Thai_False.Hide();
-                    }
-                    else
-                    {
-                        pb_Thai_True.Hide();
-                        pb_Thai_False.Show();
-                        cb_Thai.Checked = false;
-                    }
+                    Image Picture = new Bitmap(txtLocation.Text);
+                    pbLogo.Image = Picture.GetThumbnailImage(150, 150, null, new IntPtr());
 
                     GridView.Focus();
                 }
             }
-            catch
+            catch (Exception ex)
             {
-
-            }
+                pbLogo.Image = null;
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }      
         }
-
         private void AddData(object sender, EventArgs e)
         {
             try
             {
-                if (!string.IsNullOrEmpty(txtName.Text) && !string.IsNullOrEmpty(txtCode.Text))
+                if ((Function.GetComboId(cbbType) != "0" || Function.GetComboId(cbbPath) != "0") && !string.IsNullOrEmpty(txtName.Text) && !string.IsNullOrEmpty(txtLocation.Text))
                 {
-                    if (!Function.IsDuplicates(Table.Category, txtCode.Text, txtName.Text, Detail: string.Concat(txtCode.Text, " | ", txtName.Text)))
+                    if (!Function.IsDuplicates(Table.Logo, txtName.Text, Function.GetComboId(cbbType), Detail: "Logo " + txtName.Text))
                     {
+                        txtCode.Text = Function.GetCodes(Table.ExpenseId, "1014", "Generated");
+
                         Parameter = new string[,]
                         {
                             {"@Id", ""},
-                            {"@Code", txtCode.Text},
+                            {"@Code", txtCode.Text },
                             {"@Name", txtName.Text},
-                            {"@NameEn", txtNameEn.Text},
-                            {"@Display", txtDisplay.Text},
                             {"@Status", Function.GetComboId(cbbStatus)},
                             {"@User", UserId},
                             {"@IsActive", Function.GetComboId(cbbStatus) == "1000"? "1" : "0"},
                             {"@IsDelete", "0"},
                             {"@Operation", Operation.InsertAbbr},
+                            {"@NameEn", txtNameEn.Text},
+                            {"@Web", txtWeb.Text},
+                            {"@FileName", txtFileName.Text},
+                            {"@FileType", txtFileType.Text},
+                            {"@FileLocation", txtLocation.Text},
+                            {"@PathId", Function.GetComboId(cbbPath)},
+                            {"@TypeId", Function.GetComboId(cbbType)},
                         };
 
-                        if (Insert.Add(AppCode, AppName, UserId, Store.ManageCategory, Parameter, txtCode.Text, Details: txtName.Text))
+                        if (Insert.Add(AppCode, AppName, UserId, Store.ManageLogo, Parameter, txtCode.Text, Details: "Logo " + txtNameEn.Text))
                         {
                             Clear();
                         }
@@ -250,23 +294,28 @@ namespace SANSANG
         {
             try
             {
-                if (!string.IsNullOrEmpty(txtName.Text) && !string.IsNullOrEmpty(txtCode.Text))
+                if (txtId.Text != "")
                 {
                     Parameter = new string[,]
                     {
                         {"@Id", txtId.Text},
-                        {"@Code", txtCode.Text},
+                        {"@Code", txtCode.Text },
                         {"@Name", txtName.Text},
-                        {"@NameEn", txtNameEn.Text},
-                        {"@Display", txtDisplay.Text},
                         {"@Status", Function.GetComboId(cbbStatus)},
                         {"@User", UserId},
                         {"@IsActive", Function.GetComboId(cbbStatus) == "1000"? "1" : "0"},
                         {"@IsDelete", "0"},
                         {"@Operation", Operation.UpdateAbbr},
+                        {"@NameEn", txtNameEn.Text},
+                        {"@Web", txtWeb.Text},
+                        {"@FileName", txtFileName.Text},
+                        {"@FileType", txtFileType.Text},
+                        {"@FileLocation", txtLocation.Text},
+                        {"@PathId", Function.GetComboId(cbbPath)},
+                        {"@TypeId", Function.GetComboId(cbbType)},
                     };
 
-                    if (Edit.Update(AppCode, AppName, UserId, Store.ManageCategory, Parameter, txtCode.Text, Details: txtName.Text))
+                    if (Edit.Update(AppCode, AppName, UserId, Store.ManageLogo, Parameter, txtCode.Text, Details: "Logo " + txtNameEn.Text))
                     {
                         Clear();
                     }
@@ -282,7 +331,7 @@ namespace SANSANG
         {
             try
             {
-                if (Delete.DropId(AppCode, AppName, UserId, 0, Table.Category, txtId, txtCode, Details: txtName.Text))
+                if (Delete.Drop(AppCode, AppName, UserId, 0, Table.Logo, txtCode, Details: "Logo " + txtNameEn.Text, true))
                 {
                     Clear();
                 }
@@ -296,6 +345,28 @@ namespace SANSANG
         private void ClearData(object sender, EventArgs e)
         {
             Clear();
+        }
+
+        private void Browse(object sender, EventArgs e)
+        {
+            Images.SelectImage();
+
+            foreach (ImageModel Photo in GlobalVar.ImageDataList)
+            {
+                txtFileName.Text = Photo.Name;
+                txtFileType.Text = Photo.Type;
+                txtLocation.Text = Photo.Path;
+                txtFolder.Text = "";
+                cbbStatus.SelectedValue = "1000";
+                cbbPath.SelectedValue = "1040";
+
+                Image Picture = new Bitmap(Photo.Path);
+                pbLogo.Image = Picture.GetThumbnailImage(150, 150, null, new IntPtr());
+
+                break;
+            }
+
+            txtFolder.Focus();
         }
 
         private void FrmKeyDown(object sender, KeyEventArgs e)
@@ -322,64 +393,6 @@ namespace SANSANG
             {
                 Search(true);
             }
-        }
-
-        private void CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow RowIndex = this.GridView.Rows[e.RowIndex];
-
-                Parameter = new string[,]
-                {
-                    {"@Id", RowIndex.Cells["Id"].Value.ToString()},
-                    {"@Code", ""},
-                    {"@Name", ""},
-                    {"@NameEn", ""},
-                    {"@Display", ""},
-                    {"@Status", "0"},
-                    {"@User", ""},
-                    {"@IsActive", "1"},
-                    {"@IsDelete", "0"},
-                    {"@Operation", Operation.SelectAbbr},
-                };
-
-                db.Get(Store.ManageCategory, Parameter, out Error, out dt);
-                ShowData(dt);
-            }
-        }
-
-        private void Display(object sender, EventArgs e)
-        {
-            lblDisplay.Text = string.Empty;
-            lblDisplay.Text = txtDisplay.Text;
-        }
-
-        private void Ticker(object sender, EventArgs e)
-        {
-            lblDisplay.Text = string.Empty;
-            txtDisplay.Text = string.Empty;
-
-            if (Helper.CheckboxTicker(sender, this))
-            {
-                txtDisplay.Text = txtNameEn.Text;
-                lblDisplay.Text = txtNameEn.Text;
-            }
-            else
-            {
-                txtDisplay.Text = txtName.Text;
-                lblDisplay.Text = txtName.Text;
-            }
-        }
-
-        private void txtName_Leave(object sender, EventArgs e)
-        {
-            pb_Thai_False.Visible = true;
-            lblDisplay.Text = string.Empty;
-            txtDisplay.Text = string.Empty;
-
-            txtDisplay.Text = txtName.Text;
-            lblDisplay.Text = txtName.Text;
         }
     }
 }

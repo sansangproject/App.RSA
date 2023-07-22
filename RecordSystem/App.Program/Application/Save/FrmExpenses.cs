@@ -836,8 +836,8 @@ namespace SANSANG
         {
             try
             {
-                //FrmManagePaySub FrmManagePaySub = new FrmManagePaySub(UserId, UserName, UserSurname, UserType);
-                //FrmManagePaySub.Show();
+                FrmManageItem FrmManageItem = new FrmManageItem(UserId, UserName, UserSurname, UserType);
+                FrmManageItem.Show();
             }
             catch (Exception ex)
             {

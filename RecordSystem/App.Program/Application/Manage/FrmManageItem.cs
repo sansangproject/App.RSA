@@ -1,311 +1,405 @@
 ﻿using System;
 using System.Data;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using SANSANG.Class; using SANSANG.Database;
+using Newtonsoft.Json;
+using SANSANG.Class;
+using SANSANG.Constant;
+using SANSANG.Database;
+using SANSANG.Utilites.App.Forms;
 
 namespace SANSANG
 {
     public partial class FrmManageItem : Form
     {
-        public string strUserId;
-        public string strUserName; public string strUserSurname;
-        public string strUserType;
+        public string UserId;
+        public string UserName;
+        public string UserSurname;
+        public string UserType;
 
-        public string programCode = "MANSU00";
-        public string strErr = "";
-        public string strLaguage = "TH";
-        public string strOpe = "";
-
-        public string filePath = "-";
-        public string fileName = "-";
-        public string fileType = ".jpg";
+        public string AppCode = "MANIT00";
+        public string AppName = "FrmManageItem";
+        public string Error = "";
 
         private DataTable dt = new DataTable();
-        private DataTable dts = new DataTable();
-
-        private clsSearch Search = new clsSearch();
+        private DataSet ds = new DataSet();
+        private StoreConstant Store = new StoreConstant();
+        private OperationConstant Operation = new OperationConstant();
+        private DataListConstant DataList = new DataListConstant();
         private clsDelete Delete = new clsDelete();
+        private clsEdit Edit = new clsEdit();
         private clsInsert Insert = new clsInsert();
-        private clsFunction Fn = new clsFunction();
+        private clsFunction Function = new clsFunction();
         private clsMessage Message = new clsMessage();
-       private dbConnection db = new dbConnection();
+        private dbConnection db = new dbConnection();
         private clsDataList List = new clsDataList();
-
+        private clsLog Log = new clsLog();
+        private clsImage Images = new clsImage();
+        private TableConstant Table = new TableConstant();
+        private ColumnConstant Column = new ColumnConstant();
+        private FrmAnimatedProgress Loading = new FrmAnimatedProgress(25);
+        private clsHelpper Helper = new clsHelpper();
+        private Timer Timer = new Timer();
         public string[,] Parameter = new string[,] { };
 
-        public FrmManageItem(string userIdLogin, string userNameLogin, string userSurNameLogin, string userTypeLogin)
+        public FrmManageItem(string UserIdLogin, string UserNameLogin, string UserSurNameLogin, string UserTypeLogin)
         {
             InitializeComponent();
 
-            strUserId = userIdLogin;
-            strUserName = userNameLogin;
-            strUserSurname = userSurNameLogin;
-            strUserType = userTypeLogin;
+            UserId = UserIdLogin;
+            UserName = UserNameLogin;
+            UserSurname = UserSurNameLogin;
+            UserType = UserTypeLogin;
         }
 
-        private void FrmManagePaySub_Load(object sender, EventArgs e)
+        private void FrmLoad(object sender, EventArgs e)
         {
-            List.GetList(cbbStatus, "0", "Status");
-            List.GetList(cbbPay, "Y", "Payment");
+            Loading.Show();
+            Timer.Interval = (1000);
+            Timer.Start();
+            Timer.Tick += new EventHandler(LoadList);
+        }
 
+        private void LoadList(object sender, EventArgs e)
+        {
+            List.GetLists(cbbStatus, string.Format(DataList.StatusId, "0"));
+            List.GetLists(cbbCategory, string.Format(DataList.CategoryId, "0"));
+            List.GetList(cbbType, DataList.PayTypes);
+            pb_Thai_True.Hide();
+            pb_Thai_False.Show();
+            gbForm.Enabled = true;
             Clear();
+            Timer.Stop();
         }
 
         public void Clear()
         {
-
+            Function.ClearAll(gbForm);
+            Search(false);
         }
 
-        //public void getDataGrid(DataTable dt)
-        //{
-        //    int row = dt.Rows.Count;
+        public void ShowGridView(DataTable dt)
+        {
+            try
+            {
+                if (Function.GetRows(dt) == 0)
+                {
+                    GridView.DataSource = null;
+                    txtCount.Text = Function.ShowNumberOfData(0);
+                }
+                else
+                {
+                    DataTable dtGrid = new DataTable();
+                    dtGrid = dt.DefaultView.ToTable(true, "SNo", "Code", "Display", "Categorys", "Types", "Dates", "Id");
 
-        //    if (row == 0)
-        //    {
-        //        dataGridView.DataSource = null;
-        //        picExcel.Visible = false;
-        //        lblCount.Text = "0";
-        //    }
-        //    else
-        //    {
-        //        DataTable dtGrid = new DataTable();
-        //        dtGrid = dt.DefaultView.ToTable(true, "MsPaymentSubCode", "MsPaymentSubNameTh", "MsPaymentNameTh", "MsPaymentSubTypeTxt", "MsStatusNameTh", "MsPaymentSubId");
+                    DataGridViewContentAlignment mc = DataGridViewContentAlignment.MiddleCenter;
+                    DataGridViewContentAlignment ml = DataGridViewContentAlignment.MiddleLeft;
 
-        //        DataGridViewContentAlignment mc = DataGridViewContentAlignment.MiddleCenter;
-        //        DataGridViewContentAlignment ml = DataGridViewContentAlignment.MiddleLeft;
+                    Function.showGridViewFormatFromStore(dtGrid, GridView,
+                        "ลำดับ", 50, true, mc, mc
+                        , "รหัส", 150, true, ml, ml
+                        , "ชื่อรายการ", 200, true, ml, ml
+                        , "ประเภท", 200, true, ml, ml
+                        , "สถานะ", 100, true, ml, ml
+                        , "ข้อมูล ณ วันที่", 150, true, mc, mc
+                        , "", 0, false, mc, mc
+                        );
 
-        //        Fn.showGridViewFormatFromStore(dtGrid, dataGridView,
-        //            "ลำดับ", 50, true, mc, mc
-        //            , "รหัส", 200, true, ml, ml
-        //            , "รายการ", 250, true, ml, ml
-        //            , "ประเภท", 250, true, ml, ml
-        //            , "รายรับ | รายจ่าย", 100, true, mc, mc
-        //            , "สถานะ", 100, true, mc, mc
-        //            , "", 0, false, mc, mc
-        //            );
+                    txtCount.Text = Function.ShowNumberOfData(dt.Rows.Count);
+                    GridView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }
+        }
 
-        //        picExcel.Visible = true;
-        //        lblCount.Text = row.ToString();
-        //    }
-        //}
+        private void Exit(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
-        //private void btnExit_Click(object sender, EventArgs e)
-        //{
-        //    this.Close();
-        //}
+        private void SearchData(object sender, EventArgs e)
+        {
+            Search(true);
+        }
 
-        //private void btnClear_Click(object sender, EventArgs e)
-        //{
-        //    Clear();
-        //}
+        public void Search(bool Search)
+        {
+            try
+            {
+                Parameter = new string[,]
+                {
+                    {"@Id", Search ? txtId.Text : ""},
+                    {"@Code", Search ? txtCode.Text : ""},
+                    {"@Name", Search ? txtName.Text : ""},
+                    {"@NameEn", Search ? txtNameEn.Text : ""},
+                    {"@Status", Search ? Function.GetComboId(cbbStatus) : "0"},
+                    {"@Display", Search ? txtDisplay.Text : ""},
+                    {"@Detail", Search ? txtDetail.Text : ""},
+                    {"@CategoryId", Search ? Function.GetComboId(cbbCategory) : "0"},
+                    {"@IsDebit", Search ? Function.GetComboId(cbbType) : "3"},
+                    {"@User", ""},
+                    {"@IsActive", "1"},
+                    {"@IsDelete", "0"},
+                    {"@Operation", Operation.SelectAbbr},
+                };
 
-        //private void picExcel_Click(object sender, EventArgs e)
-        //{
-        //}
+                string Condition = Function.ShowConditons(GetCondition());
+                lblCondition.Text = Condition == "" ? "ทั้งหมด" : Condition;
+                db.Get(Store.ManageItem, Parameter, out Error, out dt);
+                ShowGridView(dt);
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }
+        }
 
-        //private void btnDelete_Click(object sender, EventArgs e)
-        //{
-        //    strOpe = "D";
+        private string GetCondition()
+        {
+            try
+            {
+                string strCondition = "";
 
-        //    string[,] Parameter = new string[,]
-        //        {
-        //            {"@MsPaymentSubCode", txtCode.Text},
-        //            {"@DeleteType", "0"},
-        //            {"@User", strUserId},
-        //        };
+                strCondition += txtCode.Text != "" ? ", รหัสอ้างอิง: " + txtCode.Text : "";
+                strCondition += cbbCategory.Text != ":: กรุณาเลือก ::" ? ", ประเภท: " + cbbCategory.Text : "";
+                strCondition += txtName.Text != "" ? ", ชื่อรายการ: " + txtName.Text : "";
+                strCondition += txtNameEn.Text != "" ? ", ชื่ออังกฤษ: " + txtNameEn.Text : "";
+                strCondition += txtDisplay.Text != "" ? ", ชื่อที่แสดง: " + txtDisplay.Text : "";
+                strCondition += txtDetail.Text != "" ? ", รายละเอียด: " + txtDetail.Text : "";
+                strCondition += cbbType.Text != ":: กรุณาเลือก ::" ? ", ประเภทรายการ: " + cbbType.Text : "";
+                strCondition += cbbStatus.Text != ":: กรุณาเลือก ::" ? ", สถานะ: " + cbbStatus.Text : "";
+                return strCondition;
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+                return "";
+            }
+        }
 
-        //    bool Action = Message.MessageConfirmation(strOpe, strUserId, "");
+        private void ShowData(DataTable dt)
+        {
+            try
+            {
+                if (Function.GetRows(dt) > 0)
+                {
 
-        //    if (Action == true)
-        //    {
-        //        db.Operations("Spr_D_TblMasterPaymentSub", Parameter, out strErr);
+                    txtId.Text = dt.Rows[0]["Id"].ToString();
+                    txtCode.Text = dt.Rows[0]["Code"].ToString();
+                    txtName.Text = dt.Rows[0]["Name"].ToString();
+                    txtNameEn.Text = dt.Rows[0]["NameEn"].ToString();
+                    txtDisplay.Text = dt.Rows[0]["Display"].ToString();
+                    txtDetail.Text = dt.Rows[0]["Detail"].ToString();
 
-        //        if (strErr == null)
-        //        {
-        //            Message.MessageResult(strOpe, "C", strErr);
-        //            Clear();
-        //        }
-        //        else
-        //        {
-        //            Message.MessageResult(strOpe, "E", strErr);
-        //        }
-        //    }
-        //}
+                    lblDisplay.Text = dt.Rows[0]["Display"].ToString();
 
-        //private void btnEdit_Click(object sender, EventArgs e)
-        //{
-        //    strOpe = "U";
+                    cbbCategory.SelectedValue = dt.Rows[0]["CategoryId"].ToString();
+                    cbbStatus.SelectedValue = dt.Rows[0]["Status"].ToString();
+                    cbbType.SelectedValue = dt.Rows[0]["PayTypes"].ToString();
 
-        //    string[,] Parameter = new string[,]
-        //        {
-        //            {"@MsPaymentSubCode", txtCode.Text},
-        //            {"@MsPaymentSubNameTh", txtName.Text},
-        //            {"@MsPaymentSubNameEn", txtCodeRef.Text},
-        //            {"@MsPaymentSubDetail", txtDetail.Text},
-        //            {"@MsPaymentCode", cbbPay.SelectedValue.ToString()},
-        //            {"@MsPaymentSubType", rdbAdd.Checked == true? "1" : "0"},
-        //            {"@MsPaymentSubStatus",cbbStatus.SelectedValue.ToString()},
-        //            {"@User", strUserId},
-        //        };
+                    if (txtDisplay.Text == txtNameEn.Text)
+                    {
+                        cb_Thai.Checked = true;
+                        pb_Thai_True.Show();
+                        pb_Thai_False.Hide();
+                    }
+                    else
+                    {
+                        pb_Thai_True.Hide();
+                        pb_Thai_False.Show();
+                        cb_Thai.Checked = false;
+                    }
 
-        //    bool Action = Message.MessageConfirmation(strOpe, strUserId, "");
+                    GridView.Focus();
+                }
+            }
+            catch
+            {
 
-        //    if (Action == true)
-        //    {
-        //        db.Operations("Spr_U_TblMasterPaymentSub", Parameter, out strErr);
+            }
+        }
 
-        //        if (strErr == null)
-        //        {
-        //            Message.MessageResult(strOpe, "C", strErr);
-        //            Clear();
-        //        }
-        //        else
-        //        {
-        //            Message.MessageResult(strOpe, "E", strErr);
-        //        }
-        //    }
-        //}
+        private void EditData(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(txtName.Text) && !string.IsNullOrEmpty(txtCode.Text))
+                {
+                    Parameter = new string[,]
+                    {
+                        {"@Id", txtId.Text},
+                        {"@Code", txtCode.Text},
+                        {"@Name", txtName.Text},
+                        {"@NameEn", txtNameEn.Text},
+                        {"@Status", Function.GetComboId(cbbStatus)},
+                        {"@Display", txtDisplay.Text},
+                        {"@Detail", txtDetail.Text},
+                        {"@CategoryId", Function.GetComboId(cbbCategory)},
+                        {"@IsDebit", Function.GetComboId(cbbType)},
+                        {"@User", UserId},
+                        {"@IsActive", "1"},
+                        {"@IsDelete", "0"},
+                        {"@Operation", Operation.UpdateAbbr},
+                    };
 
-        //public void SearchData()
-        //{
-        //    string[,] Parameter = new string[,]
-        //        {
-        //            {"@MsPaymentSubCode", txtCode.Text},
-        //            {"@MsPaymentSubNameTh", txtName.Text},
-        //            {"@MsPaymentSubNameEn", txtCodeRef.Text},
-        //            {"@MsPaymentSubDetail", txtDetail.Text},
-        //            {"@MsPaymentCode", cbbPay.SelectedValue.ToString()},
-        //            {"@MsPaymentSubType",  rdbAll.Checked == false ? rdbAdd.Checked == true? "1" : "0" : ""},
-        //            {"@MsPaymentSubStatus",cbbStatus.SelectedValue.ToString()},
-        //        };
+                    if (Edit.Update(AppCode, AppName, UserId, Store.ManageItem, Parameter, txtCode.Text, Details: txtName.Text))
+                    {
+                        Clear();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }
+        }
 
-        //    db.Get("Spr_S_TblMasterPaymentSub", Parameter, out strErr, out dt);
-        //    getDataGrid(dt);
-        //}
+        private void DeleteData(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Delete.DropId(AppCode, AppName, UserId, 0, Table.Item, txtId, txtCode, Details: txtName.Text))
+                {
+                    Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }
+        }
 
-        //private void btnSearch_Click(object sender, EventArgs e)
-        //{
-        //    SearchData();
-        //}
+        private void ClearData(object sender, EventArgs e)
+        {
+            Clear();
+        }
 
-        //private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        //{
-        //    if (e.RowIndex >= 0)
-        //    {
-        //        DataGridViewRow row = this.dataGridView.Rows[e.RowIndex];
-        //        DataTable dt = new DataTable();
+        private void AddData(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(txtName.Text) && !string.IsNullOrEmpty(txtCode.Text))
+                {
+                    if (!Function.IsDuplicates(Table.Item, txtCode.Text, txtName.Text, Detail: string.Concat(txtCode.Text, " | ", txtName.Text)))
+                    {
+                        Parameter = new string[,]
+                        {
+                            {"@Id", txtId.Text},
+                            {"@Code", txtCode.Text},
+                            {"@Name", txtName.Text},
+                            {"@NameEn", txtNameEn.Text},
+                            {"@Status", Function.GetComboId(cbbStatus)},
+                            {"@Display", txtDisplay.Text},
+                            {"@Detail", txtDetail.Text},
+                            {"@CategoryId", Function.GetComboId(cbbCategory)},
+                            {"@IsDebit", Function.GetComboId(cbbType)},
+                            {"@User", UserId},
+                            {"@IsActive", "1"},
+                            {"@IsDelete", "0"},
+                            {"@Operation", Operation.InsertAbbr},
+                        };
 
-        //        string[,] Parameter = new string[,]
-        //        {
-        //            {"@MsPaymentSubCode", row.Cells["MsPaymentSubCode"].Value.ToString()},
-        //            {"@MsPaymentSubNameTh",""},
-        //            {"@MsPaymentSubNameEn",""},
-        //            {"@MsPaymentSubDetail",""},
-        //            {"@MsPaymentCode","0"},
-        //            {"@MsPaymentSubType",""},
-        //            {"@MsPaymentSubStatus","0"},
-        //        };
+                        if (Insert.Add(AppCode, AppName, UserId, Store.ManageItem, Parameter, txtCode.Text, Details: txtName.Text))
+                        {
+                            Clear();
+                        }
+                    }
+                }
+                else
+                {
+                    Message.ShowRequestData();
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }
+        }
 
-        //        db.Get("Spr_S_TblMasterPaymentSub", Parameter, out strErr, out dt);
+        private void CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow RowIndex = this.GridView.Rows[e.RowIndex];
 
-        //        txtCode.Text = dt.Rows[0]["MsPaymentSubCode"].ToString();
-        //        txtName.Text = dt.Rows[0]["MsPaymentSubNameTh"].ToString();
-        //        txtDetail.Text = dt.Rows[0]["MsPaymentSubDetail"].ToString();
-        //        cbbPay.SelectedValue = dt.Rows[0]["MsPaymentCode"].ToString();
-        //        rdbAdd.Checked = dt.Rows[0]["MsPaymentSubType"].ToString() == "1" ? true : false;
-        //        rdbMinus.Checked = dt.Rows[0]["MsPaymentSubType"].ToString() == "1" ? false : true;
-        //        cbbStatus.SelectedValue = dt.Rows[0]["MsPaymentSubStatus"].ToString();
-        //        txtCodeRef.Text = dt.Rows[0]["MsPaymentSubNameEn"].ToString();
-        //    }
-        //}
+                Parameter = new string[,]
+                {
+                    {"@Id", RowIndex.Cells["Id"].Value.ToString()},
+                    {"@Code",  ""},
+                    {"@Name",  ""},
+                    {"@NameEn", ""},
+                    {"@Status", "0"},
+                    {"@Display", ""},
+                    {"@Detail", ""},
+                    {"@CategoryId", "0"},
+                    {"@IsDebit", ""},
+                    {"@User", ""},
+                    {"@IsActive", "1"},
+                    {"@IsDelete", "0"},
+                    {"@Operation", Operation.SelectAbbr},
+                };
 
-        //private void btnAdd_Click(object sender, EventArgs e)
-        //{
-        //    txtCode.Text = Fn.getIdRunning("Tbl_Master_Payment_Sub", "MsPaymentSubId", (cbbPay.SelectedValue.ToString()).Substring(0, 3));
-        //    strOpe = "I";
+                db.Get(Store.ManageItem, Parameter, out Error, out dt);
+                ShowData(dt);
+            }
+        }
 
-        //    string[,] Parameter = new string[,]
-        //        {
-        //            {"@MsPaymentSubCode", txtCode.Text},
-        //            {"@MsPaymentSubNameTh", txtName.Text},
-        //            {"@MsPaymentSubNameEn", txtCodeRef.Text},
-        //            {"@MsPaymentSubDetail", txtDetail.Text},
-        //            {"@MsPaymentCode", cbbPay.SelectedValue.ToString()},
-        //            {"@MsPaymentSubType", rdbAdd.Checked == true? "1" : "0"},
-        //            {"@MsPaymentSubStatus",cbbStatus.SelectedValue.ToString()},
-        //            {"@User", strUserId},
-        //        };
+        private void FrmKeyDown(object sender, KeyEventArgs e)
+        {
+            string keyCode = Function.KeyPress(sender, e);
 
-        //    bool Action = Message.MessageConfirmation(strOpe, strUserId, "");
+            if (keyCode == "Ctrl+S")
+            {
+                AddData(sender, e);
+            }
+            if (keyCode == "Ctrl+E")
+            {
+                EditData(sender, e);
+            }
+            if (keyCode == "Ctrl+D")
+            {
+                DeleteData(sender, e);
+            }
+            if (keyCode == "Altl+C")
+            {
+                ClearData(sender, e);
+            }
+            if (keyCode == "Enter")
+            {
+                Search(true);
+            }
+        }
 
-        //    if (Action == true)
-        //    {
-        //        db.Operations("Spr_I_TblMasterPaymentSub", Parameter, out strErr);
+        private void Ticker(object sender, EventArgs e)
+        {
+            lblDisplay.Text = string.Empty;
+            txtDisplay.Text = string.Empty;
 
-        //        if (strErr == null)
-        //        {
-        //            Message.MessageResult(strOpe, "C", strErr);
-        //            Clear();
-        //        }
-        //        else
-        //        {
-        //            Message.MessageResult(strOpe, "E", strErr);
-        //        }
-        //    }
-        //}
+            if (Helper.CheckboxTicker(sender, this))
+            {
+                txtDisplay.Text = txtNameEn.Text;
+                lblDisplay.Text = txtNameEn.Text;
+            }
+            else
+            {
+                txtDisplay.Text = txtName.Text;
+                lblDisplay.Text = txtName.Text;
+            }
+        }
 
-        //private void txtIDkeyPress(object sender, KeyPressEventArgs e)
-        //{
-        //    Fn.btnEnter(e, btnSearch);
-        //}
-
-        //private void txtNamekeyPress(object sender, KeyPressEventArgs e)
-        //{
-        //    Fn.btnEnter(e, btnSearch);
-        //}
-
-        //private void txtDetailkeyPress(object sender, KeyPressEventArgs e)
-        //{
-        //    Fn.btnEnter(e, btnSearch);
-        //}
-
-        //private void cbbPay_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    if (cbbPay.SelectedValue != null)
-        //    {
-        //        if (cbbPay.SelectedValue.ToString() != "0" & txtName.Text == "")
-        //        {
-        //            txtDetail.Text = cbbPay.Text + " | ";
-        //        }
-        //    }
-        //    else
-        //    {
-        //        cbbPay.SelectedValue = "0";
-        //    }
-        //}
-
-        //private void txtType_KeyPress(object sender, KeyPressEventArgs e)
-        //{
-        //    if (Char.IsNumber(e.KeyChar) || e.KeyChar == '.' || e.KeyChar == 8)
-        //    {
-        //    }
-        //    else
-        //    {
-        //        e.Handled = true;
-        //        return;
-        //    }
-        //}
-
-        //private void txtName_TextChanged(object sender, EventArgs e)
-        //{
-        //    if (txtName.Text != "")
-        //    {
-        //        cbbStatus.SelectedValue = "Y";
-        //    }
-        //    else
-        //    {
-        //        cbbStatus.SelectedValue = "0";
-        //    }
-        //}
+        private void txtCode_Leave(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtCode.Text) && txtCode.Text.Count() == 3)
+            {
+                string Code = txtCode.Text;
+                string NewCode = Function.GetRunningId(Table.Item, Column.ItemId);
+                txtCode.Text = NewCode == "" ? Code : string.Concat(Code, NewCode);
+            }
+        }
     }
 }
