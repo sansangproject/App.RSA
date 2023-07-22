@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Data;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 using SANSANG.Class;
 using SANSANG.Constant;
 using SANSANG.Database;
@@ -10,15 +12,15 @@ using SANSANG.Utilites.App.Forms;
 
 namespace SANSANG
 {
-    public partial class FrmManageCategory : Form
+    public partial class FrmManageMoney : Form
     {
         public string UserId;
         public string UserName;
         public string UserSurname;
         public string UserType;
 
-        public string AppCode = "MANCA00";
-        public string AppName = "FrmManageCategory";
+        public string AppCode = "MANMN00";
+        public string AppName = "FrmManageMoney";
         public string Error = "";
 
         private DataTable dt = new DataTable();
@@ -36,12 +38,13 @@ namespace SANSANG
         private clsLog Log = new clsLog();
         private clsImage Images = new clsImage();
         private TableConstant Table = new TableConstant();
+        private ColumnConstant Column = new ColumnConstant();
         private FrmAnimatedProgress Loading = new FrmAnimatedProgress(25);
         private clsHelpper Helper = new clsHelpper();
         private Timer Timer = new Timer();
         public string[,] Parameter = new string[,] { };
 
-        public FrmManageCategory(string UserIdLogin, string UserNameLogin, string UserSurNameLogin, string UserTypeLogin)
+        public FrmManageMoney(string UserIdLogin, string UserNameLogin, string UserSurNameLogin, string UserTypeLogin)
         {
             InitializeComponent();
 
@@ -62,6 +65,7 @@ namespace SANSANG
         private void LoadList(object sender, EventArgs e)
         {
             List.GetLists(cbbStatus, string.Format(DataList.StatusId, "0"));
+
             pb_Thai_True.Hide();
             pb_Thai_False.Show();
             gbForm.Enabled = true;
@@ -87,17 +91,18 @@ namespace SANSANG
                 else
                 {
                     DataTable dtGrid = new DataTable();
-                    dtGrid = dt.DefaultView.ToTable(true, "SNo", "Code", "Name", "NameEn", "StatusName", "Date", "Id");
+                    dtGrid = dt.DefaultView.ToTable(true, "SNo", "Code", "Display", "Name", "NameEn", "StatusName", "Dates", "Id");
 
                     DataGridViewContentAlignment mc = DataGridViewContentAlignment.MiddleCenter;
                     DataGridViewContentAlignment ml = DataGridViewContentAlignment.MiddleLeft;
 
                     Function.showGridViewFormatFromStore(dtGrid, GridView,
-                        "ลำดับ", 50, true, mc, mc
-                        , "รหัส", 150, true, ml, ml
-                        , "ชื่อประเภท", 200, true, ml, ml
-                        , "Category", 200, true, ml, ml
-                        , "สถานะ", 100, true, ml, ml
+                          "ลำดับ", 50, true, mc, mc
+                        , "รหัส", 100, true, ml, ml
+                        , "การชำระเงิน", 150, true, ml, ml
+                        , "ภาษาไทย", 150, true, ml, ml
+                        , "ภาษาอังกฤษ", 150, true, ml, ml
+                        , "สถานะ", 50, true, ml, ml
                         , "ข้อมูล ณ วันที่", 150, true, mc, mc
                         , "", 0, false, mc, mc
                         );
@@ -142,7 +147,7 @@ namespace SANSANG
 
                 string Condition = Function.ShowConditons(GetCondition());
                 lblCondition.Text = Condition == "" ? "ทั้งหมด" : Condition;
-                db.Get(Store.ManageCategory, Parameter, out Error, out dt);
+                db.Get(Store.ManageMoney, Parameter, out Error, out dt);
                 ShowGridView(dt);
             }
             catch (Exception ex)
@@ -158,7 +163,7 @@ namespace SANSANG
                 string strCondition = "";
 
                 strCondition += txtCode.Text != "" ? ", รหัสอ้างอิง: " + txtCode.Text : "";
-                strCondition += txtName.Text != "" ? ", ชื่อประเภท: " + txtName.Text : "";
+                strCondition += txtName.Text != "" ? ", การชำระเงิน: " + txtName.Text : "";
                 strCondition += txtNameEn.Text != "" ? ", ชื่ออังกฤษ: " + txtNameEn.Text : "";
                 strCondition += txtDisplay.Text != "" ? ", ชื่อที่แสดง: " + txtDisplay.Text : "";
                 strCondition += cbbStatus.Text != ":: กรุณาเลือก ::" ? ", สถานะ: " + cbbStatus.Text : "";
@@ -177,15 +182,18 @@ namespace SANSANG
             {
                 if (Function.GetRows(dt) > 0)
                 {
+
                     txtId.Text = dt.Rows[0]["Id"].ToString();
                     txtCode.Text = dt.Rows[0]["Code"].ToString();
                     txtName.Text = dt.Rows[0]["Name"].ToString();
                     txtNameEn.Text = dt.Rows[0]["NameEn"].ToString();
                     txtDisplay.Text = dt.Rows[0]["Display"].ToString();
+
                     lblDisplay.Text = dt.Rows[0]["Display"].ToString();
+
                     cbbStatus.SelectedValue = dt.Rows[0]["Status"].ToString();
 
-                    if(txtDisplay.Text == txtNameEn.Text)
+                    if (txtDisplay.Text == txtNameEn.Text)
                     {
                         cb_Thai.Checked = true;
                         pb_Thai_True.Show();
@@ -207,29 +215,81 @@ namespace SANSANG
             }
         }
 
+        private void EditData(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(txtName.Text) && !string.IsNullOrEmpty(txtCode.Text))
+                {
+                    Parameter = new string[,]
+                    {
+                        {"@Id", txtId.Text},
+                        {"@Code", txtCode.Text},
+                        {"@Name", txtName.Text},
+                        {"@NameEn", txtNameEn.Text},
+                        {"@Status", Function.GetComboId(cbbStatus)},
+                        {"@Display", txtDisplay.Text},
+                        {"@User", UserId},
+                        {"@IsActive", "1"},
+                        {"@IsDelete", "0"},
+                        {"@Operation", Operation.UpdateAbbr},
+                    };
+
+                    if (Edit.Update(AppCode, AppName, UserId, Store.ManageMoney, Parameter, txtCode.Text, Details: txtName.Text))
+                    {
+                        Clear();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }
+        }
+
+        private void DeleteData(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Delete.DropId(AppCode, AppName, UserId, 0, Table.Money, txtId, txtCode, Details: txtName.Text))
+                {
+                    Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }
+        }
+
+        private void ClearData(object sender, EventArgs e)
+        {
+            Clear();
+        }
+
         private void AddData(object sender, EventArgs e)
         {
             try
             {
                 if (!string.IsNullOrEmpty(txtName.Text) && !string.IsNullOrEmpty(txtCode.Text))
                 {
-                    if (!Function.IsDuplicates(Table.Category, txtCode.Text, txtName.Text, Detail: string.Concat(txtCode.Text, " | ", txtName.Text)))
+                    if (!Function.IsDuplicates(Table.Money, txtCode.Text, txtName.Text, Detail: string.Concat(txtCode.Text, " | ", txtName.Text)))
                     {
                         Parameter = new string[,]
                         {
-                            {"@Id", ""},
+                            {"@Id", txtId.Text},
                             {"@Code", txtCode.Text},
                             {"@Name", txtName.Text},
                             {"@NameEn", txtNameEn.Text},
-                            {"@Display", txtDisplay.Text},
                             {"@Status", Function.GetComboId(cbbStatus)},
+                            {"@Display", txtDisplay.Text},
                             {"@User", UserId},
-                            {"@IsActive", Function.GetComboId(cbbStatus) == "1000"? "1" : "0"},
+                            {"@IsActive", "1"},
                             {"@IsDelete", "0"},
                             {"@Operation", Operation.InsertAbbr},
                         };
 
-                        if (Insert.Add(AppCode, AppName, UserId, Store.ManageCategory, Parameter, txtCode.Text, Details: txtName.Text))
+                        if (Insert.Add(AppCode, AppName, UserId, Store.ManageMoney, Parameter, txtCode.Text, Details: txtName.Text))
                         {
                             Clear();
                         }
@@ -246,56 +306,29 @@ namespace SANSANG
             }
         }
 
-        private void EditData(object sender, EventArgs e)
+        private void CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
+            if (e.RowIndex >= 0)
             {
-                if (!string.IsNullOrEmpty(txtName.Text) && !string.IsNullOrEmpty(txtCode.Text))
+                DataGridViewRow RowIndex = this.GridView.Rows[e.RowIndex];
+
+                Parameter = new string[,]
                 {
-                    Parameter = new string[,]
-                    {
-                        {"@Id", txtId.Text},
-                        {"@Code", txtCode.Text},
-                        {"@Name", txtName.Text},
-                        {"@NameEn", txtNameEn.Text},
-                        {"@Display", txtDisplay.Text},
-                        {"@Status", Function.GetComboId(cbbStatus)},
-                        {"@User", UserId},
-                        {"@IsActive", Function.GetComboId(cbbStatus) == "1000"? "1" : "0"},
-                        {"@IsDelete", "0"},
-                        {"@Operation", Operation.UpdateAbbr},
-                    };
+                    {"@Id", RowIndex.Cells["Id"].Value.ToString()},
+                    {"@Code",  ""},
+                    {"@Name",  ""},
+                    {"@NameEn", ""},
+                    {"@Status", "0"},
+                    {"@Display", ""},
+                    {"@User", ""},
+                    {"@IsActive", "1"},
+                    {"@IsDelete", "0"},
+                    {"@Operation", Operation.SelectAbbr},
+                };
 
-                    if (Edit.Update(AppCode, AppName, UserId, Store.ManageCategory, Parameter, txtCode.Text, Details: txtName.Text))
-                    {
-                        Clear();
-                    }
-                }
+                db.Get(Store.ManageMoney, Parameter, out Error, out dt);
+                ShowData(dt);
             }
-            catch (Exception ex)
-            {
-                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
-            }
-        }
-
-        private void DeleteData(object sender, EventArgs e)
-        {
-            try
-            {
-                if (Delete.DropId(AppCode, AppName, UserId, 0, Table.Category, txtId, txtCode, Details: txtName.Text))
-                {
-                    Clear();
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
-            }
-        }
-
-        private void ClearData(object sender, EventArgs e)
-        {
-            Clear();
         }
 
         private void FrmKeyDown(object sender, KeyEventArgs e)
@@ -324,37 +357,6 @@ namespace SANSANG
             }
         }
 
-        private void CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow RowIndex = this.GridView.Rows[e.RowIndex];
-
-                Parameter = new string[,]
-                {
-                    {"@Id", RowIndex.Cells["Id"].Value.ToString()},
-                    {"@Code", ""},
-                    {"@Name", ""},
-                    {"@NameEn", ""},
-                    {"@Display", ""},
-                    {"@Status", "0"},
-                    {"@User", ""},
-                    {"@IsActive", "1"},
-                    {"@IsDelete", "0"},
-                    {"@Operation", Operation.SelectAbbr},
-                };
-
-                db.Get(Store.ManageCategory, Parameter, out Error, out dt);
-                ShowData(dt);
-            }
-        }
-
-        private void Display(object sender, EventArgs e)
-        {
-            lblDisplay.Text = string.Empty;
-            lblDisplay.Text = txtDisplay.Text;
-        }
-
         private void Ticker(object sender, EventArgs e)
         {
             lblDisplay.Text = string.Empty;
@@ -372,14 +374,14 @@ namespace SANSANG
             }
         }
 
-        private void txtName_Leave(object sender, EventArgs e)
+        private void txtCode_Leave(object sender, EventArgs e)
         {
-            pb_Thai_False.Visible = true;
-            lblDisplay.Text = string.Empty;
-            txtDisplay.Text = string.Empty;
-
-            txtDisplay.Text = txtName.Text;
-            lblDisplay.Text = txtName.Text;
+            if (!string.IsNullOrEmpty(txtCode.Text) && txtCode.Text.Count() == 3)
+            {
+                string Code = txtCode.Text;
+                string NewCode = Function.GetRunningId(Table.Money, Column.MoneyId);
+                txtCode.Text = NewCode == "" ? Code : string.Concat(Code, NewCode);
+            }
         }
     }
 }

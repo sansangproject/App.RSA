@@ -8,7 +8,6 @@ namespace SANSANG.Constant
 {
     public class TableConstant
     {
-
         public string ExpenseId = "1050";
         public string AddressId = "1047";
         public string TrackingsId = "1061";
@@ -22,6 +21,7 @@ namespace SANSANG.Constant
 
         public string ItemId = "1020";
         public string CategoryId = "1019";
+        public string MoneyId = "1016";
 
         public string Expenses = "[dbo].[Expenses]";
         public string Payments = "[dbo].[Payments]";
@@ -34,6 +34,7 @@ namespace SANSANG.Constant
 
         public string Item = "[mst].[Item]";
         public string Category = "[mst].[Category]";
+        public string Money = "[mst].[Money]";
 
         public string Logo = "[mst].[Logo]";
         public string Shop = "[mst].[Shop]";
@@ -126,10 +127,6 @@ namespace SANSANG.Constant
         public string UserWater = "[mst].[UserWater]";
         public string InvoiceElectricity = "[dbo].[InvoiceElectricity]";
         public string InvoiceWater = "[dbo].[InvoiceWater]";
-
-
-
-
 
         public string Image = "[dbo].[Images]";
         public string CheckImage = "dbo.Images";

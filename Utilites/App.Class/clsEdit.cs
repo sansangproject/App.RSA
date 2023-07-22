@@ -95,5 +95,24 @@ namespace SANSANG.Class
                 return false;
             }
         }
+
+        public string Update(string AppCodes = "", string AppNames = "", string UserId = "", string strStore = "", string[,] Parameter = null)
+        {
+            string AppCode = AppCodes;
+            string AppName = AppNames;
+            string Store = strStore;
+
+            try
+            {
+                db.Operations(Store, Parameter, out Error);
+                return Error;
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+                return ex.Message;
+            }
+        }
+
     }
 }

@@ -294,6 +294,64 @@ namespace SANSANG.Database
             }
         }
 
+        public void Operation(string ProcedureName, string[,] Parameter, out string err, out DataTable dt)
+        {
+            int number = Parameter.Length / 2;
+            string db = GetDatabase();
+            string Config = System.Configuration.ConfigurationManager.ConnectionStrings[db].ConnectionString;
+            SqlConnection Connect = new SqlConnection();
+
+            try
+            {
+                Connect.ConnectionString = Config;
+                Connect.Open();
+
+                SqlCommand cmd = new SqlCommand(ProcedureName, Connect);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                var strParameters = new string[Parameter.Length];
+                int r = 0;
+
+                for (int i = 0; i < number; i++)
+                {
+                    for (int j = 0; j < 2; j++)
+                    {
+                        if (r < Parameter.Length)
+                        {
+                            strParameters[r] = Parameter[i, j];
+                            r++;
+                        }
+                    }
+                }
+
+                int xA = 0;
+                int xB = 1;
+
+                for (int value = 1; value <= number; value++)
+                {
+                    cmd.Parameters.Add(new SqlParameter(strParameters[xA], strParameters[xB]));
+
+                    xA = xA + 2;
+                    xB = xA + 1;
+                }
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataSet ds = new DataSet();
+
+                da.Fill(ds);
+                dt = ds.Tables[0];
+                err = null;
+                Connect.Close();
+            }
+            catch (Exception ex)
+            {
+                dt = null;
+                err = ex.ToString();
+                Connect.Close();
+            }
+        }
+
         public string GetDatabase()
         {
             string AppPath = AppDomain.CurrentDomain.BaseDirectory.Substring(0, AppDomain.CurrentDomain.BaseDirectory.Length - 10);
