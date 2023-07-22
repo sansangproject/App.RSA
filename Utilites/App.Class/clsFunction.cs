@@ -291,6 +291,13 @@ namespace SANSANG.Class
         {
             try
             {
+                string NameEn = "";
+
+                if (Payments == "1070")
+                {
+                    NameEn = Codes == "โอนเงิน" ? "Transfer Withdrawal" : "";
+                }
+
                 Parameter = new string[,]
                 {
                     {"@Id", ""},
@@ -301,7 +308,7 @@ namespace SANSANG.Class
                     {"@IsDelete", ""},
                     {"@Operation", "S"},
                     {"@Name", Codes},
-                    {"@NameEn", ""},
+                    {"@NameEn", NameEn},
                     {"@Display", ""},
                     {"@Detail", ""},
                     {"@CategoryId", Payments},

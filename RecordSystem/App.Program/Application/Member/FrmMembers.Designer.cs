@@ -1020,6 +1020,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmLoad);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmKeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
