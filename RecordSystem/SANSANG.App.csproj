@@ -1001,7 +1001,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App.Image\" />
-    <Folder Include="App.Program\Master\" />
     <Folder Include="App.Program\Report\" />
     <Folder Include="App.Program\Theme\" />
   </ItemGroup>

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Data;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 using SANSANG.Class;
 using SANSANG.Constant;
 using SANSANG.Database;
@@ -36,6 +38,7 @@ namespace SANSANG
         private clsLog Log = new clsLog();
         private clsImage Images = new clsImage();
         private TableConstant Table = new TableConstant();
+        private ColumnConstant Column = new ColumnConstant();
         private FrmAnimatedProgress Loading = new FrmAnimatedProgress(25);
         private clsHelpper Helper = new clsHelpper();
         private Timer Timer = new Timer();
@@ -62,227 +65,323 @@ namespace SANSANG
         private void LoadList(object sender, EventArgs e)
         {
             List.GetLists(cbbStatus, string.Format(DataList.StatusId, "0"));
-            //pb_Thai_True.Hide();
-            //pb_Thai_False.Show();
-            //gbForm.Enabled = true;
-            //Clear();
+
+            pb_Thai_True.Hide();
+            pb_Thai_False.Show();
+            gbForm.Enabled = true;
+            Clear();
             Timer.Stop();
         }
 
+        public void Clear()
+        {
+            Function.ClearAll(gbForm);
+            Search(false);
+        }
 
+        public void ShowGridView(DataTable dt)
+        {
+            try
+            {
+                if (Function.GetRows(dt) == 0)
+                {
+                    GridView.DataSource = null;
+                    txtCount.Text = Function.ShowNumberOfData(0);
+                }
+                else
+                {
+                    DataTable dtGrid = new DataTable();
+                    dtGrid = dt.DefaultView.ToTable(true, "SNo", "Code", "Display", "Name", "NameEn", "StatusName", "Dates", "Id");
 
+                    DataGridViewContentAlignment mc = DataGridViewContentAlignment.MiddleCenter;
+                    DataGridViewContentAlignment ml = DataGridViewContentAlignment.MiddleLeft;
 
+                    Function.showGridViewFormatFromStore(dtGrid, GridView,
+                          "ลำดับ", 50, true, mc, mc
+                        , "รหัส", 100, true, ml, ml
+                        , "การชำระเงิน", 150, true, ml, ml
+                        , "ภาษาไทย", 150, true, ml, ml
+                        , "ภาษาอังกฤษ", 150, true, ml, ml
+                        , "สถานะ", 50, true, ml, ml
+                        , "ข้อมูล ณ วันที่", 150, true, mc, mc
+                        , "", 0, false, mc, mc
+                        );
 
+                    txtCount.Text = Function.ShowNumberOfData(dt.Rows.Count);
+                    GridView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }
+        }
 
+        private void Exit(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
+        private void SearchData(object sender, EventArgs e)
+        {
+            Search(true);
+        }
 
+        public void Search(bool Search)
+        {
+            try
+            {
+                Parameter = new string[,]
+                {
+                    {"@Id", Search ? txtId.Text : ""},
+                    {"@Code", Search ? txtCode.Text : ""},
+                    {"@Name", Search ? txtName.Text : ""},
+                    {"@NameEn", Search ? txtNameEn.Text : ""},
+                    {"@Status", Search ? Function.GetComboId(cbbStatus) : "0"},
+                    {"@Display", Search ? txtDisplay.Text : ""},
+                    {"@User", ""},
+                    {"@IsActive", "1"},
+                    {"@IsDelete", "0"},
+                    {"@Operation", Operation.SelectAbbr},
+                };
 
+                string Condition = Function.ShowConditons(GetCondition());
+                lblCondition.Text = Condition == "" ? "ทั้งหมด" : Condition;
+                db.Get(Store.ManageMoney, Parameter, out Error, out dt);
+                ShowGridView(dt);
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }
+        }
 
+        private string GetCondition()
+        {
+            try
+            {
+                string strCondition = "";
 
+                strCondition += txtCode.Text != "" ? ", รหัสอ้างอิง: " + txtCode.Text : "";
+                strCondition += txtName.Text != "" ? ", การชำระเงิน: " + txtName.Text : "";
+                strCondition += txtNameEn.Text != "" ? ", ชื่ออังกฤษ: " + txtNameEn.Text : "";
+                strCondition += txtDisplay.Text != "" ? ", ชื่อที่แสดง: " + txtDisplay.Text : "";
+                strCondition += cbbStatus.Text != ":: กรุณาเลือก ::" ? ", สถานะ: " + cbbStatus.Text : "";
+                return strCondition;
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+                return "";
+            }
+        }
 
+        private void ShowData(DataTable dt)
+        {
+            try
+            {
+                if (Function.GetRows(dt) > 0)
+                {
 
+                    txtId.Text = dt.Rows[0]["Id"].ToString();
+                    txtCode.Text = dt.Rows[0]["Code"].ToString();
+                    txtName.Text = dt.Rows[0]["Name"].ToString();
+                    txtNameEn.Text = dt.Rows[0]["NameEn"].ToString();
+                    txtDisplay.Text = dt.Rows[0]["Display"].ToString();
 
-        //public void Clear()
-        //{
-        //    txtCode.Enabled = true;
-        //    txtCode.Text = "";
-        //    txtCode.Focus();
-        //    txtName.Text = "";
-        //    txtEn.Text = "";
-        //    cbbStatus.SelectedValue = "0";
-        //    lblSearch.Text = "";
+                    lblDisplay.Text = dt.Rows[0]["Display"].ToString();
 
-        //    string[,] Parameter = new string[,]
-        //        {
-        //            {"@MsMoneyCode", ""},
-        //            {"@MsMoneyNameTh", ""},
-        //            {"@MsMoneyNameEn", ""},
-        //            {"@MsMoneyStatus", "0"},
-        //        };
+                    cbbStatus.SelectedValue = dt.Rows[0]["Status"].ToString();
 
-        //    db.Get("Spr_S_TblMasterMoney", Parameter, out strErr, out dt);
-        //    getDataGrid(dt);
-        //}
+                    if (txtDisplay.Text == txtNameEn.Text)
+                    {
+                        cb_Thai.Checked = true;
+                        pb_Thai_True.Show();
+                        pb_Thai_False.Hide();
+                    }
+                    else
+                    {
+                        pb_Thai_True.Hide();
+                        pb_Thai_False.Show();
+                        cb_Thai.Checked = false;
+                    }
 
-        //public void getDataGrid(DataTable dt)
-        //{
-        //    int row = dt.Rows.Count;
+                    GridView.Focus();
+                }
+            }
+            catch
+            {
 
-        //    if (row == 0)
-        //    {
-        //        dataGridView.DataSource = null;
-        //        picExcel.Visible = false;
-        //        lblCount.Text = "0";
-        //    }
-        //    else
-        //    {
-        //        DataTable dtGrid = new DataTable();
-        //        dtGrid = dt.DefaultView.ToTable(true, "MsMoneyCode", "MsMoneyNameTh", "MsStatusNameTh", "MsMoneyCreateBy", "MsMoneyCreateDate", "MsMoneyId");
+            }
+        }
 
-        //        DataGridViewContentAlignment mc = DataGridViewContentAlignment.MiddleCenter;
-        //        DataGridViewContentAlignment ml = DataGridViewContentAlignment.MiddleLeft;
+        private void EditData(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(txtName.Text) && !string.IsNullOrEmpty(txtCode.Text))
+                {
+                    Parameter = new string[,]
+                    {
+                        {"@Id", txtId.Text},
+                        {"@Code", txtCode.Text},
+                        {"@Name", txtName.Text},
+                        {"@NameEn", txtNameEn.Text},
+                        {"@Status", Function.GetComboId(cbbStatus)},
+                        {"@Display", txtDisplay.Text},
+                        {"@User", UserId},
+                        {"@IsActive", "1"},
+                        {"@IsDelete", "0"},
+                        {"@Operation", Operation.UpdateAbbr},
+                    };
 
-        //        Fn.showGridViewFormatFromStore(dtGrid, dataGridView,
-        //            "ลำดับ", 50, true, mc, mc
-        //            , "รหัส", 200, true, ml, ml
-        //            , "ชื่อรายการ", 250, true, ml, ml
-        //            , "สถานะ", 250, true, ml, ml
-        //            , "ผู้สร้าง", 100, true, ml, ml
-        //            , "วันที่สร้าง", 100, true, mc, mc
-        //            , "", 0, false, mc, mc
-        //            );
+                    if (Edit.Update(AppCode, AppName, UserId, Store.ManageMoney, Parameter, txtCode.Text, Details: txtName.Text))
+                    {
+                        Clear();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }
+        }
 
-        //        picExcel.Visible = true;
-        //        lblCount.Text = row.ToString();
-        //    }
-        //}
+        private void DeleteData(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Delete.DropId(AppCode, AppName, UserId, 0, Table.Money, txtId, txtCode, Details: txtName.Text))
+                {
+                    Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }
+        }
 
-        //private void btnExit_Click(object sender, EventArgs e)
-        //{
-        //    this.Close();
-        //}
+        private void ClearData(object sender, EventArgs e)
+        {
+            Clear();
+        }
 
-        //private void btnClear_Click(object sender, EventArgs e)
-        //{
-        //    Clear();
-        //}
+        private void AddData(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(txtName.Text) && !string.IsNullOrEmpty(txtCode.Text))
+                {
+                    if (!Function.IsDuplicates(Table.Money, txtCode.Text, txtName.Text, Detail: string.Concat(txtCode.Text, " | ", txtName.Text)))
+                    {
+                        Parameter = new string[,]
+                        {
+                            {"@Id", txtId.Text},
+                            {"@Code", txtCode.Text},
+                            {"@Name", txtName.Text},
+                            {"@NameEn", txtNameEn.Text},
+                            {"@Status", Function.GetComboId(cbbStatus)},
+                            {"@Display", txtDisplay.Text},
+                            {"@User", UserId},
+                            {"@IsActive", "1"},
+                            {"@IsDelete", "0"},
+                            {"@Operation", Operation.InsertAbbr},
+                        };
 
-        //private void picExcel_Click(object sender, EventArgs e)
-        //{
-        //}
+                        if (Insert.Add(AppCode, AppName, UserId, Store.ManageMoney, Parameter, txtCode.Text, Details: txtName.Text))
+                        {
+                            Clear();
+                        }
+                    }
+                }
+                else
+                {
+                    Message.ShowRequestData();
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }
+        }
 
-        //private void btnDelete_Click(object sender, EventArgs e)
-        //{
-        //    strOpe = "D";
+        private void CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow RowIndex = this.GridView.Rows[e.RowIndex];
 
-        //    string[,] Parameter = new string[,]
-        //        {
-        //           {"@MsMoneyCode", txtCode.Text},
-        //           {"@DeleteType", "0"},
-        //           {"@User", strUserId},
-        //        };
+                Parameter = new string[,]
+                {
+                    {"@Id", RowIndex.Cells["Id"].Value.ToString()},
+                    {"@Code",  ""},
+                    {"@Name",  ""},
+                    {"@NameEn", ""},
+                    {"@Status", "0"},
+                    {"@Display", ""},
+                    {"@User", ""},
+                    {"@IsActive", "1"},
+                    {"@IsDelete", "0"},
+                    {"@Operation", Operation.SelectAbbr},
+                };
 
-        //    bool Action = Message.MessageConfirmation(strOpe, strUserId, "");
+                db.Get(Store.ManageMoney, Parameter, out Error, out dt);
+                ShowData(dt);
+            }
+        }
 
-        //    if (Action == true)
-        //    {
-        //        db.Operations("Spr_D_TblMasterMoney", Parameter, out strErr);
+        private void FrmKeyDown(object sender, KeyEventArgs e)
+        {
+            string keyCode = Function.KeyPress(sender, e);
 
-        //        if (strErr == null)
-        //        {
-        //            Message.MessageResult(strOpe, "C", strErr);
-        //            Clear();
-        //        }
-        //        else
-        //        {
-        //            Message.MessageResult(strOpe, "E", strErr);
-        //        }
-        //    }
-        //}
+            if (keyCode == "Ctrl+S")
+            {
+                AddData(sender, e);
+            }
+            if (keyCode == "Ctrl+E")
+            {
+                EditData(sender, e);
+            }
+            if (keyCode == "Ctrl+D")
+            {
+                DeleteData(sender, e);
+            }
+            if (keyCode == "Altl+C")
+            {
+                ClearData(sender, e);
+            }
+            if (keyCode == "Enter")
+            {
+                Search(true);
+            }
+        }
 
-        //private void btnEdit_Click(object sender, EventArgs e)
-        //{
-        //    strOpe = "U";
+        private void Ticker(object sender, EventArgs e)
+        {
+            lblDisplay.Text = string.Empty;
+            txtDisplay.Text = string.Empty;
 
-        //    string[,] Parameter = new string[,]
-        //        {
-        //            {"@MsMoneyCode", txtCode.Text},
-        //            {"@MsMoneyNameTh", txtName.Text},
-        //            {"@MsMoneyNameEn", txtEn.Text},
-        //            {"@MsMoneyStatus",cbbStatus.SelectedValue.ToString()},
-        //            {"@User",strUserId },
-        //        };
+            if (Helper.CheckboxTicker(sender, this))
+            {
+                txtDisplay.Text = txtNameEn.Text;
+                lblDisplay.Text = txtNameEn.Text;
+            }
+            else
+            {
+                txtDisplay.Text = txtName.Text;
+                lblDisplay.Text = txtName.Text;
+            }
+        }
 
-        //    bool Action = Message.MessageConfirmation(strOpe, strUserId, "");
-
-        //    if (Action == true)
-        //    {
-        //        db.Operations("Spr_U_TblMasterMoney", Parameter, out strErr);
-
-        //        if (strErr == null)
-        //        {
-        //            Message.MessageResult(strOpe, "C", strErr);
-        //            Clear();
-        //        }
-        //        else
-        //        {
-        //            Message.MessageResult(strOpe, "E", strErr);
-        //        }
-        //    }
-        //}
-
-        //private void btnSearch_Click(object sender, EventArgs e)
-        //{
-        //    SearchData();
-        //}
-
-        //public void SearchData()
-        //{
-        //    string[,] Parameter = new string[,]
-        //        {
-        //            {"@MsMoneyCode", txtCode.Text},
-        //            {"@MsMoneyNameTh", txtName.Text},
-        //            {"@MsMoneyNameEn", txtEn.Text},
-        //            {"@MsMoneyStatus", cbbStatus.SelectedValue.ToString()},
-        //        };
-
-        //    db.Get("Spr_S_TblMasterMoney", Parameter, out strErr, out dt);
-        //    getDataGrid(dt);
-        //}
-
-        //private void btnAdd_Click(object sender, EventArgs e)
-        //{
-        //    strOpe = "I";
-
-        //    string[,] Parameter = new string[,]
-        //        {
-        //            {"@MsMoneyCode", txtCode.Text},
-        //            {"@MsMoneyNameTh", txtName.Text},
-        //            {"@MsMoneyNameEn", txtEn.Text},
-        //            {"@MsMoneyStatus",cbbStatus.SelectedValue.ToString()},
-        //            {"@User",strUserId },
-        //        };
-
-        //    bool Action = Message.MessageConfirmation(strOpe, strUserId, "");
-
-        //    if (Action == true)
-        //    {
-        //        db.Operations("Spr_I_TblMasterMoney", Parameter, out strErr);
-
-        //        if (strErr == null)
-        //        {
-        //            Message.MessageResult(strOpe, "C", strErr);
-        //            Clear();
-        //        }
-        //        else
-        //        {
-        //            Message.MessageResult(strOpe, "E", strErr);
-        //        }
-        //    }
-        //}
-
-        //private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        //{
-        //    if (e.RowIndex >= 0)
-        //    {
-        //        DataGridViewRow row = this.dataGridView.Rows[e.RowIndex];
-        //        DataTable dt = new DataTable();
-
-        //        string[,] Parameter = new string[,]
-        //        {
-        //            {"@MsMoneyCode", row.Cells["MsMoneyCode"].Value.ToString()},
-        //            {"@MsMoneyNameTh", ""},
-        //            {"@MsMoneyNameEn",""},
-        //            {"@MsMoneyStatus", "0"},
-        //        };
-
-        //        db.Get("Spr_S_TblMasterMoney", Parameter, out strErr, out dt);
-
-        //        txtCode.Text = dt.Rows[0]["MsMoneyCode"].ToString();
-        //        txtName.Text = dt.Rows[0]["MsMoneyNameTh"].ToString();
-        //        cbbStatus.SelectedValue = dt.Rows[0]["MsMoneyStatus"].ToString();
-        //        txtEn.Text = dt.Rows[0]["MsMoneyNameEn"].ToString();
-        //    }
-        //}
+        private void txtCode_Leave(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtCode.Text) && txtCode.Text.Count() == 3)
+            {
+                string Code = txtCode.Text;
+                string NewCode = Function.GetRunningId(Table.Money, Column.MoneyId);
+                txtCode.Text = NewCode == "" ? Code : string.Concat(Code, NewCode);
+            }
+        }
     }
 }

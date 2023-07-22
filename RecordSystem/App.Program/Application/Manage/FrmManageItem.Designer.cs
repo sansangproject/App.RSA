@@ -67,7 +67,7 @@
             this.GridView = new System.Windows.Forms.DataGridView();
             this.picExcel = new System.Windows.Forms.PictureBox();
             this.pbMain = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pbMenu = new System.Windows.Forms.Panel();
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
@@ -90,7 +90,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picExcel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMain)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.pbMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBanner)).BeginInit();
             this.SuspendLayout();
             // 
@@ -335,7 +335,7 @@
             this.gbForm.Controls.Add(this.cbbCategory);
             this.gbForm.Controls.Add(this.btnSearch);
             this.gbForm.Controls.Add(this.pbMain);
-            this.gbForm.Controls.Add(this.panel1);
+            this.gbForm.Controls.Add(this.pbMenu);
             this.gbForm.Controls.Add(this.pbBanner);
             this.gbForm.Controls.Add(this.txtId);
             this.gbForm.Controls.Add(this.cb_Thai);
@@ -582,26 +582,26 @@
             this.pbMain.TabIndex = 199;
             this.pbMain.TabStop = false;
             // 
-            // panel1
+            // pbMenu
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel1.Controls.Add(this.label25);
-            this.panel1.Controls.Add(this.label24);
-            this.panel1.Controls.Add(this.label23);
-            this.panel1.Controls.Add(this.label22);
-            this.panel1.Controls.Add(this.btnEdit);
-            this.panel1.Controls.Add(this.label21);
-            this.panel1.Controls.Add(this.btnClear);
-            this.panel1.Controls.Add(this.label20);
-            this.panel1.Controls.Add(this.btnExit);
-            this.panel1.Controls.Add(this.btnSearchs);
-            this.panel1.Controls.Add(this.btnDelete);
-            this.panel1.Controls.Add(this.btnAdd);
-            this.panel1.Location = new System.Drawing.Point(1012, 14);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(264, 68);
-            this.panel1.TabIndex = 157;
+            this.pbMenu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbMenu.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pbMenu.Controls.Add(this.label25);
+            this.pbMenu.Controls.Add(this.label24);
+            this.pbMenu.Controls.Add(this.label23);
+            this.pbMenu.Controls.Add(this.label22);
+            this.pbMenu.Controls.Add(this.btnEdit);
+            this.pbMenu.Controls.Add(this.label21);
+            this.pbMenu.Controls.Add(this.btnClear);
+            this.pbMenu.Controls.Add(this.label20);
+            this.pbMenu.Controls.Add(this.btnExit);
+            this.pbMenu.Controls.Add(this.btnSearchs);
+            this.pbMenu.Controls.Add(this.btnDelete);
+            this.pbMenu.Controls.Add(this.btnAdd);
+            this.pbMenu.Location = new System.Drawing.Point(1012, 14);
+            this.pbMenu.Name = "pbMenu";
+            this.pbMenu.Size = new System.Drawing.Size(264, 68);
+            this.pbMenu.TabIndex = 157;
             // 
             // label25
             // 
@@ -833,8 +833,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picExcel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMain)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.pbMenu.ResumeLayout(false);
+            this.pbMenu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBanner)).EndInit();
             this.ResumeLayout(false);
 
@@ -862,7 +862,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.GroupBox gbForm;
         private System.Windows.Forms.PictureBox pbBanner;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pbMenu;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label23;

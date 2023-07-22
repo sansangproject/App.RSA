@@ -10,6 +10,6 @@ namespace SANSANG.Constant
     {
 
         public string ItemId = "Id";
-        
+        public string MoneyId = "Id";
     }
 }

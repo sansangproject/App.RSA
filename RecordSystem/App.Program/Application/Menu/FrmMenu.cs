@@ -389,6 +389,11 @@ namespace SANSANG
                 FrmManageCategory Frm = new FrmManageCategory(UserId, UserName, UserSurname, UserType);
                 Frm.Show();
             }
+            else if (((RadMenuItem)sender).Name == "MANMN00")
+            {
+                FrmManageMoney Frm = new FrmManageMoney(UserId, UserName, UserSurname, UserType);
+                Frm.Show();
+            }
             else if (((RadMenuItem)sender).Name == "MANIT00")
             {
                 FrmManageItem Frm = new FrmManageItem(UserId, UserName, UserSurname, UserType);

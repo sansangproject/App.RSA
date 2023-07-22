@@ -43,6 +43,7 @@ namespace SANSANG.Constant
 
         public static string Workday = "[Workday]";
         public static string Gold = "[Golds]";
+        public static string Money = "[Money]";
 
         public static string GetMasterList = "[GetListMaster]";
         public static string GetList = "[GetList]";
@@ -80,6 +81,7 @@ namespace SANSANG.Constant
         public string ManageProduct = string.Format(Stores, SPR, Product);
         public string ManageMember = string.Format(Stores, SPR, Member);
         public string ManageCategory = string.Format(Stores, SPR, Category);
+        public string ManageMoney = string.Format(Stores, SPR, Money);
 
         public string ManageWorkday = string.Format(Stores, SPR, Workday);
         public string ManageGold = string.Format(Stores, SPR, Gold);
