@@ -113,7 +113,7 @@ namespace SANSANG.Class
             DataTable dt = new DataTable();
             DataRow dr;
 
-            dt.Columns.Add("Index");
+            dt.Columns.Add("Id");
             dt.Columns.Add("Value");
 
             dr = dt.NewRow();
@@ -207,7 +207,7 @@ namespace SANSANG.Class
             dr["Value"] = years.ToString();
             dt.Rows.Add(dr);
 
-            for (int i = 10; i >= 1; i--)
+            for (int i = 12; i >= 1; i--)
             {
                 dr = dt.NewRow();
                 dr["Id"] = Convert.ToString(years - i);
@@ -268,530 +268,530 @@ namespace SANSANG.Class
 
 
 
-        public void GetList(ComboBox ccbName, string strValue, string strCbb, int format = 0)
-        {
-            try
-            {
-                //if (strCbb == List.Status)
-                //{
-                //    string[,] Parameter = new string[,]
-                //    {
-                //        {"@MsStatusType", strValue},
-                //    };
-
-                //    db.GetList("Spr_L_TblMasterStatus", Parameter, out Error, out ds);
-                //}
-
-                if (strCbb == List.StatusAll)
-                {
-                    string[,] Parameter = new string[,]
-                    {
-                        {"@MsStatusType", strValue},
-                    };
-
-                    db.GetList("Spr_L_TblMasterStatusAll", Parameter, out Error, out ds);
-                }
-
-                if (strCbb == List.Type)
-                {
-                    string[,] Parameter = new string[,]
-                    {
-                        {"@MsStatusType", strValue},
-                    };
-
-                    db.GetList("Spr_L_TblMasterStatus", Parameter, out Error, out ds);
-                }
-
-                if (strCbb == List.CreditBank)
-                {
-                    string[,] Parameter = new string[,]
-                    {
-                        {"@Status", strValue},
-                    };
-
-                    db.GetList("Spr_L_TblMasterCreditBank", Parameter, out Error, out ds);
-                }
-
-                if (strCbb == List.Water)
-                {
-                    string[,] Parameter = new string[,]
-                    {
-                        {"@Type", strValue},
-                        {"@Authority", "MWA"},
-                    };
-
-                    db.GetList("mst.Spr_L_MetropolitanAuthority", Parameter, out Error, out ds);
-                }
-
-                if (strCbb == List.Electricity)
-                {
-                    string[,] Parameter = new string[,]
-                    {
-                        {"@Type", strValue},
-                        {"@Authority", "MEA"},
-                    };
-
-                    db.GetList("mst.Spr_L_MetropolitanAuthority", Parameter, out Error, out ds);
-                }
-
-                if (strCbb == List.HospitalId)
-                {
-                    string[,] Parameter = new string[,]
-                    {
-                        {"@MsHospitalStatus", strValue}
-                    };
-
-                    db.GetList("Spr_L_TblMasterHospital", Parameter, out Error, out ds);
-                }
-
-                if (strCbb == List.PatientId)
-                {
-                    string[,] Parameter = new string[,]
-                    {
-                        {"@MsPatientStatus", strValue}
-                    };
-
-                    db.GetList("Spr_L_TblMasterPatient", Parameter, out Error, out ds);
-                }
-
-                if (strCbb == List.Path)
-                {
-                    string[,] Parameter = new string[,]
-                    {
-                        {"@Status", strValue}
-                    };
-
-                    db.GetList("Store.ListPath", Parameter, out Error, out ds);
-                }
-
-                if (strCbb == List.Credit)
-                {
-                    string[,] Parameter = new string[,]
-                    {
-                        {"@MsCardStatus", strValue}
-                    };
-
-                    db.GetList("Spr_L_TblMasterCard", Parameter, out Error, out ds);
-                }
-
-                if (strCbb == List.Logo)
-                {
-                    string[,] Parameter = new string[,]
-                    {
-                        {"@Status", strValue}
-                    };
-
-                    db.GetList("Store.ListLogo", Parameter, out Error, out ds);
-                }
-
-                if (strCbb == List.Money)
-                {
-                    string[,] Parameter = new string[,] { };
-
-                    if (format == 2)
-                    {
-                        Parameter = new string[,]
-                        {
-                            {"@Format", format.ToString()},
-                            {"@MsMoneyStatus", strValue},
-                        };
-                    }
-                    else
-                    {
-                        Parameter = new string[,]
-                        {
-                            {"@Format", "0"},
-                            {"@MsMoneyStatus", strValue},
-                        };
-                    }
-
-                    db.GetList("Spr_L_TblMasterMoney", Parameter, out Error, out ds);
-                }
-
-                if (strCbb == List.UserType)
-                {
-                    string[,] Parameter = new string[,]
-                    {
-                        {"@MsUserTypeStatus", strValue}
-                    };
-
-                    db.GetList("Spr_L_TblMasterUserType", Parameter, out Error, out ds);
-                }
-
-                if (strCbb == List.Payment)
-                {
-                    string[,] Parameter = new string[,]
-                    {
-                        {"@MsPaymentStatus", strValue}
-                    };
-
-                    db.GetList("Spr_L_TblMasterPayment", Parameter, out Error, out ds);
-                }
-
-                if (strCbb == List.Transactions)
-                {
-                    string[,] Parameter = new string[,]
-                    {
-                         {"@MsPaymentCode", strValue}
-                        ,{"@MsPaymentSubStatus", "Y"}
-                    };
-
-                    db.GetList("Spr_L_TblMasterTransactions", Parameter, out Error, out ds);
-                }
-
-                if (strCbb == List.PaymentSub)
-                {
-                    string[,] Parameter = new string[,]
-                    {
-                        {"@MsPaymentCode", Fn.SubstringBefore(strValue, ",")}
-                       ,{"@MsPaymentSubStatus", Fn.SubstringAfter(strValue, ",")}
-                    };
-
-                    db.GetList("Spr_L_TblMasterPaymentSub", Parameter, out Error, out ds);
-                }
-
-                if (strCbb == List.Coin)
-                {
-                    string[,] Parameter = new string[,]
-                    {
-                        {"@MsCoinStatus", strValue}
-                    };
-
-                    db.GetList("Spr_L_TblMasterCoin", Parameter, out Error, out ds);
-                }
-
-                if (strCbb == List.Member)
-                {
-                    string[,] Parameter = new string[,]
-                    {
-                        {"@MsLogoStatus", strValue.Substring(0, 1)},
-                        {"@MsLogoType", strValue.Substring(1, 2)}
-                    };
-
-                    db.GetList("Spr_L_TblMasterMemLogo", Parameter, out Error, out ds);
-                }
-
-                if (strCbb == List.MainProductType)
-                {
-                    string[,] Parameter = new string[,]
-                    {
-                        {"@Status", strValue}
-                    };
-
-                    db.GetList("Spr_L_ProductType", Parameter, out Error, out ds);
-                }
-
-                if (strCbb == List.Account)
-                {
-                    string[,] Parameter = new string[,] { };
-
-                    if (format != 0)
-                    {
-                        Parameter = new string[,]
-                        {
-                            {"@AccountStatus", strValue},
-                            {"@Format", format.ToString()}
-                        };
-                    }
-                    else
-                    {
-                        Parameter = new string[,]
-                        {
-                            {"@Format", "0"},
-                            {"@AccountStatus", strValue}
-                        };
-                    }
-
-                    db.GetList("Spr_L_TblSaveAccount", Parameter, out Error, out ds);
-                }
-
-                if (strCbb == List.AccountType)
-                {
-                    string[,] Parameter = new string[,]
-                    {
-                        {"@MsAccountTypeStatus", strValue}
-                    };
-
-                    db.GetList("Spr_L_TblMasterAccountType", Parameter, out Error, out ds);
-                }
-
-                if (strCbb == List.Branch)
-                {
-                    string[,] Parameter = new string[,]
-                    {
-                        {"@MsBranchBank", strValue.Substring(0, 3)},
-                        {"@MsBranchStatus", strValue.Substring(4, 1)}
-                    };
-
-                    db.GetList("Spr_L_TblMasterBranch", Parameter, out Error, out ds);
-                }
-
-                if (strCbb == List.Owner)
-                {
-                    string[,] Parameter = new string[,]
-                {
-                    {"@MsLogoStatus", strValue},
-                    {"@MsLogoType", ""}
-                };
-
-                    db.GetList("Spr_L_TblMasterMemLogo", Parameter, out Error, out ds);
-                }
-
-                if (strCbb == List.Geography)
-                {
-                    string[,] Parameter = new string[,]
-                    {
-                        {"@GeographyStatus", strValue},
-                    };
-
-                    db.GetList("Spr_L_TblMasterGeography", Parameter, out Error, out ds);
-                }
-
-                if (strCbb == List.ElecOffice)
-                {
-                    string[,] Parameter = new string[,]
-                    {
-                        {"@MsElecOfficeStatus", strValue},
-                    };
-
-                    db.GetList("Spr_L_TblMasterElectricityOffice", Parameter, out Error, out ds);
-                }
-                if (strCbb == List.Address)
-                {
-                    string[,] Parameter = new string[,]
-                    {
-                        {"@AddressStatus", strValue},
-                    };
-
-                    db.GetList("Spr_L_Address", Parameter, out Error, out ds);
-                }
-
-                if (strCbb == List.GeographyAll)
-                {
-                    string[,] Parameter = new string[,]
-                    {
-                        {"@GeographyStatus", strValue},
-                    };
-
-                    db.GetList("Spr_L_TblMasterGeographyAll", Parameter, out Error, out ds);
-                }
-
-                if (strCbb == List.ProvinceAll)
-                {
-                    string[,] Parameter = new string[,]
-                    {
-                        {"@ProvinceId", ""},
-                        {"@ProvinceGeoId", ""},
-                        {"@ProvinceStatus", "0"},
-                    };
-
-                    db.GetList("Spr_L_TblMasterProvinceAll", Parameter, out Error, out ds);
-                }
-
-                if (strCbb == List.Table)
-                {
-                    string[,] Parameter = new string[,] { };
-
-                    db.GetList("Spr_L_Table", Parameter, out Error, out ds);
-                }
-
-                if (strCbb == List.TableWithSchema)
-                {
-                    string[,] Parameter = new string[,] { };
-
-                    db.GetList("Spr_L_TableWithSchema", Parameter, out Error, out ds);
-                }
-
-                if (strCbb == List.Column)
-                {
-                    if (strValue != "")
-                    {
-                        string[,] Parameter = new string[,]
-                        {
-                            {"@TableName", strValue},
-                        };
-
-                        db.GetList("Spr_L_Column", Parameter, out Error, out ds);
-                    }
-                }
-
-                if (strCbb == List.ProductType)
-                {
-                    if (strValue != "")
-                    {
-                        Parameter = new string[,]
-                        {
-                            {"@Status", strValue},
-                        };
-
-                        db.GetList("Store.ListProductType", Parameter, out Error, out ds);
-                    }
-                }
-
-                if (strCbb == List.Unit)
-                {
-                    if (strValue != "")
-                    {
-                        Parameter = new string[,]
-                        {
-                            {"@Status", strValue},
-                        };
-
-                        db.GetReport("Store.ListUnit", Parameter, out Error, out ds);
-                    }
-                }
-
-                if (strCbb == List.Shop)
-                {
-                    if (strValue != "")
-                    {
-                        string[,] Parameter = new string[,]
-                        {
-                            {"@Status", strValue},
-                        };
-
-                        db.GetList("Spr_L_TblMasterShop", Parameter, out Error, out ds);
-                    }
-                }
-
-                if (strCbb == List.MonthDebt)
-                {
-                    if (strValue != "")
-                    {
-                        string[,] Parameter = new string[,]
-                        {
-                            {"@Status", strValue},
-                        };
-
-                        db.GetList("Spr_L_MonthAndYearOfData", Parameter, out Error, out ds);
-                    }
-                }
-
-                if (strCbb == List.PostLocation)
-                {
-                    string[,] Parameter = new string[,]
-                    {
-                        {"@Status", strValue},
-                    };
-
-                    db.GetList("Spr_L_TrackScanLocation", Parameter, out Error, out ds);
-                }
-
-                if (strCbb == List.CreditCard)
-                {
-                    string[,] Parameter = new string[,]
-                    {
-                        {"@Status", strValue},
-                    };
-
-                    db.GetList("Spr_L_TblMasterCreditCard", Parameter, out Error, out ds);
-                }
-
-                if (strCbb == List.PostAddress)
-                {
-                    string[,] Parameter = new string[,]
-                    {
-                        {"@AddressStatus", strValue},
-                    };
-
-                    db.GetList("Spr_L_PostAddress", Parameter, out Error, out ds);
-                }
-
-                if (strCbb == List.AmphoeAll)
-                {
-                    string[,] Parameter = new string[,]
-                    {
-                        {"@AmphoeId", ""},
-                        {"@AmphoeStatus", "Y"},
-                        {"@AmphoeProvinceId", ""}
-                    };
-
-                    db.GetList("Spr_L_TblMasterAmphoeAll", Parameter, out Error, out ds);
-                }
-
-                if (strCbb == List.TambolAll)
-                {
-                    string[,] Parameter = new string[,]
-                    {
-                         {"@TambolId", ""},
-                         {"@TambolStatus", "Y"},
-                         {"@TambolAmphoeId", ""}
-                    };
-
-                    db.GetList("Spr_L_TblMasterTambolAll", Parameter, out Error, out ds);
-                }
-
-                if (strCbb == List.Receiver || strCbb == List.Sender)
-                {
-                    string[,] Parameter = new string[,]
-                    {
-                         {"@Type", ""},
-                    };
-
-                    db.GetList("Spr_L_TblSaveAddress", Parameter, out Error, out ds);
-                }
-
-                if (strCbb == List.Receivers)
-                {
-                    string[,] Parameter = new string[,]
-                    {
-                         {"@Type", strValue},
-                    };
-
-                    db.GetList("Spr_L_TblSaveAddress", Parameter, out Error, out ds);
-                }
-
-                if (strCbb == List.TrackStatus)
-                {
-                    string[,] Parameter = new string[,]
-                    {
-                         {"@TrackStatusNumber", ""}
-                    };
-
-                    db.GetList("Spr_L_TblMasterTrackStatus", Parameter, out Error, out ds);
-                }
-
-                if (strCbb == List.TrackCode)
-                {
-                    string[,] Parameter = new string[,]
-                    {
-                         {"@TrackPostCode", ""}
-                    };
-
-                    db.GetList("Spr_L_TblSaveTrackPost", Parameter, out Error, out ds);
-                }
-
-                if (strCbb == List.StatusType)
-                {
-                    string[,] Parameter = new string[,]
-                    {
-                         {"@Status", ""}
-                    };
-
-                    db.GetReport("Store.ListStatusType", Parameter, out Error, out ds);
-                }
-
-                if (strCbb == List.Vicinity)
-                {
-                    string[,] Parameter = new string[,]
-                    {
-                         {"@MsStatusType", "15"}
-                    };
-
-                    db.GetList("Spr_L_TblMasterStatus", Parameter, out Error, out ds);
-                }
-
-                dt = ds.Tables[0];
-
-                ccbName.DataSource = dt;
-                ccbName.DisplayMember = "Name";
-                ccbName.ValueMember = "Code";
-            }
-            catch
-            {
-
-            }
-        }
+        //public void GetList(ComboBox ccbName, string strValue, string strCbb, int format = 0)
+        //{
+        //    try
+        //    {
+        //        //if (strCbb == List.Status)
+        //        //{
+        //        //    string[,] Parameter = new string[,]
+        //        //    {
+        //        //        {"@MsStatusType", strValue},
+        //        //    };
+
+        //        //    db.GetList("Spr_L_TblMasterStatus", Parameter, out Error, out ds);
+        //        //}
+
+        //        if (strCbb == List.StatusAll)
+        //        {
+        //            string[,] Parameter = new string[,]
+        //            {
+        //                {"@MsStatusType", strValue},
+        //            };
+
+        //            db.GetList("Spr_L_TblMasterStatusAll", Parameter, out Error, out ds);
+        //        }
+
+        //        if (strCbb == List.Type)
+        //        {
+        //            string[,] Parameter = new string[,]
+        //            {
+        //                {"@MsStatusType", strValue},
+        //            };
+
+        //            db.GetList("Spr_L_TblMasterStatus", Parameter, out Error, out ds);
+        //        }
+
+        //        if (strCbb == List.CreditBank)
+        //        {
+        //            string[,] Parameter = new string[,]
+        //            {
+        //                {"@Status", strValue},
+        //            };
+
+        //            db.GetList("Spr_L_TblMasterCreditBank", Parameter, out Error, out ds);
+        //        }
+
+        //        if (strCbb == List.Water)
+        //        {
+        //            string[,] Parameter = new string[,]
+        //            {
+        //                {"@Type", strValue},
+        //                {"@Authority", "MWA"},
+        //            };
+
+        //            db.GetList("mst.Spr_L_MetropolitanAuthority", Parameter, out Error, out ds);
+        //        }
+
+        //        if (strCbb == List.Electricity)
+        //        {
+        //            string[,] Parameter = new string[,]
+        //            {
+        //                {"@Type", strValue},
+        //                {"@Authority", "MEA"},
+        //            };
+
+        //            db.GetList("mst.Spr_L_MetropolitanAuthority", Parameter, out Error, out ds);
+        //        }
+
+        //        if (strCbb == List.HospitalId)
+        //        {
+        //            string[,] Parameter = new string[,]
+        //            {
+        //                {"@MsHospitalStatus", strValue}
+        //            };
+
+        //            db.GetList("Spr_L_TblMasterHospital", Parameter, out Error, out ds);
+        //        }
+
+        //        if (strCbb == List.PatientId)
+        //        {
+        //            string[,] Parameter = new string[,]
+        //            {
+        //                {"@MsPatientStatus", strValue}
+        //            };
+
+        //            db.GetList("Spr_L_TblMasterPatient", Parameter, out Error, out ds);
+        //        }
+
+        //        if (strCbb == List.Path)
+        //        {
+        //            string[,] Parameter = new string[,]
+        //            {
+        //                {"@Status", strValue}
+        //            };
+
+        //            db.GetList("Store.ListPath", Parameter, out Error, out ds);
+        //        }
+
+        //        if (strCbb == List.Credit)
+        //        {
+        //            string[,] Parameter = new string[,]
+        //            {
+        //                {"@MsCardStatus", strValue}
+        //            };
+
+        //            db.GetList("Spr_L_TblMasterCard", Parameter, out Error, out ds);
+        //        }
+
+        //        if (strCbb == List.Logo)
+        //        {
+        //            string[,] Parameter = new string[,]
+        //            {
+        //                {"@Status", strValue}
+        //            };
+
+        //            db.GetList("Store.ListLogo", Parameter, out Error, out ds);
+        //        }
+
+        //        if (strCbb == List.Money)
+        //        {
+        //            string[,] Parameter = new string[,] { };
+
+        //            if (format == 2)
+        //            {
+        //                Parameter = new string[,]
+        //                {
+        //                    {"@Format", format.ToString()},
+        //                    {"@MsMoneyStatus", strValue},
+        //                };
+        //            }
+        //            else
+        //            {
+        //                Parameter = new string[,]
+        //                {
+        //                    {"@Format", "0"},
+        //                    {"@MsMoneyStatus", strValue},
+        //                };
+        //            }
+
+        //            db.GetList("Spr_L_TblMasterMoney", Parameter, out Error, out ds);
+        //        }
+
+        //        if (strCbb == List.UserType)
+        //        {
+        //            string[,] Parameter = new string[,]
+        //            {
+        //                {"@MsUserTypeStatus", strValue}
+        //            };
+
+        //            db.GetList("Spr_L_TblMasterUserType", Parameter, out Error, out ds);
+        //        }
+
+        //        if (strCbb == List.Payment)
+        //        {
+        //            string[,] Parameter = new string[,]
+        //            {
+        //                {"@MsPaymentStatus", strValue}
+        //            };
+
+        //            db.GetList("Spr_L_TblMasterPayment", Parameter, out Error, out ds);
+        //        }
+
+        //        if (strCbb == List.Transactions)
+        //        {
+        //            string[,] Parameter = new string[,]
+        //            {
+        //                 {"@MsPaymentCode", strValue}
+        //                ,{"@MsPaymentSubStatus", "Y"}
+        //            };
+
+        //            db.GetList("Spr_L_TblMasterTransactions", Parameter, out Error, out ds);
+        //        }
+
+        //        if (strCbb == List.PaymentSub)
+        //        {
+        //            string[,] Parameter = new string[,]
+        //            {
+        //                {"@MsPaymentCode", Fn.SubstringBefore(strValue, ",")}
+        //               ,{"@MsPaymentSubStatus", Fn.SubstringAfter(strValue, ",")}
+        //            };
+
+        //            db.GetList("Spr_L_TblMasterPaymentSub", Parameter, out Error, out ds);
+        //        }
+
+        //        if (strCbb == List.Coin)
+        //        {
+        //            string[,] Parameter = new string[,]
+        //            {
+        //                {"@MsCoinStatus", strValue}
+        //            };
+
+        //            db.GetList("Spr_L_TblMasterCoin", Parameter, out Error, out ds);
+        //        }
+
+        //        if (strCbb == List.Member)
+        //        {
+        //            string[,] Parameter = new string[,]
+        //            {
+        //                {"@MsLogoStatus", strValue.Substring(0, 1)},
+        //                {"@MsLogoType", strValue.Substring(1, 2)}
+        //            };
+
+        //            db.GetList("Spr_L_TblMasterMemLogo", Parameter, out Error, out ds);
+        //        }
+
+        //        if (strCbb == List.MainProductType)
+        //        {
+        //            string[,] Parameter = new string[,]
+        //            {
+        //                {"@Status", strValue}
+        //            };
+
+        //            db.GetList("Spr_L_ProductType", Parameter, out Error, out ds);
+        //        }
+
+        //        if (strCbb == List.Account)
+        //        {
+        //            string[,] Parameter = new string[,] { };
+
+        //            if (format != 0)
+        //            {
+        //                Parameter = new string[,]
+        //                {
+        //                    {"@AccountStatus", strValue},
+        //                    {"@Format", format.ToString()}
+        //                };
+        //            }
+        //            else
+        //            {
+        //                Parameter = new string[,]
+        //                {
+        //                    {"@Format", "0"},
+        //                    {"@AccountStatus", strValue}
+        //                };
+        //            }
+
+        //            db.GetList("Spr_L_TblSaveAccount", Parameter, out Error, out ds);
+        //        }
+
+        //        if (strCbb == List.AccountType)
+        //        {
+        //            string[,] Parameter = new string[,]
+        //            {
+        //                {"@MsAccountTypeStatus", strValue}
+        //            };
+
+        //            db.GetList("Spr_L_TblMasterAccountType", Parameter, out Error, out ds);
+        //        }
+
+        //        if (strCbb == List.Branch)
+        //        {
+        //            string[,] Parameter = new string[,]
+        //            {
+        //                {"@MsBranchBank", strValue.Substring(0, 3)},
+        //                {"@MsBranchStatus", strValue.Substring(4, 1)}
+        //            };
+
+        //            db.GetList("Spr_L_TblMasterBranch", Parameter, out Error, out ds);
+        //        }
+
+        //        if (strCbb == List.Owner)
+        //        {
+        //            string[,] Parameter = new string[,]
+        //        {
+        //            {"@MsLogoStatus", strValue},
+        //            {"@MsLogoType", ""}
+        //        };
+
+        //            db.GetList("Spr_L_TblMasterMemLogo", Parameter, out Error, out ds);
+        //        }
+
+        //        if (strCbb == List.Geography)
+        //        {
+        //            string[,] Parameter = new string[,]
+        //            {
+        //                {"@GeographyStatus", strValue},
+        //            };
+
+        //            db.GetList("Spr_L_TblMasterGeography", Parameter, out Error, out ds);
+        //        }
+
+        //        if (strCbb == List.ElecOffice)
+        //        {
+        //            string[,] Parameter = new string[,]
+        //            {
+        //                {"@MsElecOfficeStatus", strValue},
+        //            };
+
+        //            db.GetList("Spr_L_TblMasterElectricityOffice", Parameter, out Error, out ds);
+        //        }
+        //        if (strCbb == List.Address)
+        //        {
+        //            string[,] Parameter = new string[,]
+        //            {
+        //                {"@AddressStatus", strValue},
+        //            };
+
+        //            db.GetList("Spr_L_Address", Parameter, out Error, out ds);
+        //        }
+
+        //        if (strCbb == List.GeographyAll)
+        //        {
+        //            string[,] Parameter = new string[,]
+        //            {
+        //                {"@GeographyStatus", strValue},
+        //            };
+
+        //            db.GetList("Spr_L_TblMasterGeographyAll", Parameter, out Error, out ds);
+        //        }
+
+        //        if (strCbb == List.ProvinceAll)
+        //        {
+        //            string[,] Parameter = new string[,]
+        //            {
+        //                {"@ProvinceId", ""},
+        //                {"@ProvinceGeoId", ""},
+        //                {"@ProvinceStatus", "0"},
+        //            };
+
+        //            db.GetList("Spr_L_TblMasterProvinceAll", Parameter, out Error, out ds);
+        //        }
+
+        //        if (strCbb == List.Table)
+        //        {
+        //            string[,] Parameter = new string[,] { };
+
+        //            db.GetList("Spr_L_Table", Parameter, out Error, out ds);
+        //        }
+
+        //        if (strCbb == List.TableWithSchema)
+        //        {
+        //            string[,] Parameter = new string[,] { };
+
+        //            db.GetList("Spr_L_TableWithSchema", Parameter, out Error, out ds);
+        //        }
+
+        //        if (strCbb == List.Column)
+        //        {
+        //            if (strValue != "")
+        //            {
+        //                string[,] Parameter = new string[,]
+        //                {
+        //                    {"@TableName", strValue},
+        //                };
+
+        //                db.GetList("Spr_L_Column", Parameter, out Error, out ds);
+        //            }
+        //        }
+
+        //        if (strCbb == List.ProductType)
+        //        {
+        //            if (strValue != "")
+        //            {
+        //                Parameter = new string[,]
+        //                {
+        //                    {"@Status", strValue},
+        //                };
+
+        //                db.GetList("Store.ListProductType", Parameter, out Error, out ds);
+        //            }
+        //        }
+
+        //        if (strCbb == List.Unit)
+        //        {
+        //            if (strValue != "")
+        //            {
+        //                Parameter = new string[,]
+        //                {
+        //                    {"@Status", strValue},
+        //                };
+
+        //                db.GetReport("Store.ListUnit", Parameter, out Error, out ds);
+        //            }
+        //        }
+
+        //        if (strCbb == List.Shop)
+        //        {
+        //            if (strValue != "")
+        //            {
+        //                string[,] Parameter = new string[,]
+        //                {
+        //                    {"@Status", strValue},
+        //                };
+
+        //                db.GetList("Spr_L_TblMasterShop", Parameter, out Error, out ds);
+        //            }
+        //        }
+
+        //        if (strCbb == List.MonthDebt)
+        //        {
+        //            if (strValue != "")
+        //            {
+        //                string[,] Parameter = new string[,]
+        //                {
+        //                    {"@Status", strValue},
+        //                };
+
+        //                db.GetList("Spr_L_MonthAndYearOfData", Parameter, out Error, out ds);
+        //            }
+        //        }
+
+        //        if (strCbb == List.PostLocation)
+        //        {
+        //            string[,] Parameter = new string[,]
+        //            {
+        //                {"@Status", strValue},
+        //            };
+
+        //            db.GetList("Spr_L_TrackScanLocation", Parameter, out Error, out ds);
+        //        }
+
+        //        if (strCbb == List.CreditCard)
+        //        {
+        //            string[,] Parameter = new string[,]
+        //            {
+        //                {"@Status", strValue},
+        //            };
+
+        //            db.GetList("Spr_L_TblMasterCreditCard", Parameter, out Error, out ds);
+        //        }
+
+        //        if (strCbb == List.PostAddress)
+        //        {
+        //            string[,] Parameter = new string[,]
+        //            {
+        //                {"@AddressStatus", strValue},
+        //            };
+
+        //            db.GetList("Spr_L_PostAddress", Parameter, out Error, out ds);
+        //        }
+
+        //        if (strCbb == List.AmphoeAll)
+        //        {
+        //            string[,] Parameter = new string[,]
+        //            {
+        //                {"@AmphoeId", ""},
+        //                {"@AmphoeStatus", "Y"},
+        //                {"@AmphoeProvinceId", ""}
+        //            };
+
+        //            db.GetList("Spr_L_TblMasterAmphoeAll", Parameter, out Error, out ds);
+        //        }
+
+        //        if (strCbb == List.TambolAll)
+        //        {
+        //            string[,] Parameter = new string[,]
+        //            {
+        //                 {"@TambolId", ""},
+        //                 {"@TambolStatus", "Y"},
+        //                 {"@TambolAmphoeId", ""}
+        //            };
+
+        //            db.GetList("Spr_L_TblMasterTambolAll", Parameter, out Error, out ds);
+        //        }
+
+        //        if (strCbb == List.Receiver || strCbb == List.Sender)
+        //        {
+        //            string[,] Parameter = new string[,]
+        //            {
+        //                 {"@Type", ""},
+        //            };
+
+        //            db.GetList("Spr_L_TblSaveAddress", Parameter, out Error, out ds);
+        //        }
+
+        //        if (strCbb == List.Receivers)
+        //        {
+        //            string[,] Parameter = new string[,]
+        //            {
+        //                 {"@Type", strValue},
+        //            };
+
+        //            db.GetList("Spr_L_TblSaveAddress", Parameter, out Error, out ds);
+        //        }
+
+        //        if (strCbb == List.TrackStatus)
+        //        {
+        //            string[,] Parameter = new string[,]
+        //            {
+        //                 {"@TrackStatusNumber", ""}
+        //            };
+
+        //            db.GetList("Spr_L_TblMasterTrackStatus", Parameter, out Error, out ds);
+        //        }
+
+        //        if (strCbb == List.TrackCode)
+        //        {
+        //            string[,] Parameter = new string[,]
+        //            {
+        //                 {"@TrackPostCode", ""}
+        //            };
+
+        //            db.GetList("Spr_L_TblSaveTrackPost", Parameter, out Error, out ds);
+        //        }
+
+        //        if (strCbb == List.StatusType)
+        //        {
+        //            string[,] Parameter = new string[,]
+        //            {
+        //                 {"@Status", ""}
+        //            };
+
+        //            db.GetReport("Store.ListStatusType", Parameter, out Error, out ds);
+        //        }
+
+        //        if (strCbb == List.Vicinity)
+        //        {
+        //            string[,] Parameter = new string[,]
+        //            {
+        //                 {"@MsStatusType", "15"}
+        //            };
+
+        //            db.GetList("Spr_L_TblMasterStatus", Parameter, out Error, out ds);
+        //        }
+
+        //        dt = ds.Tables[0];
+
+        //        ccbName.DataSource = dt;
+        //        ccbName.DisplayMember = "Name";
+        //        ccbName.ValueMember = "Code";
+        //    }
+        //    catch
+        //    {
+
+        //    }
+        //}
 
         public void GetListId(ComboBox ComboBox, string Table, string Value = "")
         {

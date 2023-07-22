@@ -1,12 +1,22 @@
 ﻿using System;
 using System.Data;
 using System.Drawing;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
+using System.Security.Cryptography;
 using System.Windows.Forms;
+using DevComponents.AdvTree;
+using Microsoft.Reporting.Map.WebForms.BingMaps;
+using Microsoft.VisualBasic.ApplicationServices;
 using SANSANG.Class;
 using SANSANG.Constant;
 using SANSANG.Database;
 using SANSANG.Utilites.App.Global;
 using SANSANG.Utilites.App.Model;
+using Telerik.Collections.Generic;
+using Telerik.WinControls;
+using Telerik.WinControls.Drawing;
+using Telerik.WinControls.UI.Barcode.Symbology;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace SANSANG
 {
@@ -38,8 +48,12 @@ namespace SANSANG
         private TableConstant Table = new TableConstant();
         private FrmAnimatedProgress Loading = new FrmAnimatedProgress(20);
         private Timer Timer = new Timer();
+        private clsCryption Cryption = new clsCryption();
 
         public string[,] Parameter = new string[,] { };
+        public string strEmailUser = "";
+        public string strEmailServer = "";
+        public string strEmailOther = "";
 
         public FrmMembers(string UserIdLogin, string UserNameLogin, string UserSurNameLogin, string UserTypeLogin)
         {
@@ -62,7 +76,9 @@ namespace SANSANG
         private void LoadList(object sender, EventArgs e)
         {
             List.GetLists(cbbStatus, string.Format(DataList.StatusId, "0"));
-            //List.GetLists(cbbType, string.Format(DataList.StatusId, "5"));
+            List.GetLists(cbbShop, string.Format(DataList.ShopId));
+            List.GetLists(cbbCard, string.Format(DataList.CardId));
+            List.GetList(cbbUser, string.Format(DataList.Users));
 
             pbMain.Enabled = true;
             Clear();
@@ -73,7 +89,9 @@ namespace SANSANG
         {
             Function.ClearAll(gbForm);
             Images.ShowDefault(pbImage);
-            Search(false);
+            rdbPointAll.Checked = true;
+            rdbOMail.Checked = true;
+            Search(false);            
         }
 
         public void ShowGridView(DataTable dt)
@@ -89,18 +107,18 @@ namespace SANSANG
                 {
                     GridView.DataSource = null;
                     DataTable dtGrid = new DataTable();
-                    dtGrid = dt.DefaultView.ToTable(true, "SNo", "Code", "NameEn", "Web", "TypeName", "Dates", "Id");
+                    dtGrid = dt.DefaultView.ToTable(true, "SNo", "Shops", "Usernames", "Email", "Webs", "PointSign", "Id");
 
                     DataGridViewContentAlignment mc = DataGridViewContentAlignment.MiddleCenter;
                     DataGridViewContentAlignment ml = DataGridViewContentAlignment.MiddleLeft;
 
                     Function.showGridViewFormatFromStore(dtGrid, GridView,
                           " ลำดับ", 50, true, mc, mc
-                        , "รหัส", 100, true, ml, ml
-                        , "โลโก้", 150, true, ml, ml
-                        , "เว็บไซต์", 150, true, ml, ml
-                        , "ประเภท", 100, true, ml, ml
-                        , "ข้อมูล ณ วันที่", 150, true, mc, mc
+                        , "บริการ", 100, true, ml, ml
+                        , "ผู้ใช้งาน", 150, true, ml, ml
+                        , "อีเมล", 150, true, ml, ml
+                        , "App / Web", 100, true, ml, ml
+                        , "สะสมแต้ม", 150, true, mc, mc
                         , "", 0, false, mc, mc
                     );
 
@@ -128,16 +146,32 @@ namespace SANSANG
         {
             try
             {
-                //Parameter = new string[,]
-                //{
-                //    {"@Id", Search ? txtId.Text : ""},
-                   
-                //};
+                Parameter = new string[,]
+                {
+                    {"@Id", Search ? txtId.Text : ""},
+                    {"@Code", Search ? txtCode.Text : ""},
+                    {"@Phone", Search ? txtPhone.Text : ""},
+                    {"@UserName", Search ? txtUser.Text : ""},
+                    {"@Name", Search ? txtName.Text : ""},
+                    {"@Surname", Search ? txtSurname.Text : ""},
+                    {"@Number", Search ? txtNumber.Text : ""},
+                    {"@Password", ""},
+                    {"@Email", Search ? rdbGMail.Checked ? "@gmail" : rdbHMail.Checked ? "@hotmail" : "" : ""},
+                    {"@Status", Search ? Function.GetComboId(cbbStatus) : "0"},
+                    {"@IsActive", "1"},
+                    {"@IsDelete", "0"},
+                    {"@IsPoint", rdbPoint.Checked ? "1" : "0"},
+                    {"@Operation", Operation.SelectAbbr},
+                    {"@CardId", Search ? Function.GetComboId(cbbCard) : "0"},
+                    {"@ShopId", Search ? Function.GetComboId(cbbShop) : "0"},
+                    {"@UserId", Search ? Function.GetComboId(cbbUser) : "0"},
+                    {"@Website", Search ? txtWeb.Text : ""},
+                };
 
-                //string Condition = Function.ShowConditons(GetCondition());
-                //lblCondition.Text = Condition == "" ? "ทั้งหมด" : Condition;
-                //db.Get(Store.ManageLogo, Parameter, out Error, out dt);
-                //ShowGridView(dt);
+                string Condition = Function.ShowConditons(GetCondition());
+                lblCondition.Text = Condition == "" ? "ทั้งหมด" : Condition;
+                db.Get(Store.ManageMember, Parameter, out Error, out dt);
+                ShowGridView(dt);
             }
             catch (Exception ex)
             {
@@ -152,8 +186,21 @@ namespace SANSANG
                 string strCondition = "";
 
                 strCondition += txtCode.Text != "" ? ", รหัสอ้างอิง: " + txtCode.Text : "";
-               
+                strCondition += txtPhone.Text != "" ? ", หมายเลขโทรศัพท์: " + txtPhone.Text : "";
+                strCondition += txtUser.Text != "" ? ", ผู้ใช้: " + txtUser.Text : "";
+                strCondition += txtName.Text != "" ? ", ชื่อ: " + txtName.Text : "";
+                strCondition += txtSurname.Text != "" ? ", นามสกุล: " + txtSurname.Text : "";
+                strCondition += txtNumber.Text != "" ? ", รหัสสมาชิก: " + txtNumber.Text : "";
+                strCondition += txtEmail.Text != "" ? ", อีเมล: " + txtEmail.Text : "";
+                strCondition += txtWeb.Text != "" ? ", เว็บไซต์: " + txtWeb.Text : "";
+                strCondition += rdbPoint.Checked ? ", สะสมแต้ม" : "";
+                strCondition += Function.GetComboId(cbbCard) != "0" ? ", บัตรสมาชิก: " + cbbCard.Text : "";
+                strCondition += Function.GetComboId(cbbShop) != "0" ? ", บริการ: " + cbbShop.Text : "";
+                strCondition += Function.GetComboId(cbbUser) != "0" ? ", ผู้ใช้: " + cbbUser.Text : "";
+                strCondition += Function.GetComboId(cbbStatus) != "0" ? ", สถานะ: " + cbbStatus.Text : "";
+
                 return strCondition;
+
             }
             catch (Exception ex)
             {
@@ -164,17 +211,41 @@ namespace SANSANG
 
         private void CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            try
             {
-                DataGridViewRow RowIndex = this.GridView.Rows[e.RowIndex];
-
-                Parameter = new string[,]
+                if (e.RowIndex >= 0)
                 {
-                    {"@Id", RowIndex.Cells["Id"].Value.ToString()},
-                };
+                    DataGridViewRow row = this.GridView.Rows[e.RowIndex];
 
-                db.Get(Store.ManageLogo, Parameter, out Error, out dt);
-                ShowData(dt);
+                    Parameter = new string[,]
+                    {
+                        {"@Id", row.Cells["Id"].Value.ToString()},
+                        {"@Code", ""},
+                        {"@Phone", ""},
+                        {"@UserName", ""},
+                        {"@Name", ""},
+                        {"@Surname", ""},
+                        {"@Number", ""},
+                        {"@Password", ""},
+                        {"@Email", ""},
+                        {"@Status", "0"},
+                        {"@IsActive", "1"},
+                        {"@IsDelete", "0"},
+                        {"@IsPoint", "0"},
+                        {"@Operation", Operation.SelectAbbr},
+                        {"@CardId", "0"},
+                        {"@ShopId", "0"},
+                        {"@UserId", "0"},
+                        {"@Website", ""},
+                    };
+
+                    db.Get(Store.ManageMember, Parameter, out Error, out dt);
+                    ShowData(dt);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
             }
         }
 
@@ -184,11 +255,36 @@ namespace SANSANG
             {
                 if (Function.GetRows(dt) > 0)
                 {
+                    cbbShop.SelectedValue = dt.Rows[0]["ShopId"].ToString();
                     cbbStatus.SelectedValue = dt.Rows[0]["Status"].ToString();
+                    cbbUser.SelectedValue = dt.Rows[0]["UserId"].ToString();
+                    cbbCard.SelectedValue = dt.Rows[0]["CardId"].ToString();
                     txtId.Text = dt.Rows[0]["Id"].ToString();
-                   
-                    Image Picture = new Bitmap(txtLocation.Text);
-                    pbImage.Image = Picture.GetThumbnailImage(150, 150, null, new IntPtr());
+                    txtCode.Text = dt.Rows[0]["Code"].ToString();
+
+                    txtName.Text = dt.Rows[0]["Names"].ToString();
+                    txtSurname.Text = dt.Rows[0]["Surnames"].ToString();
+                    txtNumber.Text = dt.Rows[0]["Number"].ToString();
+                    txtEmail.Text = dt.Rows[0]["Email"].ToString();
+                    txtPhone.Text = dt.Rows[0]["Phone"].ToString();
+                    txtUser.Text = dt.Rows[0]["Usernames"].ToString();
+                    txtPassword.Text = Cryption.Decrypt(dt.Rows[0]["Password"].ToString());
+                    txtWeb.Text = dt.Rows[0]["Website"].ToString();
+                    rdbPoint.Checked = dt.Rows[0]["Points"].ToString() == "0" ? false : true;
+
+                    if (dt.Rows[0]["Email"].ToString().Contains("@hotmail.com"))
+                    {
+                        rdbHMail.Checked = true;
+                    }
+                    else if (dt.Rows[0]["Email"].ToString().Contains("@gmail.com"))
+                    {
+                        rdbGMail.Checked = true;
+                    }
+                    else
+                    {
+                        rdbOMail.Checked = true;
+                    }
+
 
                     GridView.Focus();
                 }
@@ -203,20 +299,39 @@ namespace SANSANG
         {
             try
             {
-                if ((Function.GetComboId(cbbStatus) != "0" || Function.GetComboId(cbbStatus) != "0") && !string.IsNullOrEmpty(txtName.Text) && !string.IsNullOrEmpty(txtLocation.Text))
+                if ((Function.GetComboId(cbbShop) != "0" || Function.GetComboId(cbbStatus) != "0")
+                    && !string.IsNullOrEmpty(txtName.Text) && !string.IsNullOrEmpty(txtUser.Text) && !string.IsNullOrEmpty(txtEmail.Text))
                 {
-                    if (!Function.IsDuplicates(Table.Logo, txtName.Text, Function.GetComboId(cbbStatus), Detail: "Logo " + txtName.Text))
+                    if (!Function.IsDuplicates(Table.Members, Function.GetComboId(cbbUser), Function.GetComboId(cbbShop), Detail: "Member of " + cbbShop.Text + " (" + txtUser.Text + ")"))
                     {
-                        txtCode.Text = Function.GetCodes(Table.ExpenseId, "1014", "Generated");
+                        txtCode.Text = Function.GetCodes(Table.MembertId, "", "Generated");
 
                         Parameter = new string[,]
                         {
                             {"@Id", ""},
+                            {"@Code", txtCode.Text},
+                            {"@Phone", txtPhone.Text},
+                            {"@UserName", txtUser.Text},
+                            {"@Name", txtName.Text},
+                            {"@Surname", txtSurname.Text},
+                            {"@Number", txtNumber.Text},
+                            {"@Password", Cryption.Encrypt(txtPassword.Text)},
+                            {"@Email", txtEmail.Text},
+                            {"@Status", Function.GetComboId(cbbStatus)},
+                            {"@IsActive", "1"},
+                            {"@IsDelete", "0"},
+                            {"@IsPoint", rdbPoint.Checked ? "1" : "0"},
+                            {"@Operation", Operation.InsertAbbr},
+                            {"@CardId", Function.GetComboId(cbbCard)},
+                            {"@ShopId", Function.GetComboId(cbbShop)},
+                            {"@UserId", AddUser()},
+                            {"@Website", txtWeb.Text},
                         };
 
-                        if (Insert.Add(AppCode, AppName, UserId, Store.ManageLogo, Parameter, txtCode.Text, Details: "Logo " + txtUser.Text))
+                        if (Insert.Add(AppCode, AppName, UserId, Store.ManageMember, Parameter, txtCode.Text, Details: "Member of " + cbbShop.Text + " (" + txtUser.Text + ")"))
                         {
                             Clear();
+                            List.GetList(cbbUser, string.Format(DataList.Users));
                         }
                     }
                 }
@@ -235,16 +350,41 @@ namespace SANSANG
         {
             try
             {
-                if (txtId.Text != "")
+                if ((Function.GetComboId(cbbStatus) != "0") && !string.IsNullOrEmpty(txtId.Text))
                 {
-                    Parameter = new string[,]
+                    if (UpdateUser())
                     {
+                        Parameter = new string[,]
+                        {
                         {"@Id", txtId.Text},
-                    };
+                        {"@Code", txtCode.Text},
+                        {"@Phone", txtPhone.Text},
+                        {"@UserName", txtUser.Text},
+                        {"@Name", txtName.Text},
+                        {"@Surname", txtSurname.Text},
+                        {"@Number", txtNumber.Text},
+                        {"@Password", Cryption.Encrypt(txtPassword.Text)},
+                        {"@Email", txtEmail.Text},
+                        {"@Status", Function.GetComboId(cbbStatus)},
+                        {"@IsActive", "1"},
+                        {"@IsDelete", "0"},
+                        {"@IsPoint", rdbPoint.Checked ? "1" : "0"},
+                        {"@Operation", Operation.UpdateAbbr},
+                        {"@CardId", Function.GetComboId(cbbCard)},
+                        {"@ShopId", Function.GetComboId(cbbShop)},
+                        {"@UserId", Function.GetComboId(cbbUser)},
+                        {"@Website", txtWeb.Text},
+                        };
 
-                    if (Edit.Update(AppCode, AppName, UserId, Store.ManageLogo, Parameter, txtCode.Text, Details: "Logo " + txtName.Text))
-                    {
-                        Clear();
+                        if (Edit.Update(AppCode, AppName, UserId, Store.ManageMember, Parameter, txtCode.Text, Details: "Member of " + cbbShop.Text + " (" + txtUser.Text + ")"))
+                        {
+                            Clear();
+                            List.GetList(cbbUser, string.Format(DataList.Users));
+                        }
+                        else
+                        {
+                            Message.ShowRequestData();
+                        }
                     }
                 }
             }
@@ -258,7 +398,7 @@ namespace SANSANG
         {
             try
             {
-                if (Delete.Drop(AppCode, AppName, UserId, 0, Table.Logo, txtCode, Details: "Logo " + txtName.Text, true))
+                if (Delete.Drop(AppCode, AppName, UserId, 0, Table.Members, txtCode, Details: "Member of " + cbbShop.Text + " (" + txtUser.Text + ")"))
                 {
                     Clear();
                 }
@@ -272,28 +412,6 @@ namespace SANSANG
         private void ClearData(object sender, EventArgs e)
         {
             Clear();
-        }
-
-        private void Browse(object sender, EventArgs e)
-        {
-            Images.SelectImage();
-
-            foreach (ImageModel Photo in GlobalVar.ImageDataList)
-            {
-                //txtFileName.Text = Photo.Name;
-                //txtFileType.Text = Photo.Type;
-                //txtLocation.Text = Photo.Path;
-                //txtFolder.Text = "";
-                //cbbStatus.SelectedValue = "1000";
-                //cbbPath.SelectedValue = "1040";
-
-                Image Picture = new Bitmap(Photo.Path);
-                pbImage.Image = Picture.GetThumbnailImage(150, 150, null, new IntPtr());
-
-                break;
-            }
-
-            btnAdd.Focus();
         }
 
         private void FrmKeyDown(object sender, KeyEventArgs e)
@@ -322,229 +440,185 @@ namespace SANSANG
             }
         }
 
-        //public void GetDataGrid(DataTable dt)
-        //{
-        //    try
-        //    {
-        //        if (Fn.GetRows(dt) == 0)
-        //        {
-        //            dataGridView.DataSource = null;
-        //            txtCount.Text = Fn.ShowNumberOfData(0);
-        //        }
-        //        else
-        //        {
-        //            DataTable dtGrid = new DataTable();
-        //            dataGridView.DataSource = null;
+        private void cbbShop_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!Function.IsDefault(cbbShop))
+            {
+                Images.Show(pbImage, Function.GetComboId(cbbShop));
+                cbbStatus.SelectedValue = "1000";
+            }
+            else
+            {
+                Images.ShowDefault(pbImage);
+                cbbStatus.SelectedValue = "0";
+            }
 
-        //            dtGrid = dt.DefaultView.ToTable(true, "Code", "UserName", "CardNumber", "ShopName", "PointName", "Id");
+            btnSearch.Focus();
+        }
 
-        //            DataGridViewContentAlignment mc = DataGridViewContentAlignment.MiddleCenter;
-        //            DataGridViewContentAlignment ml = DataGridViewContentAlignment.MiddleLeft;
+        private void cbShowPass_CheckedChanged(object sender, EventArgs e)
+        {
+            txtPassword.PasswordChar = cbShowPass.Checked ? '\0' : '*';
+        }
 
-        //            Fn.showGridViewFormatFromStore(dtGrid, dataGridView,
-        //              "ลำดับ", 30, true, mc, mc
-        //            , "รหัสอ้างอิง", 80, true, mc, mc
-        //            , "ชื่อ", 120, true, ml, ml
-        //            , "หมายเลข", 100, true, ml, ml
-        //            , "ห้างร้าน/บริการ", 150, true, ml, ml
-        //            , "สะสมแต้ม", 50, true, mc, mc
-        //            , "", 0, false, mc, mc
-        //            );
+        private void txtPhone_Leave(object sender, EventArgs e)
+        {
+            if (txtPhone.Text != "")
+            {
+                txtPhone.Text = Function.ConvertPhoneNumber(txtPhone.Text);
+            }
+        }
 
-        //            txtCount.Text = Fn.ShowNumberOfData(dt.Rows.Count);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Log.WriteLogData(strAppCode, strAppName, strUserId, ex.Message);
-        //    }
-        //}
+        private void rdChecked(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtEmail.Text))
+            {
+                string select = ((RadioButton)sender).Name;
 
-        //private void btnExit_Click(object sender, EventArgs e)
-        //{
-        //    this.Close();
-        //}
+                if (txtEmail.Text.Contains("@"))
+                {
+                    int indexOf = txtEmail.Text.IndexOf("@");
+                    int length = txtEmail.Text.Length;
+                    int size = length - indexOf;
+                    strEmailUser = txtEmail.Text.Substring(0, indexOf);
 
-        //public void SearchData(bool Search)
-        //{
-        //    try
-        //    {
-        //        Parameter = new string[,]
-        //        {
-        //            {"@Id", "0"},
-        //            {"@Code", Search? txtCode.Text : ""},
-        //            {"@ShopId", Search? txtCode.Text : "0"},
-        //            {"@CardId", Search? txtCode.Text : "0"},
-        //            {"@UserId", Search? txtCode.Text : "0"},
-        //            {"@Website", Search? txtCode.Text : ""},
-        //            {"@Phone", Search? txtCode.Text : ""},
-        //            {"@StatusId", Search? txtCode.Text : "0"},
-        //            {"@User", Search? txtCode.Text : "0"},
-        //            {"@IsPoint", Search? txtCode.Text : "2"},
-        //        };
+                    if (txtEmail.Text.Contains("hotmail") || txtEmail.Text.Contains("gmail"))
+                    {
+                        strEmailServer = txtEmail.Text.Substring(indexOf, size);
+                    }
+                    else
+                    {
+                        strEmailOther = txtEmail.Text.Substring(indexOf, size);
+                    }
+                }
+                else
+                {
+                    strEmailUser = txtEmail.Text;
+                }
 
-        //        db.Get("Store.SelectMembers", Parameter, out strErr, out dt);
-        //        GetDataGrid(dt);
-        //        lblCondition.Text = Fn.ShowConditons(GetCondition());
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Log.WriteLogData(strAppCode, strAppName, strUserId, ex.Message);
-        //    }
-        //}
+                if (select == "rdbHMail")
+                {
+                    txtEmail.Text = strEmailUser + "@hotmail.com";
+                }
+                else if (select == "rdbGMail")
+                {
+                    txtEmail.Text = strEmailUser + "@gmail.com";
+                }
+                else
+                {
+                    txtEmail.Text = strEmailUser + strEmailOther;
+                }
+            }
+        }
 
-        //private string GetCondition()
-        //{
-        //    try
-        //    {
-        //        string strCondition = "";
-        //        strCondition += txtCode.Text != "" ? ", รหัส : " + txtCode.Text : "";
-        //        return strCondition;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Log.WriteLogData(strAppCode, strAppName, strUserId, ex.Message);
-        //        return "";
-        //    }
-        //}
+        private void cbbUser_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Function.GetComboId(cbbUser) == "-1")
+                {
+                    txtUser.Text = "";
+                    txtPassword.Text = "";
+                    txtName.Text = "";
+                    txtSurname.Text = "";
+                    txtEmail.Text = "";
+                }
+                else
+                {
+                    txtUser.Text = "";
+                    txtPassword.Text = "";
+                    var UserCoed = cbbUser.Text.Split(new string[] { "(", ")" }, StringSplitOptions.RemoveEmptyEntries);
 
-        //private void btnAdd_Click(object sender, EventArgs e)
-        //{
+                    Parameter = new string[,]
+                    {
+                        {"@Id", ""},
+                        {"@Code", UserCoed[0].TrimEnd()},
+                        {"@Name", UserCoed[1].TrimEnd()},
+                        {"@Surname", ""},
+                        {"@Password", ""},
+                        {"@Email", ""},
+                        {"@Type", ""},
+                        {"@Status", "0"},
+                        {"@Sex", ""},
+                        {"@User", ""},
+                        {"@IsActive", "1"},
+                        {"@IsDelete", "0"},
+                        {"@Operation", Operation.SelectAbbr},
+                    };
 
-        //}
+                    db.Get(Store.ManageUser, Parameter, out Error, out dt);
 
-        //private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        //{
+                    txtUser.Text = dt.Rows[0]["Code"].ToString();
+                    txtPassword.Text = Cryption.Decrypt(dt.Rows[0]["Password"].ToString());
+                    txtName.Text = dt.Rows[0]["Name"].ToString();
+                    txtSurname.Text = dt.Rows[0]["Surname"].ToString();
+                    txtEmail.Text = dt.Rows[0]["Email"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }
+        }
 
-        //}
+        private string AddUser()
+        {
+            try
+            {
+                Parameter = new string[,]
+                {
+                    {"@Id", ""},
+                    {"@Code", txtUser.Text},
+                    {"@Name", txtName.Text},
+                    {"@Surname", txtSurname.Text},
+                    {"@Password", Cryption.Encrypt(txtPassword.Text)},
+                    {"@Email", txtEmail.Text},
+                    {"@Type", "1001"},
+                    {"@Status", Function.GetComboId(cbbStatus)},
+                    {"@Sex", "A"},
+                    {"@User", "1000"},
+                    {"@IsActive", "1"},
+                    {"@IsDelete", "0"},
+                    {"@Operation", Operation.InsertAbbr}
+                };
 
-        //private void btnEdit_Click(object sender, EventArgs e)
-        //{
-        //}
+                return Insert.Add(AppCode, AppName, UserId, Store.ManageUser, Parameter);
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+                return "";
+            }
+        }
 
-        //private void btnDelete_Click(object sender, EventArgs e)
-        //{
+        private bool UpdateUser()
+        {
+            try
+            {
+                Parameter = new string[,]
+                {
+                    {"@Id", Function.GetComboId(cbbUser)},
+                    {"@Code", txtUser.Text},
+                    {"@Name", txtName.Text},
+                    {"@Surname", txtSurname.Text},
+                    {"@Password", Cryption.Encrypt(txtPassword.Text)},
+                    {"@Email", txtEmail.Text},
+                    {"@Type", "1001"},
+                    {"@Status", Function.GetComboId(cbbStatus)},
+                    {"@Sex", "A"},
+                    {"@User", "1000"},
+                    {"@IsActive", "1"},
+                    {"@IsDelete", "0"},
+                    {"@Operation", Operation.UpdateAbbr}
+                };
 
-        //}
-
-        //private void btnClear_Click(object sender, EventArgs e)
-        //{
-        //    Clear();
-        //}
-
-        //private void picExcel_Click(object sender, EventArgs e)
-        //{
-        //}
-
-        //private void txtEmail_Leave(object sender, EventArgs e)
-        //{
-        //    string stEmail = "";
-
-        //    if (txtEmail.Text.Contains("@"))
-        //    {
-        //        Boolean d = txtEmail.Text.Contains("@");
-        //    }
-        //    else
-        //    {
-        //        if (txtEmail.Text != "" || txtEmail.Text != "-")
-        //        {
-        //            if (rdbHMail.Checked == true)
-        //            {
-        //                stEmail = txtEmail.Text;
-        //                txtEmail.Text = stEmail + "@hotmail.com";
-        //            }
-        //            if (rdbGMail.Checked == true)
-        //            {
-        //                stEmail = txtEmail.Text;
-        //                txtEmail.Text = stEmail + "@gmail.com";
-        //            }
-        //        }
-        //    }
-        //}
-
-        //private void txtPhone_Leave(object sender, EventArgs e)
-        //{
-        //    if (txtPhone.Text != "")
-        //    {
-        //        txtPhone.Text = Fn.ConvertPhoneNumber(txtPhone.Text);
-        //    }
-        //}
-
-        //public string phoneformat(string phnumber)
-        //{
-        //    String phone = phnumber;
-        //    string countrycode = phone.Substring(0, 3);
-        //    string Areacode = phone.Substring(3, 3);
-        //    string number = phone.Substring(6, phone.Length - 6);
-
-        //    string phnumberFormat = countrycode + "-" + Areacode + "-" + number;
-
-        //    return phnumberFormat;
-        //}
-
-        //private void txtName_Leave(object sender, EventArgs e)
-        //{
-        //    string str = txtName.Text;
-        //    string upperStr = str.ToUpper();
-        //    txtName.Text = upperStr;
-        //}
-
-        //private void txtSurname_Leave(object sender, EventArgs e)
-        //{
-        //    string str = txtSurname.Text;
-        //    string upperStr = str.ToUpper();
-        //    txtSurname.Text = upperStr;
-        //}
-
-        //private void FrmSaveMember_KeyDown(object sender, KeyEventArgs e)
-        //{
-        //    string keyCode = Fn.keyPress(sender, e);
-
-        //    if (keyCode == "Ctrl+S")
-        //    {
-        //        btnAdd_Click(sender, e);
-        //    }
-        //    if (keyCode == "Ctrl+E")
-        //    {
-        //        btnEdit_Click(sender, e);
-        //    }
-        //    if (keyCode == "Ctrl+D")
-        //    {
-        //        btnDelete_Click(sender, e);
-        //    }
-        //    if (keyCode == "Ctrl+F")
-        //    {
-        //        btnSearch_Click(sender, e);
-        //    }
-        //    if (keyCode == "Alt+S")
-        //    {
-        //    }
-        //    if (keyCode == "Alt+C")
-        //    {
-        //        btnClear_Click(sender, e);
-        //    }
-        //}
-
-        //private void btnSearch_Click(object sender, EventArgs e)
-        //{
-        //    SearchData(true);
-        //}
-
-        //private void cbShowPass_CheckedChanged(object sender, EventArgs e)
-        //{
-        //    txtPassword.PasswordChar = cbShowPass.Checked ? '\0' : '*';
-        //}
-
-        //private void txtPhone_TextChanged(object sender, EventArgs e)
-        //{
-        //}
-
-        //private void cbbShop_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    if (!Fn.IsDefault(cbbShop))
-        //    {
-        //        Images.ShowImage(pbImage, Id: cbbShop.SelectedValue.ToString());
-        //    }
-        //}
+                return string.IsNullOrEmpty(Edit.Update(AppCode, AppName, UserId, Store.ManageUser, Parameter))? true : false;
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+                return false;
+            }
+        }
     }
 }

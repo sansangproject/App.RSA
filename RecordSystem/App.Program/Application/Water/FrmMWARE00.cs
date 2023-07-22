@@ -4,7 +4,9 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
-using SANSANG.Class; using SANSANG.Database;
+using System.Windows.Media;
+using SANSANG.Class;
+using SANSANG.Database;
 
 namespace SANSANG
 {
@@ -29,7 +31,7 @@ namespace SANSANG
         private clsFunction Fn = new clsFunction();
         private clsDataList List = new clsDataList();
         private clsBarcode Barcode = new clsBarcode();
-       private dbConnection db = new dbConnection();
+        private dbConnection db = new dbConnection();
         private clsMessage Message = new clsMessage();
         private clsDate Date = new clsDate();
 
@@ -45,7 +47,7 @@ namespace SANSANG
 
         private void FrmMWARE00_Load(object sender, EventArgs e)
         {
-            
+
             Clear();
         }
 
@@ -73,12 +75,38 @@ namespace SANSANG
 
         private void btnExpenPDF_Click(object sender, EventArgs e)
         {
-            ExportToFile("PDF", sender, e);
+            //DownloadFile();
         }
 
         private void btnExpenEXCEL_Click(object sender, EventArgs e)
         {
             ExportToFile("XLS", sender, e);
+        }
+
+        public void DownloadFile()
+        {
+            if (cbbYear.SelectedIndex != 0)
+            {
+                for (int Month = 1; Month <= 12; Month++)
+                {
+                    //string Months = cbbMonth.SelectedValue.ToString().PadLeft(2, '0');
+                    string Months = Month.ToString().PadLeft(2, '0');
+                    string Years = cbbYear.Text;
+
+                    string File = string.Format("D:\\MWAs\\INVOICEs\\MWA{0}{1}.pdf", Years, Months);
+
+                    Uri uri = new Uri(string.Format("https://eservicesapp.mwa.co.th//reportsBH//rwservlet?hide_pass_keyCISWEB3=&destype=cache&desformat=pdf&report=HH_BILL_QR.rdf&desname=INVMWA.pdf&P_ACCOUNT=76943976&P_MONTH={0}&P_YEAR={1}", Months, Years));
+                    string Links = uri.AbsoluteUri;
+
+                    if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+                    {
+                        using (System.Net.WebClient client = new System.Net.WebClient())
+                        {
+                            client.DownloadFileAsync(new Uri(Links), File);
+                        }
+                    }
+                }
+            }
         }
 
         public void ExportToFile(string fileType, object sender, EventArgs e)
@@ -171,7 +199,7 @@ namespace SANSANG
                                    + ds.Tables[1].Rows[0]["L4"].ToString();
                         }
 
-                        imgBar = Barcode.Code39(strBar, Color.Black, Color.White, 20);
+                        imgBar = Barcode.Code39(strBar, System.Drawing.Color.Black, System.Drawing.Color.White, 20);
 
                         BitBar = (Bitmap)imgBar;
                         var streamBar = new MemoryStream();
@@ -200,7 +228,7 @@ namespace SANSANG
                                   + ds.Tables[1].Rows[0]["L4"].ToString();
                         }
 
-                        imgQr = Barcode.QRCode(strBar, Color.Black, Color.White, "M", 2);
+                        imgQr = Barcode.QRCode(strBar, System.Drawing.Color.Black, System.Drawing.Color.White, "M", 2);
 
                         BitQr = (Bitmap)imgQr;
                         var streamQr = new MemoryStream();
@@ -213,7 +241,7 @@ namespace SANSANG
                         row["UNITBEFOR2"] = M2;
                         row["UNITBEFOR1"] = M1;
                     }
-                 
+
                     if (result == DialogResult.OK)
                     {
                         ExportToPath = folderBrowserDialog.SelectedPath + "\\TSSRSA-MWARE00R" + Fn.getFileLastName();

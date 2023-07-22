@@ -1321,7 +1321,7 @@
             // 
             this.pbPayment.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbPayment.Image = global::RecordSystemApplication.Properties.Resources.FrmDebts;
+            this.pbPayment.Image = ((System.Drawing.Image)(resources.GetObject("pbPayment.Image")));
             this.pbPayment.Location = new System.Drawing.Point(1, 92);
             this.pbPayment.Name = "pbPayment";
             this.pbPayment.Size = new System.Drawing.Size(1469, 275);

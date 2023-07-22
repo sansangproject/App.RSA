@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 
 namespace SANSANG.Constant
 {
@@ -20,7 +21,8 @@ namespace SANSANG.Constant
         public static string User = "[User]";
         public static string Menu = "[Menu]";
         public static string Images = "[Images]";
-        public static string PaymentSub = "[PaymentSub]";
+        public static string Item = "[Item]";
+        public static string Category = "[Category]";
         public static string Expense = "[Expense]";
         public static string Payments = "[Payments]";
         public static string Delete = "[Delete]";
@@ -37,7 +39,11 @@ namespace SANSANG.Constant
         public static string Credit = "[Credits]";
         public static string Statement = "[Statements]";
         public static string Product = "[Products]";
-        
+        public static string Member = "[Members]";
+
+        public static string Workday = "[Workday]";
+        public static string Gold = "[Golds]";
+
         public static string GetMasterList = "[GetListMaster]";
         public static string GetList = "[GetList]";
 
@@ -49,12 +55,14 @@ namespace SANSANG.Constant
         public static string GetPostAddress = "[GetPostAddress]";
         public static string GetBankLogo = "[GetPath]";
         public static string GetBankBalance = "[GetBankBalance]";
+        public static string GeneratedId = "[GeneratedId]";
+        public static string GetTopId = "[GetTopId]";
         
         public string ManagePath = string.Format(Stores, SPR, Path);
         public string ManageUser = string.Format(Stores, SPR, User);
         public string ManageMenu = string.Format(Stores, SPR, Menu);
         public string ManageImage = string.Format(Stores, SPR, Images);
-        public string ManagePaymentSub = string.Format(Stores, SPR, PaymentSub);
+        public string ManageItem = string.Format(Stores, SPR, Item);
         public string ManageExpense = string.Format(Stores, SPR, Expense);
         public string ManagePayments = string.Format(Stores, SPR, Payments);
         public string ManageTambol = string.Format(Stores, SPR, Tambol);
@@ -70,6 +78,11 @@ namespace SANSANG.Constant
         public string ManageCredit = string.Format(Stores, SPR, Credit);
         public string ManageStatement = string.Format(Stores, SPR, Statement);
         public string ManageProduct = string.Format(Stores, SPR, Product);
+        public string ManageMember = string.Format(Stores, SPR, Member);
+        public string ManageCategory = string.Format(Stores, SPR, Category);
+
+        public string ManageWorkday = string.Format(Stores, SPR, Workday);
+        public string ManageGold = string.Format(Stores, SPR, Gold);
 
         public string DeleteData = string.Format(Stores, SPR, Delete);
 
@@ -83,5 +96,7 @@ namespace SANSANG.Constant
         public string FnGetPostAddress = string.Format(Stores, FN, GetPostAddress);
         public string FnGetBankLogo = string.Format(Stores, FN, GetBankLogo);
         public string FnGetBankBalance = string.Format(Stores, FN, GetBankBalance);
+        public string FnGeneratedId = string.Format(Stores, FN, GeneratedId);
+        public string FnGetTopId = string.Format(Stores, FN, GetTopId);
     }
 }

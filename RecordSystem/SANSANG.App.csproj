@@ -34,7 +34,7 @@
     <PublisherName>RSA</PublisherName>
     <SuiteName>RSA</SuiteName>
     <ApplicationRevision>2</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <ApplicationVersion>2023.03.25.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -90,7 +90,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BarcodeStandard, Version=2.4.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -253,12 +253,6 @@
     <Compile Include="App.Program\Application\Image\FrmImportImage.Designer.cs">
       <DependentUpon>FrmImportImage.cs</DependentUpon>
     </Compile>
-    <Compile Include="App.Program\Application\Image\FrmManageImage.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="App.Program\Application\Image\FrmManageImage.Designer.cs">
-      <DependentUpon>FrmManageImage.cs</DependentUpon>
-    </Compile>
     <Compile Include="App.Program\Application\Image\FrmShowImage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -301,17 +295,17 @@
     <Compile Include="App.Program\Application\Manage\FrmManageCard.Designer.cs">
       <DependentUpon>FrmManageCard.cs</DependentUpon>
     </Compile>
-    <Compile Include="App.Program\Application\Manage\FrmManagePay.cs">
+    <Compile Include="App.Program\Application\Manage\FrmManageCategory.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="App.Program\Application\Manage\FrmManagePay.Designer.cs">
-      <DependentUpon>FrmManagePay.cs</DependentUpon>
+    <Compile Include="App.Program\Application\Manage\FrmManageCategory.Designer.cs">
+      <DependentUpon>FrmManageCategory.cs</DependentUpon>
     </Compile>
-    <Compile Include="App.Program\Application\Manage\FrmManagePaySub.cs">
+    <Compile Include="App.Program\Application\Manage\FrmManageItem.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="App.Program\Application\Manage\FrmManagePaySub.Designer.cs">
-      <DependentUpon>FrmManagePaySub.cs</DependentUpon>
+    <Compile Include="App.Program\Application\Manage\FrmManageItem.Designer.cs">
+      <DependentUpon>FrmManageItem.cs</DependentUpon>
     </Compile>
     <Compile Include="App.Program\Application\Manage\FrmManageProductStatus.cs">
       <SubType>Form</SubType>
@@ -325,59 +319,59 @@
     <Compile Include="App.Program\Application\Manage\FrmManageProductType.Designer.cs">
       <DependentUpon>FrmManageProductType.cs</DependentUpon>
     </Compile>
-    <Compile Include="App.Program\Application\Manage\FrmMangeImage.cs">
+    <Compile Include="App.Program\Application\Manage\FrmManageImage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="App.Program\Application\Manage\FrmMangeImage.Designer.cs">
-      <DependentUpon>FrmMangeImage.cs</DependentUpon>
+    <Compile Include="App.Program\Application\Manage\FrmManageImage.Designer.cs">
+      <DependentUpon>FrmManageImage.cs</DependentUpon>
     </Compile>
-    <Compile Include="App.Program\Application\Manage\FrmMangeLogo.cs">
+    <Compile Include="App.Program\Application\Manage\FrmManageLogo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="App.Program\Application\Manage\FrmMangeLogo.Designer.cs">
-      <DependentUpon>FrmMangeLogo.cs</DependentUpon>
+    <Compile Include="App.Program\Application\Manage\FrmManageLogo.Designer.cs">
+      <DependentUpon>FrmManageLogo.cs</DependentUpon>
     </Compile>
-    <Compile Include="App.Program\Application\Manage\FrmMangeMenu.cs">
+    <Compile Include="App.Program\Application\Manage\FrmManageMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="App.Program\Application\Manage\FrmMangeMenu.Designer.cs">
-      <DependentUpon>FrmMangeMenu.cs</DependentUpon>
+    <Compile Include="App.Program\Application\Manage\FrmManageMenu.Designer.cs">
+      <DependentUpon>FrmManageMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="App.Program\Application\Manage\FrmMangeMoney.cs">
+    <Compile Include="App.Program\Application\Manage\FrmManageMoney.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="App.Program\Application\Manage\FrmMangeMoney.Designer.cs">
-      <DependentUpon>FrmMangeMoney.cs</DependentUpon>
+    <Compile Include="App.Program\Application\Manage\FrmManageMoney.Designer.cs">
+      <DependentUpon>FrmManageMoney.cs</DependentUpon>
     </Compile>
-    <Compile Include="App.Program\Application\Manage\FrmMangeShop.cs">
+    <Compile Include="App.Program\Application\Manage\FrmManageShop.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="App.Program\Application\Manage\FrmMangeShop.Designer.cs">
-      <DependentUpon>FrmMangeShop.cs</DependentUpon>
+    <Compile Include="App.Program\Application\Manage\FrmManageShop.Designer.cs">
+      <DependentUpon>FrmManageShop.cs</DependentUpon>
     </Compile>
-    <Compile Include="App.Program\Application\Manage\FrmMangeStatus.cs">
+    <Compile Include="App.Program\Application\Manage\FrmManageStatus.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="App.Program\Application\Manage\FrmMangeStatus.Designer.cs">
-      <DependentUpon>FrmMangeStatus.cs</DependentUpon>
+    <Compile Include="App.Program\Application\Manage\FrmManageStatus.Designer.cs">
+      <DependentUpon>FrmManageStatus.cs</DependentUpon>
     </Compile>
-    <Compile Include="App.Program\Application\Manage\FrmMangeThailand.cs">
+    <Compile Include="App.Program\Application\Manage\FrmManageThailand.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="App.Program\Application\Manage\FrmMangeThailand.Designer.cs">
-      <DependentUpon>FrmMangeThailand.cs</DependentUpon>
+    <Compile Include="App.Program\Application\Manage\FrmManageThailand.Designer.cs">
+      <DependentUpon>FrmManageThailand.cs</DependentUpon>
     </Compile>
-    <Compile Include="App.Program\Application\Manage\FrmMangeUnit.cs">
+    <Compile Include="App.Program\Application\Manage\FrmManageUnit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="App.Program\Application\Manage\FrmMangeUnit.Designer.cs">
-      <DependentUpon>FrmMangeUnit.cs</DependentUpon>
+    <Compile Include="App.Program\Application\Manage\FrmManageUnit.Designer.cs">
+      <DependentUpon>FrmManageUnit.cs</DependentUpon>
     </Compile>
-    <Compile Include="App.Program\Application\Manage\FrmMangeUser.cs">
+    <Compile Include="App.Program\Application\Manage\FrmManageUser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="App.Program\Application\Manage\FrmMangeUser.Designer.cs">
-      <DependentUpon>FrmMangeUser.cs</DependentUpon>
+    <Compile Include="App.Program\Application\Manage\FrmManageUser.Designer.cs">
+      <DependentUpon>FrmManageUser.cs</DependentUpon>
     </Compile>
     <Compile Include="App.Program\Application\Member\FrmMembers.cs">
       <SubType>Form</SubType>
@@ -403,11 +397,11 @@
     <Compile Include="App.Program\Application\Patient\FrmDENSA00.Designer.cs">
       <DependentUpon>FrmDENSA00.cs</DependentUpon>
     </Compile>
-    <Compile Include="App.Program\Application\Patient\FrmPATMA00.cs">
+    <Compile Include="App.Program\Application\Patient\FrmManagePatient.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="App.Program\Application\Patient\FrmPATMA00.Designer.cs">
-      <DependentUpon>FrmPATMA00.cs</DependentUpon>
+    <Compile Include="App.Program\Application\Patient\FrmManagePatient.Designer.cs">
+      <DependentUpon>FrmManagePatient.cs</DependentUpon>
     </Compile>
     <Compile Include="App.Program\Application\Patient\FrmPATSA00.cs">
       <SubType>Form</SubType>
@@ -438,6 +432,12 @@
     </Compile>
     <Compile Include="App.Program\Application\Products\FrmProducts.Designer.cs">
       <DependentUpon>FrmProducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Save\FrmGolds.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Save\FrmGolds.Designer.cs">
+      <DependentUpon>FrmGolds.cs</DependentUpon>
     </Compile>
     <Compile Include="App.Program\Application\Save\FrmExpenses.cs">
       <SubType>Form</SubType>
@@ -647,9 +647,6 @@
     <EmbeddedResource Include="App.Program\Application\Image\FrmImportImage.resx">
       <DependentUpon>FrmImportImage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="App.Program\Application\Image\FrmManageImage.resx">
-      <DependentUpon>FrmManageImage.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="App.Program\Application\Image\FrmShowImage.resx">
       <DependentUpon>FrmShowImage.cs</DependentUpon>
     </EmbeddedResource>
@@ -671,11 +668,11 @@
     <EmbeddedResource Include="App.Program\Application\Manage\FrmManageCard.resx">
       <DependentUpon>FrmManageCard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="App.Program\Application\Manage\FrmManagePay.resx">
-      <DependentUpon>FrmManagePay.cs</DependentUpon>
+    <EmbeddedResource Include="App.Program\Application\Manage\FrmManageCategory.resx">
+      <DependentUpon>FrmManageCategory.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="App.Program\Application\Manage\FrmManagePaySub.resx">
-      <DependentUpon>FrmManagePaySub.cs</DependentUpon>
+    <EmbeddedResource Include="App.Program\Application\Manage\FrmManageItem.resx">
+      <DependentUpon>FrmManageItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="App.Program\Application\Manage\FrmManageProductStatus.resx">
       <DependentUpon>FrmManageProductStatus.cs</DependentUpon>
@@ -683,32 +680,32 @@
     <EmbeddedResource Include="App.Program\Application\Manage\FrmManageProductType.resx">
       <DependentUpon>FrmManageProductType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="App.Program\Application\Manage\FrmMangeImage.resx">
-      <DependentUpon>FrmMangeImage.cs</DependentUpon>
+    <EmbeddedResource Include="App.Program\Application\Manage\FrmManageImage.resx">
+      <DependentUpon>FrmManageImage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="App.Program\Application\Manage\FrmMangeLogo.resx">
-      <DependentUpon>FrmMangeLogo.cs</DependentUpon>
+    <EmbeddedResource Include="App.Program\Application\Manage\FrmManageLogo.resx">
+      <DependentUpon>FrmManageLogo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="App.Program\Application\Manage\FrmMangeMenu.resx">
-      <DependentUpon>FrmMangeMenu.cs</DependentUpon>
+    <EmbeddedResource Include="App.Program\Application\Manage\FrmManageMenu.resx">
+      <DependentUpon>FrmManageMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="App.Program\Application\Manage\FrmMangeMoney.resx">
-      <DependentUpon>FrmMangeMoney.cs</DependentUpon>
+    <EmbeddedResource Include="App.Program\Application\Manage\FrmManageMoney.resx">
+      <DependentUpon>FrmManageMoney.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="App.Program\Application\Manage\FrmMangeShop.resx">
-      <DependentUpon>FrmMangeShop.cs</DependentUpon>
+    <EmbeddedResource Include="App.Program\Application\Manage\FrmManageShop.resx">
+      <DependentUpon>FrmManageShop.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="App.Program\Application\Manage\FrmMangeStatus.resx">
-      <DependentUpon>FrmMangeStatus.cs</DependentUpon>
+    <EmbeddedResource Include="App.Program\Application\Manage\FrmManageStatus.resx">
+      <DependentUpon>FrmManageStatus.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="App.Program\Application\Manage\FrmMangeThailand.resx">
-      <DependentUpon>FrmMangeThailand.cs</DependentUpon>
+    <EmbeddedResource Include="App.Program\Application\Manage\FrmManageThailand.resx">
+      <DependentUpon>FrmManageThailand.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="App.Program\Application\Manage\FrmMangeUnit.resx">
-      <DependentUpon>FrmMangeUnit.cs</DependentUpon>
+    <EmbeddedResource Include="App.Program\Application\Manage\FrmManageUnit.resx">
+      <DependentUpon>FrmManageUnit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="App.Program\Application\Manage\FrmMangeUser.resx">
-      <DependentUpon>FrmMangeUser.cs</DependentUpon>
+    <EmbeddedResource Include="App.Program\Application\Manage\FrmManageUser.resx">
+      <DependentUpon>FrmManageUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="App.Program\Application\Member\FrmMembers.resx">
       <DependentUpon>FrmMembers.cs</DependentUpon>
@@ -722,8 +719,8 @@
     <EmbeddedResource Include="App.Program\Application\Patient\FrmDENSA00.resx">
       <DependentUpon>FrmDENSA00.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="App.Program\Application\Patient\FrmPATMA00.resx">
-      <DependentUpon>FrmPATMA00.cs</DependentUpon>
+    <EmbeddedResource Include="App.Program\Application\Patient\FrmManagePatient.resx">
+      <DependentUpon>FrmManagePatient.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="App.Program\Application\Patient\FrmPATSA00.resx">
       <DependentUpon>FrmPATSA00.cs</DependentUpon>
@@ -739,6 +736,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="App.Program\Application\Products\FrmProducts.resx">
       <DependentUpon>FrmProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Save\FrmGolds.resx">
+      <DependentUpon>FrmGolds.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="App.Program\Application\Save\FrmExpenses.resx">
       <DependentUpon>FrmExpenses.cs</DependentUpon>
@@ -902,9 +902,11 @@
     <Content Include="App.Resources\FrmDebts.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="App.Resources\FrmMangeCategory.png" />
     <Content Include="App.Resources\FrmMangeLogo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="App.Resources\FrmMember.jpg" />
     <Content Include="App.Resources\FrmStatments.png" />
     <Content Include="App.Resources\RDDBMenu0.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

@@ -866,5 +866,13 @@ namespace SANSANG
                 }
             }
         }
+
+        private void txtPhone_Leave(object sender, EventArgs e)
+        {
+            if (txtPhone.Text != "")
+            {
+                txtPhone.Text = Function.ConvertPhoneNumber(txtPhone.Text);
+            }
+        }
     }
 }

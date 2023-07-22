@@ -56,6 +56,7 @@ namespace SANSANG
         private bool ShowNext;
         private string Error = "";
         private double Credit = 0;
+        private double TotalCredit = 0;
         private double Debit = 0;
         private string Details = "";
         private string Items = "";
@@ -63,6 +64,7 @@ namespace SANSANG
         private string IsDebit = "false";
         private string MoneyIsDelete = "";
         private bool IsSearchPayment = false;
+
         public FrmExpenses(string UserIdLogin, string UserNameLogin, string UserSurNameLogin, string UserTypeLogin)
         {
             try
@@ -103,13 +105,13 @@ namespace SANSANG
 
             List.GetLists(cbbMoney, DataList.MoneyId);
             List.GetLists(cbbStatus, string.Format(DataList.StatusId, "0"));
-            List.GetLists(cbbPay, DataList.PaymentId);
+            List.GetLists(cbbCategory, DataList.CategoryId);
             List.GetLists(cbbUnit, DataList.UnitId);
 
             cbbMoney.Enabled = true;
             cbbStatus.Enabled = true;
-            cbbPay.Enabled = true;
-            cbbPaySub.Enabled = true;
+            cbbCategory.Enabled = true;
+            cbbItem.Enabled = true;
             cbbUnit.Enabled = true;
 
             Clear(true);
@@ -156,10 +158,10 @@ namespace SANSANG
 
                 cbbStatus.SelectedValue = 0;
                 cbbMoney.SelectedValue = 0;
-                cbbPay.SelectedValue = 0;
+                cbbCategory.SelectedValue = 0;
                 cbbUnit.SelectedValue = 0;
 
-                cbbPaySub.Text = ":: กรุณาเลือก ::";
+                cbbItem.Text = ":: กรุณาเลือก ::";
 
                 DataRows = 0;
                 DataGridView0.DataSource = null;
@@ -232,8 +234,8 @@ namespace SANSANG
                     {"@Operation", Operation.SelectAbbr},
                     {"@List", ""},
                     {"@MoneyId", "0"},
-                    {"@PaymentId", "0"},
-                    {"@PaymentSubId", "0"},
+                    {"@CategoryId", "0"},
+                    {"@ItemId", "0"},
                     {"@IsDebit", ""},
                     {"@Item", ""},
                     {"@Detail", ""},
@@ -285,13 +287,13 @@ namespace SANSANG
             {
                 if (!Start)
                 {
-                    List.GetLists(cbbPaySub, string.Format(DataList.PaymentSubId, cbbPay.SelectedValue.ToString()));
+                    List.GetLists(cbbItem, string.Format(DataList.ItemId, cbbCategory.SelectedValue.ToString()));
                     cbbMoney.SelectedValue = "0";
 
                     txtDetails.Text = "";
                     txtItem.Text = "";
 
-                    Event.SetAutoMoney(cbbPaySub, cbbMoney);
+                    Event.SetAutoMoney(cbbItem, cbbMoney);
                 }
             }
             catch (Exception ex)
@@ -306,12 +308,12 @@ namespace SANSANG
             {
                 if (!Start)
                 {
-                    Function.GetPayment(Function.GetComboBoxId(cbbPaySub), out Details, out Items);
+                    Function.GetPayment(Function.GetComboBoxId(cbbItem), out Details, out Items);
 
                     txtItem.Text = Items;
                     txtDetails.Text = Details;
 
-                    Event.SetAutoMoney(cbbPaySub, cbbMoney);
+                    Event.SetAutoMoney(cbbItem, cbbMoney);
                     txtAmount.Focus();
                 }
             }
@@ -334,9 +336,9 @@ namespace SANSANG
             {
                 string Codes = Function.GetCodes(Table.ExpenseId, "", "Generated");
 
-                if (cbbPay.SelectedIndex == 0)
+                if (cbbCategory.SelectedIndex == 0)
                 {
-                    cbbPay.Focus();
+                    cbbCategory.Focus();
                 }
                 else if (txtAmount.Text == "")
                 {
@@ -367,8 +369,8 @@ namespace SANSANG
                             {"@Operation", Operation.InsertAbbr},
                             {"@List", List},
                             {"@MoneyId", Function.GetComboId(cbbMoney)},
-                            {"@PaymentId", Function.GetComboId(cbbPay)},
-                            {"@PaymentSubId", Function.GetComboId(cbbPaySub)},
+                            {"@CategoryId", Function.GetComboId(cbbCategory)},
+                            {"@ItemId", Function.GetComboId(cbbItem)},
                             {"@IsDebit", ""},
                             {"@Item", txtItem.Text},
                             {"@Detail", txtDetails.Text},
@@ -402,7 +404,7 @@ namespace SANSANG
                             {"@UpdateType", ""},
                         };
 
-                        Message.MessageConfirmation(Operation.InsertAbbr, txtCode.Text, cbbPaySub.Text + " ฿" + txtAmount.Text + " (" + cbbMoney.Text + ")");
+                        Message.MessageConfirmation(Operation.InsertAbbr, txtCode.Text, cbbItem.Text + " ฿" + txtAmount.Text + " (" + cbbMoney.Text + ")");
 
                         using (var Mes = new FrmMessagesBox(Message.strOperation.Substring(1, Message.strOperation.Length - 1), Message.strMes, "YES", "NO", Message.strImage))
                         {
@@ -458,8 +460,8 @@ namespace SANSANG
                         {"@Operation", Operation.SelectAbbr},
                         {"@List", ""},
                         {"@MoneyId", "0"},
-                        {"@PaymentId", "0"},
-                        {"@PaymentSubId", "0"},
+                        {"@CategoryId", "0"},
+                        {"@ItemId", "0"},
                         {"@IsDebit", "0"},
                         {"@Item", ""},
                         {"@Detail", ""},
@@ -506,8 +508,8 @@ namespace SANSANG
                         {"@Operation", "S"},
                         {"@List", ""},
                         {"@MoneyId", "0"},
-                        {"@PaymentId", "0"},
-                        {"@PaymentSubId", "0"},
+                        {"@CategoryId", "0"},
+                        {"@ItemId", "0"},
                         {"@IsDebit", "1"},
                         {"@Item", ""},
                         {"@Detail", ""},
@@ -552,8 +554,8 @@ namespace SANSANG
                         {"@Operation", Operation.UpdateAbbr},
                         {"@List", List},
                         {"@MoneyId", MoneyIsDelete == ""? Function.GetComboId(cbbMoney) : MoneyIsDelete},
-                        {"@PaymentId", Function.GetComboId(cbbPay)},
-                        {"@PaymentSubId", Function.GetComboId(cbbPaySub)},
+                        {"@CategoryId", Function.GetComboId(cbbCategory)},
+                        {"@ItemId", Function.GetComboId(cbbItem)},
                         {"@IsDebit", ""},
                         {"@Item", txtItem.Text},
                         {"@Detail", txtDetails.Text},
@@ -587,7 +589,7 @@ namespace SANSANG
                         {"@UpdateType", "EXPENSE"},
                     };
 
-                    Message.MessageConfirmation(Operation.UpdateAbbr, txtCode.Text, cbbPaySub.Text + " ฿" + txtAmount.Text + " (" + cbbMoney.Text + ")");
+                    Message.MessageConfirmation(Operation.UpdateAbbr, txtCode.Text, cbbItem.Text + " ฿" + txtAmount.Text + " (" + cbbMoney.Text + ")");
 
                     using (var Mes = new FrmMessagesBox(Message.strOperation.Substring(1, Message.strOperation.Length - 1), Message.strMes, "YES", "NO", Message.strImage))
                     {
@@ -622,7 +624,7 @@ namespace SANSANG
         {
             try
             {
-                if (Delete.Drop(AppCode, AppName, UserId, 0, Table.Expenses, txtCode, cbbPaySub.Text + " ฿" + txtAmount.Text + " (" + cbbMoney.Text + ")")
+                if (Delete.Drop(AppCode, AppName, UserId, 0, Table.Expenses, txtCode, cbbItem.Text + " ฿" + txtAmount.Text + " (" + cbbMoney.Text + ")")
                  && Delete.Drop(AppCode, AppName, UserId, 0, Table.Payments, txtCode, "", false))
                 {
                     Clear(true);
@@ -665,8 +667,8 @@ namespace SANSANG
                             {"@Operation", Operation.InsertAbbr},
                             {"@List", List},
                             {"@MoneyId", Id.MoneyCash},
-                            {"@PaymentId", Id.PaymentCarry},
-                            {"@PaymentSubId", Id.SubPaymentCarry},
+                            {"@CategoryId", Id.PaymentCarry},
+                            {"@ItemId", Id.SubPaymentCarry},
                             {"@IsDebit", "1"},
                             {"@Item", "เงินยกยอด | ยกยอดมา"},
                             {"@Detail", ""},
@@ -773,8 +775,8 @@ namespace SANSANG
                     {"@Operation", Operation.SelectAbbr},
                     {"@List", ""},
                     {"@MoneyId", Function.GetComboZero(cbbMoney)},
-                    {"@PaymentId", Function.GetComboZero(cbbPay)},
-                    {"@PaymentSubId", Function.GetComboZero(cbbPaySub)},
+                    {"@CategoryId", Function.GetComboZero(cbbCategory)},
+                    {"@ItemId", Function.GetComboZero(cbbItem)},
                     {"@IsDebit", ""},
                     {"@Item", txtItem.Text},
                     {"@Detail", txtDetails.Text},
@@ -789,13 +791,26 @@ namespace SANSANG
                 ShowDataGridView(ds);
 
                 db.Gets(Store.FnGetBalanceSearch, Parameter, out Error, out ds);
-                Credit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumCredit"].ToString()));
-                Debit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumDebit"].ToString()));
 
-                lblBalance.Text = "รวมทั้งสิ้น";
-                txtTotalReal.Text = string.Format("{0:#,##0.00}", Debit - Credit);
-                txtSumCredit.Text = string.Format("{0:#,##0.00}", Credit);
+                if (string.IsNullOrEmpty(Error))
+                {
+                    Credit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumCredit"].ToString()));
+                    TotalCredit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["TotalCredit"].ToString()));
+                    Debit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumDebit"].ToString()));
+                }
+                else
+                {
+                    Credit = 0.00;
+                    TotalCredit = 0.00;
+                    Debit = 0.00;
+                }
+
+                lblBalance.Text = "คงเหลือ";
+
+                double TotalReal = Math.Abs(Debit - (Credit > TotalCredit ? Credit : TotalCredit));
+                txtSumCredit.Text = string.Format("{0:#,##0.00}", Credit > TotalCredit ? Credit : TotalCredit);
                 txtSumDebit.Text = string.Format("{0:#,##0.00}", Debit);
+                txtTotalReal.Text = string.Format("{0:#,##0.00}", TotalReal);
                 txtPayStatus.Text = "";
             }
             catch (Exception ex)
@@ -808,8 +823,8 @@ namespace SANSANG
         {
             try
             {
-                //FrmManagePay FrmManagePay = new FrmManagePay(UserId, UserName, UserSurname, UserType);
-                //FrmManagePay.Show();
+                FrmManageCategory FrmManageCategory = new FrmManageCategory(UserId, UserName, UserSurname, UserType);
+                FrmManageCategory.Show();
             }
             catch (Exception ex)
             {
@@ -821,8 +836,8 @@ namespace SANSANG
         {
             try
             {
-                //FrmManagePaySub FrmManagePaySub = new FrmManagePaySub(UserId, UserName, UserSurname, UserType);
-                //FrmManagePaySub.Show();
+                FrmManageItem FrmManageItem = new FrmManageItem(UserId, UserName, UserSurname, UserType);
+                FrmManageItem.Show();
             }
             catch (Exception ex)
             {
@@ -878,7 +893,7 @@ namespace SANSANG
                 else if (e.KeyChar == Convert.ToChar(Keys.Enter))
                 {
                     Sum += Convert.ToDouble(txtTotalReal.Text);
-                    txtTotalReal.Text = string.Format("{0:#,##0.00}", Sum);
+                    txtTotalReal.Text = string.Format("{0:#,##0.00}", Math.Abs(Sum));
                     Sum = 0;
                     btnNext.Focus();
                     e.Handled = true;
@@ -1212,8 +1227,8 @@ namespace SANSANG
                 {
                     User = UserId,
                     MoneyId = "",
-                    PaymentId = "",
-                    PaymentSubId = "",
+                    CategoryId = "",
+                    ItemId = "",
                     IsDebit = "",
                     Item = "",
                     Amount = Function.MoveNumberStringComma(txtAmount.Text),
@@ -1268,8 +1283,8 @@ namespace SANSANG
                     {"@Operation", Operation.SelectAbbr},
                     {"@List", ""},
                     {"@MoneyId", "0"},
-                    {"@PaymentId", "0"},
-                    {"@PaymentSubId", "0"},
+                    {"@CategoryId", "0"},
+                    {"@ItemId", "0"},
                     {"@IsDebit", ""},
                     {"@Item", ""},
                     {"@Detail", ""},
@@ -1324,7 +1339,7 @@ namespace SANSANG
 
                 txtReceipt.Text = Receipt;
                 lblBalance.Text = "รวมทั้งสิ้น";
-                txtTotalReal.Text = string.Format("{0:#,##0.00}", Credit);
+                txtTotalReal.Text = string.Format("{0:#,##0.00}", Math.Abs(Credit));
                 txtSumCredit.Text = string.Format("{0:#,##0.00}", Credit);
                 txtSumDebit.Text = string.Format("{0:#,##0.00}", Debit);
                 txtPayStatus.Text = "";
@@ -1491,8 +1506,8 @@ namespace SANSANG
             {
                 string UnitId = Data.Rows[0]["UnitId"].ToString() == "" ? "0" : Data.Rows[0]["UnitId"].ToString();
                 string StatusId = Data.Rows[0]["Status"].ToString() == "" ? "0" : Data.Rows[0]["Status"].ToString();
-                string PaymentId = Data.Rows[0]["PaymentId"].ToString() == "" ? "0" : Data.Rows[0]["PaymentId"].ToString();
-                string PaymentSubId = Data.Rows[0]["PaymentSubId"].ToString() == "" ? "0" : Data.Rows[0]["PaymentSubId"].ToString();
+                string CategoryId = Data.Rows[0]["CategoryId"].ToString() == "" ? "0" : Data.Rows[0]["CategoryId"].ToString();
+                string ItemId = Data.Rows[0]["ItemId"].ToString() == "" ? "0" : Data.Rows[0]["ItemId"].ToString();
                 string MoneyId = Data.Rows[0]["MoneyId"].ToString() == "" ? "0" : Data.Rows[0]["MoneyId"].ToString();
                 string MoneyName = Data.Rows[0]["Moneys"].ToString();
 
@@ -1505,8 +1520,8 @@ namespace SANSANG
                 txtUnit.Text = Data.Rows[0]["Unit"].ToString() == "0.00" ? "" : decimal.Parse(Data.Rows[0]["Unit"].ToString()).ToString("G29");
 
                 cbbUnit.SelectedValue = UnitId;
-                cbbPay.SelectedValue = PaymentId;
-                cbbPaySub.SelectedValue = PaymentSubId;
+                cbbCategory.SelectedValue = CategoryId;
+                cbbItem.SelectedValue = ItemId;
                 cbbMoney.SelectedValue = MoneyId;
 
                 if (cbbMoney.SelectedValue == null)

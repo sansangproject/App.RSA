@@ -8,6 +8,7 @@ using SANSANG.Utilites.App.Forms;
 using System.Drawing;
 using System.Linq;
 using System.Globalization;
+using System.Threading.Tasks;
 
 namespace SANSANG
 {
@@ -284,7 +285,7 @@ namespace SANSANG
                 strCondition += txtName.Text != "" ? ", รายการ: " + txtName.Text : "";
                 strCondition += Function.GetComboId(cbbProvider) != "0" ? ", ผู้ให้บริการ: " + cbbProvider.Text : "";
                 strCondition += txtAccount.Text != "" ? ", บัญชี: " + txtAccount.Text : "";
-                strCondition += Function.GetComboId(cbbType) != "9" ? ", ประเถท: " + cbbType.Text : "";
+                strCondition += Function.GetComboId(cbbType) != "9" ? ", ประเภท: " + cbbType.Text : "";
                 strCondition += txtAmount.Text != "" ? ", จำนวนเงิน: " + txtAmount.Text : "";
                 strCondition += cb_Due.Checked == true ? ", วันที่ต้องชำระ: " + Date.GetDate(dtp: dtDueDate, Format: 4) : "";
                 strCondition += txtPayment.Text != "" ? ", ยอดชำระ: " + txtPayment.Text : "";
@@ -821,6 +822,7 @@ namespace SANSANG
                 Function.ClearAll(gbForm);
                 cbbType.SelectedValue = 9;
                 cbbMonth.SelectedIndex = IndexCurrentMonth + 1;
+                cb_Month.Checked = true;
                 Search(true);
             }
         }
@@ -834,6 +836,7 @@ namespace SANSANG
                 Function.ClearAll(gbForm);
                 cbbType.SelectedValue = 9;
                 cbbMonth.SelectedIndex = IndexCurrentMonth - 1;
+                cb_Month.Checked = true;
                 Search(true);
             }
         }
@@ -908,7 +911,7 @@ namespace SANSANG
                                 string Months = dtValue.ToString("MM");
 
                                 Lists = string.Concat(Years, Months);
-
+                                  
                                 string Codes = Function.GetCodes(Table.TrackingsId, "1049", "Generated");
 
                                 if (Codes != "" && !Function.IsDuplicates(Table.Depts, Lists, txtAccount.Text, txtName.Text, Function.GetComboId(cbbProvider), Detail: "Bill " + txtName.Text + " (" + Lists + ") duplicate."))
@@ -944,6 +947,8 @@ namespace SANSANG
                                     Error += Error;
                                     Codes = "";
                                 }
+
+                                Task.Delay(1000).Wait();
                             }
 
                             if (string.IsNullOrEmpty(Error))

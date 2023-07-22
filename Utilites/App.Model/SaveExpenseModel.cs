@@ -19,8 +19,8 @@ namespace SANSANG.Utilites.App.Model
         public string Operation { get; set; }
         public string List { get; set; }
         public string MoneyId { get; set; }
-        public string PaymentId { get; set; }
-        public string PaymentSubId { get; set; }
+        public string CategoryId { get; set; }
+        public string ItemId { get; set; }
         public string IsDebit { get; set; }
         public string Item { get; set; }
         public string Detail { get; set; }

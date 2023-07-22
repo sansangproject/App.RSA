@@ -135,8 +135,8 @@ namespace RecordSystemApplication.App.Program.Application.Payment
                     {"@Operation", Operation.SelectAbbr},
                     {"@List", ""},
                     {"@MoneyId", "0"},
-                    {"@PaymentId", "0"},
-                    {"@PaymentSubId", "0"},
+                    {"@CategoryId", "0"},
+                    {"@ItemId", "0"},
                     {"@IsDebit", ""},
                     {"@Item", ""},
                     {"@Detail", ""},
@@ -346,6 +346,11 @@ namespace RecordSystemApplication.App.Program.Application.Payment
                     txtReceipt.Text = Codes == "" ? txtReceipt.Text : Codes;
                 }
             }
+        }
+
+        private void btnPaste_Click(object sender, EventArgs e)
+        {
+            txtReceipt.Text = Clipboard.GetText();
         }
     }
 }

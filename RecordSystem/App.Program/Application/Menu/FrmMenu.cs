@@ -346,12 +346,12 @@ namespace SANSANG
             }
             else if (((RadMenuItem)sender).Name == "MANLG00")
             {
-                FrmMangeLogo Frm = new FrmMangeLogo(UserId, UserName, UserSurname, UserType);
+                FrmManageLogo Frm = new FrmManageLogo(UserId, UserName, UserSurname, UserType);
                 Frm.Show();
             }
             else if (((RadMenuItem)sender).Name == "MANSH00")
             {
-                FrmMangeShop Frm = new FrmMangeShop(UserId, UserName, UserSurname, UserType);
+                FrmManageShop Frm = new FrmManageShop(UserId, UserName, UserSurname, UserType);
                 Frm.Show();
             }
             else if (((RadMenuItem)sender).Name == "SAVCR00")
@@ -377,6 +377,21 @@ namespace SANSANG
             else if (((RadMenuItem)sender).Name == "SAVME00")
             {
                 FrmMembers Frm = new FrmMembers(UserId, UserName, UserSurname, UserType);
+                Frm.Show();
+            }
+            else if (((RadMenuItem)sender).Name == "SAVGD00")
+            {
+                FrmGolds Frm = new FrmGolds(UserId, UserName, UserSurname, UserType);
+                Frm.Show();
+            }
+            else if (((RadMenuItem)sender).Name == "MANCA00")
+            {
+                FrmManageCategory Frm = new FrmManageCategory(UserId, UserName, UserSurname, UserType);
+                Frm.Show();
+            }
+            else if (((RadMenuItem)sender).Name == "MANIT00")
+            {
+                FrmManageItem Frm = new FrmManageItem(UserId, UserName, UserSurname, UserType);
                 Frm.Show();
             }
             Log.WriteLogData("MENU", ((RadMenuItem)sender).Name, UserId, "Open");

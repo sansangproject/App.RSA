@@ -201,6 +201,7 @@
     <Compile Include="App.Constant\StoreConstant.cs" />
     <Compile Include="App.Constant\IdConstant.cs" />
     <Compile Include="App.Constant\GenderConstant.cs" />
+    <Compile Include="App.Constant\ColumnConstant.cs" />
     <Compile Include="App.Constant\TableConstant.cs" />
     <Compile Include="App.Constant\PathConstant.cs" />
     <Compile Include="App.Constant\TransactionConstant.cs" />
@@ -210,6 +211,7 @@
     <Compile Include="App.Constant\ApiConstant.cs" />
     <Compile Include="App.Database\dbConnection.cs" />
     <Compile Include="App.Model\BalancesModel.cs" />
+    <Compile Include="App.Model\BAYSTModel.cs" />
     <Compile Include="App.Model\KTBSTModel.cs" />
     <Compile Include="App.Model\SCBSTModel.cs" />
     <Compile Include="App.Model\TMBSTModel.cs" />

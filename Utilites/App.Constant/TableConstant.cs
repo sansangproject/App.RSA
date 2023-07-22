@@ -16,6 +16,12 @@ namespace SANSANG.Constant
         public string SignatureId = "1060";
         public string StatmentId = "1057";
         public string ProductId = "1022";
+        public string MembertId = "1053";
+        public string UserId = "1035";
+        public string GoldId = "1073";
+
+        public string ItemId = "1020";
+        public string CategoryId = "1019";
 
         public string Expenses = "[dbo].[Expenses]";
         public string Payments = "[dbo].[Payments]";
@@ -24,11 +30,17 @@ namespace SANSANG.Constant
         public string TrackPosts = "[dbo].[TrackPosts]";
         public string Depts = "[dbo].[Debts]";
         public string Products = "[dbo].[Products]";
+        public string Members = "[dbo].[Members]";
+
+        public string Item = "[mst].[Item]";
+        public string Category = "[mst].[Category]";
 
         public string Logo = "[mst].[Logo]";
         public string Shop = "[mst].[Shop]";
         public string Credits = "[dbo].[Credits]";
         public string Statments = "[dbo].[Statments]";
+        public string User = "[mst].[User]";
+        public string Golds = "[dbo].[Golds]";
 
         public string Amphoe = "[mst].[Amphoe]";
         public string Geography = "[mst].[Geography]";

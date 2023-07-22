@@ -63,36 +63,6 @@ namespace RecordSystemApplication.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap FrmCredits {
-            get {
-                object obj = ResourceManager.GetObject("FrmCredits", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        public static System.Drawing.Bitmap FrmDebts {
-            get {
-                object obj = ResourceManager.GetObject("FrmDebts", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        public static System.Drawing.Bitmap FrmMangeLogo {
-            get {
-                object obj = ResourceManager.GetObject("FrmMangeLogo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         public static System.Drawing.Bitmap RDDBMenu0 {
             get {
                 object obj = ResourceManager.GetObject("RDDBMenu0", resourceCulture);

@@ -78,6 +78,27 @@ namespace SANSANG.Class
             }
         }
 
+        public string Add(string AppCodes = "", string AppNames = "", string UserId = "", string strStore = "", string[,] Parameter = null)
+        {
+            
+            string AppCode = AppCodes;
+            string AppName = AppNames;
+            string Store = strStore;
+            string results = "";
+
+            try
+            {
+                db.Operation(Store, Parameter, out results, out dt);
+                return dt.Rows[0]["Id"].ToString();
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+                return "";
+            }
+        }
+
+
         public void Expenses(ExpensesModel Model)
         {
             try
@@ -95,8 +116,8 @@ namespace SANSANG.Class
                     {"@Operation", Operation.InsertAbbr},
                     {"@List", List},
                     {"@MoneyId", Model.MoneyId},
-                    {"@PaymentId", Model.PaymentId},
-                    {"@PaymentSubId", Model.PaymentSubId},
+                    {"@PaymentId", Model.CategoryId},
+                    {"@PaymentSubId", Model.ItemId},
                     {"@IsDebit", Model.IsDebit},
                     {"@Item", Model.Item},
                     {"@Detail", ""},

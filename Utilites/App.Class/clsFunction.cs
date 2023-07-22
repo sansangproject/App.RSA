@@ -164,11 +164,11 @@ namespace SANSANG.Class
                     {"@NameEn", ""},
                     {"@Display", ""},
                     {"@Detail", ""},
-                    {"@PaymentId", "0"},
+                    {"@CategoryId", "0"},
                     {"@IsDebit", ""},
                 };
 
-                db.Get(Store.ManagePaymentSub, Parameter, out Error, out dt);
+                db.Get(Store.ManageItem, Parameter, out Error, out dt);
                 Details = dt.Rows[0]["Detail"].ToString();
                 Items = dt.Rows[0]["Item"].ToString();
                 return Convert.ToBoolean(dt.Rows[0]["IsDebit"].ToString());
@@ -198,11 +198,11 @@ namespace SANSANG.Class
                     {"@NameEn", ""},
                     {"@Display", ""},
                     {"@Detail", ""},
-                    {"@PaymentId", "0"},
+                    {"@CategoryId", "0"},
                     {"@IsDebit", ""},
                 };
 
-                db.Get(Store.ManagePaymentSub, Parameter, out Error, out dt);
+                db.Get(Store.ManageItem, Parameter, out Error, out dt);
                 Details = dt.Rows[0]["Display"].ToString();
                 Items = "รายการเดินบัญชี";
                 return Convert.ToBoolean(dt.Rows[0]["IsDebit"].ToString());
@@ -235,11 +235,11 @@ namespace SANSANG.Class
                     {"@NameEn", ""},
                     {"@Display", ""},
                     {"@Detail", ""},
-                    {"@PaymentId", "0"},
+                    {"@CategoryId", "0"},
                     {"@IsDebit", ""},
                 };
 
-                db.Get(Store.ManagePaymentSub, Parameter, out Error, out dt);
+                db.Get(Store.ManageItem, Parameter, out Error, out dt);
                 return Error == null ? dt.Rows[0][Column].ToString() : "";
             }
             catch (Exception)
@@ -265,16 +265,62 @@ namespace SANSANG.Class
                     {"@NameEn", Codes},
                     {"@Display", ""},
                     {"@Detail", ""},
-                    {"@PaymentId", "0"},
+                    {"@CategoryId", "0"},
                     {"@IsDebit", ""},
                 };
 
-                db.Get(Store.ManagePaymentSub, Parameter, out Error, out dt);
+                db.Get(Store.ManageItem, Parameter, out Error, out dt);
 
                 PaymentId = dt.Rows[0]["Id"].ToString();
                 Items = "รายการเดินบัญชี";
                 Details = dt.Rows[0]["Display"].ToString();
                 Displays = dt.Rows[0]["Detail"].ToString();
+                IsWithdrawal = Convert.ToBoolean(dt.Rows[0]["IsDebit"].ToString()) ? false : true;
+            }
+            catch (Exception)
+            {
+                PaymentId = "";
+                Items = "";
+                Details = "";
+                Displays = "";
+                IsWithdrawal = false;
+            }
+        }
+
+        public void GetPaymentByName(string Codes, string Payments, out string PaymentId, out string Items, out string Details, out string Displays, out bool IsWithdrawal)
+        {
+            try
+            {
+                string NameEn = "";
+
+                if (Payments == "1070")
+                {
+                    NameEn = Codes == "โอนเงิน" ? "Transfer Withdrawal" : "";
+                }
+
+                Parameter = new string[,]
+                {
+                    {"@Id", ""},
+                    {"@Code", ""},
+                    {"@Status", "0"},
+                    {"@User", ""},
+                    {"@IsActive", ""},
+                    {"@IsDelete", ""},
+                    {"@Operation", "S"},
+                    {"@Name", Codes},
+                    {"@NameEn", NameEn},
+                    {"@Display", ""},
+                    {"@Detail", ""},
+                    {"@CategoryId", Payments},
+                    {"@IsDebit", ""},
+                };
+
+                db.Get(Store.ManageItem, Parameter, out Error, out dt);
+
+                PaymentId = dt.Rows[0]["Id"].ToString();
+                Items = dt.Rows[0]["NameEn"].ToString();
+                Details = dt.Rows[0]["Detail"].ToString();
+                Displays = dt.Rows[0]["NameEn"].ToString() + " | " + dt.Rows[0]["Name"].ToString();
                 IsWithdrawal = Convert.ToBoolean(dt.Rows[0]["IsDebit"].ToString()) ? false : true;
             }
             catch (Exception)
@@ -316,8 +362,8 @@ namespace SANSANG.Class
                 };
 
                 db.Get(Store.FnGetMoneyBalance, Parameter, out Error, out dt);
-
-                return string.Format("{0:#,##0.00}", double.Parse(Convert.ToString(dt.Rows[0]["Sum"].ToString())));
+                double Amount = double.Parse(Convert.ToString(dt.Rows[0]["Sum"].ToString()));
+                return string.Format("{0:#,##0.00}", Math.Abs(Amount));
             }
             catch (Exception)
             {
@@ -348,7 +394,7 @@ namespace SANSANG.Class
                     {"@Operation", Operation},
                 };
 
-                db.Get("[fn].[GeneratedId]", Parameter, out Error, out dt);
+                db.Get(Store.FnGeneratedId, Parameter, out Error, out dt);
                 return dt.Rows[0][0].ToString();
 
             }
@@ -364,6 +410,7 @@ namespace SANSANG.Class
             try
             {
                 int NumberOfDuplicate = 0;
+
                 Parameter = new string[,]
                 {
                     {"@Table",      Table},
@@ -377,6 +424,7 @@ namespace SANSANG.Class
                 };
 
                 db.Get(Store.FnGetDataDuplicate, Parameter, out Error, out dt);
+
                 NumberOfDuplicate = string.IsNullOrEmpty(Error) ? Convert.ToInt32(dt.Rows[0]["ROW"].ToString()) : 1;
                 return NumberOfDuplicate > 0 ? true : false;
             }
@@ -408,9 +456,12 @@ namespace SANSANG.Class
 
                 if (NumberOfDuplicate > 0)
                 {
-                    Message.MessageConfirmation("N", "", Detail);
-                    var Popup = new FrmMessagesBoxOK(Message.strOperation, Message.strMes, "OK", Id: Message.strImage);
-                    Popup.ShowDialog();
+                    if (Detail != "")
+                    {
+                        Message.MessageConfirmation("N", "", Detail);
+                        var Popup = new FrmMessagesBoxOK(Message.strOperation, Message.strMes, "OK", Id: Message.strImage);
+                        Popup.ShowDialog();
+                    }
                     return true;
                 }
 
@@ -433,11 +484,13 @@ namespace SANSANG.Class
                     {"@Value2",     strValue2},
                     {"@Value3",     strValue3},
                     {"@Value4",     strValue4},
-                    {"@Value5",     ""}
+                    {"@Value5",     ""},
+                    {"@Value6",     ""},
+                    {"@Value7",     ""},
                 };
 
                 db.Get(Store.FnGetDataDuplicate, Parameter, out Error, out dt);
-                return Convert.ToInt32(dt.Rows[0]["ROW"].ToString());
+                return string.IsNullOrEmpty(Error) ? Convert.ToInt32(dt.Rows[0]["ROW"].ToString()) : 1;
             }
             catch (Exception)
             {
@@ -793,6 +846,21 @@ namespace SANSANG.Class
                 {
                     ComboBoxs.SelectedValue = 0;
                 }
+
+                RadioButton RadioButtons = Controls as RadioButton;
+
+                if (RadioButtons != null)
+                {
+                    RadioButtons.Checked = true;
+                }
+
+                CheckBox CheckBoxs = Controls as CheckBox;
+
+                if (CheckBoxs != null)
+                {
+                    CheckBoxs.Checked = false;
+                }
+
             }
         }
 
@@ -905,6 +973,62 @@ namespace SANSANG.Class
             {
                 Datepicker.Value = DateTime.Today;
                 Textbox.Text = "";
+            }
+        }
+
+        public string FillFromRight(string Number, int MaxLength)
+        {
+            string Numbers = Number;
+            char RepeateThis = '0';
+
+            try
+            {
+                var format = "{0:-" + (MaxLength) + ":" + RepeateThis + "}";
+                Numbers = string.Format(new PaddedStringFormatInfo(), format, Number);
+            }
+            catch
+            {
+                return "";
+            }
+
+            return Numbers;
+        }
+
+        public sealed class PaddedStringFormatInfo : IFormatProvider, ICustomFormatter
+        {
+            public object GetFormat(Type formatType)
+            {
+                if (typeof(ICustomFormatter).Equals(formatType)) return this;
+                return null;
+            }
+
+            public string Format(string format, object arg, IFormatProvider formatProvider)
+            {
+                if (arg == null)
+                    throw new ArgumentNullException("Argument cannot be null");
+
+                string[] args;
+                if (format != null)
+                    args = format.Split(':');
+                else
+                    return arg.ToString();
+
+                if (args.Length == 1)
+                    String.Format("{0, " + format + "}", arg);
+
+                int padLength = 0;
+
+                if (!int.TryParse(args[0], out padLength))
+                    throw new ArgumentException("Padding lenght should be an integer");
+                switch (args.Length)
+                {
+                    case 2:
+                        if (padLength > 0)
+                            return (arg as string).PadLeft(padLength, args[1][0]);
+                        return (arg as string).PadRight(padLength * -1, args[1][0]);
+                    default:
+                        return string.Format("{0," + format + "}", arg);
+                }
             }
         }
 
@@ -1121,6 +1245,31 @@ namespace SANSANG.Class
             }
         }
 
+        public string GetRunningId(string table, string column)
+        {
+            DataTable dt = new DataTable();
+            string strErr = "";
+
+            try
+            {
+                string Id = "";
+
+                string[,] Parameter = new string[,]
+                {
+                    {"@Table", table},
+                    {"@Column", column},
+                };
+
+                db.Get(Store.FnGetTopId, Parameter, out strErr, out dt);
+                Id = strErr != ""? string.Format("{0:0000}", Convert.ToInt32(dt.Rows[0][column].ToString())) : "";
+                return Id;
+            }
+            catch (Exception)
+            {
+                return "";
+            }
+        }
+
         public string getId(string table, string column, string IDName)
         {
             DataTable dt = new DataTable();
@@ -1251,260 +1400,232 @@ namespace SANSANG.Class
             }
         }
 
-        public string getCode(string table, string column, string IDName)
-        {
-            DataTable dt = new DataTable();
-            string strErr = "";
+        //public string getCode(string table, string column, string IDName)
+        //{
+        //    DataTable dt = new DataTable();
+        //    string strErr = "";
 
 
-            try
-            {
-                string[,] Parameter = new string[,]
-                {
-                    {"@Table", table},
-                    {"@Column", column},
-                };
+        //    try
+        //    {
+        //        string[,] Parameter = new string[,]
+        //        {
+        //            {"@Table", table},
+        //            {"@Column", column},
+        //        };
 
-                db.Get("Spr_F_GetTopId", Parameter, out strErr, out dt);
+        //        db.Get("Spr_F_GetTopId", Parameter, out strErr, out dt);
 
-                // A99-8BCB87B2C9-9
-                // "A" + "99" + "-" + "8BCB87B2C9" + "-" +  "9"
-                // ____________________________________________________________________________________________
-                //
-                // "A"                  = 1 ตัว รหัสโปรแกรมตัวแรก
-                // "9"                  = 1 ตัว ค่า Id ล่าสุด ใน Table นั้นๆ MOD 9
-                // "8BCB87B2C9"         = 10 ตัว วันที่และเวลา 12 หลัก yyMMddHHmmss แปลงเป็นฐาน 16
-                // "9"                  = 1 ตัว สำหรับเช็คการป้อนตัวเลข 1-9 หลัก โดยนำวันที่แต่ละหลักมาบวกกัน แล้วนำผลรวมมา MOD 9
-                //                          เช่น 60/04/15 12:21:21 (600415122121) = (6+0+0+4+1+5+1+2+2+1+2+1) MOD 9
-                // _____________________________________________________________________________________________
+        //        // A99-8BCB87B2C9-9
+        //        // "A" + "99" + "-" + "8BCB87B2C9" + "-" +  "9"
+        //        // ____________________________________________________________________________________________
+        //        //
+        //        // "A"                  = 1 ตัว รหัสโปรแกรมตัวแรก
+        //        // "9"                  = 1 ตัว ค่า Id ล่าสุด ใน Table นั้นๆ MOD 9
+        //        // "8BCB87B2C9"         = 10 ตัว วันที่และเวลา 12 หลัก yyMMddHHmmss แปลงเป็นฐาน 16
+        //        // "9"                  = 1 ตัว สำหรับเช็คการป้อนตัวเลข 1-9 หลัก โดยนำวันที่แต่ละหลักมาบวกกัน แล้วนำผลรวมมา MOD 9
+        //        //                          เช่น 60/04/15 12:21:21 (600415122121) = (6+0+0+4+1+5+1+2+2+1+2+1) MOD 9
+        //        // _____________________________________________________________________________________________
 
-                string strCode = IDName;
+        //        string strCode = IDName;
 
-                int row = Convert.ToInt32(dt.Rows[0][column].ToString());
-                string strRow = (row % 9).ToString().PadLeft(1, '0');
+        //        int row = Convert.ToInt32(dt.Rows[0][column].ToString());
+        //        string strRow = (row % 9).ToString().PadLeft(1, '0');
 
-                string strDateTime = Convert.ToString(DateTime.Now.ToString("yyMMddHHmmss"));
-                string hexDateTime = (long.Parse(strDateTime)).ToString("X10");
+        //        string strDateTime = Convert.ToString(DateTime.Now.ToString("yyMMddHHmmss"));
+        //        string hexDateTime = (long.Parse(strDateTime)).ToString("X10");
 
-                int numSumDateTime = 0;
+        //        int numSumDateTime = 0;
 
-                for (int i = 0; i <= 11; i++)
-                {
-                    numSumDateTime += Convert.ToInt32(strDateTime.Substring(i, 1));
-                }
+        //        for (int i = 0; i <= 11; i++)
+        //        {
+        //            numSumDateTime += Convert.ToInt32(strDateTime.Substring(i, 1));
+        //        }
 
-                string strChekDigit = String.Format("{0}", (numSumDateTime % 9).ToString());
+        //        string strChekDigit = String.Format("{0}", (numSumDateTime % 9).ToString());
 
-                return strCode + strRow + "-" + hexDateTime + "-" + strChekDigit;
-            }
-            catch (Exception)
-            {
-                return "";
-            }
-        }
+        //        return strCode + strRow + "-" + hexDateTime + "-" + strChekDigit;
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return "";
+        //    }
+        //}
 
-        public string getCode(string table, string column, string IDName, DateTime Date)
-        {
-            DataTable dt = new DataTable();
-            string strErr = "";
-
-
-            try
-            {
-                string[,] Parameter = new string[,]
-                {
-                    {"@Table", table},
-                    {"@Column", column},
-                };
-
-                db.Get("Spr_F_GetTopId", Parameter, out strErr, out dt);
-
-                // A9-8BCB87B2C9-9
-                // "A" + "9" + "-" + "8BCB87B2C9" + "-" +  "9"
-                // ____________________________________________________________________________________________
-                //
-                // "A"                  = 1 ตัว รหัสโปรแกรมตัวแรก
-                // "9"                  = 1 ตัว ค่า Id ล่าสุด ใน Table นั้นๆ MOD 9
-                // "8BCB87B2C9"         = 10 ตัว วันที่และเวลา 12 หลัก yyMMddHHmmss แปลงเป็นฐาน 16
-                // "9"                  = 1 ตัว สำหรับเช็คการป้อนตัวเลข 1-9 หลัก โดยนำวันที่แต่ละหลักมาบวกกัน แล้วนำผลรวมมา MOD 9
-                //                          เช่น 60/04/15 12:21:21 (600415122121) = (6+0+0+4+1+5+1+2+2+1+2+1) MOD 9
-                // _____________________________________________________________________________________________
-
-                string strCode = IDName;
-                int rowNumber = 0;
-
-                try
-                {
-                    rowNumber = Convert.ToInt32(dt.Rows[0][column].ToString());
-                }
-                catch (Exception)
-                {
-                    rowNumber = 0;
-                }
-
-                int row = rowNumber != 0 ? rowNumber : 1;
-
-                string strRow = (row % 9).ToString().PadLeft(1, '0');
-
-                string strDateTime = Convert.ToString(DateTime.Now.ToString("yyMMddHHmmss"));
-                string hexDateTime = (long.Parse(strDateTime)).ToString("X10");
-
-                int numSumDateTime = 0;
-
-                for (int i = 0; i <= 11; i++)
-                {
-                    numSumDateTime += Convert.ToInt32(strDateTime.Substring(i, 1));
-                }
-
-                string strChekDigit = String.Format("{0}", (numSumDateTime % 9).ToString());
-
-                return strCode + strRow + "-" + hexDateTime + "-" + strChekDigit;
-            }
-            catch (Exception)
-            {
-                return "";
-            }
-        }
-
-        public string getPaySubCode(string strPayment, string strDetail)
-        {
-            DataTable dt = new DataTable();
-            string strErr = "";
+        //public string getCode(string table, string column, string IDName, DateTime Date)
+        //{
+        //    DataTable dt = new DataTable();
+        //    string strErr = "";
 
 
-            try
-            {
-                string[,] Parameter = new string[,]
-                {
-                    {"@MsPaymentCode", strPayment},
-                    {"@MsPaymentSubDetail", strDetail},
-                };
+        //    try
+        //    {
+        //        string[,] Parameter = new string[,]
+        //        {
+        //            {"@Table", table},
+        //            {"@Column", column},
+        //        };
 
-                db.Get("Spr_F_GetPaySubCode", Parameter, out strErr, out dt);
-                return dt.Rows[0]["Code"].ToString();
-            }
-            catch (Exception)
-            {
-                return "";
-            }
-        }
+        //        db.Get("Spr_F_GetTopId", Parameter, out strErr, out dt);
 
-        public string getCode(Int32 strRound, string IDName, DateTime Date)
-        {
-            try
-            {
-                // A9-8BCB87B2C9-9
-                // "A" + "9" + "-" + "8BCB87B2C9" + "-" +  "9"
-                // ____________________________________________________________________________________________
-                //
-                // "A"                  = 1 ตัว รหัสโปรแกรมตัวแรก
-                // "9"                  = 1 ตัว ค่า Id ล่าสุด ใน Table นั้นๆ MOD 9
-                // "8BCB87B2C9"         = 10 ตัว วันที่และเวลา 12 หลัก yyMMddHHmmss แปลงเป็นฐาน 16
-                // "9"                  = 1 ตัว สำหรับเช็คการป้อนตัวเลข 1-9 หลัก โดยนำวันที่แต่ละหลักมาบวกกัน แล้วนำผลรวมมา MOD 9
-                //                          เช่น 60/04/15 12:21:21 (600415122121) = (6+0+0+4+1+5+1+2+2+1+2+1) MOD 9
-                // _____________________________________________________________________________________________
+        //        // A9-8BCB87B2C9-9
+        //        // "A" + "9" + "-" + "8BCB87B2C9" + "-" +  "9"
+        //        // ____________________________________________________________________________________________
+        //        //
+        //        // "A"                  = 1 ตัว รหัสโปรแกรมตัวแรก
+        //        // "9"                  = 1 ตัว ค่า Id ล่าสุด ใน Table นั้นๆ MOD 9
+        //        // "8BCB87B2C9"         = 10 ตัว วันที่และเวลา 12 หลัก yyMMddHHmmss แปลงเป็นฐาน 16
+        //        // "9"                  = 1 ตัว สำหรับเช็คการป้อนตัวเลข 1-9 หลัก โดยนำวันที่แต่ละหลักมาบวกกัน แล้วนำผลรวมมา MOD 9
+        //        //                          เช่น 60/04/15 12:21:21 (600415122121) = (6+0+0+4+1+5+1+2+2+1+2+1) MOD 9
+        //        // _____________________________________________________________________________________________
 
-                string strCode = IDName;
-                int row = strRound;
-                string strRow = (row % 9).ToString().PadLeft(1, '0');
+        //        string strCode = IDName;
+        //        int rowNumber = 0;
 
-                string strDateTime = Convert.ToString(DateTime.Now.ToString("yyMMddHHmmss"));
-                string hexDateTime = (long.Parse(strDateTime)).ToString("X10");
+        //        try
+        //        {
+        //            rowNumber = Convert.ToInt32(dt.Rows[0][column].ToString());
+        //        }
+        //        catch (Exception)
+        //        {
+        //            rowNumber = 0;
+        //        }
 
-                int numSumDateTime = 0;
+        //        int row = rowNumber != 0 ? rowNumber : 1;
 
-                for (int i = 0; i <= 11; i++)
-                {
-                    numSumDateTime += Convert.ToInt32(strDateTime.Substring(i, 1));
-                }
+        //        string strRow = (row % 9).ToString().PadLeft(1, '0');
 
-                string strChekDigit = String.Format("{0}", (numSumDateTime % 9).ToString());
+        //        string strDateTime = Convert.ToString(DateTime.Now.ToString("yyMMddHHmmss"));
+        //        string hexDateTime = (long.Parse(strDateTime)).ToString("X10");
 
-                return strCode + strRow + "-" + hexDateTime + "-" + strChekDigit;
-            }
-            catch (Exception)
-            {
-                return "";
-            }
-        }
+        //        int numSumDateTime = 0;
 
-        public void setCode(TextBox txtCode, TextBox txtProgramICode, TextBox txtDate, TextBox txtTime, TextBox txtCheck, PictureBox pb)
-        {
-            try
-            {
-                clsImage TSSImage = new clsImage();
-                clsMessage Mes = new clsMessage();
-                String hexValue = txtCode.Text.Substring(3, 10);
-                Int64 decemalValue = Convert.ToInt64(hexValue, 16);
+        //        for (int i = 0; i <= 11; i++)
+        //        {
+        //            numSumDateTime += Convert.ToInt32(strDateTime.Substring(i, 1));
+        //        }
 
-                String strValue = Convert.ToString(decemalValue);
-                String strYear = Convert.ToString(Convert.ToInt32(strValue.Substring(0, 2)) < 50 ?
-                                          Convert.ToInt32("20" + strValue.Substring(0, 2)) + 543 : Convert.ToInt32("25" + strValue.Substring(0, 2)));
-                String strMonth = strValue.Substring(2, 2);
-                String strDay = strValue.Substring(4, 2);
+        //        string strChekDigit = String.Format("{0}", (numSumDateTime % 9).ToString());
 
-                var dateValue = Convert.ToDateTime(strYear + "/" + strMonth + "/" + strDay);
-                int numSumDateTime = 0;
+        //        return strCode + strRow + "-" + hexDateTime + "-" + strChekDigit;
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return "";
+        //    }
+        //}
 
-                for (int i = 0; i <= 11; i++)
-                {
-                    numSumDateTime += Convert.ToInt32(strValue.Substring(i, 1));
-                }
-                string strChekDigit = String.Format("{0}", (numSumDateTime % 9).ToString());
-
-                if (strChekDigit == txtCode.Text.Substring(14, 1))
-                {
-                    txtProgramICode.Text = txtCode.Text.Substring(0, 1);
-                    txtCheck.Text = txtCode.Text.Substring(14, 1);
-                    txtTime.Text = strValue.Substring(6, 2) + ":" + strValue.Substring(8, 2) + ":" + strValue.Substring(10, 2);
-                    txtDate.Text = dateValue.ToString("dd MMMM yyyy");
-
-                    //TSSImage.Show("I5-8BDE0218CD-4", pb, "P1-PROGRAM000-1");
-                }
-                else
-                {
-                    //TSSImage.Show("I3-8BDE0218E0-5", pb, "P1-PROGRAM000-1");
-                    txtProgramICode.Text = "";
-                    txtCheck.Text = "";
-                    txtTime.Text = "";
-                    txtDate.Text = "";
-                    Message.ShowMesError("\nรหัส " + txtCode.Text + " ไม่ถูกต้อง\n", "");
-                    txtCode.Focus();
-                }
-            }
-            catch (Exception)
-            {
-            }
-        }
-
-        public string getIdRunning(string table, string column, string IDName)
-        {
-            DataTable dt = new DataTable();
-            string strErr = "";
+        //public string getPaySubCode(string strPayment, string strDetail)
+        //{
+        //    DataTable dt = new DataTable();
+        //    string strErr = "";
 
 
-            try
-            {
-                string id = "";
-                string row = "";
+        //    try
+        //    {
+        //        string[,] Parameter = new string[,]
+        //        {
+        //            {"@MsPaymentCode", strPayment},
+        //            {"@MsPaymentSubDetail", strDetail},
+        //        };
 
-                string[,] Parameter = new string[,]
-                {
-                    {"@Table", table},
-                    {"@Column", column},
-                };
+        //        db.Get("Spr_F_GetPaySubCode", Parameter, out strErr, out dt);
+        //        return dt.Rows[0]["Code"].ToString();
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return "";
+        //    }
+        //}
 
-                db.Get("Spr_F_GetTopId", Parameter, out strErr, out dt);
+        //public string getCode(Int32 strRound, string IDName, DateTime Date)
+        //{
+        //    try
+        //    {
+        //        // A9-8BCB87B2C9-9
+        //        // "A" + "9" + "-" + "8BCB87B2C9" + "-" +  "9"
+        //        // ____________________________________________________________________________________________
+        //        //
+        //        // "A"                  = 1 ตัว รหัสโปรแกรมตัวแรก
+        //        // "9"                  = 1 ตัว ค่า Id ล่าสุด ใน Table นั้นๆ MOD 9
+        //        // "8BCB87B2C9"         = 10 ตัว วันที่และเวลา 12 หลัก yyMMddHHmmss แปลงเป็นฐาน 16
+        //        // "9"                  = 1 ตัว สำหรับเช็คการป้อนตัวเลข 1-9 หลัก โดยนำวันที่แต่ละหลักมาบวกกัน แล้วนำผลรวมมา MOD 9
+        //        //                          เช่น 60/04/15 12:21:21 (600415122121) = (6+0+0+4+1+5+1+2+2+1+2+1) MOD 9
+        //        // _____________________________________________________________________________________________
 
-                row = String.Format("{0:0000}", Convert.ToInt32(dt.Rows[0][column].ToString()));
-                id = IDName + row;
-                return id;
-            }
-            catch (Exception)
-            {
-                return "";
-            }
-        }
+        //        string strCode = IDName;
+        //        int row = strRound;
+        //        string strRow = (row % 9).ToString().PadLeft(1, '0');
+
+        //        string strDateTime = Convert.ToString(DateTime.Now.ToString("yyMMddHHmmss"));
+        //        string hexDateTime = (long.Parse(strDateTime)).ToString("X10");
+
+        //        int numSumDateTime = 0;
+
+        //        for (int i = 0; i <= 11; i++)
+        //        {
+        //            numSumDateTime += Convert.ToInt32(strDateTime.Substring(i, 1));
+        //        }
+
+        //        string strChekDigit = String.Format("{0}", (numSumDateTime % 9).ToString());
+
+        //        return strCode + strRow + "-" + hexDateTime + "-" + strChekDigit;
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return "";
+        //    }
+        //}
+
+        //public void setCode(TextBox txtCode, TextBox txtProgramICode, TextBox txtDate, TextBox txtTime, TextBox txtCheck, PictureBox pb)
+        //{
+        //    try
+        //    {
+        //        clsImage TSSImage = new clsImage();
+        //        clsMessage Mes = new clsMessage();
+        //        String hexValue = txtCode.Text.Substring(3, 10);
+        //        Int64 decemalValue = Convert.ToInt64(hexValue, 16);
+
+        //        String strValue = Convert.ToString(decemalValue);
+        //        String strYear = Convert.ToString(Convert.ToInt32(strValue.Substring(0, 2)) < 50 ?
+        //                                  Convert.ToInt32("20" + strValue.Substring(0, 2)) + 543 : Convert.ToInt32("25" + strValue.Substring(0, 2)));
+        //        String strMonth = strValue.Substring(2, 2);
+        //        String strDay = strValue.Substring(4, 2);
+
+        //        var dateValue = Convert.ToDateTime(strYear + "/" + strMonth + "/" + strDay);
+        //        int numSumDateTime = 0;
+
+        //        for (int i = 0; i <= 11; i++)
+        //        {
+        //            numSumDateTime += Convert.ToInt32(strValue.Substring(i, 1));
+        //        }
+        //        string strChekDigit = String.Format("{0}", (numSumDateTime % 9).ToString());
+
+        //        if (strChekDigit == txtCode.Text.Substring(14, 1))
+        //        {
+        //            txtProgramICode.Text = txtCode.Text.Substring(0, 1);
+        //            txtCheck.Text = txtCode.Text.Substring(14, 1);
+        //            txtTime.Text = strValue.Substring(6, 2) + ":" + strValue.Substring(8, 2) + ":" + strValue.Substring(10, 2);
+        //            txtDate.Text = dateValue.ToString("dd MMMM yyyy");
+
+        //            //TSSImage.Show("I5-8BDE0218CD-4", pb, "P1-PROGRAM000-1");
+        //        }
+        //        else
+        //        {
+        //            //TSSImage.Show("I3-8BDE0218E0-5", pb, "P1-PROGRAM000-1");
+        //            txtProgramICode.Text = "";
+        //            txtCheck.Text = "";
+        //            txtTime.Text = "";
+        //            txtDate.Text = "";
+        //            Message.ShowMesError("\nรหัส " + txtCode.Text + " ไม่ถูกต้อง\n", "");
+        //            txtCode.Focus();
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //    }
+        //}
+
 
         public string setStringNull(string str, string sign, string value)
         {
@@ -2087,37 +2208,39 @@ namespace SANSANG.Class
             }
         }
 
-        public string ConvertPhoneNumber(string strNumber)
+        public string ConvertPhoneNumber(string phoneNumber)
         {
             try
             {
                 string numberOnly = "";
-
-                for (int i = 0; i < strNumber.Length; i++)
+                
+                for (int i = 0; i < phoneNumber.Length; i++)
                 {
-                    if (Char.IsDigit(strNumber[i]))
-                        numberOnly += strNumber[i];
+                    if (Char.IsDigit(phoneNumber[i]))
+                        numberOnly += phoneNumber[i];
                 }
 
                 Int64 intNumber = Convert.ToInt64(numberOnly);
-                string PhoneNumber = _formatToDigit(10, numberOnly);
+                string strNumber = Convert.ToString(intNumber);
 
                 //Mobile//
-                if (PhoneNumber.Length == 10)
+                if (strNumber.Length == 9)
                 {
-                    return string.Format("{0}-{1}-{2}", PhoneNumber.Substring(0, 3), PhoneNumber.Substring(3, 3), PhoneNumber.Substring(6, 4));
+                    return Regex.Replace(strNumber, @"(\d{2})(\d{3})(\d{4})", "0" + "$1 $2 $3");
                 }
 
                 //Phone//
-                if (PhoneNumber.Substring(1, 1) == "0")
+                if (strNumber.Length == 8)
                 {
-                    if (PhoneNumber.Substring(2, 1) == "2")  //02-591-5032
+                    //BKK//
+                    if (strNumber.Substring(0, 1) == "2")
                     {
-                        return string.Format("{0}-{1}-{2}", PhoneNumber.Substring(1, 2), PhoneNumber.Substring(3, 3), PhoneNumber.Substring(6, 4));
+                        return Regex.Replace(strNumber, @"(\d{4})(\d{4})", "0 " + "$1 $2");
                     }
-                    else //032-681-105
+                    //UPC//
+                    else
                     {
-                        return string.Format("{0}-{1}-{2}", PhoneNumber.Substring(1, 3), PhoneNumber.Substring(4, 3), PhoneNumber.Substring(7, 3));
+                        return Regex.Replace(strNumber, @"(\d{2})(\d{3})(\d{3})", "0" + "$1 $2 $3");
                     }
                 }
 
@@ -2125,7 +2248,7 @@ namespace SANSANG.Class
             }
             catch
             {
-                return strNumber;
+                return phoneNumber;
             }
         }
 
