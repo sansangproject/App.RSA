@@ -127,6 +127,7 @@ namespace SANSANG
                 txtCode.Text = "";
                 txtId.Text = "";
                 txtAmount.Text = "";
+                txtPrice.Text = "";
                 txtDetails.Text = "";
                 txtItem.Text = "";
                 txtReceipt.Text = "";
@@ -240,6 +241,7 @@ namespace SANSANG
                     {"@Item", ""},
                     {"@Detail", ""},
                     {"@Amount", "0.00"},
+                    {"@Price", "0.00"},
                     {"@UnitId", "0"},
                     {"@Unit", "0.00"},
                     {"@Date", Date},
@@ -375,6 +377,7 @@ namespace SANSANG
                             {"@Item", txtItem.Text},
                             {"@Detail", txtDetails.Text},
                             {"@Amount", Function.MoveNumberStringComma(txtAmount.Text)},
+                            {"@Price", Function.MoveNumberStringComma(txtPrice.Text)},
                             {"@UnitId", Function.GetComboId(cbbUnit) == "0"? "1213" : Function.GetComboId(cbbUnit)},
                             {"@Unit", txtUnit.Text == ""? "1.00" : txtUnit.Text},
                             {"@Date", Date.GetDate(dtp : dtExpense)},
@@ -466,6 +469,7 @@ namespace SANSANG
                         {"@Item", ""},
                         {"@Detail", ""},
                         {"@Amount", "0.00"},
+                        {"@Price", "0.00"},
                         {"@UnitId", "0"},
                         {"@Unit", "0.00"},
                         {"@Date", ""},
@@ -514,6 +518,7 @@ namespace SANSANG
                         {"@Item", ""},
                         {"@Detail", ""},
                         {"@Amount", "0.00"},
+                        {"@Price", "0.00"},
                         {"@UnitId", "0"},
                         {"@Unit", "0.00"},
                         {"@Date", ""},
@@ -560,6 +565,7 @@ namespace SANSANG
                         {"@Item", txtItem.Text},
                         {"@Detail", txtDetails.Text},
                         {"@Amount", Function.MoveNumberStringComma(txtAmount.Text)},
+                        {"@Price", Function.MoveNumberStringComma(txtPrice.Text)},
                         {"@UnitId", Function.GetComboId(cbbUnit) == "0"? "2222" : Function.GetComboId(cbbUnit)},
                         {"@Unit", txtUnit.Text == ""? "1.00" : txtUnit.Text},
                         {"@Date", Date.GetDate(dtp : dtExpense)},
@@ -673,6 +679,7 @@ namespace SANSANG
                             {"@Item", "เงินยกยอด | ยกยอดมา"},
                             {"@Detail", ""},
                             {"@Amount", Function.ReplaceComma(Amounts)},
+                            {"@Price", Function.ReplaceComma(Amounts)},
                             {"@UnitId", Id.UnitDefault},
                             {"@Unit", "1"},
                             {"@Date", Date.GetDate(dt : dt)},
@@ -781,6 +788,7 @@ namespace SANSANG
                     {"@Item", txtItem.Text},
                     {"@Detail", txtDetails.Text},
                     {"@Amount", txtAmount.Text == ""? "0.00" : Function.SplitString(txtAmount.Text, ",", "")},
+                    {"@Price", txtPrice.Text == ""? "0.00" : Function.SplitString(txtPrice.Text, ",", "")},
                     {"@UnitId", Function.GetComboZero(cbbUnit)},
                     {"@Unit", txtUnit.Text == ""? "0.00" : txtUnit.Text},
                     {"@Date", cb_Date.Checked? Date.GetDate(dtp: dtExpense, Format: 4) : ""},
@@ -1289,6 +1297,7 @@ namespace SANSANG
                     {"@Item", ""},
                     {"@Detail", ""},
                     {"@Amount", "0.00"},
+                    {"@Price", "0.00"},
                     {"@UnitId", "0"},
                     {"@Unit", "0.00"},
                     {"@Date", Date},
@@ -1537,6 +1546,7 @@ namespace SANSANG
                 txtItem.Text = Data.Rows[0]["Item"].ToString();
                 txtDetails.Text = Data.Rows[0]["Detail"].ToString();
                 txtAmount.Text = Data.Rows[0]["Amount"].ToString();
+                txtPrice.Text = Data.Rows[0]["Prices"].ToString();
                 cbbStatus.SelectedValue = StatusId;
             }
             catch (Exception ex)
@@ -1672,6 +1682,24 @@ namespace SANSANG
         private void cbbUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
             cbbStatus.SelectedValue = 1000;
+        }
+
+        private void txtPrice_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                double num = Convert.ToDouble(txtPrice.Text);
+                txtPrice.Text = String.Format("{0:n}", num);
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }
+        }
+
+        private void txtPricekeyPress(object sender, KeyPressEventArgs e)
+        {
+            Event.AmountKeyPress(sender, e, txtPrice);
         }
     }
 }

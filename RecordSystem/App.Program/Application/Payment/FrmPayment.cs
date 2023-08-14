@@ -141,6 +141,7 @@ namespace RecordSystemApplication.App.Program.Application.Payment
                     {"@Item", ""},
                     {"@Detail", ""},
                     {"@Amount", "0.00"},
+                    {"@Price", "0.00"},
                     {"@UnitId", "0"},
                     {"@Unit", "0.00"},
                     {"@Date", ""},

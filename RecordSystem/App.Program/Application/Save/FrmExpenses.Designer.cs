@@ -28,10 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmExpenses));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmExpenses));
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.txtPrice = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.pbUnits = new System.Windows.Forms.PictureBox();
             this.txtSumWallet = new System.Windows.Forms.TextBox();
             this.btnCopy = new System.Windows.Forms.Button();
             this.pb_Receipt_True = new System.Windows.Forms.PictureBox();
@@ -130,8 +134,8 @@
             this.txtId = new System.Windows.Forms.TextBox();
             this.cb_Receipt = new System.Windows.Forms.CheckBox();
             this.pbHide = new System.Windows.Forms.PictureBox();
-            this.pbUnits = new System.Windows.Forms.PictureBox();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbUnits)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Receipt_True)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Receipt_False)).BeginInit();
             this.pnButton.SuspendLayout();
@@ -151,7 +155,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBanner)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbHide)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbUnits)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox4
@@ -160,6 +163,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox4.BackColor = System.Drawing.Color.White;
+            this.groupBox4.Controls.Add(this.txtPrice);
+            this.groupBox4.Controls.Add(this.label10);
+            this.groupBox4.Controls.Add(this.label11);
             this.groupBox4.Controls.Add(this.pbUnits);
             this.groupBox4.Controls.Add(this.txtSumWallet);
             this.groupBox4.Controls.Add(this.btnCopy);
@@ -246,6 +252,52 @@
             this.groupBox4.Size = new System.Drawing.Size(1491, 814);
             this.groupBox4.TabIndex = 46;
             this.groupBox4.TabStop = false;
+            // 
+            // txtPrice
+            // 
+            this.txtPrice.BackColor = System.Drawing.Color.White;
+            this.txtPrice.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtPrice.Font = new System.Drawing.Font("Mitr Light", 10F);
+            this.txtPrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtPrice.Location = new System.Drawing.Point(504, 233);
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.Size = new System.Drawing.Size(170, 21);
+            this.txtPrice.TabIndex = 238;
+            this.txtPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPricekeyPress);
+            this.txtPrice.Leave += new System.EventHandler(this.txtPrice_Leave);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.Transparent;
+            this.label10.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.label10.Location = new System.Drawing.Point(423, 244);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(37, 18);
+            this.label10.TabIndex = 237;
+            this.label10.Text = "Price:";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.label11.ForeColor = System.Drawing.Color.Gray;
+            this.label11.Location = new System.Drawing.Point(424, 227);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(36, 20);
+            this.label11.TabIndex = 236;
+            this.label11.Text = "ราคา";
+            // 
+            // pbUnits
+            // 
+            this.pbUnits.Image = ((System.Drawing.Image)(resources.GetObject("pbUnits.Image")));
+            this.pbUnits.Location = new System.Drawing.Point(683, 274);
+            this.pbUnits.Name = "pbUnits";
+            this.pbUnits.Size = new System.Drawing.Size(22, 22);
+            this.pbUnits.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbUnits.TabIndex = 235;
+            this.pbUnits.TabStop = false;
             // 
             // txtSumWallet
             // 
@@ -568,7 +620,7 @@
             this.label43.BackColor = System.Drawing.Color.Transparent;
             this.label43.Font = new System.Drawing.Font("Mitr Light", 8F);
             this.label43.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label43.Location = new System.Drawing.Point(427, 247);
+            this.label43.Location = new System.Drawing.Point(427, 281);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(33, 18);
             this.label43.TabIndex = 129;
@@ -579,7 +631,7 @@
             this.label44.AutoSize = true;
             this.label44.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.label44.ForeColor = System.Drawing.Color.Gray;
-            this.label44.Location = new System.Drawing.Point(414, 230);
+            this.label44.Location = new System.Drawing.Point(414, 264);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(46, 20);
             this.label44.TabIndex = 128;
@@ -590,7 +642,7 @@
             this.txtUnit.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtUnit.Font = new System.Drawing.Font("Mitr Light", 10F);
             this.txtUnit.ForeColor = System.Drawing.Color.DimGray;
-            this.txtUnit.Location = new System.Drawing.Point(507, 233);
+            this.txtUnit.Location = new System.Drawing.Point(507, 270);
             this.txtUnit.Name = "txtUnit";
             this.txtUnit.Size = new System.Drawing.Size(44, 21);
             this.txtUnit.TabIndex = 127;
@@ -603,7 +655,7 @@
             this.cbbUnit.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.cbbUnit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbbUnit.FormattingEnabled = true;
-            this.cbbUnit.Location = new System.Drawing.Point(562, 229);
+            this.cbbUnit.Location = new System.Drawing.Point(562, 266);
             this.cbbUnit.Name = "cbbUnit";
             this.cbbUnit.Size = new System.Drawing.Size(115, 28);
             this.cbbUnit.TabIndex = 126;
@@ -638,7 +690,7 @@
             this.label34.BackColor = System.Drawing.Color.Transparent;
             this.label34.Font = new System.Drawing.Font("Mitr Light", 8F);
             this.label34.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label34.Location = new System.Drawing.Point(419, 282);
+            this.label34.Location = new System.Drawing.Point(419, 316);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(41, 18);
             this.label34.TabIndex = 123;
@@ -649,7 +701,7 @@
             this.label35.AutoSize = true;
             this.label35.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.label35.ForeColor = System.Drawing.Color.Gray;
-            this.label35.Location = new System.Drawing.Point(391, 265);
+            this.label35.Location = new System.Drawing.Point(391, 299);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(69, 20);
             this.label35.TabIndex = 122;
@@ -756,10 +808,9 @@
             this.txtDetails.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtDetails.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.txtDetails.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtDetails.Location = new System.Drawing.Point(504, 267);
-            this.txtDetails.Multiline = true;
+            this.txtDetails.Location = new System.Drawing.Point(504, 305);
             this.txtDetails.Name = "txtDetails";
-            this.txtDetails.Size = new System.Drawing.Size(356, 60);
+            this.txtDetails.Size = new System.Drawing.Size(356, 21);
             this.txtDetails.TabIndex = 3;
             // 
             // txtItem
@@ -1516,16 +1567,6 @@
             this.pbHide.TabStop = false;
             this.pbHide.Visible = false;
             // 
-            // pbUnits
-            // 
-            this.pbUnits.Image = ((System.Drawing.Image)(resources.GetObject("pbUnits.Image")));
-            this.pbUnits.Location = new System.Drawing.Point(683, 237);
-            this.pbUnits.Name = "pbUnits";
-            this.pbUnits.Size = new System.Drawing.Size(22, 22);
-            this.pbUnits.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbUnits.TabIndex = 235;
-            this.pbUnits.TabStop = false;
-            // 
             // FrmExpenses
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -1546,6 +1587,7 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmKeyDown);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbUnits)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Receipt_True)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Receipt_False)).EndInit();
             this.pnButton.ResumeLayout(false);
@@ -1566,7 +1608,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBanner)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbHide)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbUnits)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1673,5 +1714,8 @@
         private System.Windows.Forms.CheckBox cb_Receipt;
         private System.Windows.Forms.Button btnCopy;
         private System.Windows.Forms.PictureBox pbUnits;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox txtPrice;
     }
 }
