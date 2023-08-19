@@ -8,6 +8,7 @@ using SANSANG.Utilites.App.Forms;
 using SANSANG.Constant;
 using SANSANG.Utilites.App.Model;
 using RecordSystemApplication.App.Program.Application.Payment;
+using Telerik.WinControls.Svg.ExCSS;
 
 namespace SANSANG
 {
@@ -57,13 +58,16 @@ namespace SANSANG
         private string Error = "";
         private double Credit = 0;
         private double TotalCredit = 0;
+        private double TotalDebit = 0;
         private double Debit = 0;
+        private double Wallet = 0;
         private string Details = "";
         private string Items = "";
         private int DataRows = 0;
         private string IsDebit = "false";
         private string MoneyIsDelete = "";
         private bool IsSearchPayment = false;
+        private bool IsBalance = true;
 
         public FrmExpenses(string UserIdLogin, string UserNameLogin, string UserSurNameLogin, string UserTypeLogin)
         {
@@ -139,7 +143,7 @@ namespace SANSANG
                 SearchPress = false;
                 cb_Date.Checked = false;
                 cb_Paysub.Checked = false;
-               
+
                 cbbMoney.Enabled = true;
                 pbHide.Visible = false;
 
@@ -174,6 +178,7 @@ namespace SANSANG
 
                 if (IsLoad)
                 {
+                    IsBalance = true;
                     GetDataGrid(strDate);
                 }
 
@@ -246,6 +251,7 @@ namespace SANSANG
                     {"@Unit", "0.00"},
                     {"@Date", Date},
                     {"@Receipt", ""},
+                    {"@Reference", ""},
                 };
 
                 db.Gets(Store.ManageExpense, Parameter, out Error, out ds);
@@ -261,6 +267,7 @@ namespace SANSANG
         {
             try
             {
+                IsBalance = true;
                 SearchPress = true;
                 Search(false, "");
                 pbHide.Visible = false;
@@ -382,6 +389,7 @@ namespace SANSANG
                             {"@Unit", txtUnit.Text == ""? "1.00" : txtUnit.Text},
                             {"@Date", Date.GetDate(dtp : dtExpense)},
                             {"@Receipt", cb_Receipt.Checked? txtReceipt.Text : ""},
+                            {"@Reference", ""},
                         };
 
                         string[,] Parameters = new string[,]
@@ -474,6 +482,7 @@ namespace SANSANG
                         {"@Unit", "0.00"},
                         {"@Date", ""},
                         {"@Receipt", ""},
+                        {"@Reference", ""},
                     };
 
                     db.Gets(Store.ManageExpense, Parameter, out Error, out ds);
@@ -523,6 +532,7 @@ namespace SANSANG
                         {"@Unit", "0.00"},
                         {"@Date", ""},
                         {"@Receipt", ""},
+                        {"@Reference", ""},
                     };
 
                     db.Gets(Store.ManageExpense, Parameter, out Error, out ds);
@@ -684,6 +694,7 @@ namespace SANSANG
                             {"@Unit", "1"},
                             {"@Date", Date.GetDate(dt : dt)},
                             {"@Receipt", ""},
+                            {"@Reference", ""},
                         };
 
                         Message.MessageConfirmation(Operation.InsertAbbr, txtCode.Text, "ยกยอดเงิน ฿" + Amounts + " (เงินสด)");
@@ -793,6 +804,7 @@ namespace SANSANG
                     {"@Unit", txtUnit.Text == ""? "0.00" : txtUnit.Text},
                     {"@Date", cb_Date.Checked? Date.GetDate(dtp: dtExpense, Format: 4) : ""},
                     {"@Receipt", txtReceipt.Text},
+                    {"@Reference", ""},
                 };
 
                 db.Gets(Store.ManageExpense, Parameter, out Error, out ds);
@@ -802,9 +814,8 @@ namespace SANSANG
 
                 if (string.IsNullOrEmpty(Error))
                 {
-                    Credit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumCredit"].ToString()));
-                    TotalCredit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["TotalCredit"].ToString()));
                     Debit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumDebit"].ToString()));
+                    Credit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumCredit"].ToString()));
                 }
                 else
                 {
@@ -814,9 +825,10 @@ namespace SANSANG
                 }
 
                 lblBalance.Text = "คงเหลือ";
+                IsBalance = false;
 
-                double TotalReal = Math.Abs(Debit - (Credit > TotalCredit ? Credit : TotalCredit));
-                txtSumCredit.Text = string.Format("{0:#,##0.00}", Credit > TotalCredit ? Credit : TotalCredit);
+                double TotalReal = Math.Abs(Debit - Credit);
+                txtSumCredit.Text = string.Format("{0:#,##0.00}", Credit);
                 txtSumDebit.Text = string.Format("{0:#,##0.00}", Debit);
                 txtTotalReal.Text = string.Format("{0:#,##0.00}", TotalReal);
                 txtPayStatus.Text = "";
@@ -996,7 +1008,6 @@ namespace SANSANG
                 else
                 {
                     txtPayStatus.ForeColor = Color.Orange;
-                    txtTotalReal.Text = txtTotal.Text;
                 }
             }
             catch (Exception ex)
@@ -1071,6 +1082,7 @@ namespace SANSANG
             try
             {
                 Clear(false);
+                IsBalance = true;
                 Search(true, Strings.Nexts);
             }
             catch (Exception ex)
@@ -1138,6 +1150,7 @@ namespace SANSANG
             try
             {
                 Clear(false);
+                IsBalance = true;
                 Search(true, Strings.Previous);
             }
             catch (Exception ex)
@@ -1280,7 +1293,7 @@ namespace SANSANG
                 double Credit = 0;
                 double Debit = 0;
 
-                Parameter = new string[,]
+                string[,] List = new string[,]
                 {
                     {"@Id", ""},
                     {"@Code", ""},
@@ -1301,50 +1314,16 @@ namespace SANSANG
                     {"@UnitId", "0"},
                     {"@Unit", "0.00"},
                     {"@Date", Date},
-                    {"@Receipt", Receipt},
+                    {"@Receipt", Type == Strings.Receipt? Receipt : ""},
+                    {"@Reference", Type == Strings.Payment? Receipt : ""},
                 };
 
-                if (Type == Strings.Receipt)
-                {
-                    db.Gets(Store.ManageExpense, Parameter, out Error, out ds);
-                    ShowDataGridView(ds);
+                db.Gets(Store.ManageExpense, List, out Error, out ds);
+                ShowDataGridView(ds);
 
-                    db.Gets(Store.FnGetBalanceSearch, Parameter, out Error, out ds);
-                    Credit = double.Parse(Convert.ToString(ds.Tables[0].Rows[0]["SumCredit"].ToString()));
-                    Debit = double.Parse(Convert.ToString(ds.Tables[0].Rows[0]["SumDebit"].ToString()));
-                }
-                else
-                {
-                    string[,] Parameters = new string[,]
-                    {
-                        {"@Id", ""},
-                        {"@Code", ""},
-                        {"@User", ""},
-                        {"@IsActive", "1"},
-                        {"@IsDelete", "0"},
-                        {"@Operation", Operation.SelectAbbr},
-                        {"@Date", Date},
-                        {"@Receipt", Receipt},
-                        {"@MoneyId1", ""},
-                        {"@Amount1", ""},
-                        {"@MoneyId2", "0"},
-                        {"@Amount2", "0"},
-                        {"@MoneyId3", "0"},
-                        {"@Amount3", "0"},
-                        {"@MoneyId4", "0"},
-                        {"@Amount4", "0"},
-                        {"@MoneyId5", "0"},
-                        {"@Amount5", "0"},
-                        {"@UpdateType", ""},
-                    };
-
-                    db.Gets(Store.ManagePayments, Parameters, out Error, out ds);
-                    ShowDataGridView(ds);
-
-                    db.Gets(Store.FnGetBalanceSearch, Parameter, out Error, out ds);
-                    Credit = double.Parse(Convert.ToString(ds.Tables[1].Rows[0]["SumCredit"].ToString()));
-                    Debit = double.Parse(Convert.ToString(ds.Tables[1].Rows[0]["SumDebit"].ToString()));
-                }
+                db.Gets(Store.FnGetBalanceSearch, List, out Error, out ds);
+                Credit = double.Parse(Convert.ToString(ds.Tables[0].Rows[0]["SumCredit"].ToString()));
+                Debit = double.Parse(Convert.ToString(ds.Tables[0].Rows[0]["SumDebit"].ToString()));
 
                 txtReceipt.Text = Receipt;
                 lblBalance.Text = "รวมทั้งสิ้น";
@@ -1382,11 +1361,13 @@ namespace SANSANG
 
                 if (cb_Receipt.Checked)
                 {
+                    IsBalance = false;
                     Search(true, Strings.Receipt);
                     pbHide.Visible = true;
                 }
                 else
                 {
+                    IsBalance = false;
                     Search(true, Strings.Payment);
                     pbHide.Visible = true;
                 }
@@ -1395,7 +1376,6 @@ namespace SANSANG
             {
                 txtReceipt.Focus();
             }
-
         }
 
         private void txtReceipt_KeyPress(object sender, KeyPressEventArgs e)
@@ -1499,8 +1479,19 @@ namespace SANSANG
         {
             try
             {
-                double Amount = double.Parse(Convert.ToString(Convert.ToDouble(txtSumDebit.Text) - Convert.ToDouble(txtSumCredit.Text)));
-                txtTotal.Text = string.Format("{0:#,##0.00}", Amount);
+                double Amount = 0;
+
+                if (IsBalance)
+                {
+                    Amount = double.Parse(Convert.ToString(Convert.ToDouble(txtSumDebit.Text) - Convert.ToDouble(txtSumCredit.Text)));
+                    txtTotal.Text = string.Format("{0:#,##0.00}", Amount);
+                }
+                else
+                {
+                    txtTotal.Text = "";
+                }
+
+
             }
             catch (Exception ex)
             {

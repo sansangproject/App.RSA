@@ -146,6 +146,7 @@ namespace RecordSystemApplication.App.Program.Application.Payment
                     {"@Unit", "0.00"},
                     {"@Date", ""},
                     {"@Receipt", ""},
+                    {"@Reference", ""},
                 };
 
                 db.Gets(Store.ManageExpense, Parameter, out Error, out ds);
