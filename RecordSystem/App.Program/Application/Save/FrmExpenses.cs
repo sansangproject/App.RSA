@@ -67,7 +67,6 @@ namespace SANSANG
         private string IsDebit = "false";
         private string MoneyIsDelete = "";
         private bool IsSearchPayment = false;
-        private bool IsBalance = true;
 
         public FrmExpenses(string UserIdLogin, string UserNameLogin, string UserSurNameLogin, string UserTypeLogin)
         {
@@ -178,7 +177,6 @@ namespace SANSANG
 
                 if (IsLoad)
                 {
-                    IsBalance = true;
                     GetDataGrid(strDate);
                 }
 
@@ -267,7 +265,6 @@ namespace SANSANG
         {
             try
             {
-                IsBalance = true;
                 SearchPress = true;
                 Search(false, "");
                 pbHide.Visible = false;
@@ -580,6 +577,7 @@ namespace SANSANG
                         {"@Unit", txtUnit.Text == ""? "1.00" : txtUnit.Text},
                         {"@Date", Date.GetDate(dtp : dtExpense)},
                         {"@Receipt", cb_Receipt.Checked? txtReceipt.Text : ""},
+                        {"@Reference", ""},
                     };
 
                     string[,] Payment = new string[,]
@@ -825,7 +823,6 @@ namespace SANSANG
                 }
 
                 lblBalance.Text = "คงเหลือ";
-                IsBalance = false;
 
                 double TotalReal = Math.Abs(Debit - Credit);
                 txtSumCredit.Text = string.Format("{0:#,##0.00}", Credit);
@@ -1082,7 +1079,6 @@ namespace SANSANG
             try
             {
                 Clear(false);
-                IsBalance = true;
                 Search(true, Strings.Nexts);
             }
             catch (Exception ex)
@@ -1150,7 +1146,6 @@ namespace SANSANG
             try
             {
                 Clear(false);
-                IsBalance = true;
                 Search(true, Strings.Previous);
             }
             catch (Exception ex)
@@ -1361,13 +1356,11 @@ namespace SANSANG
 
                 if (cb_Receipt.Checked)
                 {
-                    IsBalance = false;
                     Search(true, Strings.Receipt);
                     pbHide.Visible = true;
                 }
                 else
                 {
-                    IsBalance = false;
                     Search(true, Strings.Payment);
                     pbHide.Visible = true;
                 }
@@ -1480,18 +1473,8 @@ namespace SANSANG
             try
             {
                 double Amount = 0;
-
-                if (IsBalance)
-                {
-                    Amount = double.Parse(Convert.ToString(Convert.ToDouble(txtSumDebit.Text) - Convert.ToDouble(txtSumCredit.Text)));
-                    txtTotal.Text = string.Format("{0:#,##0.00}", Amount);
-                }
-                else
-                {
-                    txtTotal.Text = "";
-                }
-
-
+                Amount = Math.Abs(double.Parse(Convert.ToString(Convert.ToDouble(txtSumDebit.Text) - Convert.ToDouble(txtSumCredit.Text))));
+                txtTotal.Text = string.Format("{0:#,##0.00}", Amount);
             }
             catch (Exception ex)
             {
@@ -1679,7 +1662,7 @@ namespace SANSANG
         {
             try
             {
-                double num = Convert.ToDouble(txtPrice.Text);
+                double num = Convert.ToDouble(string.IsNullOrEmpty(txtPrice.Text) ? "0" : txtPrice.Text);
                 txtPrice.Text = String.Format("{0:n}", num);
             }
             catch (Exception ex)
