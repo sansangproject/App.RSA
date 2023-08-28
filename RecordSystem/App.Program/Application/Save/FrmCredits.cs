@@ -5,9 +5,6 @@ using SANSANG.Class;
 using SANSANG.Database;
 using SANSANG.Constant;
 using System.Drawing;
-using System.Diagnostics;
-using System.Web.Services.Description;
-using System.ComponentModel;
 
 namespace SANSANG
 {
@@ -597,14 +594,16 @@ namespace SANSANG
             double CreditLimit = Convert.ToDouble(Setting.GetCreditLimit());
             double Outstanding = Convert.ToDouble(Setting.GetOutstanding());
             double CreditBalance = CreditLimit - Outstanding;
+            double CreditCashBack = 0;
 
             if (string.IsNullOrEmpty(Error) && Function.GetRows(Data) > 0)
             {
                 TotalUsed = Convert.ToDouble(string.IsNullOrEmpty(Data.Rows[0]["TotalUsed"].ToString())? "0.00" : Data.Rows[0]["TotalUsed"].ToString());
                 TotalPayment = Convert.ToDouble(string.IsNullOrEmpty(Data.Rows[0]["TotalPayment"].ToString()) ? "0.00" : Data.Rows[0]["TotalPayment"].ToString());
+                CreditCashBack = Convert.ToDouble(string.IsNullOrEmpty(Data.Rows[0]["CreditCashBack"].ToString()) ? "0.00" : Data.Rows[0]["CreditCashBack"].ToString());
             }
              
-            Total = ((CreditBalance + TotalPayment) - TotalUsed);
+            Total = ((CreditBalance + TotalPayment) - TotalUsed) + CreditCashBack;
             txtSumCredit.Text = string.Format("{0:#,##0.00}", Total);
             txtUseCredit.Text = string.Format("{0:#,##0.00}", TotalUsed);  
         }

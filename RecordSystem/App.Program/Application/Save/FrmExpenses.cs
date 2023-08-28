@@ -8,6 +8,7 @@ using SANSANG.Utilites.App.Forms;
 using SANSANG.Constant;
 using SANSANG.Utilites.App.Model;
 using RecordSystemApplication.App.Program.Application.Payment;
+using Telerik.WinControls.Svg.ExCSS;
 
 namespace SANSANG
 {
@@ -57,7 +58,9 @@ namespace SANSANG
         private string Error = "";
         private double Credit = 0;
         private double TotalCredit = 0;
+        private double TotalDebit = 0;
         private double Debit = 0;
+        private double Wallet = 0;
         private string Details = "";
         private string Items = "";
         private int DataRows = 0;
@@ -127,6 +130,7 @@ namespace SANSANG
                 txtCode.Text = "";
                 txtId.Text = "";
                 txtAmount.Text = "";
+                txtPrice.Text = "";
                 txtDetails.Text = "";
                 txtItem.Text = "";
                 txtReceipt.Text = "";
@@ -138,7 +142,7 @@ namespace SANSANG
                 SearchPress = false;
                 cb_Date.Checked = false;
                 cb_Paysub.Checked = false;
-               
+
                 cbbMoney.Enabled = true;
                 pbHide.Visible = false;
 
@@ -240,10 +244,12 @@ namespace SANSANG
                     {"@Item", ""},
                     {"@Detail", ""},
                     {"@Amount", "0.00"},
+                    {"@Price", "0.00"},
                     {"@UnitId", "0"},
                     {"@Unit", "0.00"},
                     {"@Date", Date},
                     {"@Receipt", ""},
+                    {"@Reference", ""},
                 };
 
                 db.Gets(Store.ManageExpense, Parameter, out Error, out ds);
@@ -375,10 +381,12 @@ namespace SANSANG
                             {"@Item", txtItem.Text},
                             {"@Detail", txtDetails.Text},
                             {"@Amount", Function.MoveNumberStringComma(txtAmount.Text)},
+                            {"@Price", Function.MoveNumberStringComma(txtPrice.Text)},
                             {"@UnitId", Function.GetComboId(cbbUnit) == "0"? "1213" : Function.GetComboId(cbbUnit)},
                             {"@Unit", txtUnit.Text == ""? "1.00" : txtUnit.Text},
                             {"@Date", Date.GetDate(dtp : dtExpense)},
                             {"@Receipt", cb_Receipt.Checked? txtReceipt.Text : ""},
+                            {"@Reference", ""},
                         };
 
                         string[,] Parameters = new string[,]
@@ -466,10 +474,12 @@ namespace SANSANG
                         {"@Item", ""},
                         {"@Detail", ""},
                         {"@Amount", "0.00"},
+                        {"@Price", "0.00"},
                         {"@UnitId", "0"},
                         {"@Unit", "0.00"},
                         {"@Date", ""},
                         {"@Receipt", ""},
+                        {"@Reference", ""},
                     };
 
                     db.Gets(Store.ManageExpense, Parameter, out Error, out ds);
@@ -514,10 +524,12 @@ namespace SANSANG
                         {"@Item", ""},
                         {"@Detail", ""},
                         {"@Amount", "0.00"},
+                        {"@Price", "0.00"},
                         {"@UnitId", "0"},
                         {"@Unit", "0.00"},
                         {"@Date", ""},
                         {"@Receipt", ""},
+                        {"@Reference", ""},
                     };
 
                     db.Gets(Store.ManageExpense, Parameter, out Error, out ds);
@@ -560,10 +572,12 @@ namespace SANSANG
                         {"@Item", txtItem.Text},
                         {"@Detail", txtDetails.Text},
                         {"@Amount", Function.MoveNumberStringComma(txtAmount.Text)},
+                        {"@Price", Function.MoveNumberStringComma(txtPrice.Text)},
                         {"@UnitId", Function.GetComboId(cbbUnit) == "0"? "2222" : Function.GetComboId(cbbUnit)},
                         {"@Unit", txtUnit.Text == ""? "1.00" : txtUnit.Text},
                         {"@Date", Date.GetDate(dtp : dtExpense)},
                         {"@Receipt", cb_Receipt.Checked? txtReceipt.Text : ""},
+                        {"@Reference", ""},
                     };
 
                     string[,] Payment = new string[,]
@@ -673,10 +687,12 @@ namespace SANSANG
                             {"@Item", "เงินยกยอด | ยกยอดมา"},
                             {"@Detail", ""},
                             {"@Amount", Function.ReplaceComma(Amounts)},
+                            {"@Price", Function.ReplaceComma(Amounts)},
                             {"@UnitId", Id.UnitDefault},
                             {"@Unit", "1"},
                             {"@Date", Date.GetDate(dt : dt)},
                             {"@Receipt", ""},
+                            {"@Reference", ""},
                         };
 
                         Message.MessageConfirmation(Operation.InsertAbbr, txtCode.Text, "ยกยอดเงิน ฿" + Amounts + " (เงินสด)");
@@ -781,10 +797,12 @@ namespace SANSANG
                     {"@Item", txtItem.Text},
                     {"@Detail", txtDetails.Text},
                     {"@Amount", txtAmount.Text == ""? "0.00" : Function.SplitString(txtAmount.Text, ",", "")},
+                    {"@Price", txtPrice.Text == ""? "0.00" : Function.SplitString(txtPrice.Text, ",", "")},
                     {"@UnitId", Function.GetComboZero(cbbUnit)},
                     {"@Unit", txtUnit.Text == ""? "0.00" : txtUnit.Text},
                     {"@Date", cb_Date.Checked? Date.GetDate(dtp: dtExpense, Format: 4) : ""},
                     {"@Receipt", txtReceipt.Text},
+                    {"@Reference", ""},
                 };
 
                 db.Gets(Store.ManageExpense, Parameter, out Error, out ds);
@@ -794,9 +812,8 @@ namespace SANSANG
 
                 if (string.IsNullOrEmpty(Error))
                 {
-                    Credit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumCredit"].ToString()));
-                    TotalCredit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["TotalCredit"].ToString()));
                     Debit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumDebit"].ToString()));
+                    Credit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumCredit"].ToString()));
                 }
                 else
                 {
@@ -807,8 +824,8 @@ namespace SANSANG
 
                 lblBalance.Text = "คงเหลือ";
 
-                double TotalReal = Math.Abs(Debit - (Credit > TotalCredit ? Credit : TotalCredit));
-                txtSumCredit.Text = string.Format("{0:#,##0.00}", Credit > TotalCredit ? Credit : TotalCredit);
+                double TotalReal = Math.Abs(Debit - Credit);
+                txtSumCredit.Text = string.Format("{0:#,##0.00}", Credit);
                 txtSumDebit.Text = string.Format("{0:#,##0.00}", Debit);
                 txtTotalReal.Text = string.Format("{0:#,##0.00}", TotalReal);
                 txtPayStatus.Text = "";
@@ -988,7 +1005,6 @@ namespace SANSANG
                 else
                 {
                     txtPayStatus.ForeColor = Color.Orange;
-                    txtTotalReal.Text = txtTotal.Text;
                 }
             }
             catch (Exception ex)
@@ -1272,7 +1288,7 @@ namespace SANSANG
                 double Credit = 0;
                 double Debit = 0;
 
-                Parameter = new string[,]
+                string[,] List = new string[,]
                 {
                     {"@Id", ""},
                     {"@Code", ""},
@@ -1289,56 +1305,24 @@ namespace SANSANG
                     {"@Item", ""},
                     {"@Detail", ""},
                     {"@Amount", "0.00"},
+                    {"@Price", "0.00"},
                     {"@UnitId", "0"},
                     {"@Unit", "0.00"},
                     {"@Date", Date},
-                    {"@Receipt", Receipt},
+                    {"@Receipt", Type == Strings.Receipt? Receipt : ""},
+                    {"@Reference", Type == Strings.Payment? Receipt : ""},
                 };
 
-                if (Type == Strings.Receipt)
-                {
-                    db.Gets(Store.ManageExpense, Parameter, out Error, out ds);
-                    ShowDataGridView(ds);
-
-                    db.Gets(Store.FnGetBalanceSearch, Parameter, out Error, out ds);
-                    Credit = double.Parse(Convert.ToString(ds.Tables[0].Rows[0]["SumCredit"].ToString()));
-                    Debit = double.Parse(Convert.ToString(ds.Tables[0].Rows[0]["SumDebit"].ToString()));
-                }
-                else
-                {
-                    string[,] Parameters = new string[,]
-                    {
-                        {"@Id", ""},
-                        {"@Code", ""},
-                        {"@User", ""},
-                        {"@IsActive", "1"},
-                        {"@IsDelete", "0"},
-                        {"@Operation", Operation.SelectAbbr},
-                        {"@Date", Date},
-                        {"@Receipt", Receipt},
-                        {"@MoneyId1", ""},
-                        {"@Amount1", ""},
-                        {"@MoneyId2", "0"},
-                        {"@Amount2", "0"},
-                        {"@MoneyId3", "0"},
-                        {"@Amount3", "0"},
-                        {"@MoneyId4", "0"},
-                        {"@Amount4", "0"},
-                        {"@MoneyId5", "0"},
-                        {"@Amount5", "0"},
-                        {"@UpdateType", ""},
-                    };
-
-                    db.Gets(Store.ManagePayments, Parameters, out Error, out ds);
-                    ShowDataGridView(ds);
-
-                    db.Gets(Store.FnGetBalanceSearch, Parameter, out Error, out ds);
-                    Credit = double.Parse(Convert.ToString(ds.Tables[1].Rows[0]["SumCredit"].ToString()));
-                    Debit = double.Parse(Convert.ToString(ds.Tables[1].Rows[0]["SumDebit"].ToString()));
-                }
+                db.Gets(Store.ManageExpense, List, out Error, out ds);
+                ShowDataGridView(ds);
 
                 txtReceipt.Text = Receipt;
                 lblBalance.Text = "รวมทั้งสิ้น";
+
+                db.Gets(Store.FnGetBalanceSearch, List, out Error, out ds);
+                Credit = double.Parse(Convert.ToString(ds.Tables[0].Rows[0]["SumCredit"].ToString()));
+                Debit = double.Parse(Convert.ToString(ds.Tables[0].Rows[0]["SumDebit"].ToString()));
+
                 txtTotalReal.Text = string.Format("{0:#,##0.00}", Math.Abs(Credit));
                 txtSumCredit.Text = string.Format("{0:#,##0.00}", Credit);
                 txtSumDebit.Text = string.Format("{0:#,##0.00}", Debit);
@@ -1386,7 +1370,6 @@ namespace SANSANG
             {
                 txtReceipt.Focus();
             }
-
         }
 
         private void txtReceipt_KeyPress(object sender, KeyPressEventArgs e)
@@ -1490,7 +1473,8 @@ namespace SANSANG
         {
             try
             {
-                double Amount = double.Parse(Convert.ToString(Convert.ToDouble(txtSumDebit.Text) - Convert.ToDouble(txtSumCredit.Text)));
+                double Amount = 0;
+                Amount = Math.Abs(double.Parse(Convert.ToString(Convert.ToDouble(txtSumDebit.Text) - Convert.ToDouble(txtSumCredit.Text))));
                 txtTotal.Text = string.Format("{0:#,##0.00}", Amount);
             }
             catch (Exception ex)
@@ -1537,6 +1521,7 @@ namespace SANSANG
                 txtItem.Text = Data.Rows[0]["Item"].ToString();
                 txtDetails.Text = Data.Rows[0]["Detail"].ToString();
                 txtAmount.Text = Data.Rows[0]["Amount"].ToString();
+                txtPrice.Text = Data.Rows[0]["Prices"].ToString();
                 cbbStatus.SelectedValue = StatusId;
             }
             catch (Exception ex)
@@ -1672,6 +1657,24 @@ namespace SANSANG
         private void cbbUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
             cbbStatus.SelectedValue = 1000;
+        }
+
+        private void txtPrice_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                double num = Convert.ToDouble(string.IsNullOrEmpty(txtPrice.Text) ? "0" : txtPrice.Text);
+                txtPrice.Text = String.Format("{0:n}", num);
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }
+        }
+
+        private void txtPricekeyPress(object sender, KeyPressEventArgs e)
+        {
+            Event.AmountKeyPress(sender, e, txtPrice);
         }
     }
 }
