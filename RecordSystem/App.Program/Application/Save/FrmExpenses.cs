@@ -1316,12 +1316,13 @@ namespace SANSANG
                 db.Gets(Store.ManageExpense, List, out Error, out ds);
                 ShowDataGridView(ds);
 
+                txtReceipt.Text = Receipt;
+                lblBalance.Text = "รวมทั้งสิ้น";
+
                 db.Gets(Store.FnGetBalanceSearch, List, out Error, out ds);
                 Credit = double.Parse(Convert.ToString(ds.Tables[0].Rows[0]["SumCredit"].ToString()));
                 Debit = double.Parse(Convert.ToString(ds.Tables[0].Rows[0]["SumDebit"].ToString()));
 
-                txtReceipt.Text = Receipt;
-                lblBalance.Text = "รวมทั้งสิ้น";
                 txtTotalReal.Text = string.Format("{0:#,##0.00}", Math.Abs(Credit));
                 txtSumCredit.Text = string.Format("{0:#,##0.00}", Credit);
                 txtSumDebit.Text = string.Format("{0:#,##0.00}", Debit);

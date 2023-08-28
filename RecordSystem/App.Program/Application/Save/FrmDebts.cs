@@ -671,7 +671,7 @@ namespace SANSANG
                 {
                     Form Frm = (Form)sender;
 
-                    if (Frm.ActiveControl.Text != txtReference.Text)
+                    if (Frm.ActiveControl.Text != txtReference.Text && Frm.ActiveControl.Name != "txtDetail")
                     {
                         Search(true);
                     }
