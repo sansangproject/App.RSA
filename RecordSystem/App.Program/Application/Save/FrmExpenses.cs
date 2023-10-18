@@ -1042,7 +1042,13 @@ namespace SANSANG
         {
             try
             {
-                GetValue();
+                if (!string.IsNullOrEmpty(txtTotalReal.Text))
+                {
+                    GetValue();
+                    double Amount = Convert.ToDouble(txtTotalReal.Text);
+                    string Amounts = clsBahtText.ToBahtText(Amount);
+                    this.txtAmounts.Text = Amounts;
+                }
             }
             catch (Exception ex)
             {

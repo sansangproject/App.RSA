@@ -134,6 +134,7 @@
             this.txtId = new System.Windows.Forms.TextBox();
             this.cb_Receipt = new System.Windows.Forms.CheckBox();
             this.pbHide = new System.Windows.Forms.PictureBox();
+            this.txtAmounts = new System.Windows.Forms.TextBox();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbUnits)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Receipt_True)).BeginInit();
@@ -163,6 +164,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox4.BackColor = System.Drawing.Color.White;
+            this.groupBox4.Controls.Add(this.txtAmounts);
             this.groupBox4.Controls.Add(this.txtPrice);
             this.groupBox4.Controls.Add(this.label10);
             this.groupBox4.Controls.Add(this.label11);
@@ -1154,7 +1156,7 @@
             this.lblBalance.AutoSize = true;
             this.lblBalance.Font = new System.Drawing.Font("Mitr Light", 8F);
             this.lblBalance.ForeColor = System.Drawing.Color.DimGray;
-            this.lblBalance.Location = new System.Drawing.Point(1095, 126);
+            this.lblBalance.Location = new System.Drawing.Point(1097, 126);
             this.lblBalance.Name = "lblBalance";
             this.lblBalance.Size = new System.Drawing.Size(61, 18);
             this.lblBalance.TabIndex = 1;
@@ -1180,7 +1182,7 @@
             this.txtTotalReal.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtTotalReal.Font = new System.Drawing.Font("Mitr", 28F);
             this.txtTotalReal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.txtTotalReal.Location = new System.Drawing.Point(864, 130);
+            this.txtTotalReal.Location = new System.Drawing.Point(864, 126);
             this.txtTotalReal.Name = "txtTotalReal";
             this.txtTotalReal.Size = new System.Drawing.Size(294, 59);
             this.txtTotalReal.TabIndex = 1;
@@ -1567,6 +1569,18 @@
             this.pbHide.TabStop = false;
             this.pbHide.Visible = false;
             // 
+            // txtAmounts
+            // 
+            this.txtAmounts.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtAmounts.Font = new System.Drawing.Font("Mitr Light", 10F);
+            this.txtAmounts.ForeColor = System.Drawing.Color.IndianRed;
+            this.txtAmounts.Location = new System.Drawing.Point(864, 170);
+            this.txtAmounts.Name = "txtAmounts";
+            this.txtAmounts.Size = new System.Drawing.Size(292, 21);
+            this.txtAmounts.TabIndex = 240;
+            this.txtAmounts.Text = "ศูนย์บาทถ้วน";
+            this.txtAmounts.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // FrmExpenses
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -1717,5 +1731,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtPrice;
+        private System.Windows.Forms.TextBox txtAmounts;
     }
 }

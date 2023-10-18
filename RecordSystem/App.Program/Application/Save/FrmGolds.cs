@@ -267,7 +267,7 @@ namespace SANSANG
                     cbbMonth.SelectedValue = dt.Rows[0]["WorkdayId"].ToString();
                     cbbMember.SelectedValue = dt.Rows[0]["MemberId"].ToString();
                     cbbAccount.SelectedValue = dt.Rows[0]["AccountId"].ToString();
-                    
+
                     txtWorkday.Text = dt.Rows[0]["WorkingDay"].ToString();
                     txtAmount.Text = dt.Rows[0]["AmountPerDay"].ToString();
 
@@ -498,18 +498,28 @@ namespace SANSANG
 
         private void SummaryGold(DataTable Data)
         {
-            double GoldTotal = 0;
-            double MoneyTotal = 0;
-
-            if (string.IsNullOrEmpty(Error) && Function.GetRows(Data) > 0)
+            try
             {
-                GoldTotal = Convert.ToDouble(Data.Rows[0]["GoldTotal"].ToString());
-                MoneyTotal = Convert.ToDouble(Data.Rows[0]["MoneyTotal"].ToString());
-            }
+                double GoldTotal = 0;
+                double MoneyTotal = 0;
+                double Numbers = 0;
 
-            txtSumMoney.Text = string.Format("{0:#,##0.00}", MoneyTotal);
-            var Number = (string.Format("{0:#,##0.0000}", GoldTotal));
-            txtSumGold.Text = Function.FillFromRight(Number, 8);
+                if (string.IsNullOrEmpty(Error) && Function.GetRows(Data) > 0)
+                {
+                    GoldTotal = Convert.ToDouble(Data.Rows[0]["GoldTotal"].ToString());
+                    MoneyTotal = Convert.ToDouble(Data.Rows[0]["MoneyTotal"].ToString());
+                    Numbers = Math.Round(GoldTotal, 4);
+                }
+
+                txtSumMoney.Text = string.Format("{0:#,##0.00}", Math.Ceiling(MoneyTotal));
+                var Number = (string.Format("{0:#,##0.0000}", Numbers));
+                txtSumGold.Text = Function.FillFromRight(Number, 4);
+            }
+            catch (Exception)
+            {
+                txtSumMoney.Text = "0";
+                txtSumGold.Text = "0";
+            }
         }
 
         public string GetDetails()
