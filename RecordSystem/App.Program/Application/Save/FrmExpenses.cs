@@ -61,6 +61,7 @@ namespace SANSANG
         private double TotalDebit = 0;
         private double Debit = 0;
         private double Wallet = 0;
+        private double Other = 0;
         private string Details = "";
         private string Items = "";
         private int DataRows = 0;
@@ -814,17 +815,19 @@ namespace SANSANG
                 {
                     Debit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumDebit"].ToString()));
                     Credit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumCredit"].ToString()));
+                    Other = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumWallet"].ToString()));
                 }
                 else
                 {
                     Credit = 0.00;
                     TotalCredit = 0.00;
                     Debit = 0.00;
+                    Other = 0.00;
                 }
 
                 lblBalance.Text = "คงเหลือ";
 
-                double TotalReal = Math.Abs(Debit - Credit);
+                double TotalReal = Math.Abs(Debit - (Credit + Other));
                 txtSumCredit.Text = string.Format("{0:#,##0.00}", Credit);
                 txtSumDebit.Text = string.Format("{0:#,##0.00}", Debit);
                 txtTotalReal.Text = string.Format("{0:#,##0.00}", TotalReal);
