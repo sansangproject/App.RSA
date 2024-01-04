@@ -9,6 +9,9 @@ using SANSANG.Constant;
 using SANSANG.Utilites.App.Model;
 using RecordSystemApplication.App.Program.Application.Payment;
 using Telerik.WinControls.Svg.ExCSS;
+using System.Web.Services.Description;
+using System.Diagnostics;
+using Message = System.Windows.Forms.Message;
 
 namespace SANSANG
 {
@@ -64,10 +67,13 @@ namespace SANSANG
         private double Other = 0;
         private string Details = "";
         private string Items = "";
+        private string Types = "";
         private int DataRows = 0;
         private string IsDebit = "false";
         private string MoneyIsDelete = "";
         private bool IsSearchPayment = false;
+        private bool IsCalculate = false;
+        private bool IsDiscountIncluded = true;
 
         public FrmExpenses(string UserIdLogin, string UserNameLogin, string UserSurNameLogin, string UserTypeLogin)
         {
@@ -144,13 +150,23 @@ namespace SANSANG
                 cb_Date.Checked = false;
                 cb_Paysub.Checked = false;
 
+                cb_Discount.Checked = true;
+                cb_Calculate.Checked = false;
+
                 cbbMoney.Enabled = true;
                 pbHide.Visible = false;
 
                 pb_Date_True.Hide();
                 pb_Paysub_True.Hide();
+                pb_Calculate_True.Hide();
+
+                pb_Discount_False.Hide();
+
                 pb_Date_False.Show();
                 pb_Paysub_False.Show();
+                pb_Calculate_False.Show();
+
+                pb_Discount_True.Show();
 
                 if (!IsSearchPayment)
                 {
@@ -266,8 +282,12 @@ namespace SANSANG
         {
             try
             {
+                IsCalculate = cb_Calculate.Checked ? true : false;
+                IsDiscountIncluded = cb_Discount.Checked ? true : false;
+
                 SearchPress = true;
-                Search(false, "");
+                Types = "";
+                Search(false, Types);
                 pbHide.Visible = false;
             }
             catch (Exception ex)
@@ -825,13 +845,8 @@ namespace SANSANG
                     Other = 0.00;
                 }
 
-                lblBalance.Text = "คงเหลือ";
+                ShowTotalAmount(Types, Debit, Credit, Other, cb_Calculate.Checked ? true : false, cb_Discount.Checked ? true : false);
 
-                double TotalReal = Math.Abs(Debit - (Credit + Other));
-                txtSumCredit.Text = string.Format("{0:#,##0.00}", Credit);
-                txtSumDebit.Text = string.Format("{0:#,##0.00}", Debit);
-                txtTotalReal.Text = string.Format("{0:#,##0.00}", TotalReal);
-                txtPayStatus.Text = "";
             }
             catch (Exception ex)
             {
@@ -1088,7 +1103,8 @@ namespace SANSANG
             try
             {
                 Clear(false);
-                Search(true, Strings.Nexts);
+                Types = Strings.Nexts;
+                Search(true, Types);
             }
             catch (Exception ex)
             {
@@ -1140,7 +1156,8 @@ namespace SANSANG
 
                     if (Frm.ActiveControl.Text != txtTotalReal.Text && Frm.ActiveControl.Text != txtReceipt.Text)
                     {
-                        Search(true, "");
+                        Types = "";
+                        Search(true, Types);
                     }
                 }
             }
@@ -1155,7 +1172,8 @@ namespace SANSANG
             try
             {
                 Clear(false);
-                Search(true, Strings.Previous);
+                Types = Strings.Previous;
+                Search(true, Types);
             }
             catch (Exception ex)
             {
@@ -1276,7 +1294,8 @@ namespace SANSANG
                 try
                 {
                     SearchPress = true;
-                    Search(false, "");
+                    Types = "";
+                    Search(false, Types);
                 }
                 catch (Exception ex)
                 {
@@ -1332,10 +1351,7 @@ namespace SANSANG
                 Credit = double.Parse(Convert.ToString(ds.Tables[0].Rows[0]["SumCredit"].ToString()));
                 Debit = double.Parse(Convert.ToString(ds.Tables[0].Rows[0]["SumDebit"].ToString()));
 
-                txtTotalReal.Text = string.Format("{0:#,##0.00}", Math.Abs(Credit));
-                txtSumCredit.Text = string.Format("{0:#,##0.00}", Credit);
-                txtSumDebit.Text = string.Format("{0:#,##0.00}", Debit);
-                txtPayStatus.Text = "";
+                ShowTotalAmount(Types, Debit, Credit, 0, IsCalculate, IsDiscountIncluded);
             }
             catch (Exception ex)
             {
@@ -1349,7 +1365,8 @@ namespace SANSANG
         {
             if (!string.IsNullOrEmpty(txtReceipt.Text))
             {
-                Search(true, Strings.Payment);
+                Types = Strings.Payment;
+                Search(true, Types);
                 pbHide.Visible = true;
             }
             else
@@ -1363,15 +1380,19 @@ namespace SANSANG
             if (!string.IsNullOrEmpty(txtReceipt.Text))
             {
                 IsSearchPayment = true;
+                IsCalculate = cb_Calculate.Checked ? true : false;
+                IsDiscountIncluded = cb_Discount.Checked ? true : false;
 
                 if (cb_Receipt.Checked)
                 {
-                    Search(true, Strings.Receipt);
+                    Types = Strings.Receipt;
+                    Search(true, Types);
                     pbHide.Visible = true;
                 }
                 else
                 {
-                    Search(true, Strings.Payment);
+                    Types = Strings.Payment;
+                    Search(true, Types);
                     pbHide.Visible = true;
                 }
             }
@@ -1391,7 +1412,8 @@ namespace SANSANG
             {
                 string Codes = Function.SplitBarcode(txtReceipt.Text);
                 txtReceipt.Text = Codes == "" ? txtReceipt.Text : Codes;
-                Search(false, "");
+                Types = "";
+                Search(false, Types);
             }
         }
 
@@ -1684,6 +1706,82 @@ namespace SANSANG
         private void txtPricekeyPress(object sender, KeyPressEventArgs e)
         {
             Event.AmountKeyPress(sender, e, txtPrice);
+        }
+
+        private void ShowTotalAmount(string Types, double Debit, double Credit, double Other, bool Calculate, bool DiscountIncluded)
+        {
+            double TotalReal = Math.Abs(((Calculate ? Debit : 0) - (Credit + (DiscountIncluded ? Other : 0.00))) * (Calculate ? 1 : -1));
+            txtTotalReal.Text = string.Format("{0:#,##0.00}", TotalReal);
+            txtSumCredit.Text = string.Format("{0:#,##0.00}", Credit + (DiscountIncluded ? Other : 0.00));
+            txtSumDebit.Text = string.Format("{0:#,##0.00}", Debit);
+
+            cb_Calculate.Checked = IsCalculate;
+            pb_Calculate_True.Visible = IsCalculate? true : false;
+            pb_Calculate_False.Visible = IsCalculate? false : true;
+            
+            cb_Discount.Checked = IsDiscountIncluded;
+            pb_Discount_True.Visible = IsDiscountIncluded? true : false;
+            pb_Discount_False.Visible = IsDiscountIncluded? false : true;
+              
+            lblBalance.Text = "คงเหลือ";
+            txtPayStatus.Text = "";
+        }
+
+        private void btnSearchName_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Parameter = new string[,]
+                {
+                    {"@Id", ""},
+                    {"@Code", ""},
+                    {"@Status", "0"},
+                    {"@User", ""},
+                    {"@IsActive", "1"},
+                    {"@IsDelete", "0"},
+                    {"@Operation", Operation.SelectAbbr},
+                    {"@List", ""},
+                    {"@MoneyId", "0"},
+                    {"@CategoryId", "0"},
+                    {"@ItemId", "0"},
+                    {"@IsDebit", ""},
+                    {"@Item", txtItem.Text},
+                    {"@Detail", ""},
+                    {"@Amount", "0.00"},
+                    {"@Price", "0.00"},
+                    {"@UnitId", ""},
+                    {"@Unit", "0.00"},
+                    {"@Date", ""},
+                    {"@Receipt", ""},
+                    {"@Reference", ""},
+                };
+
+                db.Gets(Store.ManageExpense, Parameter, out Error, out ds);
+                ShowDataGridView(ds);
+
+                db.Gets(Store.FnGetBalanceSearch, Parameter, out Error, out ds);
+
+                if (string.IsNullOrEmpty(Error))
+                {
+                    Debit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumDebit"].ToString()));
+                    Credit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumCredit"].ToString()));
+                    Other = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumWallet"].ToString()));
+                }
+                else
+                {
+                    Credit = 0.00;
+                    TotalCredit = 0.00;
+                    Debit = 0.00;
+                    Other = 0.00;
+                }
+
+                ShowTotalAmount(Types, Debit, Credit, Other, cb_Calculate.Checked ? true : false, cb_Discount.Checked ? true : false);
+
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }
         }
     }
 }

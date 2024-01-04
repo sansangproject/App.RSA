@@ -191,7 +191,7 @@ namespace SANSANG
                         , "วันทำการ (วัน)", 50, true, mc, mc
                         , "ราคาซื้อ (บาท)", 100, true, mc, mr
                         , "ราคาขาย (บาท)", 100, true, mc, mr
-                        , "ทองคำ (กรัม)", 150, true, mc, mr
+                        , "ทองคำ (บาท)", 150, true, mc, mr
                         , "", 0, false, mc, mc
                         );
 

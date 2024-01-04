@@ -32,6 +32,14 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.pb_Calculate_True = new System.Windows.Forms.PictureBox();
+            this.pb_Calculate_False = new System.Windows.Forms.PictureBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.pb_Discount_True = new System.Windows.Forms.PictureBox();
+            this.pb_Discount_False = new System.Windows.Forms.PictureBox();
+            this.btnSearchName = new System.Windows.Forms.Button();
+            this.txtAmounts = new System.Windows.Forms.TextBox();
             this.txtPrice = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -134,8 +142,13 @@
             this.txtId = new System.Windows.Forms.TextBox();
             this.cb_Receipt = new System.Windows.Forms.CheckBox();
             this.pbHide = new System.Windows.Forms.PictureBox();
-            this.txtAmounts = new System.Windows.Forms.TextBox();
+            this.cb_Discount = new System.Windows.Forms.CheckBox();
+            this.cb_Calculate = new System.Windows.Forms.CheckBox();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Calculate_True)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Calculate_False)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Discount_True)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Discount_False)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbUnits)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Receipt_True)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Receipt_False)).BeginInit();
@@ -164,6 +177,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox4.BackColor = System.Drawing.Color.White;
+            this.groupBox4.Controls.Add(this.pb_Calculate_True);
+            this.groupBox4.Controls.Add(this.pb_Calculate_False);
+            this.groupBox4.Controls.Add(this.label30);
+            this.groupBox4.Controls.Add(this.label29);
+            this.groupBox4.Controls.Add(this.pb_Discount_True);
+            this.groupBox4.Controls.Add(this.pb_Discount_False);
+            this.groupBox4.Controls.Add(this.btnSearchName);
             this.groupBox4.Controls.Add(this.txtAmounts);
             this.groupBox4.Controls.Add(this.txtPrice);
             this.groupBox4.Controls.Add(this.label10);
@@ -249,11 +269,106 @@
             this.groupBox4.Controls.Add(this.txtId);
             this.groupBox4.Controls.Add(this.cb_Receipt);
             this.groupBox4.Controls.Add(this.pbHide);
+            this.groupBox4.Controls.Add(this.cb_Discount);
+            this.groupBox4.Controls.Add(this.cb_Calculate);
             this.groupBox4.Location = new System.Drawing.Point(-3, -12);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(1491, 814);
             this.groupBox4.TabIndex = 46;
             this.groupBox4.TabStop = false;
+            // 
+            // pb_Calculate_True
+            // 
+            this.pb_Calculate_True.Image = ((System.Drawing.Image)(resources.GetObject("pb_Calculate_True.Image")));
+            this.pb_Calculate_True.Location = new System.Drawing.Point(1328, 321);
+            this.pb_Calculate_True.Name = "pb_Calculate_True";
+            this.pb_Calculate_True.Size = new System.Drawing.Size(23, 21);
+            this.pb_Calculate_True.TabIndex = 247;
+            this.pb_Calculate_True.TabStop = false;
+            this.pb_Calculate_True.Click += new System.EventHandler(this.Ticker);
+            // 
+            // pb_Calculate_False
+            // 
+            this.pb_Calculate_False.Image = ((System.Drawing.Image)(resources.GetObject("pb_Calculate_False.Image")));
+            this.pb_Calculate_False.Location = new System.Drawing.Point(1328, 321);
+            this.pb_Calculate_False.Name = "pb_Calculate_False";
+            this.pb_Calculate_False.Size = new System.Drawing.Size(23, 21);
+            this.pb_Calculate_False.TabIndex = 248;
+            this.pb_Calculate_False.TabStop = false;
+            this.pb_Calculate_False.Visible = false;
+            this.pb_Calculate_False.Click += new System.EventHandler(this.Ticker);
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.BackColor = System.Drawing.Color.Transparent;
+            this.label30.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.label30.ForeColor = System.Drawing.Color.Silver;
+            this.label30.Location = new System.Drawing.Point(1357, 324);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(57, 18);
+            this.label30.TabIndex = 246;
+            this.label30.Text = "Calculate";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.BackColor = System.Drawing.Color.Transparent;
+            this.label29.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.label29.ForeColor = System.Drawing.Color.Silver;
+            this.label29.Location = new System.Drawing.Point(1357, 346);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(55, 18);
+            this.label29.TabIndex = 245;
+            this.label29.Text = "Discount";
+            // 
+            // pb_Discount_True
+            // 
+            this.pb_Discount_True.Image = ((System.Drawing.Image)(resources.GetObject("pb_Discount_True.Image")));
+            this.pb_Discount_True.Location = new System.Drawing.Point(1328, 348);
+            this.pb_Discount_True.Name = "pb_Discount_True";
+            this.pb_Discount_True.Size = new System.Drawing.Size(23, 21);
+            this.pb_Discount_True.TabIndex = 242;
+            this.pb_Discount_True.TabStop = false;
+            this.pb_Discount_True.Click += new System.EventHandler(this.Ticker);
+            // 
+            // pb_Discount_False
+            // 
+            this.pb_Discount_False.Image = ((System.Drawing.Image)(resources.GetObject("pb_Discount_False.Image")));
+            this.pb_Discount_False.Location = new System.Drawing.Point(1328, 348);
+            this.pb_Discount_False.Name = "pb_Discount_False";
+            this.pb_Discount_False.Size = new System.Drawing.Size(23, 21);
+            this.pb_Discount_False.TabIndex = 243;
+            this.pb_Discount_False.TabStop = false;
+            this.pb_Discount_False.Visible = false;
+            this.pb_Discount_False.Click += new System.EventHandler(this.Ticker);
+            // 
+            // btnSearchName
+            // 
+            this.btnSearchName.BackColor = System.Drawing.Color.Transparent;
+            this.btnSearchName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearchName.ForeColor = System.Drawing.Color.Transparent;
+            this.btnSearchName.Image = ((System.Drawing.Image)(resources.GetObject("btnSearchName.Image")));
+            this.btnSearchName.Location = new System.Drawing.Point(836, 197);
+            this.btnSearchName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnSearchName.Name = "btnSearchName";
+            this.btnSearchName.Size = new System.Drawing.Size(24, 23);
+            this.btnSearchName.TabIndex = 241;
+            this.btnSearchName.TabStop = false;
+            this.btnSearchName.UseVisualStyleBackColor = false;
+            this.btnSearchName.Click += new System.EventHandler(this.btnSearchName_Click);
+            // 
+            // txtAmounts
+            // 
+            this.txtAmounts.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtAmounts.Font = new System.Drawing.Font("Mitr Light", 10F);
+            this.txtAmounts.ForeColor = System.Drawing.Color.IndianRed;
+            this.txtAmounts.Location = new System.Drawing.Point(864, 170);
+            this.txtAmounts.Name = "txtAmounts";
+            this.txtAmounts.Size = new System.Drawing.Size(292, 21);
+            this.txtAmounts.TabIndex = 240;
+            this.txtAmounts.Text = "ศูนย์บาทถ้วน";
+            this.txtAmounts.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtPrice
             // 
@@ -823,7 +938,7 @@
             this.txtItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtItem.Location = new System.Drawing.Point(507, 198);
             this.txtItem.Name = "txtItem";
-            this.txtItem.Size = new System.Drawing.Size(353, 21);
+            this.txtItem.Size = new System.Drawing.Size(325, 21);
             this.txtItem.TabIndex = 107;
             this.txtItem.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtItem_KeyPress);
             // 
@@ -1569,17 +1684,23 @@
             this.pbHide.TabStop = false;
             this.pbHide.Visible = false;
             // 
-            // txtAmounts
+            // cb_Discount
             // 
-            this.txtAmounts.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtAmounts.Font = new System.Drawing.Font("Mitr Light", 10F);
-            this.txtAmounts.ForeColor = System.Drawing.Color.IndianRed;
-            this.txtAmounts.Location = new System.Drawing.Point(864, 170);
-            this.txtAmounts.Name = "txtAmounts";
-            this.txtAmounts.Size = new System.Drawing.Size(292, 21);
-            this.txtAmounts.TabIndex = 240;
-            this.txtAmounts.Text = "ศูนย์บาทถ้วน";
-            this.txtAmounts.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.cb_Discount.AutoSize = true;
+            this.cb_Discount.Location = new System.Drawing.Point(1195, 244);
+            this.cb_Discount.Name = "cb_Discount";
+            this.cb_Discount.Size = new System.Drawing.Size(15, 14);
+            this.cb_Discount.TabIndex = 244;
+            this.cb_Discount.UseVisualStyleBackColor = true;
+            // 
+            // cb_Calculate
+            // 
+            this.cb_Calculate.AutoSize = true;
+            this.cb_Calculate.Location = new System.Drawing.Point(1255, 205);
+            this.cb_Calculate.Name = "cb_Calculate";
+            this.cb_Calculate.Size = new System.Drawing.Size(15, 14);
+            this.cb_Calculate.TabIndex = 249;
+            this.cb_Calculate.UseVisualStyleBackColor = true;
             // 
             // FrmExpenses
             // 
@@ -1601,6 +1722,10 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmKeyDown);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Calculate_True)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Calculate_False)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Discount_True)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Discount_False)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbUnits)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Receipt_True)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Receipt_False)).EndInit();
@@ -1732,5 +1857,14 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.TextBox txtAmounts;
+        private System.Windows.Forms.Button btnSearchName;
+        private System.Windows.Forms.PictureBox pb_Discount_False;
+        private System.Windows.Forms.PictureBox pb_Discount_True;
+        private System.Windows.Forms.CheckBox cb_Discount;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.PictureBox pb_Calculate_True;
+        private System.Windows.Forms.PictureBox pb_Calculate_False;
+        private System.Windows.Forms.CheckBox cb_Calculate;
     }
 }

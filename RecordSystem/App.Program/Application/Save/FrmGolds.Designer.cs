@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmGolds));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cbbMember = new System.Windows.Forms.ComboBox();
             this.gbForm = new System.Windows.Forms.GroupBox();
             this.label29 = new System.Windows.Forms.Label();
@@ -103,6 +103,11 @@
             this.cb_Date = new System.Windows.Forms.CheckBox();
             this.txtId = new System.Windows.Forms.TextBox();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
             this.gbForm.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
@@ -135,6 +140,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gbForm.BackColor = System.Drawing.Color.White;
+            this.gbForm.Controls.Add(this.label35);
+            this.gbForm.Controls.Add(this.label34);
+            this.gbForm.Controls.Add(this.label33);
             this.gbForm.Controls.Add(this.label29);
             this.gbForm.Controls.Add(this.label31);
             this.gbForm.Controls.Add(this.txtRemark);
@@ -516,6 +524,8 @@
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.label37);
+            this.groupBox2.Controls.Add(this.label36);
             this.groupBox2.Controls.Add(this.label40);
             this.groupBox2.Controls.Add(this.label39);
             this.groupBox2.Controls.Add(this.txtSumMoney);
@@ -540,7 +550,7 @@
             this.label40.AutoSize = true;
             this.label40.Font = new System.Drawing.Font("Mitr Light", 7F);
             this.label40.ForeColor = System.Drawing.Color.DimGray;
-            this.label40.Location = new System.Drawing.Point(78, 384);
+            this.label40.Location = new System.Drawing.Point(80, 384);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(38, 15);
             this.label40.TabIndex = 206;
@@ -552,7 +562,7 @@
             this.label39.AutoSize = true;
             this.label39.Font = new System.Drawing.Font("Mitr Light", 7F);
             this.label39.ForeColor = System.Drawing.Color.DimGray;
-            this.label39.Location = new System.Drawing.Point(1329, 384);
+            this.label39.Location = new System.Drawing.Point(1331, 384);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(69, 15);
             this.label39.TabIndex = 205;
@@ -649,14 +659,14 @@
             this.GridView.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.GridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.GridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.GridView.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.GridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.GridView.GridColor = System.Drawing.Color.Silver;
             this.GridView.Location = new System.Drawing.Point(19, 60);
             this.GridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -1093,6 +1103,61 @@
             // 
             this.openFileDialog.FileName = "openFileDialog1";
             // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.label33.ForeColor = System.Drawing.Color.Chocolate;
+            this.label33.Location = new System.Drawing.Point(1070, 201);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(27, 18);
+            this.label33.TabIndex = 254;
+            this.label33.Text = "บาท";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.label34.ForeColor = System.Drawing.Color.Chocolate;
+            this.label34.Location = new System.Drawing.Point(1070, 241);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(27, 18);
+            this.label34.TabIndex = 255;
+            this.label34.Text = "บาท";
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.label35.ForeColor = System.Drawing.Color.Chocolate;
+            this.label35.Location = new System.Drawing.Point(1070, 282);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(27, 18);
+            this.label35.TabIndex = 256;
+            this.label35.Text = "บาท";
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.label36.ForeColor = System.Drawing.Color.DarkGoldenrod;
+            this.label36.Location = new System.Drawing.Point(1374, 371);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(27, 18);
+            this.label36.TabIndex = 257;
+            this.label36.Text = "บาท";
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.label37.ForeColor = System.Drawing.Color.DarkGoldenrod;
+            this.label37.Location = new System.Drawing.Point(93, 369);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(27, 18);
+            this.label37.TabIndex = 258;
+            this.label37.Text = "บาท";
+            // 
             // FrmGolds
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -1201,5 +1266,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtDetail;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Label label37;
     }
 }
