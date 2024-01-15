@@ -58,6 +58,7 @@ namespace SANSANG.Constant
         public static string GetBankBalance = "[GetBankBalance]";
         public static string GeneratedId = "[GeneratedId]";
         public static string GetTopId = "[GetTopId]";
+        public static string GetItemId = "[GetItemId]";
         
         public string ManagePath = string.Format(Stores, SPR, Path);
         public string ManageUser = string.Format(Stores, SPR, User);
@@ -100,5 +101,7 @@ namespace SANSANG.Constant
         public string FnGetBankBalance = string.Format(Stores, FN, GetBankBalance);
         public string FnGeneratedId = string.Format(Stores, FN, GeneratedId);
         public string FnGetTopId = string.Format(Stores, FN, GetTopId);
+        public string FnGetItemId = string.Format(Stores, FN, GetItemId);
+
     }
 }

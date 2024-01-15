@@ -29,9 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmGolds));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cbbMember = new System.Windows.Forms.ComboBox();
             this.gbForm = new System.Windows.Forms.GroupBox();
+            this.label35 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.txtRemark = new System.Windows.Forms.TextBox();
@@ -60,6 +63,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.btnCopy = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
             this.label39 = new System.Windows.Forms.Label();
             this.txtSumMoney = new System.Windows.Forms.TextBox();
@@ -103,11 +108,6 @@
             this.cb_Date = new System.Windows.Forms.CheckBox();
             this.txtId = new System.Windows.Forms.TextBox();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.label33 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
-            this.label35 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this.label37 = new System.Windows.Forms.Label();
             this.gbForm.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
@@ -197,6 +197,39 @@
             this.gbForm.Size = new System.Drawing.Size(1487, 965);
             this.gbForm.TabIndex = 46;
             this.gbForm.TabStop = false;
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.label35.ForeColor = System.Drawing.Color.Chocolate;
+            this.label35.Location = new System.Drawing.Point(1070, 282);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(27, 18);
+            this.label35.TabIndex = 256;
+            this.label35.Text = "บาท";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.label34.ForeColor = System.Drawing.Color.Chocolate;
+            this.label34.Location = new System.Drawing.Point(1070, 241);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(27, 18);
+            this.label34.TabIndex = 255;
+            this.label34.Text = "บาท";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.label33.ForeColor = System.Drawing.Color.Chocolate;
+            this.label33.Location = new System.Drawing.Point(1070, 201);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(27, 18);
+            this.label33.TabIndex = 254;
+            this.label33.Text = "บาท";
             // 
             // label29
             // 
@@ -544,6 +577,29 @@
             this.groupBox2.TabIndex = 221;
             this.groupBox2.TabStop = false;
             // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.label37.ForeColor = System.Drawing.Color.DarkGoldenrod;
+            this.label37.Location = new System.Drawing.Point(93, 369);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(27, 18);
+            this.label37.TabIndex = 258;
+            this.label37.Text = "บาท";
+            // 
+            // label36
+            // 
+            this.label36.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label36.AutoSize = true;
+            this.label36.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.label36.ForeColor = System.Drawing.Color.DarkGoldenrod;
+            this.label36.Location = new System.Drawing.Point(1374, 371);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(27, 18);
+            this.label36.TabIndex = 257;
+            this.label36.Text = "บาท";
+            // 
             // label40
             // 
             this.label40.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -659,14 +715,14 @@
             this.GridView.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.GridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.GridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.GridView.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.GridView.DefaultCellStyle = dataGridViewCellStyle1;
             this.GridView.GridColor = System.Drawing.Color.Silver;
             this.GridView.Location = new System.Drawing.Point(19, 60);
             this.GridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -1102,61 +1158,6 @@
             // openFileDialog
             // 
             this.openFileDialog.FileName = "openFileDialog1";
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Font = new System.Drawing.Font("Mitr Light", 8F);
-            this.label33.ForeColor = System.Drawing.Color.Chocolate;
-            this.label33.Location = new System.Drawing.Point(1070, 201);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(27, 18);
-            this.label33.TabIndex = 254;
-            this.label33.Text = "บาท";
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Font = new System.Drawing.Font("Mitr Light", 8F);
-            this.label34.ForeColor = System.Drawing.Color.Chocolate;
-            this.label34.Location = new System.Drawing.Point(1070, 241);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(27, 18);
-            this.label34.TabIndex = 255;
-            this.label34.Text = "บาท";
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Font = new System.Drawing.Font("Mitr Light", 8F);
-            this.label35.ForeColor = System.Drawing.Color.Chocolate;
-            this.label35.Location = new System.Drawing.Point(1070, 282);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(27, 18);
-            this.label35.TabIndex = 256;
-            this.label35.Text = "บาท";
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Font = new System.Drawing.Font("Mitr Light", 8F);
-            this.label36.ForeColor = System.Drawing.Color.DarkGoldenrod;
-            this.label36.Location = new System.Drawing.Point(1374, 371);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(27, 18);
-            this.label36.TabIndex = 257;
-            this.label36.Text = "บาท";
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Font = new System.Drawing.Font("Mitr Light", 8F);
-            this.label37.ForeColor = System.Drawing.Color.DarkGoldenrod;
-            this.label37.Location = new System.Drawing.Point(93, 369);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(27, 18);
-            this.label37.TabIndex = 258;
-            this.label37.Text = "บาท";
             // 
             // FrmGolds
             // 

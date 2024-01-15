@@ -10,6 +10,7 @@ using System.Runtime.Remoting.Channels;
 using System.Windows.Documents;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
+using Microsoft.Office.Interop.Excel;
 using PdfSharp.Pdf.Content.Objects;
 using SANSANG.Constant;
 using SANSANG.Database;
@@ -26,7 +27,7 @@ namespace SANSANG.Class
         public string Errors = "";
         public string AccountId = "";
 
-        private DataTable dt = new DataTable();
+        private System.Data.DataTable dt = new System.Data.DataTable();
         private clsLog Log = new clsLog();
         private dbConnection db = new dbConnection();
         private AccountConstant Accounts = new AccountConstant();
@@ -109,7 +110,7 @@ namespace SANSANG.Class
                 DateImports += Row == 0 ? Statements[0].ToString() : "";
                 DateImports += Row == Rows ? " - " + Statements[0].ToString() : "";
 
-                if (Statements[1] == "ORF" && Statements[4].Substring(0,3) == "940")
+                if (Statements[1] == "ORF" && Statements[4].Substring(0, 3) == "940")
                 {
                     Data.Code = Statements[1] + "+";
                 }
@@ -121,7 +122,7 @@ namespace SANSANG.Class
                 Data.Date = Statements[0];
                 Data.Amount = Function.MoveNumberStringComma(Statements[2]);
                 Data.Balance = Function.MoveNumberStringComma(Statements[3]);
-                Data.Channel = Statements[4].Substring(0,6);
+                Data.Channel = Statements[4].Substring(0, 6);
 
                 DataList.Add(Data);
                 Row++;
@@ -196,7 +197,7 @@ namespace SANSANG.Class
 
                     int Start = 0;
                     int LengthOfPayment = PaymentCode.Length + 1;
-                    
+
                     Start = value.IndexOf("(" + PaymentCode + ")") + 2;
 
                     string Detail = value.Remove(0, (Start + LengthOfPayment));
@@ -238,7 +239,7 @@ namespace SANSANG.Class
             string strDateImport = "";
             int numDetail = 0;
             var dataList = new List<KBANKSTModel>();
-            List<string> operation = new List<string>() { "จาก", "เพื่อชำระ", "โอนไป", "รหัสอ้างอิง" };
+            List<string> operation = new List<string>() { "KBANK", "จาก", "เพื่อชำระ", "โอนไป", "รหัสอ้างอิง", "Online Direct Debit" };
             var logFile = File.ReadAllLines(strFile);
             var logList = new List<string>(logFile);
             int countRows = logList.Count - 1;
@@ -252,9 +253,9 @@ namespace SANSANG.Class
                 strDateImport += row == 0 ? statements[0].ToString() : "";
                 strDateImport += row == countRows ? " - " + statements[0].ToString() : "";
 
-                data.StatmentDate = Function.formatTime(statements[0], 1);
-                data.StatmentTime = statements[1] + ":00";
-                data.PaymentCode = statements[2];
+                data.Date = Function.formatTime(statements[0], 1);
+                data.Time = statements[1] + ":00";
+                data.Item = statements[2];
                 data.Amount = statements[3];
                 data.Balance = statements[4];
 
@@ -262,7 +263,7 @@ namespace SANSANG.Class
                 {
                     if (!operation.Exists(Check => statements[i].Contains(Check)))
                     {
-                        data.Branch += statements[i] + " ";
+                        data.Channel += statements[i] + " ";
                         numDetail = i;
                     }
                     else
@@ -289,7 +290,7 @@ namespace SANSANG.Class
                 if (result == DialogResult.Yes)
                 {
                     Popup.Close();
-                    AddKBANKStatment(dataList, "KBANK", out err);
+                    AddKBANKStatment(dataList, AccountId, out err);
 
                     if (err == "")
                     {
@@ -574,93 +575,90 @@ namespace SANSANG.Class
             }
         }
 
-        public void AddKBANKStatment(List<KBANKSTModel> datas, string Banks, out string err)
+        public void AddKBANKStatment(List<KBANKSTModel> Datas, string AccountId, out string Error)
         {
             try
             {
-                string chanel = "ACK00-01";
-                string strCode = "";
-                string paymentCode = "";
-                string paymentDetail = "";
-                string paymentDisplay = "";
+                string Codes = "";
+                string PaymentId = "";
+                string Item = "";
+                string Detail = "";
+                string Display = "";
+                bool IsWithdrawal = false;
 
-                Operations = "I";
+                decimal BalanceNow = 0;
+                decimal BalanceNew = 0;
 
-                for (int i = 0; i < datas.Count; i++)
+                for (int Rounds = 0; Rounds < Datas.Count; Rounds++)
                 {
-                    Wait(1000);
+                    Codes = Function.GetCodes(Table.StatmentId, "", "Generated");
+                    Function.GetItemId(Datas[Rounds].Item, "1054", out PaymentId, out Item, out Detail, out Display, out IsWithdrawal);
 
-                    Function.GetPaymentSubCode(Banks, datas[i].PaymentCode, datas[i].Branch, out paymentCode, out paymentDetail, out paymentDisplay);
-                    strCode = Function.GetCodes("124", "", "Generated");
-                    string deposit = Function.GetIncome(paymentCode);
-                    decimal balance = 0;
-                    decimal newBalance = 0;
+                    DateTime DateTime = Convert.ToDateTime(Datas[Rounds].Date);
 
                     string[,] Parameter = new string[,]
                     {
-                        {"@User", "IMPORT"},
-                        {"@StatmentCode", strCode},
-                        //{"@StatmentAccounts", Accounts},
-                        {"@StatmentDate", datas[i].StatmentDate},
-                        {"@StatmentPayment", paymentCode},
-                        {"@StatmentPaymentDetail", paymentDetail},
-                        {"@StatmentChanel", chanel},
-                        {"@StatmentNumber", ""},
-                        {"@StatmentDetail", datas[i].Detail.TrimEnd()},
-                        {"@StatmentStatus", "Y"},
-                        {"@StatmentFileType", ""},
-                        {"@StatmentFileLocation", "-"},
-                        //{"@Bank", Accounts},
-                        {"@Amount", Function.MoveNumberStringComma(datas[i].Amount)},
-                        {"@WithdrawalOrDeposit", deposit},
-                        {"@StatmentTime", datas[i].StatmentTime},
-                        {"@StatmentBranch", datas[i].Branch.TrimEnd()},
-                        {"@Balance", Function.MoveNumberStringComma(datas[i].Balance)}
+                        {"@Id", ""},
+                        {"@Code", Codes},
+                        {"@Status", "1000"},
+                        {"@User", "1004"},
+                        {"@IsActive", "1"},
+                        {"@IsDelete", "0"},
+                        {"@Operation", Operation.InsertAbbr},
+                        {"@AccountId", AccountId},
+                        {"@Date", Dates.GetDate(dt : DateTime, Format : 4)},
+                        {"@Time", Datas[Rounds].Time},
+                        {"@PaymentId", PaymentId},
+                        {"@Item", "รายการเดินบัญชี"},
+                        {"@MoneyId", "1068"},
+                        {"@Branch", ""},
+                        {"@Channel", Datas[Rounds].Channel.TrimEnd()},
+                        {"@Withdrawal", IsWithdrawal? Function.RemoveComma(Datas[Rounds].Amount) : "0.00"},
+                        {"@Deposit", !IsWithdrawal? Function.RemoveComma(Datas[Rounds].Amount) : "0.00"},
+                        {"@Balance", Function.RemoveComma(Datas[Rounds].Balance)},
+                        {"@Number", ""},
+                        {"@Detail", Datas[Rounds].Detail.TrimEnd()},
+                        {"@Display", Display},
+                        {"@Reference", ""},
                     };
 
-                    string[,] check = new string[,]
-                    {
-                        //{"@StatmentAccounts", Accounts},
-                        {"@StatmentDate", datas[i].StatmentDate},
-                        {"@StatmentTime", datas[i].StatmentTime},
-                        {"@StatmentPayment", paymentCode},
-                        {"@StatmentPaymentDetail", paymentDetail},
-                        {"@StatmentChanel", chanel},
-                        {"@StatmentDetail", paymentDisplay},
-                        {"@StatmentStatus", "Y"},
-                        {"@StatmentBranch", datas[i].Branch},
-                        {"@StatmentAmount", Function.MoveNumberStringComma(datas[i].Amount)},
-                        {"@StatmentBalance", Function.MoveNumberStringComma(datas[i].Balance)},
-                    };
+                    BalanceNow = CheckBalance(Accounts.KBANK3848, Function.RemoveComma(Datas[Rounds].Amount), IsWithdrawal);
+                    BalanceNew = decimal.Parse(Function.RemoveComma(Datas[Rounds].Balance));
 
-                    //balance = CheckBalance(Accounts, Function.MoveNumberStringComma(datas[i].Amount), deposit);
-                    newBalance = decimal.Parse(Function.MoveNumberStringComma(datas[i].Balance));
-
-                    if (CheckDuplicate(check))
+                    if (!Function.IsDuplicate(
+                            Table.Statments,
+                            Value1: "KBANK",
+                            Value2: AccountId,
+                            Value3: PaymentId,
+                            Value4: Dates.GetDate(dt: DateTime, Format: 4),
+                            Value5: Function.RemoveComma(Datas[Rounds].Amount),
+                            Value6: Function.RemoveComma(Datas[Rounds].Balance),
+                            Value7: ""))
                     {
-                        if (balance == newBalance)
+                        if (BalanceNow == BalanceNew)
                         {
-                            db.Operations("Spr_I_TblSaveStatment", Parameter, out Errors);
+                            db.Operations(Store.ManageStatement, Parameter, out Error);
                             Messages = "";
                         }
                         else
                         {
-                            Messages = string.Format("Balance does not match. ({0})", balance);
+                            Messages = string.Format("Balance does not match. ({0})", String.Format("{0:n}", BalanceNow));
                             break;
                         }
                     }
                     else
                     {
-                        Messages = "Last statment is duplicate.";
+                        Messages = string.Format("{0} | {1}{2}{3} is duplicate.", Datas[Rounds].Date, Item, Environment.NewLine, String.Format("{0:n}", BalanceNew));
                         break;
                     }
                 }
-                err = Messages;
+
+                Error = Messages;
             }
             catch (Exception ex)
             {
                 Log.WriteLogData("IMPORT", "KBANK", "Import", ex.Message);
-                err = ex.Message;
+                Error = ex.Message;
             }
         }
 
@@ -1066,7 +1064,7 @@ namespace SANSANG.Class
 
             while (timer.Enabled)
             {
-                Application.DoEvents();
+                System.Windows.Forms.Application.DoEvents();
             }
         }
     }

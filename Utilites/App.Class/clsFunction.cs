@@ -333,6 +333,52 @@ namespace SANSANG.Class
             }
         }
 
+        public void GetItemId(string Codes, string Payments, out string PaymentId, out string Items, out string Details, out string Displays, out bool IsWithdrawal)
+        {
+            try
+            {
+                string NameEn = "";
+
+                if (Payments == "1070")
+                {
+                    NameEn = Codes == "โอนเงิน" ? "Transfer Withdrawal" : "";
+                }
+
+                Parameter = new string[,]
+                {
+                    {"@Id", ""},
+                    {"@Code", ""},
+                    {"@Status", "0"},
+                    {"@User", ""},
+                    {"@IsActive", ""},
+                    {"@IsDelete", ""},
+                    {"@Operation", "S"},
+                    {"@Name", Codes},
+                    {"@NameEn", NameEn},
+                    {"@Display", ""},
+                    {"@Detail", ""},
+                    {"@CategoryId", Payments},
+                    {"@IsDebit", ""},
+                };
+
+                db.Get(Store.FnGetItemId, Parameter, out Error, out dt);
+
+                PaymentId = dt.Rows[0]["Id"].ToString();
+                Items = dt.Rows[0]["NameEn"].ToString();
+                Details = dt.Rows[0]["Detail"].ToString();
+                Displays = dt.Rows[0]["NameEn"].ToString() + " | " + dt.Rows[0]["Name"].ToString();
+                IsWithdrawal = Convert.ToBoolean(dt.Rows[0]["IsDebit"].ToString()) ? false : true;
+            }
+            catch (Exception)
+            {
+                PaymentId = "";
+                Items = "";
+                Details = "";
+                Displays = "";
+                IsWithdrawal = false;
+            }
+        }
+
         public string ConvertBoolToString(bool Bools)
         {
             try
