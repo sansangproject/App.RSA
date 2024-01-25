@@ -209,7 +209,7 @@ namespace SANSANG.Class
                 row++;
             }
 
-            Message.MessageConfirmation("I", "IMPORT KTB STATMENT", string.Concat(DateEnd, " - ", DateStart));
+            Message.MessageConfirmation("I", "IMPORT KTB STATMENT", string.Concat(DateStart, " - ", DateEnd));
 
             using (var Popup = new FrmMessagesBox(Message.strOperation, Message.strMes, "YES", "NO", Message.strImage))
             {
@@ -763,7 +763,7 @@ namespace SANSANG.Class
                 decimal Balance = 0;
                 decimal BalanceNew = 0;
 
-                for (int Rounds = (Datas.Count - 1); Rounds >= 0; Rounds--)
+                for (int Rounds = 0; Rounds < Datas.Count; Rounds++)
                 {
                     Codes = Function.GetCodes(Table.StatmentId, "", "Generated");
                     Function.GetPayments(Datas[Rounds].Payment, out PaymentId, out Items, out Details, out Displays, out IsWithdrawal);
