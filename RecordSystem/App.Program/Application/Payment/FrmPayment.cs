@@ -157,7 +157,7 @@ namespace RecordSystemApplication.App.Program.Application.Payment
 
                     if (dtDebit != null && dtDebit.Rows.Count > 0)
                     {
-                        cbbPayment1.Text = dtDebit.Rows[0]["Moneys"].ToString() + " x " + 
+                        txtPayment.Text = dtDebit.Rows[0]["Moneys"].ToString() + " x " + 
                                            dtDebit.Rows[0]["Amount"].ToString();
 
                         txtAmount1.Text = dtDebit.Rows[0]["Amount"].ToString();
@@ -180,8 +180,13 @@ namespace RecordSystemApplication.App.Program.Application.Payment
 
                     if (dtCredit != null && dtCredit.Rows.Count > 0)
                     {
-                        cbbPayment1.Text = dtCredit.Rows[0]["Moneys"].ToString() + " x " +
-                                           dtCredit.Rows[0]["Amount"].ToString();
+                        double prices = Convert.ToDouble(dtCredit.Rows[0]["Prices"].ToString());
+                        double number = Convert.ToDouble(dtCredit.Rows[0]["Unit"].ToString());
+                        double amount = Convert.ToDouble(dtCredit.Rows[0]["Amount"].ToString());
+                        string totalAmonunt = Convert.ToString(prices * number);
+                        string amounts = Convert.ToString(amount);
+
+                        txtPayment.Text = string.Concat(amounts, " | ", dtCredit.Rows[0]["Moneys"].ToString());
 
                         txtUnit.Text = string.Concat(decimal.Parse(dtCredit.Rows[0]["Unit"].ToString()).ToString("G29"), " ", dtCredit.Rows[0]["Units"].ToString());
                         txtAmount1.Text = dtCredit.Rows[0]["Amount"].ToString();

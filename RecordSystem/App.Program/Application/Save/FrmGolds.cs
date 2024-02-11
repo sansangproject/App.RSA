@@ -503,6 +503,7 @@ namespace SANSANG
                 double GoldTotal = 0;
                 double MoneyTotal = 0;
                 double Numbers = 0;
+                double Inaccurate = 0;
 
                 if (string.IsNullOrEmpty(Error) && Function.GetRows(Data) > 0)
                 {
@@ -510,8 +511,8 @@ namespace SANSANG
                     MoneyTotal = Convert.ToDouble(Data.Rows[0]["MoneyTotal"].ToString());
                     Numbers = Math.Round(GoldTotal, 4);
                 }
-
-                txtSumMoney.Text = string.Format("{0:#,##0.00}", Math.Ceiling(MoneyTotal));
+                Inaccurate = Convert.ToDouble(Setting.GetInaccurate());
+                txtSumMoney.Text = string.Format("{0:#,##0.00}", Math.Ceiling(MoneyTotal) + Inaccurate);
                 var Number = (string.Format("{0:#,##0.0000}", Numbers));
                 txtSumGold.Text = Function.FillFromRight(Number, 4);
             }

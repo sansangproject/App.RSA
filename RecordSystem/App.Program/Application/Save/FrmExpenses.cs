@@ -190,6 +190,7 @@ namespace SANSANG
 
                 dTime = Convert.ToDateTime(dtExpense.Text);
                 dNext = dTime.AddDays(+1);
+
                 string strDate = Date.GetDate(dt: dTime, Format: 4);
 
                 if (IsLoad)
@@ -207,6 +208,8 @@ namespace SANSANG
                 {
                     txtItem.Focus();
                 }
+
+                IsDiscountIncluded = true;
             }
             catch (Exception ex)
             {
@@ -284,6 +287,7 @@ namespace SANSANG
             {
                 IsCalculate = cb_Calculate.Checked ? true : false;
                 IsDiscountIncluded = cb_Discount.Checked ? true : false;
+                IsDiscountIncluded = cbbMoney.SelectedIndex == 0 ? true : false;
 
                 SearchPress = true;
                 Types = "";
@@ -845,7 +849,7 @@ namespace SANSANG
                     Other = 0.00;
                 }
 
-                ShowTotalAmount(Types, Debit, Credit, Other, cb_Calculate.Checked ? true : false, cb_Discount.Checked ? true : false);
+                ShowTotalAmount(Types, Debit, Credit, Other, cb_Calculate.Checked ? true : false, IsDiscountIncluded);
 
             }
             catch (Exception ex)
@@ -1775,7 +1779,7 @@ namespace SANSANG
                     Other = 0.00;
                 }
 
-                ShowTotalAmount(Types, Debit, Credit, Other, cb_Calculate.Checked ? true : false, cb_Discount.Checked ? true : false);
+                ShowTotalAmount(Types, Debit, Credit, Other, cb_Calculate.Checked ? true : false, IsDiscountIncluded);
 
             }
             catch (Exception ex)

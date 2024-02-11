@@ -64,7 +64,7 @@ namespace SANSANG
         private void LoadList(object sender, EventArgs e)
         {
             List.GetLists(cbbStatus, string.Format(DataList.StatusId, "0"));
-            List.GetLists(cbbProvider, string.Format(DataList.StatusId, "31"));
+            List.GetList(cbbProvider, DataList.Transportation);
 
             List.GetList(cbbReceiver, DataList.ReceiverId);
             List.GetList(cbbSender, DataList.SenderId);

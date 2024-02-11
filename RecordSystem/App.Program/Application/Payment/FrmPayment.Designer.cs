@@ -61,7 +61,7 @@ namespace RecordSystemApplication.App.Program.Application.Payment
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtDetail = new System.Windows.Forms.TextBox();
-            this.cbbPayment1 = new System.Windows.Forms.TextBox();
+            this.txtPayment = new System.Windows.Forms.TextBox();
             this.btnEdit = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.btnPaste = new System.Windows.Forms.Button();
@@ -138,7 +138,7 @@ namespace RecordSystemApplication.App.Program.Application.Payment
             this.label43.BackColor = System.Drawing.Color.Transparent;
             this.label43.Font = new System.Drawing.Font("Mitr Light", 8F);
             this.label43.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label43.Location = new System.Drawing.Point(297, 68);
+            this.label43.Location = new System.Drawing.Point(316, 68);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(36, 18);
             this.label43.TabIndex = 215;
@@ -149,7 +149,7 @@ namespace RecordSystemApplication.App.Program.Application.Payment
             this.label44.AutoSize = true;
             this.label44.Font = new System.Drawing.Font("Mitr Light", 9F);
             this.label44.ForeColor = System.Drawing.Color.Gray;
-            this.label44.Location = new System.Drawing.Point(240, 68);
+            this.label44.Location = new System.Drawing.Point(259, 68);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(59, 19);
             this.label44.TabIndex = 214;
@@ -177,7 +177,7 @@ namespace RecordSystemApplication.App.Program.Application.Payment
             this.txtSum.Location = new System.Drawing.Point(22, 24);
             this.txtSum.Multiline = true;
             this.txtSum.Name = "txtSum";
-            this.txtSum.Size = new System.Drawing.Size(314, 72);
+            this.txtSum.Size = new System.Drawing.Size(333, 72);
             this.txtSum.TabIndex = 219;
             this.txtSum.TabStop = false;
             this.txtSum.Text = "0.00";
@@ -191,7 +191,7 @@ namespace RecordSystemApplication.App.Program.Application.Payment
             this.txtAmount2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.txtAmount2.Location = new System.Drawing.Point(205, 106);
             this.txtAmount2.Name = "txtAmount2";
-            this.txtAmount2.Size = new System.Drawing.Size(121, 28);
+            this.txtAmount2.Size = new System.Drawing.Size(113, 28);
             this.txtAmount2.TabIndex = 227;
             this.txtAmount2.TabStop = false;
             this.txtAmount2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -220,7 +220,7 @@ namespace RecordSystemApplication.App.Program.Application.Payment
             this.txtAmount3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.txtAmount3.Location = new System.Drawing.Point(205, 140);
             this.txtAmount3.Name = "txtAmount3";
-            this.txtAmount3.Size = new System.Drawing.Size(121, 28);
+            this.txtAmount3.Size = new System.Drawing.Size(113, 28);
             this.txtAmount3.TabIndex = 229;
             this.txtAmount3.TabStop = false;
             this.txtAmount3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -249,7 +249,7 @@ namespace RecordSystemApplication.App.Program.Application.Payment
             this.txtAmount4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.txtAmount4.Location = new System.Drawing.Point(205, 174);
             this.txtAmount4.Name = "txtAmount4";
-            this.txtAmount4.Size = new System.Drawing.Size(121, 28);
+            this.txtAmount4.Size = new System.Drawing.Size(113, 28);
             this.txtAmount4.TabIndex = 231;
             this.txtAmount4.TabStop = false;
             this.txtAmount4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -278,7 +278,7 @@ namespace RecordSystemApplication.App.Program.Application.Payment
             this.txtAmount5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.txtAmount5.Location = new System.Drawing.Point(205, 208);
             this.txtAmount5.Name = "txtAmount5";
-            this.txtAmount5.Size = new System.Drawing.Size(121, 28);
+            this.txtAmount5.Size = new System.Drawing.Size(113, 28);
             this.txtAmount5.TabIndex = 233;
             this.txtAmount5.TabStop = false;
             this.txtAmount5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -346,7 +346,7 @@ namespace RecordSystemApplication.App.Program.Application.Payment
             this.btnRemove5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemove5.Font = new System.Drawing.Font("Mitr", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRemove5.ForeColor = System.Drawing.Color.White;
-            this.btnRemove5.Location = new System.Drawing.Point(332, 208);
+            this.btnRemove5.Location = new System.Drawing.Point(323, 208);
             this.btnRemove5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRemove5.Name = "btnRemove5";
             this.btnRemove5.Size = new System.Drawing.Size(23, 27);
@@ -362,7 +362,7 @@ namespace RecordSystemApplication.App.Program.Application.Payment
             this.btnRemove4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemove4.Font = new System.Drawing.Font("Mitr", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRemove4.ForeColor = System.Drawing.Color.White;
-            this.btnRemove4.Location = new System.Drawing.Point(332, 174);
+            this.btnRemove4.Location = new System.Drawing.Point(323, 174);
             this.btnRemove4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRemove4.Name = "btnRemove4";
             this.btnRemove4.Size = new System.Drawing.Size(23, 28);
@@ -378,7 +378,7 @@ namespace RecordSystemApplication.App.Program.Application.Payment
             this.btnRemove3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemove3.Font = new System.Drawing.Font("Mitr", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRemove3.ForeColor = System.Drawing.Color.White;
-            this.btnRemove3.Location = new System.Drawing.Point(332, 140);
+            this.btnRemove3.Location = new System.Drawing.Point(323, 140);
             this.btnRemove3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRemove3.Name = "btnRemove3";
             this.btnRemove3.Size = new System.Drawing.Size(23, 28);
@@ -394,7 +394,7 @@ namespace RecordSystemApplication.App.Program.Application.Payment
             this.btnRemove2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemove2.Font = new System.Drawing.Font("Mitr", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRemove2.ForeColor = System.Drawing.Color.White;
-            this.btnRemove2.Location = new System.Drawing.Point(332, 106);
+            this.btnRemove2.Location = new System.Drawing.Point(323, 106);
             this.btnRemove2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRemove2.Name = "btnRemove2";
             this.btnRemove2.Size = new System.Drawing.Size(23, 28);
@@ -449,11 +449,12 @@ namespace RecordSystemApplication.App.Program.Application.Payment
             this.txtReceipt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtReceipt.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.txtReceipt.ForeColor = System.Drawing.Color.Black;
-            this.txtReceipt.Location = new System.Drawing.Point(22, 21);
+            this.txtReceipt.Location = new System.Drawing.Point(82, 21);
             this.txtReceipt.Name = "txtReceipt";
-            this.txtReceipt.Size = new System.Drawing.Size(304, 21);
+            this.txtReceipt.Size = new System.Drawing.Size(236, 21);
             this.txtReceipt.TabIndex = 236;
             this.txtReceipt.TabStop = false;
+            this.txtReceipt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtReceipt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtReff_KeyPress);
             // 
             // btnClear
@@ -478,7 +479,7 @@ namespace RecordSystemApplication.App.Program.Application.Payment
             // 
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.txtDetail);
-            this.groupBox2.Controls.Add(this.cbbPayment1);
+            this.groupBox2.Controls.Add(this.txtPayment);
             this.groupBox2.Controls.Add(this.label40);
             this.groupBox2.Controls.Add(this.txtExpence);
             this.groupBox2.Controls.Add(this.txtCode);
@@ -514,17 +515,17 @@ namespace RecordSystemApplication.App.Program.Application.Payment
             this.txtDetail.TabIndex = 235;
             this.txtDetail.TabStop = false;
             // 
-            // cbbPayment1
+            // txtPayment
             // 
-            this.cbbPayment1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cbbPayment1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.cbbPayment1.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.cbbPayment1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.cbbPayment1.Location = new System.Drawing.Point(100, 126);
-            this.cbbPayment1.Name = "cbbPayment1";
-            this.cbbPayment1.Size = new System.Drawing.Size(281, 21);
-            this.cbbPayment1.TabIndex = 237;
-            this.cbbPayment1.TabStop = false;
+            this.txtPayment.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtPayment.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtPayment.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.txtPayment.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtPayment.Location = new System.Drawing.Point(100, 126);
+            this.txtPayment.Name = "txtPayment";
+            this.txtPayment.Size = new System.Drawing.Size(281, 21);
+            this.txtPayment.TabIndex = 237;
+            this.txtPayment.TabStop = false;
             // 
             // btnEdit
             // 
@@ -561,7 +562,7 @@ namespace RecordSystemApplication.App.Program.Application.Payment
             this.btnPaste.Font = new System.Drawing.Font("Mitr", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPaste.ForeColor = System.Drawing.Color.White;
             this.btnPaste.Image = ((System.Drawing.Image)(resources.GetObject("btnPaste.Image")));
-            this.btnPaste.Location = new System.Drawing.Point(332, 21);
+            this.btnPaste.Location = new System.Drawing.Point(323, 21);
             this.btnPaste.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPaste.Name = "btnPaste";
             this.btnPaste.Size = new System.Drawing.Size(23, 21);
@@ -632,7 +633,7 @@ namespace RecordSystemApplication.App.Program.Application.Payment
         private System.Windows.Forms.Button btnRemove2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtReceipt;
-        private System.Windows.Forms.TextBox cbbPayment1;
+        private System.Windows.Forms.TextBox txtPayment;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtAmount1;

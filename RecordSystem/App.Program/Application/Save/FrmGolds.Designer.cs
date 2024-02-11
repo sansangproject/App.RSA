@@ -579,6 +579,7 @@
             // 
             // label37
             // 
+            this.label37.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label37.AutoSize = true;
             this.label37.Font = new System.Drawing.Font("Mitr Light", 8F);
             this.label37.ForeColor = System.Drawing.Color.DarkGoldenrod;
