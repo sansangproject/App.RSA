@@ -97,6 +97,7 @@ namespace SANSANG
             txtProduct.Text = "";
             txtBarcode.Text = "";
             txtCode.Text = "";
+            txtReference.Text = "";
 
             SearchData(false);
         }
@@ -199,6 +200,7 @@ namespace SANSANG
                         {"@Weight", txtWeight.Text},
                         {"@Price", txtPrice.Text},
                         {"@Detail", txtDetail.Text},
+                        {"@Reference", txtReference.Text},
                         {"@Remark", txtRemark.Text},
                     };
 
@@ -240,6 +242,7 @@ namespace SANSANG
                 {"@Weight", Search? txtWeight.Text : "0.000"},
                 {"@Price", Search? txtPrice.Text : "0.00"},
                 {"@Detail", Search? txtDetail.Text : ""},
+                {"@Reference", txtReference.Text},
                 {"@Remark", Search? txtRemark.Text : ""},
             };
 
@@ -266,6 +269,7 @@ namespace SANSANG
                     txtBarcode.Text = dt.Rows[0]["Barcode"].ToString();
                     txtProduct.Text = dt.Rows[0]["Product"].ToString();
                     txtDetail.Text = dt.Rows[0]["Detail"].ToString();
+                    txtReference.Text = dt.Rows[0]["Reference"].ToString();
                     txtRemark.Text = dt.Rows[0]["Remark"].ToString();
                     txtPrice.Text = dt.Rows[0]["Price"].ToString();
                     txtWeight.Text = dt.Rows[0]["Weight"].ToString();
@@ -309,6 +313,7 @@ namespace SANSANG
                             {"@Weight", string.IsNullOrEmpty(txtWeight.Text)? "0.000" : txtWeight.Text},
                             {"@Price", string.IsNullOrEmpty(txtPrice.Text)? "0.00" : txtPrice.Text},
                             {"@Detail", txtDetail.Text},
+                            {"@Reference", txtReference.Text},
                             {"@Remark", txtRemark.Text},
                         };
 
@@ -344,6 +349,7 @@ namespace SANSANG
                 strCondition += txtPrice.Text != "" ? ", ราคา: " + txtPrice.Text : "";
                 strCondition += txtWeight.Text != "" ? ", น้ำหนัก: " + txtWeight.Text : "";
                 strCondition += txtDetail.Text != "" ? ", รายละเอียด: " + txtDetail.Text : "";
+                strCondition += txtReference.Text != "" ? ", เลขอ้างอิง: " + txtReference.Text : "";
                 strCondition += txtRemark.Text != "" ? ", หมายเหตุ: " + txtRemark.Text : "";
                 strCondition += cbbStatus.Text != ":: กรุณาเลือก ::" ? ", สถานะ: " + cbbStatus.Text : "";
 
@@ -381,6 +387,7 @@ namespace SANSANG
                     {"@Weight", "0.000"},
                     {"@Price", "0.00"},
                     {"@Detail", ""},
+                    {"@Reference", ""},
                     {"@Remark", ""},
                 };
 
@@ -489,6 +496,7 @@ namespace SANSANG
                             {"@Weight", "0.000"},
                             {"@Price", "0.00"},
                             {"@Detail", ""},
+                            {"@Reference", ""},
                             {"@Remark", ""},
                         };
 
@@ -505,7 +513,6 @@ namespace SANSANG
 
         private void btnDefault_Click(object sender, EventArgs e)
         {
-            txtDetail.Text = txtDetail.Text == "" ? "Invoice: " : txtDetail.Text;
             txtWeight.Text = txtWeight.Text == "" ? "0.000" : txtWeight.Text;
         }
 

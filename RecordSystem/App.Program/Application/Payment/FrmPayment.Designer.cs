@@ -449,12 +449,11 @@ namespace RecordSystemApplication.App.Program.Application.Payment
             this.txtReceipt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtReceipt.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.txtReceipt.ForeColor = System.Drawing.Color.Black;
-            this.txtReceipt.Location = new System.Drawing.Point(82, 21);
+            this.txtReceipt.Location = new System.Drawing.Point(22, 21);
             this.txtReceipt.Name = "txtReceipt";
-            this.txtReceipt.Size = new System.Drawing.Size(236, 21);
+            this.txtReceipt.Size = new System.Drawing.Size(296, 21);
             this.txtReceipt.TabIndex = 236;
             this.txtReceipt.TabStop = false;
-            this.txtReceipt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtReceipt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtReff_KeyPress);
             // 
             // btnClear

@@ -19,5 +19,5 @@
 	<NumberPrint>4</NumberPrint>
 	<OperationDate></OperationDate>
 	<CreditDate></CreditDate>
-	<Inaccurate>0.01</Inaccurate>
+	<Inaccurate>1</Inaccurate>
 </Setting>

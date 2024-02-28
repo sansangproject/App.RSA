@@ -11,7 +11,9 @@ namespace SANSANG.Constant
         public string Next = "เงินยกยอด | ยกยอดมา";
         public string Receipt = "Receipt";
         public string Payment = "Payment";
-
+        public string Money = "Money";
+        public string More = "More";
+        
         public string Nexts = "Next";
         public string Previous = "Previous";
     }

@@ -279,5 +279,25 @@ namespace RecordSystemApplication.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap SF_TrackRegisters {
+            get {
+                object obj = ResourceManager.GetObject("SF_TrackRegisters", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap SF_TrackRegisters1 {
+            get {
+                object obj = ResourceManager.GetObject("SF_TrackRegisters1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
