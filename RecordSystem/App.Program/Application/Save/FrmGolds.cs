@@ -299,13 +299,13 @@ namespace SANSANG
         {
             try
             {
-                ThaiBuddhistCalendar ThaiCalendar = new ThaiBuddhistCalendar();
-
                 DateTime Dates = dtDate.Value;
-                DateTime ThaiDate = new DateTime(ThaiCalendar.GetYear(Dates), ThaiCalendar.GetMonth(Dates), Dates.Day);
-                string Years = ThaiDate.ToString("yyyy");
-                string Months = ThaiDate.ToString("MM");
-                string Days = Dates.ToString("dd");
+
+                ThaiBuddhistCalendar th = new ThaiBuddhistCalendar();
+
+                string Years = th.GetYear(Dates).ToString();
+                string Months = th.GetMonth(Dates).ToString("D2");
+                string Days = th.GetDayOfMonth(Dates).ToString();
 
                 string Lists = string.Concat(Years, Months);
 
@@ -361,13 +361,12 @@ namespace SANSANG
         {
             try
             {
-                ThaiBuddhistCalendar ThaiCalendar = new ThaiBuddhistCalendar();
-
                 DateTime Dates = dtDate.Value;
-                DateTime ThaiDate = new DateTime(ThaiCalendar.GetYear(Dates), ThaiCalendar.GetMonth(Dates), Dates.Day);
-                string Years = ThaiDate.ToString("yyyy");
-                string Months = ThaiDate.ToString("MM");
-                string Days = Dates.ToString("dd");
+                ThaiBuddhistCalendar th = new ThaiBuddhistCalendar();
+
+                string Years = th.GetYear(Dates).ToString();
+                string Months = th.GetMonth(Dates).ToString("D2");
+                string Days = th.GetDayOfMonth(Dates).ToString();
 
                 string Lists = string.Concat(Years, Months);
 

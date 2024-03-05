@@ -203,9 +203,21 @@ namespace SANSANG.Class
                 };
 
                 db.Get(Store.ManageItem, Parameter, out Error, out dt);
-                Details = dt.Rows[0]["Display"].ToString();
-                Items = "รายการเดินบัญชี";
-                return Convert.ToBoolean(dt.Rows[0]["IsDebit"].ToString());
+
+                if (string.IsNullOrEmpty(Error))
+                {
+                    int Category = Convert.ToInt16(dt.Rows[0]["CategoryId"].ToString());
+                    Details = Category != 1070? dt.Rows[0]["Display"].ToString() 
+                                              : dt.Rows[0]["NameEn"].ToString() + " | " + dt.Rows[0]["Name"].ToString();
+                    Items = "รายการเดินบัญชี";
+                    return Convert.ToBoolean(dt.Rows[0]["IsDebit"].ToString());
+                }
+                else
+                {
+                    Details = "";
+                    Items = "รายการเดินบัญชี";
+                    return false;
+                }
             }
             catch (Exception)
             {
@@ -295,7 +307,7 @@ namespace SANSANG.Class
 
                 if (Payments == "1070")
                 {
-                    NameEn = Codes == "โอนเงิน" ? "Transfer Withdrawal" : "";
+                    NameEn = Codes == "โอนเงิน" ? "Transfer Withdrawal" : Codes == "ถอนเงิน" ? "Withdrawal" : "";
                 }
 
                 Parameter = new string[,]

@@ -2,7 +2,6 @@
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Windows.Controls;
 using SANSANG.Class;
 using SANSANG.Database;
 using SANSANG.Utilites.App.Forms;
@@ -77,6 +76,7 @@ namespace SANSANG
         private bool IsSearchDate = false;
         private bool IsSearchReceipt = false;
         private bool IsSearchReference = false;
+        private bool IsSearchCode = false;
 
         private List<string> TypeList = new List<string>();
 
@@ -160,7 +160,7 @@ namespace SANSANG
                 cb_Calculate.Checked = false;
 
                 cb_Receipt.Checked = false;
-                cb_Reference.Checked = false;    
+                cb_Reference.Checked = false;
 
                 cbbMoney.Enabled = true;
                 pbHide.Visible = false;
@@ -303,11 +303,16 @@ namespace SANSANG
                 IsSearchDate = cb_Date.Checked ? true : false;
                 IsSearchReceipt = cb_Receipt.Checked ? true : false;
                 IsSearchReference = cb_Reference.Checked ? true : false;
+                IsSearchCode = txtCode.Text != "" ? true : false;
 
-                TypeList = new List<string>();
-                TypeList.Add(cb_Date.Checked ? "D" : "");
-                TypeList.Add(cb_Receipt.Checked ? "R" : "");
-                TypeList.Add(cb_Reference.Checked ? "P" : "");
+                TypeList = new List<string>
+                {
+                    cb_Date.Checked ? "D" : "",
+                    cb_Receipt.Checked ? "R" : "",
+                    cb_Reference.Checked ? "P" : ""
+                };
+
+                TypeList.RemoveAll(item => item == "");
                 TypeList.Add(txtCode.Text != "" && TypeList.Count == 0 ? "C" : "");
                 TypeList.RemoveAll(item => item == "");
 
@@ -594,7 +599,7 @@ namespace SANSANG
         {
             try
             {
-                if (txtId.Text != "")
+                if (txtId.Text != "" && txtCode.Text != "")
                 {
                     string List = Date.GetDate(dtp: dtExpense, Format: 5);
 
@@ -811,8 +816,10 @@ namespace SANSANG
                         Reference: TypeList.Contains("P") ? References : "",
                         Date: TypeList.Contains("D") ? ExpenseDate : "");
 
-                    txtCode.Text = TypeList.Contains("C") ? Code : "";
-
+                    if (IsSearchCode)
+                    {
+                        txtCode.Text = TypeList.Contains("C") ? Code : "";
+                    }
                     if (IsSearchDate)
                     {
                         cb_Date.Checked = true;
@@ -895,7 +902,7 @@ namespace SANSANG
                     CreditAll = 0.00;
                     DebitAll = 0.00;
                 }
-                
+
                 ShowTotalAmount(Types, Debit, Credit, DebitAll, CreditAll, IsCalculate, IsDiscountIncluded);
 
             }
@@ -1203,12 +1210,39 @@ namespace SANSANG
                 }
                 if (keyCode == "Enter")
                 {
+                    string TextBoxName = "";
                     Form Frm = (Form)sender;
+
+                    if (ActiveControl is TextBox TextBoxs && e.KeyCode == Keys.Enter)
+                    {
+                        TextBoxName = TextBoxs.Name;
+                    }
 
                     if (Frm.ActiveControl.Text != txtTotalReal.Text && Frm.ActiveControl.Text != txtReceipt.Text)
                     {
-                        Types = "";
-                        Search(true, Types);
+                        IsDiscountIncluded = cb_Discount.Checked ? true : false;
+                        IsCalculate = cb_Calculate.Checked ? true : false;
+
+                        if (cbbMoney.Text.Contains("Point"))
+                        {
+                            IsCalculate = true;
+                        }
+
+                        IsSearchDate = cb_Date.Checked ? true : false;
+                        IsSearchReceipt = cb_Receipt.Checked ? true : false;
+                        IsSearchReference = cb_Reference.Checked ? true : false;
+                        IsSearchCode = TextBoxName == "txtCode" ? true : false;
+
+                        TypeList = new List<string>
+                        {
+                            cb_Date.Checked ? "D" : "",
+                            cb_Receipt.Checked ? "R" : "",
+                            cb_Reference.Checked ? "P" : "",
+                            TextBoxName == "txtCode" ? "C" : ""
+                        };
+
+                        TypeList.RemoveAll(item => item == "");
+                        Search(true, TypeList.Count > 0 ? "More" : "");
                     }
                 }
             }
@@ -1248,22 +1282,6 @@ namespace SANSANG
                         txtAmount.Text = "";
                         txtAmount.Focus();
                     }
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
-            }
-        }
-
-        private void txtCode_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                if (e.KeyChar == Convert.ToChar(Keys.Enter))
-                {
-                    Clear(false);
-                    SearchBalance(Code: txtCode.Text);
                 }
             }
             catch (Exception ex)
@@ -1373,8 +1391,8 @@ namespace SANSANG
                     {"@Code", Code},
                     {"@Status", "0"},
                     {"@User", ""},
-                    {"@IsActive", ""},
-                    {"@IsDelete", ""},
+                    {"@IsActive", "1"},
+                    {"@IsDelete", "0"},
                     {"@Operation", Operation.SelectAbbr},
                     {"@List", ""},
                     {"@MoneyId", "0"},
@@ -1393,17 +1411,24 @@ namespace SANSANG
                 };
 
                 db.Gets(Store.ManageExpense, List, out Error, out ds);
-                ShowDataGridView(ds);
-                
-                lblBalance.Text = "รวมทั้งสิ้น";
 
-                db.Gets(Store.FnGetBalanceSearch, List, out Error, out ds);
-                Credit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumCredit"].ToString()));
-                Debit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumDebit"].ToString()));
-                CreditAll = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["AllCredit"].ToString()));
-                DebitAll = 0.00;
+                if (string.IsNullOrEmpty(Error))
+                {
+                    ShowDataGridView(ds);
+                    lblBalance.Text = "รวมทั้งสิ้น";
 
-                ShowTotalAmount(Types, Debit, Credit, DebitAll,CreditAll, IsCalculate, IsDiscountIncluded);
+                    db.Gets(Store.FnGetBalanceSearch, List, out Error, out ds);
+
+                    if (string.IsNullOrEmpty(Error))
+                    {
+                        Credit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumCredit"].ToString()));
+                        Debit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumDebit"].ToString()));
+                        CreditAll = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["AllCredit"].ToString()));
+                        DebitAll = 0.00;
+
+                        ShowTotalAmount(Types, Debit, Credit, DebitAll, CreditAll, IsCalculate, IsDiscountIncluded);
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -1791,9 +1816,9 @@ namespace SANSANG
 
                 if (string.IsNullOrEmpty(Error))
                 {
-                    Debit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumDebit"].ToString()));
                     Credit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumCredit"].ToString()));
-                    CreditAll = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumWallet"].ToString()));
+                    Debit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumDebit"].ToString()));
+                    CreditAll = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["AllCredit"].ToString()));
                     DebitAll = 0.00;
                 }
                 else
@@ -1805,7 +1830,7 @@ namespace SANSANG
                     DebitAll = 0.00;
                 }
 
-                ShowTotalAmount(Types, Debit, Credit, DebitAll, CreditAll, cb_Calculate.Checked ? true : false, IsDiscountIncluded);
+                ShowTotalAmount(Types, Debit, Credit, DebitAll, CreditAll, IsCalculate, IsDiscountIncluded);
 
             }
             catch (Exception ex)

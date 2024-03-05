@@ -1168,7 +1168,6 @@
             this.txtCode.Name = "txtCode";
             this.txtCode.Size = new System.Drawing.Size(150, 21);
             this.txtCode.TabIndex = 5;
-            this.txtCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCode_KeyPress);
             // 
             // btnNext
             // 
