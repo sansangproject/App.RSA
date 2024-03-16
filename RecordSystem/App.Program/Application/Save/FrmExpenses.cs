@@ -295,7 +295,7 @@ namespace SANSANG
                 IsDiscountIncluded = cb_Discount.Checked ? true : false;
                 IsCalculate = cb_Calculate.Checked ? true : false;
 
-                if (cbbMoney.Text.Contains("Point"))
+                if (cbbMoney.Text.Contains("Point") || cbbMoney.Text.Contains("Coins"))
                 {
                     IsCalculate = true;
                 }
@@ -892,6 +892,7 @@ namespace SANSANG
                     Credit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumCredit"].ToString()));
                     Debit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumDebit"].ToString()));
                     CreditAll = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["AllCredit"].ToString()));
+                    CreditAll += Function.GetComboZero(cbbMoney) != "0" ? double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumWallet"].ToString())) : 0;
                     DebitAll = 0.00;
                 }
                 else
@@ -1424,6 +1425,7 @@ namespace SANSANG
                         Credit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumCredit"].ToString()));
                         Debit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumDebit"].ToString()));
                         CreditAll = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["AllCredit"].ToString()));
+                        CreditAll += Function.GetComboZero(cbbMoney) != "0" ? double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumWallet"].ToString())) : 0;
                         DebitAll = 0.00;
 
                         ShowTotalAmount(Types, Debit, Credit, DebitAll, CreditAll, IsCalculate, IsDiscountIncluded);
@@ -1819,6 +1821,7 @@ namespace SANSANG
                     Credit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumCredit"].ToString()));
                     Debit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumDebit"].ToString()));
                     CreditAll = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["AllCredit"].ToString()));
+                    CreditAll += Function.GetComboZero(cbbMoney) != "0" ? double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumWallet"].ToString())) : 0;
                     DebitAll = 0.00;
                 }
                 else
