@@ -10,6 +10,7 @@ using SANSANG.Utilites.App.Model;
 using RecordSystemApplication.App.Program.Application.Payment;
 using Message = System.Windows.Forms.Message;
 using System.Collections.Generic;
+using static System.Resources.ResXFileRef;
 
 namespace SANSANG
 {
@@ -50,6 +51,7 @@ namespace SANSANG
         private OperationConstant Operation = new OperationConstant();
         private FrmAnimatedProgress Loading = new FrmAnimatedProgress(10);
         private CharacterConstant CharType = new CharacterConstant();
+        private clsConvert Converts = new clsConvert();
         private DateTime dNext;
         private DateTime dTime;
 
@@ -446,16 +448,20 @@ namespace SANSANG
                             {"@IsDelete", "0"},
                             {"@Operation", Operation.InsertAbbr},
                             {"@Date", Date.GetDate(dtp : dtExpense)},
-                            {"@Receipt", txtReference.Text},
-                            {"@MoneyId1", Function.GetComboId(cbbMoney)},
-                            {"@Amount1", Function.MoveNumberStringComma(txtAmount.Text)},
+                            {"@Reference", txtReference.Text},
+                            {"@MoneyId", Function.GetComboId(cbbMoney)},
+                            {"@Amount", Function.MoveNumberStringComma(txtAmount.Text)},
                             {"@MoneyId2", "0"},
+                            {"@Reference2", ""},
                             {"@Amount2", "0"},
                             {"@MoneyId3", "0"},
+                            {"@Reference3", ""},
                             {"@Amount3", "0"},
                             {"@MoneyId4", "0"},
+                            {"@Reference4", ""},
                             {"@Amount4", "0"},
                             {"@MoneyId5", "0"},
+                            {"@Reference5", ""},
                             {"@Amount5", "0"},
                             {"@UpdateType", ""},
                         };
@@ -637,16 +643,20 @@ namespace SANSANG
                         {"@IsDelete", "0"},
                         {"@Operation", Operation.UpdateAbbr},
                         {"@Date", Date.GetDate(dtp : dtExpense)},
-                        {"@Receipt", txtReference.Text},
-                        {"@MoneyId1", MoneyIsDelete == ""? Function.GetComboId(cbbMoney) : MoneyIsDelete},
-                        {"@Amount1", Function.MoveNumberStringComma(txtAmount.Text)},
+                        {"@Reference", txtReference.Text},
+                        {"@MoneyId", MoneyIsDelete == ""? Function.GetComboId(cbbMoney) : MoneyIsDelete},
+                        {"@Amount", Function.MoveNumberStringComma(txtAmount.Text)},
                         {"@MoneyId2", "0"},
+                        {"@Reference2", ""},
                         {"@Amount2", "0"},
                         {"@MoneyId3", "0"},
+                        {"@Reference3", ""},
                         {"@Amount3", "0"},
                         {"@MoneyId4", "0"},
+                        {"@Reference4", ""},
                         {"@Amount4", "0"},
                         {"@MoneyId5", "0"},
+                        {"@Reference5", ""},
                         {"@Amount5", "0"},
                         {"@UpdateType", "EXPENSE"},
                     };
@@ -1486,16 +1496,20 @@ namespace SANSANG
                         {"@IsDelete", "0"},
                         {"@Operation", Operation.SelectAbbr},
                         {"@Date", ""},
-                        {"@Receipt", ""},
-                        {"@MoneyId1", "0"},
-                        {"@Amount1", "0"},
+                        {"@Reference", ""},
+                        {"@MoneyId", "0"},
+                        {"@Amount", "0"},
                         {"@MoneyId2", "0"},
+                        {"@Reference2", ""},
                         {"@Amount2", "0"},
                         {"@MoneyId3", "0"},
+                        {"@Reference3", ""},
                         {"@Amount3", "0"},
                         {"@MoneyId4", "0"},
+                        {"@Reference4", ""},
                         {"@Amount4", "0"},
                         {"@MoneyId5", "0"},
+                        {"@Reference5", ""},
                         {"@Amount5", "0"},
                         {"@UpdateType", "0"},
                     };
@@ -1519,16 +1533,20 @@ namespace SANSANG
                             {"@IsDelete", "0"},
                             {"@Operation", Operation.InsertAbbr},
                             {"@Date", Date.GetDate(dtp : dtExpense)},
-                            {"@Receipt", ""},
-                            {"@MoneyId1", cbbMoney.SelectedValue.ToString()},
-                            {"@Amount1", Function.MoveNumberStringComma(txtAmount.Text)},
+                            {"@Reference", ""},
+                            {"@MoneyId", cbbMoney.SelectedValue.ToString()},
+                            {"@Amount", Function.MoveNumberStringComma(txtAmount.Text)},
                             {"@MoneyId2", "0"},
+                            {"@Reference2", ""},
                             {"@Amount2", "0"},
                             {"@MoneyId3", "0"},
+                            {"@Reference3", ""},
                             {"@Amount3", "0"},
                             {"@MoneyId4", "0"},
+                            {"@Reference4", ""},
                             {"@Amount4", "0"},
                             {"@MoneyId5", "0"},
+                            {"@Reference5", ""},
                             {"@Amount5", "0"},
                             {"@UpdateType", "0"},
                         };
@@ -1855,6 +1873,11 @@ namespace SANSANG
 
                 }
             }
+        }
+
+        private void btnTitleCase_Click(object sender, EventArgs e)
+        {
+            Converts.TitleCase(txtItem);
         }
     }
 }

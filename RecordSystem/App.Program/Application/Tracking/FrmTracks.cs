@@ -528,7 +528,7 @@ namespace SANSANG
             List.GetList(cbbReceiver, DataList.ReceiverId);
             List.GetList(cbbSender, DataList.SenderId);
 
-            cbbReceiver.SelectedValue = "100022";
+            cbbReceiver.SelectedValue = "100149";
 
         }
 
@@ -542,6 +542,11 @@ namespace SANSANG
         }
 
         private void txtProduct_Leave(object sender, EventArgs e)
+        {
+            Converts.TitleCase(txtProduct);
+        }
+
+        private void btnTitleCase_Click(object sender, EventArgs e)
         {
             Converts.TitleCase(txtProduct);
         }

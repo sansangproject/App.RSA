@@ -39,6 +39,7 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.gbFrm = new System.Windows.Forms.GroupBox();
+            this.btnTitleCase = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.txtReference = new System.Windows.Forms.TextBox();
@@ -211,6 +212,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gbFrm.BackColor = System.Drawing.Color.White;
+            this.gbFrm.Controls.Add(this.btnTitleCase);
             this.gbFrm.Controls.Add(this.label6);
             this.gbFrm.Controls.Add(this.label7);
             this.gbFrm.Controls.Add(this.txtReference);
@@ -270,6 +272,21 @@
             this.gbFrm.Size = new System.Drawing.Size(1302, 793);
             this.gbFrm.TabIndex = 102;
             this.gbFrm.TabStop = false;
+            // 
+            // btnTitleCase
+            // 
+            this.btnTitleCase.BackColor = System.Drawing.Color.White;
+            this.btnTitleCase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTitleCase.ForeColor = System.Drawing.Color.Transparent;
+            this.btnTitleCase.Image = ((System.Drawing.Image)(resources.GetObject("btnTitleCase.Image")));
+            this.btnTitleCase.Location = new System.Drawing.Point(863, 265);
+            this.btnTitleCase.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnTitleCase.Name = "btnTitleCase";
+            this.btnTitleCase.Size = new System.Drawing.Size(23, 27);
+            this.btnTitleCase.TabIndex = 229;
+            this.btnTitleCase.TabStop = false;
+            this.btnTitleCase.UseVisualStyleBackColor = false;
+            this.btnTitleCase.Click += new System.EventHandler(this.btnTitleCase_Click);
             // 
             // label6
             // 
@@ -927,7 +944,6 @@
             this.txtProduct.Name = "txtProduct";
             this.txtProduct.Size = new System.Drawing.Size(272, 21);
             this.txtProduct.TabIndex = 132;
-            this.txtProduct.Leave += new System.EventHandler(this.txtProduct_Leave);
             // 
             // cbbStatus
             // 
@@ -1226,5 +1242,6 @@
         private System.Windows.Forms.TextBox txtReference;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnTitleCase;
     }
 }

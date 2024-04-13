@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 namespace SANSANG
 {
-    partial class FrmMWASA00
+    partial class FrmWaters
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace SANSANG
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMWASA00));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmWaters));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();

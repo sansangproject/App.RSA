@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnTitleCase = new System.Windows.Forms.Button();
             this.btnCopyReference = new System.Windows.Forms.Button();
             this.pb_Receipt_False = new System.Windows.Forms.PictureBox();
             this.pb_Reference_False = new System.Windows.Forms.PictureBox();
@@ -183,6 +184,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox4.BackColor = System.Drawing.Color.White;
+            this.groupBox4.Controls.Add(this.btnTitleCase);
             this.groupBox4.Controls.Add(this.btnCopyReference);
             this.groupBox4.Controls.Add(this.pb_Receipt_False);
             this.groupBox4.Controls.Add(this.pb_Reference_False);
@@ -286,6 +288,21 @@
             this.groupBox4.Size = new System.Drawing.Size(1491, 814);
             this.groupBox4.TabIndex = 46;
             this.groupBox4.TabStop = false;
+            // 
+            // btnTitleCase
+            // 
+            this.btnTitleCase.BackColor = System.Drawing.Color.White;
+            this.btnTitleCase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTitleCase.ForeColor = System.Drawing.Color.Transparent;
+            this.btnTitleCase.Image = ((System.Drawing.Image)(resources.GetObject("btnTitleCase.Image")));
+            this.btnTitleCase.Location = new System.Drawing.Point(935, 198);
+            this.btnTitleCase.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnTitleCase.Name = "btnTitleCase";
+            this.btnTitleCase.Size = new System.Drawing.Size(25, 24);
+            this.btnTitleCase.TabIndex = 253;
+            this.btnTitleCase.TabStop = false;
+            this.btnTitleCase.UseVisualStyleBackColor = false;
+            this.btnTitleCase.Click += new System.EventHandler(this.btnTitleCase_Click);
             // 
             // btnCopyReference
             // 
@@ -1922,5 +1939,6 @@
         private System.Windows.Forms.PictureBox pb_Reference_True;
         private System.Windows.Forms.CheckBox cb_Reference;
         private System.Windows.Forms.Button btnCopyReference;
+        private System.Windows.Forms.Button btnTitleCase;
     }
 }

@@ -223,6 +223,11 @@ namespace RecordSystemApplication.App.Program.Application.Payment
             txtAmount4.Text = "";
             txtAmount5.Text = "";
 
+            txtReference2.Text = "";
+            txtReference3.Text = "";
+            txtReference4.Text = "";
+            txtReference5.Text = "";
+
             txtReceipt.Text = "";
 
             Search();
@@ -240,16 +245,20 @@ namespace RecordSystemApplication.App.Program.Application.Payment
                 {"@IsDelete", "0"},
                 {"@Operation", Operation.UpdateAbbr},
                 {"@Date", Date.GetDate(dt : DateExpense)},
-                {"@Receipt", txtReceipt.Text},
-                {"@MoneyId1", "0"},
-                {"@Amount1", "0"},
+                {"@Reference", txtReceipt.Text},
+                {"@MoneyId", "0"},
+                {"@Amount", "0"},
                 {"@MoneyId2", cbbMoney2.SelectedValue.ToString()},
+                {"@Reference2", txtReference2.Text},
                 {"@Amount2", Function.MoveNumberStringComma(txtAmount2.Text, true)},
                 {"@MoneyId3", cbbMoney3.SelectedValue.ToString()},
+                {"@Reference3", txtReference3.Text},
                 {"@Amount3", Function.MoveNumberStringComma(txtAmount3.Text, true)},
                 {"@MoneyId4", cbbMoney4.SelectedValue.ToString()},
+                {"@Reference4", txtReference4.Text},
                 {"@Amount4", Function.MoveNumberStringComma(txtAmount4.Text, true)},
                 {"@MoneyId5", cbbMoney5.SelectedValue.ToString()},
+                {"@Reference5", txtReference5.Text},
                 {"@Amount5", Function.MoveNumberStringComma(txtAmount5.Text, true)},
                 {"@UpdateType", "PAYMENT"},
             };
@@ -269,16 +278,20 @@ namespace RecordSystemApplication.App.Program.Application.Payment
                 {"@IsDelete", "0"},
                 {"@Operation", Operation.SelectAbbr},
                 {"@Date", ""},
-                {"@Receipt", ""},
-                {"@MoneyId1", ""},
-                {"@Amount1", ""},
+                {"@Reference", ""},
+                {"@MoneyId", ""},
+                {"@Amount", ""},
                 {"@MoneyId2", "0"},
+                {"@Reference2", ""},
                 {"@Amount2", "0"},
                 {"@MoneyId3", "0"},
+                {"@Reference3", ""},
                 {"@Amount3", "0"},
                 {"@MoneyId4", "0"},
+                {"@Reference4", ""},
                 {"@Amount4", "0"},
                 {"@MoneyId5", "0"},
+                {"@Reference5", ""},
                 {"@Amount5", "0"},
                 {"@UpdateType", "0"},
             };
@@ -290,17 +303,22 @@ namespace RecordSystemApplication.App.Program.Application.Payment
             {
                 cbbMoney2.SelectedValue = ds.Tables[2].Rows[0]["MoneyId2"].ToString();
                 txtAmount2.Text = ds.Tables[2].Rows[0]["Amount2"].ToString();
+                txtReference2.Text = ds.Tables[2].Rows[0]["Reference2"].ToString();
 
                 cbbMoney3.SelectedValue = ds.Tables[2].Rows[0]["MoneyId3"].ToString();
                 txtAmount3.Text = ds.Tables[2].Rows[0]["Amount3"].ToString();
+                txtReference3.Text = ds.Tables[2].Rows[0]["Reference3"].ToString();
 
                 cbbMoney4.SelectedValue = ds.Tables[2].Rows[0]["MoneyId4"].ToString();
                 txtAmount4.Text = ds.Tables[2].Rows[0]["Amount4"].ToString();
+                txtReference4.Text = ds.Tables[2].Rows[0]["Reference4"].ToString();
 
                 cbbMoney5.SelectedValue = ds.Tables[2].Rows[0]["MoneyId5"].ToString();
                 txtAmount5.Text = ds.Tables[2].Rows[0]["Amount5"].ToString();
+                txtReference5.Text = ds.Tables[2].Rows[0]["Reference5"].ToString();
 
-                txtReceipt.Text = ds.Tables[2].Rows[0]["Receipt"].ToString();
+                txtReceipt.Text = ds.Tables[2].Rows[0]["Reference"].ToString();
+
                 Sum();
             }
         }
@@ -314,24 +332,28 @@ namespace RecordSystemApplication.App.Program.Application.Payment
         {
             cbbMoney2.SelectedIndex = 0;
             txtAmount2.Text = "";
+            txtReference2.Text = "";
         }
 
         private void btnRemove3_Click(object sender, EventArgs e)
         {
             cbbMoney3.SelectedIndex = 0;
             txtAmount3.Text = "";
+            txtReference3.Text = "";
         }
 
         private void btnRemove4_Click(object sender, EventArgs e)
         {
             cbbMoney4.SelectedIndex = 0;
             txtAmount4.Text = "";
+            txtReference4.Text = "";
         }
 
         private void btnRemove5_Click(object sender, EventArgs e)
         {
             cbbMoney5.SelectedIndex = 0;
             txtAmount5.Text = "";
+            txtReference5.Text = "";
         }
 
         private void txtReff_KeyPress(object sender, KeyPressEventArgs e)

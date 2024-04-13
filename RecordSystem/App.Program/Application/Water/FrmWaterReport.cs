@@ -10,7 +10,7 @@ using SANSANG.Database;
 
 namespace SANSANG
 {
-    public partial class FrmMWARE00 : Form
+    public partial class FrmWaterReport : Form
     {
         public string strUserId;
         public string strUserName;
@@ -35,7 +35,7 @@ namespace SANSANG
         private clsMessage Message = new clsMessage();
         private clsDate Date = new clsDate();
 
-        public FrmMWARE00(string userIdLogin, string userNameLogin, string userSurNameLogin, string userTypeLogin)
+        public FrmWaterReport(string userIdLogin, string userNameLogin, string userSurNameLogin, string userTypeLogin)
         {
             InitializeComponent();
 

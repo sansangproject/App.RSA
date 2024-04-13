@@ -8,7 +8,7 @@ using SANSANG.Database;
 
 namespace SANSANG
 {
-    public partial class FrmMWAMA00 : Form
+    public partial class FrmWaterVersion : Form
     {
         public string strUserId;
         public string strUserName;
@@ -38,7 +38,7 @@ namespace SANSANG
         private TableConstant Tb = new TableConstant();
         public string[,] Parameter = new string[,] { };
 
-        public FrmMWAMA00(string userIdLogin, string userNameLogin, string userSurNameLogin, string userTypeLogin)
+        public FrmWaterVersion(string userIdLogin, string userNameLogin, string userSurNameLogin, string userTypeLogin)
         {
             InitializeComponent();
 

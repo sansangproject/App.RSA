@@ -11,6 +11,7 @@ using System.IO;
 using System.Collections;
 using System.Drawing;
 using System.Drawing.Imaging;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace SANSANG
 {
@@ -52,6 +53,7 @@ namespace SANSANG
         public string[,] Parameter = new string[,] { };
         private FrmAnimatedProgress Loading = new FrmAnimatedProgress(20);
         private clsDate Date = new clsDate();
+        private clsConvert Converts = new clsConvert();
 
         public FrmAddress(string UserIds, string UserNames, string UserSurNames, string UserTypes)
         {
@@ -387,6 +389,7 @@ namespace SANSANG
                 lblInstitutionTh.Visible = true;
                 lblInstitutionEn.Visible = true;
                 lblDot.Visible = true;
+                btnTitleCase.Visible = true;
                 txtInstitution.Focus();
             }
             else
@@ -396,6 +399,7 @@ namespace SANSANG
                 lblInstitutionTh.Visible = false;
                 lblInstitutionEn.Visible = false;
                 lblDot.Visible = false;
+                btnTitleCase.Visible = false;
             }
         }
 
@@ -684,6 +688,7 @@ namespace SANSANG
             lblInstitutionTh.Visible = false;
             lblInstitutionEn.Visible = false;
             lblDot.Visible = false;
+            btnTitleCase.Visible = false;
 
             txtFloor.Text = "";
             txtRoom.Text = "";
@@ -873,6 +878,11 @@ namespace SANSANG
             {
                 txtPhone.Text = Function.ConvertPhoneNumber(txtPhone.Text);
             }
+        }
+
+        private void btnTitleCase_Click(object sender, EventArgs e)
+        {
+            Converts.TitleCase(txtInstitution);
         }
     }
 }
