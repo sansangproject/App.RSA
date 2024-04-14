@@ -607,11 +607,11 @@
     <Compile Include="App.Program\Application\Utility\FrmImageEditer.Designer.cs">
       <DependentUpon>FrmImageEditer.cs</DependentUpon>
     </Compile>
-    <Compile Include="App.Program\Application\Water\FrmWaterVersion.cs">
+    <Compile Include="App.Program\Application\Water\FrmWaterRates.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="App.Program\Application\Water\FrmWaterVersion.Designer.cs">
-      <DependentUpon>FrmWaterVersion.cs</DependentUpon>
+    <Compile Include="App.Program\Application\Water\FrmWaterRates.Designer.cs">
+      <DependentUpon>FrmWaterRates.cs</DependentUpon>
     </Compile>
     <Compile Include="App.Program\Application\Water\FrmWaterReport.cs">
       <SubType>Form</SubType>
@@ -824,8 +824,8 @@
     <EmbeddedResource Include="App.Program\Application\Utility\FrmImageEditer.resx">
       <DependentUpon>FrmImageEditer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="App.Program\Application\Water\FrmWaterVersion.resx">
-      <DependentUpon>FrmWaterVersion.cs</DependentUpon>
+    <EmbeddedResource Include="App.Program\Application\Water\FrmWaterRates.resx">
+      <DependentUpon>FrmWaterRates.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="App.Program\Application\Water\FrmWaterReport.resx">
       <DependentUpon>FrmWaterReport.cs</DependentUpon>

@@ -517,7 +517,7 @@ namespace SANSANG.Class
                     if (Detail != "")
                     {
                         Message.MessageConfirmation("N", "", Detail);
-                        var Popup = new FrmMessagesBoxOK(Message.strOperation, Message.strMes, "OK", Id: Message.strImage);
+                        var Popup = new FrmMessagesBoxOK(Message.strOperation.Trim(), Message.strMes, "OK", Id: Message.strImage);
                         Popup.ShowDialog();
                     }
                     return true;
