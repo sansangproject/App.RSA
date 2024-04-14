@@ -26,7 +26,7 @@ namespace SANSANG.Constant
         public string KBANK3213 = "";
         public string KBANK3287 = "";
         public string KBANK5116 = "";
-        public string KBANK3848 = "";
+        public string KBANK3848 = "1028";
         public string KTB6061 = "";
         public string TMB6273 = "";
         public string TMB8718 = "";

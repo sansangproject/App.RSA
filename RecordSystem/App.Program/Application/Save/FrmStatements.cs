@@ -439,14 +439,14 @@ namespace SANSANG
                 if (!IsClear)
                 {
                     IsWithdrawal = Function.GetPayments(Function.selectedValue(cbbTransactions), out Details, out Items);
-                    txtDetail.Text = Details;
+                    txtDisplay.Text = Details;
                     txtItem.Text = Items;
                 }
             }
             catch (Exception)
             {
                 IsWithdrawal = false;
-                txtDetail.Text = "";
+                txtDisplay.Text = "";
                 txtItem.Text = "";
             }
 

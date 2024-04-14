@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.Devices;
+using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Globalization;
@@ -295,45 +296,45 @@ namespace SANSANG.Class
             return newBitmap;
         }
 
-        public void TitleCase(TextBox txt)
+        public void TitleCase(TextBox TextBox)
         {
-            string Value = txt.Text;
-            string Titled = "";
-            string NewWord = "";
+            string Data = TextBox.Text;
+            string Values = "";
+
             TextInfo Culture = new CultureInfo("en-US", false).TextInfo;
             int Number = 0;
 
             try
             {
-                txt.Text = "";
-                string[] Text = Value.Split(' ');
+                TextBox.Text = "";
+                string[] Text = Data.Split(' ');
 
                 foreach (var Words in Text)
                 {
-                    string OldWord = Words;
-                    string Texts = Words;
+                    string NewWord = "";
+                    string Texts = "";
 
                     Regex rgx = new Regex("[^a-zA-Z -]");
-                    Texts = rgx.Replace(Texts, "");
+                    Texts = rgx.Replace(Words, "").ToLower();
 
                     if (Texts.Length >= 3)
                     {
-                        NewWord = Culture.ToTitleCase(Words);
-                        Titled += Number == 0 ? NewWord : " " + NewWord;
+                        NewWord = Culture.ToTitleCase(Texts);
+                        Values += Number == 0 ? NewWord : " " + NewWord;
                     }
                     else
                     {
-                        Titled += Number == 0 ? OldWord : " " + OldWord;
+                        Values += Number == 0 ? Words : " " + Words;
                     }
 
                     Number++;
                 }
 
-                txt.Text = Titled;
+                TextBox.Text = Values;
             }
             catch
             {
-                txt.Text = Value;
+                TextBox.Text = Data;
             }
         }
 }

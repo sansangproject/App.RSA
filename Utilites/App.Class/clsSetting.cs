@@ -335,7 +335,30 @@ namespace SANSANG.Class
 
             return limit;
         }
-        
+
+        public decimal GetInaccurate()
+        {
+            decimal limit = 0;
+            string settingPath = Path.Combine(appPath, filePath);
+
+            if (File.Exists(settingPath))
+            {
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.Load(settingPath);
+                foreach (XmlNode valueNode in xmlDoc.DocumentElement)
+                {
+                    switch (valueNode.Name.ToString())
+                    {
+                        case "Inaccurate":
+                            limit = Convert.ToDecimal(valueNode.InnerText);
+                            break;
+                    }
+                }
+            }
+
+            return limit;
+        }
+
         public string GetUrlAPIToken()
         {
             string settingPath = Path.Combine(appPath, filePath);
