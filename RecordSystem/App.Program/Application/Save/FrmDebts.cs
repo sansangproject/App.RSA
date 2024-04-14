@@ -377,12 +377,12 @@ namespace SANSANG
         {
             try
             {
-                ThaiBuddhistCalendar ThaiCalendar = new ThaiBuddhistCalendar();
-
                 DateTime DueDate = dtDueDate.Value;
-                DateTime ThaiDate = new DateTime(ThaiCalendar.GetYear(DueDate), ThaiCalendar.GetMonth(DueDate), DueDate.Day);
-                string Years = ThaiDate.ToString("yyyy");
-                string Months = ThaiDate.ToString("MM");
+                ThaiBuddhistCalendar ThaiDate = new ThaiBuddhistCalendar();
+
+                string Years = ThaiDate.GetYear(DueDate).ToString();
+                string Months = ThaiDate.GetMonth(DueDate).ToString("D2");
+                string Days = ThaiDate.GetDayOfMonth(DueDate).ToString();
 
                 string Lists = string.Concat(Years, Months);
 
@@ -610,8 +610,19 @@ namespace SANSANG
                         }
                         else
                         {
+                            string statusPayment = "";
+
+                            if (txtName.Text.Contains("สินเชื่อบุคคล") || txtName.Text.Contains("บัตรเครดิต"))
+                            {
+                                statusPayment = "*** ยอดค้างชำระ ";
+                            }
+                            else
+                            {
+                                statusPayment = "*** ส่วนลด ";
+                            }
+
                             lblService.Visible = true;
-                            lblService.Text = "*** ส่วนลด " + Function.FormatNumber(Diff * -1) + " บาท";
+                            lblService.Text = string.Concat(statusPayment,Function.FormatNumber(Diff * -1)," บาท");
                         }
                     }
                     else
@@ -671,7 +682,7 @@ namespace SANSANG
                 {
                     Form Frm = (Form)sender;
 
-                    if (Frm.ActiveControl.Text != txtReference.Text)
+                    if (Frm.ActiveControl.Text != txtReference.Text && Frm.ActiveControl.Name != "txtDetail")
                     {
                         Search(true);
                     }
@@ -905,10 +916,10 @@ namespace SANSANG
                                 DateTime Dates = dtList.Value;
 
                                 ThaiBuddhistCalendar th = new ThaiBuddhistCalendar();
-                                DateTime dtValue = new DateTime(th.GetYear(Dates), th.GetMonth(Dates), Dates.Day);
 
-                                string Years = dtValue.ToString("yyyy");
-                                string Months = dtValue.ToString("MM");
+                                string Years = th.GetYear(Dates).ToString();
+                                string Months = th.GetMonth(Dates).ToString("D2");
+                                string Days = th.GetDayOfMonth(Dates).ToString();
 
                                 Lists = string.Concat(Years, Months);
                                   
@@ -971,6 +982,7 @@ namespace SANSANG
             catch (Exception ex)
             {
                 Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+                Message.MessageResult(Operation.InsertAbbr, "E");
             }
         }
 

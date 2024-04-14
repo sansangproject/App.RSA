@@ -8,6 +8,9 @@ using SANSANG.Utilites.App.Forms;
 using SANSANG.Constant;
 using SANSANG.Utilites.App.Model;
 using RecordSystemApplication.App.Program.Application.Payment;
+using Message = System.Windows.Forms.Message;
+using System.Collections.Generic;
+using static System.Resources.ResXFileRef;
 
 namespace SANSANG
 {
@@ -48,6 +51,7 @@ namespace SANSANG
         private OperationConstant Operation = new OperationConstant();
         private FrmAnimatedProgress Loading = new FrmAnimatedProgress(10);
         private CharacterConstant CharType = new CharacterConstant();
+        private clsConvert Converts = new clsConvert();
         private DateTime dNext;
         private DateTime dTime;
 
@@ -57,13 +61,26 @@ namespace SANSANG
         private string Error = "";
         private double Credit = 0;
         private double TotalCredit = 0;
+        private double TotalDebit = 0;
         private double Debit = 0;
+        private double Wallet = 0;
+        private double CreditAll = 0;
+        private double DebitAll = 0;
         private string Details = "";
         private string Items = "";
+        private string Types = "";
         private int DataRows = 0;
         private string IsDebit = "false";
         private string MoneyIsDelete = "";
-        private bool IsSearchPayment = false;
+        private bool IsCalculate = false;
+        private bool IsDiscountIncluded = true;
+
+        private bool IsSearchDate = false;
+        private bool IsSearchReceipt = false;
+        private bool IsSearchReference = false;
+        private bool IsSearchCode = false;
+
+        private List<string> TypeList = new List<string>();
 
         public FrmExpenses(string UserIdLogin, string UserNameLogin, string UserSurNameLogin, string UserTypeLogin)
         {
@@ -127,9 +144,11 @@ namespace SANSANG
                 txtCode.Text = "";
                 txtId.Text = "";
                 txtAmount.Text = "";
+                txtPrice.Text = "";
                 txtDetails.Text = "";
                 txtItem.Text = "";
                 txtReceipt.Text = "";
+                txtReference.Text = "";
                 txtUnit.Text = "";
                 txtId.Text = "";
                 MoneyIsDelete = "";
@@ -137,22 +156,32 @@ namespace SANSANG
 
                 SearchPress = false;
                 cb_Date.Checked = false;
-                cb_Paysub.Checked = false;
-               
+                cb_Item.Checked = false;
+
+                cb_Discount.Checked = true;
+                cb_Calculate.Checked = false;
+
+                cb_Receipt.Checked = false;
+                cb_Reference.Checked = false;
+
                 cbbMoney.Enabled = true;
                 pbHide.Visible = false;
 
                 pb_Date_True.Hide();
-                pb_Paysub_True.Hide();
-                pb_Date_False.Show();
-                pb_Paysub_False.Show();
+                pb_Item_True.Hide();
+                pb_Calculate_True.Hide();
+                pb_Receipt_True.Hide();
+                pb_Reference_True.Hide();
 
-                if (!IsSearchPayment)
-                {
-                    cb_Receipt.Checked = true;
-                    pb_Receipt_True.Show();
-                    pb_Receipt_False.Hide();
-                }
+                pb_Discount_False.Hide();
+
+                pb_Date_False.Show();
+                pb_Item_False.Show();
+                pb_Calculate_False.Show();
+                pb_Receipt_False.Show();
+                pb_Reference_False.Show();
+
+                pb_Discount_True.Show();
 
                 Sum = 0;
 
@@ -169,10 +198,14 @@ namespace SANSANG
 
                 dTime = Convert.ToDateTime(dtExpense.Text);
                 dNext = dTime.AddDays(+1);
+
                 string strDate = Date.GetDate(dt: dTime, Format: 4);
 
                 if (IsLoad)
                 {
+                    IsDiscountIncluded = true;
+                    IsCalculate = true;
+
                     GetDataGrid(strDate);
                 }
 
@@ -240,10 +273,12 @@ namespace SANSANG
                     {"@Item", ""},
                     {"@Detail", ""},
                     {"@Amount", "0.00"},
+                    {"@Price", "0.00"},
                     {"@UnitId", "0"},
                     {"@Unit", "0.00"},
                     {"@Date", Date},
                     {"@Receipt", ""},
+                    {"@Reference", ""},
                 };
 
                 db.Gets(Store.ManageExpense, Parameter, out Error, out ds);
@@ -259,9 +294,31 @@ namespace SANSANG
         {
             try
             {
-                SearchPress = true;
-                Search(false, "");
-                pbHide.Visible = false;
+                IsDiscountIncluded = cb_Discount.Checked ? true : false;
+                IsCalculate = cb_Calculate.Checked ? true : false;
+
+                if (cbbMoney.Text.Contains("Point") || cbbMoney.Text.Contains("Coins"))
+                {
+                    IsCalculate = true;
+                }
+
+                IsSearchDate = cb_Date.Checked ? true : false;
+                IsSearchReceipt = cb_Receipt.Checked ? true : false;
+                IsSearchReference = cb_Reference.Checked ? true : false;
+                IsSearchCode = txtCode.Text != "" ? true : false;
+
+                TypeList = new List<string>
+                {
+                    cb_Date.Checked ? "D" : "",
+                    cb_Receipt.Checked ? "R" : "",
+                    cb_Reference.Checked ? "P" : ""
+                };
+
+                TypeList.RemoveAll(item => item == "");
+                TypeList.Add(txtCode.Text != "" && TypeList.Count == 0 ? "C" : "");
+                TypeList.RemoveAll(item => item == "");
+
+                Search(true, TypeList.Count > 0 ? "More" : "");
             }
             catch (Exception ex)
             {
@@ -326,7 +383,6 @@ namespace SANSANG
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            IsSearchPayment = false;
             Clear(true);
         }
 
@@ -375,13 +431,15 @@ namespace SANSANG
                             {"@Item", txtItem.Text},
                             {"@Detail", txtDetails.Text},
                             {"@Amount", Function.MoveNumberStringComma(txtAmount.Text)},
+                            {"@Price", Function.MoveNumberStringComma(txtPrice.Text)},
                             {"@UnitId", Function.GetComboId(cbbUnit) == "0"? "1213" : Function.GetComboId(cbbUnit)},
                             {"@Unit", txtUnit.Text == ""? "1.00" : txtUnit.Text},
                             {"@Date", Date.GetDate(dtp : dtExpense)},
-                            {"@Receipt", cb_Receipt.Checked? txtReceipt.Text : ""},
+                            {"@Receipt", txtReceipt.Text},
+                            {"@Reference", ""},
                         };
 
-                        string[,] Parameters = new string[,]
+                        string[,] Payment = new string[,]
                         {
                             {"@Id", ""},
                             {"@Code", txtCode.Text},
@@ -390,16 +448,20 @@ namespace SANSANG
                             {"@IsDelete", "0"},
                             {"@Operation", Operation.InsertAbbr},
                             {"@Date", Date.GetDate(dtp : dtExpense)},
-                            {"@Receipt", cb_Receipt.Checked? "" : txtReceipt.Text},
-                            {"@MoneyId1", Function.GetComboId(cbbMoney)},
-                            {"@Amount1", Function.MoveNumberStringComma(txtAmount.Text)},
+                            {"@Reference", txtReference.Text},
+                            {"@MoneyId", Function.GetComboId(cbbMoney)},
+                            {"@Amount", Function.MoveNumberStringComma(txtAmount.Text)},
                             {"@MoneyId2", "0"},
+                            {"@Reference2", ""},
                             {"@Amount2", "0"},
                             {"@MoneyId3", "0"},
+                            {"@Reference3", ""},
                             {"@Amount3", "0"},
                             {"@MoneyId4", "0"},
+                            {"@Reference4", ""},
                             {"@Amount4", "0"},
                             {"@MoneyId5", "0"},
+                            {"@Reference5", ""},
                             {"@Amount5", "0"},
                             {"@UpdateType", ""},
                         };
@@ -414,7 +476,7 @@ namespace SANSANG
                             {
                                 Mes.Close();
                                 db.Operations(Store.ManageExpense, Parameter, out Error);
-                                db.Operations(Store.ManagePayments, Parameters, out Error);
+                                db.Operations(Store.ManagePayments, Payment, out Error);
 
                                 if (string.IsNullOrEmpty(Error))
                                 {
@@ -466,10 +528,12 @@ namespace SANSANG
                         {"@Item", ""},
                         {"@Detail", ""},
                         {"@Amount", "0.00"},
+                        {"@Price", "0.00"},
                         {"@UnitId", "0"},
                         {"@Unit", "0.00"},
                         {"@Date", ""},
                         {"@Receipt", ""},
+                        {"@Reference", ""},
                     };
 
                     db.Gets(Store.ManageExpense, Parameter, out Error, out ds);
@@ -514,10 +578,12 @@ namespace SANSANG
                         {"@Item", ""},
                         {"@Detail", ""},
                         {"@Amount", "0.00"},
+                        {"@Price", "0.00"},
                         {"@UnitId", "0"},
                         {"@Unit", "0.00"},
                         {"@Date", ""},
                         {"@Receipt", ""},
+                        {"@Reference", ""},
                     };
 
                     db.Gets(Store.ManageExpense, Parameter, out Error, out ds);
@@ -539,7 +605,7 @@ namespace SANSANG
         {
             try
             {
-                if (txtId.Text != "")
+                if (txtId.Text != "" && txtCode.Text != "")
                 {
                     string List = Date.GetDate(dtp: dtExpense, Format: 5);
 
@@ -560,10 +626,12 @@ namespace SANSANG
                         {"@Item", txtItem.Text},
                         {"@Detail", txtDetails.Text},
                         {"@Amount", Function.MoveNumberStringComma(txtAmount.Text)},
+                        {"@Price", Function.MoveNumberStringComma(txtPrice.Text)},
                         {"@UnitId", Function.GetComboId(cbbUnit) == "0"? "2222" : Function.GetComboId(cbbUnit)},
                         {"@Unit", txtUnit.Text == ""? "1.00" : txtUnit.Text},
                         {"@Date", Date.GetDate(dtp : dtExpense)},
-                        {"@Receipt", cb_Receipt.Checked? txtReceipt.Text : ""},
+                        {"@Receipt", txtReceipt.Text},
+                        {"@Reference", ""},
                     };
 
                     string[,] Payment = new string[,]
@@ -575,16 +643,20 @@ namespace SANSANG
                         {"@IsDelete", "0"},
                         {"@Operation", Operation.UpdateAbbr},
                         {"@Date", Date.GetDate(dtp : dtExpense)},
-                        {"@Receipt", cb_Receipt.Checked? "" : txtReceipt.Text},
-                        {"@MoneyId1", MoneyIsDelete == ""? Function.GetComboId(cbbMoney) : MoneyIsDelete},
-                        {"@Amount1", Function.MoveNumberStringComma(txtAmount.Text)},
+                        {"@Reference", txtReference.Text},
+                        {"@MoneyId", MoneyIsDelete == ""? Function.GetComboId(cbbMoney) : MoneyIsDelete},
+                        {"@Amount", Function.MoveNumberStringComma(txtAmount.Text)},
                         {"@MoneyId2", "0"},
+                        {"@Reference2", ""},
                         {"@Amount2", "0"},
                         {"@MoneyId3", "0"},
+                        {"@Reference3", ""},
                         {"@Amount3", "0"},
                         {"@MoneyId4", "0"},
+                        {"@Reference4", ""},
                         {"@Amount4", "0"},
                         {"@MoneyId5", "0"},
+                        {"@Reference5", ""},
                         {"@Amount5", "0"},
                         {"@UpdateType", "EXPENSE"},
                     };
@@ -640,7 +712,7 @@ namespace SANSANG
         {
             try
             {
-                var Sender = (Button)sender;
+                var Sender = (System.Windows.Forms.Button)sender;
                 string Button = Sender.Name;
 
                 string Amounts = Button == "btnSend" ? txtTotalReal.Text : txtTotal.Text;
@@ -673,10 +745,12 @@ namespace SANSANG
                             {"@Item", "เงินยกยอด | ยกยอดมา"},
                             {"@Detail", ""},
                             {"@Amount", Function.ReplaceComma(Amounts)},
+                            {"@Price", Function.ReplaceComma(Amounts)},
                             {"@UnitId", Id.UnitDefault},
                             {"@Unit", "1"},
                             {"@Date", Date.GetDate(dt : dt)},
                             {"@Receipt", ""},
+                            {"@Reference", ""},
                         };
 
                         Message.MessageConfirmation(Operation.InsertAbbr, txtCode.Text, "ยกยอดเงิน ฿" + Amounts + " (เงินสด)");
@@ -717,9 +791,7 @@ namespace SANSANG
                 DateTime dt;
                 DateTime dts = Convert.ToDateTime(dtExpense.Text);
                 string DataDates = "";
-                string Receipt = txtReceipt.Text;
                 string Dates = cb_Date.Checked ? Date.GetDate(dt: dts, Format: 4) : "";
-                DataRows = 0;
 
                 if (Status == true && Types == Strings.Nexts)
                 {
@@ -739,15 +811,46 @@ namespace SANSANG
                     GetDataGrid(DataDates);
                     GetBalance(dt, dt.AddDays(+1));
                 }
-                else if (Status == true && Types == Strings.Payment)
+                else if (Status == true && Types == Strings.More)
                 {
+                    string Receipts = TypeList.Contains("R") ? txtReceipt.Text : "";
+                    string References = TypeList.Contains("P") ? txtReference.Text : "";
+                    string Code = TypeList.Contains("C") ? txtCode.Text : "";
+                    string ExpenseDate = TypeList.Contains("D") ? Date.GetDate(dtp: dtExpense) : "";
+
                     Clear(false);
-                    SearchBalance(Strings.Payment, Receipt, Dates);
-                }
-                else if (Status == true && Types == Strings.Receipt)
-                {
-                    Clear(false);
-                    SearchBalance(Strings.Receipt, Receipt, Dates);
+
+                    SearchBalance(
+                        Code: TypeList.Contains("C") ? Code : "",
+                        Receipt: TypeList.Contains("R") ? Receipts : "",
+                        Reference: TypeList.Contains("P") ? References : "",
+                        Date: TypeList.Contains("D") ? ExpenseDate : "");
+
+                    if (IsSearchCode)
+                    {
+                        txtCode.Text = TypeList.Contains("C") ? Code : "";
+                    }
+                    if (IsSearchDate)
+                    {
+                        cb_Date.Checked = true;
+                        dtExpense.Value = Convert.ToDateTime(ExpenseDate);
+                        pb_Date_True.Show();
+                        pb_Date_False.Hide();
+                    }
+                    if (IsSearchReceipt)
+                    {
+                        cb_Receipt.Checked = true;
+                        txtReceipt.Text = Receipts;
+                        pb_Receipt_True.Show();
+                        pb_Receipt_False.Hide();
+                    }
+                    if (IsSearchReference)
+                    {
+                        cb_Reference.Checked = true;
+                        txtReference.Text = References;
+                        pb_Reference_True.Show();
+                        pb_Reference_False.Hide();
+                    }
                 }
                 else
                 {
@@ -781,10 +884,12 @@ namespace SANSANG
                     {"@Item", txtItem.Text},
                     {"@Detail", txtDetails.Text},
                     {"@Amount", txtAmount.Text == ""? "0.00" : Function.SplitString(txtAmount.Text, ",", "")},
+                    {"@Price", txtPrice.Text == ""? "0.00" : Function.SplitString(txtPrice.Text, ",", "")},
                     {"@UnitId", Function.GetComboZero(cbbUnit)},
                     {"@Unit", txtUnit.Text == ""? "0.00" : txtUnit.Text},
                     {"@Date", cb_Date.Checked? Date.GetDate(dtp: dtExpense, Format: 4) : ""},
                     {"@Receipt", txtReceipt.Text},
+                    {"@Reference", txtReference.Text},
                 };
 
                 db.Gets(Store.ManageExpense, Parameter, out Error, out ds);
@@ -795,23 +900,22 @@ namespace SANSANG
                 if (string.IsNullOrEmpty(Error))
                 {
                     Credit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumCredit"].ToString()));
-                    TotalCredit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["TotalCredit"].ToString()));
                     Debit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumDebit"].ToString()));
+                    CreditAll = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["AllCredit"].ToString()));
+                    CreditAll += Function.GetComboZero(cbbMoney) != "0" ? double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumWallet"].ToString())) : 0;
+                    DebitAll = 0.00;
                 }
                 else
                 {
                     Credit = 0.00;
                     TotalCredit = 0.00;
                     Debit = 0.00;
+                    CreditAll = 0.00;
+                    DebitAll = 0.00;
                 }
 
-                lblBalance.Text = "คงเหลือ";
+                ShowTotalAmount(Types, Debit, Credit, DebitAll, CreditAll, IsCalculate, IsDiscountIncluded);
 
-                double TotalReal = Math.Abs(Debit - (Credit > TotalCredit ? Credit : TotalCredit));
-                txtSumCredit.Text = string.Format("{0:#,##0.00}", Credit > TotalCredit ? Credit : TotalCredit);
-                txtSumDebit.Text = string.Format("{0:#,##0.00}", Debit);
-                txtTotalReal.Text = string.Format("{0:#,##0.00}", TotalReal);
-                txtPayStatus.Text = "";
             }
             catch (Exception ex)
             {
@@ -849,8 +953,8 @@ namespace SANSANG
         {
             try
             {
-                //FrmMangeMoney FrmMangeMoney = new FrmMangeMoney(UserId, UserName, UserSurname, UserType);
-                //FrmMangeMoney.Show();
+                FrmManageMoney FrmManageMoney = new FrmManageMoney(UserId, UserName, UserSurname, UserType);
+                FrmManageMoney.Show();
             }
             catch (Exception ex)
             {
@@ -988,7 +1092,6 @@ namespace SANSANG
                 else
                 {
                     txtPayStatus.ForeColor = Color.Orange;
-                    txtTotalReal.Text = txtTotal.Text;
                 }
             }
             catch (Exception ex)
@@ -1026,7 +1129,13 @@ namespace SANSANG
         {
             try
             {
-                GetValue();
+                if (!string.IsNullOrEmpty(txtTotalReal.Text))
+                {
+                    GetValue();
+                    double Amount = Convert.ToDouble(txtTotalReal.Text);
+                    string Amounts = clsBahtText.ToBahtText(Amount);
+                    this.txtAmounts.Text = Amounts;
+                }
             }
             catch (Exception ex)
             {
@@ -1063,7 +1172,8 @@ namespace SANSANG
             try
             {
                 Clear(false);
-                Search(true, Strings.Nexts);
+                Types = Strings.Nexts;
+                Search(true, Types);
             }
             catch (Exception ex)
             {
@@ -1111,11 +1221,39 @@ namespace SANSANG
                 }
                 if (keyCode == "Enter")
                 {
+                    string TextBoxName = "";
                     Form Frm = (Form)sender;
+
+                    if (ActiveControl is TextBox TextBoxs && e.KeyCode == Keys.Enter)
+                    {
+                        TextBoxName = TextBoxs.Name;
+                    }
 
                     if (Frm.ActiveControl.Text != txtTotalReal.Text && Frm.ActiveControl.Text != txtReceipt.Text)
                     {
-                        Search(true, "");
+                        IsDiscountIncluded = cb_Discount.Checked ? true : false;
+                        IsCalculate = cb_Calculate.Checked ? true : false;
+
+                        if (cbbMoney.Text.Contains("Point"))
+                        {
+                            IsCalculate = true;
+                        }
+
+                        IsSearchDate = cb_Date.Checked ? true : false;
+                        IsSearchReceipt = cb_Receipt.Checked ? true : false;
+                        IsSearchReference = cb_Reference.Checked ? true : false;
+                        IsSearchCode = TextBoxName == "txtCode" ? true : false;
+
+                        TypeList = new List<string>
+                        {
+                            cb_Date.Checked ? "D" : "",
+                            cb_Receipt.Checked ? "R" : "",
+                            cb_Reference.Checked ? "P" : "",
+                            TextBoxName == "txtCode" ? "C" : ""
+                        };
+
+                        TypeList.RemoveAll(item => item == "");
+                        Search(true, TypeList.Count > 0 ? "More" : "");
                     }
                 }
             }
@@ -1130,7 +1268,8 @@ namespace SANSANG
             try
             {
                 Clear(false);
-                Search(true, Strings.Previous);
+                Types = Strings.Previous;
+                Search(true, Types);
             }
             catch (Exception ex)
             {
@@ -1154,22 +1293,6 @@ namespace SANSANG
                         txtAmount.Text = "";
                         txtAmount.Focus();
                     }
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
-            }
-        }
-
-        private void txtCode_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                if (e.KeyChar == Convert.ToChar(Keys.Enter))
-                {
-                    Clear(false);
-                    SearchBalance(Strings.Receipt, txtReceipt.Text);
                 }
             }
             catch (Exception ex)
@@ -1251,7 +1374,8 @@ namespace SANSANG
                 try
                 {
                     SearchPress = true;
-                    Search(false, "");
+                    Types = "";
+                    Search(false, Types);
                 }
                 catch (Exception ex)
                 {
@@ -1265,21 +1389,21 @@ namespace SANSANG
             Event.AmountKeyPress(sender, e, txtUnit);
         }
 
-        private void SearchBalance(string Type, string Receipt, string Date = "")
+        private void SearchBalance(string Code = "", string Receipt = "", string Reference = "", string Date = "")
         {
             try
             {
                 double Credit = 0;
                 double Debit = 0;
 
-                Parameter = new string[,]
+                string[,] List = new string[,]
                 {
                     {"@Id", ""},
-                    {"@Code", ""},
+                    {"@Code", Code},
                     {"@Status", "0"},
                     {"@User", ""},
-                    {"@IsActive", ""},
-                    {"@IsDelete", ""},
+                    {"@IsActive", "1"},
+                    {"@IsDelete", "0"},
                     {"@Operation", Operation.SelectAbbr},
                     {"@List", ""},
                     {"@MoneyId", "0"},
@@ -1289,65 +1413,41 @@ namespace SANSANG
                     {"@Item", ""},
                     {"@Detail", ""},
                     {"@Amount", "0.00"},
+                    {"@Price", "0.00"},
                     {"@UnitId", "0"},
                     {"@Unit", "0.00"},
                     {"@Date", Date},
                     {"@Receipt", Receipt},
+                    {"@Reference", Reference},
                 };
 
-                if (Type == Strings.Receipt)
-                {
-                    db.Gets(Store.ManageExpense, Parameter, out Error, out ds);
-                    ShowDataGridView(ds);
+                db.Gets(Store.ManageExpense, List, out Error, out ds);
 
-                    db.Gets(Store.FnGetBalanceSearch, Parameter, out Error, out ds);
-                    Credit = double.Parse(Convert.ToString(ds.Tables[0].Rows[0]["SumCredit"].ToString()));
-                    Debit = double.Parse(Convert.ToString(ds.Tables[0].Rows[0]["SumDebit"].ToString()));
-                }
-                else
+                if (string.IsNullOrEmpty(Error))
                 {
-                    string[,] Parameters = new string[,]
+                    ShowDataGridView(ds);
+                    lblBalance.Text = "รวมทั้งสิ้น";
+
+                    db.Gets(Store.FnGetBalanceSearch, List, out Error, out ds);
+
+                    if (string.IsNullOrEmpty(Error))
                     {
-                        {"@Id", ""},
-                        {"@Code", ""},
-                        {"@User", ""},
-                        {"@IsActive", "1"},
-                        {"@IsDelete", "0"},
-                        {"@Operation", Operation.SelectAbbr},
-                        {"@Date", Date},
-                        {"@Receipt", Receipt},
-                        {"@MoneyId1", ""},
-                        {"@Amount1", ""},
-                        {"@MoneyId2", "0"},
-                        {"@Amount2", "0"},
-                        {"@MoneyId3", "0"},
-                        {"@Amount3", "0"},
-                        {"@MoneyId4", "0"},
-                        {"@Amount4", "0"},
-                        {"@MoneyId5", "0"},
-                        {"@Amount5", "0"},
-                        {"@UpdateType", ""},
-                    };
+                        Credit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumCredit"].ToString()));
+                        Debit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumDebit"].ToString()));
+                        CreditAll = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["AllCredit"].ToString()));
+                        CreditAll += Function.GetComboZero(cbbMoney) != "0" ? double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumWallet"].ToString())) : 0;
+                        DebitAll = 0.00;
 
-                    db.Gets(Store.ManagePayments, Parameters, out Error, out ds);
-                    ShowDataGridView(ds);
-
-                    db.Gets(Store.FnGetBalanceSearch, Parameter, out Error, out ds);
-                    Credit = double.Parse(Convert.ToString(ds.Tables[1].Rows[0]["SumCredit"].ToString()));
-                    Debit = double.Parse(Convert.ToString(ds.Tables[1].Rows[0]["SumDebit"].ToString()));
+                        ShowTotalAmount(Types, Debit, Credit, DebitAll, CreditAll, IsCalculate, IsDiscountIncluded);
+                    }
                 }
-
-                txtReceipt.Text = Receipt;
-                lblBalance.Text = "รวมทั้งสิ้น";
-                txtTotalReal.Text = string.Format("{0:#,##0.00}", Math.Abs(Credit));
-                txtSumCredit.Text = string.Format("{0:#,##0.00}", Credit);
-                txtSumDebit.Text = string.Format("{0:#,##0.00}", Debit);
-                txtPayStatus.Text = "";
             }
             catch (Exception ex)
             {
-                Credit = 0;
-                Debit = 0;
+                Credit = 0.00;
+                Debit = 0.00;
+                CreditAll = 0.00;
+                DebitAll = 0.00;
                 Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
             }
         }
@@ -1356,37 +1456,14 @@ namespace SANSANG
         {
             if (!string.IsNullOrEmpty(txtReceipt.Text))
             {
-                Search(true, Strings.Payment);
+                Types = Strings.Payment;
+                Search(true, Types);
                 pbHide.Visible = true;
             }
             else
             {
                 txtReceipt.Focus();
             }
-        }
-
-        private void btnSearchReceipt_Click(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(txtReceipt.Text))
-            {
-                IsSearchPayment = true;
-
-                if (cb_Receipt.Checked)
-                {
-                    Search(true, Strings.Receipt);
-                    pbHide.Visible = true;
-                }
-                else
-                {
-                    Search(true, Strings.Payment);
-                    pbHide.Visible = true;
-                }
-            }
-            else
-            {
-                txtReceipt.Focus();
-            }
-
         }
 
         private void txtReceipt_KeyPress(object sender, KeyPressEventArgs e)
@@ -1399,7 +1476,8 @@ namespace SANSANG
             {
                 string Codes = Function.SplitBarcode(txtReceipt.Text);
                 txtReceipt.Text = Codes == "" ? txtReceipt.Text : Codes;
-                Search(false, "");
+                Types = "";
+                Search(false, Types);
             }
         }
 
@@ -1418,16 +1496,20 @@ namespace SANSANG
                         {"@IsDelete", "0"},
                         {"@Operation", Operation.SelectAbbr},
                         {"@Date", ""},
-                        {"@Receipt", ""},
-                        {"@MoneyId1", "0"},
-                        {"@Amount1", "0"},
+                        {"@Reference", ""},
+                        {"@MoneyId", "0"},
+                        {"@Amount", "0"},
                         {"@MoneyId2", "0"},
+                        {"@Reference2", ""},
                         {"@Amount2", "0"},
                         {"@MoneyId3", "0"},
+                        {"@Reference3", ""},
                         {"@Amount3", "0"},
                         {"@MoneyId4", "0"},
+                        {"@Reference4", ""},
                         {"@Amount4", "0"},
                         {"@MoneyId5", "0"},
+                        {"@Reference5", ""},
                         {"@Amount5", "0"},
                         {"@UpdateType", "0"},
                     };
@@ -1451,16 +1533,20 @@ namespace SANSANG
                             {"@IsDelete", "0"},
                             {"@Operation", Operation.InsertAbbr},
                             {"@Date", Date.GetDate(dtp : dtExpense)},
-                            {"@Receipt", ""},
-                            {"@MoneyId1", cbbMoney.SelectedValue.ToString()},
-                            {"@Amount1", Function.MoveNumberStringComma(txtAmount.Text)},
+                            {"@Reference", ""},
+                            {"@MoneyId", cbbMoney.SelectedValue.ToString()},
+                            {"@Amount", Function.MoveNumberStringComma(txtAmount.Text)},
                             {"@MoneyId2", "0"},
+                            {"@Reference2", ""},
                             {"@Amount2", "0"},
                             {"@MoneyId3", "0"},
+                            {"@Reference3", ""},
                             {"@Amount3", "0"},
                             {"@MoneyId4", "0"},
+                            {"@Reference4", ""},
                             {"@Amount4", "0"},
                             {"@MoneyId5", "0"},
+                            {"@Reference5", ""},
                             {"@Amount5", "0"},
                             {"@UpdateType", "0"},
                         };
@@ -1490,7 +1576,8 @@ namespace SANSANG
         {
             try
             {
-                double Amount = double.Parse(Convert.ToString(Convert.ToDouble(txtSumDebit.Text) - Convert.ToDouble(txtSumCredit.Text)));
+                double Amount = 0;
+                Amount = Math.Abs(double.Parse(Convert.ToString(Convert.ToDouble(txtSumDebit.Text) - Convert.ToDouble(txtSumCredit.Text))));
                 txtTotal.Text = string.Format("{0:#,##0.00}", Amount);
             }
             catch (Exception ex)
@@ -1516,6 +1603,7 @@ namespace SANSANG
                 txtId.Text = Data.Rows[0]["Id"].ToString();
                 txtCode.Text = Data.Rows[0]["Code"].ToString();
                 txtReceipt.Text = Data.Rows[0]["Receipt"].ToString();
+                txtReference.Text = Data.Rows[0]["Reference"].ToString();
 
                 txtUnit.Text = Data.Rows[0]["Unit"].ToString() == "0.00" ? "" : decimal.Parse(Data.Rows[0]["Unit"].ToString()).ToString("G29");
 
@@ -1537,6 +1625,7 @@ namespace SANSANG
                 txtItem.Text = Data.Rows[0]["Item"].ToString();
                 txtDetails.Text = Data.Rows[0]["Detail"].ToString();
                 txtAmount.Text = Data.Rows[0]["Amount"].ToString();
+                txtPrice.Text = Data.Rows[0]["Prices"].ToString();
                 cbbStatus.SelectedValue = StatusId;
             }
             catch (Exception ex)
@@ -1672,6 +1761,123 @@ namespace SANSANG
         private void cbbUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
             cbbStatus.SelectedValue = 1000;
+        }
+
+        private void txtPrice_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                double num = Convert.ToDouble(string.IsNullOrEmpty(txtPrice.Text) ? "0" : txtPrice.Text);
+                txtPrice.Text = String.Format("{0:n}", num);
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }
+        }
+
+        private void txtPricekeyPress(object sender, KeyPressEventArgs e)
+        {
+            Event.AmountKeyPress(sender, e, txtPrice);
+        }
+
+        private void ShowTotalAmount(string Types, double Debit, double Credit, double DebitAll, double CreditAll, bool Calculate, bool DiscountIncluded)
+        {
+            double TotalReal = Math.Abs(((Calculate ? Debit : 0) - (DiscountIncluded ? CreditAll : Credit)) * (Calculate ? 1 : -1));
+            txtTotalReal.Text = string.Format("{0:#,##0.00}", TotalReal);
+            txtSumCredit.Text = string.Format("{0:#,##0.00}", DiscountIncluded ? CreditAll : Credit);
+            txtSumDebit.Text = string.Format("{0:#,##0.00}", Debit);
+
+            cb_Calculate.Checked = IsCalculate;
+            pb_Calculate_True.Visible = IsCalculate ? true : false;
+            pb_Calculate_False.Visible = IsCalculate ? false : true;
+
+            cb_Discount.Checked = IsDiscountIncluded;
+            pb_Discount_True.Visible = IsDiscountIncluded ? true : false;
+            pb_Discount_False.Visible = IsDiscountIncluded ? false : true;
+
+            lblBalance.Text = "รวมทั้งสิ้น";
+            txtPayStatus.Text = "";
+        }
+
+        private void btnSearchName_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Parameter = new string[,]
+                {
+                    {"@Id", ""},
+                    {"@Code", ""},
+                    {"@Status", "0"},
+                    {"@User", ""},
+                    {"@IsActive", "1"},
+                    {"@IsDelete", "0"},
+                    {"@Operation", Operation.SelectAbbr},
+                    {"@List", ""},
+                    {"@MoneyId", "0"},
+                    {"@CategoryId", "0"},
+                    {"@ItemId", "0"},
+                    {"@IsDebit", ""},
+                    {"@Item", txtItem.Text},
+                    {"@Detail", ""},
+                    {"@Amount", "0.00"},
+                    {"@Price", "0.00"},
+                    {"@UnitId", ""},
+                    {"@Unit", "0.00"},
+                    {"@Date", ""},
+                    {"@Receipt", ""},
+                    {"@Reference", ""},
+                };
+
+                db.Gets(Store.ManageExpense, Parameter, out Error, out ds);
+                ShowDataGridView(ds);
+
+                db.Gets(Store.FnGetBalanceSearch, Parameter, out Error, out ds);
+
+                if (string.IsNullOrEmpty(Error))
+                {
+                    Credit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumCredit"].ToString()));
+                    Debit = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumDebit"].ToString()));
+                    CreditAll = double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["AllCredit"].ToString()));
+                    CreditAll += Function.GetComboZero(cbbMoney) != "0" ? double.Parse(Convert.ToString(ds.Tables[2].Rows[0]["SumWallet"].ToString())) : 0;
+                    DebitAll = 0.00;
+                }
+                else
+                {
+                    Credit = 0.00;
+                    TotalCredit = 0.00;
+                    Debit = 0.00;
+                    CreditAll = 0.00;
+                    DebitAll = 0.00;
+                }
+
+                ShowTotalAmount(Types, Debit, Credit, DebitAll, CreditAll, IsCalculate, IsDiscountIncluded);
+
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }
+        }
+
+        private void btnCopyReference_Click(object sender, EventArgs e)
+        {
+            if (txtReference.Text != "")
+            {
+                try
+                {
+                    Clipboard.SetDataObject(txtReference.Text, true, 10, 100);
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+        }
+
+        private void btnTitleCase_Click(object sender, EventArgs e)
+        {
+            Converts.TitleCase(txtItem);
         }
     }
 }

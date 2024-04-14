@@ -191,7 +191,7 @@ namespace SANSANG
                         , "วันทำการ (วัน)", 50, true, mc, mc
                         , "ราคาซื้อ (บาท)", 100, true, mc, mr
                         , "ราคาขาย (บาท)", 100, true, mc, mr
-                        , "ทองคำ (กรัม)", 150, true, mc, mr
+                        , "ทองคำ (บาท)", 150, true, mc, mr
                         , "", 0, false, mc, mc
                         );
 
@@ -267,7 +267,7 @@ namespace SANSANG
                     cbbMonth.SelectedValue = dt.Rows[0]["WorkdayId"].ToString();
                     cbbMember.SelectedValue = dt.Rows[0]["MemberId"].ToString();
                     cbbAccount.SelectedValue = dt.Rows[0]["AccountId"].ToString();
-                    
+
                     txtWorkday.Text = dt.Rows[0]["WorkingDay"].ToString();
                     txtAmount.Text = dt.Rows[0]["AmountPerDay"].ToString();
 
@@ -299,13 +299,13 @@ namespace SANSANG
         {
             try
             {
-                ThaiBuddhistCalendar ThaiCalendar = new ThaiBuddhistCalendar();
-
                 DateTime Dates = dtDate.Value;
-                DateTime ThaiDate = new DateTime(ThaiCalendar.GetYear(Dates), ThaiCalendar.GetMonth(Dates), Dates.Day);
-                string Years = ThaiDate.ToString("yyyy");
-                string Months = ThaiDate.ToString("MM");
-                string Days = Dates.ToString("dd");
+
+                ThaiBuddhistCalendar th = new ThaiBuddhistCalendar();
+
+                string Years = th.GetYear(Dates).ToString();
+                string Months = th.GetMonth(Dates).ToString("D2");
+                string Days = th.GetDayOfMonth(Dates).ToString();
 
                 string Lists = string.Concat(Years, Months);
 
@@ -361,13 +361,12 @@ namespace SANSANG
         {
             try
             {
-                ThaiBuddhistCalendar ThaiCalendar = new ThaiBuddhistCalendar();
-
                 DateTime Dates = dtDate.Value;
-                DateTime ThaiDate = new DateTime(ThaiCalendar.GetYear(Dates), ThaiCalendar.GetMonth(Dates), Dates.Day);
-                string Years = ThaiDate.ToString("yyyy");
-                string Months = ThaiDate.ToString("MM");
-                string Days = Dates.ToString("dd");
+                ThaiBuddhistCalendar th = new ThaiBuddhistCalendar();
+
+                string Years = th.GetYear(Dates).ToString();
+                string Months = th.GetMonth(Dates).ToString("D2");
+                string Days = th.GetDayOfMonth(Dates).ToString();
 
                 string Lists = string.Concat(Years, Months);
 
@@ -498,18 +497,29 @@ namespace SANSANG
 
         private void SummaryGold(DataTable Data)
         {
-            double GoldTotal = 0;
-            double MoneyTotal = 0;
-
-            if (string.IsNullOrEmpty(Error) && Function.GetRows(Data) > 0)
+            try
             {
-                GoldTotal = Convert.ToDouble(Data.Rows[0]["GoldTotal"].ToString());
-                MoneyTotal = Convert.ToDouble(Data.Rows[0]["MoneyTotal"].ToString());
-            }
+                double GoldTotal = 0;
+                double MoneyTotal = 0;
+                double Numbers = 0;
+                double Inaccurate = 0;
 
-            txtSumMoney.Text = string.Format("{0:#,##0.00}", MoneyTotal);
-            var Number = (string.Format("{0:#,##0.0000}", GoldTotal));
-            txtSumGold.Text = Function.FillFromRight(Number, 8);
+                if (string.IsNullOrEmpty(Error) && Function.GetRows(Data) > 0)
+                {
+                    GoldTotal = Convert.ToDouble(Data.Rows[0]["GoldTotal"].ToString());
+                    MoneyTotal = Convert.ToDouble(Data.Rows[0]["MoneyTotal"].ToString());
+                    Numbers = Math.Round(GoldTotal, 4);
+                }
+                Inaccurate = Convert.ToDouble(Setting.GetInaccurate());
+                txtSumMoney.Text = string.Format("{0:#,##0.00}", Math.Ceiling(MoneyTotal) + Inaccurate);
+                var Number = (string.Format("{0:#,##0.0000}", Numbers));
+                txtSumGold.Text = Function.FillFromRight(Number, 4);
+            }
+            catch (Exception)
+            {
+                txtSumMoney.Text = "0";
+                txtSumGold.Text = "0";
+            }
         }
 
         public string GetDetails()

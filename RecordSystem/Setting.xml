@@ -1,22 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Setting>
-  <Language>en</Language>
-  <DateFormat>3</DateFormat>
-  <Installments>2</Installments>
-  <Account>1035</Account>
-  <Credit>5394-1111-7058-3767</Credit>
-  <CreditLimit>60000</CreditLimit>
-  <Outstanding>50691.92</Outstanding>
-  <Wallet>1085</Wallet>
-  <UrlAPIToken>https://trackwebhook.thailandpost.co.th/post/api/v1/authenticate/token</UrlAPIToken>
-  <UrlAPITrack>https://trackapi.thailandpost.co.th/post/api/v1/track</UrlAPITrack>
-  <TrackToken>Token T7PqLIQcLkRGD?HjVxNDU_FHAPEYN|E+IvMYS7XnR*V:ZvSeToNjYeZ+UMFESDKrH!N@W7KFFEN*YYKmSBNcKOWkF4HIA.RBGsIF</TrackToken>
-  <Path>db</Path>
-  <NextDisplay>True</NextDisplay>
-  <MenuPath>D:\SANSANG\PROJECTs\RSAs\App.Picture\Menu\</MenuPath>
-  <Database>dbRSA</Database>
-  <RoundPayment></RoundPayment>
-  <NumberPrint>4</NumberPrint>
-  <OperationDate></OperationDate>
-  <CreditDate></CreditDate>
+	<Language>en</Language>
+	<DateFormat>3</DateFormat>
+	<Installments>9</Installments>
+	<Account>1035</Account>
+	<Credit>5394-1111-7058-3767</Credit>
+	<CreditLimit>60000</CreditLimit>
+	<Outstanding>41958.10</Outstanding>
+	<Wallet>1141</Wallet>
+	<UrlAPIToken>https://trackwebhook.thailandpost.co.th/post/api/v1/authenticate/token</UrlAPIToken>
+	<UrlAPITrack>https://trackapi.thailandpost.co.th/post/api/v1/track</UrlAPITrack>
+	<TrackToken>Token T7PqLIQcLkRGD?HjVxNDU_FHAPEYN|E+IvMYS7XnR*V:ZvSeToNjYeZ+UMFESDKrH!N@W7KFFEN*YYKmSBNcKOWkF4HIA.RBGsIF</TrackToken>
+	<Path>db</Path>
+	<NextDisplay>True</NextDisplay>
+	<MenuPath>D:\SANSANG\PROJECTs\RSAs\App.Picture\Menu\</MenuPath>
+	<Database>dbRSA</Database>
+	<RoundPayment></RoundPayment>
+	<NumberPrint>4</NumberPrint>
+	<OperationDate></OperationDate>
+	<CreditDate></CreditDate>
+	<Inaccurate>1</Inaccurate>
 </Setting>

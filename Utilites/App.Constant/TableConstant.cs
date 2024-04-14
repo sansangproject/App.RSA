@@ -18,6 +18,7 @@ namespace SANSANG.Constant
         public string MembertId = "1053";
         public string UserId = "1035";
         public string GoldId = "1073";
+        public string WaterRatesId = "1071";
 
         public string ItemId = "1020";
         public string CategoryId = "1019";
@@ -42,6 +43,8 @@ namespace SANSANG.Constant
         public string Statments = "[dbo].[Statments]";
         public string User = "[mst].[User]";
         public string Golds = "[dbo].[Golds]";
+
+        public string WaterRates = "[mst].[WaterRates]";
 
         public string Amphoe = "[mst].[Amphoe]";
         public string Geography = "[mst].[Geography]";
@@ -89,7 +92,7 @@ namespace SANSANG.Constant
         public string TblMasterUser = "[dbo].[Tbl_Master_User]";
         public string TblMasterUserType = "[dbo].[Tbl_Master_User_Type]";
         public string TblMasterVillage = "[dbo].[Tbl_Master_Village]";
-        public string TblMasterWater = "[dbo].[Tbl_Master_Water]";
+       
         public string TblOrderDetail = "[dbo].[Tbl_Order_Detail]";
         public string TblOrderStatus = "[dbo].[Tbl_Order_Status]";
         public string TblRecieptDental = "[dbo].[Tbl_Reciept_Dental]";

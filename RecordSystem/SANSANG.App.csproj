@@ -607,23 +607,23 @@
     <Compile Include="App.Program\Application\Utility\FrmImageEditer.Designer.cs">
       <DependentUpon>FrmImageEditer.cs</DependentUpon>
     </Compile>
-    <Compile Include="App.Program\Application\Water\FrmMWAMA00.cs">
+    <Compile Include="App.Program\Application\Water\FrmWaterRates.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="App.Program\Application\Water\FrmMWAMA00.Designer.cs">
-      <DependentUpon>FrmMWAMA00.cs</DependentUpon>
+    <Compile Include="App.Program\Application\Water\FrmWaterRates.Designer.cs">
+      <DependentUpon>FrmWaterRates.cs</DependentUpon>
     </Compile>
-    <Compile Include="App.Program\Application\Water\FrmMWARE00.cs">
+    <Compile Include="App.Program\Application\Water\FrmWaterReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="App.Program\Application\Water\FrmMWARE00.Designer.cs">
-      <DependentUpon>FrmMWARE00.cs</DependentUpon>
+    <Compile Include="App.Program\Application\Water\FrmWaterReport.Designer.cs">
+      <DependentUpon>FrmWaterReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="App.Program\Application\Water\FrmMWASA00.cs">
+    <Compile Include="App.Program\Application\Water\FrmWaters.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="App.Program\Application\Water\FrmMWASA00.Designer.cs">
-      <DependentUpon>FrmMWASA00.cs</DependentUpon>
+    <Compile Include="App.Program\Application\Water\FrmWaters.Designer.cs">
+      <DependentUpon>FrmWaters.cs</DependentUpon>
     </Compile>
     <Compile Include="App.Program\Progress\FrmAnimatedProgress.cs">
       <SubType>Form</SubType>
@@ -824,14 +824,14 @@
     <EmbeddedResource Include="App.Program\Application\Utility\FrmImageEditer.resx">
       <DependentUpon>FrmImageEditer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="App.Program\Application\Water\FrmMWAMA00.resx">
-      <DependentUpon>FrmMWAMA00.cs</DependentUpon>
+    <EmbeddedResource Include="App.Program\Application\Water\FrmWaterRates.resx">
+      <DependentUpon>FrmWaterRates.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="App.Program\Application\Water\FrmMWARE00.resx">
-      <DependentUpon>FrmMWARE00.cs</DependentUpon>
+    <EmbeddedResource Include="App.Program\Application\Water\FrmWaterReport.resx">
+      <DependentUpon>FrmWaterReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="App.Program\Application\Water\FrmMWASA00.resx">
-      <DependentUpon>FrmMWASA00.cs</DependentUpon>
+    <EmbeddedResource Include="App.Program\Application\Water\FrmWaters.resx">
+      <DependentUpon>FrmWaters.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="App.Program\Progress\FrmAnimatedProgress.resx">
       <DependentUpon>FrmAnimatedProgress.cs</DependentUpon>
@@ -974,6 +974,8 @@
     <Content Include="App.Resources\RSABanner.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\SF_TrackRegisters.png" />
+    <None Include="Resources\SF_TrackRegisters1.png" />
     <Content Include="Setting.xml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

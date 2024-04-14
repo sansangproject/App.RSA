@@ -48,6 +48,7 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.pbBanner = new System.Windows.Forms.PictureBox();
             this.gbFrm = new System.Windows.Forms.GroupBox();
+            this.btnTitleCase = new System.Windows.Forms.Button();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.pnButton = new System.Windows.Forms.Panel();
             this.txtInstitution = new System.Windows.Forms.TextBox();
@@ -378,6 +379,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gbFrm.BackColor = System.Drawing.Color.White;
+            this.gbFrm.Controls.Add(this.btnTitleCase);
             this.gbFrm.Controls.Add(this.pictureBox);
             this.gbFrm.Controls.Add(this.pnButton);
             this.gbFrm.Controls.Add(this.txtInstitution);
@@ -469,6 +471,21 @@
             this.gbFrm.TabIndex = 102;
             this.gbFrm.TabStop = false;
             // 
+            // btnTitleCase
+            // 
+            this.btnTitleCase.BackColor = System.Drawing.Color.White;
+            this.btnTitleCase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTitleCase.ForeColor = System.Drawing.Color.Transparent;
+            this.btnTitleCase.Image = ((System.Drawing.Image)(resources.GetObject("btnTitleCase.Image")));
+            this.btnTitleCase.Location = new System.Drawing.Point(298, 306);
+            this.btnTitleCase.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnTitleCase.Name = "btnTitleCase";
+            this.btnTitleCase.Size = new System.Drawing.Size(21, 24);
+            this.btnTitleCase.TabIndex = 228;
+            this.btnTitleCase.TabStop = false;
+            this.btnTitleCase.UseVisualStyleBackColor = false;
+            this.btnTitleCase.Click += new System.EventHandler(this.btnTitleCase_Click);
+            // 
             // pictureBox
             // 
             this.pictureBox.Location = new System.Drawing.Point(600, 121);
@@ -509,7 +526,7 @@
             this.txtInstitution.Location = new System.Drawing.Point(99, 311);
             this.txtInstitution.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtInstitution.Name = "txtInstitution";
-            this.txtInstitution.Size = new System.Drawing.Size(236, 21);
+            this.txtInstitution.Size = new System.Drawing.Size(201, 21);
             this.txtInstitution.TabIndex = 0;
             this.txtInstitution.Visible = false;
             // 
@@ -1654,5 +1671,6 @@
         private System.Windows.Forms.Label lblHSearch;
         private System.Windows.Forms.Label lblCondition;
         private System.Windows.Forms.PictureBox pictureBox;
+        private System.Windows.Forms.Button btnTitleCase;
     }
 }

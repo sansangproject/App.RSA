@@ -12,7 +12,7 @@ using SANSANG.Utilites.App.Model;
 
 namespace SANSANG
 {
-    public partial class FrmMWASA00 : Form
+    public partial class FrmWaters : Form
     {
         public string strUserId;
         public string strUserName;
@@ -70,7 +70,7 @@ namespace SANSANG
         public string qrLine4;
         public string strQR;
 
-        public FrmMWASA00(string userIdLogin, string userNameLogin, string userSurNameLogin, string userTypeLogin)
+        public FrmWaters(string userIdLogin, string userNameLogin, string userSurNameLogin, string userTypeLogin)
         {
             InitializeComponent();
 

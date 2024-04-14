@@ -511,56 +511,6 @@ namespace SANSANG
             }
         }
 
-        private void cbbUser_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (Function.GetComboId(cbbUser) == "-1")
-                {
-                    txtUser.Text = "";
-                    txtPassword.Text = "";
-                    txtName.Text = "";
-                    txtSurname.Text = "";
-                    txtEmail.Text = "";
-                }
-                else
-                {
-                    txtUser.Text = "";
-                    txtPassword.Text = "";
-                    var UserCoed = cbbUser.Text.Split(new string[] { "(", ")" }, StringSplitOptions.RemoveEmptyEntries);
-
-                    Parameter = new string[,]
-                    {
-                        {"@Id", ""},
-                        {"@Code", UserCoed[0].TrimEnd()},
-                        {"@Name", UserCoed[1].TrimEnd()},
-                        {"@Surname", ""},
-                        {"@Password", ""},
-                        {"@Email", ""},
-                        {"@Type", ""},
-                        {"@Status", "0"},
-                        {"@Sex", ""},
-                        {"@User", ""},
-                        {"@IsActive", "1"},
-                        {"@IsDelete", "0"},
-                        {"@Operation", Operation.SelectAbbr},
-                    };
-
-                    db.Get(Store.ManageUser, Parameter, out Error, out dt);
-
-                    txtUser.Text = dt.Rows[0]["Code"].ToString();
-                    txtPassword.Text = Cryption.Decrypt(dt.Rows[0]["Password"].ToString());
-                    txtName.Text = dt.Rows[0]["Name"].ToString();
-                    txtSurname.Text = dt.Rows[0]["Surname"].ToString();
-                    txtEmail.Text = dt.Rows[0]["Email"].ToString();
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
-            }
-        }
-
         private string AddUser()
         {
             try

@@ -28,16 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmExpenses));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmExpenses));
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnTitleCase = new System.Windows.Forms.Button();
+            this.btnCopyReference = new System.Windows.Forms.Button();
+            this.pb_Receipt_False = new System.Windows.Forms.PictureBox();
+            this.pb_Reference_False = new System.Windows.Forms.PictureBox();
+            this.txtReference = new System.Windows.Forms.TextBox();
+            this.pb_Receipt_True = new System.Windows.Forms.PictureBox();
+            this.pb_Reference_True = new System.Windows.Forms.PictureBox();
+            this.pb_Calculate_True = new System.Windows.Forms.PictureBox();
+            this.pb_Calculate_False = new System.Windows.Forms.PictureBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.pb_Discount_True = new System.Windows.Forms.PictureBox();
+            this.pb_Discount_False = new System.Windows.Forms.PictureBox();
+            this.btnSearchName = new System.Windows.Forms.Button();
+            this.txtAmounts = new System.Windows.Forms.TextBox();
+            this.txtPrice = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.pbUnits = new System.Windows.Forms.PictureBox();
             this.txtSumWallet = new System.Windows.Forms.TextBox();
             this.btnCopy = new System.Windows.Forms.Button();
-            this.pb_Receipt_True = new System.Windows.Forms.PictureBox();
-            this.pb_Receipt_False = new System.Windows.Forms.PictureBox();
             this.btnCarry = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.pnButton = new System.Windows.Forms.Panel();
             this.btnSearch = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -84,8 +100,8 @@
             this.label39 = new System.Windows.Forms.Label();
             this.pb_Date_False = new System.Windows.Forms.PictureBox();
             this.pb_Date_True = new System.Windows.Forms.PictureBox();
-            this.pb_Paysub_False = new System.Windows.Forms.PictureBox();
-            this.pb_Paysub_True = new System.Windows.Forms.PictureBox();
+            this.pb_Item_False = new System.Windows.Forms.PictureBox();
+            this.pb_Item_True = new System.Windows.Forms.PictureBox();
             this.btnTaq = new System.Windows.Forms.Button();
             this.txtCode = new System.Windows.Forms.TextBox();
             this.btnNext = new System.Windows.Forms.Button();
@@ -124,21 +140,30 @@
             this.cbbItem = new System.Windows.Forms.ComboBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pbBanner = new System.Windows.Forms.PictureBox();
-            this.cb_Paysub = new System.Windows.Forms.CheckBox();
+            this.cb_Item = new System.Windows.Forms.CheckBox();
             this.cb_Date = new System.Windows.Forms.CheckBox();
             this.btnBrowse = new System.Windows.Forms.Button();
             this.txtId = new System.Windows.Forms.TextBox();
             this.cb_Receipt = new System.Windows.Forms.CheckBox();
             this.pbHide = new System.Windows.Forms.PictureBox();
-            this.pbUnits = new System.Windows.Forms.PictureBox();
+            this.cb_Discount = new System.Windows.Forms.CheckBox();
+            this.cb_Calculate = new System.Windows.Forms.CheckBox();
+            this.cb_Reference = new System.Windows.Forms.CheckBox();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_Receipt_True)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Receipt_False)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Reference_False)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Receipt_True)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Reference_True)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Calculate_True)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Calculate_False)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Discount_True)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Discount_False)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbUnits)).BeginInit();
             this.pnButton.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Date_False)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Date_True)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_Paysub_False)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_Paysub_True)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Item_False)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Item_True)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMoney)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCategorys)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbItems)).BeginInit();
@@ -151,7 +176,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBanner)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbHide)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbUnits)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox4
@@ -160,13 +184,28 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox4.BackColor = System.Drawing.Color.White;
+            this.groupBox4.Controls.Add(this.btnTitleCase);
+            this.groupBox4.Controls.Add(this.btnCopyReference);
+            this.groupBox4.Controls.Add(this.pb_Receipt_False);
+            this.groupBox4.Controls.Add(this.pb_Reference_False);
+            this.groupBox4.Controls.Add(this.txtReference);
+            this.groupBox4.Controls.Add(this.pb_Receipt_True);
+            this.groupBox4.Controls.Add(this.pb_Reference_True);
+            this.groupBox4.Controls.Add(this.pb_Calculate_True);
+            this.groupBox4.Controls.Add(this.pb_Calculate_False);
+            this.groupBox4.Controls.Add(this.label30);
+            this.groupBox4.Controls.Add(this.label29);
+            this.groupBox4.Controls.Add(this.pb_Discount_True);
+            this.groupBox4.Controls.Add(this.pb_Discount_False);
+            this.groupBox4.Controls.Add(this.btnSearchName);
+            this.groupBox4.Controls.Add(this.txtAmounts);
+            this.groupBox4.Controls.Add(this.txtPrice);
+            this.groupBox4.Controls.Add(this.label10);
+            this.groupBox4.Controls.Add(this.label11);
             this.groupBox4.Controls.Add(this.pbUnits);
             this.groupBox4.Controls.Add(this.txtSumWallet);
             this.groupBox4.Controls.Add(this.btnCopy);
-            this.groupBox4.Controls.Add(this.pb_Receipt_True);
-            this.groupBox4.Controls.Add(this.pb_Receipt_False);
             this.groupBox4.Controls.Add(this.btnCarry);
-            this.groupBox4.Controls.Add(this.button1);
             this.groupBox4.Controls.Add(this.pnButton);
             this.groupBox4.Controls.Add(this.btnPayment);
             this.groupBox4.Controls.Add(this.label43);
@@ -199,8 +238,8 @@
             this.groupBox4.Controls.Add(this.label39);
             this.groupBox4.Controls.Add(this.pb_Date_False);
             this.groupBox4.Controls.Add(this.pb_Date_True);
-            this.groupBox4.Controls.Add(this.pb_Paysub_False);
-            this.groupBox4.Controls.Add(this.pb_Paysub_True);
+            this.groupBox4.Controls.Add(this.pb_Item_False);
+            this.groupBox4.Controls.Add(this.pb_Item_True);
             this.groupBox4.Controls.Add(this.btnTaq);
             this.groupBox4.Controls.Add(this.txtCode);
             this.groupBox4.Controls.Add(this.btnNext);
@@ -235,24 +274,249 @@
             this.groupBox4.Controls.Add(this.cbbItem);
             this.groupBox4.Controls.Add(this.pictureBox2);
             this.groupBox4.Controls.Add(this.pbBanner);
-            this.groupBox4.Controls.Add(this.cb_Paysub);
+            this.groupBox4.Controls.Add(this.cb_Item);
             this.groupBox4.Controls.Add(this.cb_Date);
             this.groupBox4.Controls.Add(this.btnBrowse);
             this.groupBox4.Controls.Add(this.txtId);
             this.groupBox4.Controls.Add(this.cb_Receipt);
             this.groupBox4.Controls.Add(this.pbHide);
+            this.groupBox4.Controls.Add(this.cb_Discount);
+            this.groupBox4.Controls.Add(this.cb_Calculate);
+            this.groupBox4.Controls.Add(this.cb_Reference);
             this.groupBox4.Location = new System.Drawing.Point(-3, -12);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(1491, 814);
             this.groupBox4.TabIndex = 46;
             this.groupBox4.TabStop = false;
             // 
+            // btnTitleCase
+            // 
+            this.btnTitleCase.BackColor = System.Drawing.Color.White;
+            this.btnTitleCase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTitleCase.ForeColor = System.Drawing.Color.Transparent;
+            this.btnTitleCase.Image = ((System.Drawing.Image)(resources.GetObject("btnTitleCase.Image")));
+            this.btnTitleCase.Location = new System.Drawing.Point(935, 198);
+            this.btnTitleCase.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnTitleCase.Name = "btnTitleCase";
+            this.btnTitleCase.Size = new System.Drawing.Size(25, 24);
+            this.btnTitleCase.TabIndex = 253;
+            this.btnTitleCase.TabStop = false;
+            this.btnTitleCase.UseVisualStyleBackColor = false;
+            this.btnTitleCase.Click += new System.EventHandler(this.btnTitleCase_Click);
+            // 
+            // btnCopyReference
+            // 
+            this.btnCopyReference.BackColor = System.Drawing.Color.White;
+            this.btnCopyReference.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCopyReference.ForeColor = System.Drawing.Color.Transparent;
+            this.btnCopyReference.Image = ((System.Drawing.Image)(resources.GetObject("btnCopyReference.Image")));
+            this.btnCopyReference.Location = new System.Drawing.Point(907, 336);
+            this.btnCopyReference.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnCopyReference.Name = "btnCopyReference";
+            this.btnCopyReference.Size = new System.Drawing.Size(24, 26);
+            this.btnCopyReference.TabIndex = 252;
+            this.btnCopyReference.TabStop = false;
+            this.btnCopyReference.UseVisualStyleBackColor = false;
+            this.btnCopyReference.Click += new System.EventHandler(this.btnCopyReference_Click);
+            // 
+            // pb_Receipt_False
+            // 
+            this.pb_Receipt_False.Image = ((System.Drawing.Image)(resources.GetObject("pb_Receipt_False.Image")));
+            this.pb_Receipt_False.Location = new System.Drawing.Point(472, 340);
+            this.pb_Receipt_False.Name = "pb_Receipt_False";
+            this.pb_Receipt_False.Size = new System.Drawing.Size(23, 21);
+            this.pb_Receipt_False.TabIndex = 226;
+            this.pb_Receipt_False.TabStop = false;
+            this.pb_Receipt_False.Visible = false;
+            this.pb_Receipt_False.Click += new System.EventHandler(this.Ticker);
+            // 
+            // pb_Reference_False
+            // 
+            this.pb_Reference_False.Image = ((System.Drawing.Image)(resources.GetObject("pb_Reference_False.Image")));
+            this.pb_Reference_False.Location = new System.Drawing.Point(709, 340);
+            this.pb_Reference_False.Name = "pb_Reference_False";
+            this.pb_Reference_False.Size = new System.Drawing.Size(23, 21);
+            this.pb_Reference_False.TabIndex = 228;
+            this.pb_Reference_False.TabStop = false;
+            this.pb_Reference_False.Visible = false;
+            this.pb_Reference_False.Click += new System.EventHandler(this.Ticker);
+            // 
+            // txtReference
+            // 
+            this.txtReference.BackColor = System.Drawing.Color.White;
+            this.txtReference.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtReference.Font = new System.Drawing.Font("Mitr Light", 10F);
+            this.txtReference.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtReference.Location = new System.Drawing.Point(743, 340);
+            this.txtReference.Name = "txtReference";
+            this.txtReference.Size = new System.Drawing.Size(168, 21);
+            this.txtReference.TabIndex = 250;
+            // 
+            // pb_Receipt_True
+            // 
+            this.pb_Receipt_True.Image = ((System.Drawing.Image)(resources.GetObject("pb_Receipt_True.Image")));
+            this.pb_Receipt_True.Location = new System.Drawing.Point(472, 340);
+            this.pb_Receipt_True.Name = "pb_Receipt_True";
+            this.pb_Receipt_True.Size = new System.Drawing.Size(23, 21);
+            this.pb_Receipt_True.TabIndex = 227;
+            this.pb_Receipt_True.TabStop = false;
+            this.pb_Receipt_True.Click += new System.EventHandler(this.Ticker);
+            // 
+            // pb_Reference_True
+            // 
+            this.pb_Reference_True.Image = ((System.Drawing.Image)(resources.GetObject("pb_Reference_True.Image")));
+            this.pb_Reference_True.Location = new System.Drawing.Point(709, 340);
+            this.pb_Reference_True.Name = "pb_Reference_True";
+            this.pb_Reference_True.Size = new System.Drawing.Size(23, 21);
+            this.pb_Reference_True.TabIndex = 229;
+            this.pb_Reference_True.TabStop = false;
+            this.pb_Reference_True.Click += new System.EventHandler(this.Ticker);
+            // 
+            // pb_Calculate_True
+            // 
+            this.pb_Calculate_True.Image = ((System.Drawing.Image)(resources.GetObject("pb_Calculate_True.Image")));
+            this.pb_Calculate_True.Location = new System.Drawing.Point(1362, 321);
+            this.pb_Calculate_True.Name = "pb_Calculate_True";
+            this.pb_Calculate_True.Size = new System.Drawing.Size(23, 21);
+            this.pb_Calculate_True.TabIndex = 247;
+            this.pb_Calculate_True.TabStop = false;
+            this.pb_Calculate_True.Click += new System.EventHandler(this.Ticker);
+            // 
+            // pb_Calculate_False
+            // 
+            this.pb_Calculate_False.Image = ((System.Drawing.Image)(resources.GetObject("pb_Calculate_False.Image")));
+            this.pb_Calculate_False.Location = new System.Drawing.Point(1362, 321);
+            this.pb_Calculate_False.Name = "pb_Calculate_False";
+            this.pb_Calculate_False.Size = new System.Drawing.Size(23, 21);
+            this.pb_Calculate_False.TabIndex = 248;
+            this.pb_Calculate_False.TabStop = false;
+            this.pb_Calculate_False.Visible = false;
+            this.pb_Calculate_False.Click += new System.EventHandler(this.Ticker);
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.BackColor = System.Drawing.Color.Transparent;
+            this.label30.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.label30.ForeColor = System.Drawing.Color.Silver;
+            this.label30.Location = new System.Drawing.Point(1391, 324);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(57, 18);
+            this.label30.TabIndex = 246;
+            this.label30.Text = "Calculate";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.BackColor = System.Drawing.Color.Transparent;
+            this.label29.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.label29.ForeColor = System.Drawing.Color.Silver;
+            this.label29.Location = new System.Drawing.Point(1391, 346);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(55, 18);
+            this.label29.TabIndex = 245;
+            this.label29.Text = "Discount";
+            // 
+            // pb_Discount_True
+            // 
+            this.pb_Discount_True.Image = ((System.Drawing.Image)(resources.GetObject("pb_Discount_True.Image")));
+            this.pb_Discount_True.Location = new System.Drawing.Point(1362, 348);
+            this.pb_Discount_True.Name = "pb_Discount_True";
+            this.pb_Discount_True.Size = new System.Drawing.Size(23, 21);
+            this.pb_Discount_True.TabIndex = 242;
+            this.pb_Discount_True.TabStop = false;
+            this.pb_Discount_True.Click += new System.EventHandler(this.Ticker);
+            // 
+            // pb_Discount_False
+            // 
+            this.pb_Discount_False.Image = ((System.Drawing.Image)(resources.GetObject("pb_Discount_False.Image")));
+            this.pb_Discount_False.Location = new System.Drawing.Point(1362, 348);
+            this.pb_Discount_False.Name = "pb_Discount_False";
+            this.pb_Discount_False.Size = new System.Drawing.Size(23, 21);
+            this.pb_Discount_False.TabIndex = 243;
+            this.pb_Discount_False.TabStop = false;
+            this.pb_Discount_False.Visible = false;
+            this.pb_Discount_False.Click += new System.EventHandler(this.Ticker);
+            // 
+            // btnSearchName
+            // 
+            this.btnSearchName.BackColor = System.Drawing.Color.Transparent;
+            this.btnSearchName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearchName.ForeColor = System.Drawing.Color.Transparent;
+            this.btnSearchName.Image = ((System.Drawing.Image)(resources.GetObject("btnSearchName.Image")));
+            this.btnSearchName.Location = new System.Drawing.Point(468, 196);
+            this.btnSearchName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnSearchName.Name = "btnSearchName";
+            this.btnSearchName.Size = new System.Drawing.Size(24, 23);
+            this.btnSearchName.TabIndex = 241;
+            this.btnSearchName.TabStop = false;
+            this.btnSearchName.UseVisualStyleBackColor = false;
+            this.btnSearchName.Click += new System.EventHandler(this.btnSearchName_Click);
+            // 
+            // txtAmounts
+            // 
+            this.txtAmounts.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtAmounts.Font = new System.Drawing.Font("Mitr Light", 10F);
+            this.txtAmounts.ForeColor = System.Drawing.Color.IndianRed;
+            this.txtAmounts.Location = new System.Drawing.Point(939, 170);
+            this.txtAmounts.Name = "txtAmounts";
+            this.txtAmounts.Size = new System.Drawing.Size(292, 21);
+            this.txtAmounts.TabIndex = 240;
+            this.txtAmounts.Text = "ศูนย์บาทถ้วน";
+            this.txtAmounts.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txtPrice
+            // 
+            this.txtPrice.BackColor = System.Drawing.Color.White;
+            this.txtPrice.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtPrice.Font = new System.Drawing.Font("Mitr Light", 10F);
+            this.txtPrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtPrice.Location = new System.Drawing.Point(504, 269);
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.Size = new System.Drawing.Size(187, 21);
+            this.txtPrice.TabIndex = 238;
+            this.txtPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPricekeyPress);
+            this.txtPrice.Leave += new System.EventHandler(this.txtPrice_Leave);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.Transparent;
+            this.label10.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.label10.Location = new System.Drawing.Point(423, 278);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(37, 18);
+            this.label10.TabIndex = 237;
+            this.label10.Text = "Price:";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.label11.ForeColor = System.Drawing.Color.Gray;
+            this.label11.Location = new System.Drawing.Point(424, 261);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(36, 20);
+            this.label11.TabIndex = 236;
+            this.label11.Text = "ราคา";
+            // 
+            // pbUnits
+            // 
+            this.pbUnits.Image = ((System.Drawing.Image)(resources.GetObject("pbUnits.Image")));
+            this.pbUnits.Location = new System.Drawing.Point(698, 307);
+            this.pbUnits.Name = "pbUnits";
+            this.pbUnits.Size = new System.Drawing.Size(22, 22);
+            this.pbUnits.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbUnits.TabIndex = 235;
+            this.pbUnits.TabStop = false;
+            // 
             // txtSumWallet
             // 
             this.txtSumWallet.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtSumWallet.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.txtSumWallet.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtSumWallet.Location = new System.Drawing.Point(1004, 305);
+            this.txtSumWallet.Location = new System.Drawing.Point(1075, 305);
             this.txtSumWallet.Name = "txtSumWallet";
             this.txtSumWallet.Size = new System.Drawing.Size(75, 21);
             this.txtSumWallet.TabIndex = 112;
@@ -265,7 +529,7 @@
             this.btnCopy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCopy.ForeColor = System.Drawing.Color.Transparent;
             this.btnCopy.Image = ((System.Drawing.Image)(resources.GetObject("btnCopy.Image")));
-            this.btnCopy.Location = new System.Drawing.Point(673, 335);
+            this.btnCopy.Location = new System.Drawing.Point(668, 335);
             this.btnCopy.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCopy.Name = "btnCopy";
             this.btnCopy.Size = new System.Drawing.Size(24, 26);
@@ -274,55 +538,19 @@
             this.btnCopy.UseVisualStyleBackColor = false;
             this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
             // 
-            // pb_Receipt_True
-            // 
-            this.pb_Receipt_True.Image = ((System.Drawing.Image)(resources.GetObject("pb_Receipt_True.Image")));
-            this.pb_Receipt_True.Location = new System.Drawing.Point(469, 341);
-            this.pb_Receipt_True.Name = "pb_Receipt_True";
-            this.pb_Receipt_True.Size = new System.Drawing.Size(23, 21);
-            this.pb_Receipt_True.TabIndex = 227;
-            this.pb_Receipt_True.TabStop = false;
-            this.pb_Receipt_True.Click += new System.EventHandler(this.Ticker);
-            // 
-            // pb_Receipt_False
-            // 
-            this.pb_Receipt_False.Image = ((System.Drawing.Image)(resources.GetObject("pb_Receipt_False.Image")));
-            this.pb_Receipt_False.Location = new System.Drawing.Point(469, 341);
-            this.pb_Receipt_False.Name = "pb_Receipt_False";
-            this.pb_Receipt_False.Size = new System.Drawing.Size(23, 21);
-            this.pb_Receipt_False.TabIndex = 226;
-            this.pb_Receipt_False.TabStop = false;
-            this.pb_Receipt_False.Visible = false;
-            this.pb_Receipt_False.Click += new System.EventHandler(this.Ticker);
-            // 
             // btnCarry
             // 
             this.btnCarry.BackColor = System.Drawing.Color.Transparent;
             this.btnCarry.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCarry.ForeColor = System.Drawing.Color.White;
             this.btnCarry.Image = ((System.Drawing.Image)(resources.GetObject("btnCarry.Image")));
-            this.btnCarry.Location = new System.Drawing.Point(1162, 265);
+            this.btnCarry.Location = new System.Drawing.Point(1233, 265);
             this.btnCarry.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCarry.Name = "btnCarry";
             this.btnCarry.Size = new System.Drawing.Size(32, 29);
             this.btnCarry.TabIndex = 91;
             this.btnCarry.UseVisualStyleBackColor = false;
             this.btnCarry.Click += new System.EventHandler(this.btnSend_Click);
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.Color.Transparent;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(700, 333);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(28, 32);
-            this.button1.TabIndex = 224;
-            this.button1.TabStop = false;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.btnSearchReceipt_Click);
             // 
             // pnButton
             // 
@@ -568,7 +796,7 @@
             this.label43.BackColor = System.Drawing.Color.Transparent;
             this.label43.Font = new System.Drawing.Font("Mitr Light", 8F);
             this.label43.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label43.Location = new System.Drawing.Point(427, 247);
+            this.label43.Location = new System.Drawing.Point(427, 315);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(33, 18);
             this.label43.TabIndex = 129;
@@ -579,7 +807,7 @@
             this.label44.AutoSize = true;
             this.label44.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.label44.ForeColor = System.Drawing.Color.Gray;
-            this.label44.Location = new System.Drawing.Point(414, 230);
+            this.label44.Location = new System.Drawing.Point(414, 298);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(46, 20);
             this.label44.TabIndex = 128;
@@ -590,7 +818,7 @@
             this.txtUnit.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtUnit.Font = new System.Drawing.Font("Mitr Light", 10F);
             this.txtUnit.ForeColor = System.Drawing.Color.DimGray;
-            this.txtUnit.Location = new System.Drawing.Point(507, 233);
+            this.txtUnit.Location = new System.Drawing.Point(507, 304);
             this.txtUnit.Name = "txtUnit";
             this.txtUnit.Size = new System.Drawing.Size(44, 21);
             this.txtUnit.TabIndex = 127;
@@ -603,9 +831,9 @@
             this.cbbUnit.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.cbbUnit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbbUnit.FormattingEnabled = true;
-            this.cbbUnit.Location = new System.Drawing.Point(562, 229);
+            this.cbbUnit.Location = new System.Drawing.Point(564, 300);
             this.cbbUnit.Name = "cbbUnit";
-            this.cbbUnit.Size = new System.Drawing.Size(115, 28);
+            this.cbbUnit.Size = new System.Drawing.Size(129, 28);
             this.cbbUnit.TabIndex = 126;
             this.cbbUnit.SelectedIndexChanged += new System.EventHandler(this.cbbUnit_SelectedIndexChanged);
             // 
@@ -615,7 +843,7 @@
             this.label41.BackColor = System.Drawing.Color.Transparent;
             this.label41.Font = new System.Drawing.Font("Mitr Light", 8F);
             this.label41.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label41.Location = new System.Drawing.Point(410, 209);
+            this.label41.Location = new System.Drawing.Point(410, 208);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(50, 18);
             this.label41.TabIndex = 125;
@@ -626,7 +854,7 @@
             this.label42.AutoSize = true;
             this.label42.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.label42.ForeColor = System.Drawing.Color.Gray;
-            this.label42.Location = new System.Drawing.Point(409, 192);
+            this.label42.Location = new System.Drawing.Point(409, 191);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(51, 20);
             this.label42.TabIndex = 124;
@@ -638,7 +866,7 @@
             this.label34.BackColor = System.Drawing.Color.Transparent;
             this.label34.Font = new System.Drawing.Font("Mitr Light", 8F);
             this.label34.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label34.Location = new System.Drawing.Point(419, 282);
+            this.label34.Location = new System.Drawing.Point(419, 245);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(41, 18);
             this.label34.TabIndex = 123;
@@ -649,7 +877,7 @@
             this.label35.AutoSize = true;
             this.label35.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.label35.ForeColor = System.Drawing.Color.Gray;
-            this.label35.Location = new System.Drawing.Point(391, 265);
+            this.label35.Location = new System.Drawing.Point(391, 229);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(69, 20);
             this.label35.TabIndex = 122;
@@ -684,7 +912,7 @@
             this.label36.BackColor = System.Drawing.Color.Transparent;
             this.label36.Font = new System.Drawing.Font("Mitr Light", 8F);
             this.label36.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label36.Location = new System.Drawing.Point(913, 349);
+            this.label36.Location = new System.Drawing.Point(987, 349);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(45, 18);
             this.label36.TabIndex = 119;
@@ -695,7 +923,7 @@
             this.label37.AutoSize = true;
             this.label37.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.label37.ForeColor = System.Drawing.Color.Gray;
-            this.label37.Location = new System.Drawing.Point(915, 332);
+            this.label37.Location = new System.Drawing.Point(989, 332);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(43, 20);
             this.label37.TabIndex = 118;
@@ -742,7 +970,7 @@
             this.btnPre.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnPre.ForeColor = System.Drawing.Color.Transparent;
             this.btnPre.Image = ((System.Drawing.Image)(resources.GetObject("btnPre.Image")));
-            this.btnPre.Location = new System.Drawing.Point(1202, 335);
+            this.btnPre.Location = new System.Drawing.Point(1273, 335);
             this.btnPre.Name = "btnPre";
             this.btnPre.Size = new System.Drawing.Size(30, 30);
             this.btnPre.TabIndex = 51;
@@ -756,10 +984,9 @@
             this.txtDetails.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtDetails.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.txtDetails.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtDetails.Location = new System.Drawing.Point(504, 267);
-            this.txtDetails.Multiline = true;
+            this.txtDetails.Location = new System.Drawing.Point(507, 234);
             this.txtDetails.Name = "txtDetails";
-            this.txtDetails.Size = new System.Drawing.Size(356, 60);
+            this.txtDetails.Size = new System.Drawing.Size(420, 21);
             this.txtDetails.TabIndex = 3;
             // 
             // txtItem
@@ -770,7 +997,7 @@
             this.txtItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtItem.Location = new System.Drawing.Point(507, 198);
             this.txtItem.Name = "txtItem";
-            this.txtItem.Size = new System.Drawing.Size(353, 21);
+            this.txtItem.Size = new System.Drawing.Size(420, 21);
             this.txtItem.TabIndex = 107;
             this.txtItem.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtItem_KeyPress);
             // 
@@ -780,7 +1007,7 @@
             this.label28.BackColor = System.Drawing.Color.Transparent;
             this.label28.Font = new System.Drawing.Font("Mitr Light", 8F);
             this.label28.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label28.Location = new System.Drawing.Point(904, 314);
+            this.label28.Location = new System.Drawing.Point(978, 314);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(54, 18);
             this.label28.TabIndex = 106;
@@ -792,7 +1019,7 @@
             this.label27.BackColor = System.Drawing.Color.Transparent;
             this.label27.Font = new System.Drawing.Font("Mitr Light", 8F);
             this.label27.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label27.Location = new System.Drawing.Point(905, 280);
+            this.label27.Location = new System.Drawing.Point(979, 280);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(53, 18);
             this.label27.TabIndex = 105;
@@ -804,7 +1031,7 @@
             this.label26.BackColor = System.Drawing.Color.Transparent;
             this.label26.Font = new System.Drawing.Font("Mitr Light", 8F);
             this.label26.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label26.Location = new System.Drawing.Point(896, 243);
+            this.label26.Location = new System.Drawing.Point(970, 243);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(62, 18);
             this.label26.TabIndex = 104;
@@ -816,7 +1043,7 @@
             this.label19.BackColor = System.Drawing.Color.Transparent;
             this.label19.Font = new System.Drawing.Font("Mitr Light", 8F);
             this.label19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label19.Location = new System.Drawing.Point(910, 208);
+            this.label19.Location = new System.Drawing.Point(984, 208);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(48, 18);
             this.label19.TabIndex = 103;
@@ -915,33 +1142,33 @@
             this.pb_Date_True.TabStop = false;
             this.pb_Date_True.Click += new System.EventHandler(this.Ticker);
             // 
-            // pb_Paysub_False
+            // pb_Item_False
             // 
-            this.pb_Paysub_False.Image = ((System.Drawing.Image)(resources.GetObject("pb_Paysub_False.Image")));
-            this.pb_Paysub_False.Location = new System.Drawing.Point(153, 235);
-            this.pb_Paysub_False.Name = "pb_Paysub_False";
-            this.pb_Paysub_False.Size = new System.Drawing.Size(19, 19);
-            this.pb_Paysub_False.TabIndex = 93;
-            this.pb_Paysub_False.TabStop = false;
-            this.pb_Paysub_False.Visible = false;
-            this.pb_Paysub_False.Click += new System.EventHandler(this.Ticker);
+            this.pb_Item_False.Image = ((System.Drawing.Image)(resources.GetObject("pb_Item_False.Image")));
+            this.pb_Item_False.Location = new System.Drawing.Point(153, 235);
+            this.pb_Item_False.Name = "pb_Item_False";
+            this.pb_Item_False.Size = new System.Drawing.Size(19, 19);
+            this.pb_Item_False.TabIndex = 93;
+            this.pb_Item_False.TabStop = false;
+            this.pb_Item_False.Visible = false;
+            this.pb_Item_False.Click += new System.EventHandler(this.Ticker);
             // 
-            // pb_Paysub_True
+            // pb_Item_True
             // 
-            this.pb_Paysub_True.Image = ((System.Drawing.Image)(resources.GetObject("pb_Paysub_True.Image")));
-            this.pb_Paysub_True.Location = new System.Drawing.Point(153, 235);
-            this.pb_Paysub_True.Name = "pb_Paysub_True";
-            this.pb_Paysub_True.Size = new System.Drawing.Size(19, 19);
-            this.pb_Paysub_True.TabIndex = 94;
-            this.pb_Paysub_True.TabStop = false;
-            this.pb_Paysub_True.Click += new System.EventHandler(this.Ticker);
+            this.pb_Item_True.Image = ((System.Drawing.Image)(resources.GetObject("pb_Item_True.Image")));
+            this.pb_Item_True.Location = new System.Drawing.Point(153, 235);
+            this.pb_Item_True.Name = "pb_Item_True";
+            this.pb_Item_True.Size = new System.Drawing.Size(19, 19);
+            this.pb_Item_True.TabIndex = 94;
+            this.pb_Item_True.TabStop = false;
+            this.pb_Item_True.Click += new System.EventHandler(this.Ticker);
             // 
             // btnTaq
             // 
             this.btnTaq.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTaq.ForeColor = System.Drawing.Color.Transparent;
             this.btnTaq.Image = ((System.Drawing.Image)(resources.GetObject("btnTaq.Image")));
-            this.btnTaq.Location = new System.Drawing.Point(646, 162);
+            this.btnTaq.Location = new System.Drawing.Point(663, 162);
             this.btnTaq.Name = "btnTaq";
             this.btnTaq.Size = new System.Drawing.Size(28, 23);
             this.btnTaq.TabIndex = 91;
@@ -956,9 +1183,8 @@
             this.txtCode.ForeColor = System.Drawing.Color.DimGray;
             this.txtCode.Location = new System.Drawing.Point(507, 163);
             this.txtCode.Name = "txtCode";
-            this.txtCode.Size = new System.Drawing.Size(143, 21);
+            this.txtCode.Size = new System.Drawing.Size(150, 21);
             this.txtCode.TabIndex = 5;
-            this.txtCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCode_KeyPress);
             // 
             // btnNext
             // 
@@ -967,7 +1193,7 @@
             this.btnNext.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnNext.ForeColor = System.Drawing.Color.Transparent;
             this.btnNext.Image = ((System.Drawing.Image)(resources.GetObject("btnNext.Image")));
-            this.btnNext.Location = new System.Drawing.Point(1234, 335);
+            this.btnNext.Location = new System.Drawing.Point(1305, 335);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(30, 30);
             this.btnNext.TabIndex = 51;
@@ -979,7 +1205,7 @@
             // 
             this.txtSumBank.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtSumBank.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.txtSumBank.Location = new System.Drawing.Point(1068, 305);
+            this.txtSumBank.Location = new System.Drawing.Point(1139, 305);
             this.txtSumBank.Name = "txtSumBank";
             this.txtSumBank.Size = new System.Drawing.Size(87, 21);
             this.txtSumBank.TabIndex = 1;
@@ -994,7 +1220,7 @@
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.label13.ForeColor = System.Drawing.Color.Gray;
-            this.label13.Location = new System.Drawing.Point(921, 297);
+            this.label13.Location = new System.Drawing.Point(995, 297);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(37, 20);
             this.label13.TabIndex = 1;
@@ -1005,7 +1231,7 @@
             this.txtTotal.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtTotal.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.txtTotal.ForeColor = System.Drawing.Color.Navy;
-            this.txtTotal.Location = new System.Drawing.Point(1004, 269);
+            this.txtTotal.Location = new System.Drawing.Point(1075, 269);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.Size = new System.Drawing.Size(152, 21);
             this.txtTotal.TabIndex = 1;
@@ -1019,7 +1245,7 @@
             this.txtSumDebit.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtSumDebit.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.txtSumDebit.ForeColor = System.Drawing.Color.Teal;
-            this.txtSumDebit.Location = new System.Drawing.Point(1004, 199);
+            this.txtSumDebit.Location = new System.Drawing.Point(1075, 199);
             this.txtSumDebit.Name = "txtSumDebit";
             this.txtSumDebit.Size = new System.Drawing.Size(152, 21);
             this.txtSumDebit.TabIndex = 1;
@@ -1033,7 +1259,7 @@
             this.txtSumCredit.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtSumCredit.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.txtSumCredit.ForeColor = System.Drawing.Color.Red;
-            this.txtSumCredit.Location = new System.Drawing.Point(1004, 234);
+            this.txtSumCredit.Location = new System.Drawing.Point(1075, 234);
             this.txtSumCredit.Name = "txtSumCredit";
             this.txtSumCredit.Size = new System.Drawing.Size(152, 21);
             this.txtSumCredit.TabIndex = 1;
@@ -1047,7 +1273,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.label8.ForeColor = System.Drawing.Color.Gray;
-            this.label8.Location = new System.Drawing.Point(906, 263);
+            this.label8.Location = new System.Drawing.Point(980, 263);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(52, 20);
             this.label8.TabIndex = 1;
@@ -1058,7 +1284,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Mitr Light", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label7.Location = new System.Drawing.Point(924, 226);
+            this.label7.Location = new System.Drawing.Point(998, 226);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(34, 23);
             this.label7.TabIndex = 1;
@@ -1069,7 +1295,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Mitr Light", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label5.Location = new System.Drawing.Point(931, 191);
+            this.label5.Location = new System.Drawing.Point(1005, 191);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(27, 23);
             this.label5.TabIndex = 1;
@@ -1081,7 +1307,7 @@
             this.txtPayStatus.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtPayStatus.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.txtPayStatus.ForeColor = System.Drawing.Color.DarkOrange;
-            this.txtPayStatus.Location = new System.Drawing.Point(1007, 340);
+            this.txtPayStatus.Location = new System.Drawing.Point(1078, 340);
             this.txtPayStatus.Name = "txtPayStatus";
             this.txtPayStatus.Size = new System.Drawing.Size(188, 21);
             this.txtPayStatus.TabIndex = 13;
@@ -1103,7 +1329,7 @@
             this.lblBalance.AutoSize = true;
             this.lblBalance.Font = new System.Drawing.Font("Mitr Light", 8F);
             this.lblBalance.ForeColor = System.Drawing.Color.DimGray;
-            this.lblBalance.Location = new System.Drawing.Point(1095, 126);
+            this.lblBalance.Location = new System.Drawing.Point(1172, 126);
             this.lblBalance.Name = "lblBalance";
             this.lblBalance.Size = new System.Drawing.Size(61, 18);
             this.lblBalance.TabIndex = 1;
@@ -1129,7 +1355,7 @@
             this.txtTotalReal.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtTotalReal.Font = new System.Drawing.Font("Mitr", 28F);
             this.txtTotalReal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.txtTotalReal.Location = new System.Drawing.Point(864, 130);
+            this.txtTotalReal.Location = new System.Drawing.Point(939, 126);
             this.txtTotalReal.Name = "txtTotalReal";
             this.txtTotalReal.Size = new System.Drawing.Size(294, 59);
             this.txtTotalReal.TabIndex = 1;
@@ -1312,8 +1538,8 @@
             // txtAmount
             // 
             this.txtAmount.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtAmount.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.txtAmount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.txtAmount.Font = new System.Drawing.Font("Mitr", 10F);
+            this.txtAmount.ForeColor = System.Drawing.Color.Black;
             this.txtAmount.Location = new System.Drawing.Point(187, 305);
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Size = new System.Drawing.Size(177, 21);
@@ -1349,7 +1575,7 @@
             this.btnSeach.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSeach.ForeColor = System.Drawing.Color.Transparent;
             this.btnSeach.Image = ((System.Drawing.Image)(resources.GetObject("btnSeach.Image")));
-            this.btnSeach.Location = new System.Drawing.Point(366, 161);
+            this.btnSeach.Location = new System.Drawing.Point(468, 161);
             this.btnSeach.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSeach.Name = "btnSeach";
             this.btnSeach.Size = new System.Drawing.Size(24, 23);
@@ -1371,7 +1597,7 @@
             this.dtExpense.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtExpense.Location = new System.Drawing.Point(187, 159);
             this.dtExpense.Name = "dtExpense";
-            this.dtExpense.Size = new System.Drawing.Size(175, 28);
+            this.dtExpense.Size = new System.Drawing.Size(177, 28);
             this.dtExpense.TabIndex = 5;
             this.dtExpense.TabStop = false;
             // 
@@ -1454,15 +1680,15 @@
             this.pbBanner.TabIndex = 52;
             this.pbBanner.TabStop = false;
             // 
-            // cb_Paysub
+            // cb_Item
             // 
-            this.cb_Paysub.AutoSize = true;
-            this.cb_Paysub.ForeColor = System.Drawing.Color.Green;
-            this.cb_Paysub.Location = new System.Drawing.Point(571, 130);
-            this.cb_Paysub.Name = "cb_Paysub";
-            this.cb_Paysub.Size = new System.Drawing.Size(15, 14);
-            this.cb_Paysub.TabIndex = 50;
-            this.cb_Paysub.UseVisualStyleBackColor = true;
+            this.cb_Item.AutoSize = true;
+            this.cb_Item.ForeColor = System.Drawing.Color.Green;
+            this.cb_Item.Location = new System.Drawing.Point(571, 130);
+            this.cb_Item.Name = "cb_Item";
+            this.cb_Item.Size = new System.Drawing.Size(15, 14);
+            this.cb_Item.TabIndex = 50;
+            this.cb_Item.UseVisualStyleBackColor = true;
             // 
             // cb_Date
             // 
@@ -1516,15 +1742,32 @@
             this.pbHide.TabStop = false;
             this.pbHide.Visible = false;
             // 
-            // pbUnits
+            // cb_Discount
             // 
-            this.pbUnits.Image = ((System.Drawing.Image)(resources.GetObject("pbUnits.Image")));
-            this.pbUnits.Location = new System.Drawing.Point(683, 237);
-            this.pbUnits.Name = "pbUnits";
-            this.pbUnits.Size = new System.Drawing.Size(22, 22);
-            this.pbUnits.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbUnits.TabIndex = 235;
-            this.pbUnits.TabStop = false;
+            this.cb_Discount.AutoSize = true;
+            this.cb_Discount.Location = new System.Drawing.Point(1195, 244);
+            this.cb_Discount.Name = "cb_Discount";
+            this.cb_Discount.Size = new System.Drawing.Size(15, 14);
+            this.cb_Discount.TabIndex = 244;
+            this.cb_Discount.UseVisualStyleBackColor = true;
+            // 
+            // cb_Calculate
+            // 
+            this.cb_Calculate.AutoSize = true;
+            this.cb_Calculate.Location = new System.Drawing.Point(1255, 205);
+            this.cb_Calculate.Name = "cb_Calculate";
+            this.cb_Calculate.Size = new System.Drawing.Size(15, 14);
+            this.cb_Calculate.TabIndex = 249;
+            this.cb_Calculate.UseVisualStyleBackColor = true;
+            // 
+            // cb_Reference
+            // 
+            this.cb_Reference.AutoSize = true;
+            this.cb_Reference.Location = new System.Drawing.Point(912, 130);
+            this.cb_Reference.Name = "cb_Reference";
+            this.cb_Reference.Size = new System.Drawing.Size(15, 14);
+            this.cb_Reference.TabIndex = 251;
+            this.cb_Reference.UseVisualStyleBackColor = true;
             // 
             // FrmExpenses
             // 
@@ -1546,14 +1789,21 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmKeyDown);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_Receipt_True)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Receipt_False)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Reference_False)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Receipt_True)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Reference_True)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Calculate_True)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Calculate_False)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Discount_True)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Discount_False)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbUnits)).EndInit();
             this.pnButton.ResumeLayout(false);
             this.pnButton.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Date_False)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Date_True)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_Paysub_False)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_Paysub_True)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Item_False)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Item_True)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMoney)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCategorys)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbItems)).EndInit();
@@ -1566,7 +1816,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBanner)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbHide)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbUnits)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1606,7 +1855,7 @@
         private System.Windows.Forms.ComboBox cbbStatus;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.CheckBox cb_Date;
-        private System.Windows.Forms.CheckBox cb_Paysub;
+        private System.Windows.Forms.CheckBox cb_Item;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtSumBank;
         private System.Windows.Forms.TextBox txtPayStatus;
@@ -1634,7 +1883,7 @@
         private System.Windows.Forms.Button btnTaq;
         private System.Windows.Forms.PictureBox pb_Date_False;
         private System.Windows.Forms.PictureBox pb_Date_True;
-        private System.Windows.Forms.PictureBox pb_Paysub_True;
+        private System.Windows.Forms.PictureBox pb_Item_True;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label26;
@@ -1664,14 +1913,32 @@
         private System.Windows.Forms.ComboBox cbbUnit;
         private System.Windows.Forms.Button btnPayment;
         private System.Windows.Forms.Panel pnButton;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.PictureBox pbHide;
         private System.Windows.Forms.Button btnCarry;
         private System.Windows.Forms.PictureBox pb_Receipt_True;
         private System.Windows.Forms.PictureBox pb_Receipt_False;
-        private System.Windows.Forms.PictureBox pb_Paysub_False;
+        private System.Windows.Forms.PictureBox pb_Item_False;
         private System.Windows.Forms.CheckBox cb_Receipt;
         private System.Windows.Forms.Button btnCopy;
         private System.Windows.Forms.PictureBox pbUnits;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox txtPrice;
+        private System.Windows.Forms.TextBox txtAmounts;
+        private System.Windows.Forms.Button btnSearchName;
+        private System.Windows.Forms.PictureBox pb_Discount_False;
+        private System.Windows.Forms.PictureBox pb_Discount_True;
+        private System.Windows.Forms.CheckBox cb_Discount;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.PictureBox pb_Calculate_True;
+        private System.Windows.Forms.PictureBox pb_Calculate_False;
+        private System.Windows.Forms.CheckBox cb_Calculate;
+        private System.Windows.Forms.TextBox txtReference;
+        private System.Windows.Forms.PictureBox pb_Reference_False;
+        private System.Windows.Forms.PictureBox pb_Reference_True;
+        private System.Windows.Forms.CheckBox cb_Reference;
+        private System.Windows.Forms.Button btnCopyReference;
+        private System.Windows.Forms.Button btnTitleCase;
     }
 }

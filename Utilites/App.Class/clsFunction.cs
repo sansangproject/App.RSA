@@ -203,9 +203,21 @@ namespace SANSANG.Class
                 };
 
                 db.Get(Store.ManageItem, Parameter, out Error, out dt);
-                Details = dt.Rows[0]["Display"].ToString();
-                Items = "รายการเดินบัญชี";
-                return Convert.ToBoolean(dt.Rows[0]["IsDebit"].ToString());
+
+                if (string.IsNullOrEmpty(Error))
+                {
+                    int Category = Convert.ToInt16(dt.Rows[0]["CategoryId"].ToString());
+                    Details = Category != 1070? dt.Rows[0]["Display"].ToString() 
+                                              : dt.Rows[0]["NameEn"].ToString() + " | " + dt.Rows[0]["Name"].ToString();
+                    Items = "รายการเดินบัญชี";
+                    return Convert.ToBoolean(dt.Rows[0]["IsDebit"].ToString());
+                }
+                else
+                {
+                    Details = "";
+                    Items = "รายการเดินบัญชี";
+                    return false;
+                }
             }
             catch (Exception)
             {
@@ -295,7 +307,7 @@ namespace SANSANG.Class
 
                 if (Payments == "1070")
                 {
-                    NameEn = Codes == "โอนเงิน" ? "Transfer Withdrawal" : "";
+                    NameEn = Codes == "โอนเงิน" ? "Transfer Withdrawal" : Codes == "ถอนเงิน" ? "Withdrawal" : "";
                 }
 
                 Parameter = new string[,]
@@ -316,6 +328,52 @@ namespace SANSANG.Class
                 };
 
                 db.Get(Store.ManageItem, Parameter, out Error, out dt);
+
+                PaymentId = dt.Rows[0]["Id"].ToString();
+                Items = dt.Rows[0]["NameEn"].ToString();
+                Details = dt.Rows[0]["Detail"].ToString();
+                Displays = dt.Rows[0]["NameEn"].ToString() + " | " + dt.Rows[0]["Name"].ToString();
+                IsWithdrawal = Convert.ToBoolean(dt.Rows[0]["IsDebit"].ToString()) ? false : true;
+            }
+            catch (Exception)
+            {
+                PaymentId = "";
+                Items = "";
+                Details = "";
+                Displays = "";
+                IsWithdrawal = false;
+            }
+        }
+
+        public void GetItemId(string Codes, string Payments, out string PaymentId, out string Items, out string Details, out string Displays, out bool IsWithdrawal)
+        {
+            try
+            {
+                string NameEn = "";
+
+                if (Payments == "1070")
+                {
+                    NameEn = Codes == "โอนเงิน" ? "Transfer Withdrawal" : "";
+                }
+
+                Parameter = new string[,]
+                {
+                    {"@Id", ""},
+                    {"@Code", ""},
+                    {"@Status", "0"},
+                    {"@User", ""},
+                    {"@IsActive", ""},
+                    {"@IsDelete", ""},
+                    {"@Operation", "S"},
+                    {"@Name", Codes},
+                    {"@NameEn", NameEn},
+                    {"@Display", ""},
+                    {"@Detail", ""},
+                    {"@CategoryId", Payments},
+                    {"@IsDebit", ""},
+                };
+
+                db.Get(Store.FnGetItemId, Parameter, out Error, out dt);
 
                 PaymentId = dt.Rows[0]["Id"].ToString();
                 Items = dt.Rows[0]["NameEn"].ToString();
@@ -459,7 +517,7 @@ namespace SANSANG.Class
                     if (Detail != "")
                     {
                         Message.MessageConfirmation("N", "", Detail);
-                        var Popup = new FrmMessagesBoxOK(Message.strOperation, Message.strMes, "OK", Id: Message.strImage);
+                        var Popup = new FrmMessagesBoxOK(Message.strOperation.Trim(), Message.strMes, "OK", Id: Message.strImage);
                         Popup.ShowDialog();
                     }
                     return true;

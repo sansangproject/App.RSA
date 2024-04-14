@@ -25,7 +25,7 @@ namespace SANSANG.Class
 
             LocalReport LocalReport = new LocalReport();
             LocalReport.ReportPath = Path + Report;
-
+            LocalReport.DisplayName = "12354";
             LocalReport.EnableExternalImages = true;
 
             LocalReport.DataSources.Clear();
