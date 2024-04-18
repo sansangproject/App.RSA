@@ -15,6 +15,7 @@ using SANSANG.Utilites.App.Global;
 using SANSANG.Utilites.App.Model;
 using SANSANG.Database;
 using SANSANG.Utilites.App.Forms;
+using System.ComponentModel;
 
 namespace SANSANG.Class
 {
@@ -2459,37 +2460,23 @@ namespace SANSANG.Class
             }
         }
 
-        public void getWaterData(string qrCode)
+        public void GetWaterData(string qrCode, int NumberOfPayment)
         {
             clsConvert Converts = new clsConvert();
             string[] lines = qrCode.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
             int Units = Convert.ToInt32(lines[2].Substring(8, 7));
 
-            WaterModel wm = new WaterModel();
+            WaterModel Waters = new WaterModel();
             GlobalVar.WaterDataList.Clear();
 
-            wm.Amount = Converts.StringToDouble(lines[3]);
-            wm.PayDate = ConvertToDate(lines[2].Substring(0, 6), Fm.DDMMYY);
+            Waters.Amount = Converts.StringToDouble(lines[3]);
+            Waters.PayDate = ConvertToDate(lines[2].Substring(0, 6), Fm.DDMMYY);
+            Waters.InvoiceDate = Waters.PayDate.AddDays(NumberOfPayment);
+            Waters.ReadDate = Waters.PayDate.AddDays(NumberOfPayment);
 
-            int intDay = Convert.ToInt32(wm.PayDate.Day);
-            int intMonth = Convert.ToInt32(wm.PayDate.Month);
-            int intYear = Convert.ToInt32(lines[2].Substring(4, 2));
-
-            string strReadDateNext = "12" + String.Format("{0:D2}", intMonth - 1) + String.Format("{0:D2}", intYear);
-            string strReadDateCurrent = "12" + String.Format("{0:D2}", intMonth) + String.Format("{0:D2}", intYear);
-
-            if (intDay > 15)
-            {
-                wm.ReadDate = ConvertToDate(strReadDateCurrent, Fm.DDMMYY);
-            }
-            else
-            {
-                wm.ReadDate = ConvertToDate(strReadDateNext, Fm.DDMMYY);
-            }
-
-            wm.ReceiptId = lines[1].Substring(11, 6) + "-" + lines[1].Substring(17, 1);
-            wm.Unit = Units > 100 ? Units / 10 : Units;
-            GlobalVar.WaterDataList.Add(wm);
+            Waters.ReceiptId = lines[1].Substring(11, 6) + "-" + lines[1].Substring(17, 1);
+            Waters.Unit = Units > 100 ? Units / 10 : Units;
+            GlobalVar.WaterDataList.Add(Waters);
         }
 
         public void getElectricData(string qrCode)

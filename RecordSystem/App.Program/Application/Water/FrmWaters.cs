@@ -2,67 +2,73 @@
 using System.Data;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
+using System.Web;
+using System.Windows.Controls.Primitives;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
+using Microsoft.VisualBasic.ApplicationServices;
 using SANSANG.Class;
 using SANSANG.Constant;
 using SANSANG.Database;
 using SANSANG.Utilites.App.Forms;
 using SANSANG.Utilites.App.Global;
 using SANSANG.Utilites.App.Model;
+using Telerik.WinControls.VirtualKeyboard;
 
 namespace SANSANG
 {
     public partial class FrmWaters : Form
     {
-        public string strUserId;
-        public string strUserName;
-        public string strUserSurname;
-        public string strUserType;
+        public string UserId;
+        public string UserName;
+        public string UserSurname;
+        public string UserType;
 
-        public string strAppCode = "MWASA00";
-        public string strAppName = "FrmMWASA00";
-        public string strErr = "";
-        public string strLaguage = "TH";
-        public string strOpe = "";
+        public string AppCode = "MWASA00";
+        public string AppName = "FrmWaters";
+        public string Error = "";
+        public string Laguage;
 
-        public string Green = "IMG600218805-6";
-        public string Red = "IMG600218806-7";
-        public string YellowC = "IMG600218807-8";
-
-        public string strPath = "SPA591012026-3";
-        public string fileName = "-";
-        public string fileType = ".jpg";
-        public string strImageCode = "";
-
-        public int EnterNumber = 0;
-        public int Character = 0;
-        public int CountEnter = 0;
-        public bool Selected = false;
-
-        public int dtBefore = 0;
-        public int dtOverdue = 0;
-
-        private StoreConstant Store = new StoreConstant();
         private DataTable dt = new DataTable();
-        private DataTable dts = new DataTable();
-        private DataTable dtBill = new DataTable();
-        private clsFunction Fn = new clsFunction();
-        private clsInsert Insert = new clsInsert();
+        private DataSet ds = new DataSet();
+
+        private clsDate Date = new clsDate();
         private clsDelete Delete = new clsDelete();
         private clsEdit Edit = new clsEdit();
+        private clsImage Images = new clsImage();
+        private clsInsert Insert = new clsInsert();
+        private clsFunction Function = new clsFunction();
+        private clsSetting Setting = new clsSetting();
         private clsMessage Message = new clsMessage();
+        private clsBarcode Barcode = new clsBarcode();
         private dbConnection db = new dbConnection();
         private clsDataList List = new clsDataList();
+        private clsHelpper Helper = new clsHelpper();
+        private DataListConstant DataList = new DataListConstant();
         private clsLog Log = new clsLog();
-        private clsDate Date = new clsDate();
-        private clsBarcode Barcode = new clsBarcode();
-        private TableConstant Tb = new TableConstant();
-        private CultureConstant Cul = new CultureConstant();
-        private CharacterConstant CharType = new CharacterConstant();
-        private Timer timer = new Timer();
+        private clsEvent Event = new clsEvent();
+        private TableConstant Table = new TableConstant();
+        private StoreConstant Store = new StoreConstant();
+        private FrmAnimatedProgress Loading = new FrmAnimatedProgress(20);
+        private OperationConstant Operation = new OperationConstant();
+        CharacterConstant CharType = new CharacterConstant();
+        private Timer Timer = new Timer();
+        CultureConstant Cul = new CultureConstant();
+
         public string[,] Parameter = new string[,] { };
+        public bool IsStart = true;
+        public string Account = "0";
+        public int Rows = 0;
+        public int CountRows = 0;
+        public int Numbers = 0;
         public bool NewData = true;
         public string strBarcode = "";
+        public string strInvoice = "";
+        public string WaterRates = "0";
+        public int AccountId = 0;
+        public int CountEnter = 0;
+        public int NumberOfPayment = -7;
 
         public string qrHeader;
         public string qrLine2;
@@ -70,195 +76,164 @@ namespace SANSANG
         public string qrLine4;
         public string strQR;
 
-        public FrmWaters(string userIdLogin, string userNameLogin, string userSurNameLogin, string userTypeLogin)
+        public FrmWaters(string UserIdLogin, string UserNameLogin, string UserSurNameLogin, string UserTypeLogin)
         {
             InitializeComponent();
-
-            strUserId = userIdLogin;
-            strUserName = userNameLogin;
-            strUserSurname = userSurNameLogin;
-            strUserType = userTypeLogin;
+            UserId = UserIdLogin;
+            UserName = UserNameLogin;
+            UserSurname = UserSurNameLogin;
+            UserType = UserTypeLogin;
         }
 
         private void FrmLoad(object sender, EventArgs e)
         {
-            int sec = 2;
-            timer.Interval = (sec * 1000);
-            timer.Tick += new EventHandler(LoadList);
-            timer.Start();
+            Loading.Show();
+            Timer.Interval = (2000);
+            Timer.Tick += new EventHandler(LoadList);
+            Timer.Start();
         }
 
         private void LoadList(object sender, EventArgs e)
         {
-            List.GetList(cbbUser, "Address", "Water");
-            List.GetList(cbbVersion, "Version", "Water");
-            List.GetList(cbbStatus, "1", "Status");
-            List.GetList(cbbPayment, "Y", "Money");
+            IsStart = true;
+
+            List.GetList(cbbAccount, DataList.WaterAccount);
+            List.GetLists(cbbWaterRates, string.Format(DataList.WaterRatesId, "0"));
+            List.GetLists(cbbStatus, string.Format(DataList.StatusId, "1"));
+            List.GetLists(cbbPayment, DataList.MoneyId);
 
             List.GetMonthList(cbbMonth);
             List.GetYearList(cbbYear);
 
             Clear();
-            timer.Stop();
+            Timer.Stop();
         }
 
-        public void GetDataGrid(DataTable dt)
+        public void ShowGridView(DataTable dt)
         {
             try
             {
-                if (Fn.GetRows(dt) == 0)
-                {
-                    dataGridView.DataSource = null;
-                    picExcel.Visible = false;
-                    txtNumberNow.Focus();
-                    txtCount.Text = Fn.ShowNumberOfData(0);
-                    NewData = true;
-                }
-                else
-                {
-                    DataTable dtGrid = new DataTable();
-                    dtGrid = dt.DefaultView.ToTable(true, "InvoiceNumber", "Dates", "Unit", "Amount", "StatusNameTh", "Code");
+                GridView.DataSource = null;
+                DataTable dtGrid = new DataTable();
+                dtGrid = dt.DefaultView.ToTable(true, "SNo", "InvoiceNumber", "Dates", "Unit", "Pay", "StatusName", "DueDate", "Id");
 
-                    DataGridViewContentAlignment mc = DataGridViewContentAlignment.MiddleCenter;
-                    DataGridViewContentAlignment ml = DataGridViewContentAlignment.MiddleLeft;
-                    DataGridViewContentAlignment mr = DataGridViewContentAlignment.MiddleRight;
+                DataGridViewContentAlignment mc = DataGridViewContentAlignment.MiddleCenter;
+                DataGridViewContentAlignment ml = DataGridViewContentAlignment.MiddleLeft;
+                DataGridViewContentAlignment mr = DataGridViewContentAlignment.MiddleRight;
 
-                    Fn.showGridViewFormatFromStore(dtGrid, dataGridView
-                            , "ลำดับ", 30, true, mc, mc
-                            , "เลขที่ใบแจ้ง", 70, true, ml, ml
-                            , "ประจำเดือน", 80, true, ml, ml
-                            , "จำนวนหน่วย", 50, true, mc, mc
-                            , "จำนวนเงิน (บาท)", 100, true, mc, mr
-                            , "สถานะ", 150, true, mc, mc
-                            , "", 0, false, mc, mc
-                        );
+                Function.showGridViewFormatFromStore(dtGrid, GridView
+                        , "ลำดับ", 30, true, mc, mc
+                        , "เลขที่ใบแจ้ง", 100, true, mc, mc
+                        , "ประจำเดือน", 100, true, mc, ml
+                        , "จำนวนหน่วย", 50, true, mr, mr
+                        , "จำนวนเงิน (บาท)", 100, true, mr, mr
+                        , "สถานะ", 100, true, mc, mc
+                        , "กำหนดชำระ", 100, true, mc, ml
+                        , "", 0, false, mc, mc
+                    );
 
-                    NewData = false;
-                    picExcel.Visible = true;
-                    txtCount.Text = Fn.ShowNumberOfData(dt.Rows.Count);
-                }
+                GridView.Focus();
+                txtCount.Text = Function.ShowNumberOfData(Function.GetRows(dt));
             }
             catch (Exception ex)
             {
-                Log.WriteLogData(strAppCode, strAppName, strUserId, ex.Message);
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
             }
         }
 
-        private void btnExit_Click(object sender, EventArgs e)
+        private void Exit(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
+        private void Search(object sender, EventArgs e)
         {
-            SearchData(true);
+            SearchData(true,out Numbers, "");
         }
 
-        public void Scan()
+        private void AddData(object sender, EventArgs e)
         {
             try
             {
-                string[,] Parameter = new string[,]
+                if (!string.IsNullOrEmpty(txtInvoiceNumber.Text) && Function.getComboBoxValue(cbbStatus) != "0" && !string.IsNullOrEmpty(txtMoneyPay.Text) && dtTime.Value.ToString("HH:mm:ss") != "00:00:00")
                 {
-                    {"@RcptWaterId", ""},
-                    {"@MsWaterCode", ""},
-                    {"@RcptWaterCode", txtCode.Text},
-                    {"@RcptWaterNumber", txtInvoiceNumber.Text},
-                    {"@RcptWaterDateBill", ""},
-                    {"@RcptWaterTime", ""},
-                    {"@RcptWaterMonth", ""},
-                    {"@RcptWaterYear", ""},
-                    {"@RcptWaterDateBefore", ""},
-                    {"@RcptWaterNumeralBefore", ""},
-                    {"@RcptWaterUnit", ""},
-                    {"@RcptWaterStatus", ""},
-                    {"@RcptWaterMoneyTotal", ""},
-                    {"@RcptWaterPayDate", ""},
-                    {"@RcptWaterDate", ""},
-                    {"@RcptWaterNumeral", ""},
-                    {"@RcptWaterPayment", ""},
-                };
+                    if (!Function.IsDuplicates(Table.Waters, Function.getComboBoxValue(cbbMonth), Function.getComboBoxValue(cbbYear), Detail: GetDetails()))
+                    {
+                        txtCode.Text = Function.GetCodes(Table.WatersId, "", "Generated");
+                        pbQrcode.Image = Barcode.QRCode(txtCode.Text, Color.Black, Color.White, "Q", 3, false);
+                        strQR = qrHeader + "\r\n" + qrLine2 + "\r\n" + qrLine3 + "\r\n" + qrLine4 + "\r\n";
 
-                db.Get("Spr_S_TblRecieptWater", Parameter, out strErr, out dt);
-                GetDataGrid(dt);
+                        Parameter = new string[,]
+                        {
+                            {"@Id", ""},
+                            {"@Code", txtCode.Text},
+                            {"@User", UserId},
+                            {"@IsActive", "1"},
+                            {"@IsDelete", "0"},
+                            {"@Operation", Operation.InsertAbbr},
+                            {"@AccountId", Function.getComboBoxValue(cbbAccount)},
+                            {"@WaterRatesId", Function.getComboBoxValue(cbbWaterRates)},
+                            {"@InvoiceNumber", txtInvoiceNumber.Text},
+                            {"@InvoiceDate", Date.GetDate(dtp : dtDate, Format : 4)},
+                            {"@DateBill", Date.GetDate(dtp : dtDateNow, Format : 4)},
+                            {"@DateBefore", Date.GetDate(dtp : dtDateBefor, Format : 4)},
+                            {"@Numeral", Function.MoveNumberStringComma(txtNumberNow.Text)},
+                            {"@NumeralBefore", Function.MoveNumberStringComma(txtNumberBefor.Text)},
+                            {"@Time", string.Format("{0:00}:{1:00}:{2:00}", dtTime.Value.Hour, dtTime.Value.Minute, dtTime.Value.Second)},
+                            {"@InvoiceMonth", Function.getComboBoxValue(cbbMonth)},
+                            {"@InvoiceYear", Function.getComboBoxValue(cbbYear)},
+                            {"@Unit", Function.MoveNumberStringComma(txtUnit.Text)},
+                            {"@Raw", Function.MoveNumberStringComma(txtDipMoney.Text)},
+                            {"@Money",  Function.MoveNumberStringComma(txtMoneyWater.Text)},
+                            {"@Total", Function.MoveNumberStringComma(txtMoney.Text)},
+                            {"@Vat", Function.MoveNumberStringComma(txtMoneyVat.Text)},
+                            {"@Pay", Function.MoveNumberStringComma(txtMoneyAll.Text)},
+                            {"@PayAll", Function.MoveNumberStringComma(txtMoneyPay.Text)},
+                            {"@PaymentId", Function.getComboBoxValue(cbbPayment)},
+                            {"@Discount", Function.MoveNumberStringComma(txtDiscount.Text)},
+                            {"@PayDate", Date.GetDate(dtp : dtPay, Format : 4)},
+                            {"@PaymentDate", Date.GetDate(dtp : dtDatePayment, Format : 4)},
+                            {"@Status", Function.getComboBoxValue(cbbStatus)},
+                            {"@Barcode", strBarcode},
+                            {"@Remark", txtRemark.Text},
+                        };
+
+                        if (Insert.Add(AppCode, AppName, UserId, Store.ManageWaters, Parameter, txtCode.Text, Details: GetDetails()))
+                        {
+                            Clear();
+                        }
+                    }
+                }
+                else
+                {
+                    Message.ShowRequestData();
+                }
             }
             catch (Exception ex)
             {
-                Log.WriteLogData(strAppCode, strAppName, strUserId, ex.Message);
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
             }
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            if (txtInvoiceNumber.Text != "" && Fn.getComboBoxValue(cbbStatus) != "0")
-            {
-                if (!Fn.IsDuplicates("InvoiceWater", Fn.getComboBoxValue(cbbMonth), Fn.getComboBoxValue(cbbYear), Detail: "Invoice " + cbbMonth.SelectedValue + "/" + cbbYear.SelectedValue))
-                {
-                    txtCode.Text = txtCode.Text = Fn.GetCodes("110", "", "Generated");
-                    pbQrcode.Image = Barcode.QRCode(txtCode.Text, Color.Black, Color.White, "Q", 3, false);
-                    strQR = qrHeader + "\r\n" + qrLine2 + "\r\n" + qrLine3 + "\r\n" + qrLine4 + "\r\n";
-
-                    Parameter = new string[,]
-                    {
-                        {"@Id", ""},
-                        {"@Code", txtCode.Text},
-                        {"@User", strUserId},
-                        {"@UserCode", Fn.getComboBoxValue(cbbUser)},
-                        {"@Version", Fn.getComboBoxValue(cbbVersion)},
-                        {"@InvoiceNumber", txtInvoiceNumber.Text},
-                        {"@InvoiceDate", Date.GetDate(dtp : dtDate, Format : 4)},
-                        {"@DateBill", Date.GetDate(dtp : dtDateNow, Format : 4)},
-                        {"@DateBefore", Date.GetDate(dtp : dtDateBefor, Format : 4)},
-                        {"@Numeral", Fn.MoveNumberStringComma(txtNumberNow.Text)},
-                        {"@NumeralBefore", Fn.MoveNumberStringComma(txtNumberBefor.Text)},
-                        {"@Time", string.Format("{0:00}:{1:00}:{2:00}", dtTime.Value.Hour, dtTime.Value.Minute, dtTime.Value.Second)},
-                        {"@InvoiceMonth", Fn.getComboBoxValue(cbbMonth)},
-                        {"@InvoiceYear", Fn.getComboBoxValue(cbbYear)},
-                        {"@Unit", Fn.MoveNumberStringComma(txtUnit.Text)},
-                        {"@Raw", Fn.MoveNumberStringComma(txtDipMoney.Text)},
-                        {"@Money", Fn.MoveNumberStringComma(txtMoneyWater.Text)},
-                        {"@Total", Fn.MoveNumberStringComma(txtMoney.Text)},
-                        {"@Vat", Fn.MoveNumberStringComma(txtMoneyVat.Text)},
-                        {"@Pay", Fn.MoveNumberStringComma(txtMoneyAll.Text)},
-                        {"@PayAll", Fn.MoveNumberStringComma(txtMoneyPay.Text)},
-                        {"@Payment", Fn.getComboBoxValue(cbbPayment)},
-                        {"@Discount", Fn.MoveNumberStringComma(txtDiscount.Text)},
-                        {"@PayDate", Date.GetDate(dtp : dtPay, Format : 4)},
-                        {"@PaymentDate", Date.GetDate(dtp : dtDatePayment, Format : 4)},
-                        {"@Status", Fn.getComboBoxValue(cbbStatus)},
-                        {"@Barcode", strBarcode},
-                        {"@Remark", ""},
-                    };
-
-                    if (Insert.Add(strAppCode, strAppName, strUserId, "Store.InsertInvoiceWater", Parameter, txtCode.Text, "ใบแจ้งค่าน้ำ " + cbbMonth.Text + " " + cbbYear.Text))
-                    {
-                        Clear();
-                    }
-                }
-            }
-            else
-            {
-                Message.ShowRequestData();
-            }
-        }
-
-        private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void GridViewClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
                 if (e.RowIndex >= 0)
                 {
-                    Selected = true;
-                    DataGridViewRow row = this.dataGridView.Rows[e.RowIndex];
-                    DataTable dt = new DataTable();
+                    DataGridViewRow row = GridView.Rows[e.RowIndex];
 
                     Parameter = new string[,]
                     {
-                        {"@Id", ""},
-                        {"@Code", row.Cells["Code"].Value.ToString()},
+                        {"@Id", row.Cells["Id"].Value.ToString()},
+                        {"@Code", ""},
+                        {"@Status", "0"},
                         {"@User", ""},
-                        {"@UserCode", "0"},
-                        {"@Version", "0"},
+                        {"@IsActive", ""},
+                        {"@IsDelete", ""},
+                        {"@Operation", Operation.SelectAbbr},
+                        {"@AccountId", "0"},
+                        {"@WaterRatesId", "0"},
                         {"@InvoiceNumber", ""},
                         {"@InvoiceDate", ""},
                         {"@DateBill", ""},
@@ -266,138 +241,152 @@ namespace SANSANG
                         {"@Numeral", ""},
                         {"@NumeralBefore", ""},
                         {"@Time", ""},
-                        {"@InvoiceMonth", "0"},
-                        {"@InvoiceYear", "0"},
+                        {"@InvoiceMonth", ""},
+                        {"@InvoiceYear", ""},
                         {"@Unit", ""},
                         {"@Raw", ""},
                         {"@Money", ""},
                         {"@Total", ""},
-                        {"@Vat",  ""},
+                        {"@Vat", ""},
                         {"@Pay", ""},
                         {"@PayAll", ""},
-                        {"@Payment", "0"},
+                        {"@PaymentId", "0"},
                         {"@Discount", ""},
                         {"@PayDate", ""},
                         {"@PaymentDate", ""},
-                        {"@Status", "0"},
                         {"@Barcode", ""},
                         {"@Remark", ""},
                     };
 
-                    db.Get("Store.SelectInvoiceWater", Parameter, out strErr, out dt);
+                    db.Get(Store.ManageWaters, Parameter, out Error, out dt);
                     ShowData(dt);
-                    GetBill("Overdue");
+                    GetBill(Operation.Overdue);
                 }
             }
             catch (Exception ex)
             {
-                Log.WriteLogData(strAppCode, strAppName, strUserId, ex.Message);
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
             }
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        private void EditData(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtCode.Text))
+            try
             {
-                Parameter = new string[,]
+                if (txtId.Text != "")
                 {
-                    {"@Id", ""},
-                    {"@Code", txtCode.Text},
-                    {"@User", strUserId},
-                    {"@UserCode", Fn.getComboBoxValue(cbbUser)},
-                    {"@Version", Fn.getComboBoxValue(cbbVersion)},
-                    {"@InvoiceNumber", txtInvoiceNumber.Text},
-                    {"@InvoiceDate", Date.GetDate(dtp : dtDate, Format : 4)},
-                    {"@DateBill", Date.GetDate(dtp : dtDateNow, Format : 4)},
-                    {"@DateBefore", Date.GetDate(dtp : dtDateBefor, Format : 4)},
-                    {"@Numeral", Fn.MoveNumberStringComma(txtNumberNow.Text)},
-                    {"@NumeralBefore", Fn.MoveNumberStringComma(txtNumberBefor.Text)},
-                    {"@Time", string.Format("{0:00}:{1:00}:{2:00}", dtTime.Value.Hour, dtTime.Value.Minute, dtTime.Value.Second)},
-                    {"@InvoiceMonth", Fn.getComboBoxValue(cbbMonth)},
-                    {"@InvoiceYear", Fn.getComboBoxValue(cbbYear)},
-                    {"@Unit", Fn.MoveNumberStringComma(txtUnit.Text)},
-                    {"@Raw", Fn.MoveNumberStringComma(txtDipMoney.Text)},
-                    {"@Money", Fn.MoveNumberStringComma(txtMoneyWater.Text)},
-                    {"@Total", Fn.MoveNumberStringComma(txtMoney.Text)},
-                    {"@Vat", Fn.MoveNumberStringComma(txtMoneyVat.Text)},
-                    {"@Pay", Fn.MoveNumberStringComma(txtMoneyAll.Text)},
-                    {"@PayAll", Fn.MoveNumberStringComma(txtMoneyPay.Text)},
-                    {"@Payment", Fn.getComboBoxValue(cbbPayment)},
-                    {"@Discount", Fn.MoveNumberStringComma(txtDiscount.Text)},
-                    {"@PayDate", Date.GetDate(dtp : dtPay, Format : 4)},
-                    {"@PaymentDate", Date.GetDate(dtp : dtDatePayment, Format : 4)},
-                    {"@Status", Fn.getComboBoxValue(cbbStatus)},
-                    {"@Barcode", strBarcode},
-                    {"@Remark", ""},
-                };
+                    Parameter = new string[,]
+                    {
+                        {"@Id", txtId.Text},
+                        {"@Code", txtCode.Text},
+                        {"@User", UserId},
+                        {"@IsActive", "1"},
+                        {"@IsDelete", "0"},
+                        {"@Operation", Operation.UpdateAbbr},
+                        {"@AccountId", Function.getComboBoxValue(cbbAccount)},
+                        {"@WaterRatesId", Function.getComboBoxValue(cbbWaterRates)},
+                        {"@InvoiceNumber", txtInvoiceNumber.Text},
+                        {"@InvoiceDate", Date.GetDate(dtp : dtDate, Format : 4)},
+                        {"@DateBill", Date.GetDate(dtp : dtDateNow, Format : 4)},
+                        {"@DateBefore", Date.GetDate(dtp : dtDateBefor, Format : 4)},
+                        {"@Numeral", Function.MoveNumberStringComma(txtNumberNow.Text)},
+                        {"@NumeralBefore", Function.MoveNumberStringComma(txtNumberBefor.Text)},
+                        {"@Time", string.Format("{0:00}:{1:00}:{2:00}", dtTime.Value.Hour, dtTime.Value.Minute, dtTime.Value.Second)},
+                        {"@InvoiceMonth", Function.getComboBoxValue(cbbMonth)},
+                        {"@InvoiceYear", Function.getComboBoxValue(cbbYear)},
+                        {"@Unit", Function.MoveNumberStringComma(txtUnit.Text)},
+                        {"@Raw", Function.MoveNumberStringComma(txtDipMoney.Text)},
+                        {"@Money",  Function.MoveNumberStringComma(txtMoneyWater.Text)},
+                        {"@Total", Function.MoveNumberStringComma(txtMoney.Text)},
+                        {"@Vat", Function.MoveNumberStringComma(txtMoneyVat.Text)},
+                        {"@Pay", Function.MoveNumberStringComma(txtMoneyAll.Text)},
+                        {"@PayAll", Function.MoveNumberStringComma(txtMoneyPay.Text)},
+                        {"@PaymentId", Function.getComboBoxValue(cbbPayment)},
+                        {"@Discount", Function.MoveNumberStringComma(txtDiscount.Text)},
+                        {"@PayDate", Date.GetDate(dtp : dtPay, Format : 4)},
+                        {"@PaymentDate", Date.GetDate(dtp : dtDatePayment, Format : 4)},
+                        {"@Status", Function.getComboBoxValue(cbbStatus)},
+                        {"@Barcode", strBarcode},
+                        {"@Remark", txtRemark.Text},
+                    };
 
-                if (Edit.Update(strAppCode, strAppName, strUserId, "Store.UpdateInvoiceWater", Parameter, txtCode.Text, "ใบแจ้งค่าน้ำ " + cbbMonth.Text + " " + cbbYear.Text))
-                {
-                    Clear();
+                    if (Edit.Update(AppCode, AppName, UserId, Store.ManageWaters, Parameter, txtCode.Text, Details: GetDetails()))
+                    {
+                        Clear();
+                    }
                 }
             }
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(txtCode.Text))
+            catch (Exception ex)
             {
-                if (Delete.Drop(strAppCode, strAppName, strUserId, 0, Tb.InvoiceWater, txtCode, "ใบแจ้งค่าน้ำ " + cbbMonth.Text + " " + cbbYear.Text))
-                {
-                    Clear();
-                }
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
             }
         }
 
-        private void btnClear_Click(object sender, EventArgs e)
+        private void DeleteData(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(txtCode.Text))
+                {
+
+                    if (Delete.Drop(AppCode, AppName, UserId, 0, Table.Waters, txtCode, Details: GetDetails(), true))
+                    {
+                        Clear();
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }
+        }
+
+        private void Clear(object sender, EventArgs e)
         {
             Clear();
         }
 
-        private void picExcel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        public void GetDataMaster(string Code)
+        public void GetDataMaster(string Id)
         {
             try
             {
                 Parameter = new string[,]
                 {
-                    {"@Id ", ""},
-                    {"@Code", Code},
+                    {"@Id ", Id},
+                    {"@Code", ""},
                     {"@Status", "0"},
+                    {"@User", ""},
+                    {"@IsActive", ""},
+                    {"@IsDelete", ""},
+                    {"@Operation", Operation.SelectAbbr},
+                    {"@AccountId", ""},
                     {"@Version", ""},
-                    {"@Rates", "0.00"},
-                    {"@Service", "0.00"},
+                    {"@Rates", ""},
+                    {"@Service", ""},
                     {"@Discount", ""},
                     {"@Vat", ""},
                     {"@RawText", ""},
-                    {"@RawValue", "0.00"},
+                    {"@RawValue", ""},
                     {"@DueDate", ""},
-                    {"@User", ""},
                 };
 
-                db.Get("Store.SelectVersionWater", Parameter, out strErr, out dt);
+                db.Get(Store.ManageWaterRates, Parameter, out Error, out dt);
 
-                if (strErr == null && dt.Rows.Count > 0)
+                if (string.IsNullOrEmpty(Error) && dt.Rows.Count > 0)
                 {
                     txtDipValue.Text = dt.Rows[0]["RawValue"].ToString();
                     txtDipText.Text = dt.Rows[0]["RawText"].ToString();
                     txtDipCost.Text = dt.Rows[0]["Rates"].ToString();
                     txtFeeMonth.Text = dt.Rows[0]["Service"].ToString();
                     txtVat.Text = dt.Rows[0]["Vat"].ToString();
-                    txtDiscount.Text = "0.00";
-                }
-                else
-                {
+                    NumberOfPayment = Convert.ToInt32(dt.Rows[0]["DueDate"].ToString()) * (-1);
                     txtDiscount.Text = "0.00";
                 }
             }
-            catch
+            catch (Exception ex)
             {
-
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
             }
         }
 
@@ -409,11 +398,11 @@ namespace SANSANG
             }
             catch (Exception ex)
             {
-                Log.WriteLogData(strAppCode, strAppName, strUserId, ex.Message);
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
             }
         }
 
-        private void txtRecId_TextChanged(object sender, EventArgs e)
+        private void InvoiceInput(object sender, EventArgs e)
         {
             if (txtInvoiceNumber.Text != "")
             {
@@ -441,125 +430,123 @@ namespace SANSANG
 
         private void GetBill(string Type = "")
         {
-            Parameter = new string[,]
+            if (!IsStart)
             {
-                {"@InvoiceDate", Date.GetDate(dtp : dtDateBefor, Format : 4, Language : Cul.EN)},
-            };
-
-            if (Type == "Before")
-            {
-                db.Get("Store.SelectInvoiceWater" + "Before", Parameter, out strErr, out dt);
-
-                dtBefore = dt.Rows.Count;
-
-                if (dtBefore == 1)
-                {
-                    txtNumberBefor.Text = dt.Rows[0]["Numeral"].ToString();
-                }
-                else
-                {
-                    txtNumberBefor.Text = "";
-                }
-            }
-            else if (Type == "Overdue")
-            {
-                db.Get("Store.SelectInvoiceWater" + "Overdue", Parameter, out strErr, out dts);
-
-                dtOverdue = dts.Rows.Count;
-
-                if (dtOverdue == 1)
-                {
-                    txtMoneyOverdue.Text = dts.Rows[0]["PayAll"].ToString();
-                    txtMonthOverdue.Text = "1";
-                }
-                else
-                {
-                    txtMoneyOverdue.Text = "0.00";
-                    txtMonthOverdue.Text = "0";
-                }
-            }
-            else
-            {
-                DateTimePicker dpBefore = new DateTimePicker();
-                dpBefore.Value = dtDate.Value.AddMonths(-1);
+                DateTime DateOperation = dtDate.Value.AddMonths(-1);
 
                 Parameter = new string[,]
                 {
-                    {"@InvoiceDate", Date.GetDate(dtp : dpBefore, Format : 4, Language : Cul.EN)},
+                    {"@Id", ""},
+                    {"@Code", ""},
+                    {"@Status", "0"},
+                    {"@User", ""},
+                    {"@IsActive", ""},
+                    {"@IsDelete", ""},
+                    {"@Operation", Type == Operation.Before? Operation.BeforeAbbr : Operation.OverdueAbbr},
+                    {"@AccountId", "0"},
+                    {"@WaterRatesId", "0"},
+                    {"@InvoiceNumber", ""},
+                    {"@InvoiceDate", ""},
+                    {"@DateBill", Type == Operation.Overdue? Date.GetDate(dtp : dtDateNow, Format : 4) : ""},
+                    {"@DateBefore", ""},
+                    {"@Numeral", ""},
+                    {"@NumeralBefore", ""},
+                    {"@Time", ""},
+                    {"@InvoiceMonth", DateOperation.Month.ToString()},
+                    {"@InvoiceYear", DateOperation.ToString("yyyy", CultureInfo.GetCultureInfo("th-TH"))},
+                    {"@Unit", ""},
+                    {"@Raw", ""},
+                    {"@Money", ""},
+                    {"@Total", ""},
+                    {"@Vat", ""},
+                    {"@Pay", ""},
+                    {"@PayAll", ""},
+                    {"@PaymentId", "0"},
+                    {"@Discount", ""},
+                    {"@PayDate", ""},
+                    {"@PaymentDate", ""},
+                    {"@Barcode", ""},
+                    {"@Remark", ""},
                 };
 
-                db.Get("Store.SelectInvoiceWater" + "Before", Parameter, out strErr, out dt);
-                db.Get("Store.SelectInvoiceWater" + "Overdue", Parameter, out strErr, out dts);
+                db.Get(Store.ManageWaters, Parameter, out Error, out dt);
 
-                dtOverdue = dts.Rows.Count;
-                dtBefore = dt.Rows.Count;
-
-                if (txtNumberBefor.Text == "")
+                if (Type == Operation.Before)
                 {
-                    if (dtBefore == 1)
+                    if (string.IsNullOrEmpty(Error) && dt.Rows.Count > 0)
                     {
                         txtNumberBefor.Text = dt.Rows[0]["Numeral"].ToString();
+                        dtDateBefor.Value = Convert.ToDateTime(dt.Rows[0]["InvoiceDate"].ToString());
+                        dtTime.Focus();
                     }
                     else
                     {
                         txtNumberBefor.Text = "";
+                        txtNumberBefor.Focus();
                     }
                 }
 
-                if (dtOverdue == 1)
+                if (Type == Operation.Overdue)
                 {
-                    txtMoneyOverdue.Text = dts.Rows[0]["PayAll"].ToString();
-                    txtMonthOverdue.Text = "1";
-                }
-                else
-                {
-                    txtMoneyOverdue.Text = "0.00";
-                    txtMonthOverdue.Text = "0";
+                    if (string.IsNullOrEmpty(Error) && dt.Rows.Count > 0)
+                    {
+                        txtMonthOverdue.Text = dt.Rows[0]["Mounth"].ToString();
+                        txtMoneyOverdue.Text = dt.Rows[0]["Amount"].ToString();
+                    }
+                    else
+                    {
+                        txtMonthOverdue.Text = "0";
+                        txtMoneyOverdue.Text = "0.00";
+                    }
                 }
             }
         }
 
-        private void btnScan_Click(object sender, EventArgs e)
+        private void Scan(object sender, EventArgs e)
         {
             try
             {
                 if (txtScan.Text != "" && txtScan.Text != "\r\n\r\n\r\n\r\n")
                 {
                     strBarcode = txtScan.Text;
-                    Fn.getWaterData(txtScan.Text);
+                    strInvoice = "";
+                    Function.GetWaterData(txtScan.Text, NumberOfPayment);
                     CountEnter = 0;
 
-                    foreach (WaterModel wm in GlobalVar.WaterDataList)
+                    foreach (WaterModel Waters in GlobalVar.WaterDataList)
                     {
-                        txtInvoiceNumber.Text = wm.ReceiptId;
-                        dtDate.Value = wm.ReadDate;
+                        strInvoice = Waters.ReceiptId;
+                        txtInvoiceNumber.Text = Waters.ReceiptId;
+                        dtDate.Value = Waters.InvoiceDate;
                         dtTime.Text = "00:00:00";
-                        dtDateNow.Value = wm.ReadDate;
-                        dtPay.Value = wm.PayDate;
-                        txtUnit.Text = Convert.ToString(wm.Unit);
-                        txtMoneyPay.Text = Convert.ToString(wm.Amount);
+                        dtDateNow.Value = Waters.ReadDate;
+                        dtPay.Value = Waters.PayDate;
+                        txtUnit.Text = Convert.ToString(Waters.Unit);
+                        txtMoneyPay.Text = Convert.ToString(Waters.Amount);
                         break;
                     }
-                }
 
-                txtScan.Clear();
-                SearchData(true);
-                GetBill("All");
+                    SearchData(false, out Numbers, strInvoice);
+
+                    if (Numbers != 1)
+                    {
+                        SearchData(true, out Numbers);
+                    }
+                }
             }
             catch (Exception ex)
             {
                 NewData = true;
-                Log.WriteLogData(strAppCode, strAppName, strUserId, ex.Message);
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
             }
         }
 
-        private void txtScan_TextChanged(object sender, EventArgs e)
+        private void Reader(object sender, EventArgs e)
         {
             if (CountEnter == 4)
             {
-                btnScan_Click(sender, e);
+                Scan(sender, e);
                 txtScan.Clear();
-                txtScan.Focus();
             }
         }
 
@@ -567,6 +554,7 @@ namespace SANSANG
         {
             try
             {
+
                 if (!(char.IsNumber(e.KeyChar) || e.KeyChar == '.' || e.KeyChar == 8))
                 {
                     e.Handled = true;
@@ -579,7 +567,7 @@ namespace SANSANG
             }
             catch (Exception ex)
             {
-                Log.WriteLogData(strAppCode, strAppName, strUserId, ex.Message);
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
             }
         }
 
@@ -587,49 +575,52 @@ namespace SANSANG
         {
             try
             {
-                if (dt.Rows.Count == 1)
-                {
-                    cbbUser.SelectedValue = dt.Rows[0]["UserCode"].ToString();
-                    cbbVersion.SelectedValue = dt.Rows[0]["Version"].ToString();
-                    txtUnit.Text = dt.Rows[0]["Unit"].ToString();
+                cbbAccount.SelectedValue = dt.Rows[0]["AccountId"].ToString();
+                cbbWaterRates.SelectedValue = dt.Rows[0]["WaterRatesId"].ToString();
+                txtUnit.Text = dt.Rows[0]["Unit"].ToString();
 
-                    txtCode.Text = dt.Rows[0]["Code"].ToString();
-                    string strBarcode = dt.Rows[0]["Code"].ToString();
-                    pbQrcode.Image = Barcode.QRCode(strBarcode, Color.Black, Color.White, "Q", 3, false);
+                txtId.Text = dt.Rows[0]["Id"].ToString();
+                txtCode.Text = dt.Rows[0]["Code"].ToString();
+                string strBarcode = dt.Rows[0]["Code"].ToString();
+                pbQrcode.Image = Barcode.QRCode(strBarcode, Color.Black, Color.White, "Q", 3, false);
 
-                    txtInvoiceNumber.Text = dt.Rows[0]["InvoiceNumber"].ToString();
+                dtDateBefor.Text = dt.Rows[0]["DateBefore"].ToString();
+                txtNumberBefor.Text = dt.Rows[0]["NumeralBefore"].ToString();
+                txtInvoiceNumber.Text = dt.Rows[0]["InvoiceNumber"].ToString();
 
-                    cbbMonth.SelectedValue = dt.Rows[0]["InvoiceMonth"].ToString();
-                    cbbYear.SelectedValue = dt.Rows[0]["InvoiceYear"].ToString();
+                cbbMonth.SelectedValue = dt.Rows[0]["InvoiceMonth"].ToString();
+                cbbYear.SelectedValue = dt.Rows[0]["InvoiceYear"].ToString();
 
-                    dtDate.Text = dt.Rows[0]["InvoiceDate"].ToString();
-                    dtTime.Text = dt.Rows[0]["Time"].ToString();
+                dtDate.Text = dt.Rows[0]["InvoiceDate"].ToString();
+                dtTime.Text = dt.Rows[0]["Time"].ToString();
 
-                    dtDateBefor.Text = dt.Rows[0]["DateBefore"].ToString();
-                    txtNumberBefor.Text = dt.Rows[0]["NumeralBefore"].ToString();
+                dtDateNow.Text = dt.Rows[0]["DateBill"].ToString();
+                txtNumberNow.Text = dt.Rows[0]["Numeral"].ToString();
 
-                    dtDateNow.Text = dt.Rows[0]["DateBill"].ToString();
-                    txtNumberNow.Text = dt.Rows[0]["Numeral"].ToString();
+                txtDipMoney.Text = dt.Rows[0]["Raw"].ToString();
+                txtMoneyWater.Text = dt.Rows[0]["Money"].ToString();
+                txtDiscount.Text = dt.Rows[0]["Discount"].ToString();
+                txtMoney.Text = dt.Rows[0]["Total"].ToString();
+                txtMoneyVat.Text = dt.Rows[0]["Vat"].ToString();
+                txtMoneyAll.Text = dt.Rows[0]["Pay"].ToString();
 
-                    txtDipValue.Text = dt.Rows[0]["RawValue"].ToString();
-                    txtDipMoney.Text = dt.Rows[0]["Raw"].ToString();
-                    txtMoneyWater.Text = dt.Rows[0]["Money"].ToString();
-                    txtDiscount.Text = dt.Rows[0]["Discount"].ToString();
-                    txtMoney.Text = dt.Rows[0]["Total"].ToString();
-                    txtMoneyVat.Text = dt.Rows[0]["Vat"].ToString();
-                    txtMoneyAll.Text = dt.Rows[0]["Pay"].ToString();
+                dtPay.Text = dt.Rows[0]["PayDate"].ToString();
+                cbbStatus.SelectedValue = dt.Rows[0]["Status"].ToString();
+                cbbPayment.SelectedValue = dt.Rows[0]["PaymentId"].ToString();
+                dtDatePayment.Text = dt.Rows[0]["PaymentDate"].ToString();
+                txtMoneyPay.Text = dt.Rows[0]["PayAll"].ToString();
+                txtRemark.Text = dt.Rows[0]["Remark"].ToString();
 
-                    dtPay.Text = dt.Rows[0]["PayDate"].ToString();
-                    cbbStatus.SelectedValue = dt.Rows[0]["Status"].ToString();
-                    cbbPayment.SelectedValue = dt.Rows[0]["Payment"].ToString();
-                    dtDatePayment.Text = dt.Rows[0]["PaymentDate"].ToString();
-                    txtMoneyPay.Text = dt.Rows[0]["PayAll"].ToString();
-                }
+                txtDipValue.Text = dt.Rows[0]["RawValue"].ToString();
+                txtDipText.Text = dt.Rows[0]["RawText"].ToString();
+                txtVat.Text = dt.Rows[0]["RawVat"].ToString();
+                txtFeeMonth.Text = dt.Rows[0]["Fee"].ToString();
+
+                GridView.Focus();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                List.GetList(cbbUser, "", "WaterId");
-                cbbUser.SelectedValue = dt.Rows[0]["MsWaterCode"].ToString();
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
             }
         }
 
@@ -641,7 +632,7 @@ namespace SANSANG
             }
         }
 
-        private void txtScan_KeyDown(object sender, KeyEventArgs e)
+        private void KeyEnter(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -661,7 +652,7 @@ namespace SANSANG
             }
             catch (Exception ex)
             {
-                Log.WriteLogData(strAppCode, strAppName, strUserId, ex.Message);
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
             }
         }
 
@@ -695,67 +686,130 @@ namespace SANSANG
             }
             catch (Exception ex)
             {
-                Log.WriteLogData(strAppCode, strAppName, strUserId, ex.Message);
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
             }
         }
 
-        public void SearchData(bool Search)
+        public void SearchData(bool Search, out int Number, string InvoiceNo = "")
         {
-            txtInvoiceNumber.Enabled = true;
-            Selected = false;
-            dtBill = new DataTable();
-
-            Parameter = new string[,]
+            try
             {
-                {"@Id", ""},
-                {"@Code", Search? txtCode.Text : ""},
-                {"@User", ""},
-                {"@UserCode", Search? Fn.getComboBoxValue(cbbUser) : "0"},
-                {"@Version", Search? Fn.getComboBoxValue(cbbVersion) : "0"},
-                {"@InvoiceNumber", Search? txtInvoiceNumber.Text : ""},
-                {"@InvoiceDate", ""},
-                {"@DateBill", ""},
-                {"@DateBefore", ""},
-                {"@Numeral", Search? Fn.MoveNumberStringComma(txtNumberNow.Text) : ""},
-                {"@NumeralBefore", Search? Fn.MoveNumberStringComma(txtNumberBefor.Text) : ""},
-                {"@Time", ""},
-                {"@InvoiceMonth", "0"},
-                {"@InvoiceYear", "0"},
-                {"@Unit", Search? Fn.MoveNumberStringComma(txtUnit.Text) : ""},
-                {"@Raw", Search? Fn.MoveNumberStringComma(txtDipMoney.Text) : ""},
-                {"@Money", Search? Fn.MoveNumberStringComma(txtMoneyWater.Text) : ""},
-                {"@Total", Search? Fn.MoveNumberStringComma(txtMoney.Text) : ""},
-                {"@Vat", Search? Fn.MoveNumberStringComma(txtMoneyVat.Text) : ""},
-                {"@Pay", Search? Fn.MoveNumberStringComma(txtMoneyAll.Text) : ""},
-                {"@PayAll", Search? Fn.MoveNumberStringComma(txtMoneyPay.Text) : ""},
-                {"@Payment", Search? Fn.getComboBoxValue(cbbPayment) : "0"},
-                {"@Discount", Search? Fn.MoveNumberStringComma(txtDiscount.Text) : ""},
-                {"@PayDate", ""},
-                {"@PaymentDate", ""},
-                {"@Status", Search? Fn.getComboBoxValue(cbbStatus) : "0"},
-                {"@Barcode", ""},
-                {"@Remark", ""},
-            };
+                if (string.IsNullOrEmpty(InvoiceNo))
+                {
+                    Parameter = new string[,]
+                    {
+                        {"@Id", ""},
+                        {"@Code", Search? txtCode.Text : ""},
+                        {"@Status", Search? Function.getComboBoxValue(cbbStatus) : "0"},
+                        {"@User", ""},
+                        {"@IsActive", ""},
+                        {"@IsDelete", ""},
+                        {"@Operation", Operation.SelectAbbr},
+                        {"@AccountId", Search? Function.getComboBoxValue(cbbAccount) : "0"},
+                        {"@WaterRatesId", Search? Function.getComboBoxValue(cbbWaterRates) : "0"},
+                        {"@InvoiceNumber", Search? txtInvoiceNumber.Text : ""},
+                        {"@InvoiceDate", ""},
+                        {"@DateBill", ""},
+                        {"@DateBefore", ""},
+                        {"@Numeral", ""},
+                        {"@NumeralBefore", ""},
+                        {"@Time", ""},
+                        {"@InvoiceMonth", ""},
+                        {"@InvoiceYear", ""},
+                        {"@Unit", Search? Function.MoveNumberStringComma(txtUnit.Text) : ""},
+                        {"@Raw", ""},
+                        {"@Money", ""},
+                        {"@Total", ""},
+                        {"@Vat", ""},
+                        {"@Pay", ""},
+                        {"@PayAll", ""},
+                        {"@PaymentId", Search? Function.getComboBoxValue(cbbPayment) : "0"},
+                        {"@Discount", ""},
+                        {"@PayDate", ""},
+                        {"@PaymentDate", ""},
+                        {"@Barcode", ""},
+                        {"@Remark", Search? txtRemark.Text : ""},
+                    };
+                }
+                else
+                {
+                    Parameter = new string[,]
+                    {
+                        {"@Id", ""},
+                        {"@Code", ""},
+                        {"@Status", "0"},
+                        {"@User", ""},
+                        {"@IsActive", ""},
+                        {"@IsDelete", ""},
+                        {"@Operation", Operation.SelectAbbr},
+                        {"@AccountId", "0"},
+                        {"@WaterRatesId", "0"},
+                        {"@InvoiceNumber", InvoiceNo},
+                        {"@InvoiceDate", ""},
+                        {"@DateBill", ""},
+                        {"@DateBefore", ""},
+                        {"@Numeral", ""},
+                        {"@NumeralBefore", ""},
+                        {"@Time", ""},
+                        {"@InvoiceMonth", ""},
+                        {"@InvoiceYear", ""},
+                        {"@Unit", ""},
+                        {"@Raw", ""},
+                        {"@Money", ""},
+                        {"@Total", ""},
+                        {"@Vat", ""},
+                        {"@Pay", ""},
+                        {"@PayAll", ""},
+                        {"@PaymentId", "0"},
+                        {"@Discount", ""},
+                        {"@PayDate", ""},
+                        {"@PaymentDate", ""},
+                        {"@Barcode", ""},
+                        {"@Remark", ""},
+                    };
+                }
 
-            db.Get("Store.SelectInvoiceWater", Parameter, out strErr, out dt);
-            GetDataGrid(dt);
-            ShowData(dt);
+                db.Get(Store.ManageWaters, Parameter, out Error, out dt);
 
-            if (txtMonthOverdue.Text == "")
-            {
-                GetBill("Overdue");
+                if (string.IsNullOrEmpty(Error) && dt.Rows.Count > 0)
+                {
+                    CountRows = dt.Rows.Count;
+                    ShowGridView(dt);
+
+                    if (dt.Rows.Count == 1)
+                    {
+                        ShowData(dt);
+                        GetBill(Operation.Overdue);
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(txtInvoiceNumber.Text) && dt.Rows.Count != 1)
+                {
+                    CountRows = dt.Rows.Count;
+                    GetBill(Operation.Before);
+                    GetBill(Operation.Overdue);
+                }
+
+                Number = CountRows;
             }
-
-            txtScan.Focus();
+            catch (Exception ex)
+            {
+                Number = 0;
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }
         }
 
         public void Clear()
         {
             try
             {
+                IsStart = false;
+                Function.ClearAll(gbForm);
+                CountEnter = 0;
+
                 cbbStatus.SelectedValue = 0;
-                cbbUser.SelectedValue = 0;
-                cbbVersion.SelectedValue = 0;
+                cbbAccount.SelectedValue = 0;
+                cbbWaterRates.SelectedValue = 0;
                 cbbPayment.SelectedValue = 0;
                 cbbMonth.SelectedIndex = 0;
                 cbbYear.SelectedIndex = 0;
@@ -784,61 +838,75 @@ namespace SANSANG
                 txtFeeMonth.Text = "";
                 txtDiscount.Text = "";
 
-                int year = Convert.ToInt32(DateTime.Now.ToString("yyyy", Fn.SetFormatDate(Cul.EN)));
+                int year = Convert.ToInt32(DateTime.Now.ToString("yyyy", Function.SetFormatDate(Cul.EN)));
                 int month = Convert.ToInt32(DateTime.Now.ToString("MM"));
-
+                int days = Convert.ToInt32(DateTime.Now.ToString("dd"));
                 dtTime.Value = new DateTime(2020, 02, 02, 0, 0, 0);
-                dtDate.Value = new DateTime(year, month, 12);
+                dtDate.Value = new DateTime(year, month, days);
+
                 dtDateNow.Value = dtDate.Value;
                 dtDateBefor.Value = dtDate.Value.AddMonths(-1);
-                dtPay.Value = new DateTime(year, month, 19);
+                dtPay.Value = dtDate.Value.AddDays(7);
+                dtDatePayment.Value = new DateTime(year, month, days);
 
                 pbQrcode.Image = null;
-
-                SearchData(false);
-                CountEnter = 0;
                 txtScan.Text = "";
-                dataGridView.Focus();
+                GridView.Focus();
+
+                SearchData(false, out Numbers);
             }
             catch (Exception ex)
             {
-                Log.WriteLogData(strAppCode, strAppName, strUserId, ex.Message);
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
             }
         }
 
-        private void cbbVersion_SelectedIndexChanged(object sender, EventArgs e)
+        private void WaterRates_Selected(object sender, EventArgs e)
         {
-            if (cbbVersion.SelectedValue.ToString() != "0" && cbbVersion.SelectedValue.ToString() != "System.Data.DataRowView")
+            if (!IsStart)
             {
-                GetDataMaster(Fn.getComboBoxValue(cbbVersion));
-                btnScan.Enabled = true;
-                txtScan.Enabled = true;
-                txtInvoiceNumber.Enabled = true;
-                dtTime.Value = new DateTime(2020, 02, 02, 0, 0, 0);
-                txtScan.Focus();
+                WaterRates = Function.getComboBoxValue(cbbWaterRates);
+
+                txtDipValue.Text = "";
+                txtDipText.Text = "";
+                txtDipCost.Text = "";
+                txtFeeMonth.Text = "";
+                txtVat.Text = "";
+                NumberOfPayment = -7;
+                txtDiscount.Text = "";
+
+                if (WaterRates != "0")
+                {
+                    GetDataMaster(WaterRates);
+                    btnScan.Enabled = true;
+                    txtScan.Enabled = true;
+                    txtInvoiceNumber.Enabled = true;
+                    dtTime.Value = new DateTime(2020, 02, 02, 0, 0, 0);
+                    txtScan.Focus();
+                }
             }
         }
 
-        private void dtDate_ValueChanged(object sender, EventArgs e)
+        private void DateChanged(object sender, EventArgs e)
         {
             try
             {
-                int theMonth = Convert.ToInt32(dtDate.Value.ToString("MM"));
-                int theYear = Convert.ToInt32(dtDate.Value.ToString("yyyy"));
+                int Month = Convert.ToInt32(dtDate.Value.ToString("MM"));
+                int Year = Convert.ToInt32(dtDate.Value.ToString("yyyy"));
 
-                if (theYear <= 2500)
+                if (Year <= 2500)
                 {
-                    theYear = theYear + 543;
+                    Year = Year + 543;
                 }
 
-                cbbMonth.SelectedIndex = theMonth;
-                cbbYear.SelectedValue = theYear;
+                cbbMonth.SelectedIndex = Month;
+                cbbYear.SelectedValue = Year;
                 dtDateBefor.Value = dtDate.Value.AddMonths(-1);
                 dtDateNow.Value = dtDate.Value;
             }
-            catch
+            catch (Exception ex)
             {
-
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
             }
         }
 
@@ -874,43 +942,44 @@ namespace SANSANG
                     }
                 }
 
-                dtPay.Value = dtDate.Value.AddDays(7);
-                GetBill("All");
+                dtPay.Value = dtDate.Value.AddDays(NumberOfPayment);
             }
         }
 
-        private void FrmMWASA00_KeyDown(object sender, KeyEventArgs e)
+        private void FrmKeyDown(object sender, KeyEventArgs e)
         {
-            string keyCode = Fn.keyPress(sender, e);
-
-            if (keyCode == "Ctrl+S")
+            try
             {
-                btnAdd_Click(sender, e);
+                string keyCode = Function.keyPress(sender, e);
+
+                if (keyCode == "Ctrl+S")
+                {
+                    AddData(sender, e);
+                }
+                if (keyCode == "Ctrl+E")
+                {
+                    EditData(sender, e);
+                }
+                if (keyCode == "Ctrl+D")
+                {
+                    DeleteData(sender, e);
+                }
+                if (keyCode == "Ctrl+F")
+                {
+                    Search(sender, e);
+                }
+                if (keyCode == "Alt+C")
+                {
+                    Clear(sender, e);
+                }
+                if (keyCode == "Enter")
+                {
+
+                }
             }
-
-            if (keyCode == "Ctrl+E")
+            catch (Exception ex)
             {
-                btnEdit_Click(sender, e);
-            }
-
-            if (keyCode == "Ctrl+D")
-            {
-                btnDelete_Click(sender, e);
-            }
-
-            if (keyCode == "Ctrl+X")
-            {
-                btnExit_Click(sender, e);
-            }
-
-            if (keyCode == "Alt+F")
-            {
-                btnSearch_Click(sender, e);
-            }
-
-            if (keyCode == "Alt+C")
-            {
-                btnClear_Click(sender, e);
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
             }
         }
 
@@ -953,16 +1022,16 @@ namespace SANSANG
             {
                 if (e.KeyChar == Convert.ToChar(Keys.Enter))
                 {
-                    SearchData(true);
+                    SearchData(true, out Numbers);
                 }
             }
             catch (Exception ex)
             {
-                Log.WriteLogData(strAppCode, strAppName, strUserId, ex.Message);
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
             }
         }
 
-        private void txtUnit_Leave(object sender, EventArgs e)
+        private void CalculateUnit(object sender, EventArgs e)
         {
             try
             {
@@ -978,10 +1047,24 @@ namespace SANSANG
 
         private void txtScan_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!Fn.IsCharacter(e.KeyChar, CharType.Barcode))
+            if (!Function.IsCharacter(e.KeyChar, CharType.Barcode))
             {
                 e.Handled = true;
             }
+        }
+
+        private void cbbAccount_Selected(object sender, EventArgs e)
+        {
+            if (!IsStart)
+            {
+                AccountId = Convert.ToInt32(Function.getComboBoxValue(cbbAccount));
+                List.GetLists(cbbWaterRates, string.Format(DataList.WaterRatesId, AccountId));
+            }
+        }
+
+        public string GetDetails()
+        {
+            return "Invoice No. " + txtInvoiceNumber.Text + " (฿" + txtMoneyPay.Text + ")";
         }
     }
 }

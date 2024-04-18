@@ -426,5 +426,42 @@ namespace SANSANG
                 Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
             }
         }
+
+        private void FrmKeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                string keyCode = Function.keyPress(sender, e);
+
+                if (keyCode == "Ctrl+S")
+                {
+                    AddData(sender, e);
+                }
+                if (keyCode == "Ctrl+E")
+                {
+                    EditData(sender, e);
+                }
+                if (keyCode == "Ctrl+D")
+                {
+                    DeleteData(sender, e);
+                }
+                if (keyCode == "Ctrl+F")
+                {
+                    Search(sender, e);
+                }
+                if (keyCode == "Alt+C")
+                {
+                    Clear(sender, e);
+                }
+                if (keyCode == "Enter")
+                {
+                    Search(true);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }
+        }
     }
 }

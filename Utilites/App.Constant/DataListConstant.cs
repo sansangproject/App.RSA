@@ -22,7 +22,8 @@ namespace SANSANG.Constant
         public string ProductTypeId = "[mst].[ProductType] Display Id Status 1000";
         public string UserId = "[mst].[User] Code Id Type 1001";
         public string WaterAccountId = "[mst].[WaterAccount] AccountNo Id Status 1014";
-
+        public string WaterRatesId = "[mst].[WaterRates] Version Id AccountId {0}";
+        
         public string ProvinceId = "[mst].[Province] Name Id {0} {1}";
         public string AmphoeId = "[mst].[Amphoe] Name Id {0} {1}";
         public string TambolId = "[mst].[Tambol] Name Id {0} {1}";
@@ -41,6 +42,7 @@ namespace SANSANG.Constant
         public string UserAccounts = "UserAccounts";
         public string Transportation = "Transportation";
         public string WaterAccount = "WaterAccount";
+        public string WaterRates = "WaterRates";
 
         public string Workdays = "Workdays";
         public string Accounts = "Account";

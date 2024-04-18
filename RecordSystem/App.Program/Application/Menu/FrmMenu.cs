@@ -404,6 +404,11 @@ namespace SANSANG
                 FrmWaterRates Frm = new FrmWaterRates(UserId, UserName, UserSurname, UserType);
                 Frm.Show();
             }
+            else if (((RadMenuItem)sender).Name == "MWASA00")
+            {
+                FrmWaters Frm = new FrmWaters(UserId, UserName, UserSurname, UserType);
+                Frm.Show();
+            }
             Log.WriteLogData("MENU", ((RadMenuItem)sender).Name, UserId, "Open");
 
         }

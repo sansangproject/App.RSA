@@ -46,6 +46,7 @@ namespace SANSANG.Constant
         public static string Money = "[Money]";
         public static string WaterAccount = "[WaterAccount]";
         public static string WaterRates = "[WaterRates]";
+        public static string Waters = "[Waters]";
 
         public static string GetMasterList = "[GetListMaster]";
         public static string GetList = "[GetList]";
@@ -87,6 +88,7 @@ namespace SANSANG.Constant
         public string ManageMoney = string.Format(Stores, SPR, Money);
         public string ManageWaterAccount = string.Format(Stores, SPR, WaterAccount);
         public string ManageWaterRates = string.Format(Stores, SPR, WaterRates);
+        public string ManageWaters = string.Format(Stores, SPR, Waters);
 
         public string ManageWorkday = string.Format(Stores, SPR, Workday);
         public string ManageGold = string.Format(Stores, SPR, Gold);

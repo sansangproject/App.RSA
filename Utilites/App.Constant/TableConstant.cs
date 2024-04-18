@@ -19,6 +19,7 @@ namespace SANSANG.Constant
         public string UserId = "1035";
         public string GoldId = "1073";
         public string WaterRatesId = "1071";
+        public string WatersId = "1043";
 
         public string ItemId = "1020";
         public string CategoryId = "1019";
@@ -45,6 +46,7 @@ namespace SANSANG.Constant
         public string Golds = "[dbo].[Golds]";
 
         public string WaterRates = "[mst].[WaterRates]";
+        public string Waters = "[dbo].[Waters]";
 
         public string Amphoe = "[mst].[Amphoe]";
         public string Geography = "[mst].[Geography]";
