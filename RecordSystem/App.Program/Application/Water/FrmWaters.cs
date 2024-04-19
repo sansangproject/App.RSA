@@ -148,7 +148,7 @@ namespace SANSANG
 
         private void Search(object sender, EventArgs e)
         {
-            SearchData(true,out Numbers, "");
+            SearchData(true, out Numbers, "");
         }
 
         private void AddData(object sender, EventArgs e)
@@ -547,6 +547,7 @@ namespace SANSANG
             {
                 Scan(sender, e);
                 txtScan.Clear();
+                strBarcode = "";
             }
         }
 
@@ -770,24 +771,47 @@ namespace SANSANG
                 }
 
                 db.Get(Store.ManageWaters, Parameter, out Error, out dt);
+                string Condition = Function.ShowConditons(GetCondition());
+                lblCondition.Text = Condition == "" ? "ทั้งหมด" : Condition;
 
-                if (string.IsNullOrEmpty(Error) && dt.Rows.Count > 0)
+                if (Search && dt.Rows.Count > 0)
                 {
-                    CountRows = dt.Rows.Count;
-                    ShowGridView(dt);
-
                     if (dt.Rows.Count == 1)
                     {
+                        ShowGridView(dt);
                         ShowData(dt);
                         GetBill(Operation.Overdue);
+                        GridView.Focus();
                     }
                 }
-
-                if (!string.IsNullOrEmpty(txtInvoiceNumber.Text) && dt.Rows.Count != 1)
+                else
                 {
-                    CountRows = dt.Rows.Count;
-                    GetBill(Operation.Before);
-                    GetBill(Operation.Overdue);
+                    if (dt.Rows.Count == 0)
+                    {
+                        ShowGridView(dt);
+                    }
+                    else { 
+                        if (string.IsNullOrEmpty(Error) && dt.Rows.Count > 0)
+                        {
+                            CountRows = dt.Rows.Count;
+                            ShowGridView(dt);
+
+                            if (dt.Rows.Count == 1)
+                            {
+                                ShowData(dt);
+                                GetBill(Operation.Overdue);
+                                GridView.Focus();
+                            }
+                        }
+
+                        if (!string.IsNullOrEmpty(txtInvoiceNumber.Text) && dt.Rows.Count != 1)
+                        {
+                            CountRows = dt.Rows.Count;
+                            GetBill(Operation.Before);
+                            GetBill(Operation.Overdue);
+                            GridView.Focus();
+                        }
+                    }
                 }
 
                 Number = CountRows;
@@ -795,7 +819,29 @@ namespace SANSANG
             catch (Exception ex)
             {
                 Number = 0;
+                GridView.Focus();
                 Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }
+        }
+
+        private string GetCondition()
+        {
+            try
+            {
+                string strCondition = "";
+
+                strCondition += txtCode.Text != "" ? ", รหัสอ้างอิง: " + txtCode.Text : "";
+                strCondition += cbbAccount.SelectedValue.ToString() != "0" ? ", ผู้ใช้น้ำ: " + cbbAccount.Text : "";
+                strCondition += txtInvoiceNumber.Text != "" ? ", เลขที่แจ้งค่าน้ำ: " + txtInvoiceNumber.Text : "";
+
+                strCondition += Function.GetComboId(cbbStatus) != "0" ? ", สถานะ: " + cbbStatus.Text : "";
+
+                return strCondition;
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+                return "";
             }
         }
 
@@ -841,6 +887,7 @@ namespace SANSANG
                 int year = Convert.ToInt32(DateTime.Now.ToString("yyyy", Function.SetFormatDate(Cul.EN)));
                 int month = Convert.ToInt32(DateTime.Now.ToString("MM"));
                 int days = Convert.ToInt32(DateTime.Now.ToString("dd"));
+
                 dtTime.Value = new DateTime(2020, 02, 02, 0, 0, 0);
                 dtDate.Value = new DateTime(year, month, days);
 
@@ -851,7 +898,6 @@ namespace SANSANG
 
                 pbQrcode.Image = null;
                 txtScan.Text = "";
-                GridView.Focus();
 
                 SearchData(false, out Numbers);
             }
