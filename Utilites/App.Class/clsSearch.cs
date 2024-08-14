@@ -38,6 +38,7 @@ namespace SANSANG.Class
                     {"@Weight", "0.000"},
                     {"@Price", "0.00"},
                     {"@Detail", ""},
+                    {"@Reference", ""},
                     {"@Remark", ""},
                 };
 

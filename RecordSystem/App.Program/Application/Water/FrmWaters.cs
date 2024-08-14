@@ -68,7 +68,7 @@ namespace SANSANG
         public string WaterRates = "0";
         public int AccountId = 0;
         public int CountEnter = 0;
-        public int NumberOfPayment = -7;
+        public int NumberOfPayment = 7;
 
         public string qrHeader;
         public string qrLine2;
@@ -380,8 +380,9 @@ namespace SANSANG
                     txtDipCost.Text = dt.Rows[0]["Rates"].ToString();
                     txtFeeMonth.Text = dt.Rows[0]["Service"].ToString();
                     txtVat.Text = dt.Rows[0]["Vat"].ToString();
-                    NumberOfPayment = Convert.ToInt32(dt.Rows[0]["DueDate"].ToString()) * (-1);
+                    NumberOfPayment = Convert.ToInt32(dt.Rows[0]["DueDate"].ToString());
                     txtDiscount.Text = "0.00";
+                    NumberOfPayment = Convert.ToInt32(dt.Rows[0]["DueDate"].ToString()) * -1;
                 }
             }
             catch (Exception ex)
@@ -789,6 +790,8 @@ namespace SANSANG
                     if (dt.Rows.Count == 0)
                     {
                         ShowGridView(dt);
+                        GetBill(Operation.Overdue);
+                        GetBill(Operation.Before);
                     }
                     else { 
                         if (string.IsNullOrEmpty(Error) && dt.Rows.Count > 0)
@@ -889,7 +892,7 @@ namespace SANSANG
                 int days = Convert.ToInt32(DateTime.Now.ToString("dd"));
 
                 dtTime.Value = new DateTime(2020, 02, 02, 0, 0, 0);
-                dtDate.Value = new DateTime(year, month, days);
+                dtDate.Value = new DateTime(year, month, 1);
 
                 dtDateNow.Value = dtDate.Value;
                 dtDateBefor.Value = dtDate.Value.AddMonths(-1);
@@ -989,6 +992,7 @@ namespace SANSANG
                 }
 
                 dtPay.Value = dtDate.Value.AddDays(NumberOfPayment);
+                GetBill(Operation.Overdue);
             }
         }
 
@@ -1020,7 +1024,11 @@ namespace SANSANG
                 }
                 if (keyCode == "Enter")
                 {
-
+                    SearchData(true, out Numbers);
+                }
+                if (keyCode == "Tab")
+                {
+                   txtRemark.Focus();
                 }
             }
             catch (Exception ex)

@@ -29,8 +29,8 @@ namespace SANSANG
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmWaters));
             this.lblHSearch = new System.Windows.Forms.Label();
             this.GridView = new System.Windows.Forms.DataGridView();
@@ -48,6 +48,7 @@ namespace SANSANG
             this.label10 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
             this.txtInvoiceNumber = new System.Windows.Forms.TextBox();
+            this.btnScan = new System.Windows.Forms.Button();
             this.label60 = new System.Windows.Forms.Label();
             this.label45 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -72,7 +73,6 @@ namespace SANSANG
             this.txtScan = new System.Windows.Forms.TextBox();
             this.cbbAccount = new System.Windows.Forms.ComboBox();
             this.label38 = new System.Windows.Forms.Label();
-            this.btnScan = new System.Windows.Forms.Button();
             this.cbbYear = new System.Windows.Forms.ComboBox();
             this.cbbMonth = new System.Windows.Forms.ComboBox();
             this.label54 = new System.Windows.Forms.Label();
@@ -169,9 +169,9 @@ namespace SANSANG
             // 
             this.GridView.AllowUserToAddRows = false;
             this.GridView.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.SteelBlue;
-            this.GridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.SteelBlue;
+            this.GridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.GridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -179,14 +179,14 @@ namespace SANSANG
             this.GridView.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.GridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.GridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.GridView.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.GridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.GridView.GridColor = System.Drawing.Color.Silver;
             this.GridView.Location = new System.Drawing.Point(32, 498);
             this.GridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -416,6 +416,21 @@ namespace SANSANG
             this.txtInvoiceNumber.TabIndex = 11;
             this.txtInvoiceNumber.TextChanged += new System.EventHandler(this.InvoiceInput);
             this.txtInvoiceNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumberNow_KeyPress);
+            // 
+            // btnScan
+            // 
+            this.btnScan.BackColor = System.Drawing.Color.Transparent;
+            this.btnScan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnScan.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.btnScan.Image = ((System.Drawing.Image)(resources.GetObject("btnScan.Image")));
+            this.btnScan.Location = new System.Drawing.Point(254, 20);
+            this.btnScan.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnScan.Name = "btnScan";
+            this.btnScan.Size = new System.Drawing.Size(30, 30);
+            this.btnScan.TabIndex = 106;
+            this.btnScan.TabStop = false;
+            this.btnScan.UseVisualStyleBackColor = false;
+            this.btnScan.Click += new System.EventHandler(this.Search);
             // 
             // label60
             // 
@@ -738,20 +753,6 @@ namespace SANSANG
             this.label38.Size = new System.Drawing.Size(74, 18);
             this.label38.TabIndex = 54;
             this.label38.Text = "Account No.";
-            // 
-            // btnScan
-            // 
-            this.btnScan.BackColor = System.Drawing.Color.Transparent;
-            this.btnScan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnScan.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnScan.Image = ((System.Drawing.Image)(resources.GetObject("btnScan.Image")));
-            this.btnScan.Location = new System.Drawing.Point(254, 20);
-            this.btnScan.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnScan.Name = "btnScan";
-            this.btnScan.Size = new System.Drawing.Size(30, 30);
-            this.btnScan.TabIndex = 106;
-            this.btnScan.UseVisualStyleBackColor = false;
-            this.btnScan.Click += new System.EventHandler(this.Search);
             // 
             // cbbYear
             // 

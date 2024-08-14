@@ -106,7 +106,7 @@ namespace SANSANG
             txtTotal.Text = "0.00";
             txtCredit.Text = "0.00";
             txtDebit.Text = "0.00";
-
+            txtPayment.Text = "0.00";
             lblService.Text = "";
 
             dtDueDate.Text = Convert.ToString(DateTime.Now);
@@ -1017,7 +1017,7 @@ namespace SANSANG
                     txtAmount.Text = string.Format("{0:n}", Price);
 
                     double Amount = Convert.ToDouble(Data.Rows[0]["Pay"].ToString());
-                    txtPayment.Text = string.Format("{0:n}", Amount);
+                    txtPayment.Text = Amount == 0? "" : string.Format("{0:n}", Amount);
 
                     dtPaymentDate.Text = Data.Rows[0]["Status"].ToString() == "1005" ? Convert.ToString(DateTime.Now) : Data.Rows[0]["PayDate"].ToString();
                     dtDueDate.Text = Data.Rows[0]["DueDate"].ToString();

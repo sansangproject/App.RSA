@@ -2411,6 +2411,10 @@ namespace SANSANG.Class
             {
                 codeString += "Enter";
             }
+            else if (e.KeyCode == Keys.Tab)
+            {
+                codeString += "Tab";
+            }
             else
             {
             }

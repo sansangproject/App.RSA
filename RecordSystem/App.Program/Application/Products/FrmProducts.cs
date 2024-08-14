@@ -101,17 +101,16 @@ namespace SANSANG
                 {"@Code", Search? txtCode.Text : ""},
                 {"@User", ""},
                 {"@Barcode", Search? txtBarode.Text : ""},
-                {"@Name", Search? txtName.Text : ""},
+               
                 {"@NameEn", Search? txtNameEn.Text : ""},
                 {"@TypeId", Search? Function.getComboboxId(cbbType) : "0"},
                 {"@Brand", Search? txtBrand.Text : ""},
-                {"@Generation", Search? txtGeneration.Text : ""},
+              
                 {"@Model", ""},
-                {"@Color", Search? txtColor.Text : ""},
-                {"@Size", Search? txtSize.Text : ""},
+               
                 {"@Lot", Search? txtLot.Text : ""},
                 {"@SerialNumber", Search? txtSerialNumber.Text : ""},
-                {"@Detail", Search? txtDetail.Text : ""},
+              
                 {"@Number", Search? txtNumber.Text : ""},
                 {"@UnitId", Search? Function.getComboboxId(cbbUnit) : "0"},
                 {"@Price", Search? Function.RemoveComma(txtPrice.Text) : "0.00"},
@@ -134,7 +133,6 @@ namespace SANSANG
                 {"@PriceWholeSale", Search? Function.RemoveComma(txtPriceWholeSale.Text) : "0.00"},
                 {"@PriceMember", Search? Function.RemoveComma(txtPriceMember.Text) : "0.00"},
                 {"@Image", Search? txtImage.Text : ""},
-                {"@MadeIn", Search? txtMadeIn.Text : ""},
                 {"@ManufacturingDate", Search? txtMfg.Text == ""? "" :  Date.GetDate(dtp: Mfg, Format : 4) : ""},
                 {"@ExpiryDate", Search? txtExp.Text == ""? "" :  Date.GetDate(dtp: Exp, Format : 4) : ""},
                 {"@Remark", Search? txtRemark.Text : ""},
@@ -200,17 +198,12 @@ namespace SANSANG
             txtCode.Text = dt.Rows[0]["Code"].ToString();
 
             txtBarode.Text = dt.Rows[0]["Barcode"].ToString();
-            txtName.Text = dt.Rows[0]["Name"].ToString();
             txtNameEn.Text = dt.Rows[0]["NameEn"].ToString();
             txtBrand.Text = dt.Rows[0]["Brand"].ToString();
-            txtGeneration.Text = dt.Rows[0]["Generation"].ToString();
-            txtColor.Text = dt.Rows[0]["Color"].ToString();
-            txtSize.Text = dt.Rows[0]["Size"].ToString();
             txtLot.Text = dt.Rows[0]["Lot"].ToString();
             txtSerialNumber.Text = dt.Rows[0]["SerialNumber"].ToString();
             txtBranch.Text = dt.Rows[0]["Branch"].ToString();
             txtReceipt.Text = dt.Rows[0]["Receipt"].ToString();
-            txtDetail.Text = dt.Rows[0]["Detail"].ToString();
             txtNumber.Text = dt.Rows[0]["Number"].ToString();
             txtPrice.Text = dt.Rows[0]["Price"].ToString();
             txtPriceSpacial.Text = dt.Rows[0]["PriceSpacial"].ToString();
@@ -219,7 +212,6 @@ namespace SANSANG
             txtVat.Text = dt.Rows[0]["Vat"].ToString();
             txtVatValue.Text = dt.Rows[0]["VatValue"].ToString();
             txtLocation.Text = dt.Rows[0]["Location"].ToString();
-            txtMadeIn.Text = dt.Rows[0]["MadeIn"].ToString();
 
             if (dt.Rows[0]["IsSale"].ToString() == "True")
             {
@@ -280,30 +272,7 @@ namespace SANSANG
 
                 strCondition += txtCode.Text != "" ? ", รหัส : " + txtCode.Text : "";
                 strCondition += txtBarode.Text != "" ? ", Barcode : " + txtBarode.Text : "";
-                strCondition += cbbType.Text != ":: กรุณาเลือก ::" ? ", " + "หมวดหมู่ : " + " " + cbbType.Text : "";
-                strCondition += txtBrand.Text != "" ? ", ยี่ห้อ : " + txtBrand.Text : "";
-                strCondition += txtName.Text != "" ? ", ชื่อสินค้า : " + txtName.Text + (txtNameEn.Text == "" ? "" : " (" + txtNameEn.Text + ")") : "";
-                strCondition += txtGeneration.Text != "" ? ", รุ่น : " + txtGeneration.Text : "";
-                strCondition += txtLot.Text != "" ? ", ลอต : " + txtLot.Text : "";
-                strCondition += txtSerialNumber.Text != "" ? ", ซีเรียล : " + txtSerialNumber.Text : "";
-                strCondition += txtColor.Text != "" ? ", สี : " + txtColor.Text : "";
-                strCondition += cbbUnit.Text != ":: กรุณาเลือก ::" ? ", " + "หน่วยนับ : " + " " + cbbUnit.Text : "";
-                strCondition += txtMadeIn.Text != "" ? ", สถานที่ผลิต : " + txtMadeIn.Text : "";
-                strCondition += txtMfg.Text != "" ? ", วันที่ผลิต : " + txtMfg.Text : "";
-                strCondition += txtExp.Text != "" ? ", วันหมดอายุ : " + txtExp.Text : "";
-                strCondition += txtBranch.Text != "" ? ", สาขา : " + txtBranch.Text : "";
-                strCondition += txtReceipt.Text != "" ? ", เลขที่ใบเสร็จ : " + txtReceipt.Text : "";
-                strCondition += txtPrice.Text != "" ? ", ราคา : " + txtPrice.Text : "";
-                strCondition += txtVat.Text != "" ? ", ภาษี : " + txtVat.Text : "";
-                strCondition += txtDetail.Text != "" ? ", รายละเอียด : " + txtDetail.Text : "";
-                strCondition += txtBuyDate.Text != "" ? ", วันที่ซื้อ : " + txtBuyDate.Text : "";
-                strCondition += txtReceiveDate.Text != "" ? ", วันที่นำเข้า : " + txtReceiveDate.Text : "";
-                strCondition += txtWarrantyDate.Text != "" ? ", วันหมดประกัน : " + txtWarrantyDate.Text : "";
-                strCondition += cbbShop.Text != ":: กรุณาเลือก ::" ? ", " + "สถานที่ซื้อ : " + " " + cbbShop.Text : "";
-                strCondition += cbbPayment.Text != ":: กรุณาเลือก ::" ? ", " + "ชำระเงิน : " + " " + cbbPayment.Text : "";
-                strCondition += cbbStatus.Text != ":: กรุณาเลือก ::" ? ", " + "สถานะ : " + " " + cbbStatus.Text : "";
-                strCondition += txtLocation.Text != "" ? ", ที่จัดเก็บ : " + txtLocation.Text : "";
-                strCondition += txtRemark.Text != "" ? ", หมายเหตุ : " + txtRemark.Text : "";
+             
 
                 return strCondition;
             }
@@ -512,17 +481,7 @@ namespace SANSANG
 
         private void MadeInLeave(object sender, EventArgs e)
         {
-            if (!txtMadeIn.Text.Contains("Made In "))
-            {
-                string Made = "Made In ";
-                string Country = txtMadeIn.Text;
-
-                if (Country != "")
-                {
-                    txtMadeIn.Text = "";
-                    txtMadeIn.Text = Made + Country;
-                }
-            }
+            
         }
 
         public void SetDate(object sender, EventArgs e)
@@ -582,146 +541,12 @@ namespace SANSANG
 
         private void EditData(object sender, EventArgs e)
         {
-            try
-            {
-                if (txtId.Text != "")
-                {
-                    Parameter = new string[,]
-                    {
-                        {"@Id ", txtId.Text},
-                        {"@Code", txtCode.Text},
-                        {"@User", UserId},
-                        {"@Barcode", txtBarode.Text},
-                        {"@Name", txtName.Text},
-                        {"@NameEn", txtNameEn.Text},
-                        {"@TypeId", Function.getComboboxId(cbbType)},
-                        {"@Brand", txtBrand.Text},
-                        {"@Generation", txtGeneration.Text},
-                        {"@Model", ""},
-                        {"@Color", txtColor.Text},
-                        {"@Size", txtSize.Text},
-                        {"@Lot", txtLot.Text},
-                        {"@SerialNumber", txtSerialNumber.Text},
-                        {"@Detail", txtDetail.Text},
-                        {"@Number", txtNumber.Text},
-                        {"@UnitId", Function.getComboboxId(cbbUnit)},
-                        {"@Price", Function.RemoveComma(txtPrice.Text)},
-                        {"@PriceSpacial", Function.RemoveComma(txtPriceSpacial.Text)},
-                        {"@Discount", Function.RemoveComma(txtDiscount.Text)},
-                        {"@PriceExVat", Function.RemoveComma(txtPriceExVat.Text)},
-                        {"@Vat", Function.RemoveComma(txtVat.Text)},
-                        {"@VatValue", Function.RemoveComma(txtVatValue.Text)},
-                        {"@MoneyId", Function.getComboboxId(cbbPayment)},
-                        {"@ShopId", Function.getComboboxId(cbbShop)},
-                        {"@Branch", txtBranch.Text},
-                        {"@Location", txtLocation.Text},
-                        {"@BuyDate", txtBuyDate.Text != "" ? Date.GetDate(dtp : BuyDate) : ""},
-                        {"@ReceiveDate",  txtReceiveDate.Text != "" ? Date.GetDate(dtp: ReceiveDate) : ""},
-                        {"@Receipt", txtReceipt.Text},
-                        {"@WarrantyDate", txtWarrantyDate.Text != "" ? Date.GetDate(dtp: WarrantyDate) : ""},
-                        {"@IsSale", cb_Sale.Checked? "1" : "0"},
-                        {"@PriceSale", Function.RemoveComma(txtPriceSale.Text)},
-                        {"@PriceRetail", Function.RemoveComma(txtPriceRetail.Text)},
-                        {"@PriceWholeSale", Function.RemoveComma(txtPriceWholeSale.Text)},
-                        {"@PriceMember", Function.RemoveComma(txtPriceMember.Text)},
-                        {"@Image", txtImage.Text},
-                        {"@MadeIn", txtMadeIn.Text},
-                        {"@ManufacturingDate", txtMfg.Text != "" ? Date.GetDate(dtp: Mfg) : ""},
-                        {"@ExpiryDate", txtExp.Text != "" ? Date.GetDate(dtp: Exp) : ""},
-                        {"@Remark", txtRemark.Text},
-                        {"@Status", Function.getComboboxId(cbbStatus)},
-                        {"@IsActive", "1"},
-                        {"@IsDelete", "0"},
-                        {"@Operation", Operation.UpdateAbbr},
-                        };
 
-                    if (Edit.Update(AppCode, AppName, UserId, Store.ManageProduct, Parameter, txtCode.Text, Details: GetDetails()))
-                    {
-                        Clear();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
-            }
         }
 
         private void AddData(object sender, EventArgs e)
         {
-            try
-            {
-                if (Function.GetComboId(cbbType) != "0" && Function.GetComboId(cbbStatus) != "0" && !string.IsNullOrEmpty(txtNameEn.Text) && !string.IsNullOrEmpty(txtPrice.Text))
-                {
-                    if (!Function.IsDuplicates(Table.Products, Function.GetComboId(cbbType), txtNameEn.Text, Function.RemoveComma(txtPrice.Text), Detail: GetDetails()))
-                    {
-                        string Codes = Function.GetCodes(Table.ProductId, "", "Generated");
-                        txtCode.Text = Codes;
-
-                        Parameter = new string[,]
-                        {
-                            {"@Id ", ""},
-                            {"@Code", Codes},
-                            {"@User", UserId},
-                            {"@Barcode", txtBarode.Text},
-                            {"@Name", txtName.Text},
-                            {"@NameEn", txtNameEn.Text},
-                            {"@TypeId", Function.getComboboxId(cbbType)},
-                            {"@Brand", txtBrand.Text},
-                            {"@Generation", txtGeneration.Text},
-                            {"@Model", ""},
-                            {"@Color", txtColor.Text},
-                            {"@Size", txtSize.Text},
-                            {"@Lot", txtLot.Text},
-                            {"@SerialNumber", txtSerialNumber.Text},
-                            {"@Detail", txtDetail.Text},
-                            {"@Number", txtNumber.Text},
-                            {"@UnitId", Function.getComboboxId(cbbUnit)},
-                            {"@Price", Function.RemoveComma(txtPrice.Text)},
-                            {"@PriceSpacial", Function.RemoveComma(txtPriceSpacial.Text)},
-                            {"@Discount", Function.RemoveComma(txtDiscount.Text)},
-                            {"@PriceExVat", Function.RemoveComma(txtPriceExVat.Text)},
-                            {"@Vat", Function.RemoveComma(txtVat.Text)},
-                            {"@VatValue", Function.RemoveComma(txtVatValue.Text)},
-                            {"@MoneyId", Function.getComboboxId(cbbPayment)},
-                            {"@ShopId", Function.getComboboxId(cbbShop)},
-                            {"@Branch", txtBranch.Text},
-                            {"@Location", txtLocation.Text},
-                            {"@BuyDate", txtBuyDate.Text != "" ? Date.GetDate(dtp : BuyDate) : ""},
-                            {"@ReceiveDate",  txtReceiveDate.Text != "" ? Date.GetDate(dtp: ReceiveDate) : ""},
-                            {"@Receipt", txtReceipt.Text},
-                            {"@WarrantyDate", txtWarrantyDate.Text != "" ? Date.GetDate(dtp: WarrantyDate) : ""},
-                            {"@IsSale", cb_Sale.Checked? "1" : "0"},
-                            {"@PriceSale", Function.RemoveComma(txtPriceSale.Text)},
-                            {"@PriceRetail", Function.RemoveComma(txtPriceRetail.Text)},
-                            {"@PriceWholeSale", Function.RemoveComma(txtPriceWholeSale.Text)},
-                            {"@PriceMember", Function.RemoveComma(txtPriceMember.Text)},
-                            {"@Image", txtImage.Text},
-                            {"@MadeIn", txtMadeIn.Text},
-                            {"@ManufacturingDate", txtMfg.Text != "" ? Date.GetDate(dtp: Mfg) : ""},
-                            {"@ExpiryDate", txtExp.Text != "" ? Date.GetDate(dtp: Exp) : ""},
-                            {"@Remark", txtRemark.Text},
-                            {"@Status", Function.getComboboxId(cbbStatus)},
-                            {"@IsActive", "1"},
-                            {"@IsDelete", "0"},
-                            {"@Operation", Operation.InsertAbbr},
-                        };
-
-                        if (Insert.Add(AppCode, AppName, UserId, Store.ManageProduct, Parameter, txtCode.Text, Details: GetDetails()))
-                        {
-                            Clear();
-                        }
-                    }
-                }
-                else
-                {
-                    Message.ShowRequestData();
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
-            }
+           
         }
 
         private void CellContentClick(object sender, DataGridViewCellEventArgs e)

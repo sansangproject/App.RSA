@@ -10,6 +10,7 @@ using SANSANG.Constant;
 using SANSANG.Utilites.App.Forms;
 using SANSANG.Utilites.App.Model;
 using SANSANG.Database;
+using static QRCoder.PayloadGenerator.SwissQrCode;
 
 namespace SANSANG.Class
 {
@@ -164,6 +165,7 @@ namespace SANSANG.Class
                         {"@Weight", "0.000"},
                         {"@Price", "0.00"},
                         {"@Detail", ""},
+                        {"@Reference", ""},
                         {"@Remark", ""},
                     };
 
