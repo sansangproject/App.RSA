@@ -69,6 +69,7 @@ namespace SANSANG
         public int AccountId = 0;
         public int CountEnter = 0;
         public int NumberOfPayment = 7;
+        public int InvoiceDay = -7;
 
         public string qrHeader;
         public string qrLine2;
@@ -382,7 +383,7 @@ namespace SANSANG
                     txtVat.Text = dt.Rows[0]["Vat"].ToString();
                     NumberOfPayment = Convert.ToInt32(dt.Rows[0]["DueDate"].ToString());
                     txtDiscount.Text = "0.00";
-                    NumberOfPayment = Convert.ToInt32(dt.Rows[0]["DueDate"].ToString()) * -1;
+                    InvoiceDay = Convert.ToInt32(dt.Rows[0]["DueDate"].ToString()) * -1;
                 }
             }
             catch (Exception ex)
@@ -511,7 +512,7 @@ namespace SANSANG
                 {
                     strBarcode = txtScan.Text;
                     strInvoice = "";
-                    Function.GetWaterData(txtScan.Text, NumberOfPayment);
+                    Function.GetWaterData(txtScan.Text, InvoiceDay);
                     CountEnter = 0;
 
                     foreach (WaterModel Waters in GlobalVar.WaterDataList)
@@ -922,6 +923,7 @@ namespace SANSANG
                 txtFeeMonth.Text = "";
                 txtVat.Text = "";
                 NumberOfPayment = -7;
+                InvoiceDay = -7;
                 txtDiscount.Text = "";
 
                 if (WaterRates != "0")
@@ -991,7 +993,7 @@ namespace SANSANG
                     }
                 }
 
-                dtPay.Value = dtDate.Value.AddDays(NumberOfPayment);
+                dtPay.Value = dtDate.Value.AddDays(InvoiceDay);
                 GetBill(Operation.Overdue);
             }
         }
