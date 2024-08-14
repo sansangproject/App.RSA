@@ -897,7 +897,7 @@ namespace SANSANG
 
                 dtDateNow.Value = dtDate.Value;
                 dtDateBefor.Value = dtDate.Value.AddMonths(-1);
-                dtPay.Value = dtDate.Value.AddDays(7);
+                dtPay.Value = dtDate.Value.AddDays(NumberOfPayment);
                 dtDatePayment.Value = new DateTime(year, month, days);
 
                 pbQrcode.Image = null;
@@ -922,7 +922,7 @@ namespace SANSANG
                 txtDipCost.Text = "";
                 txtFeeMonth.Text = "";
                 txtVat.Text = "";
-                NumberOfPayment = -7;
+                NumberOfPayment = 7;
                 InvoiceDay = -7;
                 txtDiscount.Text = "";
 
@@ -993,7 +993,7 @@ namespace SANSANG
                     }
                 }
 
-                dtPay.Value = dtDate.Value.AddDays(InvoiceDay);
+                dtPay.Value = dtDate.Value.AddDays(NumberOfPayment);
                 GetBill(Operation.Overdue);
             }
         }
