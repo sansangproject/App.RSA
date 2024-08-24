@@ -8,7 +8,7 @@ using SANSANG.Class; using SANSANG.Database;
 
 namespace SANSANG
 {
-    public partial class FrmMEARE00 : Form
+    public partial class FrmElectricityReport : Form
     {
         public string strUserId;
         public string strUserName;
@@ -32,7 +32,7 @@ namespace SANSANG
         private dbConnection db = new dbConnection();
 
 
-        public FrmMEARE00(string userIdLogin, string userNameLogin, string userSurNameLogin, string userTypeLogin)
+        public FrmElectricityReport(string userIdLogin, string userNameLogin, string userSurNameLogin, string userTypeLogin)
         {
             InitializeComponent();
 

@@ -42,6 +42,8 @@ namespace SANSANG.Constant
         public string UserAccounts = "UserAccounts";
         public string Transportation = "Transportation";
         public string WaterAccount = "WaterAccount";
+        public string ElectricityAccount = "ElectricityAccount";
+
         public string WaterRates = "WaterRates";
 
         public string Workdays = "Workdays";

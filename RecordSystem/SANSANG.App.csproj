@@ -235,17 +235,17 @@
     <Compile Include="App.Program\Application\Electricity\FrmElectricitys.Designer.cs">
       <DependentUpon>FrmElectricitys.cs</DependentUpon>
     </Compile>
-    <Compile Include="App.Program\Application\Electricity\FrmMEAMA00.cs">
+    <Compile Include="App.Program\Application\Electricity\FrmElectricityRates.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="App.Program\Application\Electricity\FrmMEAMA00.Designer.cs">
-      <DependentUpon>FrmMEAMA00.cs</DependentUpon>
+    <Compile Include="App.Program\Application\Electricity\FrmElectricityRates.Designer.cs">
+      <DependentUpon>FrmElectricityRates.cs</DependentUpon>
     </Compile>
-    <Compile Include="App.Program\Application\Electricity\FrmMEARE00.cs">
+    <Compile Include="App.Program\Application\Electricity\FrmElectricityReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="App.Program\Application\Electricity\FrmMEARE00.Designer.cs">
-      <DependentUpon>FrmMEARE00.cs</DependentUpon>
+    <Compile Include="App.Program\Application\Electricity\FrmElectricityReport.Designer.cs">
+      <DependentUpon>FrmElectricityReport.cs</DependentUpon>
     </Compile>
     <Compile Include="App.Program\Application\Image\FrmImportImage.cs">
       <SubType>Form</SubType>
@@ -644,11 +644,11 @@
     <EmbeddedResource Include="App.Program\Application\Electricity\FrmElectricitys.resx">
       <DependentUpon>FrmElectricitys.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="App.Program\Application\Electricity\FrmMEAMA00.resx">
-      <DependentUpon>FrmMEAMA00.cs</DependentUpon>
+    <EmbeddedResource Include="App.Program\Application\Electricity\FrmElectricityRates.resx">
+      <DependentUpon>FrmElectricityRates.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="App.Program\Application\Electricity\FrmMEARE00.resx">
-      <DependentUpon>FrmMEARE00.cs</DependentUpon>
+    <EmbeddedResource Include="App.Program\Application\Electricity\FrmElectricityReport.resx">
+      <DependentUpon>FrmElectricityReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="App.Program\Application\Image\FrmImportImage.resx">
       <DependentUpon>FrmImportImage.cs</DependentUpon>

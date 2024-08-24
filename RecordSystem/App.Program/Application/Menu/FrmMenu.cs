@@ -359,7 +359,17 @@ namespace SANSANG
                 FrmCredits Frm = new FrmCredits(UserId, UserName, UserSurname, UserType);
                 Frm.Show();
             }
-            else if (((RadMenuItem)sender).Name == "SAVEA00")
+            else if (((RadMenuItem)sender).Name == "MEAMA00")
+            {
+                FrmElectricityRates Frm = new FrmElectricityRates(UserId, UserName, UserSurname, UserType);
+                Frm.Show();
+            }
+            else if (((RadMenuItem)sender).Name == "MEARE00")
+            {
+                FrmElectricityReport Frm = new FrmElectricityReport(UserId, UserName, UserSurname, UserType);
+                Frm.Show();
+            }
+            else if (((RadMenuItem)sender).Name == "MEASA00")
             {
                 FrmElectricitys Frm = new FrmElectricitys(UserId, UserName, UserSurname, UserType);
                 Frm.Show();

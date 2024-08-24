@@ -562,7 +562,12 @@ namespace SANSANG
                 }
                 if (keyCode == "Enter")
                 {
-                    Search(true);
+                    Form Frm = (Form)sender;
+
+                    if (Frm.ActiveControl.Name != "txtDetail")
+                    {
+                        Search(true);
+                    }
                 }
             }
             catch (Exception ex)

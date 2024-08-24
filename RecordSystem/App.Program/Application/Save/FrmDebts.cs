@@ -745,6 +745,7 @@ namespace SANSANG
             {
                 txtPayment.Text = "0.00";
                 txtReceipt.Text = "";
+                txtReference.Text = "";
                 btnPayment.Focus();
             }
 

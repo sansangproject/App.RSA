@@ -1,6 +1,6 @@
 ﻿namespace SANSANG
 {
-    partial class FrmMEARE00
+    partial class FrmElectricityReport
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMEARE00));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmElectricityReport));
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.txtRecId = new System.Windows.Forms.TextBox();
