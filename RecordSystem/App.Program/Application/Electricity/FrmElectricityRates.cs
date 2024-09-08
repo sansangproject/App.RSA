@@ -7,6 +7,7 @@ using System.Security.Principal;
 using System.Web.Services.Description;
 using System.Windows.Forms;
 using Microsoft.Reporting.Map.WebForms.BingMaps;
+using Microsoft.Reporting.WinForms;
 using Microsoft.VisualBasic;
 using SANSANG.Class;
 using SANSANG.Constant;
@@ -107,37 +108,17 @@ namespace SANSANG
                 {"@IsActive", "1"},
                 {"@IsDelete", "0"},
                 {"@Operation", Operation.SelectAbbr},
-                
-
-
-
-
-
-
-                        {"@Version", txtVersion.Text},
-                        {"@Rates", txtPrice.Text},
-                        {"@Service", txtService.Text},
-                       // {"@Ft", txtFt.Text},
-                        {"@Discount", txtDiscount.Text},
-                        {"@Vat", txtVat.Text},
-                        {"@DueDate", txtDay.Text},
-                        {"@CompanyName", txtCompany.Text},
-                        {"@CompanyPhone", txtPhone.Text},
-                        {"@Report", txtReport.Text},
-                      
-                 
-
-
-
-
-                //{"@Version", Search? txtVersion.Text : ""},
-                //{"@Rates", Search? txtRate.Text : "0.00"},
-                //{"@Service", Search? txtService.Text : "0.00"},
-                //{"@Discount", Search? txtDiscount.Text : ""},
-                //{"@Vat", Search? txtVat.Text : ""},
-                //{"@RawText", Search? txtRawText.Text : ""},
-                //{"@RawValue", Search? txtRawValue.Text : "0.00"},
-                //{"@DueDate", Search? txtDueDate.Text : ""},
+                {"@AccountId", Search? Function.GetComboId(cbbAccount) : "0"},
+                {"@Version", Search? txtVersion.Text : ""},
+                {"@Rates", Search? txtRates.Text : ""},
+                {"@Service", Search? txtService.Text : ""},
+                {"@Discount", Search? txtDiscount.Text : ""},
+                {"@Vat", Search? txtVat.Text : ""},
+                {"@Ft", Search? txtFt.Text : ""},
+                {"@Report", Search? txtReport.Text : ""},
+                {"@DueDate", Search? txtDueDate.Text : ""},
+                {"@Company", Search? txtCompany.Text : ""},
+                {"@Phone", Search? txtPhone.Text : ""},
             };
 
             string Condition = Function.ShowConditons(GetCondition());
@@ -153,34 +134,34 @@ namespace SANSANG
 
         public void ShowGridView(DataTable dt)
         {
-            //GridView.DataSource = null;
-            //Rows = dt.Rows.Count;
+            GridView.DataSource = null;
+            Rows = dt.Rows.Count;
 
-            //if (Rows != 0)
-            //{
-            //    GridView.DataSource = null;
-            //    DataTable dtGrid = new DataTable();
-            //    dtGrid = dt.DefaultView.ToTable(true, "SNo", "UserName", "Version", "Rates", "RawValue", "Service", "DueDates", "Id");
+            if (Rows != 0)
+            {
+                GridView.DataSource = null;
+                DataTable dtGrid = new DataTable();
+                dtGrid = dt.DefaultView.ToTable(true, "SNo", "UserName", "Version", "Rates", "Ft", "Service", "DueDates", "Id");
 
-            //    DataGridViewContentAlignment mc = DataGridViewContentAlignment.MiddleCenter;
-            //    DataGridViewContentAlignment ml = DataGridViewContentAlignment.MiddleLeft;
-            //    DataGridViewContentAlignment mr = DataGridViewContentAlignment.MiddleRight;
+                DataGridViewContentAlignment mc = DataGridViewContentAlignment.MiddleCenter;
+                DataGridViewContentAlignment ml = DataGridViewContentAlignment.MiddleLeft;
+                DataGridViewContentAlignment mr = DataGridViewContentAlignment.MiddleRight;
 
-            //    Function.showGridViewFormatFromStore(dtGrid, GridView,
-            //          "ลำดับ", 50, true, mc, mc
-            //        , "ผู้ใช้น้ำประปา", 100, true, ml, ml
-            //        , "เวอร์ชั่น", 200, true, ml, ml
-            //        , "อัตราค่าน้ำ", 50, true, mr, mr
-            //        , "ค่าน้ำดิบ", 50, true, mr, mr
-            //        , "ค่าบริการ", 50, true, mr, mr
-            //        , "จำนวนที่ต้องชำระ", 50, true, mc, mc
-            //        , "", 0, false, mr, mr
-            //        );
+                Function.showGridViewFormatFromStore(dtGrid, GridView,
+                      "ลำดับ", 50, true, mc, mc
+                    , "ผู้ใช้น้ำประปา", 100, true, ml, ml
+                    , "เวอร์ชั่น", 200, true, ml, ml
+                    , "อัตราค่าน้ำ", 50, true, mr, mr
+                    , "ค่าน้ำดิบ", 50, true, mr, mr
+                    , "ค่าบริการ", 50, true, mr, mr
+                    , "จำนวนที่ต้องชำระ", 50, true, mc, mc
+                    , "", 0, false, mr, mr
+                );
 
-            //    GridView.Focus();
-            //}
+                GridView.Focus();
+            }
 
-            //txtCount.Text = Function.ShowNumberOfData(Function.GetRows(dt));
+            txtCount.Text = Function.ShowNumberOfData(Function.GetRows(dt));
         }
 
         private string GetCondition()
@@ -189,112 +170,25 @@ namespace SANSANG
             {
                 string strCondition = "";
                 strCondition += txtCode.Text != "" ? ", รหัส : " + txtCode.Text : "";
-                //strCondition += txtVersion.Text != "" ? ", " + lblVersion.Text + " " + txtVersion.Text : "";
-                //strCondition += txtRate.Text != "" ? ", " + lblRate.Text + " " + txtRate.Text : "";
-                //strCondition += txtRawValue.Text != "" ? ", " + lblTapWater.Text + " " + txtRawValue.Text : "";
-                //strCondition += txtRawText.Text != "" ? ", เลขน้ำประปา : " + txtRawText.Text : "";
-                //strCondition += txtDiscount.Text != "" ? ", " + lblDiscount.Text + " " + txtDiscount.Text : "";
-                //strCondition += txtVat.Text != "" ? ", " + lblVat.Text + " " + txtVat.Text : "";
-                //strCondition += txtService.Text != "" ? ", " + lblFee.Text + " " + txtService.Text : "";
-                //strCondition += txtDueDate.Text != "" ? ", " + lblDueDate.Text + " " + txtDueDate.Text : "";
-                strCondition += cbbStatus.Text != ":: กรุณาเลือก ::" ? ", " + label41.Text + " " + cbbStatus.Text : "";
-
+                strCondition += cbbAccount.Text != ":: กรุณาเลือก ::" ? ", " + lblName.Text + " " + cbbAccount.Text : "";
+                strCondition += txtVersion.Text != "" ? ", " + lblVersion.Text + " " + txtVersion.Text : "";
+                strCondition += txtReport.Text != "" ? ", " + lblReport.Text + " " + txtReport.Text : "";
+                strCondition += txtRates.Text != "" ? ", " + lblRates.Text + " " + txtRates.Text : "";
+                strCondition += txtService.Text != "" ? ", " + lblService.Text + " " + txtService.Text : "";
+                strCondition += txtDiscount.Text != "" ? ", " + lblDiscount.Text + " " + txtDiscount.Text : "";
+                strCondition += txtVat.Text != "" ? ", " + lblVat.Text + " " + txtVat.Text : "";
+                strCondition += txtFt.Text != "" ? ", " + lblFt.Text + " " + txtFt.Text : "";
+                strCondition += txtReport.Text != "" ? ", " + lblResult.Text + " " + txtReport.Text : "";
+                strCondition += txtDueDate.Text != "" ? ", " + lblDuedate.Text + " " + txtDueDate.Text : "";
+                strCondition += txtCompany.Text != "" ? ", " + lblCompany.Text + " " + txtCompany.Text : "";
+                strCondition += txtPhone.Text != "" ? ", " + lblPhone.Text + " " + txtPhone.Text : "";
+                strCondition += cbbStatus.Text != ":: กรุณาเลือก ::" ? ", " + lblStatus.Text + " " + label41.Text + " " + cbbStatus.Text : "";
                 return strCondition;
             }
             catch (Exception ex)
             {
                 Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
                 return "";
-            }
-        }
-
-        private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                if (e.RowIndex >= 0)
-                {
-                    DataGridViewRow row = this.GridView.Rows[e.RowIndex];
-                    DataTable dt = new DataTable();
-
-                    Parameter = new string[,]
-                    {
-                        {"@Id", row.Cells["Id"].Value.ToString()},
-                        {"@Code", ""},
-                        {"@Version", ""},
-                        {"@Rates", ""},
-                        {"@Service", ""},
-                        {"@Ft", ""},
-                        {"@Discount", ""},
-                        {"@Vat", ""},
-                        {"@DueDate", ""},
-                        {"@CompanyName", ""},
-                        {"@CompanyPhone", ""},
-                        {"@Report", ""},
-                        {"@Status", "0"},
-                        {"@User", ""},
-                    };
-
-                    //db.Get("Store.SelectVersionElectricity", Parameter, out strErr, out dt);
-
-                    txtCode.Text = dt.Rows[0]["Code"].ToString();
-
-                    txtVersion.Text = dt.Rows[0]["Version"].ToString();
-                    txtReport.Text = dt.Rows[0]["Report"].ToString();
-                    txtDay.Text = dt.Rows[0]["DueDate"].ToString();
-                    txtVat.Text = dt.Rows[0]["Vat"].ToString();
-                    cbbStatus.SelectedValue = dt.Rows[0]["Status"].ToString();
-
-                    txtPrice.Text = dt.Rows[0]["Rates"].ToString();
-                    txtCompany.Text = dt.Rows[0]["CompanyName"].ToString();
-                    txtPhone.Text = dt.Rows[0]["CompanyPhone"].ToString();
-                    txtService.Text = dt.Rows[0]["Service"].ToString();
-
-                    txtFt.Text = dt.Rows[0]["Ft"].ToString();
-                    txtDiscount.Text = dt.Rows[0]["Discount"].ToString();
-
-                    string strBarcode = dt.Rows[0]["Code"].ToString();
-                    pbQrcode.Image = Barcode.QRCode(strBarcode, Color.Black, Color.White, "Q", 3, false);
-                }
-            }
-            catch (Exception ex)
-            {
-                //Log.WriteLogData(strAppCode, strAppName, strUserId, ex.Message);
-            }
-        }
-
-        public void getDataGrid(DataTable dt)
-        {
-            try
-            {
-                //if (Fn.GetRows(dt) == 0)
-                //{
-                //    GridView.DataSource = null;
-                //}
-                //else
-                //{
-                //    DataTable dtGrid = new DataTable();
-                //    dtGrid = dt.DefaultView.ToTable(true, "Version", "Rate", "Service", "Ft", "CompanyName", "Id");
-
-                //    DataGridViewContentAlignment mc = DataGridViewContentAlignment.MiddleCenter;
-                //    DataGridViewContentAlignment ml = DataGridViewContentAlignment.MiddleLeft;
-
-                //    Fn.showGridViewFormatFromStore(dtGrid, GridView,
-                //          "ลำดับ", 20, true, mc, mc
-                //        , "Version", 80, true, ml, ml
-                //        , "ค่าไฟฟ้าต่อหน่วย", 100, true, ml, ml
-                //        , "ค่าบริการรายเดือน", 100, true, ml, ml
-                //        , "Ft", 80, true, ml, ml
-                //        , "บริษัทจดบันทึกค่าไฟฟ้า", 200, true, mc, mc
-                //        , "", 0, false, mc, mc
-                //        );
-
-                //    lblResult.Text = Fn.ShowResult(dt.Rows.Count);
-                //}
-            }
-            catch (Exception ex)
-            {
-                //Log.WriteLogData(strAppCode, strAppName, strUserId, ex.Message);
             }
         }
 
@@ -308,163 +202,286 @@ namespace SANSANG
             Clear();
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(txtVersion.Text))
-            {
-                //if (!Fn.IsDuplicates("MST_VersionElectricity", txtVersion.Text, Detail: "Version " + txtVersion.Text))
-                //{
-                //    txtCode.Text = Fn.GetCodes("139", "", "Generated");
-
-                //    string[,] Parameter = new string[,]
-                //    {
-                //        {"@Id", ""},
-                //        {"@Code", txtCode.Text},
-                //        {"@Version", txtVersion.Text},
-                //        {"@Rates", txtPrice.Text},
-                //        {"@Service", txtService.Text},
-                //        {"@Ft", txtFt.Text},
-                //        {"@Discount", txtDiscount.Text},
-                //        {"@Vat", txtVat.Text},
-                //        {"@DueDate", txtDay.Text},
-                //        {"@CompanyName", txtCompany.Text},
-                //        {"@CompanyPhone", txtPhone.Text},
-                //        {"@Report", txtReport.Text},
-                //        {"@Status", Fn.getComboboxId(cbbStatus)},
-                //        {"@User", strUserId},
-                //    };
-
-                //    if (Insert.Add(strAppCode, strAppName, strUserId, "Store.InsertVersionElectricity", Parameter, txtCode.Text, "Version " + txtVersion.Text))
-                //    {
-                //        Clear();
-                //    }
-                //}
-            }
-            else
-            {
-                Message.ShowRequestData();
-            }
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(txtCode.Text))
-            {
-                //if (Delete.Drop(strAppCode, strAppName, strUserId, 0, Tb.VersionElectricity, txtCode, "Version " + txtVersion.Text))
-                //{
-                //    Clear();
-                //}
-            }
-        }
-
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(txtCode.Text))
-            {
-                Parameter = new string[,]
-                {
-                    {"@Id", ""},
-                    {"@Code", txtCode.Text},
-                    {"@Version", txtVersion.Text},
-                    {"@Rates", txtPrice.Text},
-                    {"@Service", txtService.Text},
-                    {"@Ft", txtFt.Text},
-                    {"@Discount", txtDiscount.Text},
-                    {"@Vat", txtVat.Text},
-                    {"@DueDate", txtDay.Text},
-                    {"@CompanyName", txtCompany.Text},
-                    {"@CompanyPhone", txtPhone.Text},
-                    {"@Report", txtReport.Text},
-                    //{"@Status", Fn.getComboboxId(cbbStatus)},
-                    //{"@User", strUserId},
-                };
-
-                //if (Edit.Update(strAppCode, strAppName, strUserId, "Store.UpdateVersionElectricity", Parameter, txtCode.Text, "Version " + txtVersion.Text))
-                //{
-                //    Clear();
-                //}
-            }
-        }
-
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            SearchData();
-        }
-
-        public void SearchData()
-        {
-            try
-            {
-                Parameter = new string[,]
-                {
-                    {"@Id", ""},
-                    {"@Code", txtCode.Text},
-                    {"@Version", txtVersion.Text},
-                    {"@Rates", txtPrice.Text},
-                    {"@Service", txtService.Text},
-                    {"@Ft", txtFt.Text},
-                    {"@Discount", txtDiscount.Text},
-                    {"@Vat", txtVat.Text},
-                    {"@DueDate", txtDay.Text},
-                    {"@CompanyName", txtCompany.Text},
-                    {"@CompanyPhone", txtPhone.Text},
-                    {"@Report", txtReport.Text},
-                    //{"@Status", Fn.getComboboxId(cbbStatus)},
-                    //{"@User", strUserId},
-                };
-
-                //db.Get("Store.SelectVersionElectricity", Parameter, out strErr, out dt);
-                //getDataGrid(dt);
-
-                //lblCondition.Text = Fn.ShowConditons(GetCondition());
-            }
-            catch (Exception ex)
-            {
-                lblCondition.Text = "";
-               // Log.WriteLogData(strAppCode, strAppName, strUserId, ex.Message);
-            }
-        }
-
         private void FrmKeyDown(object sender, KeyEventArgs e)
         {
             try
             {
-                //string keyCode = Fn.keyPress(sender, e);
+                string keyCode = Function.keyPress(sender, e);
 
-                //if (keyCode == "Ctrl+S")
-                //{
-                //    btnAdd_Click(sender, e);
-                //}
-
-                //if (keyCode == "Ctrl+E")
-                //{
-                //    btnEdit_Click(sender, e);
-                //}
-
-                //if (keyCode == "Ctrl+D")
-                //{
-                //    btnDelete_Click(sender, e);
-                //}
-
-                //if (keyCode == "Ctrl+X")
-                //{
-                //    btnExit_Click(sender, e);
-                //}
-
-                //if (keyCode == "Ctrl+F")
-                //{
-                //    btnSearch_Click(sender, e);
-                //}
-
-                //if (keyCode == "Alt+C")
-                //{
-                //    btnClear_Click(sender, e);
-                //}
+                if (keyCode == "Ctrl+S")
+                {
+                    AddData(sender, e);
+                }
+                if (keyCode == "Ctrl+E")
+                {
+                    EditData(sender, e);
+                }
+                if (keyCode == "Ctrl+D")
+                {
+                    DeleteData(sender, e);
+                }
+                if (keyCode == "Ctrl+F")
+                {
+                    Search(sender, e);
+                }
+                if (keyCode == "Alt+C")
+                {
+                    Clear(sender, e);
+                }
+                if (keyCode == "Enter")
+                {
+                    Search(true);
+                }
             }
             catch (Exception ex)
             {
-               // Log.WriteLogData(strAppCode, strAppName, strUserId, ex.Message);
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
             }
+        }
+
+        private void cbbAccount_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string Accounts = Function.selectedValue(cbbAccount);
+
+            if (!IsStart)
+            {
+                Parameter = new string[,]
+                 {
+                    {"@Id", Accounts},
+                    {"@Code", ""},
+                    {"@Status", "0"},
+                    {"@User", ""},
+                    {"@IsActive", "1"},
+                    {"@IsDelete", "0"},
+                    {"@Operation", Operation.SelectAbbr},
+                    {"@AccountNo", ""},
+                    {"@AddressId", "0"},
+                    {"@OfficeId", "0"},
+                    {"@Branch", ""},
+                    {"@Type", ""},   
+                    {"@Mru", ""},
+                    {"@Multiplier", ""},
+                    {"@Installation", ""},
+                 };
+
+                db.Get(Store.ManageElectricityAccount, Parameter, out Error, out dt);
+
+                if (string.IsNullOrEmpty(Error) && dt.Rows.Count > 0)
+                {
+                    txtBranch.Text = dt.Rows[0]["BranchName"].ToString();
+                    txtType.Text = dt.Rows[0]["Type"].ToString();
+                    txtPremise.Text = dt.Rows[0]["Address1"].ToString();
+                    txtAccountNo.Text = dt.Rows[0]["AccountNo"].ToString();
+                    txtInstallation.Text = dt.Rows[0]["Installation"].ToString();
+                    txtMru.Text = dt.Rows[0]["Mru"].ToString();
+                }
+                else
+                {
+                    txtBranch.Text = "";
+                    txtType.Text = "";
+                    txtPremise.Text = "";
+                    txtAccountNo.Text = "";
+                    txtInstallation.Text = "";
+                    txtMru.Text = "";
+                }
+            }
+            if (Accounts == "0")
+            {
+                txtBranch.Text = "";
+                txtType.Text = "";
+                txtPremise.Text = "";
+                txtAccountNo.Text = "";
+                txtInstallation.Text = "";
+                txtMru.Text = "";
+            }
+
+            GridView.Focus();
+        }
+
+        private void GridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow RowIndex = GridView.Rows[e.RowIndex];
+                Parameter = new string[,]
+                {
+                    {"@Id", RowIndex.Cells["Id"].Value.ToString()},
+                    {"@Code", ""},
+                    {"@Status", "0"},
+                    {"@User", ""},
+                    {"@IsActive", "1"},
+                    {"@IsDelete", "0"},
+                    {"@Operation", Operation.SelectAbbr},
+                    {"@AccountId", "0"},
+                    {"@Version", ""},
+                    {"@Rates", ""},
+                    {"@Service", ""},
+                    {"@Discount", ""},
+                    {"@Vat", ""},
+                    {"@Ft", ""},
+                    {"@Report", ""},
+                    {"@DueDate", ""},
+                    {"@Company", ""},
+                    {"@Phone", ""},
+                };
+
+                db.Get(Store.ManageElectricityRates, Parameter, out Error, out dt);
+                ShowData(dt);
+            }
+        }
+
+        public void ShowData(DataTable Data)
+        {
+            try
+            {
+                cbbAccount.SelectedValue = Data.Rows[0]["AccountId"].ToString();
+
+                txtId.Text = Data.Rows[0]["Id"].ToString();
+                txtCode.Text = Data.Rows[0]["Code"].ToString();
+
+                txtVersion.Text = Data.Rows[0]["Version"].ToString();
+                txtReport.Text = Data.Rows[0]["Report"].ToString();
+                txtVat.Text = Data.Rows[0]["Vat"].ToString();
+
+                txtRates.Text = Data.Rows[0]["Rates"].ToString();
+                txtDueDate.Text = Data.Rows[0]["DueDate"].ToString();
+
+                txtCompany.Text = Data.Rows[0]["Company"].ToString();
+                txtPhone.Text = Data.Rows[0]["Phone"].ToString();
+
+                txtService.Text = Data.Rows[0]["Service"].ToString();
+                txtFt.Text = Data.Rows[0]["Ft"].ToString();
+                txtDiscount.Text = Data.Rows[0]["Discount"].ToString();
+                
+                cbbStatus.SelectedValue = Data.Rows[0]["Status"].ToString();
+
+                string strBarcode = Data.Rows[0]["Code"].ToString();
+                pbQrcode.Image = Barcode.QRCode(strBarcode, Color.Black, Color.White, "Q", 3, false);
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }
+        }
+
+        private void Clear(object sender, EventArgs e)
+        {
+            Clear();
+        }
+
+        private void Search(object sender, EventArgs e)
+        {
+            Search(true);
+        }
+
+        private void AddData(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Function.GetComboId(cbbAccount) != "0" && !string.IsNullOrEmpty(txtVersion.Text) && !string.IsNullOrEmpty(txtRates.Text))
+                {
+                    if (!Function.IsDuplicates(Table.ElectricityRates, Function.GetComboId(cbbAccount), txtVersion.Text, txtRates.Text,
+                        Detail: txtPremise.Text + Environment.NewLine + txtVersion.Text + " (" + txtRates.Text + ")"))
+                    {
+                        txtCode.Text = Function.GetCodes(Table.ElectricityRatesId, "", "Generated");
+
+                        Parameter = new string[,]
+                        {
+                            {"@Id", txtId.Text},
+                            {"@Code", txtCode.Text},
+                            {"@Status", Function.GetComboId(cbbStatus)},
+                            {"@User", UserId},
+                            {"@IsActive", "1"},
+                            {"@IsDelete", "0"},
+                            {"@Operation", Operation.InsertAbbr},
+                            {"@AccountId", Function.GetComboId(cbbAccount)},
+                            {"@Version", txtVersion.Text},
+                            {"@Rates", txtRates.Text},
+                            {"@Service", txtService.Text},
+                            {"@Discount", txtDiscount.Text},
+                            {"@Vat", txtVat.Text},
+                            {"@Ft", txtFt.Text},
+                            {"@Report", txtReport.Text},
+                            {"@DueDate", txtDueDate.Text},
+                            {"@Company", txtCompany.Text},
+                            {"@Phone", txtPhone.Text},
+                        };
+
+                        if (Insert.Add(AppCode, AppName, UserId, Store.ManageElectricityRates, Parameter, txtCode.Text, Details: GetDetails()))
+                        {
+                            Clear();
+                        }
+                    }
+                }
+                else
+                {
+                    Message.ShowRequestData();
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }
+        }
+
+        private void EditData(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtId.Text != "")
+                {
+                    Parameter = new string[,]
+                    {
+                        {"@Id", txtId.Text},
+                        {"@Code", txtCode.Text},
+                        {"@Status", Function.GetComboId(cbbStatus)},
+                        {"@User", UserId},
+                        {"@IsActive", "1"},
+                        {"@IsDelete", "0"},
+                        {"@Operation", Operation.InsertAbbr},
+                        {"@AccountId", Function.GetComboId(cbbAccount)},
+                        {"@Version", txtVersion.Text},
+                        {"@Rates", txtRates.Text},
+                        {"@Service", txtService.Text},
+                        {"@Discount", txtDiscount.Text},
+                        {"@Vat", txtVat.Text},
+                        {"@Ft", txtFt.Text},
+                        {"@Report", txtReport.Text},
+                        {"@DueDate", txtDueDate.Text},
+                        {"@Company", txtCompany.Text},
+                        {"@Phone", txtPhone.Text},
+                    };
+
+                    if (Edit.Update(AppCode, AppName, UserId, Store.ManageElectricityRates, Parameter, txtCode.Text, Details: GetDetails()))
+                    {
+                        Clear();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }
+        }
+
+        private void DeleteData(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Delete.Drop(AppCode, AppName, UserId, 0, Table.ElectricityRates, txtCode, Details: GetDetails(), true))
+                {
+                    Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }
+        }
+
+        public string GetDetails()
+        {
+            return txtVersion.Text + " (" + txtRates.Text + ")";
         }
     }
 }

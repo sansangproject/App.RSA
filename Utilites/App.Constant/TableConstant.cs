@@ -21,6 +21,9 @@ namespace SANSANG.Constant
         public string WaterRatesId = "1071";
         public string WatersId = "1043";
 
+        public string ElectricityRatesId = "1069";
+        public string ElectricityId = "1042";
+
         public string ItemId = "1020";
         public string CategoryId = "1019";
         public string MoneyId = "1016";
@@ -47,6 +50,10 @@ namespace SANSANG.Constant
 
         public string WaterRates = "[mst].[WaterRates]";
         public string Waters = "[dbo].[Waters]";
+
+        public string ElectricityAccount = "[mst].[ElectricityAccount]";
+        public string ElectricityRates = "[mst].[ElectricityRates]";
+        public string Electricitys = "[dbo].[Electricitys]";
 
         public string Amphoe = "[mst].[Amphoe]";
         public string Geography = "[mst].[Geography]";

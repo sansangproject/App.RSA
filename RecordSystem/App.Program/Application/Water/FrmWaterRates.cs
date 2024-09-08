@@ -270,7 +270,7 @@ namespace SANSANG
 
         public string GetDetails()
         {
-            return txtVersion.Text + " (" + txtRate.Text + ")";
+            return txtVersion.Text + " (" + txtVersion.Text + ")";
         }
 
         private void EditData(object sender, EventArgs e)
