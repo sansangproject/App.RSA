@@ -182,7 +182,7 @@ namespace SANSANG
                 strCondition += txtDueDate.Text != "" ? ", " + lblDuedate.Text + " " + txtDueDate.Text : "";
                 strCondition += txtCompany.Text != "" ? ", " + lblCompany.Text + " " + txtCompany.Text : "";
                 strCondition += txtPhone.Text != "" ? ", " + lblPhone.Text + " " + txtPhone.Text : "";
-                strCondition += cbbStatus.Text != ":: กรุณาเลือก ::" ? ", " + lblStatus.Text + " " + label41.Text + " " + cbbStatus.Text : "";
+                strCondition += cbbStatus.Text != ":: กรุณาเลือก ::" ? ", " + lblStatus.Text + " " + cbbStatus.Text : "";
                 return strCondition;
             }
             catch (Exception ex)

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmElectricityRates));
             this.lblSearch = new System.Windows.Forms.Label();
             this.lblHSearch = new System.Windows.Forms.Label();
@@ -38,8 +38,9 @@
             this.lblResult = new System.Windows.Forms.TextBox();
             this.lblCondition = new System.Windows.Forms.Label();
             this.gbForm = new System.Windows.Forms.GroupBox();
+            this.lblReports = new System.Windows.Forms.Label();
+            this.lblReport = new System.Windows.Forms.Label();
             this.txtType = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.txtMru = new System.Windows.Forms.TextBox();
             this.txtInstallation = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -48,8 +49,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtPremise = new System.Windows.Forms.TextBox();
             this.txtBranch = new System.Windows.Forms.TextBox();
-            this.txtId = new System.Windows.Forms.TextBox();
-            this.txtCode = new System.Windows.Forms.TextBox();
             this.lblName = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -108,8 +107,9 @@
             this.lblDuedate = new System.Windows.Forms.Label();
             this.lblCompany = new System.Windows.Forms.Label();
             this.pbCondition = new System.Windows.Forms.PictureBox();
-            this.lblReports = new System.Windows.Forms.Label();
-            this.lblReport = new System.Windows.Forms.Label();
+            this.txtId = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtCode = new System.Windows.Forms.TextBox();
             this.gbData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
             this.gbForm.SuspendLayout();
@@ -186,14 +186,14 @@
             this.GridView.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.GridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.GridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Mitr Light", 9.5F);
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Coral;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.GridView.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Mitr Light", 9.5F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Coral;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.GridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.GridView.GridColor = System.Drawing.Color.Silver;
             this.GridView.Location = new System.Drawing.Point(19, 53);
             this.GridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -303,6 +303,28 @@
             this.gbForm.TabIndex = 46;
             this.gbForm.TabStop = false;
             // 
+            // lblReports
+            // 
+            this.lblReports.AutoSize = true;
+            this.lblReports.Font = new System.Drawing.Font("Mitr Light", 8.249999F);
+            this.lblReports.ForeColor = System.Drawing.Color.OrangeRed;
+            this.lblReports.Location = new System.Drawing.Point(636, 167);
+            this.lblReports.Name = "lblReports";
+            this.lblReports.Size = new System.Drawing.Size(45, 18);
+            this.lblReports.TabIndex = 233;
+            this.lblReports.Text = "Report";
+            // 
+            // lblReport
+            // 
+            this.lblReport.AutoSize = true;
+            this.lblReport.Font = new System.Drawing.Font("Mitr Light", 9F);
+            this.lblReport.ForeColor = System.Drawing.Color.Gray;
+            this.lblReport.Location = new System.Drawing.Point(652, 153);
+            this.lblReport.Name = "lblReport";
+            this.lblReport.Size = new System.Drawing.Size(29, 19);
+            this.lblReport.TabIndex = 232;
+            this.lblReport.Text = "รุ่น :";
+            // 
             // txtType
             // 
             this.txtType.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -313,17 +335,6 @@
             this.txtType.Name = "txtType";
             this.txtType.Size = new System.Drawing.Size(45, 21);
             this.txtType.TabIndex = 231;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Mitr Light", 9F);
-            this.label11.ForeColor = System.Drawing.Color.Gray;
-            this.label11.Location = new System.Drawing.Point(510, 311);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(52, 19);
-            this.label11.TabIndex = 229;
-            this.label11.Text = "ประเภท :";
             // 
             // txtMru
             // 
@@ -413,36 +424,16 @@
             this.txtBranch.Size = new System.Drawing.Size(176, 21);
             this.txtBranch.TabIndex = 221;
             // 
-            // txtId
-            // 
-            this.txtId.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtId.Font = new System.Drawing.Font("Mitr Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtId.Location = new System.Drawing.Point(11, 219);
-            this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(129, 21);
-            this.txtId.TabIndex = 220;
-            // 
-            // txtCode
-            // 
-            this.txtCode.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtCode.Font = new System.Drawing.Font("Mitr Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtCode.Location = new System.Drawing.Point(11, 222);
-            this.txtCode.Name = "txtCode";
-            this.txtCode.Size = new System.Drawing.Size(129, 21);
-            this.txtCode.TabIndex = 219;
-            // 
             // lblName
             // 
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Mitr Light", 9F);
             this.lblName.ForeColor = System.Drawing.Color.Gray;
-            this.lblName.Location = new System.Drawing.Point(210, 115);
+            this.lblName.Location = new System.Drawing.Point(224, 115);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(74, 19);
+            this.lblName.Size = new System.Drawing.Size(60, 19);
             this.lblName.TabIndex = 218;
-            this.lblName.Text = "ชื่อผู้ใช้ไฟฟ้า :";
+            this.lblName.Text = "ผู้ใช้ไฟฟ้า :";
             // 
             // label29
             // 
@@ -738,11 +729,11 @@
             this.label28.AutoSize = true;
             this.label28.Font = new System.Drawing.Font("Mitr Light", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label28.ForeColor = System.Drawing.Color.OrangeRed;
-            this.label28.Location = new System.Drawing.Point(245, 129);
+            this.label28.Location = new System.Drawing.Point(232, 129);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(39, 18);
+            this.label28.Size = new System.Drawing.Size(52, 18);
             this.label28.TabIndex = 102;
-            this.label28.Text = "Name";
+            this.label28.Text = "Account";
             // 
             // pbBanner
             // 
@@ -841,7 +832,7 @@
             this.label31.AutoSize = true;
             this.label31.Font = new System.Drawing.Font("Mitr Light", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label31.ForeColor = System.Drawing.Color.OrangeRed;
-            this.label31.Location = new System.Drawing.Point(974, 311);
+            this.label31.Location = new System.Drawing.Point(974, 309);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(43, 18);
             this.label31.TabIndex = 105;
@@ -873,7 +864,7 @@
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Mitr Light", 9F);
             this.lblStatus.ForeColor = System.Drawing.Color.Gray;
-            this.lblStatus.Location = new System.Drawing.Point(971, 295);
+            this.lblStatus.Location = new System.Drawing.Point(971, 293);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(46, 19);
             this.lblStatus.TabIndex = 93;
@@ -1120,27 +1111,36 @@
             this.pbCondition.TabIndex = 46;
             this.pbCondition.TabStop = false;
             // 
-            // lblReports
+            // txtId
             // 
-            this.lblReports.AutoSize = true;
-            this.lblReports.Font = new System.Drawing.Font("Mitr Light", 8.249999F);
-            this.lblReports.ForeColor = System.Drawing.Color.OrangeRed;
-            this.lblReports.Location = new System.Drawing.Point(636, 167);
-            this.lblReports.Name = "lblReports";
-            this.lblReports.Size = new System.Drawing.Size(45, 18);
-            this.lblReports.TabIndex = 233;
-            this.lblReports.Text = "Report";
+            this.txtId.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtId.Font = new System.Drawing.Font("Mitr Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtId.Location = new System.Drawing.Point(11, 219);
+            this.txtId.Name = "txtId";
+            this.txtId.Size = new System.Drawing.Size(129, 21);
+            this.txtId.TabIndex = 220;
             // 
-            // lblReport
+            // label11
             // 
-            this.lblReport.AutoSize = true;
-            this.lblReport.Font = new System.Drawing.Font("Mitr Light", 9F);
-            this.lblReport.ForeColor = System.Drawing.Color.Gray;
-            this.lblReport.Location = new System.Drawing.Point(652, 153);
-            this.lblReport.Name = "lblReport";
-            this.lblReport.Size = new System.Drawing.Size(29, 19);
-            this.lblReport.TabIndex = 232;
-            this.lblReport.Text = "รุ่น :";
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Mitr Light", 9F);
+            this.label11.ForeColor = System.Drawing.Color.Gray;
+            this.label11.Location = new System.Drawing.Point(510, 311);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(52, 19);
+            this.label11.TabIndex = 229;
+            this.label11.Text = "ประเภท :";
+            // 
+            // txtCode
+            // 
+            this.txtCode.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtCode.Font = new System.Drawing.Font("Mitr Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtCode.Location = new System.Drawing.Point(11, 222);
+            this.txtCode.Name = "txtCode";
+            this.txtCode.Size = new System.Drawing.Size(129, 21);
+            this.txtCode.TabIndex = 219;
             // 
             // FrmElectricityRates
             // 
