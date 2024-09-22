@@ -51,7 +51,6 @@ namespace SANSANG.Constant
         public string WaterRates = "[mst].[WaterRates]";
         public string Waters = "[dbo].[Waters]";
 
-        public string ElectricityAccount = "[mst].[ElectricityAccount]";
         public string ElectricityRates = "[mst].[ElectricityRates]";
         public string Electricitys = "[dbo].[Electricitys]";
 

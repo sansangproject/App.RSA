@@ -841,6 +841,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="App.Program\Application\Water\FrmWaters.resx">
       <DependentUpon>FrmWaters.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="App.Program\Progress\FrmAnimatedProgress.resx">
       <DependentUpon>FrmAnimatedProgress.cs</DependentUpon>

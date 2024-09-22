@@ -1,13 +1,22 @@
 ﻿using System;
 using System.Data;
+using System.Data.SqlTypes;
 using System.Drawing;
+using System.Globalization;
+using System.IO;
+using System.Web;
+using System.Windows.Controls.Primitives;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
+using Microsoft.VisualBasic.ApplicationServices;
 using SANSANG.Class;
-using SANSANG.Database;
 using SANSANG.Constant;
+using SANSANG.Database;
 using SANSANG.Utilites.App.Forms;
 using SANSANG.Utilites.App.Global;
 using SANSANG.Utilites.App.Model;
+using Telerik.WinControls.VirtualKeyboard;
+using static QRCoder.PayloadGenerator;
 
 namespace SANSANG
 {
@@ -21,35 +30,63 @@ namespace SANSANG
         public string AppCode = "SAVEA00";
         public string AppName = "FrmElectricitys";
         public string Error = "";
+        public string Laguage;
 
+        private dbConnection db = new dbConnection();
+
+        private DataSet ds = new DataSet();
         private DataTable dt = new DataTable();
         private DataListConstant DataList = new DataListConstant();
+
+        private clsDate Date = new clsDate();
         private clsDelete Delete = new clsDelete();
         private clsEdit Edit = new clsEdit();
+        private clsImage Images = new clsImage();
         private clsInsert Insert = new clsInsert();
         private clsFunction Function = new clsFunction();
-        private clsDate Dates = new clsDate();
-        private clsBarcode Barcode = new clsBarcode();
+        private clsSetting Setting = new clsSetting();
         private clsMessage Message = new clsMessage();
-        private dbConnection db = new dbConnection();
+        private clsBarcode Barcode = new clsBarcode();
         private clsDataList List = new clsDataList();
+        private clsHelpper Helper = new clsHelpper();
         private clsLog Log = new clsLog();
-        private CultureConstant Culture = new CultureConstant();
-        private TableConstant Table = new TableConstant();
-        private CharacterConstant Character = new CharacterConstant();
-        private FrmAnimatedProgress Loading = new FrmAnimatedProgress(25);
-        private Timer Timer = new Timer();
-        public string[,] Parameter = new string[,] { };
+        private clsEvent Event = new clsEvent();
 
-        public string QRCode = "";
-        private bool Display = false;
+        private TableConstant Table = new TableConstant();
+        private StoreConstant Store = new StoreConstant();
+        private FrmAnimatedProgress Loading = new FrmAnimatedProgress(20);
+        private OperationConstant Operation = new OperationConstant();
+        private CharacterConstant CharType = new CharacterConstant();
+        private CultureConstant Cul = new CultureConstant();
+        private Timer Timer = new Timer();
+
+        public string[,] Parameter = new string[,] { };
+        public bool IsStart = true;
+        public string Account = "0";
+        public int Rows = 0;
+        public int CountRows = 0;
+        public int Numbers = 0;
+        public bool NewData = true;
+        public string strBarcode = "";
+        public string strInvoice = "";
+        public string Rates = "0";
+        public int AccountId = 0;
         public int CountEnter = 0;
+        public int NumberOfPayment = 10;
+        public int InvoiceDay = -7;
+        public string Ft = "0.3972";
+        public double First = 3.2484;
+        public double Next = 4.2218;
+        public double Over = 4.4217;
 
         public string qrHeader;
         public string qrLine2;
         public string qrLine3;
         public string qrLine4;
         public string strQR;
+
+        private string PlaceholderText = "Scan Here...";
+        private bool IsPlaceholderVisible;
 
         public FrmElectricitys(string UserIdLogin, string UserNameLogin, string UserSurNameLogin, string UserTypeLogin)
         {
@@ -59,67 +96,64 @@ namespace SANSANG
             UserName = UserNameLogin;
             UserSurname = UserSurNameLogin;
             UserType = UserTypeLogin;
+
+            SetPlaceholderVisibility();
         }
 
         private void FrmLoad(object sender, EventArgs e)
         {
             Loading.Show();
-            Timer.Interval = (1000);
-            Timer.Start();
+            Timer.Interval = (2000);
             Timer.Tick += new EventHandler(LoadList);
+            Timer.Start();
         }
 
         private void LoadList(object sender, EventArgs e)
         {
-            List.GetLists(cbbStatus, string.Format(DataList.StatusId, "1"));
-            List.GetLists(cbbPayment, DataList.MoneyId);
+            IsStart = true;
 
-            //List.GetList(cbbUser, "Address", "Electricity");
-            //List.GetList(cbbVersion, "Version", "Electricity");
+            List.GetLists(cbbPayment, DataList.MoneyId);
+            List.GetLists(cbbStatus, string.Format(DataList.StatusId, "1"));
+
+            List.GetList(cbbAccount, DataList.ElectricityAccount);
+            List.GetLists(cbbVersion, string.Format(DataList.ElectricityRatesId, "0"));
 
             List.GetMonthList(cbbMonth);
             List.GetYearList(cbbYear);
 
-            //Clear();
+            Clear();
             Timer.Stop();
         }
 
-        public void ShowDataGrid(DataTable dt)
+        public void ShowGridView(DataTable dt)
         {
             try
             {
-                if (Function.GetRows(dt) == 0)
-                {
-                    dataGridView.DataSource = null;
-                    txtCount.Text = Function.ShowNumberOfData(0);
-                }
-                else
-                {
-                    dataGridView.DataSource = null;
-                    DataTable dtGrid = new DataTable();
-                    dtGrid = dt.DefaultView.ToTable(true, "SNo", "Dates", "MeterNow", "Unit", "Amount", "StatusNameTh", "Code");
+                GridView.DataSource = null;
+                DataTable dtGrid = new DataTable();
+                dtGrid = dt.DefaultView.ToTable(true, "SNo", "InvoiceNumber", "Dates", "Unit", "Payment", "DueDate", "StatusName", "Id");
 
-                    DataGridViewContentAlignment mc = DataGridViewContentAlignment.MiddleCenter;
-                    DataGridViewContentAlignment ml = DataGridViewContentAlignment.MiddleLeft;
-                    DataGridViewContentAlignment mr = DataGridViewContentAlignment.MiddleRight;
+                DataGridViewContentAlignment mc = DataGridViewContentAlignment.MiddleCenter;
+                DataGridViewContentAlignment ml = DataGridViewContentAlignment.MiddleLeft;
+                DataGridViewContentAlignment mr = DataGridViewContentAlignment.MiddleRight;
 
-                    Function.showGridViewFormatFromStore(dtGrid, dataGridView,
-                          "ลำดับ", 30, true, mc, mc
-                        , "วันที่จดเลขอ่าน", 80, true, ml, ml
-                        , "เลขในมาตร", 100, true, mc, mc
-                        , "จำนวนหน่วย", 100, true, mc, mc
-                        , "จำนวนเงิน", 100, true, mr, mr
-                        , "สถานะการชำระ", 150, true, mc, mc
+                Function.showGridViewFormatFromStore(dtGrid, GridView
+                        , "ลำดับ", 30, true, mc, mc
+                        , "เลขที่ใบแจ้ง", 100, true, ml, ml
+                        , "ประจำเดือน", 100, true, mc, ml
+                        , "จำนวนหน่วย", 50, true, mr, mr
+                        , "จำนวนเงิน (บาท)", 100, true, mr, mr
+                        , "กำหนดชำระ", 100, true, mc, mr
+                         , "สถานะ", 100, true, mc, mc
                         , "", 0, false, mc, mc
-                        );
+                    );
 
-                    txtCount.Text = Function.ShowNumberOfData(dt.Rows.Count);
-                    dataGridView.Focus();
-                }
+                GridView.Focus();
+                txtCount.Text = Function.ShowNumberOfData(Function.GetRows(dt));
             }
-            catch
+            catch (Exception ex)
             {
-
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
             }
         }
 
@@ -128,133 +162,259 @@ namespace SANSANG
             Close();
         }
 
-        private void ClearData(object sender, EventArgs e)
+        private void Search(object sender, EventArgs e)
         {
-            Clear();
+            SearchData(true, out Numbers, "");
+        }
+
+        public void SearchData(bool Search, out int Number, string InvoiceNo = "")
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(InvoiceNo))
+                {
+                    Parameter = new string[,]
+                    {
+                        {"@Id", ""},
+                        {"@Code", Search? txtCode.Text : ""},
+                        {"@Status", Search? Function.getComboBoxValue(cbbStatus) : "0"},
+                        {"@User", ""},
+                        {"@IsActive", ""},
+                        {"@IsDelete", ""},
+                        {"@Operation", Operation.SelectAbbr},
+                        {"@AccountId", Search? Function.getComboBoxValue(cbbAccount) : "0"},
+                        {"@VersionId", Search? Function.getComboBoxValue(cbbVersion) : "0"},
+                        {"@InvoiceNumber", Search? txtInvoiceNumber.Text : ""},     
+                        {"@Date", ""},
+                        {"@Time", ""},
+                        {"@Month", Search? Function.getComboBoxValue(cbbMonth) : "0"},
+                        {"@Year", Search? Function.getComboBoxValue(cbbYear) : "0"},
+                        {"@MeterNow", Search? txtNumberNow.Text : ""},
+                        {"@MeterBefore", Search? txtNumberBefor.Text : ""},
+                        {"@Unit", Search? txtUnit.Text : ""},
+                        {"@Raw", Search? Function.SplitString(txtRaw.Text, ",", "") : ""},
+                        {"@Ft", Search? Function.SplitString(txtMoneyFt.Text, ",", "") : ""},
+                        {"@Discount", Search? Function.SplitString(txtDiscount.Text, ",", "") : ""},
+                        {"@Detail", Search? txtDiscountDetail.Text : ""},
+                        {"@Summary", Search? Function.SplitString(txtMoney.Text, ",", "") : ""},
+                        {"@Vat", Search? Function.SplitString(txtMoneyVat.Text, ",", "") : ""},
+                        {"@Total", Search? Function.SplitString(txtMoneyAll.Text, ",", "") : ""},
+                        {"@Payment", Search? Function.SplitString(txtMoneyPay.Text, ",", "") : ""},
+                        {"@MoneyId", Search?  Function.getComboBoxValue(cbbPayment)  : "0"},
+                        {"@EndDate", ""},
+                        {"@PayDate", ""},
+                        {"@Barcode", ""},
+                        {"@Remark", Search? txtRemark.Text : ""},
+                    };
+               }
+                else
+                {
+                    Parameter = new string[,]
+                    {
+                        {"@Id", ""},
+                        {"@Code", ""},
+                        {"@Status", "0"},
+                        {"@User", ""},
+                        {"@IsActive", ""},
+                        {"@IsDelete", ""},
+                        {"@Operation", Operation.SelectAbbr},
+                        {"@AccountId", "0"},
+                        {"@VersionId", "0"},
+                        {"@InvoiceNumber", InvoiceNo},
+                        {"@Date", ""},
+                        {"@Time", ""},
+                        {"@Month", ""},
+                        {"@Year", ""},
+                        {"@MeterNow", ""},
+                        {"@MeterBefore", ""},
+                        {"@Unit", ""},
+                        {"@Raw", ""},
+                        {"@Ft", ""},
+                        {"@Discount", ""},
+                        {"@Detail", ""},
+                        {"@Summary", ""},
+                        {"@Vat", ""},
+                        {"@Total", ""},
+                        {"@Payment", ""},
+                        {"@MoneyId", "0"},
+                        {"@EndDate", ""},
+                        {"@PayDate", ""},
+                        {"@Barcode", ""},
+                        {"@Remark", ""},
+                    };
+                }
+
+                db.Get(Store.ManageElectricitys, Parameter, out Error, out dt);
+                string Condition = Function.ShowConditons(GetCondition());
+                lblCondition.Text = Condition == "" ? "ทั้งหมด" : Condition;
+
+                if (Search && dt.Rows.Count > 0)
+                {
+                    if (dt.Rows.Count == 1)
+                    {
+                        ShowGridView(dt);
+                        ShowData(dt);
+                        GetBill(Operation.Overdue);
+                        GridView.Focus();
+                    }
+                }
+                else
+                {
+                    if (dt.Rows.Count == 0)
+                    {
+                        ShowGridView(dt);
+                        GetBill(Operation.Overdue);
+                        GetBill(Operation.Before);
+                    }
+                    else
+                    {
+                        if (string.IsNullOrEmpty(Error) && dt.Rows.Count > 0)
+                        {
+                            CountRows = dt.Rows.Count;
+                            ShowGridView(dt);
+
+                            if (dt.Rows.Count == 1)
+                            {
+                                ShowData(dt);
+                                GetBill(Operation.Overdue);
+                                GridView.Focus();
+                            }
+                        }
+
+                        if (!string.IsNullOrEmpty(txtInvoiceNumber.Text) && dt.Rows.Count != 1)
+                        {
+                            CountRows = dt.Rows.Count;
+                            GetBill(Operation.Before);
+                            GetBill(Operation.Overdue);
+                            GridView.Focus();
+                        }
+                    }
+                }
+
+                Number = CountRows;
+
+                txtScan.Text = string.Empty;
+                SetPlaceholderVisibility();
+            }
+            catch (Exception ex)
+            {
+                Number = 0;
+                GridView.Focus();
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }
         }
 
         private void AddData(object sender, EventArgs e)
         {
-            if (txtInvoiceNumber.Text != "" && Function.getComboBoxValue(cbbStatus) != "0")
+            try
             {
-                if (!Function.IsDuplicates("InvoiceElectricity", Function.getComboBoxValue(cbbMonth), Function.getComboBoxValue(cbbYear), Detail: "Invoice " + cbbMonth.SelectedValue + "/" + cbbYear.SelectedValue))
+                if (!string.IsNullOrEmpty(txtInvoiceNumber.Text) && Function.getComboBoxValue(cbbStatus) != "0" && !string.IsNullOrEmpty(txtMoneyPay.Text) && dtTime.Value.ToString("HH:mm:ss") != "00:00:00")
                 {
-                    txtCode.Text = txtCode.Text = Function.GetCodes("109", "", "Generated");
-                    pbQrcode.Image = Barcode.QRCode(txtCode.Text, Color.Black, Color.White, "Q", 3, false);
-                    strQR = qrHeader + "\r\n" + qrLine2 + "\r\n" + qrLine3 + "\r\n" + qrLine4 + "\r\n";
-
-                    Parameter = new string[,]
+                    if (!Function.IsDuplicates(Table.Electricitys, Function.getComboBoxValue(cbbMonth), Function.getComboBoxValue(cbbYear), Detail: GetDetails()))
                     {
-                        { "@Id", ""},
-                        { "@Code", txtCode.Text},
-                        { "@User", UserId},
-                        { "@UserCode", Function.getComboBoxValue(cbbUser)},
-                        { "@Version", Function.getComboBoxValue(cbbVersion)},
-                        { "@InvoiceNumber", txtInvoiceNumber.Text},
-                        { "@InvoiceDate", Dates.GetDate(dtp : dtDate, Format : 4)},
-                        { "@InvoiceTime", string.Format("{0:00}:{1:00}:{2:00}", dtTime.Value.Hour, dtTime.Value.Minute, dtTime.Value.Second)},
-                        { "@InvoiceMonth", Function.getComboBoxValue(cbbMonth)},
-                        { "@InvoiceYear", Function.getComboBoxValue(cbbYear)},
-                        { "@MeterNow", txtNumberNow.Text},
-                        { "@MeterBefore", txtNumberBefor.Text},
-                        { "@Unit", txtUnit.Text},
-                        { "@Raw", Function.MoveNumberStringComma(txtRaw.Text)},
-                        { "@Ft", Function.MoveNumberStringComma(txtMoneyFt.Text)},
-                        { "@Discount", Function.MoveNumberStringComma(txtDiscount.Text)},
-                        { "@DiscountDetail", txtDiscountDetail.Text},
-                        { "@Sum", Function.MoveNumberStringComma(txtMoney.Text)},
-                        { "@Vat", Function.MoveNumberStringComma(txtMoneyVat.Text)},
-                        { "@SumAll", Function.MoveNumberStringComma(txtMoneyAll.Text)},
-                        { "@Status", Function.getComboBoxValue(cbbStatus)},
-                        { "@FileLocation", ""},
-                        { "@PayAll", Function.MoveNumberStringComma(txtMoneyPay.Text)},
-                        { "@Payment", Function.getComboBoxValue(cbbPayment)},
-                        { "@EndDate", Dates.GetDate(dtp : dtPayEnd, Format : 4)},
-                        { "@PayDate", Dates.GetDate(dtp : dtPay, Format : 4)},
-                        { "@Barcode", strQR},
-                        { "@Remark", txtRemark.Text},
-                    };
+                        txtCode.Text = Function.GetCodes(Table.ElectricityId, "", "Generated");
+                        pbQrcode.Image = Barcode.QRCode(txtCode.Text, Color.Black, Color.White, "Q", 3, false);
+                        strQR = qrHeader + "\r\n" + qrLine2 + "\r\n" + qrLine3 + "\r\n" + qrLine4 + "\r\n";
 
-                    if (Insert.Add(AppCode, AppName, UserId, "Store.InsertInvoiceElectricity", Parameter, txtCode.Text, "ใบแจ้งค่าไฟฟ้า " + cbbMonth.Text + " " + cbbYear.Text))
-                    {
-                        Clear();
+                        Parameter = new string[,]
+                        {
+                            {"@Id", ""},
+                            {"@Code", txtCode.Text},
+                            {"@Status", Function.getComboBoxValue(cbbStatus)},
+                            {"@User", UserId},
+                            {"@IsActive", "1"},
+                            {"@IsDelete", "0"},
+                            {"@Operation", Operation.InsertAbbr},
+                            {"@AccountId", Function.getComboBoxValue(cbbAccount)},
+                            {"@VersionId", Function.getComboBoxValue(cbbVersion)},
+                            {"@InvoiceNumber", txtInvoiceNumber.Text},
+                            {"@Date", Date.GetDate(dtp : dtDate, Format : 4)},
+                            {"@Time", string.Format("{0:00}:{1:00}:{2:00}", dtTime.Value.Hour, dtTime.Value.Minute, dtTime.Value.Second)},
+                            {"@Month", Function.getComboBoxValue(cbbMonth)},
+                            {"@Year", Function.getComboBoxValue(cbbYear)},
+                            {"@MeterNow", txtNumberNow.Text},
+                            {"@MeterBefore", txtNumberBefor.Text},
+                            {"@Unit", txtUnit.Text},
+                            {"@Raw", Function.MoveNumberStringComma(txtRaw.Text)},
+                            {"@Ft", Function.MoveNumberStringComma(txtMoneyFt.Text)},
+                            {"@Discount", Function.MoveNumberStringComma(txtDiscount.Text)},
+                            {"@Detail", txtDiscountDetail.Text},
+                            {"@Summary", Function.MoveNumberStringComma(txtMoney.Text)},
+                            {"@Vat", Function.MoveNumberStringComma(txtMoneyVat.Text)},
+                            {"@Total", Function.MoveNumberStringComma(txtMoneyAll.Text)},
+                            {"@Payment", Function.MoveNumberStringComma(txtMoneyPay.Text)},
+                            {"@MoneyId", Function.getComboBoxValue(cbbPayment)},
+                            {"@EndDate", Date.GetDate(dtp : dtPayEnd, Format : 4)},
+                            {"@PayDate", Date.GetDate(dtp : dtPay, Format : 4)},
+                            {"@Barcode", ""},
+                            {"@Remark", txtRemark.Text},
+                        };
+
+                        if (Insert.Add(AppCode, AppName, UserId, Store.ManageElectricitys, Parameter, txtCode.Text, Details: GetDetails()))
+                        {
+                            Clear();
+                        }
                     }
                 }
+                else
+                {
+                    Message.ShowRequestData();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Message.ShowRequestData();
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
             }
         }
 
-        private void CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void GridViewClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
                 if (e.RowIndex >= 0)
                 {
-                    DataGridViewRow row = dataGridView.Rows[e.RowIndex];
-                    DataTable dt = new DataTable();
+                    DataGridViewRow row = GridView.Rows[e.RowIndex];
 
                     Parameter = new string[,]
                     {
-                        { "@Id", ""},
-                        { "@Code", row.Cells["Code"].Value.ToString()},
-                        { "@User", ""},
-                        { "@UserCode", "0"},
-                        { "@Version", "0"},
-                        { "@InvoiceNumber", ""},
-                        { "@InvoiceDate", ""},
-                        { "@InvoiceTime", ""},
-                        { "@InvoiceMonth", "0"},
-                        { "@InvoiceYear", "0"},
-                        { "@MeterNow", ""},
-                        { "@MeterBefore", ""},
-                        { "@Unit", ""},
-                        { "@Raw", ""},
-                        { "@Ft", ""},
-                        { "@Discount", ""},
-                        { "@DiscountDetail", ""},
-                        { "@Sum", ""},
-                        { "@Vat", ""},
-                        { "@SumAll", ""},
-                        { "@Status", "0"},
-                        { "@FileLocation", ""},
-                        { "@PayAll", ""},
-                        { "@Payment", "0"},
-                        { "@EndDate", ""},
-                        { "@PayDate", ""},
-                        { "@Barcode", ""},
-                        { "@Remark", ""},
+                        {"@Id", row.Cells["Id"].Value.ToString()},
+                        {"@Code", ""},
+                        {"@Status", "0"},
+                        {"@User", ""},
+                        {"@IsActive", ""},
+                        {"@IsDelete", ""},
+                        {"@Operation", Operation.SelectAbbr},
+                        {"@AccountId", "0"},
+                        {"@VersionId", "0"},
+                        {"@InvoiceNumber", ""},
+                        {"@Date", ""},
+                        {"@Time", ""},
+                        {"@Month", ""},
+                        {"@Year", ""},
+                        {"@MeterNow", ""},
+                        {"@MeterBefore", ""},
+                        {"@Unit", ""},
+                        {"@Raw", ""},
+                        {"@Ft", ""},
+                        {"@Discount", ""},
+                        {"@Detail", ""},
+                        {"@Summary", ""},
+                        {"@Vat", ""},
+                        {"@Total", ""},
+                        {"@Payment", ""},
+                        {"@MoneyId", "0"},
+                        {"@EndDate", ""},
+                        {"@PayDate", ""},
+                        {"@Barcode", ""},
+                        {"@Remark", ""},
                     };
 
-                    db.Get("Store.SelectInvoiceElectricity", Parameter, out Error, out dt);
-                    SetValue(dt);
+                    db.Get(Store.ManageElectricitys, Parameter, out Error, out dt);
+                    ShowData(dt);
+                    GetBill(Operation.Overdue);
                 }
-            }
-            catch
-            {
 
-            }
-        }
-
-        private void DeleteData(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(txtCode.Text))
-            {
-                if (Delete.Drop(AppCode, AppName, UserId, 0, Table.InvoiceElectricity, txtCode, "ใบแจ้งค่าไฟฟ้า " + cbbMonth.Text + " " + cbbYear.Text))
-                {
-                    Clear();
-                }
-            }
-        }
-
-        public void SetFormat(TextBox tb)
-        {
-            try
-            {
-                double num = Convert.ToDouble(tb.Text);
-                tb.Text = string.Format("{0:n}", num);
+                SetPlaceholderVisibility();
             }
             catch (Exception ex)
             {
@@ -264,145 +424,130 @@ namespace SANSANG
 
         private void EditData(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtCode.Text))
+            try
             {
-                Parameter = new string[,]
+                if (txtId.Text != "")
                 {
-                    { "@Id", ""},
-                    { "@Code", txtCode.Text},
-                    { "@User", UserId},
-                    { "@UserCode", Function.getComboBoxValue(cbbUser)},
-                    { "@Version", Function.getComboBoxValue(cbbVersion)},
-                    { "@InvoiceNumber", txtInvoiceNumber.Text},
-                    { "@InvoiceDate", Dates.GetDate(dtp : dtDate, Format : 4)},
-                    { "@InvoiceTime", string.Format("{0:00}:{1:00}:{2:00}", dtTime.Value.Hour, dtTime.Value.Minute, dtTime.Value.Second)},
-                    { "@InvoiceMonth", Function.getComboBoxValue(cbbMonth)},
-                    { "@InvoiceYear", Function.getComboBoxValue(cbbYear)},
-                    { "@MeterNow", txtNumberNow.Text},
-                    { "@MeterBefore", txtNumberBefor.Text},
-                    { "@Unit", txtUnit.Text},
-                    { "@Raw", Function.MoveNumberStringComma(txtRaw.Text)},
-                    { "@Ft", Function.MoveNumberStringComma(txtMoneyFt.Text)},
-                    { "@Discount", Function.MoveNumberStringComma(txtDiscount.Text)},
-                    { "@DiscountDetail", txtDiscountDetail.Text},
-                    { "@Sum", Function.MoveNumberStringComma(txtMoney.Text)},
-                    { "@Vat", Function.MoveNumberStringComma(txtMoneyVat.Text)},
-                    { "@SumAll", Function.MoveNumberStringComma(txtMoneyAll.Text)},
-                    { "@Status", Function.getComboBoxValue(cbbStatus)},
-                    { "@FileLocation", ""},
-                    { "@PayAll", Function.MoveNumberStringComma(txtMoneyPay.Text)},
-                    { "@Payment", Function.getComboBoxValue(cbbPayment)},
-                    { "@EndDate", Dates.GetDate(dtp : dtPayEnd, Format : 4)},
-                    { "@PayDate", Dates.GetDate(dtp : dtPay, Format : 4)},
-                    { "@Barcode", strQR},
-                    { "@Remark", txtRemark.Text},
-                };
+                    Parameter = new string[,]
+                    {
+                        {"@Id", txtId.Text},
+                        {"@Code", txtCode.Text},
+                        {"@Status", Function.getComboBoxValue(cbbStatus)},
+                        {"@User", UserId},
+                        {"@IsActive", "1"},
+                        {"@IsDelete", "0"},
+                        {"@Operation", Operation.UpdateAbbr},
+                        {"@AccountId", Function.getComboBoxValue(cbbAccount)},
+                        {"@VersionId", Function.getComboBoxValue(cbbVersion)},
+                        {"@InvoiceNumber", txtInvoiceNumber.Text},
+                        {"@Date", Date.GetDate(dtp : dtDate, Format : 4)},
+                        {"@Time", string.Format("{0:00}:{1:00}:{2:00}", dtTime.Value.Hour, dtTime.Value.Minute, dtTime.Value.Second)},
+                        {"@Month", Function.getComboBoxValue(cbbMonth)},
+                        {"@Year", Function.getComboBoxValue(cbbYear)},
+                        {"@MeterNow", txtNumberNow.Text},
+                        {"@MeterBefore", txtNumberBefor.Text},
+                        {"@Unit", txtUnit.Text},
+                        {"@Raw", Function.MoveNumberStringComma(txtRaw.Text)},
+                        {"@Ft", Function.MoveNumberStringComma(txtMoneyFt.Text)},
+                        {"@Discount", Function.MoveNumberStringComma(txtDiscount.Text)},
+                        {"@Detail", txtDiscountDetail.Text},
+                        {"@Summary", Function.MoveNumberStringComma(txtMoney.Text)},
+                        {"@Vat", Function.MoveNumberStringComma(txtMoneyVat.Text)},
+                        {"@Total", Function.MoveNumberStringComma(txtMoneyAll.Text)},
+                        {"@Payment", Function.MoveNumberStringComma(txtMoneyPay.Text)},
+                        {"@MoneyId", Function.getComboBoxValue(cbbPayment)},
+                        {"@EndDate", Date.GetDate(dtp : dtPayEnd, Format : 4)},
+                        {"@PayDate", Date.GetDate(dtp : dtPay, Format : 4)},
+                        {"@Barcode", ""},
+                        {"@Remark", txtRemark.Text},
+                    };
 
-                if (Edit.Update(AppCode, AppName, UserId, "Store.UpdateInvoiceElectricity", Parameter, txtCode.Text, "ใบแจ้งค่าไฟฟ้า " + cbbMonth.Text + " " + cbbYear.Text))
-                {
-                    Clear();
+                    if (Edit.Update(AppCode, AppName, UserId, Store.ManageElectricitys, Parameter, txtCode.Text, Details: GetDetails()))
+                    {
+                        Clear();
+                    }
                 }
             }
-        }
-
-        public void Search(bool Search)
-        {
-            Parameter = new string[,]
+            catch (Exception ex)
             {
-                    {"@Id", ""},
-                    {"@Code", Search? txtCode.Text : ""},
-                    {"@User", ""},
-                    {"@UserCode", Search? Function.getComboBoxValue(cbbUser) : "0"},
-                    {"@Version", Search? Function.getComboBoxValue(cbbVersion) : "0"},
-                    {"@InvoiceNumber ", Search? txtInvoiceNumber.Text : ""},
-                    {"@InvoiceDate", ""},
-                    {"@InvoiceTime", ""},
-                    {"@InvoiceMonth", Search? Function.getComboBoxValue(cbbMonth) : "0"},
-                    {"@InvoiceYear", Search? Function.getComboBoxValue(cbbYear) : "0"},
-                    {"@MeterNow", Search? txtNumberNow.Text : ""},
-                    {"@MeterBefore", Search? txtNumberBefor.Text : ""},
-                    {"@Unit", Search? txtUnit.Text : ""},
-                    {"@Raw", Search? Function.SplitString(txtRaw.Text, ",", "") : ""},
-                    {"@Ft", Search? Function.SplitString(txtMoneyFt.Text, ",", "") : ""},
-                    {"@Discount", Search? Function.SplitString(txtDiscount.Text, ",", "") : ""},
-                    {"@DiscountDetail", Search? txtDiscountDetail.Text : ""},
-                    {"@Sum", Search? Function.SplitString(txtMoney.Text, ",", "") : ""},
-                    {"@Vat", Search? Function.SplitString(txtMoneyVat.Text, ",", "") : ""},
-                    {"@SumAll", Search? Function.SplitString(txtMoneyAll.Text, ",", "") : ""},
-                    {"@Status", Search? Function.getComboBoxValue(cbbStatus) : "0"},
-                    {"@FileLocation", ""},
-                    {"@PayAll", Search? Function.SplitString(txtMoneyPay.Text, ",", "") : ""},
-                    {"@Payment", Search?  Function.getComboBoxValue(cbbPayment)  : "0"},
-                    {"@EndDate", ""},
-                    {"@PayDate", ""},
-                    {"@Barcode", ""},
-                    {"@Remark", Search? txtRemark.Text : ""},
-            };
-
-            db.Get("Store.SelectInvoiceElectricity", Parameter, out Error, out dt);
-            ShowDataGrid(dt);
-
-            if (Display)
-            {
-                SetValue(dt);
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
             }
-
         }
 
-        private void SearchData(object sender, EventArgs e)
+        private void DeleteData(object sender, EventArgs e)
         {
-            Search(true);
+            try
+            {
+                if (!string.IsNullOrEmpty(txtCode.Text))
+                {
+                    if (Delete.Drop(AppCode, AppName, UserId, 0, Table.Electricitys, txtCode, Details: GetDetails(), true))
+                    {
+                        Clear();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }
         }
 
-        public void GetDataMaster(string Code)
+        private void Clear(object sender, EventArgs e)
+        {
+            Clear();
+        }
+
+        public void GetDataMaster(string Id)
         {
             try
             {
                 Parameter = new string[,]
                 {
-                    {"@Id", ""},
-                    {"@Code", Code},
-                    {"@Version", ""},
-                    {"@Rates", ""},
-                    {"@Service", ""},
-                    {"@Ft", ""},
-                    {"@Discount", ""},
-                    {"@Vat", ""},
-                    {"@DueDate", ""},
-                    {"@CompanyName", ""},
-                    {"@CompanyPhone", ""},
-                    {"@Report", ""},
+                    {"@Id ", Id},
+                    {"@Code", ""},
                     {"@Status", "0"},
                     {"@User", ""},
+                    {"@IsActive", ""},
+                    {"@IsDelete", ""},
+                    {"@Operation", Operation.SelectAbbr},
+                    {"@AccountId", ""},
+                    {"@Version", ""},
+                    {"@Rates", ""},
+                    {"@FirstRates", ""},
+                    {"@NextRates", ""},
+                    {"@OverRates", ""},
+                    {"@Service", ""},
+                    {"@Discount", ""},
+                    {"@Vat", ""},
+                    {"@Ft", ""},
+                    {"@Report", ""},
+                    {"@DueDate", ""},
+                    {"@Company", ""},
+                    {"@Phone", ""},
                 };
 
-                db.Get("Store.SelectVersionElectricity", Parameter, out Error, out dt);
+                db.Get(Store.ManageElectricityRates, Parameter, out Error, out dt);
 
-                if (Error == null && dt.Rows.Count > 0)
+                if (string.IsNullOrEmpty(Error) && dt.Rows.Count > 0)
                 {
-                    txtPerUnit.Text = dt.Rows[0]["Rates"].ToString();
+                    txtVat.Text = dt.Rows[0]["Vat"].ToString();
+                    NumberOfPayment = Convert.ToInt32(dt.Rows[0]["DueDate"].ToString());
+                    txtDiscount.Text = dt.Rows[0]["Discount"].ToString();
+                    InvoiceDay = Convert.ToInt32(dt.Rows[0]["DueDate"].ToString()) * -1;
                     txtFee.Text = dt.Rows[0]["Service"].ToString();
                     txtFt.Text = dt.Rows[0]["Ft"].ToString();
-                    txtDiscount.Text = dt.Rows[0]["Discount"].ToString();
-                    txtVat.Text = dt.Rows[0]["Vat"].ToString();
-                    txtDay.Text = dt.Rows[0]["DueDate"].ToString();
+                    NumberOfPayment = Convert.ToInt32(dt.Rows[0]["DueDate"].ToString());
+
+                    txtPerUnit.Text = dt.Rows[0]["Rates"].ToString();
+
+                    First = Convert.ToDouble(dt.Rows[0]["FirstRates"].ToString());
+                    Next = Convert.ToDouble(dt.Rows[0]["NextRates"].ToString());
+                    Over = Convert.ToDouble(dt.Rows[0]["OverRates"].ToString());
                 }
             }
-            catch
+            catch (Exception ex)
             {
-
-            }
-        }
-
-        private void txtNumberNow_TextChanged(object sender, EventArgs e)
-        {
-            if (txtNumberNow.Text != "")
-            {
-                CalElectValue();
-            }
-            else
-            {
-                txtUnit.Text = "";
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
             }
         }
 
@@ -410,22 +555,253 @@ namespace SANSANG
         {
             try
             {
-                txtUnit.Text = Convert.ToString(Math.Round(Convert.ToDouble(txtNumberNow.Text) - Convert.ToDouble(txtNumberBefor.Text), 2));
-                txtRaw.Text = string.Format("{0:#,##0.00}", Math.Round(Convert.ToDouble(txtUnit.Text) * Convert.ToDouble(txtPerUnit.Text), 2));
-                txtMoneyFt.Text = string.Format("{0:#,##0.00}", Math.Round(Convert.ToDouble(txtUnit.Text) * Convert.ToDouble(txtFt.Text), 2));
-
-                txtMoney.Text = string.Format("{0:#,##0.00}", Math.Round((
-                                Convert.ToDouble(txtRaw.Text) +
-                                Convert.ToDouble(txtFee.Text) +
-                                Convert.ToDouble(txtMoneyFt.Text)) -
-                                Convert.ToDouble(txtDiscount.Text), 2));
-
-                txtMoneyVat.Text = string.Format("{0:#,##0.00}", Math.Round(((Convert.ToDouble(txtMoney.Text) * (Convert.ToDouble(txtVat.Text)) / 100)), 2));
-                txtMoneyAll.Text = string.Format("{0:#,##0.00}", Math.Round(Convert.ToDouble(txtMoney.Text) + Convert.ToDouble(txtMoneyVat.Text), 2));
+                txtMoneyPay.Text = string.Format("{0:#,##0.00}", Math.Round(Convert.ToDouble(txtMoneyAll.Text), 2) + Math.Round(Convert.ToDouble(txtMoneyOverdue.Text), 2));
             }
-            catch
+            catch (Exception ex)
             {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }
+        }
 
+        public void ShowData(DataTable dt)
+        {
+            try
+            {
+                cbbAccount.SelectedValue = dt.Rows[0]["AccountId"].ToString();
+                cbbVersion.SelectedValue = dt.Rows[0]["VersionId"].ToString();
+
+                txtInvoiceNumber.Text = dt.Rows[0]["InvoiceNumber"].ToString();
+
+                dtDate.Text = dt.Rows[0]["Date"].ToString();
+                dtTime.Text = dt.Rows[0]["Time"].ToString();
+                cbbMonth.SelectedValue = dt.Rows[0]["Month"].ToString();
+                cbbYear.SelectedValue = dt.Rows[0]["Year"].ToString();
+                
+                dtDateNow.Text = dt.Rows[0]["Date"].ToString();
+                dtDateBefor.Value = dtDateNow.Value.AddMonths(-1);
+
+                txtUnit.Text = dt.Rows[0]["Unit"].ToString();
+                txtNumberBefor.Text = dt.Rows[0]["MeterBefore"].ToString();
+                txtNumberNow.Text = dt.Rows[0]["MeterNow"].ToString();
+
+                string strBarcode = dt.Rows[0]["Code"].ToString();
+                pbQrcode.Image = Barcode.QRCode(strBarcode, Color.Black, Color.White, "Q", 3, false);
+
+                txtId.Text = dt.Rows[0]["Id"].ToString();
+                txtCode.Text = dt.Rows[0]["Code"].ToString();
+                txtRaw.Text = dt.Rows[0]["Raw"].ToString();
+                txtMoneyFt.Text = dt.Rows[0]["Ft"].ToString();
+                txtDiscountDetail.Text = dt.Rows[0]["Detail"].ToString();
+                txtDiscount.Text = dt.Rows[0]["Discount"].ToString();
+
+                txtMoney.Text = dt.Rows[0]["Summary"].ToString();
+                txtMoneyVat.Text = dt.Rows[0]["Vat"].ToString();
+                txtMoneyAll.Text = dt.Rows[0]["Total"].ToString();
+                txtRemark.Text = dt.Rows[0]["Remark"].ToString();
+
+                txtMoneyPay.Text = dt.Rows[0]["Payment"].ToString();
+                dtPayEnd.Text = dt.Rows[0]["EndDate"].ToString();
+                dtPayStart.Value = dtDate.Value.AddDays(+1);
+
+                cbbStatus.SelectedValue = dt.Rows[0]["Status"].ToString();
+                cbbPayment.SelectedValue = dt.Rows[0]["MoneyId"].ToString();
+
+                dtPay.Text = dt.Rows[0]["Status"].ToString() == "1005" ? DateTime.Today.ToString() : dt.Rows[0]["PayDate"].ToString();
+
+                txtScan.Text = "";
+
+                GridView.Focus();
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }
+        }
+
+        public void Clear()
+        {
+            try
+            {
+                IsStart = false;
+                Function.ClearAlls(gbForm);
+                CountEnter = 0;
+
+                pbQrcode.Image = null;
+
+                cbbMonth.Enabled = true;
+                cbbYear.Enabled = true;
+                cbbStatus.Enabled = true;
+
+                int year = Convert.ToInt32(DateTime.Now.ToString("yyyy", Function.SetFormatDate(Cul.EN)));
+                int month = Convert.ToInt32(DateTime.Now.ToString("MM"));
+                int days = Convert.ToInt32(DateTime.Now.ToString("dd"));
+
+                dtTime.Value = DateTime.Today;
+                dtDate.Value = new DateTime(year, month, 18);
+
+                dtDateNow.Value = dtDate.Value;
+                dtDateBefor.Value = dtDate.Value.AddMonths(-1);
+                dtPay.Value = DateTime.Today;
+
+                dtPayStart.Value = dtDate.Value.AddDays(1);
+                dtPayEnd.Value = dtPayStart.Value.AddDays(10);
+
+                pbQrcode.Image = null;
+
+                txtMonthOverdue.Text = "0";
+                txtMoneyOverdue.Text = "0.00";
+
+                SearchData(false, out Numbers);
+
+                txtScan.Text = string.Empty;
+                SetPlaceholderVisibility();
+
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }
+        }
+
+        private void GetBill(string Type = "")
+        {
+            if (!IsStart)
+            {
+                DateTime DateOperation = dtDate.Value.AddMonths(-1);
+
+                Parameter = new string[,]
+                {
+                    {"@Id", ""},
+                    {"@Code", ""},
+                    {"@Status", "0"},
+                    {"@User", ""},
+                    {"@IsActive", ""},
+                    {"@IsDelete", ""},
+                    {"@Operation", Type == Operation.Before? Operation.BeforeAbbr : Operation.OverdueAbbr},
+                    {"@AccountId", "0"},
+                    {"@VersionId", "0"},
+                    {"@InvoiceNumber", ""},
+                    {"@Date", Type == Operation.Overdue? Date.GetDate(dtp : dtDateNow, Format : 4) : ""},
+                    {"@Time", ""},
+                    {"@Month", DateOperation.Month.ToString()},
+                    {"@Year", DateOperation.ToString("yyyy", CultureInfo.GetCultureInfo("th-TH"))},
+                    {"@MeterNow", ""},
+                    {"@MeterBefore", ""},
+                    {"@Unit", ""},
+                    {"@Raw", ""},
+                    {"@Ft", ""},
+                    {"@Discount", ""},
+                    {"@Detail", ""},
+                    {"@Summary", ""},
+                    {"@Vat", ""},
+                    {"@Total", ""},
+                    {"@Payment", ""},
+                    {"@MoneyId", "0"},
+                    {"@EndDate", ""},
+                    {"@PayDate", ""},
+                    {"@Barcode", ""},
+                    {"@Remark", ""},
+                };
+
+                db.Get(Store.ManageElectricitys, Parameter, out Error, out dt);
+
+                if (Type == Operation.Before)
+                {
+                    if (string.IsNullOrEmpty(Error) && dt.Rows.Count > 0)
+                    {
+                        string dates = dt.Rows[0]["DateBefor"].ToString();
+                        txtNumberBefor.Text = dt.Rows[0]["MeterNow"].ToString();
+                        dtDateBefor.Text = dates;
+                        dtTime.Focus();
+                    }
+                    else
+                    {
+                        txtNumberBefor.Text = "";
+                        txtNumberBefor.Focus();
+                    }
+                }
+
+                if (Type == Operation.Overdue)
+                {
+                    if (string.IsNullOrEmpty(Error) && dt.Rows.Count > 0)
+                    {
+                        txtMonthOverdue.Text = dt.Rows[0]["Mounth"].ToString();
+                        txtMoneyOverdue.Text = dt.Rows[0]["Amount"].ToString();
+                    }
+                    else
+                    {
+                        txtMonthOverdue.Text = "0";
+                        txtMoneyOverdue.Text = "0.00";
+                    }
+                }
+            }
+        }
+
+        private void Scan(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtScan.Text != "" && txtScan.Text != "\r\n\r\n\r\n\r\n")
+                {
+                    strBarcode = txtScan.Text;
+                    strInvoice = "";
+                    Function.getElectricData(txtScan.Text);
+                    strInvoice = "";
+                    CountEnter = 0;
+
+                    foreach (ElectricModel Electric in GlobalVar.ElectricDataList)
+                    {
+                        strInvoice = Electric.ReceiptId;
+                        txtInvoiceNumber.Text = Electric.ReceiptId;
+                        dtDate.Value = Electric.ReadDate;
+                        dtTime.Text = "00:00:00";
+                        dtDateNow.Value = Electric.ReadDate;
+                        dtPayEnd.Value = Electric.PayDate;
+                        txtUnit.Text = Convert.ToString(Electric.Unit);
+                        txtMoneyPay.Text = Convert.ToString(Electric.Amount);
+                        break;
+                    }
+
+                    SearchData(false, out Numbers, txtInvoiceNumber.Text);
+
+                    if (Numbers != 1)
+                    {
+                        SearchData(true, out Numbers);
+                    }
+                    else
+                    {
+                        btnEdit.Focus();
+                    }
+                }
+
+                txtScan.Clear();
+                SetPlaceholderVisibility();
+
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }
+        }
+
+        private void Reader(object sender, EventArgs e)
+        {
+            if (CountEnter == 4)
+            {
+                CountEnter = 0;
+                Scan(sender, e);
+            }
+        }
+
+        private void txtNumberNow_TextChanged(object sender, EventArgs e)
+        {
+            if (txtNumberNow.Text != "")
+            {
+                Calculator();
+            }
+            else
+            {
+                txtUnit.Text = "";
             }
         }
 
@@ -449,33 +825,14 @@ namespace SANSANG
             }
         }
 
-        private void txtRecId_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((char.IsNumber(e.KeyChar) || e.KeyChar == 8) || (e.KeyChar == Convert.ToChar(Keys.Enter)))
-            {
-                if (e.KeyChar == Convert.ToChar(Keys.Enter))
-                {
-                    Search(true);
-                }
-            }
-            else
-            {
-                e.Handled = true;
-                return;
-            }
-        }
-
         private void txtNumberNow_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
-                if (char.IsNumber(e.KeyChar) || e.KeyChar == '.' || e.KeyChar == 8)
+                if (e.KeyChar == Convert.ToChar(Keys.Enter))
                 {
-                }
-                else
-                {
-                    e.Handled = true;
-                    return;
+                    Calculator();
+                    txtRemark.Focus();
                 }
             }
             catch (Exception ex)
@@ -504,15 +861,11 @@ namespace SANSANG
                 }
                 if (keyCode == "Ctrl+F")
                 {
-                    SearchData(sender, e);
+                    Search(sender, e);
                 }
                 if (keyCode == "Alt+C")
                 {
-                    ClearData(sender, e);
-                }
-                if (keyCode == "Enter")
-                {
-                    Search(true);
+                   Clear();
                 }
             }
             catch (Exception ex)
@@ -529,56 +882,6 @@ namespace SANSANG
         private void btnRe_Click(object sender, EventArgs e)
         {
             dtPayEnd.Value = dtPayEnd.Value.AddDays(-1);
-        }
-
-        private void btnScan_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (txtScan.Text != "" && txtScan.Text != "\r\n\r\n\r\n\r\n")
-                {
-                    QRCode = txtScan.Text;
-                    Function.getElectricData(txtScan.Text);
-
-                    foreach (ElectricModel em in GlobalVar.ElectricDataList)
-                    {
-                        txtInvoiceNumber.Text = em.ReceiptId;
-                        txtUnit.Text = Convert.ToString(em.Unit);
-                        txtMoneyPay.Text = Convert.ToString(em.Amount);
-                        dtPayEnd.Value = em.PayDate;
-                        dtDate.Value = em.ReadDate;
-                        qrHeader = em.Header;
-                        qrLine2 = em.qrLine2;
-                        qrLine3 = em.qrLine3;
-                        qrLine4 = em.qrLine4;
-                        break;
-                    }
-
-                    Search(true);
-                }
-                else
-                {
-                    Message.MessageConfirmation("V", "", "QRCode invalid please change language.");
-                    var Popup = new FrmMessagesBoxOK(Message.strOperation, Message.strMes, "OK", Message.strImage);
-                    Popup.ShowDialog();
-                }
-
-                txtScan.Clear();
-            }
-            catch (Exception ex)
-            {
-                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
-            }
-        }
-
-        private void txtScan_TextChanged(object sender, EventArgs e)
-        {
-            if (CountEnter == 4)
-            {
-                CountEnter = 0;
-                Display = true;
-                btnScan_Click(sender, e);
-            }
         }
 
         private void txtNumberBefor_KeyPress(object sender, KeyPressEventArgs e)
@@ -600,110 +903,22 @@ namespace SANSANG
             }
         }
 
-        private void txtScan_KeyDown(object sender, KeyEventArgs e)
+        private void KeyEnter(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
                 CountEnter++;
             }
         }
-
-        private void txtScan_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!Function.IsCharacter(e.KeyChar, Character.Tracking))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void GetBefore(string Type = "")
-        {
-            DataTable dtBefore = new DataTable();
-            DataTable dtOverdue = new DataTable();
-
-            Parameter = new string[,]
-            {
-                {"@InvoiceDate", Dates.GetDate(dtp : dtDateBefor, Format : 4, Language : Culture.EN)},
-            };
-
-            if (Type == "Before")
-            {
-                db.Get("Store.SelectInvoiceElectricity" + "Before", Parameter, out Error, out dtBefore);
-
-                if (Function.GetRows(dtBefore) == 1)
-                {
-                    txtNumberBefor.Text = dtBefore.Rows[0]["MeterNow"].ToString();
-                }
-                else
-                {
-                    txtNumberBefor.Text = "";
-                }
-            }
-            else if (Type == "Overdue")
-            {
-                db.Get("Store.SelectInvoiceElectricity" + "Overdue", Parameter, out Error, out dtOverdue);
-
-                if (Function.GetRows(dtOverdue) == 1)
-                {
-                    txtMoneyOverdue.Text = dt.Rows[0]["PayAll"].ToString();
-                    txtMonthOverdue.Text = "1";
-                    SumTotal();
-                }
-                else
-                {
-                    txtMoneyOverdue.Text = "0.00";
-                    txtMonthOverdue.Text = "0";
-                }
-            }
-            else
-            {
-                DateTimePicker dpBefore = new DateTimePicker();
-                dpBefore.Value = dtDate.Value.AddMonths(-1);
-
-                Parameter = new string[,]
-                {
-                    {"@InvoiceDate", Dates.GetDate(dtp : dpBefore, Format : 4, Language : Culture.EN)},
-                };
-
-                db.Get("Store.SelectInvoiceElectricity" + "Before", Parameter, out Error, out dtBefore);
-                db.Get("Store.SelectInvoiceElectricity" + "Overdue", Parameter, out Error, out dtOverdue);
-     
-                if (Function.GetRows(dtBefore) == 1)
-                {
-                    txtNumberBefor.Text = dt.Rows[0]["MeterNow"].ToString();
-                }
-                else
-                {
-                    txtNumberBefor.Text = "";
-                }
-
-                if (Function.GetRows(dtOverdue) == 1)
-                {
-                    txtMoneyOverdue.Text = dtOverdue.Rows[0]["PayAll"].ToString();
-                    txtMonthOverdue.Text = "1";
-                    SumTotal();
-                }
-                else
-                {
-                    txtMoneyOverdue.Text = "0.00";
-                    txtMonthOverdue.Text = "0";
-                }
-            }
-        }
-
+        
         private void txtNumberBefor_TextChanged(object sender, EventArgs e)
         {
-            if (txtNumberBefor.Text != "")
+            if (txtNumberBefor.Text != "" && txtUnit.Text != "")
             {
-                int Num = 0;
-                Num = int.Parse(txtNumberBefor.Text) + int.Parse(txtUnit.Text);
-                txtNumberNow.Text = Convert.ToString(Num);
+                int Number = 0;
+                Number = int.Parse(txtNumberBefor.Text) + int.Parse(txtUnit.Text);
+                txtNumberNow.Text = Convert.ToString(Number);
             }
-        }
-
-        private void txtDisCount_TextChanged(object sender, EventArgs e)
-        {
-            CalElectValue();
         }
 
         private void dtTime_KeyDown(object sender, KeyEventArgs e)
@@ -712,84 +927,41 @@ namespace SANSANG
             {
                 try
                 {
-                    GetBefore();
                     int theMonth = Convert.ToInt32(dtDate.Value.ToString("MM"));
                     int theYear = Convert.ToInt32(dtDate.Value.ToString("yyyy")) + 543;
 
                     cbbMonth.SelectedIndex = theMonth;
                     cbbYear.SelectedValue = theYear;
+                    
                     dtDateNow.Text = dtDate.Text;
                     dtDateBefor.Value = dtDate.Value.AddMonths(-1);
+
                     dtPayStart.Value = dtDate.Value.AddDays(1);
                     dtPay.Value = DateTime.Today;
-                    cbbStatus.SelectedValue = "NP";
+
+                    GetBill(Operation.Before);
+                    GetBill(Operation.Overdue);
+
+                    if (txtNumberBefor.Text == "")
+                    {
+                        txtNumberBefor.Focus();
+                    }
+                    else if (txtNumberBefor.Text != "" && txtNumberNow.Text == "")
+                    {
+                        txtNumberNow.Focus();
+                    }
+                    else
+                    {
+                        txtRemark.Focus();
+                    }
                 }
                 catch (Exception)
                 {
                     txtNumberBefor.Text = "0";
                     txtMoneyOverdue.Text = "0.00";
                     txtMonthOverdue.Text = "0";
-                    cbbStatus.SelectedValue = "0";
+                    cbbStatus.SelectedValue = 0;
                 }
-
-                if (txtNumberBefor.Text == "")
-                {
-                    txtNumberBefor.Focus();
-                }
-                else
-                {
-                    txtRemark.Focus();
-                }
-            }
-        }
-
-        public void SetValue(DataTable dt)
-        {
-            if (dt.Rows.Count > 0)
-            {
-                cbbUser.SelectedValue = dt.Rows[0]["UserCode"].ToString();
-                cbbVersion.SelectedValue = dt.Rows[0]["Version"].ToString();
-                txtInvoiceNumber.Text = dt.Rows[0]["InvoiceNumber"].ToString();
-                dtDate.Text = dt.Rows[0]["InvoiceDate"].ToString();
-                dtTime.Text = dt.Rows[0]["InvoiceTime"].ToString();
-                cbbMonth.SelectedValue = dt.Rows[0]["InvoiceMonth"].ToString();
-                cbbYear.SelectedValue = dt.Rows[0]["InvoiceYear"].ToString();
-                dtDateNow.Text = dt.Rows[0]["InvoiceDate"].ToString();
-                dtDateBefor.Value = dtDateNow.Value.AddMonths(-1);
-                txtUnit.Text = dt.Rows[0]["Unit"].ToString();
-                txtNumberBefor.Text = dt.Rows[0]["MeterBefore"].ToString();
-
-                string strBarcode = dt.Rows[0]["Code"].ToString();
-                pbQrcode.Image = Barcode.QRCode(strBarcode, Color.Black, Color.White, "Q", 3, false);
-
-                txtCode.Text = dt.Rows[0]["Code"].ToString();
-                txtRaw.Text = dt.Rows[0]["Raw"].ToString();
-
-                txtMoneyFt.Text = dt.Rows[0]["Ft"].ToString();
-                txtDiscountDetail.Text = dt.Rows[0]["DiscountDetail"].ToString();
-                txtDiscount.Text = dt.Rows[0]["Discount"].ToString();
-
-                txtMoney.Text = dt.Rows[0]["Sum"].ToString();
-                txtMoneyVat.Text = dt.Rows[0]["Vat"].ToString();
-                txtMoneyAll.Text = dt.Rows[0]["SumAll"].ToString();
-                txtRemark.Text = dt.Rows[0]["Remark"].ToString();
-
-                txtMoneyPay.Text = dt.Rows[0]["PayAll"].ToString();
-                dtPayEnd.Text = dt.Rows[0]["EndDate"].ToString();
-                dtPayStart.Value = dtDate.Value.AddDays(+1);
-
-                cbbStatus.SelectedValue = dt.Rows[0]["Status"].ToString();
-                cbbPayment.SelectedValue = dt.Rows[0]["Payment"].ToString();
-                dtPay.Text = dt.Rows[0]["PayDate"].ToString();
-
-                Display = false;
-                GetBefore("Overdue");
-                dataGridView.Focus();
-            }
-            else
-            {
-                Display = false;
-                GetBefore();
             }
         }
 
@@ -820,7 +992,7 @@ namespace SANSANG
                 txtScan.Enabled = true;
                 txtInvoiceNumber.Enabled = true;
                 dtTime.Value = new DateTime(2020, 02, 02, 0, 0, 0);
-                txtScan.Focus();
+                btnScan.Focus();
             }
         }
 
@@ -828,10 +1000,59 @@ namespace SANSANG
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (txtDiscountDetail.Text == "")
+                if (txtNumberNow.Text == "")
+                {
+                    txtNumberNow.Focus();
+                }
+                else if (txtDiscountDetail.Text == "")
                 {
                     txtDiscountDetail.Focus();
                 }
+                else 
+                {
+                    txtRemark.Focus();
+                }
+            }
+        }
+
+        public void Calculator()
+        {
+            try
+            {
+                int theMonth = Convert.ToInt32(dtDate.Value.ToString("MM"));
+                int theYear = Convert.ToInt32(dtDate.Value.ToString("yyyy")) + 543;
+
+                cbbMonth.SelectedIndex = theMonth;
+                cbbYear.SelectedValue = theYear;
+
+                int Units = 0;
+                int Befor = 0;
+                int Now = 0;
+
+                string Fts = string.IsNullOrEmpty(txtFt.Text) ? Ft : txtFt.Text;
+
+                Befor = string.IsNullOrEmpty(txtNumberBefor.Text) ? 0 : Convert.ToInt32(txtNumberBefor.Text);
+                Now = string.IsNullOrEmpty(txtNumberNow.Text) ? 0 : Convert.ToInt32(txtNumberNow.Text);
+                Units = Now - Befor;
+
+                txtUnit.Text = Units.ToString();
+                txtRaw.Text = string.Format("{0:#,##0.00}", Function.CalculateElectricity(First, Next, Over, Units));
+                txtMoneyFt.Text = string.Format("{0:#,##0.00}", Math.Round(Convert.ToDouble(Units) * Convert.ToDouble(Fts), 2));
+
+                txtMoney.Text = string.Format("{0:#,##0.00}", Math.Round((
+                                Convert.ToDouble(txtRaw.Text) +
+                                Convert.ToDouble(txtFee.Text) +
+                                Convert.ToDouble(txtMoneyFt.Text)) -
+                                Convert.ToDouble(txtDiscount.Text), 2));
+
+                txtMoneyVat.Text = string.Format("{0:#,##0.00}", Math.Round(((Convert.ToDouble(txtMoney.Text) * (Convert.ToDouble(txtVat.Text)) / 100)), 2));
+                txtMoneyAll.Text = string.Format("{0:#,##0.00}", Math.Round(Convert.ToDouble(txtMoney.Text) + Convert.ToDouble(txtMoneyVat.Text), 2));
+                
+                txtMoneyPay.Text = string.Format("{0:#,##0.00}", Math.Round(Convert.ToDouble(txtMoneyAll.Text), 2) + Math.Round(Convert.ToDouble(txtMoneyOverdue.Text), 2));
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
             }
         }
 
@@ -903,44 +1124,109 @@ namespace SANSANG
                 }
             }
         }
-
-        public void Clear()
-        {
-            CountEnter = 0;
-            QRCode = "";
-            qrHeader = "";
-            strQR = "";
-           
-            pbQrcode.Image = null;
-            btnScan.Enabled = true;
-            txtScan.Enabled = true;
-            txtInvoiceNumber.Enabled = false;
-            dtDate.Enabled = false;
-            dtPay.Enabled = false;
-            dtTime.Enabled = false;
-            cbbStatus.Enabled = false;
-            Display = false;
-
-            int Year = Convert.ToInt32(DateTime.Now.ToString("yyyy", Function.SetFormatDate(Culture.EN)));
-            int Month = Convert.ToInt32(DateTime.Now.ToString("MM"));
-
-            dtTime.Value = new DateTime(2020, 02, 02, 0, 0, 0);
-            dtDate.Value = new DateTime(Year, Month, 18);
-            dtDateNow.Value = dtDate.Value;
-            dtDateBefor.Value = dtDate.Value.AddMonths(-1);
-            dtPayStart.Value = dtDate.Value.AddDays(1);
-            dtPayEnd.Value = dtPayStart.Value.AddDays(10);
-            dtPay.Value = DateTime.Now;
-            
-            txtMoneyOverdue.Text = "0.00";
-            txtMonthOverdue.Text = "0";
-
-            Search(false);
-        }
+        
 
         public string GetDetails()
         {
-            return txtCode.Text + " | " + txtRemark.Text + " (฿" + txtUnit.Text + ")";
+            return "Bill " + string.Concat(cbbMonth.Text, " ", cbbYear.Text) + " (฿" + txtMoneyPay.Text + ")";
+        }
+
+        private void SetPlaceholderVisibility()
+        {
+            IsPlaceholderVisible = string.IsNullOrEmpty(txtScan.Text);
+            txtScan.Invalidate();
+            txtScan.Text = IsPlaceholderVisible ? PlaceholderText : txtScan.Text;
+            txtScan.ForeColor = IsPlaceholderVisible ? Color.Gray : Color.Black;
+            txtScan.Font = IsPlaceholderVisible ? new Font(txtScan.Font.FontFamily, 8f, FontStyle.Italic) : new Font(txtScan.Font.FontFamily, 8f, FontStyle.Regular);
+
+            if (IsPlaceholderVisible)
+            {
+                txtScan.Text = PlaceholderText;
+                txtScan.SelectionStart = 0;
+                txtScan.SelectionLength = 0;
+            }
+        }
+
+        private new void Click(object sender, EventArgs e)
+        {
+            if (IsPlaceholderVisible)
+            {
+                txtScan.Text = "";
+                IsPlaceholderVisible = false;
+                txtScan.ForeColor = Color.Black;
+                txtScan.Font = new Font(txtScan.Font.FontFamily, 9.75f, FontStyle.Regular);
+            }
+        }
+
+        private new void Leave(object sender, EventArgs e)
+        {
+            SetPlaceholderVisibility();
+        }
+
+        private string GetCondition()
+        {
+            try
+            {
+                string strCondition = "";
+
+                strCondition += txtCode.Text != "" ? ", รหัส : " + txtCode.Text : "";
+                strCondition += cbbAccount.Text != ":: กรุณาเลือก ::" ? ", " + lblName.Text + " " + cbbAccount.Text : "";
+                strCondition += cbbVersion.Text != ":: กรุณาเลือก ::" ? ", " + lblVersion.Text + " " + cbbVersion.Text : "";
+                strCondition += txtInvoiceNumber.Text != "" ? ", " + lblInvoiceNumber.Text + " " + txtInvoiceNumber.Text : "";
+                strCondition += cbbMonth.Text != ":: กรุณาเลือก ::" ? ", " + lblbMonth.Text + " " + cbbMonth.Text : "";
+                strCondition += cbbYear.Text != ":: กรุณาเลือก ::" ? ", " + "ปี :" + " " + cbbYear.Text : "";
+                strCondition += txtNumberNow.Text != "" ? ", " + lblNumberNow.Text + "ครั้งนี้ :" + txtNumberNow.Text : "";
+                strCondition += txtNumberBefor.Text != "" ? ", " + lblNumberBefor.Text + "ครั้งก่อน :" + txtNumberBefor.Text : "";
+                strCondition += txtUnit.Text != "" ? ", " + lblUnit.Text + " " + txtUnit.Text : "";
+                strCondition += txtRaw.Text != "" ? ", " + lblRaw.Text + " " + txtRaw.Text : "";
+                strCondition += txtDiscountDetail.Text != "" ? ", " + lblDiscount.Text + " " + txtDiscountDetail.Text : "";
+                strCondition += txtMoney.Text != "" ? ", " + lblMoney.Text + " " + txtMoney.Text : "";
+                strCondition += txtMoneyAll.Text != "" ? ", " + lblMoneyAll.Text + " " + txtMoneyAll.Text : "";
+                strCondition += txtMoneyPay.Text != "" ? ", ยอดที่ต้องชำระ :" + txtMoneyPay.Text : "";
+                strCondition += txtDiscount.Text != "" ? ", " + lblDiscount.Text + " " + txtDiscount.Text : "";
+                strCondition += txtVat.Text != "" ? ", " + lblVat.Text + " " + txtVat.Text : "";
+                strCondition += txtFt.Text != "" ? ", " + lblFt.Text + " " + txtFt.Text : "";
+                strCondition += txtRemark.Text != "" ? ", " + "หมายเหตุ :" + " " + txtRemark.Text : "";
+
+                strCondition += cbbStatus.Text != ":: กรุณาเลือก ::" ? ", " + lblStatus.Text + " " + cbbStatus.Text : "";
+                strCondition += cbbPayment.Text != ":: กรุณาเลือก ::" ? ", " + lblPayment.Text + " " + cbbPayment.Text : "";
+
+                return strCondition;
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+                return "";
+            }
+        }
+
+        private void txtNumberNow_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtRemark.Focus();
+            }
+        }
+
+        private void txtInvoiceNumber_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SearchData(true, out Numbers, txtInvoiceNumber.Text);
+            }
+        }
+
+        private void SearchInvoice(object sender, EventArgs e)
+        {
+            SearchData(true, out Numbers, txtInvoiceNumber.Text);
+        }
+
+        private void txtMoneyOverdue_TextChanged(object sender, EventArgs e)
+        {
+            if (txtMoneyOverdue.Text != "" && txtMoneyOverdue.Text != "0.00")
+            {
+                CalElectValue();
+            }
         }
     }
 }

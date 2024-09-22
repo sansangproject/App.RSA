@@ -38,6 +38,17 @@
             this.lblResult = new System.Windows.Forms.TextBox();
             this.lblCondition = new System.Windows.Forms.Label();
             this.gbForm = new System.Windows.Forms.GroupBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.lblRates = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtRates = new System.Windows.Forms.TextBox();
+            this.txtOver = new System.Windows.Forms.TextBox();
+            this.txtNext = new System.Windows.Forms.TextBox();
             this.lblReports = new System.Windows.Forms.Label();
             this.lblReport = new System.Windows.Forms.Label();
             this.txtType = new System.Windows.Forms.TextBox();
@@ -79,11 +90,9 @@
             this.cbbAccount = new System.Windows.Forms.ComboBox();
             this.label27 = new System.Windows.Forms.Label();
             this.txtReport = new System.Windows.Forms.TextBox();
-            this.lblRates = new System.Windows.Forms.Label();
-            this.txtRates = new System.Windows.Forms.TextBox();
+            this.txtFirst = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
             this.txtService = new System.Windows.Forms.TextBox();
-            this.label39 = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
             this.txtCompany = new System.Windows.Forms.TextBox();
             this.label41 = new System.Windows.Forms.Label();
@@ -155,9 +164,9 @@
             this.gbData.Controls.Add(this.lblSearch);
             this.gbData.Font = new System.Drawing.Font("Mitr Light", 9.5F);
             this.gbData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.gbData.Location = new System.Drawing.Point(5, 366);
+            this.gbData.Location = new System.Drawing.Point(5, 389);
             this.gbData.Name = "gbData";
-            this.gbData.Size = new System.Drawing.Size(1414, 425);
+            this.gbData.Size = new System.Drawing.Size(1414, 402);
             this.gbData.TabIndex = 43;
             this.gbData.TabStop = false;
             // 
@@ -201,7 +210,7 @@
             this.GridView.ReadOnly = true;
             this.GridView.RowHeadersVisible = false;
             this.GridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GridView.Size = new System.Drawing.Size(1378, 350);
+            this.GridView.Size = new System.Drawing.Size(1378, 327);
             this.GridView.TabIndex = 45;
             this.GridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_CellContentClick);
             // 
@@ -236,6 +245,17 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gbForm.BackColor = System.Drawing.Color.White;
+            this.gbForm.Controls.Add(this.label14);
+            this.gbForm.Controls.Add(this.label13);
+            this.gbForm.Controls.Add(this.label39);
+            this.gbForm.Controls.Add(this.label12);
+            this.gbForm.Controls.Add(this.label10);
+            this.gbForm.Controls.Add(this.label9);
+            this.gbForm.Controls.Add(this.lblRates);
+            this.gbForm.Controls.Add(this.label5);
+            this.gbForm.Controls.Add(this.txtRates);
+            this.gbForm.Controls.Add(this.txtOver);
+            this.gbForm.Controls.Add(this.txtNext);
             this.gbForm.Controls.Add(this.lblReports);
             this.gbForm.Controls.Add(this.lblReport);
             this.gbForm.Controls.Add(this.txtType);
@@ -266,11 +286,9 @@
             this.gbForm.Controls.Add(this.label27);
             this.gbForm.Controls.Add(this.gbData);
             this.gbForm.Controls.Add(this.txtReport);
-            this.gbForm.Controls.Add(this.lblRates);
-            this.gbForm.Controls.Add(this.txtRates);
+            this.gbForm.Controls.Add(this.txtFirst);
             this.gbForm.Controls.Add(this.label31);
             this.gbForm.Controls.Add(this.txtService);
-            this.gbForm.Controls.Add(this.label39);
             this.gbForm.Controls.Add(this.lblStatus);
             this.gbForm.Controls.Add(this.txtCompany);
             this.gbForm.Controls.Add(this.label41);
@@ -303,12 +321,133 @@
             this.gbForm.TabIndex = 46;
             this.gbForm.TabStop = false;
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Mitr Light", 9F);
+            this.label14.ForeColor = System.Drawing.Color.Gray;
+            this.label14.Location = new System.Drawing.Point(911, 200);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(101, 19);
+            this.label14.TabIndex = 243;
+            this.label14.Text = "Energy Charge :";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Mitr Light", 9F);
+            this.label13.ForeColor = System.Drawing.Color.Gray;
+            this.label13.Location = new System.Drawing.Point(911, 162);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(101, 19);
+            this.label13.TabIndex = 242;
+            this.label13.Text = "Energy Charge :";
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Font = new System.Drawing.Font("Mitr Light", 8.249999F);
+            this.label39.ForeColor = System.Drawing.Color.OrangeRed;
+            this.label39.Location = new System.Drawing.Point(927, 140);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(85, 18);
+            this.label39.TabIndex = 141;
+            this.label39.Text = "First 150 kWh";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Mitr Light", 9F);
+            this.label12.ForeColor = System.Drawing.Color.Gray;
+            this.label12.Location = new System.Drawing.Point(911, 124);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(101, 19);
+            this.label12.TabIndex = 241;
+            this.label12.Text = "Energy Charge :";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Mitr Light", 8.249999F);
+            this.label10.ForeColor = System.Drawing.Color.OrangeRed;
+            this.label10.Location = new System.Drawing.Point(923, 215);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(89, 18);
+            this.label10.TabIndex = 240;
+            this.label10.Text = "Over 400 kWh";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Mitr Light", 8.249999F);
+            this.label9.ForeColor = System.Drawing.Color.OrangeRed;
+            this.label9.Location = new System.Drawing.Point(924, 177);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(88, 18);
+            this.label9.TabIndex = 239;
+            this.label9.Text = "Next 250 kWh";
+            // 
+            // lblRates
+            // 
+            this.lblRates.AutoSize = true;
+            this.lblRates.Font = new System.Drawing.Font("Mitr Light", 9F);
+            this.lblRates.ForeColor = System.Drawing.Color.Gray;
+            this.lblRates.Location = new System.Drawing.Point(592, 353);
+            this.lblRates.Name = "lblRates";
+            this.lblRates.Size = new System.Drawing.Size(94, 19);
+            this.lblRates.TabIndex = 237;
+            this.lblRates.Text = "ค่าพลังงานไฟฟ้า :";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Mitr Light", 8.249999F);
+            this.label5.ForeColor = System.Drawing.Color.OrangeRed;
+            this.label5.Location = new System.Drawing.Point(598, 368);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(88, 18);
+            this.label5.TabIndex = 238;
+            this.label5.Text = "Energy Charge";
+            // 
+            // txtRates
+            // 
+            this.txtRates.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtRates.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtRates.Font = new System.Drawing.Font("Mitr Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRates.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtRates.Location = new System.Drawing.Point(729, 356);
+            this.txtRates.Name = "txtRates";
+            this.txtRates.Size = new System.Drawing.Size(115, 21);
+            this.txtRates.TabIndex = 236;
+            // 
+            // txtOver
+            // 
+            this.txtOver.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtOver.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtOver.Font = new System.Drawing.Font("Mitr", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtOver.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.txtOver.Location = new System.Drawing.Point(1056, 204);
+            this.txtOver.Name = "txtOver";
+            this.txtOver.Size = new System.Drawing.Size(113, 21);
+            this.txtOver.TabIndex = 235;
+            // 
+            // txtNext
+            // 
+            this.txtNext.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtNext.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtNext.Font = new System.Drawing.Font("Mitr", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNext.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.txtNext.Location = new System.Drawing.Point(1056, 166);
+            this.txtNext.Name = "txtNext";
+            this.txtNext.Size = new System.Drawing.Size(113, 21);
+            this.txtNext.TabIndex = 234;
+            // 
             // lblReports
             // 
             this.lblReports.AutoSize = true;
             this.lblReports.Font = new System.Drawing.Font("Mitr Light", 8.249999F);
             this.lblReports.ForeColor = System.Drawing.Color.OrangeRed;
-            this.lblReports.Location = new System.Drawing.Point(636, 167);
+            this.lblReports.Location = new System.Drawing.Point(641, 179);
             this.lblReports.Name = "lblReports";
             this.lblReports.Size = new System.Drawing.Size(45, 18);
             this.lblReports.TabIndex = 233;
@@ -319,7 +458,7 @@
             this.lblReport.AutoSize = true;
             this.lblReport.Font = new System.Drawing.Font("Mitr Light", 9F);
             this.lblReport.ForeColor = System.Drawing.Color.Gray;
-            this.lblReport.Location = new System.Drawing.Point(652, 153);
+            this.lblReport.Location = new System.Drawing.Point(657, 162);
             this.lblReport.Name = "lblReport";
             this.lblReport.Size = new System.Drawing.Size(29, 19);
             this.lblReport.TabIndex = 232;
@@ -331,7 +470,7 @@
             this.txtType.Enabled = false;
             this.txtType.Font = new System.Drawing.Font("Mitr Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtType.Location = new System.Drawing.Point(456, 309);
+            this.txtType.Location = new System.Drawing.Point(451, 319);
             this.txtType.Name = "txtType";
             this.txtType.Size = new System.Drawing.Size(45, 21);
             this.txtType.TabIndex = 231;
@@ -342,9 +481,9 @@
             this.txtMru.Enabled = false;
             this.txtMru.Font = new System.Drawing.Font("Mitr Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMru.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtMru.Location = new System.Drawing.Point(325, 309);
+            this.txtMru.Location = new System.Drawing.Point(322, 319);
             this.txtMru.Name = "txtMru";
-            this.txtMru.Size = new System.Drawing.Size(114, 21);
+            this.txtMru.Size = new System.Drawing.Size(112, 21);
             this.txtMru.TabIndex = 228;
             // 
             // txtInstallation
@@ -353,9 +492,9 @@
             this.txtInstallation.Enabled = false;
             this.txtInstallation.Font = new System.Drawing.Font("Mitr Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtInstallation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtInstallation.Location = new System.Drawing.Point(325, 271);
+            this.txtInstallation.Location = new System.Drawing.Point(322, 281);
             this.txtInstallation.Name = "txtInstallation";
-            this.txtInstallation.Size = new System.Drawing.Size(176, 21);
+            this.txtInstallation.Size = new System.Drawing.Size(177, 21);
             this.txtInstallation.TabIndex = 227;
             // 
             // label7
@@ -363,7 +502,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Mitr Light", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.OrangeRed;
-            this.label7.Location = new System.Drawing.Point(166, 320);
+            this.label7.Location = new System.Drawing.Point(161, 331);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(118, 18);
             this.label7.TabIndex = 226;
@@ -374,7 +513,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Mitr Light", 9F);
             this.label8.ForeColor = System.Drawing.Color.Gray;
-            this.label8.Location = new System.Drawing.Point(198, 306);
+            this.label8.Location = new System.Drawing.Point(193, 317);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(86, 19);
             this.label8.TabIndex = 225;
@@ -386,9 +525,9 @@
             this.txtAccountNo.Enabled = false;
             this.txtAccountNo.Font = new System.Drawing.Font("Mitr Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAccountNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtAccountNo.Location = new System.Drawing.Point(325, 233);
+            this.txtAccountNo.Location = new System.Drawing.Point(322, 243);
             this.txtAccountNo.Name = "txtAccountNo";
-            this.txtAccountNo.Size = new System.Drawing.Size(176, 21);
+            this.txtAccountNo.Size = new System.Drawing.Size(177, 21);
             this.txtAccountNo.TabIndex = 224;
             // 
             // label3
@@ -396,7 +535,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Mitr Light", 9F);
             this.label3.ForeColor = System.Drawing.Color.Gray;
-            this.label3.Location = new System.Drawing.Point(199, 189);
+            this.label3.Location = new System.Drawing.Point(194, 203);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(85, 19);
             this.label3.TabIndex = 223;
@@ -408,7 +547,7 @@
             this.txtPremise.Enabled = false;
             this.txtPremise.Font = new System.Drawing.Font("Mitr Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPremise.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtPremise.Location = new System.Drawing.Point(325, 195);
+            this.txtPremise.Location = new System.Drawing.Point(322, 205);
             this.txtPremise.Name = "txtPremise";
             this.txtPremise.Size = new System.Drawing.Size(266, 21);
             this.txtPremise.TabIndex = 222;
@@ -419,7 +558,7 @@
             this.txtBranch.Enabled = false;
             this.txtBranch.Font = new System.Drawing.Font("Mitr Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBranch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtBranch.Location = new System.Drawing.Point(325, 157);
+            this.txtBranch.Location = new System.Drawing.Point(322, 166);
             this.txtBranch.Name = "txtBranch";
             this.txtBranch.Size = new System.Drawing.Size(176, 21);
             this.txtBranch.TabIndex = 221;
@@ -429,7 +568,7 @@
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Mitr Light", 9F);
             this.lblName.ForeColor = System.Drawing.Color.Gray;
-            this.lblName.Location = new System.Drawing.Point(224, 115);
+            this.lblName.Location = new System.Drawing.Point(219, 126);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(60, 19);
             this.lblName.TabIndex = 218;
@@ -440,7 +579,7 @@
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("Mitr Light", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label29.ForeColor = System.Drawing.Color.OrangeRed;
-            this.label29.Location = new System.Drawing.Point(238, 169);
+            this.label29.Location = new System.Drawing.Point(233, 178);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(46, 18);
             this.label29.TabIndex = 103;
@@ -451,7 +590,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Mitr Light", 9F);
             this.label1.ForeColor = System.Drawing.Color.Gray;
-            this.label1.Location = new System.Drawing.Point(244, 155);
+            this.label1.Location = new System.Drawing.Point(239, 164);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(40, 19);
             this.label1.TabIndex = 217;
@@ -460,10 +599,10 @@
             // pbQrcode
             // 
             this.pbQrcode.BackColor = System.Drawing.Color.White;
-            this.pbQrcode.Location = new System.Drawing.Point(1185, 110);
+            this.pbQrcode.Location = new System.Drawing.Point(512, 124);
             this.pbQrcode.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pbQrcode.Name = "pbQrcode";
-            this.pbQrcode.Size = new System.Drawing.Size(69, 69);
+            this.pbQrcode.Size = new System.Drawing.Size(76, 68);
             this.pbQrcode.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbQrcode.TabIndex = 208;
             this.pbQrcode.TabStop = false;
@@ -473,7 +612,7 @@
             this.label33.AutoSize = true;
             this.label33.Font = new System.Drawing.Font("Mitr Light", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label33.ForeColor = System.Drawing.Color.OrangeRed;
-            this.label33.Location = new System.Drawing.Point(216, 284);
+            this.label33.Location = new System.Drawing.Point(211, 292);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(68, 18);
             this.label33.TabIndex = 107;
@@ -484,7 +623,7 @@
             this.txtVat.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtVat.Font = new System.Drawing.Font("Mitr Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtVat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtVat.Location = new System.Drawing.Point(723, 195);
+            this.txtVat.Location = new System.Drawing.Point(729, 205);
             this.txtVat.Name = "txtVat";
             this.txtVat.Size = new System.Drawing.Size(115, 21);
             this.txtVat.TabIndex = 157;
@@ -494,7 +633,7 @@
             this.label32.AutoSize = true;
             this.label32.Font = new System.Drawing.Font("Mitr Light", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label32.ForeColor = System.Drawing.Color.OrangeRed;
-            this.label32.Location = new System.Drawing.Point(210, 246);
+            this.label32.Location = new System.Drawing.Point(205, 254);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(74, 18);
             this.label32.TabIndex = 106;
@@ -515,7 +654,7 @@
             this.label30.AutoSize = true;
             this.label30.Font = new System.Drawing.Font("Mitr Light", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label30.ForeColor = System.Drawing.Color.OrangeRed;
-            this.label30.Location = new System.Drawing.Point(233, 206);
+            this.label30.Location = new System.Drawing.Point(228, 217);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(51, 18);
             this.label30.TabIndex = 104;
@@ -526,7 +665,7 @@
             this.lblVat.AutoSize = true;
             this.lblVat.Font = new System.Drawing.Font("Mitr Light", 9F);
             this.lblVat.ForeColor = System.Drawing.Color.Gray;
-            this.lblVat.Location = new System.Drawing.Point(644, 192);
+            this.lblVat.Location = new System.Drawing.Point(649, 203);
             this.lblVat.Name = "lblVat";
             this.lblVat.Size = new System.Drawing.Size(37, 19);
             this.lblVat.TabIndex = 155;
@@ -729,7 +868,7 @@
             this.label28.AutoSize = true;
             this.label28.Font = new System.Drawing.Font("Mitr Light", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label28.ForeColor = System.Drawing.Color.OrangeRed;
-            this.label28.Location = new System.Drawing.Point(232, 129);
+            this.label28.Location = new System.Drawing.Point(227, 140);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(52, 18);
             this.label28.TabIndex = 102;
@@ -754,7 +893,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Mitr Light", 9F);
             this.label4.ForeColor = System.Drawing.Color.Gray;
-            this.label4.Location = new System.Drawing.Point(203, 270);
+            this.label4.Location = new System.Drawing.Point(198, 278);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(81, 19);
             this.label4.TabIndex = 97;
@@ -765,7 +904,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Mitr Light", 8.249999F);
             this.label6.ForeColor = System.Drawing.Color.OrangeRed;
-            this.label6.Location = new System.Drawing.Point(654, 206);
+            this.label6.Location = new System.Drawing.Point(659, 217);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(27, 18);
             this.label6.TabIndex = 156;
@@ -777,10 +916,10 @@
             this.cbbAccount.Font = new System.Drawing.Font("Mitr Light", 9F);
             this.cbbAccount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbbAccount.FormattingEnabled = true;
-            this.cbbAccount.Location = new System.Drawing.Point(325, 115);
+            this.cbbAccount.Location = new System.Drawing.Point(322, 125);
             this.cbbAccount.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbbAccount.Name = "cbbAccount";
-            this.cbbAccount.Size = new System.Drawing.Size(179, 27);
+            this.cbbAccount.Size = new System.Drawing.Size(177, 27);
             this.cbbAccount.TabIndex = 0;
             this.cbbAccount.TabStop = false;
             this.cbbAccount.SelectedIndexChanged += new System.EventHandler(this.cbbAccount_SelectedIndexChanged);
@@ -790,7 +929,7 @@
             this.label27.AutoSize = true;
             this.label27.Font = new System.Drawing.Font("Mitr Light", 9F);
             this.label27.ForeColor = System.Drawing.Color.Gray;
-            this.label27.Location = new System.Drawing.Point(177, 231);
+            this.label27.Location = new System.Drawing.Point(172, 240);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(107, 19);
             this.label27.TabIndex = 100;
@@ -801,38 +940,28 @@
             this.txtReport.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtReport.Font = new System.Drawing.Font("Mitr Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtReport.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtReport.Location = new System.Drawing.Point(723, 157);
+            this.txtReport.Location = new System.Drawing.Point(729, 167);
             this.txtReport.Name = "txtReport";
-            this.txtReport.Size = new System.Drawing.Size(183, 21);
+            this.txtReport.Size = new System.Drawing.Size(115, 21);
             this.txtReport.TabIndex = 131;
             // 
-            // lblRates
+            // txtFirst
             // 
-            this.lblRates.AutoSize = true;
-            this.lblRates.Font = new System.Drawing.Font("Mitr Light", 9F);
-            this.lblRates.ForeColor = System.Drawing.Color.Gray;
-            this.lblRates.Location = new System.Drawing.Point(922, 113);
-            this.lblRates.Name = "lblRates";
-            this.lblRates.Size = new System.Drawing.Size(95, 19);
-            this.lblRates.TabIndex = 134;
-            this.lblRates.Text = "ค่าไฟฟ้าต่อหน่วย :";
-            // 
-            // txtRates
-            // 
-            this.txtRates.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtRates.Font = new System.Drawing.Font("Mitr Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRates.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtRates.Location = new System.Drawing.Point(1062, 119);
-            this.txtRates.Name = "txtRates";
-            this.txtRates.Size = new System.Drawing.Size(111, 21);
-            this.txtRates.TabIndex = 127;
+            this.txtFirst.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtFirst.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtFirst.Font = new System.Drawing.Font("Mitr", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFirst.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.txtFirst.Location = new System.Drawing.Point(1056, 128);
+            this.txtFirst.Name = "txtFirst";
+            this.txtFirst.Size = new System.Drawing.Size(113, 21);
+            this.txtFirst.TabIndex = 127;
             // 
             // label31
             // 
             this.label31.AutoSize = true;
             this.label31.Font = new System.Drawing.Font("Mitr Light", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label31.ForeColor = System.Drawing.Color.OrangeRed;
-            this.label31.Location = new System.Drawing.Point(974, 309);
+            this.label31.Location = new System.Drawing.Point(969, 368);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(43, 18);
             this.label31.TabIndex = 105;
@@ -843,28 +972,17 @@
             this.txtService.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtService.Font = new System.Drawing.Font("Mitr Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtService.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtService.Location = new System.Drawing.Point(1062, 260);
+            this.txtService.Location = new System.Drawing.Point(729, 317);
             this.txtService.Name = "txtService";
             this.txtService.Size = new System.Drawing.Size(115, 21);
             this.txtService.TabIndex = 129;
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Font = new System.Drawing.Font("Mitr Light", 8.249999F);
-            this.label39.ForeColor = System.Drawing.Color.OrangeRed;
-            this.label39.Location = new System.Drawing.Point(937, 129);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(80, 18);
-            this.label39.TabIndex = 141;
-            this.label39.Text = "Price of Unit";
             // 
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Mitr Light", 9F);
             this.lblStatus.ForeColor = System.Drawing.Color.Gray;
-            this.lblStatus.Location = new System.Drawing.Point(971, 293);
+            this.lblStatus.Location = new System.Drawing.Point(966, 353);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(46, 19);
             this.lblStatus.TabIndex = 93;
@@ -875,9 +993,9 @@
             this.txtCompany.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtCompany.Font = new System.Drawing.Font("Mitr Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCompany.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtCompany.Location = new System.Drawing.Point(1062, 190);
+            this.txtCompany.Location = new System.Drawing.Point(1056, 280);
             this.txtCompany.Name = "txtCompany";
-            this.txtCompany.Size = new System.Drawing.Size(188, 21);
+            this.txtCompany.Size = new System.Drawing.Size(189, 21);
             this.txtCompany.TabIndex = 130;
             // 
             // label41
@@ -885,7 +1003,7 @@
             this.label41.AutoSize = true;
             this.label41.Font = new System.Drawing.Font("Mitr Light", 8.249999F);
             this.label41.ForeColor = System.Drawing.Color.OrangeRed;
-            this.label41.Location = new System.Drawing.Point(959, 199);
+            this.label41.Location = new System.Drawing.Point(954, 291);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(58, 18);
             this.label41.TabIndex = 143;
@@ -896,9 +1014,9 @@
             this.txtPhone.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtPhone.Font = new System.Drawing.Font("Mitr Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPhone.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtPhone.Location = new System.Drawing.Point(1062, 225);
+            this.txtPhone.Location = new System.Drawing.Point(1056, 318);
             this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(188, 21);
+            this.txtPhone.Size = new System.Drawing.Size(113, 21);
             this.txtPhone.TabIndex = 126;
             // 
             // label42
@@ -907,7 +1025,7 @@
             this.label42.BackColor = System.Drawing.Color.Transparent;
             this.label42.Font = new System.Drawing.Font("Mitr Light", 8.249999F);
             this.label42.ForeColor = System.Drawing.Color.OrangeRed;
-            this.label42.Location = new System.Drawing.Point(959, 235);
+            this.label42.Location = new System.Drawing.Point(923, 329);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(89, 18);
             this.label42.TabIndex = 144;
@@ -919,7 +1037,7 @@
             this.cbbStatus.Font = new System.Drawing.Font("Mitr Light", 9F);
             this.cbbStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbbStatus.FormattingEnabled = true;
-            this.cbbStatus.Location = new System.Drawing.Point(1062, 293);
+            this.cbbStatus.Location = new System.Drawing.Point(1056, 352);
             this.cbbStatus.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbbStatus.Name = "cbbStatus";
             this.cbbStatus.Size = new System.Drawing.Size(115, 27);
@@ -930,7 +1048,7 @@
             this.label38.AutoSize = true;
             this.label38.Font = new System.Drawing.Font("Mitr Light", 8.249999F);
             this.label38.ForeColor = System.Drawing.Color.OrangeRed;
-            this.label38.Location = new System.Drawing.Point(942, 165);
+            this.label38.Location = new System.Drawing.Point(937, 253);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(75, 18);
             this.label38.TabIndex = 124;
@@ -941,7 +1059,7 @@
             this.label34.AutoSize = true;
             this.label34.Font = new System.Drawing.Font("Mitr Light", 8.249999F);
             this.label34.ForeColor = System.Drawing.Color.OrangeRed;
-            this.label34.Location = new System.Drawing.Point(632, 129);
+            this.label34.Location = new System.Drawing.Point(637, 141);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(49, 18);
             this.label34.TabIndex = 120;
@@ -953,7 +1071,7 @@
             this.label43.BackColor = System.Drawing.Color.Transparent;
             this.label43.Font = new System.Drawing.Font("Mitr Light", 8.249999F);
             this.label43.ForeColor = System.Drawing.Color.OrangeRed;
-            this.label43.Location = new System.Drawing.Point(945, 270);
+            this.label43.Location = new System.Drawing.Point(614, 330);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(72, 18);
             this.label43.TabIndex = 145;
@@ -962,11 +1080,11 @@
             // txtVersion
             // 
             this.txtVersion.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtVersion.Font = new System.Drawing.Font("Mitr Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtVersion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtVersion.Location = new System.Drawing.Point(723, 119);
+            this.txtVersion.Font = new System.Drawing.Font("Mitr", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtVersion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.txtVersion.Location = new System.Drawing.Point(729, 129);
             this.txtVersion.Name = "txtVersion";
-            this.txtVersion.Size = new System.Drawing.Size(182, 21);
+            this.txtVersion.Size = new System.Drawing.Size(115, 21);
             this.txtVersion.TabIndex = 108;
             // 
             // lblVersion
@@ -974,7 +1092,7 @@
             this.lblVersion.AutoSize = true;
             this.lblVersion.Font = new System.Drawing.Font("Mitr Light", 9F);
             this.lblVersion.ForeColor = System.Drawing.Color.Gray;
-            this.lblVersion.Location = new System.Drawing.Point(628, 115);
+            this.lblVersion.Location = new System.Drawing.Point(633, 127);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(53, 19);
             this.lblVersion.TabIndex = 115;
@@ -985,7 +1103,7 @@
             this.lblDiscount.AutoSize = true;
             this.lblDiscount.Font = new System.Drawing.Font("Mitr Light", 9F);
             this.lblDiscount.ForeColor = System.Drawing.Color.Gray;
-            this.lblDiscount.Location = new System.Drawing.Point(630, 266);
+            this.lblDiscount.Location = new System.Drawing.Point(635, 276);
             this.lblDiscount.Name = "lblDiscount";
             this.lblDiscount.Size = new System.Drawing.Size(51, 19);
             this.lblDiscount.TabIndex = 135;
@@ -996,7 +1114,7 @@
             this.txtFt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtFt.Font = new System.Drawing.Font("Mitr Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtFt.Location = new System.Drawing.Point(723, 233);
+            this.txtFt.Location = new System.Drawing.Point(729, 242);
             this.txtFt.Name = "txtFt";
             this.txtFt.Size = new System.Drawing.Size(115, 21);
             this.txtFt.TabIndex = 133;
@@ -1007,7 +1125,7 @@
             this.label46.BackColor = System.Drawing.Color.Transparent;
             this.label46.Font = new System.Drawing.Font("Mitr Light", 8.249999F);
             this.label46.ForeColor = System.Drawing.Color.OrangeRed;
-            this.label46.Location = new System.Drawing.Point(626, 281);
+            this.label46.Location = new System.Drawing.Point(631, 291);
             this.label46.Name = "label46";
             this.label46.Size = new System.Drawing.Size(55, 18);
             this.label46.TabIndex = 147;
@@ -1018,7 +1136,7 @@
             this.lblFt.AutoSize = true;
             this.lblFt.Font = new System.Drawing.Font("Mitr Light", 9F);
             this.lblFt.ForeColor = System.Drawing.Color.Gray;
-            this.lblFt.Location = new System.Drawing.Point(593, 228);
+            this.lblFt.Location = new System.Drawing.Point(598, 240);
             this.lblFt.Name = "lblFt";
             this.lblFt.Size = new System.Drawing.Size(88, 19);
             this.lblFt.TabIndex = 139;
@@ -1029,7 +1147,7 @@
             this.txtDiscount.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtDiscount.Font = new System.Drawing.Font("Mitr Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDiscount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtDiscount.Location = new System.Drawing.Point(723, 270);
+            this.txtDiscount.Location = new System.Drawing.Point(729, 279);
             this.txtDiscount.Name = "txtDiscount";
             this.txtDiscount.Size = new System.Drawing.Size(115, 21);
             this.txtDiscount.TabIndex = 132;
@@ -1039,9 +1157,9 @@
             this.txtDueDate.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtDueDate.Font = new System.Drawing.Font("Mitr Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDueDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtDueDate.Location = new System.Drawing.Point(1062, 154);
+            this.txtDueDate.Location = new System.Drawing.Point(1056, 241);
             this.txtDueDate.Name = "txtDueDate";
-            this.txtDueDate.Size = new System.Drawing.Size(111, 21);
+            this.txtDueDate.Size = new System.Drawing.Size(113, 21);
             this.txtDueDate.TabIndex = 110;
             // 
             // label45
@@ -1050,7 +1168,7 @@
             this.label45.BackColor = System.Drawing.Color.Transparent;
             this.label45.Font = new System.Drawing.Font("Mitr Light", 8.249999F);
             this.label45.ForeColor = System.Drawing.Color.OrangeRed;
-            this.label45.Location = new System.Drawing.Point(661, 243);
+            this.label45.Location = new System.Drawing.Point(666, 254);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(20, 18);
             this.label45.TabIndex = 146;
@@ -1061,7 +1179,7 @@
             this.lblPhone.AutoSize = true;
             this.lblPhone.Font = new System.Drawing.Font("Mitr Light", 9F);
             this.lblPhone.ForeColor = System.Drawing.Color.Gray;
-            this.lblPhone.Location = new System.Drawing.Point(1008, 220);
+            this.lblPhone.Location = new System.Drawing.Point(972, 314);
             this.lblPhone.Name = "lblPhone";
             this.lblPhone.Size = new System.Drawing.Size(40, 19);
             this.lblPhone.TabIndex = 138;
@@ -1072,7 +1190,7 @@
             this.lblService.AutoSize = true;
             this.lblService.Font = new System.Drawing.Font("Mitr Light", 9F);
             this.lblService.ForeColor = System.Drawing.Color.Gray;
-            this.lblService.Location = new System.Drawing.Point(958, 255);
+            this.lblService.Location = new System.Drawing.Point(627, 315);
             this.lblService.Name = "lblService";
             this.lblService.Size = new System.Drawing.Size(59, 19);
             this.lblService.TabIndex = 136;
@@ -1083,7 +1201,7 @@
             this.lblDuedate.AutoSize = true;
             this.lblDuedate.Font = new System.Drawing.Font("Mitr Light", 9F);
             this.lblDuedate.ForeColor = System.Drawing.Color.Gray;
-            this.lblDuedate.Location = new System.Drawing.Point(934, 151);
+            this.lblDuedate.Location = new System.Drawing.Point(929, 239);
             this.lblDuedate.Name = "lblDuedate";
             this.lblDuedate.Size = new System.Drawing.Size(83, 19);
             this.lblDuedate.TabIndex = 116;
@@ -1094,7 +1212,7 @@
             this.lblCompany.AutoSize = true;
             this.lblCompany.Font = new System.Drawing.Font("Mitr Light", 9F);
             this.lblCompany.ForeColor = System.Drawing.Color.Gray;
-            this.lblCompany.Location = new System.Drawing.Point(973, 185);
+            this.lblCompany.Location = new System.Drawing.Point(968, 276);
             this.lblCompany.Name = "lblCompany";
             this.lblCompany.Size = new System.Drawing.Size(44, 19);
             this.lblCompany.TabIndex = 137;
@@ -1107,7 +1225,7 @@
             this.pbCondition.Image = ((System.Drawing.Image)(resources.GetObject("pbCondition.Image")));
             this.pbCondition.Location = new System.Drawing.Point(-1, 92);
             this.pbCondition.Name = "pbCondition";
-            this.pbCondition.Size = new System.Drawing.Size(1469, 275);
+            this.pbCondition.Size = new System.Drawing.Size(1469, 301);
             this.pbCondition.TabIndex = 46;
             this.pbCondition.TabStop = false;
             // 
@@ -1187,14 +1305,13 @@
         private System.Windows.Forms.Label lblPhone;
         private System.Windows.Forms.Label lblCompany;
         private System.Windows.Forms.Label lblService;
-        private System.Windows.Forms.Label lblRates;
         private System.Windows.Forms.TextBox txtDiscount;
         private System.Windows.Forms.TextBox txtFt;
         private System.Windows.Forms.TextBox txtReport;
         private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.TextBox txtCompany;
         private System.Windows.Forms.TextBox txtService;
-        private System.Windows.Forms.TextBox txtRates;
+        private System.Windows.Forms.TextBox txtFirst;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.Label label42;
@@ -1256,5 +1373,15 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label lblReports;
         private System.Windows.Forms.Label lblReport;
+        private System.Windows.Forms.TextBox txtOver;
+        private System.Windows.Forms.TextBox txtNext;
+        private System.Windows.Forms.TextBox txtRates;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblRates;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
     }
 }

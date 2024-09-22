@@ -68,7 +68,7 @@ namespace SANSANG
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.cbbWaterRates = new System.Windows.Forms.ComboBox();
+            this.cbbVersion = new System.Windows.Forms.ComboBox();
             this.pbQrcode = new System.Windows.Forms.PictureBox();
             this.txtScan = new System.Windows.Forms.TextBox();
             this.cbbAccount = new System.Windows.Forms.ComboBox();
@@ -159,11 +159,11 @@ namespace SANSANG
             this.lblHSearch.AutoSize = true;
             this.lblHSearch.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.lblHSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.lblHSearch.Location = new System.Drawing.Point(28, 468);
+            this.lblHSearch.Location = new System.Drawing.Point(31, 468);
             this.lblHSearch.Name = "lblHSearch";
-            this.lblHSearch.Size = new System.Drawing.Size(177, 20);
+            this.lblHSearch.Size = new System.Drawing.Size(149, 20);
             this.lblHSearch.TabIndex = 55;
-            this.lblHSearch.Text = "ประวัติการใช้น้ำไฟฟ้าย้อนหลัง | ";
+            this.lblHSearch.Text = "ประวัติการใช้น้ำย้อนหลัง | ";
             // 
             // GridView
             // 
@@ -194,7 +194,7 @@ namespace SANSANG
             this.GridView.ReadOnly = true;
             this.GridView.RowHeadersVisible = false;
             this.GridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GridView.Size = new System.Drawing.Size(1370, 240);
+            this.GridView.Size = new System.Drawing.Size(1353, 265);
             this.GridView.TabIndex = 205;
             this.GridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewClick);
             // 
@@ -203,7 +203,7 @@ namespace SANSANG
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.label5.Location = new System.Drawing.Point(200, 468);
+            this.label5.Location = new System.Drawing.Point(178, 468);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 20);
             this.label5.TabIndex = 207;
@@ -214,7 +214,7 @@ namespace SANSANG
             this.lblCondition.AutoSize = true;
             this.lblCondition.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.lblCondition.ForeColor = System.Drawing.Color.SteelBlue;
-            this.lblCondition.Location = new System.Drawing.Point(251, 468);
+            this.lblCondition.Location = new System.Drawing.Point(229, 468);
             this.lblCondition.Name = "lblCondition";
             this.lblCondition.Size = new System.Drawing.Size(49, 20);
             this.lblCondition.TabIndex = 208;
@@ -660,7 +660,7 @@ namespace SANSANG
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.label2);
-            this.groupBox3.Controls.Add(this.cbbWaterRates);
+            this.groupBox3.Controls.Add(this.cbbVersion);
             this.groupBox3.Controls.Add(this.pbQrcode);
             this.groupBox3.Controls.Add(this.txtScan);
             this.groupBox3.Controls.Add(this.cbbAccount);
@@ -685,20 +685,20 @@ namespace SANSANG
             this.label2.TabIndex = 209;
             this.label2.Text = "Version";
             // 
-            // cbbWaterRates
+            // cbbVersion
             // 
-            this.cbbWaterRates.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cbbWaterRates.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbbWaterRates.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.cbbWaterRates.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.cbbWaterRates.FormattingEnabled = true;
-            this.cbbWaterRates.Location = new System.Drawing.Point(279, 35);
-            this.cbbWaterRates.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbbWaterRates.Name = "cbbWaterRates";
-            this.cbbWaterRates.Size = new System.Drawing.Size(134, 28);
-            this.cbbWaterRates.TabIndex = 208;
-            this.cbbWaterRates.TabStop = false;
-            this.cbbWaterRates.SelectedIndexChanged += new System.EventHandler(this.WaterRates_Selected);
+            this.cbbVersion.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cbbVersion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbbVersion.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.cbbVersion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.cbbVersion.FormattingEnabled = true;
+            this.cbbVersion.Location = new System.Drawing.Point(279, 35);
+            this.cbbVersion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbbVersion.Name = "cbbVersion";
+            this.cbbVersion.Size = new System.Drawing.Size(134, 28);
+            this.cbbVersion.TabIndex = 208;
+            this.cbbVersion.TabStop = false;
+            this.cbbVersion.SelectedIndexChanged += new System.EventHandler(this.WaterRates_Selected);
             // 
             // pbQrcode
             // 
@@ -715,17 +715,19 @@ namespace SANSANG
             // 
             this.txtScan.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtScan.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtScan.Font = new System.Drawing.Font("Mitr Light", 12F);
-            this.txtScan.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.txtScan.Font = new System.Drawing.Font("Mitr Light", 8F, System.Drawing.FontStyle.Italic);
+            this.txtScan.ForeColor = System.Drawing.Color.Black;
             this.txtScan.Location = new System.Drawing.Point(120, 69);
             this.txtScan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtScan.Multiline = true;
             this.txtScan.Name = "txtScan";
             this.txtScan.Size = new System.Drawing.Size(293, 26);
             this.txtScan.TabIndex = 1;
+            this.txtScan.Click += new System.EventHandler(this.Click);
             this.txtScan.TextChanged += new System.EventHandler(this.Reader);
             this.txtScan.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyEnter);
             this.txtScan.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtScan_KeyPress);
+            this.txtScan.Leave += new System.EventHandler(this.Leave);
             // 
             // cbbAccount
             // 
@@ -1398,7 +1400,7 @@ namespace SANSANG
             this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEdit.ForeColor = System.Drawing.Color.White;
             this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
-            this.btnEdit.Location = new System.Drawing.Point(92, 9);
+            this.btnEdit.Location = new System.Drawing.Point(91, 9);
             this.btnEdit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(36, 36);
@@ -1413,7 +1415,7 @@ namespace SANSANG
             this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClear.ForeColor = System.Drawing.Color.White;
             this.btnClear.Image = ((System.Drawing.Image)(resources.GetObject("btnClear.Image")));
-            this.btnClear.Location = new System.Drawing.Point(176, 9);
+            this.btnClear.Location = new System.Drawing.Point(173, 9);
             this.btnClear.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(36, 36);
@@ -1429,7 +1431,7 @@ namespace SANSANG
             this.label25.BackColor = System.Drawing.Color.WhiteSmoke;
             this.label25.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label25.ForeColor = System.Drawing.Color.DarkRed;
-            this.label25.Location = new System.Drawing.Point(180, 47);
+            this.label25.Location = new System.Drawing.Point(175, 47);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(36, 13);
             this.label25.TabIndex = 27;
@@ -1442,7 +1444,7 @@ namespace SANSANG
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.ForeColor = System.Drawing.Color.White;
             this.btnExit.Image = ((System.Drawing.Image)(resources.GetObject("btnExit.Image")));
-            this.btnExit.Location = new System.Drawing.Point(218, 9);
+            this.btnExit.Location = new System.Drawing.Point(214, 9);
             this.btnExit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(36, 36);
@@ -1458,7 +1460,7 @@ namespace SANSANG
             this.label24.BackColor = System.Drawing.Color.WhiteSmoke;
             this.label24.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label24.ForeColor = System.Drawing.Color.DarkRed;
-            this.label24.Location = new System.Drawing.Point(12, 47);
+            this.label24.Location = new System.Drawing.Point(10, 47);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(35, 13);
             this.label24.TabIndex = 24;
@@ -1486,7 +1488,7 @@ namespace SANSANG
             this.label23.BackColor = System.Drawing.Color.WhiteSmoke;
             this.label23.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.ForeColor = System.Drawing.Color.DarkRed;
-            this.label23.Location = new System.Drawing.Point(218, 48);
+            this.label23.Location = new System.Drawing.Point(213, 48);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(39, 13);
             this.label23.TabIndex = 26;
@@ -1499,7 +1501,7 @@ namespace SANSANG
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.ForeColor = System.Drawing.Color.White;
             this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
-            this.btnDelete.Location = new System.Drawing.Point(134, 9);
+            this.btnDelete.Location = new System.Drawing.Point(132, 9);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(36, 36);
@@ -1514,7 +1516,7 @@ namespace SANSANG
             this.label22.BackColor = System.Drawing.Color.WhiteSmoke;
             this.label22.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.ForeColor = System.Drawing.Color.DarkRed;
-            this.label22.Location = new System.Drawing.Point(136, 48);
+            this.label22.Location = new System.Drawing.Point(132, 48);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(41, 13);
             this.label22.TabIndex = 25;
@@ -1527,7 +1529,7 @@ namespace SANSANG
             this.label20.BackColor = System.Drawing.Color.WhiteSmoke;
             this.label20.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.ForeColor = System.Drawing.Color.DarkRed;
-            this.label20.Location = new System.Drawing.Point(52, 47);
+            this.label20.Location = new System.Drawing.Point(48, 47);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(39, 13);
             this.label20.TabIndex = 23;
@@ -1540,7 +1542,7 @@ namespace SANSANG
             this.label21.BackColor = System.Drawing.Color.WhiteSmoke;
             this.label21.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.ForeColor = System.Drawing.Color.DarkRed;
-            this.label21.Location = new System.Drawing.Point(95, 47);
+            this.label21.Location = new System.Drawing.Point(90, 47);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(39, 13);
             this.label21.TabIndex = 24;
@@ -1553,7 +1555,7 @@ namespace SANSANG
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.ForeColor = System.Drawing.Color.White;
             this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
-            this.btnSearch.Location = new System.Drawing.Point(8, 9);
+            this.btnSearch.Location = new System.Drawing.Point(9, 9);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(36, 36);
@@ -1695,7 +1697,7 @@ namespace SANSANG
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cbbWaterRates;
+        private System.Windows.Forms.ComboBox cbbVersion;
         private System.Windows.Forms.PictureBox pbQrcode;
         private System.Windows.Forms.TextBox txtScan;
         private System.Windows.Forms.ComboBox cbbAccount;

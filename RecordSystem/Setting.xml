@@ -6,7 +6,7 @@
 	<Account>1035</Account>
 	<Credit>5394-1111-7058-3767</Credit>
 	<CreditLimit>60000</CreditLimit>
-	<Outstanding>41958.10</Outstanding>
+	<Outstanding>12080.90</Outstanding>
 	<Wallet>1141</Wallet>
 	<UrlAPIToken>https://trackwebhook.thailandpost.co.th/post/api/v1/authenticate/token</UrlAPIToken>
 	<UrlAPITrack>https://trackapi.thailandpost.co.th/post/api/v1/track</UrlAPITrack>

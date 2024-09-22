@@ -93,8 +93,11 @@ namespace SANSANG
             Function.ClearAll(gbForm);
             pbQrcode.Image = null;
             Account = Function.GetComboId(cbbAccount);
+            
             IsStart = false;
             Search(false);
+
+            GridView.Focus();
         }
 
         public void Search(bool Search)
@@ -111,6 +114,9 @@ namespace SANSANG
                 {"@AccountId", Search? Function.GetComboId(cbbAccount) : "0"},
                 {"@Version", Search? txtVersion.Text : ""},
                 {"@Rates", Search? txtRates.Text : ""},
+                {"@FirstRates", Search? txtFirst.Text : ""},
+                {"@NextRates", Search? txtNext.Text : ""},
+                {"@OverRates", Search? txtOver.Text : ""},
                 {"@Service", Search? txtService.Text : ""},
                 {"@Discount", Search? txtDiscount.Text : ""},
                 {"@Vat", Search? txtVat.Text : ""},
@@ -141,7 +147,7 @@ namespace SANSANG
             {
                 GridView.DataSource = null;
                 DataTable dtGrid = new DataTable();
-                dtGrid = dt.DefaultView.ToTable(true, "SNo", "UserName", "Version", "Rates", "Ft", "Service", "DueDates", "Id");
+                dtGrid = dt.DefaultView.ToTable(true, "SNo", "UserName", "Version", "Report", "Ft", "Service", "DueDates", "Id");
 
                 DataGridViewContentAlignment mc = DataGridViewContentAlignment.MiddleCenter;
                 DataGridViewContentAlignment ml = DataGridViewContentAlignment.MiddleLeft;
@@ -149,12 +155,12 @@ namespace SANSANG
 
                 Function.showGridViewFormatFromStore(dtGrid, GridView,
                       "ลำดับ", 50, true, mc, mc
-                    , "ผู้ใช้น้ำประปา", 100, true, ml, ml
-                    , "เวอร์ชั่น", 200, true, ml, ml
-                    , "อัตราค่าน้ำ", 50, true, mr, mr
-                    , "ค่าน้ำดิบ", 50, true, mr, mr
+                    , "ผู้ใช้ไฟฟ้า", 100, true, ml, ml
+                    , "เวอร์ชั่น", 100, true, ml, ml
+                    , "รุ่น", 50, true, ml, ml
+                    , "ค่าไฟฟ้าผันแปร (Ft)", 50, true, mr, mr
                     , "ค่าบริการ", 50, true, mr, mr
-                    , "จำนวนที่ต้องชำระ", 50, true, mc, mc
+                    , "จำนวนวันที่ชำระ", 50, true, mc, mc
                     , "", 0, false, mr, mr
                 );
 
@@ -173,7 +179,7 @@ namespace SANSANG
                 strCondition += cbbAccount.Text != ":: กรุณาเลือก ::" ? ", " + lblName.Text + " " + cbbAccount.Text : "";
                 strCondition += txtVersion.Text != "" ? ", " + lblVersion.Text + " " + txtVersion.Text : "";
                 strCondition += txtReport.Text != "" ? ", " + lblReport.Text + " " + txtReport.Text : "";
-                strCondition += txtRates.Text != "" ? ", " + lblRates.Text + " " + txtRates.Text : "";
+                strCondition += txtRates.Text != "" ? ", " + lblRates.Text + " " + txtFirst.Text : "";
                 strCondition += txtService.Text != "" ? ", " + lblService.Text + " " + txtService.Text : "";
                 strCondition += txtDiscount.Text != "" ? ", " + lblDiscount.Text + " " + txtDiscount.Text : "";
                 strCondition += txtVat.Text != "" ? ", " + lblVat.Text + " " + txtVat.Text : "";
@@ -315,6 +321,9 @@ namespace SANSANG
                     {"@AccountId", "0"},
                     {"@Version", ""},
                     {"@Rates", ""},
+                    {"@FirstRates", ""},
+                    {"@NextRates", ""},
+                    {"@OverRates", ""},
                     {"@Service", ""},
                     {"@Discount", ""},
                     {"@Vat", ""},
@@ -344,6 +353,11 @@ namespace SANSANG
                 txtVat.Text = Data.Rows[0]["Vat"].ToString();
 
                 txtRates.Text = Data.Rows[0]["Rates"].ToString();
+
+                txtFirst.Text = Data.Rows[0]["FirstRates"].ToString();
+                txtNext.Text = Data.Rows[0]["NextRates"].ToString();
+                txtOver.Text = Data.Rows[0]["OverRates"].ToString();
+
                 txtDueDate.Text = Data.Rows[0]["DueDate"].ToString();
 
                 txtCompany.Text = Data.Rows[0]["Company"].ToString();
@@ -378,10 +392,10 @@ namespace SANSANG
         {
             try
             {
-                if (Function.GetComboId(cbbAccount) != "0" && !string.IsNullOrEmpty(txtVersion.Text) && !string.IsNullOrEmpty(txtRates.Text))
+                if (Function.GetComboId(cbbAccount) != "0" && !string.IsNullOrEmpty(txtVersion.Text) && !string.IsNullOrEmpty(txtFirst.Text))
                 {
-                    if (!Function.IsDuplicates(Table.ElectricityRates, Function.GetComboId(cbbAccount), txtVersion.Text, txtRates.Text,
-                        Detail: txtPremise.Text + Environment.NewLine + txtVersion.Text + " (" + txtRates.Text + ")"))
+                    if (!Function.IsDuplicates(Table.ElectricityRates, Function.GetComboId(cbbAccount), txtVersion.Text, txtFirst.Text,
+                        Detail: txtPremise.Text + Environment.NewLine + txtVersion.Text + " (" + txtFirst.Text + ")"))
                     {
                         txtCode.Text = Function.GetCodes(Table.ElectricityRatesId, "", "Generated");
 
@@ -396,7 +410,10 @@ namespace SANSANG
                             {"@Operation", Operation.InsertAbbr},
                             {"@AccountId", Function.GetComboId(cbbAccount)},
                             {"@Version", txtVersion.Text},
-                            {"@Rates", txtRates.Text},
+                            {"@Rates", txtFirst.Text},
+                            {"@FirstRates", txtFirst.Text},
+                            {"@NextRates", txtNext.Text},
+                            {"@OverRates", txtOver.Text},
                             {"@Service", txtService.Text},
                             {"@Discount", txtDiscount.Text},
                             {"@Vat", txtVat.Text},
@@ -438,10 +455,13 @@ namespace SANSANG
                         {"@User", UserId},
                         {"@IsActive", "1"},
                         {"@IsDelete", "0"},
-                        {"@Operation", Operation.InsertAbbr},
+                        {"@Operation", Operation.UpdateAbbr},
                         {"@AccountId", Function.GetComboId(cbbAccount)},
                         {"@Version", txtVersion.Text},
-                        {"@Rates", txtRates.Text},
+                        {"@Rates", txtFirst.Text},
+                        {"@FirstRates", txtFirst.Text},
+                        {"@NextRates", txtNext.Text},
+                        {"@OverRates", txtOver.Text},
                         {"@Service", txtService.Text},
                         {"@Discount", txtDiscount.Text},
                         {"@Vat", txtVat.Text},
@@ -481,7 +501,7 @@ namespace SANSANG
 
         public string GetDetails()
         {
-            return txtVersion.Text + " (" + txtRates.Text + ")";
+            return txtVersion.Text + " (" + txtFirst.Text + ")";
         }
     }
 }

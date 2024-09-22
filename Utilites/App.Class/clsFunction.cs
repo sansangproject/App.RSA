@@ -919,7 +919,37 @@ namespace SANSANG.Class
                 {
                     CheckBoxs.Checked = false;
                 }
+            }
+        }
 
+        public void ClearAlls(Control container)
+        {
+            foreach (Control control in container.Controls)
+            {
+                if (control is TextBox textBox)
+                {
+                    textBox.Text = "";
+                }
+
+                if (control is ComboBox comboBox)
+                {
+                    comboBox.SelectedIndex = 0;
+                }
+
+                if (control is RadioButton radioButton)
+                {
+                    radioButton.Checked = false;
+                }
+
+                if (control is CheckBox checkBox)
+                {
+                    checkBox.Checked = false;
+                }
+
+                if (control.HasChildren)
+                {
+                    ClearAlls(control);
+                }
             }
         }
 
@@ -1091,7 +1121,29 @@ namespace SANSANG.Class
             }
         }
 
+        public double CalculateElectricity(double FirstLevel, double NextLevel, double OverLevel, int Units)
+        {
+            double TotalCost = 0;
+            double First = FirstLevel;
+            double Next = NextLevel;
+            double Over = OverLevel;
 
+
+            if (Units <= 150)
+            {
+                TotalCost = Convert.ToDouble(Units * First);
+            }
+            else if (Units <= 400)
+            {
+                TotalCost = Convert.ToDouble((150 * First) + ((Units - 150) * Next));
+            }
+            else
+            {
+                TotalCost = Convert.ToDouble((150 * First) + (250 * Next) + ((Units - 400) * Over));
+            }
+
+            return TotalCost;
+        }
 
 
 

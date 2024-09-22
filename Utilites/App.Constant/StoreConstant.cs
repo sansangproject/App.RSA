@@ -53,7 +53,7 @@ namespace SANSANG.Constant
         public static string ElectricityRates = "[ElectricityRates]";
         public static string Electricitys = "[Electricitys]";
 
-        public static string GetMasterList = "[GetListMaster]";
+        public static string GetMasterList = "[GetMasterList]";
         public static string GetList = "[GetList]";
 
         public static string GetMoneyBalance = "[GetMoneyBalance]";
