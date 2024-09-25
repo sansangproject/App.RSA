@@ -2547,7 +2547,7 @@ namespace SANSANG.Class
             if (lines[1].Length == 18)
             {
                 em.CaRefNo = lines[1].Substring(0, 9);
-                em.Unit = Convert.ToInt32(lines[1].Substring(lines[1].Length - 4, 3));
+                em.Unit = Convert.ToInt32(lines[1].Substring(10,7));
                 em.qrLine2 = lines[1];
             }
 

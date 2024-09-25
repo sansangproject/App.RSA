@@ -116,7 +116,7 @@ namespace SANSANG
             List.GetLists(cbbStatus, string.Format(DataList.StatusId, "1"));
 
             List.GetList(cbbAccount, DataList.ElectricityAccount);
-            List.GetLists(cbbVersion, string.Format(DataList.ElectricityRatesId, "0"));
+            List.GetList(cbbVersion, string.Format(DataList.ElectricityRates));
 
             List.GetMonthList(cbbMonth);
             List.GetYearList(cbbYear);
