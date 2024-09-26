@@ -102,8 +102,9 @@
             this.label17 = new System.Windows.Forms.Label();
             this.txtMonthOverdue = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txtOther = new System.Windows.Forms.TextBox();
             this.txtRemark = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtOtherAmount = new System.Windows.Forms.TextBox();
             this.label61 = new System.Windows.Forms.Label();
             this.label57 = new System.Windows.Forms.Label();
             this.label56 = new System.Windows.Forms.Label();
@@ -196,6 +197,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gbForm.BackColor = System.Drawing.Color.White;
             this.gbForm.Controls.Add(this.lblHSearch);
+            this.gbForm.Controls.Add(this.txtRemark);
             this.gbForm.Controls.Add(this.GridView);
             this.gbForm.Controls.Add(this.label6);
             this.gbForm.Controls.Add(this.lblCondition);
@@ -334,11 +336,10 @@
             this.dtPay.CustomFormat = "dd MMM yyyy";
             this.dtPay.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.dtPay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtPay.Location = new System.Drawing.Point(1388, 348);
+            this.dtPay.Location = new System.Drawing.Point(1388, 387);
             this.dtPay.Name = "dtPay";
             this.dtPay.Size = new System.Drawing.Size(165, 28);
-            this.dtPay.TabIndex = 128;
-            this.dtPay.TabStop = false;
+            this.dtPay.TabIndex = 146;
             this.dtPay.Value = new System.DateTime(2014, 4, 5, 23, 45, 0, 0);
             // 
             // label59
@@ -347,7 +348,7 @@
             this.label59.BackColor = System.Drawing.Color.Transparent;
             this.label59.Font = new System.Drawing.Font("Mitr Light", 8F);
             this.label59.ForeColor = System.Drawing.Color.DimGray;
-            this.label59.Location = new System.Drawing.Point(1325, 362);
+            this.label59.Location = new System.Drawing.Point(1325, 398);
             this.label59.Name = "label59";
             this.label59.Size = new System.Drawing.Size(58, 18);
             this.label59.TabIndex = 114;
@@ -359,7 +360,7 @@
             this.label54.BackColor = System.Drawing.Color.Transparent;
             this.label54.Font = new System.Drawing.Font("Mitr Light", 8F);
             this.label54.ForeColor = System.Drawing.Color.DimGray;
-            this.label54.Location = new System.Drawing.Point(1328, 325);
+            this.label54.Location = new System.Drawing.Point(1328, 361);
             this.label54.Name = "label54";
             this.label54.Size = new System.Drawing.Size(55, 18);
             this.label54.TabIndex = 115;
@@ -371,7 +372,7 @@
             this.label58.BackColor = System.Drawing.Color.Transparent;
             this.label58.Font = new System.Drawing.Font("Mitr Light", 8F);
             this.label58.ForeColor = System.Drawing.Color.DimGray;
-            this.label58.Location = new System.Drawing.Point(1340, 291);
+            this.label58.Location = new System.Drawing.Point(1340, 327);
             this.label58.Name = "label58";
             this.label58.Size = new System.Drawing.Size(43, 18);
             this.label58.TabIndex = 116;
@@ -382,7 +383,7 @@
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.label29.ForeColor = System.Drawing.Color.OrangeRed;
-            this.label29.Location = new System.Drawing.Point(1327, 346);
+            this.label29.Location = new System.Drawing.Point(1327, 382);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(63, 20);
             this.label29.TabIndex = 112;
@@ -395,12 +396,11 @@
             this.cbbPayment.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.cbbPayment.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.cbbPayment.FormattingEnabled = true;
-            this.cbbPayment.Location = new System.Drawing.Point(1388, 311);
+            this.cbbPayment.Location = new System.Drawing.Point(1388, 350);
             this.cbbPayment.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbbPayment.Name = "cbbPayment";
             this.cbbPayment.Size = new System.Drawing.Size(165, 28);
-            this.cbbPayment.TabIndex = 104;
-            this.cbbPayment.TabStop = false;
+            this.cbbPayment.TabIndex = 145;
             // 
             // cbbStatus
             // 
@@ -409,19 +409,18 @@
             this.cbbStatus.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.cbbStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.cbbStatus.FormattingEnabled = true;
-            this.cbbStatus.Location = new System.Drawing.Point(1388, 277);
+            this.cbbStatus.Location = new System.Drawing.Point(1388, 316);
             this.cbbStatus.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbbStatus.Name = "cbbStatus";
             this.cbbStatus.Size = new System.Drawing.Size(165, 28);
-            this.cbbStatus.TabIndex = 105;
-            this.cbbStatus.TabStop = false;
+            this.cbbStatus.TabIndex = 144;
             // 
             // lblPayment
             // 
             this.lblPayment.AutoSize = true;
             this.lblPayment.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.lblPayment.ForeColor = System.Drawing.Color.OrangeRed;
-            this.lblPayment.Location = new System.Drawing.Point(1290, 309);
+            this.lblPayment.Location = new System.Drawing.Point(1290, 345);
             this.lblPayment.Name = "lblPayment";
             this.lblPayment.Size = new System.Drawing.Size(100, 20);
             this.lblPayment.TabIndex = 106;
@@ -432,7 +431,7 @@
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.lblStatus.ForeColor = System.Drawing.Color.OrangeRed;
-            this.lblStatus.Location = new System.Drawing.Point(1295, 275);
+            this.lblStatus.Location = new System.Drawing.Point(1295, 311);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(95, 20);
             this.lblStatus.TabIndex = 107;
@@ -523,6 +522,7 @@
             this.txtScan.Name = "txtScan";
             this.txtScan.Size = new System.Drawing.Size(243, 24);
             this.txtScan.TabIndex = 107;
+            this.txtScan.TabStop = false;
             this.txtScan.Click += new System.EventHandler(this.Click);
             this.txtScan.TextChanged += new System.EventHandler(this.Reader);
             this.txtScan.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyEnter);
@@ -768,6 +768,7 @@
             this.txtNumberBefor.Name = "txtNumberBefor";
             this.txtNumberBefor.Size = new System.Drawing.Size(96, 28);
             this.txtNumberBefor.TabIndex = 1;
+            this.txtNumberBefor.TabStop = false;
             this.txtNumberBefor.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtNumberBefor.TextChanged += new System.EventHandler(this.txtNumberBefor_TextChanged);
             this.txtNumberBefor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNumberBefor_KeyDown);
@@ -803,6 +804,7 @@
             this.txtNumberNow.Name = "txtNumberNow";
             this.txtNumberNow.Size = new System.Drawing.Size(96, 28);
             this.txtNumberNow.TabIndex = 2;
+            this.txtNumberNow.TabStop = false;
             this.txtNumberNow.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtNumberNow.TextChanged += new System.EventHandler(this.txtNumberNow_TextChanged);
             this.txtNumberNow.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNumberNow_KeyDown);
@@ -879,7 +881,8 @@
             this.btnScan.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnScan.Name = "btnScan";
             this.btnScan.Size = new System.Drawing.Size(34, 29);
-            this.btnScan.TabIndex = 108;
+            this.btnScan.TabIndex = 0;
+            this.btnScan.TabStop = false;
             this.btnScan.UseVisualStyleBackColor = false;
             this.btnScan.Click += new System.EventHandler(this.SearchInvoice);
             // 
@@ -1128,8 +1131,8 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel2.Controls.Add(this.txtRemark);
-            this.panel2.Controls.Add(this.textBox3);
+            this.panel2.Controls.Add(this.txtOther);
+            this.panel2.Controls.Add(this.txtOtherAmount);
             this.panel2.Controls.Add(this.label61);
             this.panel2.Controls.Add(this.label57);
             this.panel2.Controls.Add(this.label56);
@@ -1147,32 +1150,44 @@
             this.panel2.Size = new System.Drawing.Size(378, 148);
             this.panel2.TabIndex = 89;
             // 
+            // txtOther
+            // 
+            this.txtOther.BackColor = System.Drawing.Color.White;
+            this.txtOther.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.txtOther.ForeColor = System.Drawing.Color.Black;
+            this.txtOther.Location = new System.Drawing.Point(26, 108);
+            this.txtOther.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtOther.Name = "txtOther";
+            this.txtOther.Size = new System.Drawing.Size(229, 28);
+            this.txtOther.TabIndex = 141;
+            // 
             // txtRemark
             // 
             this.txtRemark.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtRemark.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtRemark.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.txtRemark.ForeColor = System.Drawing.Color.Black;
-            this.txtRemark.Location = new System.Drawing.Point(26, 112);
+            this.txtRemark.Location = new System.Drawing.Point(1208, 282);
             this.txtRemark.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtRemark.Multiline = true;
             this.txtRemark.Name = "txtRemark";
-            this.txtRemark.Size = new System.Drawing.Size(343, 21);
-            this.txtRemark.TabIndex = 4;
+            this.txtRemark.Size = new System.Drawing.Size(345, 28);
+            this.txtRemark.TabIndex = 143;
             this.txtRemark.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtRemark_KeyDown);
             // 
-            // textBox3
+            // txtOtherAmount
             // 
-            this.textBox3.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox3.Enabled = false;
-            this.textBox3.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.textBox3.ForeColor = System.Drawing.Color.DimGray;
-            this.textBox3.Location = new System.Drawing.Point(26, 108);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(343, 26);
-            this.textBox3.TabIndex = 140;
+            this.txtOtherAmount.BackColor = System.Drawing.Color.White;
+            this.txtOtherAmount.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.txtOtherAmount.ForeColor = System.Drawing.Color.Black;
+            this.txtOtherAmount.Location = new System.Drawing.Point(289, 108);
+            this.txtOtherAmount.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtOtherAmount.Name = "txtOtherAmount";
+            this.txtOtherAmount.Size = new System.Drawing.Size(80, 28);
+            this.txtOtherAmount.TabIndex = 142;
+            this.txtOtherAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtOtherAmount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtOtherAmount_KeyDown);
+            this.txtOtherAmount.Leave += new System.EventHandler(this.txtOtherAmount_Leave);
             // 
             // label61
             // 
@@ -1233,6 +1248,7 @@
             this.txtMoneyAll.Name = "txtMoneyAll";
             this.txtMoneyAll.Size = new System.Drawing.Size(80, 28);
             this.txtMoneyAll.TabIndex = 29;
+            this.txtMoneyAll.TabStop = false;
             this.txtMoneyAll.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtMoneyAll.TextChanged += new System.EventHandler(this.TextBoxFormat);
             // 
@@ -1249,6 +1265,7 @@
             this.txtVat.Name = "txtVat";
             this.txtVat.Size = new System.Drawing.Size(35, 25);
             this.txtVat.TabIndex = 29;
+            this.txtVat.TabStop = false;
             this.txtVat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtMoneyVat
@@ -1264,6 +1281,7 @@
             this.txtMoneyVat.Name = "txtMoneyVat";
             this.txtMoneyVat.Size = new System.Drawing.Size(80, 28);
             this.txtMoneyVat.TabIndex = 29;
+            this.txtMoneyVat.TabStop = false;
             this.txtMoneyVat.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtMoney
@@ -1279,6 +1297,7 @@
             this.txtMoney.Name = "txtMoney";
             this.txtMoney.Size = new System.Drawing.Size(80, 28);
             this.txtMoney.TabIndex = 29;
+            this.txtMoney.TabStop = false;
             this.txtMoney.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblMoney
@@ -1348,6 +1367,7 @@
             this.txtDiscountDetail.Name = "txtDiscountDetail";
             this.txtDiscountDetail.Size = new System.Drawing.Size(171, 21);
             this.txtDiscountDetail.TabIndex = 3;
+            this.txtDiscountDetail.TabStop = false;
             this.txtDiscountDetail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDiscountDetail_KeyDown);
             // 
             // textBox2
@@ -1447,6 +1467,7 @@
             this.txtFee.Name = "txtFee";
             this.txtFee.Size = new System.Drawing.Size(80, 28);
             this.txtFee.TabIndex = 29;
+            this.txtFee.TabStop = false;
             this.txtFee.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtFt
@@ -1462,6 +1483,7 @@
             this.txtFt.Name = "txtFt";
             this.txtFt.Size = new System.Drawing.Size(63, 28);
             this.txtFt.TabIndex = 29;
+            this.txtFt.TabStop = false;
             this.txtFt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtDiscount
@@ -1474,6 +1496,7 @@
             this.txtDiscount.Name = "txtDiscount";
             this.txtDiscount.Size = new System.Drawing.Size(80, 28);
             this.txtDiscount.TabIndex = 29;
+            this.txtDiscount.TabStop = false;
             this.txtDiscount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtDiscount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDiscount_KeyDown);
             // 
@@ -1490,6 +1513,7 @@
             this.txtMoneyFt.Name = "txtMoneyFt";
             this.txtMoneyFt.Size = new System.Drawing.Size(80, 28);
             this.txtMoneyFt.TabIndex = 29;
+            this.txtMoneyFt.TabStop = false;
             this.txtMoneyFt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtRaw
@@ -1505,6 +1529,7 @@
             this.txtRaw.Name = "txtRaw";
             this.txtRaw.Size = new System.Drawing.Size(80, 28);
             this.txtRaw.TabIndex = 29;
+            this.txtRaw.TabStop = false;
             this.txtRaw.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtRaw.TextChanged += new System.EventHandler(this.TextBoxFormat);
             // 
@@ -1553,7 +1578,7 @@
             this.txtFileType.Enabled = false;
             this.txtFileType.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.txtFileType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.txtFileType.Location = new System.Drawing.Point(1487, 336);
+            this.txtFileType.Location = new System.Drawing.Point(1487, 372);
             this.txtFileType.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtFileType.Name = "txtFileType";
             this.txtFileType.Size = new System.Drawing.Size(28, 25);
@@ -1978,7 +2003,7 @@
         private System.Windows.Forms.DateTimePicker dtPay;
         private System.Windows.Forms.TextBox txtDiscountDetail;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtOtherAmount;
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.ComboBox cbbAccount;
@@ -1992,5 +2017,6 @@
         private System.Windows.Forms.TextBox txtCount;
         private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtOther;
     }
 }

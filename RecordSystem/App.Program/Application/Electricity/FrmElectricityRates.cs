@@ -392,7 +392,7 @@ namespace SANSANG
         {
             try
             {
-                if (Function.GetComboId(cbbAccount) != "0" && !string.IsNullOrEmpty(txtVersion.Text) && !string.IsNullOrEmpty(txtFirst.Text))
+                if (Function.GetComboId(cbbAccount) != "0" && !string.IsNullOrEmpty(txtVersion.Text) && !string.IsNullOrEmpty(txtReport.Text))
                 {
                     if (!Function.IsDuplicates(Table.ElectricityRates, Function.GetComboId(cbbAccount), txtVersion.Text, txtFirst.Text,
                         Detail: txtPremise.Text + Environment.NewLine + txtVersion.Text + " (" + txtFirst.Text + ")"))

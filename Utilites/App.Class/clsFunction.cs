@@ -2556,19 +2556,24 @@ namespace SANSANG.Class
                 em.ReceiptId = lines[2].Substring(1, 11);
                 em.PayDate = ConvertToDate(lines[2].Substring((lines[2].Length) - 6, 6), Fm.DDMMYY);
 
-                int intDay = Convert.ToInt32(em.PayDate.Day);
-                int intMonth = Convert.ToInt32(em.PayDate.Month);
+                int dayOfPayDate = em.PayDate.Day;
+                int monthNumber, yearNumber;
+                string formattedDate;
 
-                string strMonthYear = "18" + String.Format("{0:D2}", intMonth - 1) + lines[2].Substring((lines[2].Length) - 2, 2);
-
-                if (intDay > 15)
+                if (dayOfPayDate >= 19 && dayOfPayDate <= 31)
                 {
-                    em.ReadDate = ConvertToDate("18" + lines[2].Substring((lines[2].Length) - 4, 4), Fm.DDMMYY);
+                    monthNumber = em.PayDate.Month;
+                    yearNumber = em.PayDate.Year;
                 }
                 else
                 {
-                    em.ReadDate = ConvertToDate(strMonthYear, Fm.DDMMYY);
+                    DateTime previousMonth = em.PayDate.AddMonths(-1);
+                    monthNumber = previousMonth.Month;
+                    yearNumber = previousMonth.Year;
                 }
+
+                formattedDate = $"18{monthNumber:D2}{yearNumber:D4}";
+                em.ReadDate = DateTime.ParseExact(formattedDate, Fm.DDMMYYYY, CultureInfo.InvariantCulture);
 
                 em.qrLine3 = lines[2];
             }

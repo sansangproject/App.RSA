@@ -199,6 +199,8 @@ namespace SANSANG
                         {"@Summary", Search? Function.SplitString(txtMoney.Text, ",", "") : ""},
                         {"@Vat", Search? Function.SplitString(txtMoneyVat.Text, ",", "") : ""},
                         {"@Total", Search? Function.SplitString(txtMoneyAll.Text, ",", "") : ""},
+                        {"@Other", Search? txtOther.Text : ""},
+                        {"@OtherAmount", Search? Function.SplitString(txtOtherAmount.Text, ",", "") : ""},
                         {"@Payment", Search? Function.SplitString(txtMoneyPay.Text, ",", "") : ""},
                         {"@MoneyId", Search?  Function.getComboBoxValue(cbbPayment)  : "0"},
                         {"@EndDate", ""},
@@ -235,6 +237,8 @@ namespace SANSANG
                         {"@Summary", ""},
                         {"@Vat", ""},
                         {"@Total", ""},
+                        {"@Other", ""},
+                        {"@OtherAmount", ""},
                         {"@Payment", ""},
                         {"@MoneyId", "0"},
                         {"@EndDate", ""},
@@ -342,6 +346,8 @@ namespace SANSANG
                             {"@Summary", Function.MoveNumberStringComma(txtMoney.Text)},
                             {"@Vat", Function.MoveNumberStringComma(txtMoneyVat.Text)},
                             {"@Total", Function.MoveNumberStringComma(txtMoneyAll.Text)},
+                            {"@Other", txtOther.Text},
+                            {"@OtherAmount", Function.MoveNumberStringComma(txtOtherAmount.Text,true)},
                             {"@Payment", Function.MoveNumberStringComma(txtMoneyPay.Text)},
                             {"@MoneyId", Function.getComboBoxValue(cbbPayment)},
                             {"@EndDate", Date.GetDate(dtp : dtPayEnd, Format : 4)},
@@ -401,6 +407,8 @@ namespace SANSANG
                         {"@Summary", ""},
                         {"@Vat", ""},
                         {"@Total", ""},
+                        {"@Other", ""},
+                        {"@OtherAmount", ""},
                         {"@Payment", ""},
                         {"@MoneyId", "0"},
                         {"@EndDate", ""},
@@ -454,6 +462,8 @@ namespace SANSANG
                         {"@Summary", Function.MoveNumberStringComma(txtMoney.Text)},
                         {"@Vat", Function.MoveNumberStringComma(txtMoneyVat.Text)},
                         {"@Total", Function.MoveNumberStringComma(txtMoneyAll.Text)},
+                        {"@Other", txtOther.Text},
+                        {"@OtherAmount", Function.MoveNumberStringComma(txtOtherAmount.Text, true)},
                         {"@Payment", Function.MoveNumberStringComma(txtMoneyPay.Text)},
                         {"@MoneyId", Function.getComboBoxValue(cbbPayment)},
                         {"@EndDate", Date.GetDate(dtp : dtPayEnd, Format : 4)},
@@ -580,9 +590,9 @@ namespace SANSANG
                 dtDateNow.Text = dt.Rows[0]["Date"].ToString();
                 dtDateBefor.Value = dtDateNow.Value.AddMonths(-1);
 
-                txtUnit.Text = dt.Rows[0]["Unit"].ToString();
                 txtNumberBefor.Text = dt.Rows[0]["MeterBefore"].ToString();
                 txtNumberNow.Text = dt.Rows[0]["MeterNow"].ToString();
+                txtUnit.Text = dt.Rows[0]["Unit"].ToString();
 
                 string strBarcode = dt.Rows[0]["Code"].ToString();
                 pbQrcode.Image = Barcode.QRCode(strBarcode, Color.Black, Color.White, "Q", 3, false);
@@ -607,6 +617,10 @@ namespace SANSANG
                 cbbPayment.SelectedValue = dt.Rows[0]["MoneyId"].ToString();
 
                 dtPay.Text = dt.Rows[0]["Status"].ToString() == "1005" ? DateTime.Today.ToString() : dt.Rows[0]["PayDate"].ToString();
+
+                txtOther.Text = dt.Rows[0]["Other"].ToString();
+
+                txtOtherAmount.Text = dt.Rows[0]["OtherAmount"].ToString() == "0.00"? "" : dt.Rows[0]["OtherAmount"].ToString();
 
                 txtScan.Text = "";
 
@@ -695,6 +709,8 @@ namespace SANSANG
                     {"@Summary", ""},
                     {"@Vat", ""},
                     {"@Total", ""},
+                    {"@Other", ""},
+                    {"@OtherAmount", ""},
                     {"@Payment", ""},
                     {"@MoneyId", "0"},
                     {"@EndDate", ""},
@@ -832,7 +848,7 @@ namespace SANSANG
                 if (e.KeyChar == Convert.ToChar(Keys.Enter))
                 {
                     Calculator();
-                    txtRemark.Focus();
+                    txtOther.Focus();
                 }
             }
             catch (Exception ex)
@@ -952,7 +968,7 @@ namespace SANSANG
                     }
                     else
                     {
-                        txtRemark.Focus();
+                        txtOther.Focus();
                     }
                 }
                 catch (Exception)
@@ -992,7 +1008,8 @@ namespace SANSANG
                 txtScan.Enabled = true;
                 txtInvoiceNumber.Enabled = true;
                 dtTime.Value = new DateTime(2020, 02, 02, 0, 0, 0);
-                btnScan.Focus();
+                txtScan.Text =  string.Empty;
+                txtScan.Focus();
             }
         }
 
@@ -1010,7 +1027,7 @@ namespace SANSANG
                 }
                 else 
                 {
-                    txtRemark.Focus();
+                    txtOther.Focus();
                 }
             }
         }
@@ -1031,24 +1048,28 @@ namespace SANSANG
 
                 string Fts = string.IsNullOrEmpty(txtFt.Text) ? Ft : txtFt.Text;
 
-                Befor = string.IsNullOrEmpty(txtNumberBefor.Text) ? 0 : Convert.ToInt32(txtNumberBefor.Text);
-                Now = string.IsNullOrEmpty(txtNumberNow.Text) ? 0 : Convert.ToInt32(txtNumberNow.Text);
-                Units = Now - Befor;
+                if (string.IsNullOrEmpty(txtId.Text))
+                {
+                    Befor = string.IsNullOrEmpty(txtNumberBefor.Text) ? 0 : Convert.ToInt32(txtNumberBefor.Text);
+                    Now = string.IsNullOrEmpty(txtNumberNow.Text) ? 0 : Convert.ToInt32(txtNumberNow.Text);
+                    Units = Now - Befor;
 
-                txtUnit.Text = Units.ToString();
-                txtRaw.Text = string.Format("{0:#,##0.00}", Function.CalculateElectricity(First, Next, Over, Units));
-                txtMoneyFt.Text = string.Format("{0:#,##0.00}", Math.Round(Convert.ToDouble(Units) * Convert.ToDouble(Fts), 2));
+                    txtUnit.Text = Units.ToString();
 
-                txtMoney.Text = string.Format("{0:#,##0.00}", Math.Round((
-                                Convert.ToDouble(txtRaw.Text) +
-                                Convert.ToDouble(txtFee.Text) +
-                                Convert.ToDouble(txtMoneyFt.Text)) -
-                                Convert.ToDouble(txtDiscount.Text), 2));
+                    txtRaw.Text = string.Format("{0:#,##0.00}", Function.CalculateElectricity(First, Next, Over, Units));
+                    txtMoneyFt.Text = string.Format("{0:#,##0.00}", Math.Round(Convert.ToDouble(Units) * Convert.ToDouble(Fts), 2));
 
-                txtMoneyVat.Text = string.Format("{0:#,##0.00}", Math.Round(((Convert.ToDouble(txtMoney.Text) * (Convert.ToDouble(txtVat.Text)) / 100)), 2));
-                txtMoneyAll.Text = string.Format("{0:#,##0.00}", Math.Round(Convert.ToDouble(txtMoney.Text) + Convert.ToDouble(txtMoneyVat.Text), 2));
-                
-                txtMoneyPay.Text = string.Format("{0:#,##0.00}", Math.Round(Convert.ToDouble(txtMoneyAll.Text), 2) + Math.Round(Convert.ToDouble(txtMoneyOverdue.Text), 2));
+                    txtMoney.Text = string.Format("{0:#,##0.00}", Math.Round((
+                                    Convert.ToDouble(txtRaw.Text) +
+                                    Convert.ToDouble(txtFee.Text) +
+                                    Convert.ToDouble(txtMoneyFt.Text)) -
+                                    Convert.ToDouble(txtDiscount.Text), 2));
+
+                    txtMoneyVat.Text = string.Format("{0:#,##0.00}", Math.Round(((Convert.ToDouble(txtMoney.Text) * (Convert.ToDouble(txtVat.Text)) / 100)), 2));
+                    txtMoneyAll.Text = string.Format("{0:#,##0.00}", Math.Round(Convert.ToDouble(txtMoney.Text) + Convert.ToDouble(txtMoneyVat.Text), 2));
+
+                    txtMoneyPay.Text = string.Format("{0:#,##0.00}", Math.Round(Convert.ToDouble(txtMoneyAll.Text), 2) + Math.Round(Convert.ToDouble(txtMoneyOverdue.Text), 2));
+                } 
             }
             catch (Exception ex)
             {
@@ -1066,7 +1087,7 @@ namespace SANSANG
                 }
                 else
                 {
-                    txtRemark.Focus();
+                    txtOther.Focus();
                 }
             }
         }
@@ -1077,7 +1098,7 @@ namespace SANSANG
             {
                 if (txtRemark.Text == "")
                 {
-                    txtRemark.Focus();
+                    txtOther.Focus();
                 }
                 else
                 {
@@ -1186,6 +1207,8 @@ namespace SANSANG
                 strCondition += txtDiscount.Text != "" ? ", " + lblDiscount.Text + " " + txtDiscount.Text : "";
                 strCondition += txtVat.Text != "" ? ", " + lblVat.Text + " " + txtVat.Text : "";
                 strCondition += txtFt.Text != "" ? ", " + lblFt.Text + " " + txtFt.Text : "";
+
+                strCondition += txtOther.Text != "" ? ", " + txtOther.Text + " " + txtOtherAmount.Text : "";
                 strCondition += txtRemark.Text != "" ? ", " + "หมายเหตุ :" + " " + txtRemark.Text : "";
 
                 strCondition += cbbStatus.Text != ":: กรุณาเลือก ::" ? ", " + lblStatus.Text + " " + cbbStatus.Text : "";
@@ -1204,7 +1227,7 @@ namespace SANSANG
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txtRemark.Focus();
+                txtOther.Focus();
             }
         }
 
@@ -1226,6 +1249,26 @@ namespace SANSANG
             if (txtMoneyOverdue.Text != "" && txtMoneyOverdue.Text != "0.00")
             {
                 CalElectValue();
+            }
+        }
+
+        private void txtOtherAmount_Leave(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtOtherAmount.Text))
+            {
+                double Amount = Convert.ToDouble(txtOtherAmount.Text);
+                double MoneyAll = Convert.ToDouble(txtMoneyAll.Text);
+                double Total = MoneyAll - Amount;
+
+                txtMoneyPay.Text = string.Format("{0:#,##0.00}", Total);
+            }
+        }
+
+        private void txtOtherAmount_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtRemark.Focus();
             }
         }
     }
