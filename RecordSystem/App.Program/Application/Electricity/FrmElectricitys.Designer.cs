@@ -35,6 +35,7 @@
             this.btnFind = new System.Windows.Forms.Button();
             this.gbForm = new System.Windows.Forms.GroupBox();
             this.lblHSearch = new System.Windows.Forms.Label();
+            this.txtRemark = new System.Windows.Forms.TextBox();
             this.GridView = new System.Windows.Forms.DataGridView();
             this.label6 = new System.Windows.Forms.Label();
             this.lblCondition = new System.Windows.Forms.Label();
@@ -103,7 +104,6 @@
             this.txtMonthOverdue = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.txtOther = new System.Windows.Forms.TextBox();
-            this.txtRemark = new System.Windows.Forms.TextBox();
             this.txtOtherAmount = new System.Windows.Forms.TextBox();
             this.label61 = new System.Windows.Forms.Label();
             this.label57 = new System.Windows.Forms.Label();
@@ -246,6 +246,20 @@
             this.lblHSearch.Size = new System.Drawing.Size(163, 20);
             this.lblHSearch.TabIndex = 218;
             this.lblHSearch.Text = "ประวัติการใช้ไฟฟ้าย้อนหลัง | ";
+            // 
+            // txtRemark
+            // 
+            this.txtRemark.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtRemark.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtRemark.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.txtRemark.ForeColor = System.Drawing.Color.Black;
+            this.txtRemark.Location = new System.Drawing.Point(1208, 282);
+            this.txtRemark.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtRemark.Multiline = true;
+            this.txtRemark.Name = "txtRemark";
+            this.txtRemark.Size = new System.Drawing.Size(345, 28);
+            this.txtRemark.TabIndex = 143;
+            this.txtRemark.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtRemark_KeyDown);
             // 
             // GridView
             // 
@@ -1161,20 +1175,6 @@
             this.txtOther.Size = new System.Drawing.Size(229, 28);
             this.txtOther.TabIndex = 141;
             // 
-            // txtRemark
-            // 
-            this.txtRemark.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtRemark.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtRemark.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.txtRemark.ForeColor = System.Drawing.Color.Black;
-            this.txtRemark.Location = new System.Drawing.Point(1208, 282);
-            this.txtRemark.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtRemark.Multiline = true;
-            this.txtRemark.Name = "txtRemark";
-            this.txtRemark.Size = new System.Drawing.Size(345, 28);
-            this.txtRemark.TabIndex = 143;
-            this.txtRemark.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtRemark_KeyDown);
-            // 
             // txtOtherAmount
             // 
             this.txtOtherAmount.BackColor = System.Drawing.Color.White;
@@ -1299,6 +1299,7 @@
             this.txtMoney.TabIndex = 29;
             this.txtMoney.TabStop = false;
             this.txtMoney.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtMoney.TextChanged += new System.EventHandler(this.TextBoxFormat);
             // 
             // lblMoney
             // 
