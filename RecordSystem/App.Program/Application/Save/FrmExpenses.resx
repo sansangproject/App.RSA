@@ -120,18 +120,17 @@
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnTitleCase.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAAJwAAACcAV01BYoAAAIySURBVEhLtZXbbtpAEIbzLs37pko5iIM5FxAgIdcgggE1
-        qJAigcQFJYAScQoppJgi1RSUq787K4xQ2OLKhYtPeGdm55/ZWeMLAGdFaDwluweHw3EZCAQUv9+/8vl8
-        GyvQXoYSjUbfHQgwR4YF4UQoBwLMSJWLgq2wEgm8vgn6H15FAnSOB8GSJHFEviNsTAUoaTAYRLVaRSaT
-        gdvt3k9ghrmA1+uFotCsgH7/EaFQiNsMPxVAoi6XCx6PZ2ffYi5AtFotDIcDjMdjqGqeJyM7CUmSj3Wm
-        oFAoIJlMve3wuABVx+4ylsufSKfTuL9vo9frMp+fVxuNfsTDQ48Jj9DtdjCf/8DdXXVXgKkAVVipVDCb
-        TWGz2XBzk+NiyWQSTqcT+Xweg0Gfr+noGo0GNG2+22sqQFVOp995haqqolwuY7NZo1b7yhOwlxKpVArF
-        YpHZahiNRqyL+f6c/i5AyWVZxmqlYzKZ4Pl5gqenMRaLBV5eZjwBnb2madxfr9fRbDb5+p8E6Aja7W+s
-        qiF/ttvtuL7+gFgshvX6N3K5HDqdDvdfXb3nkMByuUA4HD4uQE4arq7ruL39bARz6JZQUqJUKrGYX7wQ
-        GjJ1SDOiY9veJrEA3Z5IJIJsNsvbNZIT5EskEvzdoDXFVCpfeEfxeJzbaa/pEREURAmNtQHZDIwY+jXY
-        ixUKnPfPbvuhEQVbQRcJKIJAq3w6EGDX8ZKJyMypM2geVtDZXGThJ/NcCI2nAxd/AFNiqTUnq3/pAAAA
-        AElFTkSuQmCC
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
+        nAAAAJwBXTUFigAAAjJJREFUSEu1ldtu2kAQhvMuzfumSjmIgzkXECAh1yCCATWokCKBxAUlgBJxCimk
+        mCLVFJSrvzsrjFDY4sqFi094Z2bnn9lZ4wsAZ0VoPCW7B4fDcRkIBBS/37/y+XwbK9BehhKNRt8dCDBH
+        hgXhRCgHAsxIlYuCrbASCby+CfofXkUCdI4HwZIkcUS+I2xMBShpMBhEtVpFJpOB2+3eT2CGuYDX64Wi
+        0KyAfv8RoVCI2ww/FUCiLpcLHo9nZ99iLkC0Wi0MhwOMx2Ooap4nIzsJSZKPdaagUCggmUy97fC4AFXH
+        7jKWy59Ip9O4v2+j1+syn59XG41+xMNDjwmP0O12MJ//wN1ddVeAqQBVWKlUMJtNYbPZcHOT42LJZBJO
+        pxP5fB6DQZ+v6egajQY0bb7baypAVU6n33mFqqqiXC5js1mjVvvKE7CXEqlUCsVikdlqGI1GrIv5/pz+
+        LkDJZVnGaqVjMpng+XmCp6cxFosFXl5mPAGdvaZp3F+v19FsNvn6nwToCNrtb6yqIX+22+24vv6AWCyG
+        9fo3crkcOp0O919dveeQwHK5QDgcPi5AThquruu4vf1sBHPollBSolQqsZhfvBAaMnVIM6Jj294msQDd
+        nkgkgmw2y9s1khPkSyQS/N2gNcVUKl94R/F4nNtpr+kRERRECY21AdkMjBj6NdiLFQqc989u+6ERBVtB
+        FwkogkCrfDoQYNfxkonIzKkzaB5W0NlcZOEn81wIjacDF38AU2KpNSerf+kAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="btnCopyReference.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

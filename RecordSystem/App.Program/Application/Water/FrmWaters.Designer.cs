@@ -29,8 +29,8 @@ namespace SANSANG
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmWaters));
             this.lblHSearch = new System.Windows.Forms.Label();
             this.GridView = new System.Windows.Forms.DataGridView();
@@ -169,9 +169,9 @@ namespace SANSANG
             // 
             this.GridView.AllowUserToAddRows = false;
             this.GridView.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.SteelBlue;
-            this.GridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.SteelBlue;
+            this.GridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.GridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -179,14 +179,14 @@ namespace SANSANG
             this.GridView.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.GridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.GridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.GridView.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.GridView.DefaultCellStyle = dataGridViewCellStyle4;
             this.GridView.GridColor = System.Drawing.Color.Silver;
             this.GridView.Location = new System.Drawing.Point(32, 498);
             this.GridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -553,7 +553,7 @@ namespace SANSANG
             this.txtNumberBefor.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtNumberBefor.TextChanged += new System.EventHandler(this.txtNumberBefor_TextChanged);
             this.txtNumberBefor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNumberBefor_KeyDown);
-            this.txtNumberBefor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberKeyPress);
+            this.txtNumberBefor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumberBefor_KeyPress);
             // 
             // label40
             // 
@@ -698,7 +698,7 @@ namespace SANSANG
             this.cbbVersion.Size = new System.Drawing.Size(134, 28);
             this.cbbVersion.TabIndex = 208;
             this.cbbVersion.TabStop = false;
-            this.cbbVersion.SelectedIndexChanged += new System.EventHandler(this.WaterRates_Selected);
+            this.cbbVersion.SelectedIndexChanged += new System.EventHandler(this.Version_Selected);
             // 
             // pbQrcode
             // 
@@ -722,11 +722,11 @@ namespace SANSANG
             this.txtScan.Multiline = true;
             this.txtScan.Name = "txtScan";
             this.txtScan.Size = new System.Drawing.Size(293, 26);
-            this.txtScan.TabIndex = 1;
+            this.txtScan.TabIndex = 0;
+            this.txtScan.TabStop = false;
             this.txtScan.Click += new System.EventHandler(this.Click);
             this.txtScan.TextChanged += new System.EventHandler(this.Reader);
             this.txtScan.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyEnter);
-            this.txtScan.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtScan_KeyPress);
             this.txtScan.Leave += new System.EventHandler(this.Leave);
             // 
             // cbbAccount
@@ -1072,6 +1072,7 @@ namespace SANSANG
             this.txtDiscount.TabIndex = 29;
             this.txtDiscount.TabStop = false;
             this.txtDiscount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtDiscount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDiscount_KeyDown);
             // 
             // txtMoneyWater
             // 

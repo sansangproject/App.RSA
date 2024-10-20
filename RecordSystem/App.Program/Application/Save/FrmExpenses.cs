@@ -1879,5 +1879,29 @@ namespace SANSANG
         {
             Converts.TitleCase(txtItem);
         }
+
+        private void txtUnit_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    double Price = Convert.ToDouble(txtPrice.Text);
+                    double Unit = Convert.ToDouble(txtUnit.Text);
+                    double Amount = 0;
+
+                    Amount = Price * Unit;
+
+                    if (Amount > 0)
+                    {
+                        txtAmount.Text = string.Format("{0:#,##0.00}", Amount);
+                    }
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+        }
     }
 }

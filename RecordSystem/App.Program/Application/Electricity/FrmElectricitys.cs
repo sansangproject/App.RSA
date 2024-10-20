@@ -619,9 +619,7 @@ namespace SANSANG
                 dtPay.Text = dt.Rows[0]["Status"].ToString() == "1005" ? DateTime.Today.ToString() : dt.Rows[0]["PayDate"].ToString();
 
                 txtOther.Text = dt.Rows[0]["Other"].ToString();
-
                 txtOtherAmount.Text = dt.Rows[0]["OtherAmount"].ToString() == "0.00"? "" : dt.Rows[0]["OtherAmount"].ToString();
-
                 txtScan.Text = "";
 
                 GridView.Focus();
@@ -639,8 +637,6 @@ namespace SANSANG
                 IsStart = false;
                 Function.ClearAlls(gbForm);
                 CountEnter = 0;
-
-                pbQrcode.Image = null;
 
                 cbbMonth.Enabled = true;
                 cbbYear.Enabled = true;
@@ -669,7 +665,6 @@ namespace SANSANG
 
                 txtScan.Text = string.Empty;
                 SetPlaceholderVisibility();
-
             }
             catch (Exception ex)
             {
@@ -762,7 +757,6 @@ namespace SANSANG
                     strBarcode = txtScan.Text;
                     strInvoice = "";
                     Function.getElectricData(txtScan.Text);
-                    strInvoice = "";
                     CountEnter = 0;
 
                     foreach (ElectricModel Electric in GlobalVar.ElectricDataList)
@@ -821,7 +815,7 @@ namespace SANSANG
             }
         }
 
-        private void txtRecId_TextChanged(object sender, EventArgs e)
+        private void InvoiceInput(object sender, EventArgs e)
         {
             if (txtInvoiceNumber.Text == "")
             {
@@ -888,16 +882,6 @@ namespace SANSANG
             {
                 Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
             }
-        }
-
-        private void btnAd_Click(object sender, EventArgs e)
-        {
-            dtPayEnd.Value = dtPayEnd.Value.AddDays(1);
-        }
-
-        private void btnRe_Click(object sender, EventArgs e)
-        {
-            dtPayEnd.Value = dtPayEnd.Value.AddDays(-1);
         }
 
         private void txtNumberBefor_KeyPress(object sender, KeyPressEventArgs e)
@@ -999,20 +983,6 @@ namespace SANSANG
             btnSearch.Focus();
         }
 
-        private void cbbVersion_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cbbVersion.SelectedValue.ToString() != "0" && cbbVersion.SelectedValue.ToString() != "System.Data.DataRowView")
-            {
-                GetDataMaster(Function.getComboBoxValue(cbbVersion));
-                btnScan.Enabled = true;
-                txtScan.Enabled = true;
-                txtInvoiceNumber.Enabled = true;
-                dtTime.Value = new DateTime(2020, 02, 02, 0, 0, 0);
-                txtScan.Text =  string.Empty;
-                txtScan.Focus();
-            }
-        }
-
         private void txtNumberBefor_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -1077,21 +1047,6 @@ namespace SANSANG
             }
         }
 
-        private void txtDiscountDetail_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                if (txtDiscount.Text == "" || txtDiscount.Text == "0.00")
-                {
-                    txtDiscount.Focus();
-                }
-                else
-                {
-                    txtOther.Focus();
-                }
-            }
-        }
-
         private void txtDiscount_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -1113,39 +1068,6 @@ namespace SANSANG
                 }
             }
         }
-
-        private void SumTotal()
-        {
-            try
-            {
-                double Sum = 0;
-                double amount = Convert.ToDouble(txtMoneyPay.Text);
-                double overdue = Convert.ToDouble(txtMoneyOverdue.Text);
-                Sum = amount + overdue;
-
-                txtMoneyPay.Text = string.Format("{0:#,##0.00}", Sum);
-            }
-            catch
-            {
-
-            }
-        }
-
-        private void txtRemark_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                if (Function.getComboboxId(cbbStatus) == "0")
-                {
-                    cbbStatus.Focus();
-                }
-                else
-                {
-                    btnAdd.Focus();
-                }
-            }
-        }
-        
 
         public string GetDetails()
         {
@@ -1222,6 +1144,19 @@ namespace SANSANG
                 return "";
             }
         }
+        private void Version_Selected(object sender, EventArgs e)
+        {
+            if (cbbVersion.SelectedValue.ToString() != "0" && cbbVersion.SelectedValue.ToString() != "System.Data.DataRowView")
+            {
+                GetDataMaster(Function.getComboBoxValue(cbbVersion));
+                btnScan.Enabled = true;
+                txtScan.Enabled = true;
+                txtInvoiceNumber.Enabled = true;
+                dtTime.Value = new DateTime(2020, 02, 02, 0, 0, 0);
+                txtScan.Text = string.Empty;
+                txtScan.Focus();
+            }
+        }
 
         private void txtNumberNow_KeyDown(object sender, KeyEventArgs e)
         {
@@ -1269,6 +1204,34 @@ namespace SANSANG
             if (e.KeyCode == Keys.Enter)
             {
                 txtRemark.Focus();
+            }
+        }
+        private void txtRemark_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (Function.getComboboxId(cbbStatus) == "0")
+                {
+                    cbbStatus.Focus();
+                }
+                else
+                {
+                    btnAdd.Focus();
+                }
+            }
+        }
+        private void txtDiscountDetail_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (txtDiscount.Text == "" || txtDiscount.Text == "0.00")
+                {
+                    txtDiscount.Focus();
+                }
+                else
+                {
+                    txtOther.Focus();
+                }
             }
         }
     }

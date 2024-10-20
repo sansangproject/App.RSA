@@ -535,7 +535,7 @@
             this.txtScan.Multiline = true;
             this.txtScan.Name = "txtScan";
             this.txtScan.Size = new System.Drawing.Size(243, 24);
-            this.txtScan.TabIndex = 107;
+            this.txtScan.TabIndex = 0;
             this.txtScan.TabStop = false;
             this.txtScan.Click += new System.EventHandler(this.Click);
             this.txtScan.TextChanged += new System.EventHandler(this.Reader);
@@ -603,7 +603,7 @@
             this.txtInvoiceNumber.TabIndex = 11;
             this.txtInvoiceNumber.TabStop = false;
             this.txtInvoiceNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtInvoiceNumber.TextChanged += new System.EventHandler(this.txtRecId_TextChanged);
+            this.txtInvoiceNumber.TextChanged += new System.EventHandler(this.InvoiceInput);
             this.txtInvoiceNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtInvoiceNumber_KeyDown);
             // 
             // textBox1
@@ -923,7 +923,7 @@
             this.cbbVersion.Size = new System.Drawing.Size(178, 28);
             this.cbbVersion.TabIndex = 21;
             this.cbbVersion.TabStop = false;
-            this.cbbVersion.SelectedIndexChanged += new System.EventHandler(this.cbbVersion_SelectedIndexChanged);
+            this.cbbVersion.SelectedIndexChanged += new System.EventHandler(this.Version_Selected);
             // 
             // label38
             // 

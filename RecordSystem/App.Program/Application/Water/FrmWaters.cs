@@ -92,7 +92,6 @@ namespace SANSANG
             UserType = UserTypeLogin;
 
             SetPlaceholderVisibility();
-
         }
 
         private void FrmLoad(object sender, EventArgs e)
@@ -288,6 +287,9 @@ namespace SANSANG
                 }
 
                 Number = CountRows;
+
+                txtScan.Text = string.Empty;
+                SetPlaceholderVisibility();
             }
             catch (Exception ex)
             {
@@ -408,6 +410,8 @@ namespace SANSANG
                     ShowData(dt);
                     GetBill(Operation.Overdue);
                 }
+
+                SetPlaceholderVisibility();
             }
             catch (Exception ex)
             {
@@ -591,6 +595,7 @@ namespace SANSANG
                 txtDipText.Text = dt.Rows[0]["RawText"].ToString();
                 txtVat.Text = dt.Rows[0]["RawVat"].ToString();
                 txtFeeMonth.Text = dt.Rows[0]["Fee"].ToString();
+                txtScan.Text = "";
 
                 GridView.Focus();
             }
@@ -629,7 +634,6 @@ namespace SANSANG
 
                 txtScan.Text = string.Empty;
                 SetPlaceholderVisibility();
-
             }
             catch (Exception ex)
             {
@@ -741,6 +745,10 @@ namespace SANSANG
                     {
                         SearchData(true, out Numbers);
                     }
+                    else
+                    {
+                        btnEdit.Focus();
+                    }
                 }
 
                 txtScan.Clear();
@@ -749,7 +757,6 @@ namespace SANSANG
             }
             catch (Exception ex)
             {
-                NewData = true;
                 Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
             }
         }
@@ -758,60 +765,39 @@ namespace SANSANG
         {
             if (CountEnter == 4)
             {
+                CountEnter = 0;
                 Scan(sender, e);
-                txtScan.Clear();
-                strBarcode = "";
             }
         }
 
-        private void InvoiceInput(object sender, EventArgs e)
+        private void txtNumberNow_TextChanged(object sender, EventArgs e)
         {
-            if (txtInvoiceNumber.Text != "")
+            if (txtNumberNow.Text != "")
             {
-                dtDate.Enabled = true;
-                dtTime.Enabled = true;
+                Calculator();
             }
             else
             {
+                txtUnit.Text = "";
+            }
+        }
+        private void InvoiceInput(object sender, EventArgs e)
+        {
+            if (txtInvoiceNumber.Text == "")
+            {
                 dtDate.Enabled = false;
                 dtTime.Enabled = false;
+                txtNumberNow.Enabled = false;
+                cbbStatus.Enabled = false;
+                dtPay.Enabled = false;
             }
-        }
-
-        private void NumberKeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
+            else
             {
-
-                if (!(char.IsNumber(e.KeyChar) || e.KeyChar == '.' || e.KeyChar == 8))
-                {
-                    e.Handled = true;
-                    return;
-                }
-                else
-                {
-                    dtDateBefor.Enabled = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
-            }
-        }
-
-        private void txtMoneyOverdue_TextChanged(object sender, EventArgs e)
-        {
-            if (txtMoneyOverdue.Text != "" && txtMoneyOverdue.Text != "0.00")
-            {
-                CalWaterValue();
-            }
-        }
-
-        private void KeyEnter(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                CountEnter++;
+                dtDate.Enabled = true;
+                dtTime.Enabled = true;
+                txtNumberNow.Enabled = true;
+                cbbStatus.Enabled = true;
+                dtPay.Enabled = true;
             }
         }
 
@@ -831,6 +817,140 @@ namespace SANSANG
             }
         }
 
+        private void FrmKeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                string keyCode = Function.keyPress(sender, e);
+
+                if (keyCode == "Ctrl+S")
+                {
+                    AddData(sender, e);
+                }
+                if (keyCode == "Ctrl+E")
+                {
+                    EditData(sender, e);
+                }
+                if (keyCode == "Ctrl+D")
+                {
+                    DeleteData(sender, e);
+                }
+                if (keyCode == "Ctrl+F")
+                {
+                    Search(sender, e);
+                }
+                if (keyCode == "Alt+C")
+                {
+                    Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }
+        }
+        private void txtNumberBefor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (char.IsNumber(e.KeyChar) || e.KeyChar == '.' || e.KeyChar == 8)
+                {
+                }
+                else
+                {
+                    e.Handled = true;
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }
+        }
+        private void KeyEnter(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                CountEnter++;
+            }
+        }
+        private void txtNumberBefor_TextChanged(object sender, EventArgs e)
+        {
+            if (txtNumberBefor.Text != "" && txtUnit.Text != "")
+            {
+                int Number = 0;
+                Number = int.Parse(txtNumberBefor.Text) + int.Parse(txtUnit.Text);
+                txtNumberNow.Text = Convert.ToString(Number);
+            }
+        }
+        private void dtTime_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    int theMonth = Convert.ToInt32(dtDate.Value.ToString("MM"));
+                    int theYear = Convert.ToInt32(dtDate.Value.ToString("yyyy")) + 543;
+
+                    cbbMonth.SelectedIndex = theMonth;
+                    cbbYear.SelectedValue = theYear;
+
+                    dtDateNow.Text = dtDate.Text;
+                    dtDateBefor.Value = dtDate.Value.AddMonths(-1);
+                    dtPay.Value = DateTime.Today;
+
+                    GetBill(Operation.Before);
+                    GetBill(Operation.Overdue);
+
+                    if (txtNumberBefor.Text == "")
+                    {
+                        txtNumberBefor.Focus();
+                    }
+                    else if (txtNumberBefor.Text != "" && txtNumberNow.Text == "")
+                    {
+                        txtNumberNow.Focus();
+                    }
+                }
+                catch (Exception)
+                {
+                    txtNumberBefor.Text = "0";
+                    txtMoneyOverdue.Text = "0.00";
+                    txtMonthOverdue.Text = "0";
+                    cbbStatus.SelectedValue = 0;
+                }
+            }
+        }
+        private void TextBoxFormat(object sender, EventArgs e)
+        {
+            try
+            {
+                var tb = (TextBox)sender;
+                tb.Text = string.Format("{0:#,##0.00}", Convert.ToDouble(tb.Text));
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void cbbAccount_Selected(object sender, EventArgs e)
+        {
+            if (!IsStart)
+            {
+                AccountId = Convert.ToInt32(Function.getComboBoxValue(cbbAccount));
+                List.GetLists(cbbVersion, string.Format(DataList.WaterRatesId, AccountId));
+            }
+        }
+        private void txtNumberBefor_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (txtNumberNow.Text == "")
+                {
+                    txtNumberNow.Focus();
+                }
+            }
+        }
         public void Calculator()
         {
             try
@@ -864,240 +984,32 @@ namespace SANSANG
                 Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
             }
         }
-        private string GetCondition()
-        {
-            try
-            {
-                string strCondition = "";
 
-                strCondition += txtCode.Text != "" ? ", รหัสอ้างอิง: " + txtCode.Text : "";
-                strCondition += cbbAccount.SelectedValue.ToString() != "0" ? ", ผู้ใช้น้ำ: " + cbbAccount.Text : "";
-                strCondition += txtInvoiceNumber.Text != "" ? ", เลขที่แจ้งค่าน้ำ: " + txtInvoiceNumber.Text : "";
-
-                strCondition += Function.GetComboId(cbbStatus) != "0" ? ", สถานะ: " + cbbStatus.Text : "";
-
-                return strCondition;
-            }
-            catch (Exception ex)
-            {
-                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
-                return "";
-            }
-        }
-
-        private void WaterRates_Selected(object sender, EventArgs e)
-        {
-            if (!IsStart)
-            {
-                Rates = Function.getComboBoxValue(cbbVersion);
-
-                txtDipValue.Text = "";
-                txtDipText.Text = "";
-                txtDipCost.Text = "";
-                txtFeeMonth.Text = "";
-                txtVat.Text = "";
-                NumberOfPayment = 7;
-                InvoiceDay = -7;
-                txtDiscount.Text = "";
-
-                if (Rates != "0")
-                {
-                    GetDataMaster(Rates);
-                    btnScan.Enabled = true;
-                    txtScan.Enabled = true;
-                    txtInvoiceNumber.Enabled = true;
-                    dtTime.Value = new DateTime(2020, 02, 02, 0, 0, 0);
-                    txtInvoiceNumber.Focus();
-                }
-            }
-        }
-
-        private void DateChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                int Month = Convert.ToInt32(dtDate.Value.ToString("MM"));
-                int Year = Convert.ToInt32(dtDate.Value.ToString("yyyy"));
-
-                if (Year <= 2500)
-                {
-                    Year = Year + 543;
-                }
-
-                cbbMonth.SelectedIndex = Month;
-                cbbYear.SelectedValue = Year;
-                dtDateBefor.Value = dtDate.Value.AddMonths(-1);
-                dtDateNow.Value = dtDate.Value;
-            }
-            catch (Exception ex)
-            {
-                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
-            }
-        }
-
-        private void txtNumberNow_TextChanged(object sender, EventArgs e)
-        {
-            if (txtNumberNow.Text != "")
-            {
-                Calculator();
-            }
-            else
-            {
-                txtUnit.Text = "";
-            }
-        }
-
-        private void dtTime_KeyDown(object sender, KeyEventArgs e)
+        private void txtDiscount_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (txtUnit.Text == "")
+                if (txtRemark.Text == "")
                 {
-                    txtUnit.Focus();
+                    
                 }
                 else
                 {
-                    if (txtNumberBefor.Text != "")
+                    if (Function.getComboboxId(cbbStatus) == "0")
                     {
-                        btnAdd.Focus();
+                        cbbStatus.Focus();
                     }
                     else
                     {
-                        txtNumberBefor.Focus();
+                        btnAdd.Focus();
                     }
                 }
-
-                dtPay.Value = dtDate.Value.AddDays(NumberOfPayment);
-                GetBill(Operation.Overdue);
-            }
-        }
-
-        private void FrmKeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                string keyCode = Function.keyPress(sender, e);
-
-                if (keyCode == "Ctrl+S")
-                {
-                    AddData(sender, e);
-                }
-                if (keyCode == "Ctrl+E")
-                {
-                    EditData(sender, e);
-                }
-                if (keyCode == "Ctrl+D")
-                {
-                    DeleteData(sender, e);
-                }
-                if (keyCode == "Ctrl+F")
-                {
-                    Search(sender, e);
-                }
-                if (keyCode == "Alt+C")
-                {
-                    Clear(sender, e);
-                }
-                if (keyCode == "Enter")
-                {
-                    SearchData(true, out Numbers);
-                }
-                if (keyCode == "Tab")
-                {
-                   txtRemark.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
-            }
-        }
-
-        private void txtNumberBefor_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                btnAdd.Focus();
-            }
-        }
-
-        private void txtNumberBefor_TextChanged(object sender, EventArgs e)
-        {
-            if (txtNumberBefor.Text != "")
-            {
-                int Num = 0;
-                Num = int.Parse(txtNumberBefor.Text) + int.Parse(txtUnit.Text == "" ? "0" : txtUnit.Text);
-                txtNumberNow.Text = Convert.ToString(Num);
-            }
-        }
-
-        private void txtUnit_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                if (txtNumberBefor.Text != "")
-                {
-                    btnAdd.Focus();
-                }
-                else
-                {
-                    txtNumberBefor.Focus();
-                }
-            }
-        }
-
-        private void txtInvoiceNumber_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                if (e.KeyChar == Convert.ToChar(Keys.Enter))
-                {
-                    SearchData(true, out Numbers);
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
-            }
-        }
-
-        private void CalculateUnit(object sender, EventArgs e)
-        {
-            try
-            {
-                int sum = 0;
-                sum = Convert.ToInt32(txtUnit.Text) + Convert.ToInt32(txtNumberBefor.Text);
-                txtNumberNow.Text = sum.ToString();
-            }
-            catch
-            {
-
-            }
-        }
-
-        private void txtScan_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            IsPlaceholderVisible = false;
-            txtScan.Invalidate();
-
-            if (!Function.IsCharacter(e.KeyChar, CharType.Barcode))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void cbbAccount_Selected(object sender, EventArgs e)
-        {
-            if (!IsStart)
-            {
-                AccountId = Convert.ToInt32(Function.getComboBoxValue(cbbAccount));
-                List.GetLists(cbbVersion, string.Format(DataList.WaterRatesId, AccountId));
             }
         }
 
         public string GetDetails()
         {
-            return "Invoice No. " + txtInvoiceNumber.Text + " (฿" + txtMoneyPay.Text + ")";
+            return "Bill " + string.Concat(cbbMonth.Text, " ", cbbYear.Text) + " (฿" + txtMoneyPay.Text + ")";
         }
 
         private void SetPlaceholderVisibility()
@@ -1130,6 +1042,96 @@ namespace SANSANG
         private new void Leave(object sender, EventArgs e)
         {
             SetPlaceholderVisibility();
+        }
+        private string GetCondition()
+        {
+            try
+            {
+                string strCondition = "";
+
+                strCondition += txtCode.Text != "" ? ", รหัสอ้างอิง: " + txtCode.Text : "";
+                strCondition += cbbAccount.SelectedValue.ToString() != "0" ? ", ผู้ใช้น้ำ: " + cbbAccount.Text : "";
+                strCondition += txtInvoiceNumber.Text != "" ? ", เลขที่แจ้งค่าน้ำ: " + txtInvoiceNumber.Text : "";
+
+                strCondition += Function.GetComboId(cbbStatus) != "0" ? ", สถานะ: " + cbbStatus.Text : "";
+
+                return strCondition;
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+                return "";
+            }
+        }
+        private void Version_Selected(object sender, EventArgs e)
+        {
+            if (cbbVersion.SelectedValue.ToString() != "0" && cbbVersion.SelectedValue.ToString() != "System.Data.DataRowView")
+            {
+                GetDataMaster(Function.getComboBoxValue(cbbVersion));
+                btnScan.Enabled = true;
+                txtScan.Enabled = true;
+                txtInvoiceNumber.Enabled = true;
+                dtTime.Value = new DateTime(2020, 02, 02, 0, 0, 0);
+                txtScan.Text = string.Empty;
+                txtScan.Focus();
+            }
+        }
+        private void txtMoneyOverdue_TextChanged(object sender, EventArgs e)
+        {
+            if (txtMoneyOverdue.Text != "" && txtMoneyOverdue.Text != "0.00")
+            {
+                CalWaterValue();
+            }
+        }
+        private void DateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                int Month = Convert.ToInt32(dtDate.Value.ToString("MM"));
+                int Year = Convert.ToInt32(dtDate.Value.ToString("yyyy"));
+
+                if (Year <= 2500)
+                {
+                    Year = Year + 543;
+                }
+
+                cbbMonth.SelectedIndex = Month;
+                cbbYear.SelectedValue = Year;
+                dtDateBefor.Value = dtDate.Value.AddMonths(-1);
+                dtDateNow.Value = dtDate.Value;
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }
+        }
+        private void txtUnit_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (txtNumberBefor.Text != "")
+                {
+                    btnAdd.Focus();
+                }
+                else
+                {
+                    txtNumberBefor.Focus();
+                }
+            }
+        }
+
+        private void CalculateUnit(object sender, EventArgs e)
+        {
+            try
+            {
+                int sum = 0;
+                sum = Convert.ToInt32(txtUnit.Text) + Convert.ToInt32(txtNumberBefor.Text);
+                txtNumberNow.Text = sum.ToString();
+            }
+            catch
+            {
+
+            }
         }
     }
 }

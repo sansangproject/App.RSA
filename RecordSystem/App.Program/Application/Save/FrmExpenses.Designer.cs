@@ -822,6 +822,7 @@
             this.txtUnit.Name = "txtUnit";
             this.txtUnit.Size = new System.Drawing.Size(44, 21);
             this.txtUnit.TabIndex = 127;
+            this.txtUnit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUnit_KeyDown);
             this.txtUnit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUnit_KeyPress);
             // 
             // cbbUnit
