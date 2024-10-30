@@ -1229,7 +1229,27 @@ namespace SANSANG
                         TextBoxName = TextBoxs.Name;
                     }
 
-                    if (Frm.ActiveControl.Text != txtTotalReal.Text && Frm.ActiveControl.Text != txtReceipt.Text)
+                    if (TextBoxName == "txtUnit")
+                    {
+                        try
+                        {
+                            double Price = Convert.ToDouble(txtPrice.Text);
+                            double Unit = Convert.ToDouble(txtUnit.Text);
+                            double Amount = 0;
+
+                            Amount = Price * Unit;
+
+                            if (Amount > 0)
+                            {
+                                txtAmount.Text = string.Format("{0:#,##0.00}", Amount);
+                            }
+                        }
+                        catch (Exception)
+                        {
+
+                        }
+                    }
+                    else if (Frm.ActiveControl.Text != txtTotalReal.Text && Frm.ActiveControl.Text != txtReceipt.Text)
                     {
                         IsDiscountIncluded = cb_Discount.Checked ? true : false;
                         IsCalculate = cb_Calculate.Checked ? true : false;
@@ -1254,6 +1274,10 @@ namespace SANSANG
 
                         TypeList.RemoveAll(item => item == "");
                         Search(true, TypeList.Count > 0 ? "More" : "");
+                    }
+                    else
+                    {
+
                     }
                 }
             }
@@ -1878,30 +1902,6 @@ namespace SANSANG
         private void btnTitleCase_Click(object sender, EventArgs e)
         {
             Converts.TitleCase(txtItem);
-        }
-
-        private void txtUnit_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                try
-                {
-                    double Price = Convert.ToDouble(txtPrice.Text);
-                    double Unit = Convert.ToDouble(txtUnit.Text);
-                    double Amount = 0;
-
-                    Amount = Price * Unit;
-
-                    if (Amount > 0)
-                    {
-                        txtAmount.Text = string.Format("{0:#,##0.00}", Amount);
-                    }
-                }
-                catch (Exception)
-                {
-
-                }
-            }
         }
     }
 }
