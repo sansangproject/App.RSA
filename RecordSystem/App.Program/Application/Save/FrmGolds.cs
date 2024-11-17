@@ -508,7 +508,7 @@ namespace SANSANG
                 {
                     GoldTotal = Convert.ToDouble(Data.Rows[0]["GoldTotal"].ToString());
                     MoneyTotal = Convert.ToDouble(Data.Rows[0]["MoneyTotal"].ToString());
-                    Numbers = Math.Round(GoldTotal, 4);
+                    Numbers = (Math.Round(GoldTotal, 4)) - Convert.ToDouble(Setting.GetGoldReceived());
                 }
                 Inaccurate = Convert.ToDouble(Setting.GetInaccurate());
                 txtSumMoney.Text = string.Format("{0:#,##0.00}", Math.Ceiling(MoneyTotal) + Inaccurate);

@@ -447,7 +447,7 @@ namespace SANSANG.Class
 
                 Data.Date = Statements[0];
                 Data.Time = Statements[1];
-                Data.Item = Statements[2];
+                Data.Item = Statements[2].Replace("...", ""); ;
                 Data.Amount = Function.MoveNumberStringComma(Statements[3]);
                 Data.Balance = Function.MoveNumberStringComma(Statements[4]);
                 Data.Channel = Statements[5];

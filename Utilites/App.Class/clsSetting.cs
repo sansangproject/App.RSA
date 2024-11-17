@@ -538,5 +538,28 @@ namespace SANSANG.Class
 
             return display;
         }
+
+        public decimal GetGoldReceived()
+        {
+            decimal balance = 0;
+            string settingPath = Path.Combine(appPath, filePath);
+
+            if (File.Exists(settingPath))
+            {
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.Load(settingPath);
+                foreach (XmlNode valueNode in xmlDoc.DocumentElement)
+                {
+                    switch (valueNode.Name.ToString())
+                    {
+                        case "GoldReceived":
+                            balance = Convert.ToDecimal(valueNode.InnerText);
+                            break;
+                    }
+                }
+            }
+
+            return balance;
+        }
     }
 }
