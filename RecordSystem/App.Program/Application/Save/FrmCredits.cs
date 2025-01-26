@@ -5,6 +5,7 @@ using SANSANG.Class;
 using SANSANG.Database;
 using SANSANG.Constant;
 using System.Drawing;
+using static System.Resources.ResXFileRef;
 
 namespace SANSANG
 {
@@ -33,6 +34,7 @@ namespace SANSANG
         private clsMessage Message = new clsMessage();
         private clsBarcode Barcode = new clsBarcode();
         private dbConnection db = new dbConnection();
+        private clsConvert Converts = new clsConvert();
         private clsDataList List = new clsDataList();
         private clsHelpper Helper = new clsHelpper();
         private DataListConstant DataList = new DataListConstant();
@@ -616,6 +618,11 @@ namespace SANSANG
         public string GetDetails()
         {
             return cbbShop.Text + " | " + txtProduct.Text + " (฿" + txtAmount.Text + ")";
+        }
+
+        private void btnTitleCase_Click(object sender, EventArgs e)
+        {
+            Converts.TitleCase(txtProduct);
         }
     }
 }

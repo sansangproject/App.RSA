@@ -603,14 +603,7 @@ namespace SANSANG
 
         private void txtGoldPriceSell_Leave(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtGoldPriceSell.Text))
-            {
-                txtReceive.Text = "";
-            }
-            else
-            {
-                CalculateGoldReceive();
-            }
+
         }
 
         private void txtGoldPriceBuy_Leave(object sender, EventArgs e)
@@ -637,6 +630,28 @@ namespace SANSANG
             catch (Exception ex)
             {
                 Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }
+        }
+
+        private void txtGoldPriceBuy_TextChanged(object sender, EventArgs e)
+        {
+            double sell = 0.00;
+            double buy = 0.00;
+
+            if (!string.IsNullOrWhiteSpace(txtGoldPriceBuy.Text) && double.TryParse(txtGoldPriceBuy.Text, out buy))
+            {
+                sell = buy + 100.00;
+            }
+
+            txtGoldPriceSell.Text = sell.ToString("F2");
+
+            if (string.IsNullOrEmpty(txtGoldPriceSell.Text) || txtGoldPriceSell.Text == "0.00")
+            {
+                txtReceive.Text = "0.00";
+            }
+            else
+            {
+                CalculateGoldReceive();
             }
         }
     }

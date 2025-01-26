@@ -7,6 +7,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Channels;
+using System.Text.RegularExpressions;
 using System.Windows.Documents;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
@@ -181,29 +182,48 @@ namespace SANSANG.Class
                 }
                 else
                 {
+                    var match = Regex.Match(value, @"\(([^)]+)\)");
                     int count = statements.Count();
 
-                    int IndexOfPaymentStart = value.IndexOf("(") + 1;
-                    string Payments = value.Remove(0, IndexOfPaymentStart);
+                    if (match.Success)
+                    {
+                        int IndexOfPaymentStart = value.IndexOf("(") + 1;
+                        string Payments = value.Remove(0, IndexOfPaymentStart);
 
-                    int IndexOfPaymentEnd = Payments.IndexOf(")");
-                    string PaymentCode = Payments.Substring(0, IndexOfPaymentEnd);
+                        int IndexOfPaymentEnd = Payments.IndexOf(")");
+                        string PaymentCode = Payments.Substring(0, IndexOfPaymentEnd);
 
-                    data.Date = statements[0].Replace("/2", "/202");
-                    data.Payment = PaymentCode;
-                    data.Branch = statements[count - 1];
-                    data.Balance = statements[count - 2];
-                    data.Amount = statements[count - 3];
+                        data.Date = statements[0].Replace("/2", "/202");
+                        data.Payment = PaymentCode;
+                        data.Branch = statements[count - 1];
+                        data.Balance = statements[count - 2];
+                        data.Amount = statements[count - 3];
 
-                    int Start = 0;
-                    int LengthOfPayment = PaymentCode.Length + 1;
+                        int Start = 0;
+                        int LengthOfPayment = PaymentCode.Length + 1;
 
-                    Start = value.IndexOf("(" + PaymentCode + ")") + 2;
+                        Start = value.IndexOf("(" + PaymentCode + ")") + 2;
 
-                    string Detail = value.Remove(0, (Start + LengthOfPayment));
-                    string Details = Detail.Substring(0, Detail.IndexOf(data.Amount) - 1);
+                        string Detail = value.Remove(0, (Start + LengthOfPayment));
+                        string Details = Detail.Substring(0, Detail.IndexOf(data.Amount) - 1);
 
-                    data.Detail = Details;
+                        data.Detail = Details;
+                    }
+                    else
+                    {
+                        var PASWP = Regex.Match(value, "PASWP");
+
+                        if (PASWP.Success)
+                        {
+                            data.Date = statements[0].Replace("/2", "/202");
+                            data.Branch = statements[count - 1];
+                            data.Balance = statements[count - 2];
+                            data.Amount = statements[count - 3];
+
+                            data.Payment = statements[1];
+                            data.Detail = statements[2];
+                        }
+                    }
                 }
 
                 row++;

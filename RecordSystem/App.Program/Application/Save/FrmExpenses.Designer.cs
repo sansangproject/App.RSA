@@ -295,11 +295,11 @@
             this.btnTitleCase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTitleCase.ForeColor = System.Drawing.Color.Transparent;
             this.btnTitleCase.Image = ((System.Drawing.Image)(resources.GetObject("btnTitleCase.Image")));
-            this.btnTitleCase.Location = new System.Drawing.Point(935, 198);
+            this.btnTitleCase.Location = new System.Drawing.Point(907, 198);
             this.btnTitleCase.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTitleCase.Name = "btnTitleCase";
-            this.btnTitleCase.Size = new System.Drawing.Size(25, 24);
-            this.btnTitleCase.TabIndex = 253;
+            this.btnTitleCase.Size = new System.Drawing.Size(20, 20);
+            this.btnTitleCase.TabIndex = 255;
             this.btnTitleCase.TabStop = false;
             this.btnTitleCase.UseVisualStyleBackColor = false;
             this.btnTitleCase.Click += new System.EventHandler(this.btnTitleCase_Click);
@@ -997,7 +997,7 @@
             this.txtItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtItem.Location = new System.Drawing.Point(507, 198);
             this.txtItem.Name = "txtItem";
-            this.txtItem.Size = new System.Drawing.Size(420, 21);
+            this.txtItem.Size = new System.Drawing.Size(394, 21);
             this.txtItem.TabIndex = 107;
             this.txtItem.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtItem_KeyPress);
             // 

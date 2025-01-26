@@ -333,7 +333,6 @@
             this.txtReceive.Size = new System.Drawing.Size(113, 26);
             this.txtReceive.TabIndex = 245;
             this.txtReceive.TabStop = false;
-            this.txtReceive.TextChanged += new System.EventHandler(this.txtReceive_TextChanged);
             // 
             // label15
             // 
@@ -438,6 +437,7 @@
             this.txtGoldPriceBuy.Size = new System.Drawing.Size(113, 26);
             this.txtGoldPriceBuy.TabIndex = 236;
             this.txtGoldPriceBuy.TabStop = false;
+            this.txtGoldPriceBuy.TextChanged += new System.EventHandler(this.txtGoldPriceBuy_TextChanged);
             this.txtGoldPriceBuy.Leave += new System.EventHandler(this.txtGoldPriceBuy_Leave);
             // 
             // label9
@@ -1084,6 +1084,7 @@
             // txtGoldPriceSell
             // 
             this.txtGoldPriceSell.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtGoldPriceSell.Enabled = false;
             this.txtGoldPriceSell.Font = new System.Drawing.Font("Mitr Light", 12F);
             this.txtGoldPriceSell.ForeColor = System.Drawing.Color.Green;
             this.txtGoldPriceSell.Location = new System.Drawing.Point(954, 248);
@@ -1092,7 +1093,6 @@
             this.txtGoldPriceSell.Size = new System.Drawing.Size(113, 26);
             this.txtGoldPriceSell.TabIndex = 1;
             this.txtGoldPriceSell.TabStop = false;
-            this.txtGoldPriceSell.Leave += new System.EventHandler(this.txtGoldPriceSell_Leave);
             // 
             // cbbStatus
             // 

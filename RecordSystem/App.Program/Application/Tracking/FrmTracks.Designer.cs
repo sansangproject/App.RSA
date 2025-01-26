@@ -279,11 +279,11 @@
             this.btnTitleCase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTitleCase.ForeColor = System.Drawing.Color.Transparent;
             this.btnTitleCase.Image = ((System.Drawing.Image)(resources.GetObject("btnTitleCase.Image")));
-            this.btnTitleCase.Location = new System.Drawing.Point(863, 265);
+            this.btnTitleCase.Location = new System.Drawing.Point(831, 268);
             this.btnTitleCase.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTitleCase.Name = "btnTitleCase";
-            this.btnTitleCase.Size = new System.Drawing.Size(23, 27);
-            this.btnTitleCase.TabIndex = 229;
+            this.btnTitleCase.Size = new System.Drawing.Size(20, 20);
+            this.btnTitleCase.TabIndex = 255;
             this.btnTitleCase.TabStop = false;
             this.btnTitleCase.UseVisualStyleBackColor = false;
             this.btnTitleCase.Click += new System.EventHandler(this.btnTitleCase_Click);
@@ -942,7 +942,7 @@
             this.txtProduct.Location = new System.Drawing.Point(579, 268);
             this.txtProduct.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtProduct.Name = "txtProduct";
-            this.txtProduct.Size = new System.Drawing.Size(272, 21);
+            this.txtProduct.Size = new System.Drawing.Size(246, 21);
             this.txtProduct.TabIndex = 132;
             // 
             // cbbStatus
