@@ -470,7 +470,8 @@ namespace SANSANG.Class
                 Data.Item = Statements[2].Replace("...", ""); ;
                 Data.Amount = Function.MoveNumberStringComma(Statements[3]);
                 Data.Balance = Function.MoveNumberStringComma(Statements[4]);
-                Data.Channel = Statements[5];
+                
+                Data.Channel = Length <= 5? "" : Statements[5];
 
                 for (int i = 6; i < Length; i++)
                 {
