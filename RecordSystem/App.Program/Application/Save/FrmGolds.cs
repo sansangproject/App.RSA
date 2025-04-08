@@ -93,6 +93,7 @@ namespace SANSANG
         public void Clear()
         {
             Function.ClearAll(gbForm);
+            Function.ClearAll(gbMaster);
 
             pb_Date_True.Visible = false;
             pb_Date_False.Visible = true;
@@ -525,6 +526,11 @@ namespace SANSANG
         public string GetDetails()
         {
             return dtDate.Text + " (฿" + txtReceive.Text + ")";
+
+        }
+        public string GetMasterDetails()
+        {
+            return Date.GetDate(dtp: dtPayDate, Format: 9) + " (" + txtNumOfDay.Text + " Days) - " + txtPerMonth.Text + " Baht";
         }
 
         private void txtReceive_TextChanged(object sender, EventArgs e)
@@ -612,6 +618,7 @@ namespace SANSANG
             {
                 double num = Convert.ToDouble(txtGoldPriceBuy.Text);
                 txtGoldPriceBuy.Text = String.Format("{0:n}", num);
+                btnAdd.Focus();
             }
             catch (Exception ex)
             {
@@ -652,6 +659,72 @@ namespace SANSANG
             else
             {
                 CalculateGoldReceive();
+            }
+        }
+
+        private void KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                try
+                {
+                    txtGoldPriceBuy_Leave(sender, e);
+                }
+                catch (Exception ex)
+                {
+                    Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+                }
+            }
+        }
+
+        private void btnAddMaster_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(txtNumOfDay.Text) && !string.IsNullOrEmpty(txtPerMonth.Text) && !string.IsNullOrEmpty(txtBuyAmount.Text))
+                {
+                    if (!Function.IsDuplicates(Table.Workday, Date.GetDate(dtp: dtPayDate, Format: 4), txtNumOfDay.Text, txtPerMonth.Text, txtBuyAmount.Text, Detail: GetMasterDetails()))
+                    {
+                        txtCode.Text = Function.GetCodes(Table.WorkdayId, "", "Generated");
+
+                        DateTime DateSelected = dtPayDate.Value;
+
+                        DateTime FirstDay = new DateTime(DateSelected.Year, DateSelected.Month, 1);
+                        DateTime LastDay = FirstDay.AddMonths(1).AddDays(-1);
+
+                        Parameter = new string[,]
+                        {
+                            {"@Id", ""},
+                            {"@Code", txtCode.Text},
+                            {"@Status", "1000"},
+                            {"@User", UserId},
+                            {"@IsActive", "1"},
+                            {"@IsDelete", "0"},
+                            {"@Operation", Operation.InsertAbbr},
+                            {"@FirstDay", FirstDay.ToString("yyyy-MM-dd")},
+                            {"@LastDay", LastDay.ToString("yyyy-MM-dd")},
+                            {"@PaymentDay", Date.GetDate(dtp: dtPayDate, Format: 4)},
+                            {"@Days", txtNumOfDay.Text},
+                            {"@Month", Date.GetDate(dtp: dtPayDate, Format: 7)},
+                            {"@Year", Date.GetDate(dtp: dtPayDate, Format: 8)},
+                            {"@SavingPerMonth", txtPerMonth.Text},
+                            {"@AmountPerDay", txtBuyAmount.Text},
+                        };
+
+                        if (Insert.Add(AppCode, AppName, UserId, Store.ManageWorkday, Parameter, txtCode.Text, Details: GetMasterDetails()))
+                        {
+                            Clear();
+                        }
+                    }
+                }
+                else
+                {
+                    Message.ShowRequestData();
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
             }
         }
     }

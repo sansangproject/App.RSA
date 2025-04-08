@@ -39,6 +39,7 @@ namespace SANSANG.Constant
         public static string Credit = "[Credits]";
         public static string Statement = "[Statements]";
         public static string Product = "[Products]";
+        public static string Stock = "[Stocks]";
         public static string Member = "[Members]";
 
         public static string Workday = "[Workday]";
@@ -88,6 +89,7 @@ namespace SANSANG.Constant
         public string ManageCredit = string.Format(Stores, SPR, Credit);
         public string ManageStatement = string.Format(Stores, SPR, Statement);
         public string ManageProduct = string.Format(Stores, SPR, Product);
+        public string ManageStock = string.Format(Stores, SPR, Stock);
         public string ManageMember = string.Format(Stores, SPR, Member);
         public string ManageCategory = string.Format(Stores, SPR, Category);
         public string ManageMoney = string.Format(Stores, SPR, Money);

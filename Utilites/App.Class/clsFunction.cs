@@ -16,6 +16,8 @@ using SANSANG.Utilites.App.Model;
 using SANSANG.Database;
 using SANSANG.Utilites.App.Forms;
 using System.ComponentModel;
+using Excel = Microsoft.Office.Interop.Excel;
+using Forms = System.Windows.Forms;
 
 namespace SANSANG.Class
 {
@@ -208,7 +210,7 @@ namespace SANSANG.Class
                 if (string.IsNullOrEmpty(Error))
                 {
                     int Category = Convert.ToInt16(dt.Rows[0]["CategoryId"].ToString());
-                    Details = Category != 1070? dt.Rows[0]["Display"].ToString() 
+                    Details = Category != 1070 ? dt.Rows[0]["Display"].ToString()
                                               : dt.Rows[0]["NameEn"].ToString() + " | " + dt.Rows[0]["Name"].ToString();
                     Items = "รายการเดินบัญชี";
                     return Convert.ToBoolean(dt.Rows[0]["IsDebit"].ToString());
@@ -1372,7 +1374,7 @@ namespace SANSANG.Class
                 };
 
                 db.Get(Store.FnGetTopId, Parameter, out strErr, out dt);
-                Id = strErr != ""? string.Format("{0:0000}", Convert.ToInt32(dt.Rows[0][column].ToString())) : "";
+                Id = strErr != "" ? string.Format("{0:0000}", Convert.ToInt32(dt.Rows[0][column].ToString())) : "";
                 return Id;
             }
             catch (Exception)
@@ -2324,7 +2326,7 @@ namespace SANSANG.Class
             try
             {
                 string numberOnly = "";
-                
+
                 for (int i = 0; i < phoneNumber.Length; i++)
                 {
                     if (Char.IsDigit(phoneNumber[i]))
@@ -2547,7 +2549,7 @@ namespace SANSANG.Class
             if (lines[1].Length == 18)
             {
                 em.CaRefNo = lines[1].Substring(0, 9);
-                em.Unit = Convert.ToInt32(lines[1].Substring(10,7));
+                em.Unit = Convert.ToInt32(lines[1].Substring(10, 7));
                 em.qrLine2 = lines[1];
             }
 

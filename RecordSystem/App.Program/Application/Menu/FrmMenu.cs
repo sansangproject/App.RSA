@@ -8,6 +8,7 @@ using SANSANG.Class;
 using SANSANG.Database;
 using SANSANG.Constant;
 using System.Collections.Generic;
+using App;
 
 namespace SANSANG
 {
@@ -379,6 +380,11 @@ namespace SANSANG
                 FrmStatements Frm = new FrmStatements(UserId, UserName, UserSurname, UserType);
                 Frm.Show();
             }
+            else if (((RadMenuItem)sender).Name == "SAVPS00")
+            {
+                FrmStocks Frm = new FrmStocks(UserId, UserName, UserSurname, UserType);
+                Frm.Show();
+            }
             else if (((RadMenuItem)sender).Name == "SAVPR00")
             {
                 FrmProducts Frm = new FrmProducts(UserId, UserName, UserSurname, UserType);
@@ -419,8 +425,23 @@ namespace SANSANG
                 FrmWaters Frm = new FrmWaters(UserId, UserName, UserSurname, UserType);
                 Frm.Show();
             }
-            Log.WriteLogData("MENU", ((RadMenuItem)sender).Name, UserId, "Open");
+            else if (((RadMenuItem)sender).Name == "MWASA00")
+            {
+                FrmWaters Frm = new FrmWaters(UserId, UserName, UserSurname, UserType);
+                Frm.Show();
+            }
+            else if (((RadMenuItem)sender).Name == "SETRP00")
+            {
+                FrmRemovePassword Frm = new FrmRemovePassword(UserId, UserName, UserSurname, UserType);
+                Frm.Show();
+            }
+            else if (((RadMenuItem)sender).Name == "SETRN00")
+            {
+                FrmImageRename Frm = new FrmImageRename(UserId, UserName, UserSurname, UserType);
+                Frm.Show();
+            }
 
+            Log.WriteLogData("MENU", ((RadMenuItem)sender).Name, UserId, "Open");
         }
     }
 }

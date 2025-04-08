@@ -29,9 +29,26 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmGolds));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cbbMember = new System.Windows.Forms.ComboBox();
             this.gbForm = new System.Windows.Forms.GroupBox();
+            this.gbMaster = new System.Windows.Forms.GroupBox();
+            this.btnAddMaster = new System.Windows.Forms.Button();
+            this.label50 = new System.Windows.Forms.Label();
+            this.txtBuyAmount = new System.Windows.Forms.TextBox();
+            this.label48 = new System.Windows.Forms.Label();
+            this.label49 = new System.Windows.Forms.Label();
+            this.label47 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
+            this.txtPerMonth = new System.Windows.Forms.TextBox();
+            this.label41 = new System.Windows.Forms.Label();
+            this.dtPayDate = new System.Windows.Forms.DateTimePicker();
+            this.label42 = new System.Windows.Forms.Label();
+            this.label46 = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
+            this.label45 = new System.Windows.Forms.Label();
+            this.txtNumOfDay = new System.Windows.Forms.TextBox();
+            this.label44 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
@@ -109,6 +126,7 @@
             this.txtId = new System.Windows.Forms.TextBox();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.gbForm.SuspendLayout();
+            this.gbMaster.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -140,6 +158,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gbForm.BackColor = System.Drawing.Color.White;
+            this.gbForm.Controls.Add(this.gbMaster);
             this.gbForm.Controls.Add(this.label35);
             this.gbForm.Controls.Add(this.label34);
             this.gbForm.Controls.Add(this.label33);
@@ -198,11 +217,223 @@
             this.gbForm.TabIndex = 46;
             this.gbForm.TabStop = false;
             // 
+            // gbMaster
+            // 
+            this.gbMaster.Controls.Add(this.btnAddMaster);
+            this.gbMaster.Controls.Add(this.label50);
+            this.gbMaster.Controls.Add(this.txtBuyAmount);
+            this.gbMaster.Controls.Add(this.label48);
+            this.gbMaster.Controls.Add(this.label49);
+            this.gbMaster.Controls.Add(this.label47);
+            this.gbMaster.Controls.Add(this.label38);
+            this.gbMaster.Controls.Add(this.txtPerMonth);
+            this.gbMaster.Controls.Add(this.label41);
+            this.gbMaster.Controls.Add(this.dtPayDate);
+            this.gbMaster.Controls.Add(this.label42);
+            this.gbMaster.Controls.Add(this.label46);
+            this.gbMaster.Controls.Add(this.label43);
+            this.gbMaster.Controls.Add(this.label45);
+            this.gbMaster.Controls.Add(this.txtNumOfDay);
+            this.gbMaster.Controls.Add(this.label44);
+            this.gbMaster.Location = new System.Drawing.Point(1282, 130);
+            this.gbMaster.Name = "gbMaster";
+            this.gbMaster.Size = new System.Drawing.Size(427, 228);
+            this.gbMaster.TabIndex = 268;
+            this.gbMaster.TabStop = false;
+            this.gbMaster.Text = "+ Gold Savings Master";
+            // 
+            // btnAddMaster
+            // 
+            this.btnAddMaster.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnAddMaster.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddMaster.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddMaster.ForeColor = System.Drawing.Color.Green;
+            this.btnAddMaster.Location = new System.Drawing.Point(300, 37);
+            this.btnAddMaster.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAddMaster.Name = "btnAddMaster";
+            this.btnAddMaster.Size = new System.Drawing.Size(29, 26);
+            this.btnAddMaster.TabIndex = 272;
+            this.btnAddMaster.TabStop = false;
+            this.btnAddMaster.Text = "+";
+            this.btnAddMaster.UseVisualStyleBackColor = false;
+            this.btnAddMaster.Click += new System.EventHandler(this.btnAddMaster_Click);
+            // 
+            // label50
+            // 
+            this.label50.AutoSize = true;
+            this.label50.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.label50.ForeColor = System.Drawing.Color.Chocolate;
+            this.label50.Location = new System.Drawing.Point(293, 161);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(27, 18);
+            this.label50.TabIndex = 271;
+            this.label50.Text = "บาท";
+            // 
+            // txtBuyAmount
+            // 
+            this.txtBuyAmount.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtBuyAmount.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtBuyAmount.Font = new System.Drawing.Font("Mitr Light", 12F);
+            this.txtBuyAmount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtBuyAmount.Location = new System.Drawing.Point(179, 157);
+            this.txtBuyAmount.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtBuyAmount.Name = "txtBuyAmount";
+            this.txtBuyAmount.Size = new System.Drawing.Size(113, 26);
+            this.txtBuyAmount.TabIndex = 268;
+            this.txtBuyAmount.TabStop = false;
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.label48.ForeColor = System.Drawing.Color.OrangeRed;
+            this.label48.Location = new System.Drawing.Point(89, 152);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(58, 18);
+            this.label48.TabIndex = 269;
+            this.label48.Text = "จำนวนเงิน:";
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Font = new System.Drawing.Font("Mitr Light", 7F);
+            this.label49.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label49.Location = new System.Drawing.Point(94, 167);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(50, 15);
+            this.label49.TabIndex = 270;
+            this.label49.Text = "AMOUNT";
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.label47.ForeColor = System.Drawing.Color.OrangeRed;
+            this.label47.Location = new System.Drawing.Point(86, 32);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(61, 18);
+            this.label47.TabIndex = 259;
+            this.label47.Text = "วันที่ตัดเงิน:";
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.label38.ForeColor = System.Drawing.Color.Chocolate;
+            this.label38.Location = new System.Drawing.Point(293, 123);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(27, 18);
+            this.label38.TabIndex = 267;
+            this.label38.Text = "บาท";
+            // 
+            // txtPerMonth
+            // 
+            this.txtPerMonth.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtPerMonth.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtPerMonth.Font = new System.Drawing.Font("Mitr Light", 12F);
+            this.txtPerMonth.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtPerMonth.Location = new System.Drawing.Point(179, 117);
+            this.txtPerMonth.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtPerMonth.Name = "txtPerMonth";
+            this.txtPerMonth.Size = new System.Drawing.Size(113, 26);
+            this.txtPerMonth.TabIndex = 258;
+            this.txtPerMonth.TabStop = false;
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.label41.ForeColor = System.Drawing.Color.Chocolate;
+            this.label41.Location = new System.Drawing.Point(293, 82);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(21, 18);
+            this.label41.TabIndex = 266;
+            this.label41.Text = "วัน";
+            // 
+            // dtPayDate
+            // 
+            this.dtPayDate.CustomFormat = "dd MMM yyyy";
+            this.dtPayDate.Font = new System.Drawing.Font("Mitr Light", 9F);
+            this.dtPayDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtPayDate.Location = new System.Drawing.Point(179, 37);
+            this.dtPayDate.Name = "dtPayDate";
+            this.dtPayDate.Size = new System.Drawing.Size(113, 26);
+            this.dtPayDate.TabIndex = 257;
+            this.dtPayDate.TabStop = false;
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Font = new System.Drawing.Font("Mitr Light", 7F);
+            this.label42.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label42.Location = new System.Drawing.Point(118, 87);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(26, 15);
+            this.label42.TabIndex = 265;
+            this.label42.Text = "DAY";
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Font = new System.Drawing.Font("Mitr Light", 7F);
+            this.label46.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label46.Location = new System.Drawing.Point(112, 48);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(32, 15);
+            this.label46.TabIndex = 260;
+            this.label46.Text = "DATE";
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.label43.ForeColor = System.Drawing.Color.OrangeRed;
+            this.label43.Location = new System.Drawing.Point(63, 72);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(84, 18);
+            this.label43.TabIndex = 264;
+            this.label43.Text = "จำนวนวันทำการ:";
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.label45.ForeColor = System.Drawing.Color.OrangeRed;
+            this.label45.Location = new System.Drawing.Point(84, 112);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(63, 18);
+            this.label45.TabIndex = 261;
+            this.label45.Text = "ออมเดือนละ:";
+            // 
+            // txtNumOfDay
+            // 
+            this.txtNumOfDay.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtNumOfDay.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtNumOfDay.Font = new System.Drawing.Font("Mitr Light", 12F);
+            this.txtNumOfDay.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtNumOfDay.Location = new System.Drawing.Point(179, 77);
+            this.txtNumOfDay.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtNumOfDay.Name = "txtNumOfDay";
+            this.txtNumOfDay.Size = new System.Drawing.Size(113, 26);
+            this.txtNumOfDay.TabIndex = 263;
+            this.txtNumOfDay.TabStop = false;
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Font = new System.Drawing.Font("Mitr Light", 7F);
+            this.label44.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label44.Location = new System.Drawing.Point(79, 126);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(65, 15);
+            this.label44.TabIndex = 262;
+            this.label44.Text = "PER MONTH";
+            // 
             // label35
             // 
             this.label35.AutoSize = true;
             this.label35.Font = new System.Drawing.Font("Mitr Light", 8F);
-            this.label35.ForeColor = System.Drawing.Color.Chocolate;
+            this.label35.ForeColor = System.Drawing.Color.OrangeRed;
             this.label35.Location = new System.Drawing.Point(1070, 282);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(27, 18);
@@ -213,7 +444,7 @@
             // 
             this.label34.AutoSize = true;
             this.label34.Font = new System.Drawing.Font("Mitr Light", 8F);
-            this.label34.ForeColor = System.Drawing.Color.Chocolate;
+            this.label34.ForeColor = System.Drawing.Color.OrangeRed;
             this.label34.Location = new System.Drawing.Point(1070, 241);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(27, 18);
@@ -224,7 +455,7 @@
             // 
             this.label33.AutoSize = true;
             this.label33.Font = new System.Drawing.Font("Mitr Light", 8F);
-            this.label33.ForeColor = System.Drawing.Color.Chocolate;
+            this.label33.ForeColor = System.Drawing.Color.OrangeRed;
             this.label33.Location = new System.Drawing.Point(1070, 201);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(27, 18);
@@ -246,7 +477,7 @@
             // 
             this.label31.AutoSize = true;
             this.label31.Font = new System.Drawing.Font("Mitr Light", 8F);
-            this.label31.ForeColor = System.Drawing.Color.Chocolate;
+            this.label31.ForeColor = System.Drawing.Color.OrangeRed;
             this.label31.Location = new System.Drawing.Point(493, 325);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(51, 18);
@@ -280,7 +511,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Mitr Light", 8F);
-            this.label8.ForeColor = System.Drawing.Color.Chocolate;
+            this.label8.ForeColor = System.Drawing.Color.OrangeRed;
             this.label8.Location = new System.Drawing.Point(482, 282);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(62, 18);
@@ -314,7 +545,7 @@
             // 
             this.label30.AutoSize = true;
             this.label30.Font = new System.Drawing.Font("Mitr Light", 8F);
-            this.label30.ForeColor = System.Drawing.Color.Chocolate;
+            this.label30.ForeColor = System.Drawing.Color.OrangeRed;
             this.label30.Location = new System.Drawing.Point(851, 282);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(61, 18);
@@ -349,7 +580,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Mitr Light", 8F);
-            this.label16.ForeColor = System.Drawing.Color.Chocolate;
+            this.label16.ForeColor = System.Drawing.Color.OrangeRed;
             this.label16.Location = new System.Drawing.Point(491, 201);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(53, 18);
@@ -384,7 +615,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Mitr Light", 8F);
-            this.label14.ForeColor = System.Drawing.Color.Chocolate;
+            this.label14.ForeColor = System.Drawing.Color.OrangeRed;
             this.label14.Location = new System.Drawing.Point(483, 241);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(61, 18);
@@ -419,7 +650,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Mitr Light", 8F);
-            this.label12.ForeColor = System.Drawing.Color.Chocolate;
+            this.label12.ForeColor = System.Drawing.Color.OrangeRed;
             this.label12.Location = new System.Drawing.Point(867, 201);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(45, 18);
@@ -438,6 +669,7 @@
             this.txtGoldPriceBuy.TabIndex = 236;
             this.txtGoldPriceBuy.TabStop = false;
             this.txtGoldPriceBuy.TextChanged += new System.EventHandler(this.txtGoldPriceBuy_TextChanged);
+            this.txtGoldPriceBuy.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeyPress);
             this.txtGoldPriceBuy.Leave += new System.EventHandler(this.txtGoldPriceBuy_Leave);
             // 
             // label9
@@ -455,7 +687,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Mitr Light", 8F);
-            this.label10.ForeColor = System.Drawing.Color.Chocolate;
+            this.label10.ForeColor = System.Drawing.Color.OrangeRed;
             this.label10.Location = new System.Drawing.Point(483, 162);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(61, 18);
@@ -493,7 +725,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Mitr Light", 8F);
-            this.label7.ForeColor = System.Drawing.Color.Chocolate;
+            this.label7.ForeColor = System.Drawing.Color.OrangeRed;
             this.label7.Location = new System.Drawing.Point(142, 241);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(34, 18);
@@ -530,7 +762,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Mitr Light", 8F);
-            this.label5.ForeColor = System.Drawing.Color.Chocolate;
+            this.label5.ForeColor = System.Drawing.Color.OrangeRed;
             this.label5.Location = new System.Drawing.Point(136, 282);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(40, 18);
@@ -716,14 +948,14 @@
             this.GridView.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.GridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.GridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.GridView.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.GridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.GridView.GridColor = System.Drawing.Color.Silver;
             this.GridView.Location = new System.Drawing.Point(19, 60);
             this.GridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -986,7 +1218,7 @@
             // 
             this.label32.AutoSize = true;
             this.label32.Font = new System.Drawing.Font("Mitr Light", 8F);
-            this.label32.ForeColor = System.Drawing.Color.Chocolate;
+            this.label32.ForeColor = System.Drawing.Color.OrangeRed;
             this.label32.Location = new System.Drawing.Point(134, 201);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(42, 18);
@@ -1008,7 +1240,7 @@
             // 
             this.label28.AutoSize = true;
             this.label28.Font = new System.Drawing.Font("Mitr Light", 8F);
-            this.label28.ForeColor = System.Drawing.Color.Chocolate;
+            this.label28.ForeColor = System.Drawing.Color.OrangeRed;
             this.label28.Location = new System.Drawing.Point(861, 241);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(51, 18);
@@ -1030,7 +1262,7 @@
             // 
             this.label26.AutoSize = true;
             this.label26.Font = new System.Drawing.Font("Mitr Light", 8F);
-            this.label26.ForeColor = System.Drawing.Color.Chocolate;
+            this.label26.ForeColor = System.Drawing.Color.OrangeRed;
             this.label26.Location = new System.Drawing.Point(863, 162);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(49, 18);
@@ -1052,7 +1284,7 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Mitr Light", 8F);
-            this.label18.ForeColor = System.Drawing.Color.Chocolate;
+            this.label18.ForeColor = System.Drawing.Color.OrangeRed;
             this.label18.Location = new System.Drawing.Point(147, 162);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(29, 18);
@@ -1180,6 +1412,8 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmKeyDown);
             this.gbForm.ResumeLayout(false);
             this.gbForm.PerformLayout();
+            this.gbMaster.ResumeLayout(false);
+            this.gbMaster.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).EndInit();
@@ -1273,5 +1507,22 @@
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.GroupBox gbMaster;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.TextBox txtNumOfDay;
+        private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.Label label46;
+        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.DateTimePicker dtPayDate;
+        private System.Windows.Forms.TextBox txtPerMonth;
+        private System.Windows.Forms.TextBox txtBuyAmount;
+        private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.Label label50;
+        private System.Windows.Forms.Button btnAddMaster;
     }
 }

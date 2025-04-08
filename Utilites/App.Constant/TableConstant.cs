@@ -20,13 +20,14 @@ namespace SANSANG.Constant
         public string GoldId = "1073";
         public string WaterRatesId = "1071";
         public string WatersId = "1043";
-
+        
         public string ElectricityRatesId = "1069";
         public string ElectricityId = "1042";
 
         public string ItemId = "1020";
         public string CategoryId = "1019";
         public string MoneyId = "1016";
+        public string WorkdayId = "1074";
 
         public string Expenses = "[dbo].[Expenses]";
         public string Payments = "[dbo].[Payments]";
@@ -35,11 +36,13 @@ namespace SANSANG.Constant
         public string TrackPosts = "[dbo].[TrackPosts]";
         public string Depts = "[dbo].[Debts]";
         public string Products = "[dbo].[Products]";
+        public string Stocks = "[dbo].[Stocks]";
         public string Members = "[dbo].[Members]";
 
         public string Item = "[mst].[Item]";
         public string Category = "[mst].[Category]";
         public string Money = "[mst].[Money]";
+        public string Workday = "[mst].[Workday]";
 
         public string Logo = "[mst].[Logo]";
         public string Shop = "[mst].[Shop]";

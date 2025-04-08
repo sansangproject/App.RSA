@@ -21,7 +21,7 @@ namespace SANSANG.Constant
         public string BankId = "[mst].[Bank] Short Id IsCredit 1";
         public string ProductTypeId = "[mst].[ProductType] Display Id Status 1000";
         public string UserId = "[mst].[User] Code Id Type 1001";
-
+        
         public string WaterAccountId = "[mst].[WaterAccount] AccountNo Id Status 1014";
         public string WaterRatesId = "[mst].[WaterRates] Version Id AccountId {0}";
 
@@ -56,7 +56,7 @@ namespace SANSANG.Constant
         public string Accounts = "Account";
         public string Members = "Members";
         public string PayTypes = "PayTypes";
-
+        public string Products = "Products";
 
 
 

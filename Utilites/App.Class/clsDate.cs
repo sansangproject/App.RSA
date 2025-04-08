@@ -181,6 +181,21 @@ namespace SANSANG.Class
             else if (DateFormat == 6)
             {
                 strDate = Day + " " + Months + " " + Year;
+            } 
+            //MM
+            else if (DateFormat == 7)
+            {
+                strDate = Month;
+            } 
+            //yyyy
+            else if (DateFormat == 8)
+            {
+                strDate = Year;
+            }
+            //MMMM yyyy
+            else if (DateFormat == 9)
+            {
+                strDate = Months + " " + Year;
             }
             else
             {
