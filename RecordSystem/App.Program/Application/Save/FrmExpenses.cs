@@ -11,6 +11,7 @@ using RecordSystemApplication.App.Program.Application.Payment;
 using Message = System.Windows.Forms.Message;
 using System.Collections.Generic;
 using static System.Resources.ResXFileRef;
+using System.Linq;
 
 namespace SANSANG
 {
@@ -1663,6 +1664,7 @@ namespace SANSANG
             try
             {
                 DataTable Data = new DataTable();
+                var banks = new[] { "KTB", "KBANK", "BAY" , "QR Payment (BAY)", "QR Payment (CIMB)", "QR Payment (KTB)" };
 
                 DataGridViewContentAlignment mc = DataGridViewContentAlignment.MiddleCenter;
                 DataGridViewContentAlignment ml = DataGridViewContentAlignment.MiddleLeft;
@@ -1670,7 +1672,7 @@ namespace SANSANG
 
                 for (int Index = 0; Index <= 1; Index++)
                 {
-                    Data = Value.Tables[Index].DefaultView.ToTable(true, "SNo", "Code", "Payments", "Moneys", "Amounts", "StatusName", "Id");
+                    Data = Value.Tables[Index].DefaultView.ToTable(true, "SNo", "Payments", "Moneys", "Amounts", "Status", "Reference", "Id");
                     DataRows += Function.GetRows(Data);
 
                     if (Function.GetRows(Data) > 0)
@@ -1681,25 +1683,36 @@ namespace SANSANG
                             DataGridView0.DataSource = null;
 
                             Function.ShowGridViewFormatFromStore(Data, DataGridView0,
-                              " ลำดับ", 35, true, mc, mc
-                            , "รหัสอ้างอิง", 50, false, mc, mc
-                            , "รายการ", 180, true, ml, ml
-                            , "ประเภทเงิน", 80, true, ml, ml
-                            , "จำนวนเงิน", 70, true, mr, mr
-                            , "สถานะ", 0, false, ml, ml
-                            , "", 0, false, mc, mc
+                                  " ลำดับ", 35, true, mc, mc
+                                , "รายการ", 180, true, ml, ml
+                                , "ประเภทเงิน", 80, true, ml, ml
+                                , "จำนวนเงิน", 70, true, mr, mr
+                                , "สถานะ", 0, false, ml, ml
+                                , "", 0, false, mc, mc
+                                , "", 0, false, mc, mc
                             );
 
                             CurrencyManager Cm = (CurrencyManager)BindingContext[DataGridView0.DataSource];
 
                             foreach (DataGridViewRow dgvr in DataGridView0.Rows)
                             {
-                                if (dgvr.Cells[3].Value.ToString() == "Cash")
+                                if (dgvr.Cells[2].Value.ToString() == "Cash")
                                 {
                                     dgvr.DefaultCellStyle.ForeColor = Color.DimGray;
                                 }
 
-                                if (!ShowNext && dgvr.Cells[2].Value.ToString() == Strings.Next)
+                                if (dgvr.Cells[4].Value != null && dgvr.Cells[4].Value.ToString() == "1001")
+                                {
+                                    var baseFont = dgvr.DefaultCellStyle.Font ?? DataGridView0.DefaultCellStyle.Font ?? new Font("Mitr Light", 9.75F);
+                                    dgvr.DefaultCellStyle.Font = new Font(baseFont, FontStyle.Strikeout);
+                                }
+
+                                if (banks.Contains(dgvr.Cells[2].Value.ToString()) && dgvr.Cells[5].Value.ToString() == "")
+                                {
+                                    dgvr.DefaultCellStyle.ForeColor = Color.Gold;
+                                }
+
+                                if (!ShowNext && dgvr.Cells[1].Value.ToString() == Strings.Next)
                                 {
                                     Cm.SuspendBinding();
                                     dgvr.Visible = false;
@@ -1711,25 +1724,32 @@ namespace SANSANG
                             DataGridView1.DataSource = null;
 
                             Function.ShowGridViewFormatFromStore(Data, DataGridView1,
-                              " ลำดับ", 35, true, mc, mc
-                            , "รหัสอ้างอิง", 50, false, mc, mc
-                            , "รายการ", 180, true, ml, ml
-                            , "ประเภทเงิน", 80, true, ml, ml
-                            , "จำนวนเงิน", 70, true, mr, mr
-                            , "สถานะ", 0, false, ml, ml
-                            , "", 0, false, mc, mc
-                            );
+                                 " ลำดับ", 35, true, mc, mc
+                               , "รายการ", 180, true, ml, ml
+                               , "ประเภทเงิน", 80, true, ml, ml
+                               , "จำนวนเงิน", 70, true, mr, mr
+                               , "สถานะ", 0, false, ml, ml
+                               , "", 0, false, mc, mc
+                               , "", 0, false, mc, mc
+                           );
+
 
                             CurrencyManager Cm = (CurrencyManager)BindingContext[DataGridView1.DataSource];
 
                             foreach (DataGridViewRow dgvr in DataGridView1.Rows)
                             {
-                                if (dgvr.Cells[3].Value.ToString() == "Cash")
+                                if (dgvr.Cells[2].Value.ToString() == "Cash")
                                 {
                                     dgvr.DefaultCellStyle.ForeColor = Color.DimGray;
                                 }
 
-                                if (!ShowNext && dgvr.Cells[2].Value.ToString() == Strings.Next)
+                                if (dgvr.Cells[4].Value != null && dgvr.Cells[4].Value.ToString() == "1001")
+                                {
+                                    var baseFont = dgvr.DefaultCellStyle.Font ?? DataGridView0.DefaultCellStyle.Font ?? new Font("Mitr Light", 9.75F);
+                                    dgvr.DefaultCellStyle.Font = new Font(baseFont, FontStyle.Strikeout);
+                                }
+
+                                if (!ShowNext && dgvr.Cells[1].Value.ToString() == Strings.Next)
                                 {
                                     Cm.SuspendBinding();
                                     dgvr.Visible = false;

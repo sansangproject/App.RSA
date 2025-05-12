@@ -31,7 +31,7 @@ namespace SANSANG.Constant
         public string TMB6273 = "";
         public string TMB8718 = "";
         public string TMB8833 = "";
-        public string TMB3334 = "";
+        public string TTB3334 = "1027";
         public string SCB9100 = "";
         public string SCB8253 = "";
         public string CIMB2484 = "";

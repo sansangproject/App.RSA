@@ -358,6 +358,11 @@ namespace SANSANG.Class
                 {
                     NameEn = Codes == "โอนเงิน" ? "Transfer Withdrawal" : "";
                 }
+                if (Payments == "1057")
+                {
+                    NameEn = Codes;
+                    Codes = "";
+                }
 
                 Parameter = new string[,]
                 {
@@ -378,11 +383,22 @@ namespace SANSANG.Class
 
                 db.Get(Store.FnGetItemId, Parameter, out Error, out dt);
 
-                PaymentId = dt.Rows[0]["Id"].ToString();
-                Items = dt.Rows[0]["NameEn"].ToString();
-                Details = dt.Rows[0]["Detail"].ToString();
-                Displays = dt.Rows[0]["NameEn"].ToString() + " | " + dt.Rows[0]["Name"].ToString();
-                IsWithdrawal = Convert.ToBoolean(dt.Rows[0]["IsDebit"].ToString()) ? false : true;
+                if (dt != null && dt.Rows.Count == 1)
+                {
+                    PaymentId = dt.Rows[0]["Id"].ToString();
+                    Items = dt.Rows[0]["NameEn"].ToString();
+                    Details = dt.Rows[0]["Detail"].ToString();
+                    Displays = dt.Rows[0]["NameEn"].ToString() + " | " + dt.Rows[0]["Name"].ToString();
+                    IsWithdrawal = Convert.ToBoolean(dt.Rows[0]["IsDebit"].ToString()) ? false : true;
+                }
+                else
+                {
+                    PaymentId = "";
+                    Items = "";
+                    Details = "";
+                    Displays = "";
+                    IsWithdrawal = false;
+                }
             }
             catch (Exception)
             {
@@ -632,6 +648,69 @@ namespace SANSANG.Class
             dataGridView.Columns[6].Width = Col6Width;
             dataGridView.Columns[6].HeaderCell.Style.Alignment = Col6HeadStyle;
             dataGridView.Columns[6].DefaultCellStyle.Alignment = Col6DefaultStyle;
+        }
+
+        public void ShowGridViewFormatFromStore(DataTable dt, DataGridView dataGridView,
+            string Col0Name, int Col0Width, Boolean Col0Show, DataGridViewContentAlignment Col0HeadStyle, DataGridViewContentAlignment Col0DefaultStyle
+          , string Col1Name, int Col1Width, Boolean Col1Show, DataGridViewContentAlignment Col1HeadStyle, DataGridViewContentAlignment Col1DefaultStyle
+          , string Col2Name, int Col2Width, Boolean Col2Show, DataGridViewContentAlignment Col2HeadStyle, DataGridViewContentAlignment Col2DefaultStyle
+          , string Col3Name, int Col3Width, Boolean Col3Show, DataGridViewContentAlignment Col3HeadStyle, DataGridViewContentAlignment Col3DefaultStyle
+          , string Col4Name, int Col4Width, Boolean Col4Show, DataGridViewContentAlignment Col4HeadStyle, DataGridViewContentAlignment Col4DefaultStyle
+          , string Col5Name, int Col5Width, Boolean Col5Show, DataGridViewContentAlignment Col5HeadStyle, DataGridViewContentAlignment Col5DefaultStyle
+          , string Col6Name, int Col6Width, Boolean Col6Show, DataGridViewContentAlignment Col6HeadStyle, DataGridViewContentAlignment Col6DefaultStyle
+          , string Col7Name, int Col7Width, Boolean Col7Show, DataGridViewContentAlignment Col7HeadStyle, DataGridViewContentAlignment Col7DefaultStyle
+          )
+        {
+            dataGridView.DataSource = dt;
+            numberRow(dataGridView);
+
+            dataGridView.Columns[0].Visible = Col0Show;
+            dataGridView.Columns[0].HeaderText = Col0Name;
+            dataGridView.Columns[0].Width = Col0Width;
+            dataGridView.Columns[0].HeaderCell.Style.Alignment = Col0HeadStyle;
+            dataGridView.Columns[0].DefaultCellStyle.Alignment = Col0DefaultStyle;
+
+            dataGridView.Columns[1].Visible = Col1Show;
+            dataGridView.Columns[1].HeaderText = Col1Name;
+            dataGridView.Columns[1].Width = Col1Width;
+            dataGridView.Columns[1].HeaderCell.Style.Alignment = Col1HeadStyle;
+            dataGridView.Columns[1].DefaultCellStyle.Alignment = Col1DefaultStyle;
+
+            dataGridView.Columns[2].Visible = Col2Show;
+            dataGridView.Columns[2].HeaderText = Col2Name;
+            dataGridView.Columns[2].Width = Col2Width;
+            dataGridView.Columns[2].HeaderCell.Style.Alignment = Col2HeadStyle;
+            dataGridView.Columns[2].DefaultCellStyle.Alignment = Col2DefaultStyle;
+
+            dataGridView.Columns[3].Visible = Col3Show;
+            dataGridView.Columns[3].HeaderText = Col3Name;
+            dataGridView.Columns[3].Width = Col3Width;
+            dataGridView.Columns[3].HeaderCell.Style.Alignment = Col3HeadStyle;
+            dataGridView.Columns[3].DefaultCellStyle.Alignment = Col3DefaultStyle;
+
+            dataGridView.Columns[4].Visible = Col4Show;
+            dataGridView.Columns[4].HeaderText = Col4Name;
+            dataGridView.Columns[4].Width = Col4Width;
+            dataGridView.Columns[4].HeaderCell.Style.Alignment = Col4HeadStyle;
+            dataGridView.Columns[4].DefaultCellStyle.Alignment = Col4DefaultStyle;
+
+            dataGridView.Columns[5].Visible = Col5Show;
+            dataGridView.Columns[5].HeaderText = Col5Name;
+            dataGridView.Columns[5].Width = Col5Width;
+            dataGridView.Columns[5].HeaderCell.Style.Alignment = Col5HeadStyle;
+            dataGridView.Columns[5].DefaultCellStyle.Alignment = Col5DefaultStyle;
+
+            dataGridView.Columns[6].Visible = Col6Show;
+            dataGridView.Columns[6].HeaderText = Col6Name;
+            dataGridView.Columns[6].Width = Col6Width;
+            dataGridView.Columns[6].HeaderCell.Style.Alignment = Col6HeadStyle;
+            dataGridView.Columns[6].DefaultCellStyle.Alignment = Col6DefaultStyle;
+
+            dataGridView.Columns[7].Visible = Col7Show;
+            dataGridView.Columns[7].HeaderText = Col7Name;
+            dataGridView.Columns[7].Width = Col7Width;
+            dataGridView.Columns[7].HeaderCell.Style.Alignment = Col7HeadStyle;
+            dataGridView.Columns[7].DefaultCellStyle.Alignment = Col7DefaultStyle;
         }
 
         public void ShowGridViewFormatFromStore(DataTable dt, DataGridView dataGridView,
