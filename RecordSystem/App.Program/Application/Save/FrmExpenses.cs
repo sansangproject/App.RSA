@@ -1923,5 +1923,10 @@ namespace SANSANG
         {
             Converts.TitleCase(txtItem);
         }
+
+        private void btnTitleUpper_Click(object sender, EventArgs e)
+        {
+            Converts.UpperCase(txtReference);
+        }
     }
 }

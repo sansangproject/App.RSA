@@ -538,7 +538,7 @@ namespace SANSANG
             }
             else
             {
-                if (e.KeyChar == Convert.ToChar(Keys.Enter))
+                if (e.KeyChar == Convert.ToChar(Keys.Enter) && !string.IsNullOrEmpty(txtBarcode.Text))
                 {
                     Search(true);
                     SearchBarcode();
@@ -864,21 +864,25 @@ namespace SANSANG
 
             db.Get(Store.ManageProduct, Parameter, out Error, out dt);
 
-            cbbProducts.SelectedValue = dt.Rows[0]["Id"].ToString();
-            txtBarcode.Text = dt.Rows[0]["Barcode"].ToString();
-            txtNameEn.Text = dt.Rows[0]["NameEn"].ToString();
-            txtBrand.Text = dt.Rows[0]["Brand"].ToString();
-
-            if (!string.IsNullOrEmpty(txtBarcode.Text))
+            if (!string.IsNullOrEmpty(Error))
             {
-                pbQrcode.Image = Barcode.EAN13(txtBarcode.Text, Color.Black, Color.White, 60);
-            }
-            else
-            {
-                pbQrcode.Image = null;
+                cbbProducts.SelectedValue = dt.Rows[0]["Id"].ToString();
+                txtBarcode.Text = dt.Rows[0]["Barcode"].ToString();
+                txtNameEn.Text = dt.Rows[0]["NameEn"].ToString();
+                txtBrand.Text = dt.Rows[0]["Brand"].ToString();
+
+                if (!string.IsNullOrEmpty(txtBarcode.Text))
+                {
+                    pbQrcode.Image = Barcode.EAN13(txtBarcode.Text, Color.Black, Color.White, 60);
+                }
+                else
+                {
+                    pbQrcode.Image = null;
+                }
+
+                pbImage.ImageLocation = dt.Rows[0]["Locations"].ToString();
             }
 
-            pbImage.ImageLocation = dt.Rows[0]["Locations"].ToString();
             Search(true);
             GridView.Focus();
         }

@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmExpenses));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmExpenses));
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnTitleCase = new System.Windows.Forms.Button();
             this.btnCopyReference = new System.Windows.Forms.Button();
@@ -149,6 +149,7 @@
             this.cb_Discount = new System.Windows.Forms.CheckBox();
             this.cb_Calculate = new System.Windows.Forms.CheckBox();
             this.cb_Reference = new System.Windows.Forms.CheckBox();
+            this.btnTitleUpper = new System.Windows.Forms.Button();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Receipt_False)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Reference_False)).BeginInit();
@@ -184,6 +185,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox4.BackColor = System.Drawing.Color.White;
+            this.groupBox4.Controls.Add(this.btnTitleUpper);
             this.groupBox4.Controls.Add(this.btnTitleCase);
             this.groupBox4.Controls.Add(this.btnCopyReference);
             this.groupBox4.Controls.Add(this.pb_Receipt_False);
@@ -310,7 +312,7 @@
             this.btnCopyReference.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCopyReference.ForeColor = System.Drawing.Color.Transparent;
             this.btnCopyReference.Image = ((System.Drawing.Image)(resources.GetObject("btnCopyReference.Image")));
-            this.btnCopyReference.Location = new System.Drawing.Point(907, 336);
+            this.btnCopyReference.Location = new System.Drawing.Point(932, 336);
             this.btnCopyReference.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCopyReference.Name = "btnCopyReference";
             this.btnCopyReference.Size = new System.Drawing.Size(24, 26);
@@ -1769,6 +1771,21 @@
             this.cb_Reference.TabIndex = 251;
             this.cb_Reference.UseVisualStyleBackColor = true;
             // 
+            // btnTitleUpper
+            // 
+            this.btnTitleUpper.BackColor = System.Drawing.Color.White;
+            this.btnTitleUpper.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTitleUpper.ForeColor = System.Drawing.Color.Transparent;
+            this.btnTitleUpper.Image = ((System.Drawing.Image)(resources.GetObject("btnTitleUpper.Image")));
+            this.btnTitleUpper.Location = new System.Drawing.Point(910, 340);
+            this.btnTitleUpper.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnTitleUpper.Name = "btnTitleUpper";
+            this.btnTitleUpper.Size = new System.Drawing.Size(20, 20);
+            this.btnTitleUpper.TabIndex = 256;
+            this.btnTitleUpper.TabStop = false;
+            this.btnTitleUpper.UseVisualStyleBackColor = false;
+            this.btnTitleUpper.Click += new System.EventHandler(this.btnTitleUpper_Click);
+            // 
             // FrmExpenses
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -1940,5 +1957,6 @@
         private System.Windows.Forms.CheckBox cb_Reference;
         private System.Windows.Forms.Button btnCopyReference;
         private System.Windows.Forms.Button btnTitleCase;
+        private System.Windows.Forms.Button btnTitleUpper;
     }
 }

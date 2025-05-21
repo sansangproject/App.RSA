@@ -612,14 +612,16 @@ namespace SANSANG
                         {
                             string statusPayment = "";
 
-                            if (txtName.Text.Contains("สินเชื่อบุคคล") || txtName.Text.Contains("บัตรเครดิต"))
-                            {
-                                statusPayment = "*** ยอดค้างชำระ ";
-                            }
-                            else
-                            {
-                                statusPayment = "*** ส่วนลด ";
-                            }
+                            //if (txtName.Text.Contains("สินเชื่อบุคคล") || txtName.Text.Contains("บัตรเครดิต"))
+                            //{
+                            //    statusPayment = "*** ยอดค้างชำระ ";
+                            //}
+                            //else
+                            //{
+                            //    statusPayment = "*** ส่วนลด ";
+                            //}
+
+                            statusPayment = "*** ส่วนลด ";
 
                             lblService.Visible = true;
                             lblService.Text = string.Concat(statusPayment,Function.FormatNumber(Diff * -1)," บาท");

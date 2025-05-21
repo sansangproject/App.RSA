@@ -85,6 +85,7 @@ namespace SANSANG
             Function.ClearAll(gbMain);
             Images.ShowDefault(pbImage);
 
+            txtBarode.Text = "";
             pbQrcode.Image = null;
 
             Search(false);
@@ -131,6 +132,8 @@ namespace SANSANG
             {
                 ShowGridView(ds.Tables[0]);
             }
+
+            Parameter = null;
         }
 
         public void ShowGridView(DataTable dt)
