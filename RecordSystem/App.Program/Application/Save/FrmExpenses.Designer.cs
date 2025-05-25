@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmExpenses));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmExpenses));
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnTitleUpper = new System.Windows.Forms.Button();
             this.btnTitleCase = new System.Windows.Forms.Button();
             this.btnCopyReference = new System.Windows.Forms.Button();
             this.pb_Receipt_False = new System.Windows.Forms.PictureBox();
@@ -149,7 +150,6 @@
             this.cb_Discount = new System.Windows.Forms.CheckBox();
             this.cb_Calculate = new System.Windows.Forms.CheckBox();
             this.cb_Reference = new System.Windows.Forms.CheckBox();
-            this.btnTitleUpper = new System.Windows.Forms.Button();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Receipt_False)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Reference_False)).BeginInit();
@@ -291,13 +291,28 @@
             this.groupBox4.TabIndex = 46;
             this.groupBox4.TabStop = false;
             // 
+            // btnTitleUpper
+            // 
+            this.btnTitleUpper.BackColor = System.Drawing.Color.White;
+            this.btnTitleUpper.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTitleUpper.ForeColor = System.Drawing.Color.Transparent;
+            this.btnTitleUpper.Image = ((System.Drawing.Image)(resources.GetObject("btnTitleUpper.Image")));
+            this.btnTitleUpper.Location = new System.Drawing.Point(933, 339);
+            this.btnTitleUpper.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnTitleUpper.Name = "btnTitleUpper";
+            this.btnTitleUpper.Size = new System.Drawing.Size(20, 20);
+            this.btnTitleUpper.TabIndex = 256;
+            this.btnTitleUpper.TabStop = false;
+            this.btnTitleUpper.UseVisualStyleBackColor = false;
+            this.btnTitleUpper.Click += new System.EventHandler(this.btnTitleUpper_Click);
+            // 
             // btnTitleCase
             // 
             this.btnTitleCase.BackColor = System.Drawing.Color.White;
             this.btnTitleCase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTitleCase.ForeColor = System.Drawing.Color.Transparent;
             this.btnTitleCase.Image = ((System.Drawing.Image)(resources.GetObject("btnTitleCase.Image")));
-            this.btnTitleCase.Location = new System.Drawing.Point(907, 198);
+            this.btnTitleCase.Location = new System.Drawing.Point(933, 198);
             this.btnTitleCase.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTitleCase.Name = "btnTitleCase";
             this.btnTitleCase.Size = new System.Drawing.Size(20, 20);
@@ -312,7 +327,7 @@
             this.btnCopyReference.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCopyReference.ForeColor = System.Drawing.Color.Transparent;
             this.btnCopyReference.Image = ((System.Drawing.Image)(resources.GetObject("btnCopyReference.Image")));
-            this.btnCopyReference.Location = new System.Drawing.Point(932, 336);
+            this.btnCopyReference.Location = new System.Drawing.Point(907, 336);
             this.btnCopyReference.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCopyReference.Name = "btnCopyReference";
             this.btnCopyReference.Size = new System.Drawing.Size(24, 26);
@@ -531,7 +546,7 @@
             this.btnCopy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCopy.ForeColor = System.Drawing.Color.Transparent;
             this.btnCopy.Image = ((System.Drawing.Image)(resources.GetObject("btnCopy.Image")));
-            this.btnCopy.Location = new System.Drawing.Point(668, 335);
+            this.btnCopy.Location = new System.Drawing.Point(669, 335);
             this.btnCopy.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCopy.Name = "btnCopy";
             this.btnCopy.Size = new System.Drawing.Size(24, 26);
@@ -999,7 +1014,7 @@
             this.txtItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtItem.Location = new System.Drawing.Point(507, 198);
             this.txtItem.Name = "txtItem";
-            this.txtItem.Size = new System.Drawing.Size(394, 21);
+            this.txtItem.Size = new System.Drawing.Size(420, 21);
             this.txtItem.TabIndex = 107;
             this.txtItem.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtItem_KeyPress);
             // 
@@ -1770,21 +1785,6 @@
             this.cb_Reference.Size = new System.Drawing.Size(15, 14);
             this.cb_Reference.TabIndex = 251;
             this.cb_Reference.UseVisualStyleBackColor = true;
-            // 
-            // btnTitleUpper
-            // 
-            this.btnTitleUpper.BackColor = System.Drawing.Color.White;
-            this.btnTitleUpper.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTitleUpper.ForeColor = System.Drawing.Color.Transparent;
-            this.btnTitleUpper.Image = ((System.Drawing.Image)(resources.GetObject("btnTitleUpper.Image")));
-            this.btnTitleUpper.Location = new System.Drawing.Point(910, 340);
-            this.btnTitleUpper.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnTitleUpper.Name = "btnTitleUpper";
-            this.btnTitleUpper.Size = new System.Drawing.Size(20, 20);
-            this.btnTitleUpper.TabIndex = 256;
-            this.btnTitleUpper.TabStop = false;
-            this.btnTitleUpper.UseVisualStyleBackColor = false;
-            this.btnTitleUpper.Click += new System.EventHandler(this.btnTitleUpper_Click);
             // 
             // FrmExpenses
             // 

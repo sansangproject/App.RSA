@@ -864,7 +864,7 @@ namespace SANSANG
 
             db.Get(Store.ManageProduct, Parameter, out Error, out dt);
 
-            if (!string.IsNullOrEmpty(Error))
+            if (string.IsNullOrEmpty(Error))
             {
                 cbbProducts.SelectedValue = dt.Rows[0]["Id"].ToString();
                 txtBarcode.Text = dt.Rows[0]["Barcode"].ToString();

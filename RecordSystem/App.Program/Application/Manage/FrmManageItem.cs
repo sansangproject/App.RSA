@@ -9,6 +9,7 @@ using SANSANG.Class;
 using SANSANG.Constant;
 using SANSANG.Database;
 using SANSANG.Utilites.App.Forms;
+using static System.Resources.ResXFileRef;
 
 namespace SANSANG
 {
@@ -34,6 +35,7 @@ namespace SANSANG
         private clsFunction Function = new clsFunction();
         private clsMessage Message = new clsMessage();
         private dbConnection db = new dbConnection();
+        private clsConvert Converts = new clsConvert();
         private clsDataList List = new clsDataList();
         private clsLog Log = new clsLog();
         private clsImage Images = new clsImage();
@@ -400,6 +402,11 @@ namespace SANSANG
                 string NewCode = Function.GetRunningId(Table.Item, Column.ItemId);
                 txtCode.Text = NewCode == "" ? Code : string.Concat(Code, NewCode);
             }
+        }
+
+        private void btnTitleCase_Click(object sender, EventArgs e)
+        {
+            Converts.TitleCase(txtNameEn);
         }
     }
 }
