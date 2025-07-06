@@ -1,4 +1,6 @@
-﻿using Org.BouncyCastle.Ocsp;
+﻿using Microsoft.VisualBasic.Logging;
+using Org.BouncyCastle.Ocsp;
+using SANSANG.Class;
 using System;
 using System.IO;
 using System.Linq;
@@ -7,6 +9,7 @@ using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Tesseract;
+using static Telerik.WinControls.VirtualKeyboard.VirtualKeyboardNativeMethods;
 
 namespace App
 {
@@ -19,6 +22,7 @@ namespace App
         public string UserName;
         public string UserSurname;
         public string UserType;
+        private clsLog Log = new clsLog();
 
         public FrmImageRename(string UserIdLogin, string UserNameLogin, string UserSurNameLogin, string UserTypeLogin)
         {
@@ -84,14 +88,8 @@ namespace App
                                 {
                                     string Text = Page.GetText();
                                     string Code = "";
-
-                                    string Pattern = @"(อ ิ ง|อ ฮิ ง|อิ ง|ฮิ ง)\s*([\S]+)";
-                                    Match Match = Regex.Match(Text, Pattern, RegexOptions.Singleline);
-
-                                    if (Match.Success)
-                                    {
-                                        Code = Match.Groups[2].Value.ToUpper();
-                                    }
+                                    
+                                    Code = new string(Text.Where(char.IsLetterOrDigit).ToArray()).ToUpper();
 
                                     if (!string.IsNullOrEmpty(Code))
                                     {
@@ -107,9 +105,9 @@ namespace App
                                 }
                             }
                         }
-                        catch (Exception innerEx)
+                        catch (Exception ex)
                         {
-                            
+                            Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
                         }
                     }
                 }

@@ -1113,12 +1113,13 @@ namespace SANSANG.Class
             }
         }
 
-        public DataTable GetBankBalance(string Account)
+        public DataTable GetBankBalance(string Id, string Account)
         {
             try
             {
                 string[,] Parameter = new string[,]
                 {
+                    {"@Id", Id},
                     {"@Account", Account},
                 };
 

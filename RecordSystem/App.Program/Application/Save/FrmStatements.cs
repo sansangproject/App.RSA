@@ -155,7 +155,7 @@ namespace SANSANG
 
             db.Get(Store.ManageStatement, Parameter, out Error, out dt);
             ShowGridView(dt);
-            Balance();
+            Balance(false);
         }
 
         private string GetCondition()
@@ -397,6 +397,7 @@ namespace SANSANG
 
                 db.Get(Store.ManageStatement, Parameter, out Error, out dt);
                 ShowData(dt);
+                Balance(true);
             }
         }
 
@@ -501,7 +502,7 @@ namespace SANSANG
             GetTransactions();
         }
 
-        private void Balance()
+        private void Balance(bool Search)
         {
             string Deposits = "0.00";
             string Withdrawals = "0.00";
@@ -509,7 +510,14 @@ namespace SANSANG
 
             try
             {
-                dt = Function.GetBankBalance(cbbAccount.SelectedValue.ToString());
+                if (Search)
+                {
+                    dt = Function.GetBankBalance(txtId.Text, cbbAccount.SelectedValue.ToString());
+                }
+                else
+                {
+                    dt = Function.GetBankBalance("", cbbAccount.SelectedValue.ToString());
+                }
 
                 if (dt != null)
                 {
@@ -517,6 +525,7 @@ namespace SANSANG
                     Withdrawals = string.Format("{0:#,##0.00}", double.Parse(Convert.ToString(dt.Rows[0]["Withdrawals"].ToString())));
                     Balances = string.Format("{0:#,##0.00}", double.Parse(Convert.ToString(dt.Rows[0]["Balances"].ToString())));
                 }
+
                 txtDeposit.Text = Deposits;
                 txtWithdrawal.Text = Withdrawals;
                 txtBalance.Text = Balances;

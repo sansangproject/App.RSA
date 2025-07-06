@@ -1075,6 +1075,7 @@ namespace SANSANG.Class
             {
                 string[,] Parameter = new string[,]
                 {
+                        {"@Id", ""},
                         {"@Account", Account},
                 };
 

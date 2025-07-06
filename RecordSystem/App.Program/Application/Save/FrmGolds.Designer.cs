@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmGolds));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cbbMember = new System.Windows.Forms.ComboBox();
             this.gbForm = new System.Windows.Forms.GroupBox();
             this.gbMaster = new System.Windows.Forms.GroupBox();
@@ -273,6 +273,7 @@
             // 
             this.txtBuyAmount.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtBuyAmount.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtBuyAmount.Enabled = false;
             this.txtBuyAmount.Font = new System.Drawing.Font("Mitr Light", 12F);
             this.txtBuyAmount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtBuyAmount.Location = new System.Drawing.Point(179, 157);
@@ -287,18 +288,18 @@
             this.label48.AutoSize = true;
             this.label48.Font = new System.Drawing.Font("Mitr Light", 8F);
             this.label48.ForeColor = System.Drawing.Color.OrangeRed;
-            this.label48.Location = new System.Drawing.Point(89, 152);
+            this.label48.Location = new System.Drawing.Point(86, 152);
             this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(58, 18);
+            this.label48.Size = new System.Drawing.Size(51, 18);
             this.label48.TabIndex = 269;
-            this.label48.Text = "จำนวนเงิน:";
+            this.label48.Text = "ออมวันละ";
             // 
             // label49
             // 
             this.label49.AutoSize = true;
             this.label49.Font = new System.Drawing.Font("Mitr Light", 7F);
             this.label49.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label49.Location = new System.Drawing.Point(94, 167);
+            this.label49.Location = new System.Drawing.Point(86, 167);
             this.label49.Name = "label49";
             this.label49.Size = new System.Drawing.Size(50, 15);
             this.label49.TabIndex = 270;
@@ -311,9 +312,9 @@
             this.label47.ForeColor = System.Drawing.Color.OrangeRed;
             this.label47.Location = new System.Drawing.Point(86, 32);
             this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(61, 18);
+            this.label47.Size = new System.Drawing.Size(59, 18);
             this.label47.TabIndex = 259;
-            this.label47.Text = "วันที่ตัดเงิน:";
+            this.label47.Text = "วันที่ตัดเงิน";
             // 
             // label38
             // 
@@ -338,6 +339,9 @@
             this.txtPerMonth.Size = new System.Drawing.Size(113, 26);
             this.txtPerMonth.TabIndex = 258;
             this.txtPerMonth.TabStop = false;
+            this.txtPerMonth.TextChanged += new System.EventHandler(this.txtPerMonth_TextChanged);
+            this.txtPerMonth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPerMonth_KeyPress);
+            this.txtPerMonth.Leave += new System.EventHandler(this.txtPerMonth_TextChanged);
             // 
             // label41
             // 
@@ -366,7 +370,7 @@
             this.label42.AutoSize = true;
             this.label42.Font = new System.Drawing.Font("Mitr Light", 7F);
             this.label42.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label42.Location = new System.Drawing.Point(118, 87);
+            this.label42.Location = new System.Drawing.Point(86, 87);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(26, 15);
             this.label42.TabIndex = 265;
@@ -377,7 +381,7 @@
             this.label46.AutoSize = true;
             this.label46.Font = new System.Drawing.Font("Mitr Light", 7F);
             this.label46.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label46.Location = new System.Drawing.Point(112, 48);
+            this.label46.Location = new System.Drawing.Point(86, 48);
             this.label46.Name = "label46";
             this.label46.Size = new System.Drawing.Size(32, 15);
             this.label46.TabIndex = 260;
@@ -388,22 +392,22 @@
             this.label43.AutoSize = true;
             this.label43.Font = new System.Drawing.Font("Mitr Light", 8F);
             this.label43.ForeColor = System.Drawing.Color.OrangeRed;
-            this.label43.Location = new System.Drawing.Point(63, 72);
+            this.label43.Location = new System.Drawing.Point(86, 72);
             this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(84, 18);
+            this.label43.Size = new System.Drawing.Size(82, 18);
             this.label43.TabIndex = 264;
-            this.label43.Text = "จำนวนวันทำการ:";
+            this.label43.Text = "จำนวนวันทำการ";
             // 
             // label45
             // 
             this.label45.AutoSize = true;
             this.label45.Font = new System.Drawing.Font("Mitr Light", 8F);
             this.label45.ForeColor = System.Drawing.Color.OrangeRed;
-            this.label45.Location = new System.Drawing.Point(84, 112);
+            this.label45.Location = new System.Drawing.Point(86, 112);
             this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(63, 18);
+            this.label45.Size = new System.Drawing.Size(61, 18);
             this.label45.TabIndex = 261;
-            this.label45.Text = "ออมเดือนละ:";
+            this.label45.Text = "ออมเดือนละ";
             // 
             // txtNumOfDay
             // 
@@ -423,7 +427,7 @@
             this.label44.AutoSize = true;
             this.label44.Font = new System.Drawing.Font("Mitr Light", 7F);
             this.label44.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label44.Location = new System.Drawing.Point(79, 126);
+            this.label44.Location = new System.Drawing.Point(86, 126);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(65, 15);
             this.label44.TabIndex = 262;
@@ -948,14 +952,14 @@
             this.GridView.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.GridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.GridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.GridView.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.GridView.DefaultCellStyle = dataGridViewCellStyle7;
             this.GridView.GridColor = System.Drawing.Color.Silver;
             this.GridView.Location = new System.Drawing.Point(19, 60);
             this.GridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);

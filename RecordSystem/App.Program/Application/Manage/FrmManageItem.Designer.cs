@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmManageItem));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnSearch = new System.Windows.Forms.Button();
             this.cbbCategory = new System.Windows.Forms.ComboBox();
             this.cbbStatus = new System.Windows.Forms.ComboBox();
@@ -50,6 +50,7 @@
             this.label11 = new System.Windows.Forms.Label();
             this.gbForm = new System.Windows.Forms.GroupBox();
             this.lblDisplay = new System.Windows.Forms.TextBox();
+            this.btnTitleCase = new System.Windows.Forms.Button();
             this.pb_Thai_True = new System.Windows.Forms.PictureBox();
             this.pb_Thai_False = new System.Windows.Forms.PictureBox();
             this.cbbType = new System.Windows.Forms.ComboBox();
@@ -83,7 +84,6 @@
             this.pbBanner = new System.Windows.Forms.PictureBox();
             this.txtId = new System.Windows.Forms.TextBox();
             this.cb_Thai = new System.Windows.Forms.CheckBox();
-            this.btnTitleCase = new System.Windows.Forms.Button();
             this.gbForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Thai_True)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Thai_False)).BeginInit();
@@ -353,12 +353,27 @@
             this.lblDisplay.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lblDisplay.Font = new System.Drawing.Font("Mitr Light", 70F);
             this.lblDisplay.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblDisplay.Location = new System.Drawing.Point(200, 188);
+            this.lblDisplay.Location = new System.Drawing.Point(232, 188);
             this.lblDisplay.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lblDisplay.Name = "lblDisplay";
-            this.lblDisplay.Size = new System.Drawing.Size(1033, 147);
+            this.lblDisplay.Size = new System.Drawing.Size(1027, 147);
             this.lblDisplay.TabIndex = 213;
             this.lblDisplay.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // btnTitleCase
+            // 
+            this.btnTitleCase.BackColor = System.Drawing.Color.White;
+            this.btnTitleCase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTitleCase.ForeColor = System.Drawing.Color.Transparent;
+            this.btnTitleCase.Image = ((System.Drawing.Image)(resources.GetObject("btnTitleCase.Image")));
+            this.btnTitleCase.Location = new System.Drawing.Point(346, 274);
+            this.btnTitleCase.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnTitleCase.Name = "btnTitleCase";
+            this.btnTitleCase.Size = new System.Drawing.Size(20, 20);
+            this.btnTitleCase.TabIndex = 256;
+            this.btnTitleCase.TabStop = false;
+            this.btnTitleCase.UseVisualStyleBackColor = false;
+            this.btnTitleCase.Click += new System.EventHandler(this.btnTitleCase_Click);
             // 
             // pb_Thai_True
             // 
@@ -540,14 +555,14 @@
             this.GridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.GridView.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.GridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.DarkSeaGreen;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.GridView.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DarkSeaGreen;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.GridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.GridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.GridView.Location = new System.Drawing.Point(19, 46);
             this.GridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -807,21 +822,6 @@
             this.cb_Thai.Size = new System.Drawing.Size(15, 14);
             this.cb_Thai.TabIndex = 217;
             this.cb_Thai.UseVisualStyleBackColor = true;
-            // 
-            // btnTitleCase
-            // 
-            this.btnTitleCase.BackColor = System.Drawing.Color.White;
-            this.btnTitleCase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTitleCase.ForeColor = System.Drawing.Color.Transparent;
-            this.btnTitleCase.Image = ((System.Drawing.Image)(resources.GetObject("btnTitleCase.Image")));
-            this.btnTitleCase.Location = new System.Drawing.Point(346, 274);
-            this.btnTitleCase.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnTitleCase.Name = "btnTitleCase";
-            this.btnTitleCase.Size = new System.Drawing.Size(20, 20);
-            this.btnTitleCase.TabIndex = 256;
-            this.btnTitleCase.TabStop = false;
-            this.btnTitleCase.UseVisualStyleBackColor = false;
-            this.btnTitleCase.Click += new System.EventHandler(this.btnTitleCase_Click);
             // 
             // FrmManageItem
             // 

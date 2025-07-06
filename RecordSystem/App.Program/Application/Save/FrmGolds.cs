@@ -727,5 +727,45 @@ namespace SANSANG
                 Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
             }
         }
+
+        private void txtPerMonth_TextChanged(object sender, EventArgs e)
+        {
+            double numberOfDay = 0;
+            double perMonth = 0.00;
+            double perDay = 0.00;
+
+            if (!string.IsNullOrWhiteSpace(txtNumOfDay.Text) && double.TryParse(txtPerMonth.Text, out perMonth))
+            {
+                numberOfDay = Convert.ToDouble(txtNumOfDay.Text);
+                perMonth = Convert.ToDouble(txtPerMonth.Text);
+
+                perDay = perMonth / numberOfDay;
+                txtBuyAmount.Text = perDay.ToString("F2");
+            }
+            else {
+                txtBuyAmount.Text = "0.00";
+            }
+        }
+
+        private void txtPerMonth_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Enter)
+            {
+                e.Handled = true;
+            }
+
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                try
+                {
+                    txtPerMonth_TextChanged(sender, e);
+                    btnAddMaster_Click(sender, e);
+                }
+                catch (Exception ex)
+                {
+                    Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+                }
+            }
+        }
     }
 }
