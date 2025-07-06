@@ -335,7 +335,7 @@ namespace SANSANG.Class
                 PaymentId = dt.Rows[0]["Id"].ToString();
                 Items = dt.Rows[0]["NameEn"].ToString();
                 Details = dt.Rows[0]["Detail"].ToString();
-                Displays = dt.Rows[0]["NameEn"].ToString() + " | " + dt.Rows[0]["Name"].ToString();
+                Displays = dt.Rows[0]["Display"].ToString() + " | " + dt.Rows[0]["Name"].ToString();
                 IsWithdrawal = Convert.ToBoolean(dt.Rows[0]["IsDebit"].ToString()) ? false : true;
             }
             catch (Exception)
@@ -388,7 +388,7 @@ namespace SANSANG.Class
                     PaymentId = dt.Rows[0]["Id"].ToString();
                     Items = dt.Rows[0]["NameEn"].ToString();
                     Details = dt.Rows[0]["Detail"].ToString();
-                    Displays = dt.Rows[0]["NameEn"].ToString() + " | " + dt.Rows[0]["Name"].ToString();
+                    Displays = dt.Rows[0]["Display"].ToString() + " | " + dt.Rows[0]["Name"].ToString();
                     IsWithdrawal = Convert.ToBoolean(dt.Rows[0]["IsDebit"].ToString()) ? false : true;
                 }
                 else
