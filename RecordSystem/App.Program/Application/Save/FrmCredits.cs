@@ -224,6 +224,10 @@ namespace SANSANG
                         {
                             dgvr.DefaultCellStyle.ForeColor = Color.Red;
                         }
+                        if (Convert.ToString(dgvr.Cells[4].Value) == "Cash Back")
+                        {
+                            dgvr.DefaultCellStyle.ForeColor = Color.DarkSeaGreen;
+                        }
                     }
 
                     txtCount.Text = Function.ShowNumberOfData(dt.Rows.Count);

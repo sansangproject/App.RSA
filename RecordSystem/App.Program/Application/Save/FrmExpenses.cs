@@ -1664,7 +1664,7 @@ namespace SANSANG
             try
             {
                 DataTable Data = new DataTable();
-                var banks = new[] { "KTB", "KBANK", "BAY" , "QR Payment (BAY)", "QR Payment (CIMB)", "QR Payment (KTB)" };
+                var banks = Setting.GetRequest();
 
                 DataGridViewContentAlignment mc = DataGridViewContentAlignment.MiddleCenter;
                 DataGridViewContentAlignment ml = DataGridViewContentAlignment.MiddleLeft;

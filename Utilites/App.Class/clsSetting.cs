@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Xml;
 using SANSANG.Utilites.App.Model;
 
@@ -560,6 +561,31 @@ namespace SANSANG.Class
             }
 
             return balance;
+        }
+
+        public string GetRequest()
+        {
+            string settingPath = Path.Combine(appPath, filePath);
+
+            if (File.Exists(settingPath))
+            {
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.Load(settingPath);
+                foreach (XmlNode valueNode in xmlDoc.DocumentElement)
+                {
+                    if (valueNode.Name == "Request")
+                    {
+                        var array = valueNode.InnerText
+                            .Split(',')
+                            .Select(s => s.Trim().Trim('"'))
+                            .ToArray();
+
+                        return string.Join(", ", array);
+                    }
+                }
+            }
+
+            return string.Empty;
         }
     }
 }

@@ -714,6 +714,7 @@ namespace SANSANG
                         if (Insert.Add(AppCode, AppName, UserId, Store.ManageWorkday, Parameter, txtCode.Text, Details: GetMasterDetails()))
                         {
                             Clear();
+                            List.GetList(cbbMonth, DataList.Workdays);
                         }
                     }
                 }

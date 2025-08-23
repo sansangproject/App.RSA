@@ -897,10 +897,15 @@ namespace SANSANG
 
                     dtDateNow.Text = dtDate.Text;
                     dtDateBefor.Value = dtDate.Value.AddMonths(-1);
-                    dtPay.Value = DateTime.Today;
+                    
 
                     GetBill(Operation.Before);
                     GetBill(Operation.Overdue);
+
+                    if (string.IsNullOrEmpty(txtUnit.Text))
+                    {
+                        dtPay.Value = DateTime.Today;
+                    }
 
                     if (txtNumberBefor.Text == "")
                     {
@@ -1132,6 +1137,11 @@ namespace SANSANG
             {
 
             }
+        }
+
+        private void dtPay_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

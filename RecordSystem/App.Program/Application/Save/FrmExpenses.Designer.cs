@@ -473,11 +473,11 @@
             // txtAmounts
             // 
             this.txtAmounts.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtAmounts.Font = new System.Drawing.Font("Mitr Light", 10F);
+            this.txtAmounts.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F);
             this.txtAmounts.ForeColor = System.Drawing.Color.IndianRed;
             this.txtAmounts.Location = new System.Drawing.Point(939, 170);
             this.txtAmounts.Name = "txtAmounts";
-            this.txtAmounts.Size = new System.Drawing.Size(292, 21);
+            this.txtAmounts.Size = new System.Drawing.Size(292, 23);
             this.txtAmounts.TabIndex = 240;
             this.txtAmounts.Text = "ศูนย์บาทถ้วน";
             this.txtAmounts.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -499,22 +499,22 @@
             // 
             this.label10.AutoSize = true;
             this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.label10.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F);
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label10.Location = new System.Drawing.Point(423, 278);
+            this.label10.Location = new System.Drawing.Point(415, 278);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(37, 18);
+            this.label10.Size = new System.Drawing.Size(43, 23);
             this.label10.TabIndex = 237;
             this.label10.Text = "Price:";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.label11.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.Gray;
-            this.label11.Location = new System.Drawing.Point(424, 261);
+            this.label11.Location = new System.Drawing.Point(421, 261);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(36, 20);
+            this.label11.Size = new System.Drawing.Size(37, 23);
             this.label11.TabIndex = 236;
             this.label11.Text = "ราคา";
             // 
@@ -811,22 +811,22 @@
             // 
             this.label43.AutoSize = true;
             this.label43.BackColor = System.Drawing.Color.Transparent;
-            this.label43.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.label43.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F);
             this.label43.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label43.Location = new System.Drawing.Point(427, 315);
+            this.label43.Location = new System.Drawing.Point(422, 313);
             this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(33, 18);
+            this.label43.Size = new System.Drawing.Size(36, 23);
             this.label43.TabIndex = 129;
             this.label43.Text = "Unit:";
             // 
             // label44
             // 
             this.label44.AutoSize = true;
-            this.label44.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.label44.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label44.ForeColor = System.Drawing.Color.Gray;
-            this.label44.Location = new System.Drawing.Point(414, 298);
+            this.label44.Location = new System.Drawing.Point(412, 297);
             this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(46, 20);
+            this.label44.Size = new System.Drawing.Size(46, 23);
             this.label44.TabIndex = 128;
             this.label44.Text = "จำนวน";
             // 
@@ -858,22 +858,22 @@
             // 
             this.label41.AutoSize = true;
             this.label41.BackColor = System.Drawing.Color.Transparent;
-            this.label41.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.label41.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F);
             this.label41.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label41.Location = new System.Drawing.Point(410, 208);
+            this.label41.Location = new System.Drawing.Point(400, 206);
             this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(50, 18);
+            this.label41.Size = new System.Drawing.Size(58, 23);
             this.label41.TabIndex = 125;
             this.label41.Text = "Subject:";
             // 
             // label42
             // 
             this.label42.AutoSize = true;
-            this.label42.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.label42.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label42.ForeColor = System.Drawing.Color.Gray;
-            this.label42.Location = new System.Drawing.Point(409, 191);
+            this.label42.Location = new System.Drawing.Point(406, 190);
             this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(51, 20);
+            this.label42.Size = new System.Drawing.Size(52, 23);
             this.label42.TabIndex = 124;
             this.label42.Text = "รายการ";
             // 
@@ -881,22 +881,22 @@
             // 
             this.label34.AutoSize = true;
             this.label34.BackColor = System.Drawing.Color.Transparent;
-            this.label34.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.label34.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F);
             this.label34.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label34.Location = new System.Drawing.Point(419, 245);
+            this.label34.Location = new System.Drawing.Point(412, 243);
             this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(41, 18);
+            this.label34.Size = new System.Drawing.Size(46, 23);
             this.label34.TabIndex = 123;
             this.label34.Text = "Detail:";
             // 
             // label35
             // 
             this.label35.AutoSize = true;
-            this.label35.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.label35.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label35.ForeColor = System.Drawing.Color.Gray;
-            this.label35.Location = new System.Drawing.Point(391, 229);
+            this.label35.Location = new System.Drawing.Point(388, 226);
             this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(69, 20);
+            this.label35.Size = new System.Drawing.Size(70, 23);
             this.label35.TabIndex = 122;
             this.label35.Text = "รายละเอียด";
             // 
@@ -904,22 +904,22 @@
             // 
             this.label38.AutoSize = true;
             this.label38.BackColor = System.Drawing.Color.Transparent;
-            this.label38.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.label38.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F);
             this.label38.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label38.Location = new System.Drawing.Point(422, 173);
+            this.label38.Location = new System.Drawing.Point(413, 173);
             this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(38, 18);
+            this.label38.Size = new System.Drawing.Size(45, 23);
             this.label38.TabIndex = 121;
             this.label38.Text = "Code:";
             // 
             // label40
             // 
             this.label40.AutoSize = true;
-            this.label40.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.label40.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label40.ForeColor = System.Drawing.Color.Gray;
-            this.label40.Location = new System.Drawing.Point(428, 156);
+            this.label40.Location = new System.Drawing.Point(425, 156);
             this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(32, 20);
+            this.label40.Size = new System.Drawing.Size(33, 23);
             this.label40.TabIndex = 120;
             this.label40.Text = "รหัส";
             // 
@@ -927,24 +927,26 @@
             // 
             this.label36.AutoSize = true;
             this.label36.BackColor = System.Drawing.Color.Transparent;
-            this.label36.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.label36.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label36.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label36.Location = new System.Drawing.Point(987, 349);
+            this.label36.Location = new System.Drawing.Point(980, 350);
             this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(45, 18);
+            this.label36.Size = new System.Drawing.Size(51, 23);
             this.label36.TabIndex = 119;
             this.label36.Text = "Status:";
+            this.label36.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label37
             // 
             this.label37.AutoSize = true;
-            this.label37.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.label37.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label37.ForeColor = System.Drawing.Color.Gray;
-            this.label37.Location = new System.Drawing.Point(989, 332);
+            this.label37.Location = new System.Drawing.Point(987, 332);
             this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(43, 20);
+            this.label37.Size = new System.Drawing.Size(44, 23);
             this.label37.TabIndex = 118;
             this.label37.Text = "สถานะ";
+            this.label37.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtReceipt
             // 
@@ -961,22 +963,22 @@
             // 
             this.label32.AutoSize = true;
             this.label32.BackColor = System.Drawing.Color.Transparent;
-            this.label32.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.label32.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F);
             this.label32.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label32.Location = new System.Drawing.Point(408, 350);
+            this.label32.Location = new System.Drawing.Point(400, 348);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(52, 18);
+            this.label32.Size = new System.Drawing.Size(58, 23);
             this.label32.TabIndex = 114;
             this.label32.Text = "Receipt:";
             // 
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.label33.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label33.ForeColor = System.Drawing.Color.Gray;
-            this.label33.Location = new System.Drawing.Point(411, 333);
+            this.label33.Location = new System.Drawing.Point(411, 332);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(49, 20);
+            this.label33.Size = new System.Drawing.Size(47, 23);
             this.label33.TabIndex = 113;
             this.label33.Text = "ใบเสร็จ";
             // 
@@ -999,22 +1001,22 @@
             // 
             this.txtDetails.BackColor = System.Drawing.Color.White;
             this.txtDetails.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtDetails.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.txtDetails.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F);
             this.txtDetails.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtDetails.Location = new System.Drawing.Point(507, 234);
+            this.txtDetails.Location = new System.Drawing.Point(507, 233);
             this.txtDetails.Name = "txtDetails";
-            this.txtDetails.Size = new System.Drawing.Size(420, 21);
+            this.txtDetails.Size = new System.Drawing.Size(420, 23);
             this.txtDetails.TabIndex = 3;
             // 
             // txtItem
             // 
             this.txtItem.BackColor = System.Drawing.Color.White;
             this.txtItem.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtItem.Font = new System.Drawing.Font("Mitr Light", 10F);
+            this.txtItem.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F);
             this.txtItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtItem.Location = new System.Drawing.Point(507, 198);
+            this.txtItem.Location = new System.Drawing.Point(507, 197);
             this.txtItem.Name = "txtItem";
-            this.txtItem.Size = new System.Drawing.Size(420, 21);
+            this.txtItem.Size = new System.Drawing.Size(420, 23);
             this.txtItem.TabIndex = 107;
             this.txtItem.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtItem_KeyPress);
             // 
@@ -1022,71 +1024,75 @@
             // 
             this.label28.AutoSize = true;
             this.label28.BackColor = System.Drawing.Color.Transparent;
-            this.label28.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.label28.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label28.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label28.Location = new System.Drawing.Point(978, 314);
+            this.label28.Location = new System.Drawing.Point(969, 313);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(54, 18);
+            this.label28.Size = new System.Drawing.Size(62, 23);
             this.label28.TabIndex = 106;
             this.label28.Text = "Account:";
+            this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label27
             // 
             this.label27.AutoSize = true;
             this.label27.BackColor = System.Drawing.Color.Transparent;
-            this.label27.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.label27.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label27.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label27.Location = new System.Drawing.Point(979, 280);
+            this.label27.Location = new System.Drawing.Point(971, 278);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(53, 18);
+            this.label27.Size = new System.Drawing.Size(60, 23);
             this.label27.TabIndex = 105;
             this.label27.Text = "Balance:";
+            this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label26
             // 
             this.label26.AutoSize = true;
             this.label26.BackColor = System.Drawing.Color.Transparent;
-            this.label26.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.label26.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label26.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label26.Location = new System.Drawing.Point(970, 243);
+            this.label26.Location = new System.Drawing.Point(961, 243);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(62, 18);
+            this.label26.Size = new System.Drawing.Size(70, 23);
             this.label26.TabIndex = 104;
             this.label26.Text = "Expenses:";
+            this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label19
             // 
             this.label19.AutoSize = true;
             this.label19.BackColor = System.Drawing.Color.Transparent;
-            this.label19.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.label19.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label19.Location = new System.Drawing.Point(984, 208);
+            this.label19.Location = new System.Drawing.Point(974, 208);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(48, 18);
+            this.label19.Size = new System.Drawing.Size(57, 23);
             this.label19.TabIndex = 103;
             this.label19.Text = "Income:";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label18
             // 
             this.label18.AutoSize = true;
             this.label18.BackColor = System.Drawing.Color.Transparent;
-            this.label18.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.label18.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F);
             this.label18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label18.Location = new System.Drawing.Point(79, 351);
+            this.label18.Location = new System.Drawing.Point(95, 349);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(43, 18);
+            this.label18.Size = new System.Drawing.Size(51, 23);
             this.label18.TabIndex = 102;
-            this.label18.Text = "Status";
+            this.label18.Text = "Status:";
             // 
             // label17
             // 
             this.label17.AutoSize = true;
             this.label17.BackColor = System.Drawing.Color.Transparent;
-            this.label17.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.label17.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F);
             this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label17.Location = new System.Drawing.Point(79, 316);
+            this.label17.Location = new System.Drawing.Point(84, 314);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(52, 18);
+            this.label17.Size = new System.Drawing.Size(59, 23);
             this.label17.TabIndex = 101;
             this.label17.Text = "Amount:";
             // 
@@ -1094,11 +1100,11 @@
             // 
             this.label16.AutoSize = true;
             this.label16.BackColor = System.Drawing.Color.Transparent;
-            this.label16.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.label16.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F);
             this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label16.Location = new System.Drawing.Point(79, 279);
+            this.label16.Location = new System.Drawing.Point(79, 277);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(57, 18);
+            this.label16.Size = new System.Drawing.Size(64, 23);
             this.label16.TabIndex = 100;
             this.label16.Text = "Payment:";
             // 
@@ -1106,11 +1112,11 @@
             // 
             this.label15.AutoSize = true;
             this.label15.BackColor = System.Drawing.Color.Transparent;
-            this.label15.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.label15.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F);
             this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label15.Location = new System.Drawing.Point(79, 245);
+            this.label15.Location = new System.Drawing.Point(104, 242);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(33, 18);
+            this.label15.Size = new System.Drawing.Size(39, 23);
             this.label15.TabIndex = 99;
             this.label15.Text = "Item:";
             // 
@@ -1118,11 +1124,11 @@
             // 
             this.label14.AutoSize = true;
             this.label14.BackColor = System.Drawing.Color.Transparent;
-            this.label14.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.label14.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F);
             this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label14.Location = new System.Drawing.Point(79, 208);
+            this.label14.Location = new System.Drawing.Point(78, 207);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(60, 18);
+            this.label14.Size = new System.Drawing.Size(65, 23);
             this.label14.TabIndex = 98;
             this.label14.Text = "Category:";
             // 
@@ -1130,11 +1136,11 @@
             // 
             this.label39.AutoSize = true;
             this.label39.BackColor = System.Drawing.Color.Transparent;
-            this.label39.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.label39.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F);
             this.label39.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label39.Location = new System.Drawing.Point(79, 173);
+            this.label39.Location = new System.Drawing.Point(103, 172);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(36, 18);
+            this.label39.Size = new System.Drawing.Size(40, 23);
             this.label39.TabIndex = 97;
             this.label39.Text = "Date:";
             // 
@@ -1235,13 +1241,14 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.label13.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.Gray;
-            this.label13.Location = new System.Drawing.Point(995, 297);
+            this.label13.Location = new System.Drawing.Point(994, 297);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(37, 20);
+            this.label13.Size = new System.Drawing.Size(37, 23);
             this.label13.TabIndex = 1;
             this.label13.Text = "บัญชี";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtTotal
             // 
@@ -1288,67 +1295,70 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.label8.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Gray;
-            this.label8.Location = new System.Drawing.Point(980, 263);
+            this.label8.Location = new System.Drawing.Point(980, 262);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(52, 20);
+            this.label8.Size = new System.Drawing.Size(51, 23);
             this.label8.TabIndex = 1;
             this.label8.Text = "คงเหลือ";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Mitr Light", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label7.Location = new System.Drawing.Point(998, 226);
+            this.label7.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.Gray;
+            this.label7.Location = new System.Drawing.Point(1000, 226);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(34, 23);
+            this.label7.Size = new System.Drawing.Size(31, 23);
             this.label7.TabIndex = 1;
             this.label7.Text = "จ่าย";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Mitr Light", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label5.Location = new System.Drawing.Point(1005, 191);
+            this.label5.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Gray;
+            this.label5.Location = new System.Drawing.Point(1006, 191);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(27, 23);
+            this.label5.Size = new System.Drawing.Size(25, 23);
             this.label5.TabIndex = 1;
             this.label5.Text = "รับ";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtPayStatus
             // 
             this.txtPayStatus.BackColor = System.Drawing.Color.White;
             this.txtPayStatus.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtPayStatus.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.txtPayStatus.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F);
             this.txtPayStatus.ForeColor = System.Drawing.Color.DarkOrange;
-            this.txtPayStatus.Location = new System.Drawing.Point(1078, 340);
+            this.txtPayStatus.Location = new System.Drawing.Point(1078, 339);
             this.txtPayStatus.Name = "txtPayStatus";
-            this.txtPayStatus.Size = new System.Drawing.Size(188, 21);
+            this.txtPayStatus.Size = new System.Drawing.Size(188, 23);
             this.txtPayStatus.TabIndex = 13;
             this.txtPayStatus.Text = "กรุณาป้อนเงินคงเหลือ";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.label12.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F);
             this.label12.ForeColor = System.Drawing.Color.Gray;
-            this.label12.Location = new System.Drawing.Point(79, 334);
+            this.label12.Location = new System.Drawing.Point(99, 332);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(43, 20);
+            this.label12.Size = new System.Drawing.Size(44, 23);
             this.label12.TabIndex = 46;
             this.label12.Text = "สถานะ";
             // 
             // lblBalance
             // 
             this.lblBalance.AutoSize = true;
-            this.lblBalance.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.lblBalance.Font = new System.Drawing.Font("DB HeaventRounded", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBalance.ForeColor = System.Drawing.Color.DimGray;
-            this.lblBalance.Location = new System.Drawing.Point(1172, 126);
+            this.lblBalance.Location = new System.Drawing.Point(1176, 124);
             this.lblBalance.Name = "lblBalance";
-            this.lblBalance.Size = new System.Drawing.Size(61, 18);
+            this.lblBalance.Size = new System.Drawing.Size(59, 20);
             this.lblBalance.TabIndex = 1;
             this.lblBalance.Text = "เงินคงเหลือ";
             // 
@@ -1422,7 +1432,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox1.Controls.Add(this.DataGridView0);
             this.groupBox1.Controls.Add(this.picExcel0);
-            this.groupBox1.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.groupBox1.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F);
             this.groupBox1.ForeColor = System.Drawing.Color.Gray;
             this.groupBox1.Location = new System.Drawing.Point(783, 379);
             this.groupBox1.Name = "groupBox1";
@@ -1444,7 +1454,7 @@
             this.DataGridView0.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F);
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Gray;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Brown;
@@ -1476,11 +1486,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.label2.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F);
             this.label2.ForeColor = System.Drawing.Color.Gray;
-            this.label2.Location = new System.Drawing.Point(79, 262);
+            this.label2.Location = new System.Drawing.Point(91, 260);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 20);
+            this.label2.Size = new System.Drawing.Size(52, 23);
             this.label2.TabIndex = 1;
             this.label2.Text = "การจ่าย";
             // 
@@ -1490,7 +1500,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox5.Controls.Add(this.DataGridView1);
             this.groupBox5.Controls.Add(this.picExcel1);
-            this.groupBox5.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.groupBox5.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox5.ForeColor = System.Drawing.Color.Gray;
             this.groupBox5.Location = new System.Drawing.Point(10, 379);
             this.groupBox5.Name = "groupBox5";
@@ -1512,7 +1522,7 @@
             this.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Gray;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Brown;
@@ -1544,11 +1554,11 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.label6.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F);
             this.label6.ForeColor = System.Drawing.Color.Gray;
-            this.label6.Location = new System.Drawing.Point(79, 191);
+            this.label6.Location = new System.Drawing.Point(95, 190);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(48, 20);
+            this.label6.Size = new System.Drawing.Size(48, 23);
             this.label6.TabIndex = 1;
             this.label6.Text = "ประเภท";
             // 
@@ -1567,22 +1577,22 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.label3.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F);
             this.label3.ForeColor = System.Drawing.Color.Gray;
-            this.label3.Location = new System.Drawing.Point(79, 156);
+            this.label3.Location = new System.Drawing.Point(110, 155);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(32, 20);
+            this.label3.Size = new System.Drawing.Size(33, 23);
             this.label3.TabIndex = 1;
             this.label3.Text = "วันที่";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.label9.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F);
             this.label9.ForeColor = System.Drawing.Color.Gray;
-            this.label9.Location = new System.Drawing.Point(79, 299);
+            this.label9.Location = new System.Drawing.Point(80, 297);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(66, 20);
+            this.label9.Size = new System.Drawing.Size(63, 23);
             this.label9.TabIndex = 1;
             this.label9.Text = "จำนวนเงิน";
             // 
@@ -1621,11 +1631,11 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.label4.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F);
             this.label4.ForeColor = System.Drawing.Color.Gray;
-            this.label4.Location = new System.Drawing.Point(79, 228);
+            this.label4.Location = new System.Drawing.Point(91, 226);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(51, 20);
+            this.label4.Size = new System.Drawing.Size(52, 23);
             this.label4.TabIndex = 1;
             this.label4.Text = "รายการ";
             // 

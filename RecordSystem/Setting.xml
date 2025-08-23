@@ -21,4 +21,5 @@
 	<OperationDate></OperationDate>
 	<CreditDate></CreditDate>
 	<Inaccurate>1</Inaccurate>
+	<Request>"KTB", "KBANK", "BAY" , "QR Payment (BAY)", "QR Payment (CIMB)", "QR Payment (KTB)", "TTB"</Request>
 </Setting>
