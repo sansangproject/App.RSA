@@ -102,7 +102,7 @@ namespace SANSANG
             btnCopy.Visible = false;
 
             dtDate.Value = DateTime.Now;
-            dtTime.Value = Convert.ToDateTime("16:00:00");
+            dtTime.Value = Convert.ToDateTime("17:00:00");
             dtTime.Format = DateTimePickerFormat.Time;
             dtTime.ShowUpDown = true;
 

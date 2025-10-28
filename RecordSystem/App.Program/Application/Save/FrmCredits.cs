@@ -198,6 +198,7 @@ namespace SANSANG
             try
             {
                 GridView.DataSource = null;
+                var transactions = Setting.GetAdjustTransactionList();
 
                 if (Function.GetRows(dt) > 0)
                 {
@@ -224,7 +225,8 @@ namespace SANSANG
                         {
                             dgvr.DefaultCellStyle.ForeColor = Color.Red;
                         }
-                        if (Convert.ToString(dgvr.Cells[4].Value) == "Cash Back")
+
+                        if (transactions.Contains(dgvr.Cells[4].Value.ToString()))
                         {
                             dgvr.DefaultCellStyle.ForeColor = Color.DarkSeaGreen;
                         }

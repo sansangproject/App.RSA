@@ -15,9 +15,10 @@ namespace SANSANG.Class
     {
         public clsFunction Function = new clsFunction();
 
-        public void Print(DataTable Value, string Dataset, string Report)
+        public void Print(DataTable Value, string Dataset, string Report, string Param = "")
         {
             string Path = Function.GetPath("App.Report");
+            ReportParameter parameter = new ReportParameter("pConditions", Param);
 
             ReportDataSource rds = new ReportDataSource();
             rds.Name = Dataset;
@@ -30,6 +31,7 @@ namespace SANSANG.Class
 
             LocalReport.DataSources.Clear();
             LocalReport.DataSources.Add(rds);
+            LocalReport.SetParameters(parameter);
 
             PrintToPrinter(LocalReport);
         }

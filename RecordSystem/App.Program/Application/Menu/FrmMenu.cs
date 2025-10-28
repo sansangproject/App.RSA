@@ -9,6 +9,7 @@ using SANSANG.Database;
 using SANSANG.Constant;
 using System.Collections.Generic;
 using App;
+using RecordSystemApplication.App.Program.Application.Print;
 
 namespace SANSANG
 {
@@ -440,7 +441,11 @@ namespace SANSANG
                 FrmImageRename Frm = new FrmImageRename(UserId, UserName, UserSurname, UserType);
                 Frm.Show();
             }
-
+            else if (((RadMenuItem)sender).Name == "RPTEP00")
+            {
+                FrmReportExpense Frm = new FrmReportExpense(UserId, UserName, UserSurname, UserType);
+                Frm.Show();
+            }
             Log.WriteLogData("MENU", ((RadMenuItem)sender).Name, UserId, "Open");
         }
     }

@@ -1664,7 +1664,7 @@ namespace SANSANG
             try
             {
                 DataTable Data = new DataTable();
-                var banks = Setting.GetRequest();
+                var banks = Setting.GetRequestList();
 
                 DataGridViewContentAlignment mc = DataGridViewContentAlignment.MiddleCenter;
                 DataGridViewContentAlignment ml = DataGridViewContentAlignment.MiddleLeft;
