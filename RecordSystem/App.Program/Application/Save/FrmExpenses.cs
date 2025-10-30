@@ -12,6 +12,7 @@ using Message = System.Windows.Forms.Message;
 using System.Collections.Generic;
 using static System.Resources.ResXFileRef;
 using System.Linq;
+using DevComponents.DotNetBar.Controls;
 
 namespace SANSANG
 {
@@ -1681,6 +1682,7 @@ namespace SANSANG
                         {
 
                             DataGridView0.DataSource = null;
+                            DataGridView0.RowTemplate.Height = 25;
 
                             Function.ShowGridViewFormatFromStore(Data, DataGridView0,
                                   " ลำดับ", 35, true, mc, mc
@@ -1711,17 +1713,12 @@ namespace SANSANG
                                 {
                                     dgvr.DefaultCellStyle.ForeColor = Color.Gold;
                                 }
-
-                                if (!ShowNext && dgvr.Cells[1].Value.ToString() == Strings.Next)
-                                {
-                                    Cm.SuspendBinding();
-                                    dgvr.Visible = false;
-                                }
                             }
                         }
                         else
                         {
                             DataGridView1.DataSource = null;
+                            DataGridView1.RowTemplate.Height = 25;
 
                             Function.ShowGridViewFormatFromStore(Data, DataGridView1,
                                  " ลำดับ", 35, true, mc, mc

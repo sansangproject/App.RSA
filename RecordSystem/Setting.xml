@@ -15,7 +15,7 @@
 	<UrlAPITrack>https://trackapi.thailandpost.co.th/post/api/v1/track</UrlAPITrack>
 	<TrackToken>Token T7PqLIQcLkRGD?HjVxNDU_FHAPEYN|E+IvMYS7XnR*V:ZvSeToNjYeZ+UMFESDKrH!N@W7KFFEN*YYKmSBNcKOWkF4HIA.RBGsIF</TrackToken>
 	<Path>db</Path>
-	<NextDisplay>True</NextDisplay>
+	<NextDisplay>False</NextDisplay>
 	<MenuPath>D:\SANSANG\PROJECTs\RSAs\App.Picture\Menu\</MenuPath>
 	<Database>dbRSA</Database>
 	<RoundPayment></RoundPayment>

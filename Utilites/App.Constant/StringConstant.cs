@@ -8,7 +8,7 @@ namespace SANSANG.Constant
 {
     public class StringConstant
     {
-        public string Next = "เงินยกยอด | ยกยอดมา";
+        public string Next = "- ยกยอด / เงินยกยอด | ยกยอดมา";
         public string Receipt = "Receipt";
         public string Payment = "Payment";
         public string Money = "Money";
