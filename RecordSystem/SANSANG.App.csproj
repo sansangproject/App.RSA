@@ -901,7 +901,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="App.Report\rptExpenses.rdlc" />
-    <EmbeddedResource Include="App.Report\rptExpense1.rdlc" />
     <EmbeddedResource Include="App.Report\rptExpense.rdlc" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

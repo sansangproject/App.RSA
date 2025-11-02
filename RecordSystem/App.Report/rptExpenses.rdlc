@@ -1084,7 +1084,6 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>dsExpense</DataSetName>
-            <Left>0cm</Left>
             <Height>3.4425cm</Height>
             <Width>16.74719cm</Width>
             <Style>
@@ -1111,7 +1110,6 @@
               <Source>Embedded</Source>
               <Value>SSLOGO</Value>
               <Sizing>FitProportional</Sizing>
-              <Left>0cm</Left>
               <Height>1.48773cm</Height>
               <Width>1.17585cm</Width>
               <Style>
@@ -1303,7 +1301,6 @@
                       <Value>= "ข้อมูลรายงาน: " + Parameters!pConditions.Value</Value>
                       <Style>
                         <FontFamily>DB HeaventRounded</FontFamily>
-                        <FontSize>8pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -1312,7 +1309,7 @@
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>1.55828cm</Top>
+              <Top>1.52301cm</Top>
               <Height>0.56156cm</Height>
               <Width>13.38418cm</Width>
               <ZIndex>4</ZIndex>

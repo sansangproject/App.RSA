@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmReportExpense));
-            this.btnPrint = new System.Windows.Forms.Button();
+            this.btnPrints = new System.Windows.Forms.Button();
             this.label39 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.dtDays = new System.Windows.Forms.DateTimePicker();
@@ -56,7 +56,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.txtReceipt = new System.Windows.Forms.TextBox();
-            this.btnPrint2 = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -66,22 +66,22 @@
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnPrint
+            // btnPrints
             // 
-            this.btnPrint.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnPrint.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrint.ForeColor = System.Drawing.Color.Transparent;
-            this.btnPrint.Image = ((System.Drawing.Image)(resources.GetObject("btnPrint.Image")));
-            this.btnPrint.Location = new System.Drawing.Point(439, 296);
-            this.btnPrint.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(50, 42);
-            this.btnPrint.TabIndex = 93;
-            this.btnPrint.TabStop = false;
-            this.btnPrint.Tag = "เคลียร์";
-            this.btnPrint.UseVisualStyleBackColor = false;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            this.btnPrints.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnPrints.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnPrints.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrints.ForeColor = System.Drawing.Color.Transparent;
+            this.btnPrints.Image = ((System.Drawing.Image)(resources.GetObject("btnPrints.Image")));
+            this.btnPrints.Location = new System.Drawing.Point(439, 296);
+            this.btnPrints.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnPrints.Name = "btnPrints";
+            this.btnPrints.Size = new System.Drawing.Size(50, 42);
+            this.btnPrints.TabIndex = 93;
+            this.btnPrints.TabStop = false;
+            this.btnPrints.Tag = "เคลียร์";
+            this.btnPrints.UseVisualStyleBackColor = false;
+            this.btnPrints.Click += new System.EventHandler(this.btnPrints_Click);
             // 
             // label39
             // 
@@ -411,30 +411,31 @@
             this.txtReceipt.Size = new System.Drawing.Size(238, 30);
             this.txtReceipt.TabIndex = 125;
             // 
-            // btnPrint2
+            // btnPrint
             // 
-            this.btnPrint2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnPrint2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnPrint2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrint2.ForeColor = System.Drawing.Color.Transparent;
-            this.btnPrint2.Image = ((System.Drawing.Image)(resources.GetObject("btnPrint2.Image")));
-            this.btnPrint2.Location = new System.Drawing.Point(398, 322);
-            this.btnPrint2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnPrint2.Name = "btnPrint2";
-            this.btnPrint2.Size = new System.Drawing.Size(51, 78);
-            this.btnPrint2.TabIndex = 126;
-            this.btnPrint2.TabStop = false;
-            this.btnPrint2.Tag = "เคลียร์";
-            this.btnPrint2.UseVisualStyleBackColor = false;
-            this.btnPrint2.Visible = false;
+            this.btnPrint.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnPrint.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrint.ForeColor = System.Drawing.Color.Transparent;
+            this.btnPrint.Image = ((System.Drawing.Image)(resources.GetObject("btnPrint.Image")));
+            this.btnPrint.Location = new System.Drawing.Point(439, 243);
+            this.btnPrint.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(50, 45);
+            this.btnPrint.TabIndex = 126;
+            this.btnPrint.TabStop = false;
+            this.btnPrint.Tag = "เคลียร์";
+            this.btnPrint.UseVisualStyleBackColor = false;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnPrint);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label16);
             this.groupBox1.Controls.Add(this.txtItem);
             this.groupBox1.Controls.Add(this.rdbAll);
-            this.groupBox1.Controls.Add(this.btnPrint);
+            this.groupBox1.Controls.Add(this.btnPrints);
             this.groupBox1.Controls.Add(this.rdbDays);
             this.groupBox1.Controls.Add(this.rdbDate);
             this.groupBox1.Controls.Add(this.txtReceipt);
@@ -535,7 +536,6 @@
             this.ClientSize = new System.Drawing.Size(529, 411);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.btnPrint2);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -553,7 +553,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.Button btnPrints;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DateTimePicker dtDays;
@@ -580,7 +580,7 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox txtReceipt;
-        private System.Windows.Forms.Button btnPrint2;
+        private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.TextBox txtItem;
