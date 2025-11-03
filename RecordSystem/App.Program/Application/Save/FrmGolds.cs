@@ -93,6 +93,7 @@ namespace SANSANG
         public void Clear()
         {
             Function.ClearAll(gbForm);
+            Function.ClearAll(gbMaster);
 
             pb_Date_True.Visible = false;
             pb_Date_False.Visible = true;
@@ -101,7 +102,7 @@ namespace SANSANG
             btnCopy.Visible = false;
 
             dtDate.Value = DateTime.Now;
-            dtTime.Value = Convert.ToDateTime("16:00:00");
+            dtTime.Value = Convert.ToDateTime("17:00:00");
             dtTime.Format = DateTimePickerFormat.Time;
             dtTime.ShowUpDown = true;
 
@@ -508,7 +509,7 @@ namespace SANSANG
                 {
                     GoldTotal = Convert.ToDouble(Data.Rows[0]["GoldTotal"].ToString());
                     MoneyTotal = Convert.ToDouble(Data.Rows[0]["MoneyTotal"].ToString());
-                    Numbers = Math.Round(GoldTotal, 4);
+                    Numbers = (Math.Round(GoldTotal, 4)) - Convert.ToDouble(Setting.GetGoldReceived());
                 }
                 Inaccurate = Convert.ToDouble(Setting.GetInaccurate());
                 txtSumMoney.Text = string.Format("{0:#,##0.00}", Math.Ceiling(MoneyTotal) + Inaccurate);
@@ -525,6 +526,11 @@ namespace SANSANG
         public string GetDetails()
         {
             return dtDate.Text + " (฿" + txtReceive.Text + ")";
+
+        }
+        public string GetMasterDetails()
+        {
+            return Date.GetDate(dtp: dtPayDate, Format: 9) + " (" + txtNumOfDay.Text + " Days) - " + txtPerMonth.Text + " Baht";
         }
 
         private void txtReceive_TextChanged(object sender, EventArgs e)
@@ -603,14 +609,7 @@ namespace SANSANG
 
         private void txtGoldPriceSell_Leave(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtGoldPriceSell.Text))
-            {
-                txtReceive.Text = "";
-            }
-            else
-            {
-                CalculateGoldReceive();
-            }
+
         }
 
         private void txtGoldPriceBuy_Leave(object sender, EventArgs e)
@@ -619,6 +618,7 @@ namespace SANSANG
             {
                 double num = Convert.ToDouble(txtGoldPriceBuy.Text);
                 txtGoldPriceBuy.Text = String.Format("{0:n}", num);
+                btnAdd.Focus();
             }
             catch (Exception ex)
             {
@@ -637,6 +637,135 @@ namespace SANSANG
             catch (Exception ex)
             {
                 Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }
+        }
+
+        private void txtGoldPriceBuy_TextChanged(object sender, EventArgs e)
+        {
+            double sell = 0.00;
+            double buy = 0.00;
+
+            if (!string.IsNullOrWhiteSpace(txtGoldPriceBuy.Text) && double.TryParse(txtGoldPriceBuy.Text, out buy))
+            {
+                sell = buy + 100.00;
+            }
+
+            txtGoldPriceSell.Text = sell.ToString("F2");
+
+            if (string.IsNullOrEmpty(txtGoldPriceSell.Text) || txtGoldPriceSell.Text == "0.00")
+            {
+                txtReceive.Text = "0.00";
+            }
+            else
+            {
+                CalculateGoldReceive();
+            }
+        }
+
+        private void KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                try
+                {
+                    txtGoldPriceBuy_Leave(sender, e);
+                }
+                catch (Exception ex)
+                {
+                    Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+                }
+            }
+        }
+
+        private void btnAddMaster_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(txtNumOfDay.Text) && !string.IsNullOrEmpty(txtPerMonth.Text) && !string.IsNullOrEmpty(txtBuyAmount.Text))
+                {
+                    if (!Function.IsDuplicates(Table.Workday, Date.GetDate(dtp: dtPayDate, Format: 4), txtNumOfDay.Text, txtPerMonth.Text, txtBuyAmount.Text, Detail: GetMasterDetails()))
+                    {
+                        txtCode.Text = Function.GetCodes(Table.WorkdayId, "", "Generated");
+
+                        DateTime DateSelected = dtPayDate.Value;
+
+                        DateTime FirstDay = new DateTime(DateSelected.Year, DateSelected.Month, 1);
+                        DateTime LastDay = FirstDay.AddMonths(1).AddDays(-1);
+
+                        Parameter = new string[,]
+                        {
+                            {"@Id", ""},
+                            {"@Code", txtCode.Text},
+                            {"@Status", "1000"},
+                            {"@User", UserId},
+                            {"@IsActive", "1"},
+                            {"@IsDelete", "0"},
+                            {"@Operation", Operation.InsertAbbr},
+                            {"@FirstDay", FirstDay.ToString("yyyy-MM-dd")},
+                            {"@LastDay", LastDay.ToString("yyyy-MM-dd")},
+                            {"@PaymentDay", Date.GetDate(dtp: dtPayDate, Format: 4)},
+                            {"@Days", txtNumOfDay.Text},
+                            {"@Month", Date.GetDate(dtp: dtPayDate, Format: 7)},
+                            {"@Year", Date.GetDate(dtp: dtPayDate, Format: 8)},
+                            {"@SavingPerMonth", txtPerMonth.Text},
+                            {"@AmountPerDay", txtBuyAmount.Text},
+                        };
+
+                        if (Insert.Add(AppCode, AppName, UserId, Store.ManageWorkday, Parameter, txtCode.Text, Details: GetMasterDetails()))
+                        {
+                            Clear();
+                            List.GetList(cbbMonth, DataList.Workdays);
+                        }
+                    }
+                }
+                else
+                {
+                    Message.ShowRequestData();
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }
+        }
+
+        private void txtPerMonth_TextChanged(object sender, EventArgs e)
+        {
+            double numberOfDay = 0;
+            double perMonth = 0.00;
+            double perDay = 0.00;
+
+            if (!string.IsNullOrWhiteSpace(txtNumOfDay.Text) && double.TryParse(txtPerMonth.Text, out perMonth))
+            {
+                numberOfDay = Convert.ToDouble(txtNumOfDay.Text);
+                perMonth = Convert.ToDouble(txtPerMonth.Text);
+
+                perDay = perMonth / numberOfDay;
+                txtBuyAmount.Text = perDay.ToString("F2");
+            }
+            else {
+                txtBuyAmount.Text = "0.00";
+            }
+        }
+
+        private void txtPerMonth_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Enter)
+            {
+                e.Handled = true;
+            }
+
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                try
+                {
+                    txtPerMonth_TextChanged(sender, e);
+                    btnAddMaster_Click(sender, e);
+                }
+                catch (Exception ex)
+                {
+                    Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+                }
             }
         }
     }

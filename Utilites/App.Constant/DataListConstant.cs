@@ -21,7 +21,12 @@ namespace SANSANG.Constant
         public string BankId = "[mst].[Bank] Short Id IsCredit 1";
         public string ProductTypeId = "[mst].[ProductType] Display Id Status 1000";
         public string UserId = "[mst].[User] Code Id Type 1001";
+        
         public string WaterAccountId = "[mst].[WaterAccount] AccountNo Id Status 1014";
+        public string WaterRatesId = "[mst].[WaterRates] Version Id AccountId {0}";
+
+        public string ElectricityAccountId = "[mst].[ElectricityAccount] AccountNo Id Status 1014";
+        public string ElectricityRatesId = "[mst].[ElectricityRates] Version Id AccountId {0}";
 
         public string ProvinceId = "[mst].[Province] Name Id {0} {1}";
         public string AmphoeId = "[mst].[Amphoe] Name Id {0} {1}";
@@ -40,13 +45,18 @@ namespace SANSANG.Constant
         public string Users = "Users";
         public string UserAccounts = "UserAccounts";
         public string Transportation = "Transportation";
+
+        public string ElectricityAccount = "ElectricityAccount";
+        public string ElectricityRates = "ElectricityRates";
+
         public string WaterAccount = "WaterAccount";
+        public string WaterRates = "WaterRates";
 
         public string Workdays = "Workdays";
         public string Accounts = "Account";
         public string Members = "Members";
         public string PayTypes = "PayTypes";
-
+        public string Products = "Products";
 
 
 

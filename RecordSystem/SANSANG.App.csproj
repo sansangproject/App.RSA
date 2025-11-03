@@ -93,8 +93,11 @@
     <SignManifests>false</SignManifests>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BarcodeStandard, Version=2.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\BarcodeLib.2.4.0\lib\netstandard2.0\BarcodeStandard.dll</HintPath>
+    <Reference Include="BarcodeStandard, Version=3.1.4.0, Culture=neutral, PublicKeyToken=5f09bda868cc39e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\BarcodeLib.3.1.4\lib\netstandard2.0\BarcodeStandard.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>..\packages\BouncyCastle.Cryptography.2.4.0\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
     </Reference>
     <Reference Include="DevComponents.DotNetBar2">
       <HintPath>..\Utilites\App.Dll\DevComponents.DotNetBar2.dll</HintPath>
@@ -105,24 +108,36 @@
     <Reference Include="Grpc.Core.Api, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d754f35622e28bad, processorArchitecture=MSIL">
       <HintPath>..\packages\Grpc.Core.Api.2.44.0\lib\net45\Grpc.Core.Api.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.4, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.4\lib\net461\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Utilites\App.Dll\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1652.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1484.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1652.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1484.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1652.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1652.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WebDesign, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.WebDesign.dll</HintPath>
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1652.0\lib\net40\Microsoft.ReportViewer.WebDesign.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1652.0\lib\net40\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1484.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
@@ -148,6 +163,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>App.Dll\RadControlSpy.dll</HintPath>
     </Reference>
+    <Reference Include="SkiaSharp, Version=2.88.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\SkiaSharp.2.88.8\lib\net462\SkiaSharp.dll</HintPath>
+    </Reference>
     <Reference Include="Spire.Barcode">
       <HintPath>..\Utilites\App.Dll\Spire.Barcode.dll</HintPath>
     </Reference>
@@ -162,21 +180,24 @@
       <HintPath>..\packages\System.Drawing.Common.5.0.2\lib\net461\System.Drawing.Common.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing.Design" />
-    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
     </Reference>
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
     </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    <Reference Include="System.Resources.Extensions, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Resources.Extensions.8.0.0\lib\net462\System.Resources.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="System.Text.Encodings.Web, Version=5.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Text.Encodings.Web.5.0.1\lib\net461\System.Text.Encodings.Web.dll</HintPath>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
-    <Reference Include="System.Text.Json, Version=5.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Text.Json.5.0.2\lib\net461\System.Text.Json.dll</HintPath>
+    <Reference Include="System.Text.Encodings.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.8.0.0\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=8.0.0.4, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.8.0.4\lib\net462\System.Text.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
@@ -214,6 +235,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>App.Dll\TelerikData.dll</HintPath>
     </Reference>
+    <Reference Include="Tesseract, Version=5.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Tesseract.5.2.0\lib\net48\Tesseract.dll</HintPath>
+    </Reference>
     <Reference Include="VisualStyleBuilder.Design, Version=2013.2.612.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Utilites\App.Dll\VisualStyleBuilder.Design.dll</HintPath>
@@ -235,17 +259,17 @@
     <Compile Include="App.Program\Application\Electricity\FrmElectricitys.Designer.cs">
       <DependentUpon>FrmElectricitys.cs</DependentUpon>
     </Compile>
-    <Compile Include="App.Program\Application\Electricity\FrmMEAMA00.cs">
+    <Compile Include="App.Program\Application\Electricity\FrmElectricityRates.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="App.Program\Application\Electricity\FrmMEAMA00.Designer.cs">
-      <DependentUpon>FrmMEAMA00.cs</DependentUpon>
+    <Compile Include="App.Program\Application\Electricity\FrmElectricityRates.Designer.cs">
+      <DependentUpon>FrmElectricityRates.cs</DependentUpon>
     </Compile>
-    <Compile Include="App.Program\Application\Electricity\FrmMEARE00.cs">
+    <Compile Include="App.Program\Application\Electricity\FrmElectricityReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="App.Program\Application\Electricity\FrmMEARE00.Designer.cs">
-      <DependentUpon>FrmMEARE00.cs</DependentUpon>
+    <Compile Include="App.Program\Application\Electricity\FrmElectricityReport.Designer.cs">
+      <DependentUpon>FrmElectricityReport.cs</DependentUpon>
     </Compile>
     <Compile Include="App.Program\Application\Image\FrmImportImage.cs">
       <SubType>Form</SubType>
@@ -427,11 +451,23 @@
     <Compile Include="App.Program\Application\Print\FrmPrintTag.Designer.cs">
       <DependentUpon>FrmPrintTag.cs</DependentUpon>
     </Compile>
+    <Compile Include="App.Program\Application\Print\FrmReportExpense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Print\FrmReportExpense.Designer.cs">
+      <DependentUpon>FrmReportExpense.cs</DependentUpon>
+    </Compile>
     <Compile Include="App.Program\Application\Products\FrmProducts.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="App.Program\Application\Products\FrmProducts.Designer.cs">
       <DependentUpon>FrmProducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Products\FrmStocks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Products\FrmStocks.Designer.cs">
+      <DependentUpon>FrmStocks.cs</DependentUpon>
     </Compile>
     <Compile Include="App.Program\Application\Save\FrmGolds.cs">
       <SubType>Form</SubType>
@@ -486,6 +522,18 @@
     </Compile>
     <Compile Include="App.Program\Application\Setting\FrmChkID.Designer.cs">
       <DependentUpon>FrmChkID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Setting\FrmImageRename.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Setting\FrmImageRename.Designer.cs">
+      <DependentUpon>FrmImageRename.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App.Program\Application\Setting\FrmPasswordRemoved.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Setting\FrmPasswordRemoved.Designer.cs">
+      <DependentUpon>FrmPasswordRemoved.cs</DependentUpon>
     </Compile>
     <Compile Include="App.Program\Application\Setting\FrmSettingPath.cs">
       <SubType>Form</SubType>
@@ -638,11 +686,11 @@
     <EmbeddedResource Include="App.Program\Application\Electricity\FrmElectricitys.resx">
       <DependentUpon>FrmElectricitys.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="App.Program\Application\Electricity\FrmMEAMA00.resx">
-      <DependentUpon>FrmMEAMA00.cs</DependentUpon>
+    <EmbeddedResource Include="App.Program\Application\Electricity\FrmElectricityRates.resx">
+      <DependentUpon>FrmElectricityRates.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="App.Program\Application\Electricity\FrmMEARE00.resx">
-      <DependentUpon>FrmMEARE00.cs</DependentUpon>
+    <EmbeddedResource Include="App.Program\Application\Electricity\FrmElectricityReport.resx">
+      <DependentUpon>FrmElectricityReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="App.Program\Application\Image\FrmImportImage.resx">
       <DependentUpon>FrmImportImage.cs</DependentUpon>
@@ -734,8 +782,14 @@
     <EmbeddedResource Include="App.Program\Application\Print\FrmPrintTag.resx">
       <DependentUpon>FrmPrintTag.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Print\FrmReportExpense.resx">
+      <DependentUpon>FrmReportExpense.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="App.Program\Application\Products\FrmProducts.resx">
       <DependentUpon>FrmProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Products\FrmStocks.resx">
+      <DependentUpon>FrmStocks.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="App.Program\Application\Save\FrmGolds.resx">
       <DependentUpon>FrmGolds.cs</DependentUpon>
@@ -763,6 +817,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="App.Program\Application\Setting\FrmChkID.resx">
       <DependentUpon>FrmChkID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Setting\FrmImageRename.resx">
+      <DependentUpon>FrmImageRename.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Setting\FrmPasswordRemoved.resx">
+      <DependentUpon>FrmPasswordRemoved.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="App.Program\Application\Setting\FrmSettingPath.resx">
       <DependentUpon>FrmSettingPath.cs</DependentUpon>
@@ -832,6 +892,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="App.Program\Application\Water\FrmWaters.resx">
       <DependentUpon>FrmWaters.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="App.Program\Progress\FrmAnimatedProgress.resx">
       <DependentUpon>FrmAnimatedProgress.cs</DependentUpon>
@@ -839,6 +900,8 @@
     <EmbeddedResource Include="App.Report\rptEnvelope.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="App.Report\rptExpenses.rdlc" />
+    <EmbeddedResource Include="App.Report\rptExpense.rdlc" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -856,6 +919,9 @@
     <None Include="App.Data\dsRSA.xss">
       <DependentUpon>dsRSA.xsd</DependentUpon>
     </None>
+    <None Include="App.Font\358PANIAinu-Regular.ttf" />
+    <None Include="App.Font\358PANIAinuBold-Regular.ttf" />
+    <None Include="App.Font\358PANIAinuThin-Regular.ttf" />
     <None Include="App.Font\DMSans-Bold.ttf" />
     <None Include="App.Font\DMSans-BoldItalic.ttf" />
     <None Include="App.Font\DMSans-Italic.ttf" />
@@ -868,9 +934,181 @@
     <None Include="App.Font\Mitr-Medium.ttf" />
     <None Include="App.Font\Mitr-Regular.ttf" />
     <None Include="App.Font\Mitr-SemiBold.ttf" />
+    <None Include="App.Library\OCR\tessdata\afr.traineddata" />
+    <None Include="App.Library\OCR\tessdata\amh.traineddata" />
+    <None Include="App.Library\OCR\tessdata\ara.traineddata" />
+    <None Include="App.Library\OCR\tessdata\asm.traineddata" />
+    <None Include="App.Library\OCR\tessdata\aze.traineddata" />
+    <None Include="App.Library\OCR\tessdata\aze_cyrl.traineddata" />
+    <None Include="App.Library\OCR\tessdata\bel.traineddata" />
+    <None Include="App.Library\OCR\tessdata\ben.traineddata" />
+    <None Include="App.Library\OCR\tessdata\bod.traineddata" />
+    <None Include="App.Library\OCR\tessdata\bos.traineddata" />
+    <None Include="App.Library\OCR\tessdata\bre.traineddata" />
+    <None Include="App.Library\OCR\tessdata\bul.traineddata" />
+    <None Include="App.Library\OCR\tessdata\cat.traineddata" />
+    <None Include="App.Library\OCR\tessdata\ceb.traineddata" />
+    <None Include="App.Library\OCR\tessdata\ces.traineddata" />
+    <None Include="App.Library\OCR\tessdata\chi_sim.traineddata" />
+    <None Include="App.Library\OCR\tessdata\chi_sim_vert.traineddata" />
+    <None Include="App.Library\OCR\tessdata\chi_tra.traineddata" />
+    <None Include="App.Library\OCR\tessdata\chi_tra_vert.traineddata" />
+    <None Include="App.Library\OCR\tessdata\chr.traineddata" />
+    <None Include="App.Library\OCR\tessdata\configs" />
+    <None Include="App.Library\OCR\tessdata\cos.traineddata" />
+    <None Include="App.Library\OCR\tessdata\cym.traineddata" />
+    <None Include="App.Library\OCR\tessdata\dan.traineddata" />
+    <None Include="App.Library\OCR\tessdata\dan_frak.traineddata" />
+    <None Include="App.Library\OCR\tessdata\deu.traineddata" />
+    <None Include="App.Library\OCR\tessdata\deu_frak.traineddata" />
+    <None Include="App.Library\OCR\tessdata\deu_latf.traineddata" />
+    <None Include="App.Library\OCR\tessdata\div.traineddata" />
+    <None Include="App.Library\OCR\tessdata\dzo.traineddata" />
+    <None Include="App.Library\OCR\tessdata\ell.traineddata" />
+    <None Include="App.Library\OCR\tessdata\eng.traineddata" />
+    <None Include="App.Library\OCR\tessdata\enm.traineddata" />
+    <None Include="App.Library\OCR\tessdata\epo.traineddata" />
+    <None Include="App.Library\OCR\tessdata\equ.traineddata" />
+    <None Include="App.Library\OCR\tessdata\est.traineddata" />
+    <None Include="App.Library\OCR\tessdata\eus.traineddata" />
+    <None Include="App.Library\OCR\tessdata\fao.traineddata" />
+    <None Include="App.Library\OCR\tessdata\fas.traineddata" />
+    <None Include="App.Library\OCR\tessdata\fil.traineddata" />
+    <None Include="App.Library\OCR\tessdata\fin.traineddata" />
+    <None Include="App.Library\OCR\tessdata\fra.traineddata" />
+    <None Include="App.Library\OCR\tessdata\frk.traineddata" />
+    <None Include="App.Library\OCR\tessdata\frm.traineddata" />
+    <None Include="App.Library\OCR\tessdata\fry.traineddata" />
+    <None Include="App.Library\OCR\tessdata\gla.traineddata" />
+    <None Include="App.Library\OCR\tessdata\gle.traineddata" />
+    <None Include="App.Library\OCR\tessdata\glg.traineddata" />
+    <None Include="App.Library\OCR\tessdata\grc.traineddata" />
+    <None Include="App.Library\OCR\tessdata\guj.traineddata" />
+    <None Include="App.Library\OCR\tessdata\hat.traineddata" />
+    <None Include="App.Library\OCR\tessdata\heb.traineddata" />
+    <None Include="App.Library\OCR\tessdata\hin.traineddata" />
+    <None Include="App.Library\OCR\tessdata\hrv.traineddata" />
+    <None Include="App.Library\OCR\tessdata\hun.traineddata" />
+    <None Include="App.Library\OCR\tessdata\hye.traineddata" />
+    <None Include="App.Library\OCR\tessdata\iku.traineddata" />
+    <None Include="App.Library\OCR\tessdata\ind.traineddata" />
+    <None Include="App.Library\OCR\tessdata\isl.traineddata" />
+    <None Include="App.Library\OCR\tessdata\ita.traineddata" />
+    <None Include="App.Library\OCR\tessdata\ita_old.traineddata" />
+    <None Include="App.Library\OCR\tessdata\jav.traineddata" />
+    <None Include="App.Library\OCR\tessdata\jpn.traineddata" />
+    <None Include="App.Library\OCR\tessdata\jpn_vert.traineddata" />
+    <None Include="App.Library\OCR\tessdata\kan.traineddata" />
+    <None Include="App.Library\OCR\tessdata\kat.traineddata" />
+    <None Include="App.Library\OCR\tessdata\kat_old.traineddata" />
+    <None Include="App.Library\OCR\tessdata\kaz.traineddata" />
+    <None Include="App.Library\OCR\tessdata\khm.traineddata" />
+    <None Include="App.Library\OCR\tessdata\kir.traineddata" />
+    <None Include="App.Library\OCR\tessdata\kmr.traineddata" />
+    <None Include="App.Library\OCR\tessdata\kor.traineddata" />
+    <None Include="App.Library\OCR\tessdata\kor_vert.traineddata" />
+    <None Include="App.Library\OCR\tessdata\lao.traineddata" />
+    <None Include="App.Library\OCR\tessdata\lat.traineddata" />
+    <None Include="App.Library\OCR\tessdata\lav.traineddata" />
+    <None Include="App.Library\OCR\tessdata\LICENSE" />
+    <None Include="App.Library\OCR\tessdata\lit.traineddata" />
+    <None Include="App.Library\OCR\tessdata\ltz.traineddata" />
+    <None Include="App.Library\OCR\tessdata\mal.traineddata" />
+    <None Include="App.Library\OCR\tessdata\mar.traineddata" />
+    <None Include="App.Library\OCR\tessdata\mkd.traineddata" />
+    <None Include="App.Library\OCR\tessdata\mlt.traineddata" />
+    <None Include="App.Library\OCR\tessdata\mon.traineddata" />
+    <None Include="App.Library\OCR\tessdata\mri.traineddata" />
+    <None Include="App.Library\OCR\tessdata\msa.traineddata" />
+    <None Include="App.Library\OCR\tessdata\mya.traineddata" />
+    <None Include="App.Library\OCR\tessdata\nep.traineddata" />
+    <None Include="App.Library\OCR\tessdata\nld.traineddata" />
+    <None Include="App.Library\OCR\tessdata\nor.traineddata" />
+    <None Include="App.Library\OCR\tessdata\oci.traineddata" />
+    <None Include="App.Library\OCR\tessdata\ori.traineddata" />
+    <None Include="App.Library\OCR\tessdata\osd.traineddata" />
+    <None Include="App.Library\OCR\tessdata\pan.traineddata" />
+    <None Include="App.Library\OCR\tessdata\pdf.ttf" />
+    <None Include="App.Library\OCR\tessdata\pol.traineddata" />
+    <None Include="App.Library\OCR\tessdata\por.traineddata" />
+    <None Include="App.Library\OCR\tessdata\pus.traineddata" />
+    <None Include="App.Library\OCR\tessdata\que.traineddata" />
+    <None Include="App.Library\OCR\tessdata\README.md" />
+    <None Include="App.Library\OCR\tessdata\ron.traineddata" />
+    <None Include="App.Library\OCR\tessdata\rus.traineddata" />
+    <None Include="App.Library\OCR\tessdata\san.traineddata" />
+    <None Include="App.Library\OCR\tessdata\script\Arabic.traineddata" />
+    <None Include="App.Library\OCR\tessdata\script\Armenian.traineddata" />
+    <None Include="App.Library\OCR\tessdata\script\Bengali.traineddata" />
+    <None Include="App.Library\OCR\tessdata\script\Canadian_Aboriginal.traineddata" />
+    <None Include="App.Library\OCR\tessdata\script\Cherokee.traineddata" />
+    <None Include="App.Library\OCR\tessdata\script\Cyrillic.traineddata" />
+    <None Include="App.Library\OCR\tessdata\script\Devanagari.traineddata" />
+    <None Include="App.Library\OCR\tessdata\script\Ethiopic.traineddata" />
+    <None Include="App.Library\OCR\tessdata\script\Fraktur.traineddata" />
+    <None Include="App.Library\OCR\tessdata\script\Georgian.traineddata" />
+    <None Include="App.Library\OCR\tessdata\script\Greek.traineddata" />
+    <None Include="App.Library\OCR\tessdata\script\Gujarati.traineddata" />
+    <None Include="App.Library\OCR\tessdata\script\Gurmukhi.traineddata" />
+    <None Include="App.Library\OCR\tessdata\script\Hangul.traineddata" />
+    <None Include="App.Library\OCR\tessdata\script\Hangul_vert.traineddata" />
+    <None Include="App.Library\OCR\tessdata\script\HanS.traineddata" />
+    <None Include="App.Library\OCR\tessdata\script\HanS_vert.traineddata" />
+    <None Include="App.Library\OCR\tessdata\script\HanT.traineddata" />
+    <None Include="App.Library\OCR\tessdata\script\HanT_vert.traineddata" />
+    <None Include="App.Library\OCR\tessdata\script\Hebrew.traineddata" />
+    <None Include="App.Library\OCR\tessdata\script\Japanese.traineddata" />
+    <None Include="App.Library\OCR\tessdata\script\Japanese_vert.traineddata" />
+    <None Include="App.Library\OCR\tessdata\script\Kannada.traineddata" />
+    <None Include="App.Library\OCR\tessdata\script\Khmer.traineddata" />
+    <None Include="App.Library\OCR\tessdata\script\Lao.traineddata" />
+    <None Include="App.Library\OCR\tessdata\script\Latin.traineddata" />
+    <None Include="App.Library\OCR\tessdata\script\Malayalam.traineddata" />
+    <None Include="App.Library\OCR\tessdata\script\Myanmar.traineddata" />
+    <None Include="App.Library\OCR\tessdata\script\Oriya.traineddata" />
+    <None Include="App.Library\OCR\tessdata\script\Sinhala.traineddata" />
+    <None Include="App.Library\OCR\tessdata\script\Syriac.traineddata" />
+    <None Include="App.Library\OCR\tessdata\script\Tamil.traineddata" />
+    <None Include="App.Library\OCR\tessdata\script\Telugu.traineddata" />
+    <None Include="App.Library\OCR\tessdata\script\Thaana.traineddata" />
+    <None Include="App.Library\OCR\tessdata\script\Thai.traineddata" />
+    <None Include="App.Library\OCR\tessdata\script\Tibetan.traineddata" />
+    <None Include="App.Library\OCR\tessdata\script\Vietnamese.traineddata" />
+    <None Include="App.Library\OCR\tessdata\sin.traineddata" />
+    <None Include="App.Library\OCR\tessdata\slk.traineddata" />
+    <None Include="App.Library\OCR\tessdata\slk_frak.traineddata" />
+    <None Include="App.Library\OCR\tessdata\slv.traineddata" />
+    <None Include="App.Library\OCR\tessdata\snd.traineddata" />
+    <None Include="App.Library\OCR\tessdata\spa.traineddata" />
+    <None Include="App.Library\OCR\tessdata\spa_old.traineddata" />
+    <None Include="App.Library\OCR\tessdata\sqi.traineddata" />
+    <None Include="App.Library\OCR\tessdata\srp.traineddata" />
+    <None Include="App.Library\OCR\tessdata\srp_latn.traineddata" />
+    <None Include="App.Library\OCR\tessdata\sun.traineddata" />
+    <None Include="App.Library\OCR\tessdata\swa.traineddata" />
+    <None Include="App.Library\OCR\tessdata\swe.traineddata" />
+    <None Include="App.Library\OCR\tessdata\syr.traineddata" />
+    <None Include="App.Library\OCR\tessdata\tam.traineddata" />
+    <None Include="App.Library\OCR\tessdata\tat.traineddata" />
+    <None Include="App.Library\OCR\tessdata\tel.traineddata" />
+    <None Include="App.Library\OCR\tessdata\tgk.traineddata" />
+    <None Include="App.Library\OCR\tessdata\tgl.traineddata" />
+    <None Include="App.Library\OCR\tessdata\tha.traineddata" />
+    <None Include="App.Library\OCR\tessdata\tir.traineddata" />
+    <None Include="App.Library\OCR\tessdata\ton.traineddata" />
+    <None Include="App.Library\OCR\tessdata\tur.traineddata" />
+    <None Include="App.Library\OCR\tessdata\uig.traineddata" />
+    <None Include="App.Library\OCR\tessdata\ukr.traineddata" />
+    <None Include="App.Library\OCR\tessdata\urd.traineddata" />
+    <None Include="App.Library\OCR\tessdata\uzb.traineddata" />
+    <None Include="App.Library\OCR\tessdata\uzb_cyrl.traineddata" />
+    <None Include="App.Library\OCR\tessdata\vie.traineddata" />
+    <None Include="App.Library\OCR\tessdata\yid.traineddata" />
+    <None Include="App.Library\OCR\tessdata\yor.traineddata" />
     <None Include="packages.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Properties\DataSources\RecordSystemApplication.App.Data.dsRSA.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -974,8 +1212,6 @@
     <Content Include="App.Resources\RSABanner.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Resources\SF_TrackRegisters.png" />
-    <None Include="Resources\SF_TrackRegisters1.png" />
     <Content Include="Setting.xml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -1003,6 +1239,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App.Image\" />
+    <Folder Include="App.Library\OCR\tessdata\tessconfigs\" />
     <Folder Include="App.Program\Report\" />
     <Folder Include="App.Program\Theme\" />
   </ItemGroup>
@@ -1030,7 +1267,15 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Grpc.Core.2.44.0\build\net45\Grpc.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Grpc.Core.2.44.0\build\net45\Grpc.Core.targets'))" />
+    <Error Condition="!Exists('..\packages\Tesseract.5.2.0\build\Tesseract.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Tesseract.5.2.0\build\Tesseract.targets'))" />
+    <Error Condition="!Exists('..\packages\SkiaSharp.NativeAssets.macOS.2.88.8\build\net462\SkiaSharp.NativeAssets.macOS.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SkiaSharp.NativeAssets.macOS.2.88.8\build\net462\SkiaSharp.NativeAssets.macOS.targets'))" />
+    <Error Condition="!Exists('..\packages\SkiaSharp.NativeAssets.Win32.2.88.8\build\net462\SkiaSharp.NativeAssets.Win32.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SkiaSharp.NativeAssets.Win32.2.88.8\build\net462\SkiaSharp.NativeAssets.Win32.targets'))" />
+    <Error Condition="!Exists('..\packages\SkiaSharp.NativeAssets.Linux.NoDependencies.2.88.8\build\net462\SkiaSharp.NativeAssets.Linux.NoDependencies.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SkiaSharp.NativeAssets.Linux.NoDependencies.2.88.8\build\net462\SkiaSharp.NativeAssets.Linux.NoDependencies.targets'))" />
   </Target>
+  <Import Project="..\packages\Tesseract.5.2.0\build\Tesseract.targets" Condition="Exists('..\packages\Tesseract.5.2.0\build\Tesseract.targets')" />
+  <Import Project="..\packages\SkiaSharp.NativeAssets.macOS.2.88.8\build\net462\SkiaSharp.NativeAssets.macOS.targets" Condition="Exists('..\packages\SkiaSharp.NativeAssets.macOS.2.88.8\build\net462\SkiaSharp.NativeAssets.macOS.targets')" />
+  <Import Project="..\packages\SkiaSharp.NativeAssets.Win32.2.88.8\build\net462\SkiaSharp.NativeAssets.Win32.targets" Condition="Exists('..\packages\SkiaSharp.NativeAssets.Win32.2.88.8\build\net462\SkiaSharp.NativeAssets.Win32.targets')" />
+  <Import Project="..\packages\SkiaSharp.NativeAssets.Linux.NoDependencies.2.88.8\build\net462\SkiaSharp.NativeAssets.Linux.NoDependencies.targets" Condition="Exists('..\packages\SkiaSharp.NativeAssets.Linux.NoDependencies.2.88.8\build\net462\SkiaSharp.NativeAssets.Linux.NoDependencies.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

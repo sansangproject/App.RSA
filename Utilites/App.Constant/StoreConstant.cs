@@ -39,15 +39,22 @@ namespace SANSANG.Constant
         public static string Credit = "[Credits]";
         public static string Statement = "[Statements]";
         public static string Product = "[Products]";
+        public static string Stock = "[Stocks]";
         public static string Member = "[Members]";
 
         public static string Workday = "[Workday]";
         public static string Gold = "[Golds]";
         public static string Money = "[Money]";
+
         public static string WaterAccount = "[WaterAccount]";
         public static string WaterRates = "[WaterRates]";
+        public static string Waters = "[Waters]";
 
-        public static string GetMasterList = "[GetListMaster]";
+        public static string ElectricityAccount = "[ElectricityAccount]";
+        public static string ElectricityRates = "[ElectricityRates]";
+        public static string Electricitys = "[Electricitys]";
+
+        public static string GetMasterList = "[GetMasterList]";
         public static string GetList = "[GetList]";
 
         public static string GetMoneyBalance = "[GetMoneyBalance]";
@@ -61,7 +68,8 @@ namespace SANSANG.Constant
         public static string GeneratedId = "[GeneratedId]";
         public static string GetTopId = "[GetTopId]";
         public static string GetItemId = "[GetItemId]";
-        
+        public static string GetReportIncomeExpense = "[GetReportIncomeExpense]"; 
+
         public string ManagePath = string.Format(Stores, SPR, Path);
         public string ManageUser = string.Format(Stores, SPR, User);
         public string ManageMenu = string.Format(Stores, SPR, Menu);
@@ -82,11 +90,17 @@ namespace SANSANG.Constant
         public string ManageCredit = string.Format(Stores, SPR, Credit);
         public string ManageStatement = string.Format(Stores, SPR, Statement);
         public string ManageProduct = string.Format(Stores, SPR, Product);
+        public string ManageStock = string.Format(Stores, SPR, Stock);
         public string ManageMember = string.Format(Stores, SPR, Member);
         public string ManageCategory = string.Format(Stores, SPR, Category);
         public string ManageMoney = string.Format(Stores, SPR, Money);
         public string ManageWaterAccount = string.Format(Stores, SPR, WaterAccount);
         public string ManageWaterRates = string.Format(Stores, SPR, WaterRates);
+        public string ManageWaters = string.Format(Stores, SPR, Waters);
+
+        public string ManageElectricityAccount = string.Format(Stores, SPR, ElectricityAccount);
+        public string ManageElectricityRates = string.Format(Stores, SPR, ElectricityRates);
+        public string ManageElectricitys = string.Format(Stores, SPR, Electricitys);
 
         public string ManageWorkday = string.Format(Stores, SPR, Workday);
         public string ManageGold = string.Format(Stores, SPR, Gold);
@@ -106,6 +120,6 @@ namespace SANSANG.Constant
         public string FnGeneratedId = string.Format(Stores, FN, GeneratedId);
         public string FnGetTopId = string.Format(Stores, FN, GetTopId);
         public string FnGetItemId = string.Format(Stores, FN, GetItemId);
-
+        public string FnGetReportIncomeExpense = string.Format(Stores, FN, GetReportIncomeExpense);
     }
 }

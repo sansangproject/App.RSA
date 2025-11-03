@@ -337,5 +337,30 @@ namespace SANSANG.Class
                 TextBox.Text = Data;
             }
         }
-}
+
+        public void UpperCase(TextBox TextBox)
+        {
+            string data = TextBox.Text;
+            string result = "";
+
+            try
+            {
+                string[] words = data.Split(' ');
+                int index = 0;
+
+                foreach (var word in words)
+                {
+                    string cleanedWord = Regex.Replace(word, "[^a-zA-Z0-9 -]", "").ToUpper();
+                    result += index == 0 ? cleanedWord : " " + cleanedWord;
+                    index++;
+                }
+
+                TextBox.Text = result;
+            }
+            catch
+            {
+                TextBox.Text = data;
+            }
+        }
+    }
 }

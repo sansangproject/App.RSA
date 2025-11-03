@@ -9,5 +9,6 @@ namespace SANSANG.Constant
     public class FormatConstant
     {
         public string DDMMYY = "DDMMYY";
+        public string DDMMYYYY = "ddMMyyyy";
     }
 }

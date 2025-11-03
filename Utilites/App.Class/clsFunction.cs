@@ -15,6 +15,9 @@ using SANSANG.Utilites.App.Global;
 using SANSANG.Utilites.App.Model;
 using SANSANG.Database;
 using SANSANG.Utilites.App.Forms;
+using System.ComponentModel;
+using Excel = Microsoft.Office.Interop.Excel;
+using Forms = System.Windows.Forms;
 
 namespace SANSANG.Class
 {
@@ -207,7 +210,7 @@ namespace SANSANG.Class
                 if (string.IsNullOrEmpty(Error))
                 {
                     int Category = Convert.ToInt16(dt.Rows[0]["CategoryId"].ToString());
-                    Details = Category != 1070? dt.Rows[0]["Display"].ToString() 
+                    Details = Category != 1070 ? dt.Rows[0]["Display"].ToString()
                                               : dt.Rows[0]["NameEn"].ToString() + " | " + dt.Rows[0]["Name"].ToString();
                     Items = "รายการเดินบัญชี";
                     return Convert.ToBoolean(dt.Rows[0]["IsDebit"].ToString());
@@ -332,7 +335,7 @@ namespace SANSANG.Class
                 PaymentId = dt.Rows[0]["Id"].ToString();
                 Items = dt.Rows[0]["NameEn"].ToString();
                 Details = dt.Rows[0]["Detail"].ToString();
-                Displays = dt.Rows[0]["NameEn"].ToString() + " | " + dt.Rows[0]["Name"].ToString();
+                Displays = dt.Rows[0]["Display"].ToString() + " | " + dt.Rows[0]["Name"].ToString();
                 IsWithdrawal = Convert.ToBoolean(dt.Rows[0]["IsDebit"].ToString()) ? false : true;
             }
             catch (Exception)
@@ -355,6 +358,11 @@ namespace SANSANG.Class
                 {
                     NameEn = Codes == "โอนเงิน" ? "Transfer Withdrawal" : "";
                 }
+                if (Payments == "1057")
+                {
+                    NameEn = Codes;
+                    Codes = "";
+                }
 
                 Parameter = new string[,]
                 {
@@ -375,11 +383,22 @@ namespace SANSANG.Class
 
                 db.Get(Store.FnGetItemId, Parameter, out Error, out dt);
 
-                PaymentId = dt.Rows[0]["Id"].ToString();
-                Items = dt.Rows[0]["NameEn"].ToString();
-                Details = dt.Rows[0]["Detail"].ToString();
-                Displays = dt.Rows[0]["NameEn"].ToString() + " | " + dt.Rows[0]["Name"].ToString();
-                IsWithdrawal = Convert.ToBoolean(dt.Rows[0]["IsDebit"].ToString()) ? false : true;
+                if (dt != null && dt.Rows.Count == 1)
+                {
+                    PaymentId = dt.Rows[0]["Id"].ToString();
+                    Items = dt.Rows[0]["NameEn"].ToString();
+                    Details = dt.Rows[0]["Detail"].ToString();
+                    Displays = dt.Rows[0]["Display"].ToString() + " | " + dt.Rows[0]["Name"].ToString();
+                    IsWithdrawal = Convert.ToBoolean(dt.Rows[0]["IsDebit"].ToString()) ? false : true;
+                }
+                else
+                {
+                    PaymentId = "";
+                    Items = "";
+                    Details = "";
+                    Displays = "";
+                    IsWithdrawal = false;
+                }
             }
             catch (Exception)
             {
@@ -629,6 +648,69 @@ namespace SANSANG.Class
             dataGridView.Columns[6].Width = Col6Width;
             dataGridView.Columns[6].HeaderCell.Style.Alignment = Col6HeadStyle;
             dataGridView.Columns[6].DefaultCellStyle.Alignment = Col6DefaultStyle;
+        }
+
+        public void ShowGridViewFormatFromStore(DataTable dt, DataGridView dataGridView,
+            string Col0Name, int Col0Width, Boolean Col0Show, DataGridViewContentAlignment Col0HeadStyle, DataGridViewContentAlignment Col0DefaultStyle
+          , string Col1Name, int Col1Width, Boolean Col1Show, DataGridViewContentAlignment Col1HeadStyle, DataGridViewContentAlignment Col1DefaultStyle
+          , string Col2Name, int Col2Width, Boolean Col2Show, DataGridViewContentAlignment Col2HeadStyle, DataGridViewContentAlignment Col2DefaultStyle
+          , string Col3Name, int Col3Width, Boolean Col3Show, DataGridViewContentAlignment Col3HeadStyle, DataGridViewContentAlignment Col3DefaultStyle
+          , string Col4Name, int Col4Width, Boolean Col4Show, DataGridViewContentAlignment Col4HeadStyle, DataGridViewContentAlignment Col4DefaultStyle
+          , string Col5Name, int Col5Width, Boolean Col5Show, DataGridViewContentAlignment Col5HeadStyle, DataGridViewContentAlignment Col5DefaultStyle
+          , string Col6Name, int Col6Width, Boolean Col6Show, DataGridViewContentAlignment Col6HeadStyle, DataGridViewContentAlignment Col6DefaultStyle
+          , string Col7Name, int Col7Width, Boolean Col7Show, DataGridViewContentAlignment Col7HeadStyle, DataGridViewContentAlignment Col7DefaultStyle
+          )
+        {
+            dataGridView.DataSource = dt;
+            numberRow(dataGridView);
+
+            dataGridView.Columns[0].Visible = Col0Show;
+            dataGridView.Columns[0].HeaderText = Col0Name;
+            dataGridView.Columns[0].Width = Col0Width;
+            dataGridView.Columns[0].HeaderCell.Style.Alignment = Col0HeadStyle;
+            dataGridView.Columns[0].DefaultCellStyle.Alignment = Col0DefaultStyle;
+
+            dataGridView.Columns[1].Visible = Col1Show;
+            dataGridView.Columns[1].HeaderText = Col1Name;
+            dataGridView.Columns[1].Width = Col1Width;
+            dataGridView.Columns[1].HeaderCell.Style.Alignment = Col1HeadStyle;
+            dataGridView.Columns[1].DefaultCellStyle.Alignment = Col1DefaultStyle;
+
+            dataGridView.Columns[2].Visible = Col2Show;
+            dataGridView.Columns[2].HeaderText = Col2Name;
+            dataGridView.Columns[2].Width = Col2Width;
+            dataGridView.Columns[2].HeaderCell.Style.Alignment = Col2HeadStyle;
+            dataGridView.Columns[2].DefaultCellStyle.Alignment = Col2DefaultStyle;
+
+            dataGridView.Columns[3].Visible = Col3Show;
+            dataGridView.Columns[3].HeaderText = Col3Name;
+            dataGridView.Columns[3].Width = Col3Width;
+            dataGridView.Columns[3].HeaderCell.Style.Alignment = Col3HeadStyle;
+            dataGridView.Columns[3].DefaultCellStyle.Alignment = Col3DefaultStyle;
+
+            dataGridView.Columns[4].Visible = Col4Show;
+            dataGridView.Columns[4].HeaderText = Col4Name;
+            dataGridView.Columns[4].Width = Col4Width;
+            dataGridView.Columns[4].HeaderCell.Style.Alignment = Col4HeadStyle;
+            dataGridView.Columns[4].DefaultCellStyle.Alignment = Col4DefaultStyle;
+
+            dataGridView.Columns[5].Visible = Col5Show;
+            dataGridView.Columns[5].HeaderText = Col5Name;
+            dataGridView.Columns[5].Width = Col5Width;
+            dataGridView.Columns[5].HeaderCell.Style.Alignment = Col5HeadStyle;
+            dataGridView.Columns[5].DefaultCellStyle.Alignment = Col5DefaultStyle;
+
+            dataGridView.Columns[6].Visible = Col6Show;
+            dataGridView.Columns[6].HeaderText = Col6Name;
+            dataGridView.Columns[6].Width = Col6Width;
+            dataGridView.Columns[6].HeaderCell.Style.Alignment = Col6HeadStyle;
+            dataGridView.Columns[6].DefaultCellStyle.Alignment = Col6DefaultStyle;
+
+            dataGridView.Columns[7].Visible = Col7Show;
+            dataGridView.Columns[7].HeaderText = Col7Name;
+            dataGridView.Columns[7].Width = Col7Width;
+            dataGridView.Columns[7].HeaderCell.Style.Alignment = Col7HeadStyle;
+            dataGridView.Columns[7].DefaultCellStyle.Alignment = Col7DefaultStyle;
         }
 
         public void ShowGridViewFormatFromStore(DataTable dt, DataGridView dataGridView,
@@ -918,7 +1000,37 @@ namespace SANSANG.Class
                 {
                     CheckBoxs.Checked = false;
                 }
+            }
+        }
 
+        public void ClearAlls(Control container)
+        {
+            foreach (Control control in container.Controls)
+            {
+                if (control is TextBox textBox)
+                {
+                    textBox.Text = "";
+                }
+
+                if (control is ComboBox comboBox)
+                {
+                    comboBox.SelectedIndex = 0;
+                }
+
+                if (control is RadioButton radioButton)
+                {
+                    radioButton.Checked = false;
+                }
+
+                if (control is CheckBox checkBox)
+                {
+                    checkBox.Checked = false;
+                }
+
+                if (control.HasChildren)
+                {
+                    ClearAlls(control);
+                }
             }
         }
 
@@ -1001,12 +1113,13 @@ namespace SANSANG.Class
             }
         }
 
-        public DataTable GetBankBalance(string Account)
+        public DataTable GetBankBalance(string Id, string Account)
         {
             try
             {
                 string[,] Parameter = new string[,]
                 {
+                    {"@Id", Id},
                     {"@Account", Account},
                 };
 
@@ -1090,7 +1203,29 @@ namespace SANSANG.Class
             }
         }
 
+        public double CalculateElectricity(double FirstLevel, double NextLevel, double OverLevel, int Units)
+        {
+            double TotalCost = 0;
+            double First = FirstLevel;
+            double Next = NextLevel;
+            double Over = OverLevel;
 
+
+            if (Units <= 150)
+            {
+                TotalCost = Convert.ToDouble(Units * First);
+            }
+            else if (Units <= 400)
+            {
+                TotalCost = Convert.ToDouble((150 * First) + ((Units - 150) * Next));
+            }
+            else
+            {
+                TotalCost = Convert.ToDouble((150 * First) + (250 * Next) + ((Units - 400) * Over));
+            }
+
+            return TotalCost;
+        }
 
 
 
@@ -1319,7 +1454,7 @@ namespace SANSANG.Class
                 };
 
                 db.Get(Store.FnGetTopId, Parameter, out strErr, out dt);
-                Id = strErr != ""? string.Format("{0:0000}", Convert.ToInt32(dt.Rows[0][column].ToString())) : "";
+                Id = strErr != "" ? string.Format("{0:0000}", Convert.ToInt32(dt.Rows[0][column].ToString())) : "";
                 return Id;
             }
             catch (Exception)
@@ -2271,7 +2406,7 @@ namespace SANSANG.Class
             try
             {
                 string numberOnly = "";
-                
+
                 for (int i = 0; i < phoneNumber.Length; i++)
                 {
                     if (Char.IsDigit(phoneNumber[i]))
@@ -2410,6 +2545,10 @@ namespace SANSANG.Class
             {
                 codeString += "Enter";
             }
+            else if (e.KeyCode == Keys.Tab)
+            {
+                codeString += "Tab";
+            }
             else
             {
             }
@@ -2459,37 +2598,23 @@ namespace SANSANG.Class
             }
         }
 
-        public void getWaterData(string qrCode)
+        public void GetWaterData(string qrCode, int NumberOfPayment)
         {
             clsConvert Converts = new clsConvert();
             string[] lines = qrCode.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
             int Units = Convert.ToInt32(lines[2].Substring(8, 7));
 
-            WaterModel wm = new WaterModel();
+            WaterModel Waters = new WaterModel();
             GlobalVar.WaterDataList.Clear();
 
-            wm.Amount = Converts.StringToDouble(lines[3]);
-            wm.PayDate = ConvertToDate(lines[2].Substring(0, 6), Fm.DDMMYY);
+            Waters.Amount = Converts.StringToDouble(lines[3]);
+            Waters.PayDate = ConvertToDate(lines[2].Substring(0, 6), Fm.DDMMYY);
+            Waters.InvoiceDate = Waters.PayDate.AddDays(NumberOfPayment);
+            Waters.ReadDate = Waters.PayDate.AddDays(NumberOfPayment);
 
-            int intDay = Convert.ToInt32(wm.PayDate.Day);
-            int intMonth = Convert.ToInt32(wm.PayDate.Month);
-            int intYear = Convert.ToInt32(lines[2].Substring(4, 2));
-
-            string strReadDateNext = "12" + String.Format("{0:D2}", intMonth - 1) + String.Format("{0:D2}", intYear);
-            string strReadDateCurrent = "12" + String.Format("{0:D2}", intMonth) + String.Format("{0:D2}", intYear);
-
-            if (intDay > 15)
-            {
-                wm.ReadDate = ConvertToDate(strReadDateCurrent, Fm.DDMMYY);
-            }
-            else
-            {
-                wm.ReadDate = ConvertToDate(strReadDateNext, Fm.DDMMYY);
-            }
-
-            wm.ReceiptId = lines[1].Substring(11, 6) + "-" + lines[1].Substring(17, 1);
-            wm.Unit = Units > 100 ? Units / 10 : Units;
-            GlobalVar.WaterDataList.Add(wm);
+            Waters.ReceiptId = lines[1].Substring(11, 6) + "-" + lines[1].Substring(17, 1);
+            Waters.Unit = Units > 100 ? Units / 10 : Units;
+            GlobalVar.WaterDataList.Add(Waters);
         }
 
         public void getElectricData(string qrCode)
@@ -2504,7 +2629,7 @@ namespace SANSANG.Class
             if (lines[1].Length == 18)
             {
                 em.CaRefNo = lines[1].Substring(0, 9);
-                em.Unit = Convert.ToInt32(lines[1].Substring(lines[1].Length - 4, 3));
+                em.Unit = Convert.ToInt32(lines[1].Substring(10, 7));
                 em.qrLine2 = lines[1];
             }
 
@@ -2513,19 +2638,24 @@ namespace SANSANG.Class
                 em.ReceiptId = lines[2].Substring(1, 11);
                 em.PayDate = ConvertToDate(lines[2].Substring((lines[2].Length) - 6, 6), Fm.DDMMYY);
 
-                int intDay = Convert.ToInt32(em.PayDate.Day);
-                int intMonth = Convert.ToInt32(em.PayDate.Month);
+                int dayOfPayDate = em.PayDate.Day;
+                int monthNumber, yearNumber;
+                string formattedDate;
 
-                string strMonthYear = "18" + String.Format("{0:D2}", intMonth - 1) + lines[2].Substring((lines[2].Length) - 2, 2);
-
-                if (intDay > 15)
+                if (dayOfPayDate >= 19 && dayOfPayDate <= 31)
                 {
-                    em.ReadDate = ConvertToDate("18" + lines[2].Substring((lines[2].Length) - 4, 4), Fm.DDMMYY);
+                    monthNumber = em.PayDate.Month;
+                    yearNumber = em.PayDate.Year;
                 }
                 else
                 {
-                    em.ReadDate = ConvertToDate(strMonthYear, Fm.DDMMYY);
+                    DateTime previousMonth = em.PayDate.AddMonths(-1);
+                    monthNumber = previousMonth.Month;
+                    yearNumber = previousMonth.Year;
                 }
+
+                formattedDate = $"18{monthNumber:D2}{yearNumber:D4}";
+                em.ReadDate = DateTime.ParseExact(formattedDate, Fm.DDMMYYYY, CultureInfo.InvariantCulture);
 
                 em.qrLine3 = lines[2];
             }

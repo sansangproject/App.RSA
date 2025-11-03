@@ -8,6 +8,8 @@ using SANSANG.Class;
 using SANSANG.Database;
 using SANSANG.Constant;
 using System.Collections.Generic;
+using App;
+using RecordSystemApplication.App.Program.Application.Print;
 
 namespace SANSANG
 {
@@ -359,7 +361,17 @@ namespace SANSANG
                 FrmCredits Frm = new FrmCredits(UserId, UserName, UserSurname, UserType);
                 Frm.Show();
             }
-            else if (((RadMenuItem)sender).Name == "SAVEA00")
+            else if (((RadMenuItem)sender).Name == "MEAMA00")
+            {
+                FrmElectricityRates Frm = new FrmElectricityRates(UserId, UserName, UserSurname, UserType);
+                Frm.Show();
+            }
+            else if (((RadMenuItem)sender).Name == "MEARE00")
+            {
+                FrmElectricityReport Frm = new FrmElectricityReport(UserId, UserName, UserSurname, UserType);
+                Frm.Show();
+            }
+            else if (((RadMenuItem)sender).Name == "MEASA00")
             {
                 FrmElectricitys Frm = new FrmElectricitys(UserId, UserName, UserSurname, UserType);
                 Frm.Show();
@@ -367,6 +379,11 @@ namespace SANSANG
             else if (((RadMenuItem)sender).Name == "SAVSM00")
             {
                 FrmStatements Frm = new FrmStatements(UserId, UserName, UserSurname, UserType);
+                Frm.Show();
+            }
+            else if (((RadMenuItem)sender).Name == "SAVPS00")
+            {
+                FrmStocks Frm = new FrmStocks(UserId, UserName, UserSurname, UserType);
                 Frm.Show();
             }
             else if (((RadMenuItem)sender).Name == "SAVPR00")
@@ -404,8 +421,32 @@ namespace SANSANG
                 FrmWaterRates Frm = new FrmWaterRates(UserId, UserName, UserSurname, UserType);
                 Frm.Show();
             }
+            else if (((RadMenuItem)sender).Name == "MWASA00")
+            {
+                FrmWaters Frm = new FrmWaters(UserId, UserName, UserSurname, UserType);
+                Frm.Show();
+            }
+            else if (((RadMenuItem)sender).Name == "MWASA00")
+            {
+                FrmWaters Frm = new FrmWaters(UserId, UserName, UserSurname, UserType);
+                Frm.Show();
+            }
+            else if (((RadMenuItem)sender).Name == "SETRP00")
+            {
+                FrmRemovePassword Frm = new FrmRemovePassword(UserId, UserName, UserSurname, UserType);
+                Frm.Show();
+            }
+            else if (((RadMenuItem)sender).Name == "SETRN00")
+            {
+                FrmImageRename Frm = new FrmImageRename(UserId, UserName, UserSurname, UserType);
+                Frm.Show();
+            }
+            else if (((RadMenuItem)sender).Name == "RPTEP00")
+            {
+                FrmReportExpense Frm = new FrmReportExpense(UserId, UserName, UserSurname, UserType);
+                Frm.Show();
+            }
             Log.WriteLogData("MENU", ((RadMenuItem)sender).Name, UserId, "Open");
-
         }
     }
 }

@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cbbShop = new System.Windows.Forms.ComboBox();
             this.gbForm = new System.Windows.Forms.GroupBox();
+            this.btnTitleCase = new System.Windows.Forms.Button();
             this.cbbEdc = new System.Windows.Forms.ComboBox();
             this.label37 = new System.Windows.Forms.Label();
             this.btnCopy = new System.Windows.Forms.Button();
@@ -157,6 +158,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gbForm.BackColor = System.Drawing.Color.White;
+            this.gbForm.Controls.Add(this.btnTitleCase);
             this.gbForm.Controls.Add(this.cbbEdc);
             this.gbForm.Controls.Add(this.label37);
             this.gbForm.Controls.Add(this.btnCopy);
@@ -229,6 +231,21 @@
             this.gbForm.Size = new System.Drawing.Size(1487, 965);
             this.gbForm.TabIndex = 46;
             this.gbForm.TabStop = false;
+            // 
+            // btnTitleCase
+            // 
+            this.btnTitleCase.BackColor = System.Drawing.Color.White;
+            this.btnTitleCase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTitleCase.ForeColor = System.Drawing.Color.Transparent;
+            this.btnTitleCase.Image = ((System.Drawing.Image)(resources.GetObject("btnTitleCase.Image")));
+            this.btnTitleCase.Location = new System.Drawing.Point(837, 233);
+            this.btnTitleCase.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnTitleCase.Name = "btnTitleCase";
+            this.btnTitleCase.Size = new System.Drawing.Size(20, 20);
+            this.btnTitleCase.TabIndex = 254;
+            this.btnTitleCase.TabStop = false;
+            this.btnTitleCase.UseVisualStyleBackColor = false;
+            this.btnTitleCase.Click += new System.EventHandler(this.btnTitleCase_Click);
             // 
             // cbbEdc
             // 
@@ -1096,7 +1113,7 @@
             this.txtProduct.Location = new System.Drawing.Point(659, 234);
             this.txtProduct.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtProduct.Name = "txtProduct";
-            this.txtProduct.Size = new System.Drawing.Size(198, 19);
+            this.txtProduct.Size = new System.Drawing.Size(172, 19);
             this.txtProduct.TabIndex = 3;
             // 
             // txtAmount
@@ -1454,5 +1471,6 @@
         private System.Windows.Forms.TextBox txtSumCredit;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.TextBox txtUseCredit;
+        private System.Windows.Forms.Button btnTitleCase;
     }
 }

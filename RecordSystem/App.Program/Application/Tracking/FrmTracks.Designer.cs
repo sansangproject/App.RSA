@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTracks));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTracks));
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
@@ -39,23 +39,10 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.gbFrm = new System.Windows.Forms.GroupBox();
-            this.btnTitleCase = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.txtReference = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnExit = new System.Windows.Forms.Button();
-            this.btnPrint = new System.Windows.Forms.Button();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnClear = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.btnReceive = new System.Windows.Forms.Button();
-            this.btnSeller = new System.Windows.Forms.Button();
-            this.btnDefault = new System.Windows.Forms.Button();
-            this.btnCopy = new System.Windows.Forms.Button();
-            this.pbUpdate = new System.Windows.Forms.PictureBox();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.cbbProvider = new System.Windows.Forms.ComboBox();
@@ -100,16 +87,29 @@
             this.lblHSearch = new System.Windows.Forms.Label();
             this.GridView = new System.Windows.Forms.DataGridView();
             this.lblCondition = new System.Windows.Forms.Label();
+            this.txtId = new System.Windows.Forms.TextBox();
+            this.btnTitleCase = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnReceive = new System.Windows.Forms.Button();
+            this.btnSeller = new System.Windows.Forms.Button();
+            this.btnDefault = new System.Windows.Forms.Button();
+            this.btnCopy = new System.Windows.Forms.Button();
+            this.pbUpdate = new System.Windows.Forms.PictureBox();
             this.picExcel = new System.Windows.Forms.PictureBox();
             this.btnSearchCode = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pbBanner = new System.Windows.Forms.PictureBox();
-            this.txtId = new System.Windows.Forms.TextBox();
             this.gbFrm.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbUpdate)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbUpdate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picExcel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBanner)).BeginInit();
@@ -273,21 +273,6 @@
             this.gbFrm.TabIndex = 102;
             this.gbFrm.TabStop = false;
             // 
-            // btnTitleCase
-            // 
-            this.btnTitleCase.BackColor = System.Drawing.Color.White;
-            this.btnTitleCase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTitleCase.ForeColor = System.Drawing.Color.Transparent;
-            this.btnTitleCase.Image = ((System.Drawing.Image)(resources.GetObject("btnTitleCase.Image")));
-            this.btnTitleCase.Location = new System.Drawing.Point(863, 265);
-            this.btnTitleCase.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnTitleCase.Name = "btnTitleCase";
-            this.btnTitleCase.Size = new System.Drawing.Size(23, 27);
-            this.btnTitleCase.TabIndex = 229;
-            this.btnTitleCase.TabStop = false;
-            this.btnTitleCase.UseVisualStyleBackColor = false;
-            this.btnTitleCase.Click += new System.EventHandler(this.btnTitleCase_Click);
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -343,189 +328,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(299, 65);
             this.panel1.TabIndex = 222;
-            // 
-            // btnExit
-            // 
-            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExit.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExit.ForeColor = System.Drawing.Color.White;
-            this.btnExit.Image = ((System.Drawing.Image)(resources.GetObject("btnExit.Image")));
-            this.btnExit.Location = new System.Drawing.Point(257, 6);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(36, 36);
-            this.btnExit.TabIndex = 97;
-            this.btnExit.Tag = "ออก";
-            this.btnExit.UseVisualStyleBackColor = false;
-            this.btnExit.Click += new System.EventHandler(this.Exit);
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrint.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrint.ForeColor = System.Drawing.Color.Transparent;
-            this.btnPrint.Image = ((System.Drawing.Image)(resources.GetObject("btnPrint.Image")));
-            this.btnPrint.Location = new System.Drawing.Point(7, 6);
-            this.btnPrint.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(36, 36);
-            this.btnPrint.TabIndex = 92;
-            this.btnPrint.TabStop = false;
-            this.btnPrint.Tag = "เคลียร์";
-            this.btnPrint.UseVisualStyleBackColor = false;
-            this.btnPrint.Click += new System.EventHandler(this.Print);
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSearch.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
-            this.btnSearch.Location = new System.Drawing.Point(47, 6);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(36, 36);
-            this.btnSearch.TabIndex = 98;
-            this.btnSearch.UseVisualStyleBackColor = false;
-            this.btnSearch.Click += new System.EventHandler(this.Search);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelete.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
-            this.btnDelete.Location = new System.Drawing.Point(173, 6);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(36, 36);
-            this.btnDelete.TabIndex = 95;
-            this.btnDelete.UseVisualStyleBackColor = false;
-            this.btnDelete.Click += new System.EventHandler(this.DeleteData);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
-            this.btnAdd.Location = new System.Drawing.Point(89, 6);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(36, 36);
-            this.btnAdd.TabIndex = 93;
-            this.btnAdd.UseVisualStyleBackColor = false;
-            this.btnAdd.Click += new System.EventHandler(this.AddData);
-            // 
-            // btnClear
-            // 
-            this.btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClear.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClear.ForeColor = System.Drawing.Color.White;
-            this.btnClear.Image = ((System.Drawing.Image)(resources.GetObject("btnClear.Image")));
-            this.btnClear.Location = new System.Drawing.Point(215, 6);
-            this.btnClear.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(36, 36);
-            this.btnClear.TabIndex = 96;
-            this.btnClear.Tag = "เคลียร์";
-            this.btnClear.UseVisualStyleBackColor = false;
-            this.btnClear.Click += new System.EventHandler(this.ClearData);
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEdit.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEdit.ForeColor = System.Drawing.Color.White;
-            this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
-            this.btnEdit.Location = new System.Drawing.Point(131, 6);
-            this.btnEdit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(36, 36);
-            this.btnEdit.TabIndex = 94;
-            this.btnEdit.UseVisualStyleBackColor = false;
-            this.btnEdit.Click += new System.EventHandler(this.EditData);
-            // 
-            // btnReceive
-            // 
-            this.btnReceive.BackColor = System.Drawing.Color.White;
-            this.btnReceive.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnReceive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReceive.ForeColor = System.Drawing.Color.White;
-            this.btnReceive.Image = ((System.Drawing.Image)(resources.GetObject("btnReceive.Image")));
-            this.btnReceive.Location = new System.Drawing.Point(859, 227);
-            this.btnReceive.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnReceive.Name = "btnReceive";
-            this.btnReceive.Size = new System.Drawing.Size(27, 28);
-            this.btnReceive.TabIndex = 221;
-            this.btnReceive.Tag = "ออก";
-            this.btnReceive.UseVisualStyleBackColor = false;
-            this.btnReceive.Click += new System.EventHandler(this.btnReceive_Click);
-            // 
-            // btnSeller
-            // 
-            this.btnSeller.BackColor = System.Drawing.Color.White;
-            this.btnSeller.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnSeller.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSeller.ForeColor = System.Drawing.Color.White;
-            this.btnSeller.Image = ((System.Drawing.Image)(resources.GetObject("btnSeller.Image")));
-            this.btnSeller.Location = new System.Drawing.Point(860, 187);
-            this.btnSeller.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnSeller.Name = "btnSeller";
-            this.btnSeller.Size = new System.Drawing.Size(27, 28);
-            this.btnSeller.TabIndex = 220;
-            this.btnSeller.Tag = "ออก";
-            this.btnSeller.UseVisualStyleBackColor = false;
-            this.btnSeller.Click += new System.EventHandler(this.btnSeller_Click);
-            // 
-            // btnDefault
-            // 
-            this.btnDefault.BackColor = System.Drawing.Color.White;
-            this.btnDefault.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDefault.ForeColor = System.Drawing.Color.White;
-            this.btnDefault.Image = ((System.Drawing.Image)(resources.GetObject("btnDefault.Image")));
-            this.btnDefault.Location = new System.Drawing.Point(1256, 223);
-            this.btnDefault.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnDefault.Name = "btnDefault";
-            this.btnDefault.Size = new System.Drawing.Size(30, 27);
-            this.btnDefault.TabIndex = 219;
-            this.btnDefault.Tag = "ออก";
-            this.btnDefault.UseVisualStyleBackColor = false;
-            this.btnDefault.Click += new System.EventHandler(this.btnDefault_Click);
-            // 
-            // btnCopy
-            // 
-            this.btnCopy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnCopy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCopy.ForeColor = System.Drawing.Color.Transparent;
-            this.btnCopy.Image = ((System.Drawing.Image)(resources.GetObject("btnCopy.Image")));
-            this.btnCopy.Location = new System.Drawing.Point(733, 148);
-            this.btnCopy.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnCopy.Name = "btnCopy";
-            this.btnCopy.Size = new System.Drawing.Size(24, 28);
-            this.btnCopy.TabIndex = 218;
-            this.btnCopy.TabStop = false;
-            this.btnCopy.UseVisualStyleBackColor = false;
-            this.btnCopy.Click += new System.EventHandler(this.Copy);
-            // 
-            // pbUpdate
-            // 
-            this.pbUpdate.Image = ((System.Drawing.Image)(resources.GetObject("pbUpdate.Image")));
-            this.pbUpdate.Location = new System.Drawing.Point(1237, 343);
-            this.pbUpdate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pbUpdate.Name = "pbUpdate";
-            this.pbUpdate.Size = new System.Drawing.Size(32, 29);
-            this.pbUpdate.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbUpdate.TabIndex = 217;
-            this.pbUpdate.TabStop = false;
-            this.pbUpdate.Click += new System.EventHandler(this.pbUpdate_Click);
             // 
             // label18
             // 
@@ -942,7 +744,7 @@
             this.txtProduct.Location = new System.Drawing.Point(579, 268);
             this.txtProduct.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtProduct.Name = "txtProduct";
-            this.txtProduct.Size = new System.Drawing.Size(272, 21);
+            this.txtProduct.Size = new System.Drawing.Size(246, 21);
             this.txtProduct.TabIndex = 132;
             // 
             // cbbStatus
@@ -1072,6 +874,215 @@
             this.lblCondition.TabIndex = 41;
             this.lblCondition.Text = "ทั้งหมด";
             // 
+            // txtId
+            // 
+            this.txtId.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtId.Font = new System.Drawing.Font("Mitr Light", 8F);
+            this.txtId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.txtId.Location = new System.Drawing.Point(300, 123);
+            this.txtId.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtId.Name = "txtId";
+            this.txtId.Size = new System.Drawing.Size(94, 17);
+            this.txtId.TabIndex = 223;
+            // 
+            // btnTitleCase
+            // 
+            this.btnTitleCase.BackColor = System.Drawing.Color.White;
+            this.btnTitleCase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTitleCase.ForeColor = System.Drawing.Color.Transparent;
+            this.btnTitleCase.Image = ((System.Drawing.Image)(resources.GetObject("btnTitleCase.Image")));
+            this.btnTitleCase.Location = new System.Drawing.Point(831, 268);
+            this.btnTitleCase.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnTitleCase.Name = "btnTitleCase";
+            this.btnTitleCase.Size = new System.Drawing.Size(20, 20);
+            this.btnTitleCase.TabIndex = 255;
+            this.btnTitleCase.TabStop = false;
+            this.btnTitleCase.UseVisualStyleBackColor = false;
+            this.btnTitleCase.Click += new System.EventHandler(this.btnTitleCase_Click);
+            // 
+            // btnExit
+            // 
+            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExit.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExit.ForeColor = System.Drawing.Color.White;
+            this.btnExit.Image = ((System.Drawing.Image)(resources.GetObject("btnExit.Image")));
+            this.btnExit.Location = new System.Drawing.Point(257, 6);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(36, 36);
+            this.btnExit.TabIndex = 97;
+            this.btnExit.Tag = "ออก";
+            this.btnExit.UseVisualStyleBackColor = false;
+            this.btnExit.Click += new System.EventHandler(this.Exit);
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrint.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrint.ForeColor = System.Drawing.Color.Transparent;
+            this.btnPrint.Image = ((System.Drawing.Image)(resources.GetObject("btnPrint.Image")));
+            this.btnPrint.Location = new System.Drawing.Point(7, 6);
+            this.btnPrint.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(36, 36);
+            this.btnPrint.TabIndex = 92;
+            this.btnPrint.TabStop = false;
+            this.btnPrint.Tag = "เคลียร์";
+            this.btnPrint.UseVisualStyleBackColor = false;
+            this.btnPrint.Click += new System.EventHandler(this.Print);
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSearch.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearch.ForeColor = System.Drawing.Color.White;
+            this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
+            this.btnSearch.Location = new System.Drawing.Point(47, 6);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(36, 36);
+            this.btnSearch.TabIndex = 98;
+            this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.Search);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDelete.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelete.ForeColor = System.Drawing.Color.White;
+            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
+            this.btnDelete.Location = new System.Drawing.Point(173, 6);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(36, 36);
+            this.btnDelete.TabIndex = 95;
+            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.DeleteData);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAdd.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.ForeColor = System.Drawing.Color.White;
+            this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
+            this.btnAdd.Location = new System.Drawing.Point(89, 6);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(36, 36);
+            this.btnAdd.TabIndex = 93;
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.AddData);
+            // 
+            // btnClear
+            // 
+            this.btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClear.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClear.ForeColor = System.Drawing.Color.White;
+            this.btnClear.Image = ((System.Drawing.Image)(resources.GetObject("btnClear.Image")));
+            this.btnClear.Location = new System.Drawing.Point(215, 6);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(36, 36);
+            this.btnClear.TabIndex = 96;
+            this.btnClear.Tag = "เคลียร์";
+            this.btnClear.UseVisualStyleBackColor = false;
+            this.btnClear.Click += new System.EventHandler(this.ClearData);
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEdit.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEdit.ForeColor = System.Drawing.Color.White;
+            this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
+            this.btnEdit.Location = new System.Drawing.Point(131, 6);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(36, 36);
+            this.btnEdit.TabIndex = 94;
+            this.btnEdit.UseVisualStyleBackColor = false;
+            this.btnEdit.Click += new System.EventHandler(this.EditData);
+            // 
+            // btnReceive
+            // 
+            this.btnReceive.BackColor = System.Drawing.Color.White;
+            this.btnReceive.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnReceive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReceive.ForeColor = System.Drawing.Color.White;
+            this.btnReceive.Image = ((System.Drawing.Image)(resources.GetObject("btnReceive.Image")));
+            this.btnReceive.Location = new System.Drawing.Point(859, 227);
+            this.btnReceive.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnReceive.Name = "btnReceive";
+            this.btnReceive.Size = new System.Drawing.Size(27, 28);
+            this.btnReceive.TabIndex = 221;
+            this.btnReceive.Tag = "ออก";
+            this.btnReceive.UseVisualStyleBackColor = false;
+            this.btnReceive.Click += new System.EventHandler(this.btnReceive_Click);
+            // 
+            // btnSeller
+            // 
+            this.btnSeller.BackColor = System.Drawing.Color.White;
+            this.btnSeller.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnSeller.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSeller.ForeColor = System.Drawing.Color.White;
+            this.btnSeller.Image = ((System.Drawing.Image)(resources.GetObject("btnSeller.Image")));
+            this.btnSeller.Location = new System.Drawing.Point(860, 187);
+            this.btnSeller.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnSeller.Name = "btnSeller";
+            this.btnSeller.Size = new System.Drawing.Size(27, 28);
+            this.btnSeller.TabIndex = 220;
+            this.btnSeller.Tag = "ออก";
+            this.btnSeller.UseVisualStyleBackColor = false;
+            this.btnSeller.Click += new System.EventHandler(this.btnSeller_Click);
+            // 
+            // btnDefault
+            // 
+            this.btnDefault.BackColor = System.Drawing.Color.White;
+            this.btnDefault.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDefault.ForeColor = System.Drawing.Color.White;
+            this.btnDefault.Image = ((System.Drawing.Image)(resources.GetObject("btnDefault.Image")));
+            this.btnDefault.Location = new System.Drawing.Point(1256, 223);
+            this.btnDefault.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnDefault.Name = "btnDefault";
+            this.btnDefault.Size = new System.Drawing.Size(30, 27);
+            this.btnDefault.TabIndex = 219;
+            this.btnDefault.Tag = "ออก";
+            this.btnDefault.UseVisualStyleBackColor = false;
+            this.btnDefault.Click += new System.EventHandler(this.btnDefault_Click);
+            // 
+            // btnCopy
+            // 
+            this.btnCopy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnCopy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCopy.ForeColor = System.Drawing.Color.Transparent;
+            this.btnCopy.Image = ((System.Drawing.Image)(resources.GetObject("btnCopy.Image")));
+            this.btnCopy.Location = new System.Drawing.Point(733, 148);
+            this.btnCopy.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnCopy.Name = "btnCopy";
+            this.btnCopy.Size = new System.Drawing.Size(24, 28);
+            this.btnCopy.TabIndex = 218;
+            this.btnCopy.TabStop = false;
+            this.btnCopy.UseVisualStyleBackColor = false;
+            this.btnCopy.Click += new System.EventHandler(this.Copy);
+            // 
+            // pbUpdate
+            // 
+            this.pbUpdate.Image = ((System.Drawing.Image)(resources.GetObject("pbUpdate.Image")));
+            this.pbUpdate.Location = new System.Drawing.Point(1237, 343);
+            this.pbUpdate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pbUpdate.Name = "pbUpdate";
+            this.pbUpdate.Size = new System.Drawing.Size(32, 29);
+            this.pbUpdate.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbUpdate.TabIndex = 217;
+            this.pbUpdate.TabStop = false;
+            this.pbUpdate.Click += new System.EventHandler(this.pbUpdate_Click);
+            // 
             // picExcel
             // 
             this.picExcel.Image = ((System.Drawing.Image)(resources.GetObject("picExcel.Image")));
@@ -1101,7 +1112,7 @@
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Image = global::RecordSystemApplication.Properties.Resources.SF_TrackRegisters1;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(3, 93);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(1283, 297);
@@ -1119,17 +1130,6 @@
             this.pbBanner.Size = new System.Drawing.Size(1283, 85);
             this.pbBanner.TabIndex = 101;
             this.pbBanner.TabStop = false;
-            // 
-            // txtId
-            // 
-            this.txtId.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtId.Font = new System.Drawing.Font("Mitr Light", 8F);
-            this.txtId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.txtId.Location = new System.Drawing.Point(300, 123);
-            this.txtId.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(94, 17);
-            this.txtId.TabIndex = 223;
             // 
             // FrmTracks
             // 
@@ -1153,10 +1153,10 @@
             this.gbFrm.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbUpdate)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbUpdate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picExcel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBanner)).EndInit();

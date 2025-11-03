@@ -270,7 +270,7 @@ namespace SANSANG
 
         public string GetDetails()
         {
-            return txtVersion.Text + " (" + txtRate.Text + ")";
+            return txtVersion.Text + " (" + txtVersion.Text + ")";
         }
 
         private void EditData(object sender, EventArgs e)
@@ -420,6 +420,43 @@ namespace SANSANG
 
                 string strBarcode = dt.Rows[0]["Code"].ToString();
                 pbQrcode.Image = Barcode.QRCode(strBarcode, Color.Black, Color.White, "Q", 3, false);
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+            }
+        }
+
+        private void FrmKeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                string keyCode = Function.keyPress(sender, e);
+
+                if (keyCode == "Ctrl+S")
+                {
+                    AddData(sender, e);
+                }
+                if (keyCode == "Ctrl+E")
+                {
+                    EditData(sender, e);
+                }
+                if (keyCode == "Ctrl+D")
+                {
+                    DeleteData(sender, e);
+                }
+                if (keyCode == "Ctrl+F")
+                {
+                    Search(sender, e);
+                }
+                if (keyCode == "Alt+C")
+                {
+                    Clear(sender, e);
+                }
+                if (keyCode == "Enter")
+                {
+                    Search(true);
+                }
             }
             catch (Exception ex)
             {

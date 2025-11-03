@@ -2,15 +2,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Channels;
+using System.Text.RegularExpressions;
 using System.Windows.Documents;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using Microsoft.Office.Interop.Excel;
+using MigraDoc.DocumentObjectModel.Tables;
+using Org.BouncyCastle.Asn1.Crmf;
 using PdfSharp.Pdf.Content.Objects;
 using SANSANG.Constant;
 using SANSANG.Database;
@@ -73,13 +77,9 @@ namespace SANSANG.Class
                 {
                     KBANK(Files);
                 }
-                else if (AccountId == Accounts.BBL8716)
+                else if (AccountId == Accounts.TTB3334)
                 {
-
-                }
-                else if (AccountId == Accounts.TMB3334)
-                {
-                    TMB(Files);
+                    TTB(Files);
                 }
                 else if (AccountId == Accounts.SCB2378)
                 {
@@ -181,29 +181,48 @@ namespace SANSANG.Class
                 }
                 else
                 {
+                    var match = Regex.Match(value, @"\(([^)]+)\)");
                     int count = statements.Count();
 
-                    int IndexOfPaymentStart = value.IndexOf("(") + 1;
-                    string Payments = value.Remove(0, IndexOfPaymentStart);
+                    if (match.Success)
+                    {
+                        int IndexOfPaymentStart = value.IndexOf("(") + 1;
+                        string Payments = value.Remove(0, IndexOfPaymentStart);
 
-                    int IndexOfPaymentEnd = Payments.IndexOf(")");
-                    string PaymentCode = Payments.Substring(0, IndexOfPaymentEnd);
+                        int IndexOfPaymentEnd = Payments.IndexOf(")");
+                        string PaymentCode = Payments.Substring(0, IndexOfPaymentEnd);
 
-                    data.Date = statements[0].Replace("/2", "/202");
-                    data.Payment = PaymentCode;
-                    data.Branch = statements[count - 1];
-                    data.Balance = statements[count - 2];
-                    data.Amount = statements[count - 3];
+                        data.Date = statements[0].Replace("/2", "/202");
+                        data.Payment = PaymentCode;
+                        data.Branch = statements[count - 1];
+                        data.Balance = statements[count - 2];
+                        data.Amount = statements[count - 3];
 
-                    int Start = 0;
-                    int LengthOfPayment = PaymentCode.Length + 1;
+                        int Start = 0;
+                        int LengthOfPayment = PaymentCode.Length + 1;
 
-                    Start = value.IndexOf("(" + PaymentCode + ")") + 2;
+                        Start = value.IndexOf("(" + PaymentCode + ")") + 2;
 
-                    string Detail = value.Remove(0, (Start + LengthOfPayment));
-                    string Details = Detail.Substring(0, Detail.IndexOf(data.Amount) - 1);
+                        string Detail = value.Remove(0, (Start + LengthOfPayment));
+                        string Details = Detail.Substring(0, Detail.IndexOf(data.Amount) - 1);
 
-                    data.Detail = Details;
+                        data.Detail = Details;
+                    }
+                    else
+                    {
+                        var PASWP = Regex.Match(value, "PASWP");
+
+                        if (PASWP.Success)
+                        {
+                            data.Date = statements[0].Replace("/2", "/202");
+                            data.Branch = statements[count - 1];
+                            data.Balance = statements[count - 2];
+                            data.Amount = statements[count - 3];
+
+                            data.Payment = statements[1];
+                            data.Detail = statements[2];
+                        }
+                    }
                 }
 
                 row++;
@@ -304,58 +323,84 @@ namespace SANSANG.Class
             }
         }
 
-        private void TMB(string strFile)
+        private void TTB(string strFile)
         {
-            string strDateImport = "";
-            string strDateImportStart = "";
-            string strDateImportEnd = "";
-            var dataList = new List<TMBSTModel>();
+            var dataList = new List<TTBSTModel>();
             var logFile = File.ReadAllLines(strFile);
             var logList = new List<string>(logFile);
 
-            int countRows = logList.Count - 1;
-            int row = 0;
+            string strDateImport = "";
 
-            foreach (var value in logList)
+            List <TTBSTModel> transactions = new List<TTBSTModel>();
+            HashSet<string> usedTimes = new HashSet<string>();
+
+            foreach (var value in logList.AsEnumerable().Reverse())
             {
-                TMBSTModel data = new TMBSTModel();
-                string[] statements = value.Split(new char[0]);
+                string pattern = @"(\d{1,2} \w{3} \d{2}) (\d{2}:\d{2}) (.*?)\s+([+-]?\d{1,3}(?:,\d{3})*(?:\.\d{2})?)\s+([+-]?\d{1,3}(?:,\d{3})*(?:\.\d{2})?)\s+(.*)";
 
-                strDateImportStart = row == 0 ? statements[0].ToString() : strDateImportStart;
-                strDateImportEnd = row == countRows ? statements[0].ToString() + " - " : strDateImportEnd;
+                foreach (Match match in Regex.Matches(value, pattern))
+                {
+                    TTBSTModel transaction = new TTBSTModel
+                    {
+                        rawDate = match.Groups[1].Value.Trim(),
+                        rawTime = match.Groups[2].Value.Trim(),
+                        TransactionType = match.Groups[3].Value.Trim(),
+                        Amount = Math.Abs(decimal.Parse(match.Groups[4].Value.Trim().Replace(",", ""))),
+                        Balance = decimal.Parse(match.Groups[5].Value.Trim().Replace(",", "")),
+                        Details = match.Groups[6].Value.Trim()
+                    };
 
-                data.StatmentDate = statements[0];
-                data.PaymentCode = statements[1];
-                data.Detail = statements[1] + " " + statements[2] + " " + statements[3];
-                data.Branch = statements[4];
-                data.Amount = statements[5];
-                data.Balance = statements[6];
+                    string[] transactionParts = transaction.TransactionType.Split(' ');
+                    transaction.Channel = transactionParts[transactionParts.Length - 1];
+                    transaction.TransactionType = string.Join(" ", transactionParts, 0, transactionParts.Length - 1);
 
-                dataList.Add(data);
-                row++;
+                    string formattedTime = transaction.rawTime.Length == 5 ? transaction.rawTime + ":00" : transaction.rawTime;
+
+                    DateTime transactionDate = DateTime.ParseExact($"{transaction.rawDate} {formattedTime}", "d MMM yy HH:mm:ss", CultureInfo.InvariantCulture);
+
+                    while (usedTimes.Contains(transactionDate.ToString("HH:mm:ss")))
+                    {
+                        transactionDate = transactionDate.AddSeconds(1);
+                    }
+
+                    usedTimes.Add(transactionDate.ToString("HH:mm:ss"));
+                    transaction.StatmentTime = transactionDate.ToString("HH:mm:ss");
+                    transaction.StatmentDate = transactionDate.ToString("yyyy-MM-dd");
+                    transaction.TransactionDateTime = transactionDate;
+
+                    transactions.Add(transaction);
+                }          
             }
 
-            strDateImport = strDateImportEnd + strDateImportStart;
-            Message.MessageConfirmation("I", "IMPORT TMB STATMENT", strDateImport);
-            dataList.Reverse();
+            if (transactions.Any())
+            {
+                strDateImport = string.Concat(
+                    transactions.First().TransactionDateTime.ToString("dd/MM/yyyy"),
+                    " - ",
+                    transactions.Last().TransactionDateTime.ToString("dd/MM/yyyy")
+                );
+            }
+
+            Message.MessageConfirmation("I", "Import TTB Statment", strDateImport);
 
             using (var Popup = new FrmMessagesBox(Message.strOperation, Message.strMes, "YES", "NO", Message.strImage))
             {
-                var result = Popup.ShowDialog();
-                string err = "";
+                var Result = Popup.ShowDialog();
+                string Error = "";
 
-                if (result == DialogResult.Yes)
+                if (Result == DialogResult.Yes)
                 {
                     Popup.Close();
-                    AddTMBStatment(dataList, "TMB", out err);
 
-                    if (err == "")
+                    AddTTBStatment(transactions, AccountId, out Error);
+
+                    if (Error == "")
                     {
-                        Message.MessageResult("IM", "C", err);
+                        Message.MessageResult("IM", "C", Error);
                     }
                     else
                     {
-                        Message.MessageResult("IM", "ER", err);
+                        Message.MessageResult("IM", "ER", Error);
                     }
                 }
             }
@@ -447,10 +492,11 @@ namespace SANSANG.Class
 
                 Data.Date = Statements[0];
                 Data.Time = Statements[1];
-                Data.Item = Statements[2];
+                Data.Item = Statements[2].Replace("...", ""); ;
                 Data.Amount = Function.MoveNumberStringComma(Statements[3]);
                 Data.Balance = Function.MoveNumberStringComma(Statements[4]);
-                Data.Channel = Statements[5];
+                
+                Data.Channel = Length <= 5? "" : Statements[5];
 
                 for (int i = 6; i < Length; i++)
                 {
@@ -662,91 +708,90 @@ namespace SANSANG.Class
             }
         }
 
-        public void AddTMBStatment(List<TMBSTModel> datas, string Banks, out string err)
+        public void AddTTBStatment(List<TTBSTModel> Datas, string AccountId, out string Error)
         {
             try
             {
-                string chanel = "ACK00-03";
-                string strCode = "";
-                string paymentCode = "";
-                string paymentDetail = "";
-                string paymentDisplay = "";
+                string Codes = "";
+                string PaymentId = "";
+                string Item = "";
+                string Detail = "";
+                string Display = "";
+                bool IsWithdrawal = false;
 
-                Operations = "I";
+                decimal BalanceNow = 0;
+                decimal BalanceNew = 0;
 
-                for (int i = 0; i < datas.Count; i++)
+                for (int Rounds = 0; Rounds < Datas.Count; Rounds++)
                 {
-                    Function.GetPaymentSubCode(Banks, datas[i].PaymentCode, datas[i].Branch, out paymentCode, out paymentDetail, out paymentDisplay);
-                    strCode = Function.GetCodes("124", "", "Generated");
-                    string deposit = Function.GetIncome(paymentCode);
-                    decimal balance = 0;
-                    decimal newBalance = 0;
+                    Codes = Function.GetCodes(Table.StatmentId, "", "Generated");
+                    Function.GetItemId(Datas[Rounds].TransactionType, "1057", out PaymentId, out Item, out Detail, out Display, out IsWithdrawal);
+
+                    DateTime DateTime = Convert.ToDateTime(Datas[Rounds].TransactionDateTime);
 
                     string[,] Parameter = new string[,]
                     {
-                        {"@User", "IMPORT"},
-                        {"@StatmentCode", strCode},
-                        //{"@StatmentAccounts", Accounts},
-                        {"@StatmentDate", datas[i].StatmentDate},
-                        {"@StatmentPayment", paymentCode},
-                        {"@StatmentPaymentDetail", paymentDetail},
-                        {"@StatmentChanel", chanel},
-                        {"@StatmentNumber", ""},
-                        {"@StatmentDetail", datas[i].Detail.TrimEnd()},
-                        {"@StatmentStatus", "Y"},
-                        {"@StatmentFileType", ""},
-                        {"@StatmentFileLocation", "-"},
-                        //{"@Bank", Accounts},
-                        {"@Amount", Function.MoveNumberStringComma(datas[i].Amount)},
-                        {"@WithdrawalOrDeposit", deposit},
-                        {"@StatmentTime", Function.GetTime(1)},
-                        {"@StatmentBranch", datas[i].Branch.TrimEnd()},
-                        {"@Balance", Function.MoveNumberStringComma(datas[i].Balance)}
+                        {"@Id", ""},
+                        {"@Code", Codes},
+                        {"@Status", "1000"},
+                        {"@User", "1004"},
+                        {"@IsActive", "1"},
+                        {"@IsDelete", "0"},
+                        {"@Operation", Operation.InsertAbbr},
+                        {"@AccountId", AccountId},
+                        {"@Date", Dates.GetDate(dt : DateTime, Format : 4)},
+                        {"@Time", Datas[Rounds].StatmentTime},
+                        {"@PaymentId", PaymentId},
+                        {"@Item", "รายการเดินบัญชี"},
+                        {"@MoneyId", "1144"},
+                        {"@Branch", ""},
+                        {"@Channel", Datas[Rounds].Channel.TrimEnd()},
+                        {"@Withdrawal", IsWithdrawal?  Datas[Rounds].Amount.ToString(CultureInfo.InvariantCulture) : "0.00"},
+                        {"@Deposit", !IsWithdrawal? Datas[Rounds].Amount.ToString(CultureInfo.InvariantCulture) : "0.00"},
+                        {"@Balance", Datas[Rounds].Balance.ToString(CultureInfo.InvariantCulture)},
+                        {"@Number", ""},
+                        {"@Detail", Datas[Rounds].Details.TrimEnd()},
+                        {"@Display", Display},
+                        {"@Reference", ""},
                     };
 
-                    string[,] check = new string[,]
-                    {
-                        //{"@StatmentAccounts", Accounts},
-                        {"@StatmentDate", datas[i].StatmentDate},
-                        {"@StatmentTime", ""},
-                        {"@StatmentPayment", paymentCode},
-                        {"@StatmentPaymentDetail", paymentDetail},
-                        {"@StatmentChanel", chanel},
-                        {"@StatmentDetail", paymentDisplay},
-                        {"@StatmentStatus", "Y"},
-                        {"@StatmentBranch", datas[i].Branch},
-                        {"@StatmentAmount", Function.MoveNumberStringComma(datas[i].Amount)},
-                        {"@StatmentBalance", Function.MoveNumberStringComma(datas[i].Balance)},
-                    };
+                    BalanceNow = CheckBalance(Accounts.TTB3334, Datas[Rounds].Amount.ToString(CultureInfo.InvariantCulture), IsWithdrawal);
+                    BalanceNew = decimal.Parse(Datas[Rounds].Balance.ToString(CultureInfo.InvariantCulture));
 
-                    //balance = CheckBalance(Accounts, Function.MoveNumberStringComma(datas[i].Amount), deposit);
-                    newBalance = decimal.Parse(Function.MoveNumberStringComma(datas[i].Balance));
-
-                    if (CheckDuplicate(check))
+                    if (!Function.IsDuplicate(
+                            Table.Statments,
+                            Value1: "TTB-IMPORT",
+                            Value2: AccountId,
+                            Value3: PaymentId,
+                            Value4: Dates.GetDate(dt: DateTime, Format: 4),
+                            Value5: Datas[Rounds].Amount.ToString(CultureInfo.InvariantCulture),
+                            Value6: Datas[Rounds].Balance.ToString(CultureInfo.InvariantCulture),
+                            Value7: ""))
                     {
-                        if (balance == newBalance)
+                        if (BalanceNow == BalanceNew)
                         {
-                            db.Operations("Spr_I_TblSaveStatment", Parameter, out Errors);
+                            db.Operations(Store.ManageStatement, Parameter, out Error);
                             Messages = "";
                         }
                         else
                         {
-                            Messages = string.Format("Balance does not match. ({0})", balance);
+                            Messages = string.Format("Balance does not match. ({0})", String.Format("{0:n}", BalanceNow));
                             break;
                         }
                     }
                     else
                     {
-                        Messages = "Last statment is duplicate.";
+                        Messages = string.Format("{0} | {1}{2}{3} is duplicate.", Datas[Rounds].TransactionDateTime, Item, Environment.NewLine, String.Format("{0:n}", BalanceNew));
                         break;
                     }
                 }
-                err = Messages;
+
+                Error = Messages;
             }
             catch (Exception ex)
             {
-                Log.WriteLogData("IMPORT", "TMB", "Import", ex.Message);
-                err = ex.Message;
+                Log.WriteLogData("IMPORT", "TTB", "Import", ex.Message);
+                Error = ex.Message;
             }
         }
 
@@ -1030,6 +1075,7 @@ namespace SANSANG.Class
             {
                 string[,] Parameter = new string[,]
                 {
+                        {"@Id", ""},
                         {"@Account", Account},
                 };
 

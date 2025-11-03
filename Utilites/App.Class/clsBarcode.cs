@@ -229,17 +229,16 @@ namespace SANSANG.Class
 
             BarcodeSettings.ShowTextOnBottom = ShowText;
             BarcodeSettings.TextAlignment = StringAlignment.Center;
-
             BarcodeSettings.Data = strData;
             BarcodeSettings.ForeColor = strForeColor;
             BarcodeSettings.BackColor = strBackColor;
-            BarcodeSettings.X = 1;
+            BarcodeSettings.X = 2;
             BarcodeSettings.BarHeight = intHeight;
 
-            BarcodeSettings.TopMargin = 1;
-            BarcodeSettings.BottomMargin = 1;
-            BarcodeSettings.LeftMargin = 1;
-            BarcodeSettings.RightMargin = 1;
+            BarcodeSettings.TopMargin = 5;
+            BarcodeSettings.BottomMargin = 8;
+            BarcodeSettings.LeftMargin = 10;
+            BarcodeSettings.RightMargin = 5;
 
             BarCodeGenerator generator = new BarCodeGenerator(BarcodeSettings);
             Image image = generator.GenerateImage();

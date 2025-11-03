@@ -5,6 +5,7 @@ using SANSANG.Class;
 using SANSANG.Database;
 using SANSANG.Constant;
 using System.Drawing;
+using static System.Resources.ResXFileRef;
 
 namespace SANSANG
 {
@@ -33,6 +34,7 @@ namespace SANSANG
         private clsMessage Message = new clsMessage();
         private clsBarcode Barcode = new clsBarcode();
         private dbConnection db = new dbConnection();
+        private clsConvert Converts = new clsConvert();
         private clsDataList List = new clsDataList();
         private clsHelpper Helper = new clsHelpper();
         private DataListConstant DataList = new DataListConstant();
@@ -196,6 +198,7 @@ namespace SANSANG
             try
             {
                 GridView.DataSource = null;
+                var transactions = Setting.GetAdjustTransactionList();
 
                 if (Function.GetRows(dt) > 0)
                 {
@@ -221,6 +224,11 @@ namespace SANSANG
                         if (Convert.ToDouble(dgvr.Cells[5].Value) < 0)
                         {
                             dgvr.DefaultCellStyle.ForeColor = Color.Red;
+                        }
+
+                        if (transactions.Contains(dgvr.Cells[4].Value.ToString()))
+                        {
+                            dgvr.DefaultCellStyle.ForeColor = Color.DarkSeaGreen;
                         }
                     }
 
@@ -562,7 +570,12 @@ namespace SANSANG
                 }
                 if (keyCode == "Enter")
                 {
-                    Search(true);
+                    Form Frm = (Form)sender;
+
+                    if (Frm.ActiveControl.Name != "txtDetail")
+                    {
+                        Search(true);
+                    }
                 }
             }
             catch (Exception ex)
@@ -611,6 +624,11 @@ namespace SANSANG
         public string GetDetails()
         {
             return cbbShop.Text + " | " + txtProduct.Text + " (฿" + txtAmount.Text + ")";
+        }
+
+        private void btnTitleCase_Click(object sender, EventArgs e)
+        {
+            Converts.TitleCase(txtProduct);
         }
     }
 }

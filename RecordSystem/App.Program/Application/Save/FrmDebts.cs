@@ -106,7 +106,7 @@ namespace SANSANG
             txtTotal.Text = "0.00";
             txtCredit.Text = "0.00";
             txtDebit.Text = "0.00";
-
+            txtPayment.Text = "0.00";
             lblService.Text = "";
 
             dtDueDate.Text = Convert.ToString(DateTime.Now);
@@ -612,14 +612,16 @@ namespace SANSANG
                         {
                             string statusPayment = "";
 
-                            if (txtName.Text.Contains("สินเชื่อบุคคล") || txtName.Text.Contains("บัตรเครดิต"))
-                            {
-                                statusPayment = "*** ยอดค้างชำระ ";
-                            }
-                            else
-                            {
-                                statusPayment = "*** ส่วนลด ";
-                            }
+                            //if (txtName.Text.Contains("สินเชื่อบุคคล") || txtName.Text.Contains("บัตรเครดิต"))
+                            //{
+                            //    statusPayment = "*** ยอดค้างชำระ ";
+                            //}
+                            //else
+                            //{
+                            //    statusPayment = "*** ส่วนลด ";
+                            //}
+
+                            statusPayment = "*** ส่วนลด ";
 
                             lblService.Visible = true;
                             lblService.Text = string.Concat(statusPayment,Function.FormatNumber(Diff * -1)," บาท");
@@ -745,6 +747,7 @@ namespace SANSANG
             {
                 txtPayment.Text = "0.00";
                 txtReceipt.Text = "";
+                txtReference.Text = "";
                 btnPayment.Focus();
             }
 
@@ -1017,7 +1020,7 @@ namespace SANSANG
                     txtAmount.Text = string.Format("{0:n}", Price);
 
                     double Amount = Convert.ToDouble(Data.Rows[0]["Pay"].ToString());
-                    txtPayment.Text = string.Format("{0:n}", Amount);
+                    txtPayment.Text = Amount == 0? "" : string.Format("{0:n}", Amount);
 
                     dtPaymentDate.Text = Data.Rows[0]["Status"].ToString() == "1005" ? Convert.ToString(DateTime.Now) : Data.Rows[0]["PayDate"].ToString();
                     dtDueDate.Text = Data.Rows[0]["DueDate"].ToString();

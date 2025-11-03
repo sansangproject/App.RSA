@@ -736,7 +736,7 @@
             // pb_Pay_True
             // 
             this.pb_Pay_True.Image = ((System.Drawing.Image)(resources.GetObject("pb_Pay_True.Image")));
-            this.pb_Pay_True.Location = new System.Drawing.Point(1230, 237);
+            this.pb_Pay_True.Location = new System.Drawing.Point(1231, 235);
             this.pb_Pay_True.Name = "pb_Pay_True";
             this.pb_Pay_True.Size = new System.Drawing.Size(20, 20);
             this.pb_Pay_True.TabIndex = 229;
@@ -746,7 +746,7 @@
             // pb_Pay_False
             // 
             this.pb_Pay_False.Image = ((System.Drawing.Image)(resources.GetObject("pb_Pay_False.Image")));
-            this.pb_Pay_False.Location = new System.Drawing.Point(1235, 237);
+            this.pb_Pay_False.Location = new System.Drawing.Point(1231, 235);
             this.pb_Pay_False.Name = "pb_Pay_False";
             this.pb_Pay_False.Size = new System.Drawing.Size(20, 20);
             this.pb_Pay_False.TabIndex = 228;

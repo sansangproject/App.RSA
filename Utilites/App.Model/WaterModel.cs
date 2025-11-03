@@ -10,5 +10,6 @@ namespace SANSANG.Utilites.App.Model
         public DateTime PayDate { get; set; }
         public int Unit { get; set; }
         public string ReceiptId { get; set; }
+        public DateTime InvoiceDate { get; set; }
     }
 }

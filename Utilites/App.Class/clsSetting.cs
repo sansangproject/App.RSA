@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Xml;
 using SANSANG.Utilites.App.Model;
 
@@ -537,6 +538,79 @@ namespace SANSANG.Class
             }
 
             return display;
+        }
+
+        public decimal GetGoldReceived()
+        {
+            decimal balance = 0;
+            string settingPath = Path.Combine(appPath, filePath);
+
+            if (File.Exists(settingPath))
+            {
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.Load(settingPath);
+                foreach (XmlNode valueNode in xmlDoc.DocumentElement)
+                {
+                    switch (valueNode.Name.ToString())
+                    {
+                        case "GoldReceived":
+                            balance = Convert.ToDecimal(valueNode.InnerText);
+                            break;
+                    }
+                }
+            }
+
+            return balance;
+        }
+
+        public string GetRequestList()
+        {
+            string settingPath = Path.Combine(appPath, filePath);
+
+            if (File.Exists(settingPath))
+            {
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.Load(settingPath);
+                foreach (XmlNode valueNode in xmlDoc.DocumentElement)
+                {
+                    if (valueNode.Name == "Request")
+                    {
+                        var array = valueNode.InnerText
+                            .Split(',')
+                            .Select(s => s.Trim().Trim('"'))
+                            .ToArray();
+
+                        return string.Join(", ", array);
+                    }
+                }
+            }
+
+            return string.Empty;
+        }
+
+        public string GetAdjustTransactionList()
+        {
+            string settingPath = Path.Combine(appPath, filePath);
+
+            if (File.Exists(settingPath))
+            {
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.Load(settingPath);
+                foreach (XmlNode valueNode in xmlDoc.DocumentElement)
+                {
+                    if (valueNode.Name == "AdjustTransaction")
+                    {
+                        var array = valueNode.InnerText
+                            .Split(',')
+                            .Select(s => s.Trim().Trim('"'))
+                            .ToArray();
+
+                        return string.Join(", ", array);
+                    }
+                }
+            }
+
+            return string.Empty;
         }
     }
 }

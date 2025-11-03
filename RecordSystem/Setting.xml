@@ -2,17 +2,20 @@
 <Setting>
 	<Language>en</Language>
 	<DateFormat>3</DateFormat>
-	<Installments>9</Installments>
+	<Installments>2</Installments>
 	<Account>1035</Account>
 	<Credit>5394-1111-7058-3767</Credit>
 	<CreditLimit>60000</CreditLimit>
-	<Outstanding>41958.10</Outstanding>
-	<Wallet>1141</Wallet>
+	<Outstanding>29568</Outstanding>
+	<GoldReceived>1.50</GoldReceived>
+	<Wallet>1085</Wallet>
+	<TrueWallet>1141</TrueWallet>
+	<AllMember>1085</AllMember>
 	<UrlAPIToken>https://trackwebhook.thailandpost.co.th/post/api/v1/authenticate/token</UrlAPIToken>
 	<UrlAPITrack>https://trackapi.thailandpost.co.th/post/api/v1/track</UrlAPITrack>
 	<TrackToken>Token T7PqLIQcLkRGD?HjVxNDU_FHAPEYN|E+IvMYS7XnR*V:ZvSeToNjYeZ+UMFESDKrH!N@W7KFFEN*YYKmSBNcKOWkF4HIA.RBGsIF</TrackToken>
 	<Path>db</Path>
-	<NextDisplay>True</NextDisplay>
+	<NextDisplay>False</NextDisplay>
 	<MenuPath>D:\SANSANG\PROJECTs\RSAs\App.Picture\Menu\</MenuPath>
 	<Database>dbRSA</Database>
 	<RoundPayment></RoundPayment>
@@ -20,4 +23,6 @@
 	<OperationDate></OperationDate>
 	<CreditDate></CreditDate>
 	<Inaccurate>1</Inaccurate>
+	<Request>"KTB", "KBANK", "BAY" , "QR Payment (BAY)", "QR Payment (CIMB)", "QR Payment (KTB)", "TTB", "True Wallet", "True Wallet (KTB)", "G-Wallet"</Request>
+	<AdjustTransaction>"Cash Back", "Redeem Points"</AdjustTransaction>
 </Setting>

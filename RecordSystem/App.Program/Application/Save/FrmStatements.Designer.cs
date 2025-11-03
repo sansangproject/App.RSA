@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmStatements));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtDisplay = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.txtReference = new System.Windows.Forms.TextBox();
@@ -56,6 +56,8 @@
             this.btnClear = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.gbForm = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.txtItem = new System.Windows.Forms.TextBox();
             this.txtChannel = new System.Windows.Forms.TextBox();
             this.pb_Date_False = new System.Windows.Forms.PictureBox();
@@ -90,9 +92,6 @@
             this.label15 = new System.Windows.Forms.Label();
             this.pbLogo = new System.Windows.Forms.PictureBox();
             this.cbbMoney = new System.Windows.Forms.ComboBox();
-            this.pb_Save_True = new System.Windows.Forms.PictureBox();
-            this.pb_Save_False = new System.Windows.Forms.PictureBox();
-            this.cb_Save = new System.Windows.Forms.CheckBox();
             this.label28 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
@@ -109,9 +108,10 @@
             this.txtFileLocation = new System.Windows.Forms.TextBox();
             this.txtId = new System.Windows.Forms.TextBox();
             this.cb_Date = new System.Windows.Forms.CheckBox();
+            this.cb_Save = new System.Windows.Forms.CheckBox();
+            this.pb_Save_True = new System.Windows.Forms.PictureBox();
+            this.pb_Save_False = new System.Windows.Forms.PictureBox();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.gbForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Date_False)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Date_True)).BeginInit();
@@ -120,10 +120,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.picExcel)).BeginInit();
             this.pnButton.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_Save_True)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_Save_False)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBanner)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Save_True)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Save_False)).BeginInit();
             this.SuspendLayout();
             // 
             // txtDisplay
@@ -514,6 +514,28 @@
             this.gbForm.TabIndex = 46;
             this.gbForm.TabStop = false;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.label6.ForeColor = System.Drawing.Color.SeaGreen;
+            this.label6.Location = new System.Drawing.Point(900, 307);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(53, 20);
+            this.label6.TabIndex = 1001;
+            this.label6.Text = "Chanel";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            this.label7.ForeColor = System.Drawing.Color.Gray;
+            this.label7.Location = new System.Drawing.Point(900, 292);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(60, 20);
+            this.label7.TabIndex = 1000;
+            this.label7.Text = "ช่องทาง :";
+            // 
             // txtItem
             // 
             this.txtItem.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -625,11 +647,11 @@
             this.label40.AutoSize = true;
             this.label40.Font = new System.Drawing.Font("Mitr Light", 7F);
             this.label40.ForeColor = System.Drawing.Color.DimGray;
-            this.label40.Location = new System.Drawing.Point(78, 387);
+            this.label40.Location = new System.Drawing.Point(60, 387);
             this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(40, 15);
+            this.label40.Size = new System.Drawing.Size(58, 15);
             this.label40.TabIndex = 113;
-            this.label40.Text = "คงเหลือ";
+            this.label40.Text = "ยอดคงเหลือ";
             // 
             // txtBalance
             // 
@@ -651,11 +673,11 @@
             this.label39.AutoSize = true;
             this.label39.Font = new System.Drawing.Font("Mitr Light", 7F);
             this.label39.ForeColor = System.Drawing.Color.DimGray;
-            this.label39.Location = new System.Drawing.Point(1373, 387);
+            this.label39.Location = new System.Drawing.Point(1354, 387);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(25, 15);
+            this.label39.Size = new System.Drawing.Size(45, 15);
             this.label39.TabIndex = 112;
-            this.label39.Text = "ถอน";
+            this.label39.Text = "ถอน/โอน";
             // 
             // label38
             // 
@@ -663,11 +685,11 @@
             this.label38.AutoSize = true;
             this.label38.Font = new System.Drawing.Font("Mitr Light", 7F);
             this.label38.ForeColor = System.Drawing.Color.DimGray;
-            this.label38.Location = new System.Drawing.Point(1122, 387);
+            this.label38.Location = new System.Drawing.Point(1110, 387);
             this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(23, 15);
+            this.label38.Size = new System.Drawing.Size(39, 15);
             this.label38.TabIndex = 110;
-            this.label38.Text = "ฝาก";
+            this.label38.Text = "ฝาก/รับ";
             // 
             // txtDeposit
             // 
@@ -708,14 +730,14 @@
             this.GridView.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.GridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.GridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Mitr Light", 9.5F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.GridView.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Mitr Light", 9.5F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.DarkSeaGreen;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.GridView.DefaultCellStyle = dataGridViewCellStyle1;
             this.GridView.GridColor = System.Drawing.Color.Silver;
             this.GridView.Location = new System.Drawing.Point(19, 60);
             this.GridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -726,7 +748,7 @@
             this.GridView.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.GridView.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.DimGray;
             this.GridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GridView.Size = new System.Drawing.Size(1378, 320);
+            this.GridView.Size = new System.Drawing.Size(1378, 306);
             this.GridView.TabIndex = 40;
             this.GridView.TabStop = false;
             this.GridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewClick);
@@ -981,39 +1003,6 @@
             this.cbbMoney.TabStop = false;
             this.cbbMoney.Text = ":: Loading ::";
             // 
-            // pb_Save_True
-            // 
-            this.pb_Save_True.Image = ((System.Drawing.Image)(resources.GetObject("pb_Save_True.Image")));
-            this.pb_Save_True.Location = new System.Drawing.Point(1285, 304);
-            this.pb_Save_True.Name = "pb_Save_True";
-            this.pb_Save_True.Size = new System.Drawing.Size(20, 20);
-            this.pb_Save_True.TabIndex = 115;
-            this.pb_Save_True.TabStop = false;
-            this.pb_Save_True.Click += new System.EventHandler(this.Ticker);
-            // 
-            // pb_Save_False
-            // 
-            this.pb_Save_False.Image = ((System.Drawing.Image)(resources.GetObject("pb_Save_False.Image")));
-            this.pb_Save_False.Location = new System.Drawing.Point(1285, 304);
-            this.pb_Save_False.Name = "pb_Save_False";
-            this.pb_Save_False.Size = new System.Drawing.Size(20, 20);
-            this.pb_Save_False.TabIndex = 116;
-            this.pb_Save_False.TabStop = false;
-            this.pb_Save_False.Click += new System.EventHandler(this.Ticker);
-            // 
-            // cb_Save
-            // 
-            this.cb_Save.AutoSize = true;
-            this.cb_Save.Font = new System.Drawing.Font("Mitr Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.cb_Save.ForeColor = System.Drawing.Color.SeaGreen;
-            this.cb_Save.Location = new System.Drawing.Point(1288, 301);
-            this.cb_Save.Name = "cb_Save";
-            this.cb_Save.Size = new System.Drawing.Size(139, 24);
-            this.cb_Save.TabIndex = 114;
-            this.cb_Save.TabStop = false;
-            this.cb_Save.Text = "บันทึกรายรับรายจ่าย";
-            this.cb_Save.UseVisualStyleBackColor = true;
-            // 
             // label28
             // 
             this.label28.AutoSize = true;
@@ -1197,31 +1186,42 @@
             this.cb_Date.UseVisualStyleBackColor = true;
             this.cb_Date.Click += new System.EventHandler(this.Ticker);
             // 
+            // cb_Save
+            // 
+            this.cb_Save.AutoSize = true;
+            this.cb_Save.Font = new System.Drawing.Font("Mitr Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.cb_Save.ForeColor = System.Drawing.Color.SeaGreen;
+            this.cb_Save.Location = new System.Drawing.Point(1288, 301);
+            this.cb_Save.Name = "cb_Save";
+            this.cb_Save.Size = new System.Drawing.Size(139, 24);
+            this.cb_Save.TabIndex = 114;
+            this.cb_Save.TabStop = false;
+            this.cb_Save.Text = "บันทึกรายรับรายจ่าย";
+            this.cb_Save.UseVisualStyleBackColor = true;
+            // 
+            // pb_Save_True
+            // 
+            this.pb_Save_True.Image = ((System.Drawing.Image)(resources.GetObject("pb_Save_True.Image")));
+            this.pb_Save_True.Location = new System.Drawing.Point(1285, 304);
+            this.pb_Save_True.Name = "pb_Save_True";
+            this.pb_Save_True.Size = new System.Drawing.Size(20, 20);
+            this.pb_Save_True.TabIndex = 115;
+            this.pb_Save_True.TabStop = false;
+            this.pb_Save_True.Click += new System.EventHandler(this.Ticker);
+            // 
+            // pb_Save_False
+            // 
+            this.pb_Save_False.Image = ((System.Drawing.Image)(resources.GetObject("pb_Save_False.Image")));
+            this.pb_Save_False.Location = new System.Drawing.Point(1285, 304);
+            this.pb_Save_False.Name = "pb_Save_False";
+            this.pb_Save_False.Size = new System.Drawing.Size(20, 20);
+            this.pb_Save_False.TabIndex = 116;
+            this.pb_Save_False.TabStop = false;
+            this.pb_Save_False.Click += new System.EventHandler(this.Ticker);
+            // 
             // openFileDialog
             // 
             this.openFileDialog.FileName = "openFileDialog";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.label6.ForeColor = System.Drawing.Color.SeaGreen;
-            this.label6.Location = new System.Drawing.Point(900, 307);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(53, 20);
-            this.label6.TabIndex = 1001;
-            this.label6.Text = "Chanel";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            this.label7.ForeColor = System.Drawing.Color.Gray;
-            this.label7.Location = new System.Drawing.Point(900, 292);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(60, 20);
-            this.label7.TabIndex = 1000;
-            this.label7.Text = "ช่องทาง :";
             // 
             // FrmStatements
             // 
@@ -1252,10 +1252,10 @@
             this.pnButton.ResumeLayout(false);
             this.pnButton.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_Save_True)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_Save_False)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBanner)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Save_True)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Save_False)).EndInit();
             this.ResumeLayout(false);
 
         }

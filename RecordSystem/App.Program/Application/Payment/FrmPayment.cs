@@ -158,7 +158,7 @@ namespace RecordSystemApplication.App.Program.Application.Payment
                     if (dtDebit != null && dtDebit.Rows.Count > 0)
                     {
                         txtPayment.Text = dtDebit.Rows[0]["Moneys"].ToString() + " x " + 
-                                           dtDebit.Rows[0]["Amount"].ToString();
+                                          dtDebit.Rows[0]["Amount"].ToString();
 
                         txtAmount1.Text = dtDebit.Rows[0]["Amount"].ToString();
                         txtUnit.Text = string.Concat(decimal.Parse(dtDebit.Rows[0]["Unit"].ToString()).ToString("G29"), " ", dtDebit.Rows[0]["Units"].ToString());
@@ -168,10 +168,18 @@ namespace RecordSystemApplication.App.Program.Application.Payment
 
                         string strItem = dtDebit.Rows[0]["Item"].ToString();
                         int strSign = strItem.IndexOf(" - ");
-                        txtExpence.Text = strItem.Substring(0, strSign);
 
-                        int strEnd = strItem.Length - ((txtExpence.Text).Length + 3);
-                        txtDetail.Text = strItem.Substring(strSign + 3, strEnd);
+                        if (strSign == -1)
+                        {
+                            txtExpence.Text = dtDebit.Rows[0]["ItemNames"].ToString();
+                            txtDetail.Text = strItem;
+                        }
+                        else
+                        {
+                            txtExpence.Text = strItem.Substring(0, strSign);
+                            int strEnd = strItem.Length - ((txtExpence.Text).Length + 3);
+                            txtDetail.Text = strItem.Substring(strSign + 3, strEnd);
+                        }
                     }
                 }
                 else
@@ -196,10 +204,18 @@ namespace RecordSystemApplication.App.Program.Application.Payment
 
                         string strItem = dtCredit.Rows[0]["Item"].ToString();
                         int strSign = strItem.IndexOf(" - ");
-                        txtExpence.Text = strItem.Substring(0, strSign);
 
-                        int strEnd = strItem.Length - ((txtExpence.Text).Length + 3);
-                        txtDetail.Text = strItem.Substring(strSign + 3, strEnd);
+                        if (strSign == -1)
+                        {
+                            txtExpence.Text = dtCredit.Rows[0]["ItemNames"].ToString();
+                            txtDetail.Text = strItem;
+                        }
+                        else
+                        {
+                            txtExpence.Text = strItem.Substring(0, strSign);
+                            int strEnd = strItem.Length - ((txtExpence.Text).Length + 3);
+                            txtDetail.Text = strItem.Substring(strSign + 3, strEnd);
+                        }
                     }
                 }
             }
