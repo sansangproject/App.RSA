@@ -418,6 +418,7 @@
                                   <Value>ลำดับ</Value>
                                   <Style>
                                     <FontFamily>DB HeaventRounded</FontFamily>
+                                    <FontSize>11pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -452,6 +453,7 @@
                                   <Value>รายการ</Value>
                                   <Style>
                                     <FontFamily>DB HeaventRounded</FontFamily>
+                                    <FontSize>11pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -485,6 +487,7 @@
                                   <Value>จำนวน</Value>
                                   <Style>
                                     <FontFamily>DB HeaventRounded</FontFamily>
+                                    <FontSize>11pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -519,6 +522,7 @@
                                   <Value>จำนวนเงิน</Value>
                                   <Style>
                                     <FontFamily>DB HeaventRounded</FontFamily>
+                                    <FontSize>11pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -608,7 +612,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Fields!TotalAmount.Value</Value>
+                                                    <Value>=Format(Sum(Fields!TotalAmount.Value), "#,0.00;(#,0.00)")</Value>
                                                     <Style>
                                                       <FontFamily>DB HeaventRounded</FontFamily>
                                                       <FontSize>11pt</FontSize>
@@ -1259,7 +1263,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>รายงานเงินเข้าออก</Value>
+                      <Value>รายรับรายจ่าย</Value>
                       <Style>
                         <FontStyle>Normal</FontStyle>
                         <FontFamily>DB HeaventRounded</FontFamily>

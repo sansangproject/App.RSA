@@ -919,6 +919,9 @@
     <None Include="App.Data\dsRSA.xss">
       <DependentUpon>dsRSA.xsd</DependentUpon>
     </None>
+    <None Include="App.Font\358PANIAinu-Regular.ttf" />
+    <None Include="App.Font\358PANIAinuBold-Regular.ttf" />
+    <None Include="App.Font\358PANIAinuThin-Regular.ttf" />
     <None Include="App.Font\DMSans-Bold.ttf" />
     <None Include="App.Font\DMSans-BoldItalic.ttf" />
     <None Include="App.Font\DMSans-Italic.ttf" />
@@ -1209,8 +1212,6 @@
     <Content Include="App.Resources\RSABanner.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Resources\SF_TrackRegisters.png" />
-    <None Include="Resources\SF_TrackRegisters1.png" />
     <Content Include="Setting.xml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

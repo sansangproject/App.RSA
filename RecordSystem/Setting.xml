@@ -6,8 +6,8 @@
 	<Account>1035</Account>
 	<Credit>5394-1111-7058-3767</Credit>
 	<CreditLimit>60000</CreditLimit>
-	<Outstanding>39424</Outstanding>
-	<GoldReceived>1.00</GoldReceived>
+	<Outstanding>29568</Outstanding>
+	<GoldReceived>1.50</GoldReceived>
 	<Wallet>1085</Wallet>
 	<TrueWallet>1141</TrueWallet>
 	<AllMember>1085</AllMember>
@@ -23,6 +23,6 @@
 	<OperationDate></OperationDate>
 	<CreditDate></CreditDate>
 	<Inaccurate>1</Inaccurate>
-	<Request>"KTB", "KBANK", "BAY" , "QR Payment (BAY)", "QR Payment (CIMB)", "QR Payment (KTB)", "TTB", "True Wallet", "True Wallet (KTB)"</Request>
+	<Request>"KTB", "KBANK", "BAY" , "QR Payment (BAY)", "QR Payment (CIMB)", "QR Payment (KTB)", "TTB", "True Wallet", "True Wallet (KTB)", "G-Wallet"</Request>
 	<AdjustTransaction>"Cash Back", "Redeem Points"</AdjustTransaction>
 </Setting>

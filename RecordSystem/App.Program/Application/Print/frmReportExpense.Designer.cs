@@ -58,6 +58,8 @@
             this.txtReceipt = new System.Windows.Forms.TextBox();
             this.btnPrint = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.txtItem = new System.Windows.Forms.TextBox();
@@ -69,17 +71,17 @@
             // btnPrints
             // 
             this.btnPrints.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnPrints.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnPrints.BackColor = System.Drawing.Color.Transparent;
             this.btnPrints.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrints.ForeColor = System.Drawing.Color.Transparent;
             this.btnPrints.Image = ((System.Drawing.Image)(resources.GetObject("btnPrints.Image")));
-            this.btnPrints.Location = new System.Drawing.Point(439, 296);
+            this.btnPrints.Location = new System.Drawing.Point(216, 315);
             this.btnPrints.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPrints.Name = "btnPrints";
-            this.btnPrints.Size = new System.Drawing.Size(50, 42);
+            this.btnPrints.Size = new System.Drawing.Size(35, 35);
             this.btnPrints.TabIndex = 93;
             this.btnPrints.TabStop = false;
-            this.btnPrints.Tag = "เคลียร์";
+            this.btnPrints.Tag = "";
             this.btnPrints.UseVisualStyleBackColor = false;
             this.btnPrints.Click += new System.EventHandler(this.btnPrints_Click);
             // 
@@ -155,7 +157,7 @@
             this.cbbCategory.FormattingEnabled = true;
             this.cbbCategory.Location = new System.Drawing.Point(175, 233);
             this.cbbCategory.Name = "cbbCategory";
-            this.cbbCategory.Size = new System.Drawing.Size(238, 31);
+            this.cbbCategory.Size = new System.Drawing.Size(277, 31);
             this.cbbCategory.TabIndex = 102;
             this.cbbCategory.Text = ":: Loading ::";
             // 
@@ -213,7 +215,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Gray;
+            this.label1.ForeColor = System.Drawing.Color.Blue;
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(79, 23);
@@ -408,28 +410,30 @@
             this.txtReceipt.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtReceipt.Location = new System.Drawing.Point(175, 274);
             this.txtReceipt.Name = "txtReceipt";
-            this.txtReceipt.Size = new System.Drawing.Size(238, 30);
+            this.txtReceipt.Size = new System.Drawing.Size(277, 30);
             this.txtReceipt.TabIndex = 125;
             // 
             // btnPrint
             // 
             this.btnPrint.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnPrint.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnPrint.BackColor = System.Drawing.Color.Transparent;
             this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrint.ForeColor = System.Drawing.Color.Transparent;
             this.btnPrint.Image = ((System.Drawing.Image)(resources.GetObject("btnPrint.Image")));
-            this.btnPrint.Location = new System.Drawing.Point(439, 243);
+            this.btnPrint.Location = new System.Drawing.Point(175, 315);
             this.btnPrint.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(50, 45);
+            this.btnPrint.Size = new System.Drawing.Size(35, 35);
             this.btnPrint.TabIndex = 126;
             this.btnPrint.TabStop = false;
-            this.btnPrint.Tag = "เคลียร์";
+            this.btnPrint.Tag = "";
             this.btnPrint.UseVisualStyleBackColor = false;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label18);
+            this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Controls.Add(this.btnPrint);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label16);
@@ -463,10 +467,34 @@
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Location = new System.Drawing.Point(16, 46);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(497, 348);
+            this.groupBox1.Size = new System.Drawing.Size(475, 373);
             this.groupBox1.TabIndex = 127;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "รายรับ - รายจ่าย";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.BackColor = System.Drawing.Color.Transparent;
+            this.label18.Font = new System.Drawing.Font("DB HeaventRounded", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.label18.Location = new System.Drawing.Point(219, 352);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(29, 15);
+            this.label18.TabIndex = 131;
+            this.label18.Text = "Detail";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.BackColor = System.Drawing.Color.Transparent;
+            this.label17.Font = new System.Drawing.Font("DB HeaventRounded", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.label17.Location = new System.Drawing.Point(172, 352);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(41, 15);
+            this.label17.TabIndex = 130;
+            this.label17.Text = "Category";
             // 
             // label2
             // 
@@ -496,7 +524,7 @@
             this.txtItem.Font = new System.Drawing.Font("DB HeaventRounded", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtItem.Location = new System.Drawing.Point(175, 192);
             this.txtItem.Name = "txtItem";
-            this.txtItem.Size = new System.Drawing.Size(238, 30);
+            this.txtItem.Size = new System.Drawing.Size(277, 30);
             this.txtItem.TabIndex = 127;
             // 
             // rdbAll
@@ -519,7 +547,7 @@
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.ForeColor = System.Drawing.Color.White;
             this.btnExit.Image = ((System.Drawing.Image)(resources.GetObject("btnExit.Image")));
-            this.btnExit.Location = new System.Drawing.Point(481, 9);
+            this.btnExit.Location = new System.Drawing.Point(459, 9);
             this.btnExit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(36, 36);
@@ -533,7 +561,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(529, 411);
+            this.ClientSize = new System.Drawing.Size(507, 432);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
@@ -587,5 +615,7 @@
         private System.Windows.Forms.RadioButton rdbAll;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
     }
 }
