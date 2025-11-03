@@ -439,7 +439,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.85278cm</Height>
+                  <Height>0.69403cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -450,7 +450,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=RowNumber(Nothing)</Value>
+                                  <Value>=RunningValue(Fields!CategoryId.Value, CountDistinct, "IsDebit")</Value>
                                   <Style>
                                     <FontFamily>DB HeaventRounded</FontFamily>
                                     <FontSize>11pt</FontSize>
@@ -740,7 +740,7 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>dsExpense</DataSetName>
-            <Height>3.2734cm</Height>
+            <Height>3.11465cm</Height>
             <Width>16.74719cm</Width>
             <Style>
               <Border>
@@ -752,13 +752,13 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>1.65204in</Height>
+        <Height>1.31871in</Height>
         <Style />
       </Body>
       <Width>6.59338in</Width>
       <Page>
         <PageHeader>
-          <Height>2.35479cm</Height>
+          <Height>2.5cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -844,7 +844,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Left>5.36842cm</Left>
+              <Left>5.34968cm</Left>
               <Height>2.15512cm</Height>
               <Width>11.36003cm</Width>
               <Style>
@@ -881,7 +881,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox3</rd:DefaultName>
-              <Left>3.66682cm</Left>
+              <Left>3.64808cm</Left>
               <Height>0.94396cm</Height>
               <Width>6.67577cm</Width>
               <ZIndex>1</ZIndex>
@@ -919,8 +919,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox3</rd:DefaultName>
-              <Top>0.71416cm</Top>
-              <Left>7.71495cm</Left>
+              <Top>0.70252cm</Top>
+              <Left>7.69621cm</Left>
               <Height>0.73229cm</Height>
               <Width>3.76535cm</Width>
               <ZIndex>2</ZIndex>
@@ -952,8 +952,7 @@
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>1.517cm</Top>
-              <Left>0.01874cm</Left>
+              <Top>1.52301cm</Top>
               <Height>0.56156cm</Height>
               <Width>13.38418cm</Width>
               <ZIndex>3</ZIndex>
@@ -968,8 +967,7 @@
               </Style>
             </Textbox>
             <Line Name="Line1">
-              <Top>2.1844cm</Top>
-              <Left>0.01874cm</Left>
+              <Top>2.22568cm</Top>
               <Height>0cm</Height>
               <Width>16.70971cm</Width>
               <ZIndex>4</ZIndex>
@@ -985,7 +983,6 @@
               <Source>Embedded</Source>
               <Value>SSLOGO</Value>
               <Sizing>FitProportional</Sizing>
-              <Left>0.01874cm</Left>
               <Height>1.48773cm</Height>
               <Width>1.17585cm</Width>
               <ZIndex>5</ZIndex>
