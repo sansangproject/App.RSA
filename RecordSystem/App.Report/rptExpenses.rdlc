@@ -949,6 +949,7 @@
                                   <Value>รวม</Value>
                                   <Style>
                                     <FontFamily>DB HeaventRounded</FontFamily>
+                                    <FontSize>11pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -985,6 +986,7 @@
                                   <Value>=Format(Sum(Fields!TotalAmount.Value), "#,0.00;(#,0.00)")</Value>
                                   <Style>
                                     <FontFamily>DB HeaventRounded</FontFamily>
+                                    <FontSize>11pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -1106,7 +1108,7 @@
       <Width>6.59338in</Width>
       <Page>
         <PageHeader>
-          <Height>2.48461cm</Height>
+          <Height>2.5cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1280,9 +1282,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox3</rd:DefaultName>
-              <Top>0.75544cm</Top>
+              <Top>0.70252cm</Top>
               <Left>7.69621cm</Left>
-              <Height>0.73229cm</Height>
+              <Height>0.78521cm</Height>
               <Width>3.76535cm</Width>
               <ZIndex>3</ZIndex>
               <Style>
