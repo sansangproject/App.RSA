@@ -149,6 +149,7 @@ namespace SANSANG
                 {"@MoneyId", Search? Function.GetComboId(cbbMoney) : "0"},
                 {"@Receipt", Search? txtReceipt.Text : ""},
                 {"@Reference", Search? txtReference.Text : ""},
+                {"@Invoice", Search? txtInvoice.Text : ""},
             };
 
             string Condition = Function.ShowConditons(GetCondition());
@@ -293,6 +294,7 @@ namespace SANSANG
                 strCondition += txtDetail.Text != "" ? ", รายละเอียด: " + txtDetail.Text : "";
                 strCondition += txtReceipt.Text != "" ? ", ใบเสร็จ: " + txtReceipt.Text : "";
                 strCondition += txtReference.Text != "" ? ", เลขอ้างอิง: " + txtReference.Text : "";
+                strCondition += txtInvoice.Text != "" ? ", ใบแจ้งหนี้: " + txtInvoice.Text : "";
                 strCondition += Function.GetComboId(cbbLocation) != "0" ? ", สถานที่ชำระ: " + cbbLocation.Text : "";
                 strCondition += Function.GetComboId(cbbMoney) != "0" ? ", ช่องทางชำระ: " + cbbMoney.Text : "";
                 strCondition += Function.GetComboId(cbbStatus) != "0" ? ", สถานะ: " + cbbStatus.Text : "";
@@ -423,6 +425,7 @@ namespace SANSANG
                             {"@MoneyId", Function.GetComboId(cbbMoney)},
                             {"@Receipt", txtReceipt.Text},
                             {"@Reference", txtReference.Text},
+                            {"@Invoice", txtInvoice.Text},
                         };
 
                         if (Insert.Add(AppCode, AppName, UserId, Store.ManageDept, Parameter, txtCode.Text, Details: GetDetails()))
@@ -473,6 +476,7 @@ namespace SANSANG
                         {"@MoneyId", Function.GetComboId(cbbMoney)},
                         {"@Receipt", txtReceipt.Text},
                         {"@Reference", txtReference.Text},
+                        {"@Invoice", txtInvoice.Text},
                     };
 
                     if (Edit.Update(AppCode, AppName, UserId, Store.ManageDept, Parameter, txtCode.Text, Details: GetDetails()))
@@ -611,15 +615,6 @@ namespace SANSANG
                         else
                         {
                             string statusPayment = "";
-
-                            //if (txtName.Text.Contains("สินเชื่อบุคคล") || txtName.Text.Contains("บัตรเครดิต"))
-                            //{
-                            //    statusPayment = "*** ยอดค้างชำระ ";
-                            //}
-                            //else
-                            //{
-                            //    statusPayment = "*** ส่วนลด ";
-                            //}
 
                             statusPayment = "*** ส่วนลด ";
 
@@ -788,6 +783,7 @@ namespace SANSANG
                         {"@MoneyId", "0"},
                         {"@Receipt", ""},
                         {"@Reference", ""},
+                        {"@Invoice", ""},
                     };
 
                     db.Get(Store.ManageDept, Parameter, out Error, out dt);
@@ -882,6 +878,7 @@ namespace SANSANG
                 {"@MoneyId", "0"},
                 {"@Receipt", ""},
                 {"@Reference", ""},
+                {"@Invoice", ""},
             };
 
             db.Get(Store.ManageDept, Parameter, out Error, out dt);
@@ -955,6 +952,7 @@ namespace SANSANG
                                         {"@MoneyId", "0"},
                                         {"@Receipt", ""},
                                         {"@Reference", ""},
+                                        {"@Invoice", ""},
                                     };
 
                                     db.Operations(Store.ManageDept, Parameter, out Error);
@@ -1039,6 +1037,7 @@ namespace SANSANG
                     }
 
                     txtReceipt.Text = Data.Rows[0]["Receipt"].ToString();
+                    txtInvoice.Text = Data.Rows[0]["Invoice"].ToString();
                     GridView.Focus();
                 }
                 else
@@ -1084,6 +1083,7 @@ namespace SANSANG
                         {"@MoneyId", Function.GetComboId(cbbMoney)},
                         {"@Receipt", txtReceipt.Text},
                         {"@Reference", txtReference.Text},
+                        {"@Invoice", ""},
                     };
 
                     if (Edit.Pay(AppCode, AppName, UserId, Store.ManageDept, Parameter, txtCode.Text, Details: GetDetails()))

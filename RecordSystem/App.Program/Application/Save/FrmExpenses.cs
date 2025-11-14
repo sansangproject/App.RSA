@@ -367,13 +367,8 @@ namespace SANSANG
             {
                 if (!Start)
                 {
-                    Function.GetPayment(Function.GetComboBoxId(cbbItem), out Details, out Items);
-
-                    txtItem.Text = Items;
-                    txtDetails.Text = Details;
-
                     Event.SetAutoMoney(cbbItem, cbbMoney);
-                    txtAmount.Focus();
+                    txtItem.Focus();
                 }
             }
             catch (Exception ex)
