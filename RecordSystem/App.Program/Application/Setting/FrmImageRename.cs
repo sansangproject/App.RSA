@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualBasic.Logging;
+﻿using Microsoft.ReportingServices.Interfaces;
+using Microsoft.VisualBasic.Logging;
 using Org.BouncyCastle.Ocsp;
 using SANSANG.Class;
 using System;
@@ -23,6 +24,7 @@ namespace App
         public string UserSurname;
         public string UserType;
         private clsLog Log = new clsLog();
+        private clsSetting Setting = new clsSetting();
 
         public FrmImageRename(string UserIdLogin, string UserNameLogin, string UserSurNameLogin, string UserTypeLogin)
         {
@@ -129,6 +131,74 @@ namespace App
         {
             SHChangeNotify(0x8000000, 0x1000, IntPtr.Zero, IntPtr.Zero);
             Console.WriteLine("Folder refreshed.");
+        }
+
+        private void btnRename_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string TessDataPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\App.Library\OCR\tessdata"));
+                string FolderPath = Setting.GetSlipLocation();
+
+                if (!Directory.Exists(FolderPath))
+                {
+                    MessageBox.Show("Folder does not exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                string[] ImageFiles = Directory.GetFiles(FolderPath, "*.*")
+                                        .Where(file => file.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) ||
+                                               file.EndsWith(".jpeg", StringComparison.OrdinalIgnoreCase) ||
+                                               file.EndsWith(".png", StringComparison.OrdinalIgnoreCase) ||
+                                               file.EndsWith(".bmp", StringComparison.OrdinalIgnoreCase) ||
+                                               file.EndsWith(".gif", StringComparison.OrdinalIgnoreCase) ||
+                                               file.EndsWith(".tiff", StringComparison.OrdinalIgnoreCase))
+                                        .ToArray();
+
+                using (var Engine = new TesseractEngine(TessDataPath, "eng+tha", EngineMode.Default))
+                {
+                    foreach (string ImageFile in ImageFiles)
+                    {
+                        try
+                        {
+                            using (var Image = Pix.LoadFromFile(ImageFile))
+                            {
+                                using (var Page = Engine.Process(Image))
+                                {
+                                    string Text = Page.GetText();
+                                    string Code = "";
+
+                                    Code = new string(Text.Where(char.IsLetterOrDigit).ToArray()).ToUpper();
+
+                                    if (!string.IsNullOrEmpty(Code))
+                                    {
+                                        string Directory = Path.GetDirectoryName(ImageFile);
+                                        string Extension = Path.GetExtension(ImageFile);
+                                        string NewImagePath = Path.Combine(Directory, Code + Extension);
+
+                                        if (!File.Exists(NewImagePath))
+                                        {
+                                            File.Move(ImageFile, NewImagePath);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Log.WriteLogData(AppCode, AppName, UserId, ex.Message);
+                        }
+                    }
+                }
+
+                RefreshFolder(FolderPath);
+                txtFilePath.Text = "";
+                MessageBox.Show("Renaming process completed.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
         }
     }
 }

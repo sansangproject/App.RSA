@@ -446,6 +446,12 @@ namespace SANSANG
                 FrmReportExpense Frm = new FrmReportExpense(UserId, UserName, UserSurname, UserType);
                 Frm.Show();
             }
+            else if (((RadMenuItem)sender).Name == "SETCG00")
+            {
+                FrmCodeGenerate Frm = new FrmCodeGenerate(UserId, UserName, UserSurname, UserType);
+                Frm.Show();
+            }
+
             Log.WriteLogData("MENU", ((RadMenuItem)sender).Name, UserId, "Open");
         }
     }

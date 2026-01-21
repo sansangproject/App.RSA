@@ -1105,11 +1105,11 @@ namespace SANSANG
 
         public void CopyData(object sender, EventArgs e)
         {
-            if (txtReceipt.Text != "")
+            if (txtInvoice.Text != "")
             {
                 try
                 {
-                    Clipboard.SetDataObject(txtReceipt.Text, true, 10, 100);
+                    Clipboard.SetDataObject(txtInvoice.Text, true, 10, 100);
                 }
                 catch (Exception)
                 {

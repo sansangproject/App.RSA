@@ -15,26 +15,45 @@ namespace SANSANG.Class
     {
         public clsFunction Function = new clsFunction();
 
-        public void Print(DataTable Value, string Dataset, string Report, string Param = "")
+        public void Print(DataTable value, string dataset, string report, string param = null)
         {
-            string Path = Function.GetPath("App.Report");
-            ReportParameter parameter = new ReportParameter("pConditions", Param);
+            if (value == null)
+                throw new ArgumentNullException(nameof(value));
 
-            ReportDataSource rds = new ReportDataSource();
-            rds.Name = Dataset;
-            rds.Value = Value;
+            if (string.IsNullOrWhiteSpace(dataset))
+                throw new ArgumentException("Dataset name is required.", nameof(dataset));
 
-            LocalReport LocalReport = new LocalReport();
-            LocalReport.ReportPath = Path + Report;
-            LocalReport.DisplayName = "12354";
-            LocalReport.EnableExternalImages = true;
+            if (string.IsNullOrWhiteSpace(report))
+                throw new ArgumentException("Report file name is required.", nameof(report));
 
-            LocalReport.DataSources.Clear();
-            LocalReport.DataSources.Add(rds);
-            LocalReport.SetParameters(parameter);
+            var basePath = Function.GetPath("App.Report");
+            var reportPath = Path.Combine(basePath, report);
 
-            PrintToPrinter(LocalReport);
+            var reportDataSource = new ReportDataSource
+            {
+                Name = dataset,
+                Value = value
+            };
+
+            var localReport = new LocalReport
+            {
+                ReportPath = reportPath,
+                DisplayName = "SANSANG",
+                EnableExternalImages = true
+            };
+
+            localReport.DataSources.Clear();
+            localReport.DataSources.Add(reportDataSource);
+
+            if (!string.IsNullOrWhiteSpace(param))
+            {
+                var reportParameter = new ReportParameter("pConditions", param);
+                localReport.SetParameters(reportParameter);
+            }
+
+            PrintToPrinter(localReport);
         }
+
         private void PrintToPrinter(LocalReport Report)
         {
             PageSettings Page = new PageSettings();

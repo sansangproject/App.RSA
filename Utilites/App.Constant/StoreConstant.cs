@@ -68,7 +68,8 @@ namespace SANSANG.Constant
         public static string GeneratedId = "[GeneratedId]";
         public static string GetTopId = "[GetTopId]";
         public static string GetItemId = "[GetItemId]";
-        public static string GetReportIncomeExpense = "[GetReportIncomeExpense]"; 
+        public static string GetReportIncomeExpense = "[GetReportIncomeExpense]";
+        public static string GetValue = "[GetValue]";
 
         public string ManagePath = string.Format(Stores, SPR, Path);
         public string ManageUser = string.Format(Stores, SPR, User);
@@ -121,5 +122,6 @@ namespace SANSANG.Constant
         public string FnGetTopId = string.Format(Stores, FN, GetTopId);
         public string FnGetItemId = string.Format(Stores, FN, GetItemId);
         public string FnGetReportIncomeExpense = string.Format(Stores, FN, GetReportIncomeExpense);
+        public string FnGetValue = string.Format(Stores, FN, GetValue);
     }
 }

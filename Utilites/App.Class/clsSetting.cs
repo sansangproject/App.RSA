@@ -514,6 +514,28 @@ namespace SANSANG.Class
             return url;
         }
 
+        public string GetSlipLocation()
+        {
+            string settingPath = Path.Combine(appPath, filePath);
+
+            if (File.Exists(settingPath))
+            {
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.Load(settingPath);
+                foreach (XmlNode valueNode in xmlDoc.DocumentElement)
+                {
+                    switch (valueNode.Name.ToString())
+                    {
+                        case "SlipPath":
+                            url = valueNode.InnerText;
+                            break;
+                    }
+                }
+            }
+
+            return url;
+        }
+
         public bool GetDisplay()
         {
             string appPath = AppDomain.CurrentDomain.BaseDirectory.Substring(0, AppDomain.CurrentDomain.BaseDirectory.Length - 10);
