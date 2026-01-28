@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmStocks));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
@@ -55,7 +55,6 @@
             this.label27 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.label86 = new System.Windows.Forms.Label();
             this.label76 = new System.Windows.Forms.Label();
             this.label66 = new System.Windows.Forms.Label();
             this.label39 = new System.Windows.Forms.Label();
@@ -103,7 +102,6 @@
             this.BuyDate = new System.Windows.Forms.DateTimePicker();
             this.label47 = new System.Windows.Forms.Label();
             this.label62 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
             this.label80 = new System.Windows.Forms.Label();
             this.label61 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
@@ -378,6 +376,8 @@
             this.gbMain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gbMain.BackColor = System.Drawing.Color.Transparent;
+            this.gbMain.Controls.Add(this.txtPriceExVat);
+            this.gbMain.Controls.Add(this.label47);
             this.gbMain.Controls.Add(this.btnTitleCase);
             this.gbMain.Controls.Add(this.label9);
             this.gbMain.Controls.Add(this.txtReference);
@@ -388,7 +388,6 @@
             this.gbMain.Controls.Add(this.label27);
             this.gbMain.Controls.Add(this.label16);
             this.gbMain.Controls.Add(this.label15);
-            this.gbMain.Controls.Add(this.label86);
             this.gbMain.Controls.Add(this.label76);
             this.gbMain.Controls.Add(this.label66);
             this.gbMain.Controls.Add(this.label39);
@@ -434,9 +433,7 @@
             this.gbMain.Controls.Add(this.txtLot);
             this.gbMain.Controls.Add(this.pbQrcode);
             this.gbMain.Controls.Add(this.BuyDate);
-            this.gbMain.Controls.Add(this.label47);
             this.gbMain.Controls.Add(this.label62);
-            this.gbMain.Controls.Add(this.label40);
             this.gbMain.Controls.Add(this.label80);
             this.gbMain.Controls.Add(this.label61);
             this.gbMain.Controls.Add(this.label38);
@@ -448,7 +445,6 @@
             this.gbMain.Controls.Add(this.label79);
             this.gbMain.Controls.Add(this.label85);
             this.gbMain.Controls.Add(this.label13);
-            this.gbMain.Controls.Add(this.txtPriceExVat);
             this.gbMain.Controls.Add(this.txtPriceSale);
             this.gbMain.Controls.Add(this.txtPriceWholeSale);
             this.gbMain.Controls.Add(this.txtPriceMember);
@@ -460,7 +456,6 @@
             this.gbMain.Controls.Add(this.txtPriceSpacial);
             this.gbMain.Controls.Add(this.cbbStatus);
             this.gbMain.Controls.Add(this.txtBarcode);
-            this.gbMain.Controls.Add(this.label14);
             this.gbMain.Controls.Add(this.label94);
             this.gbMain.Controls.Add(this.label2);
             this.gbMain.Controls.Add(this.label37);
@@ -489,6 +484,7 @@
             this.gbMain.Controls.Add(this.txtId);
             this.gbMain.Controls.Add(this.txtCode);
             this.gbMain.Controls.Add(this.txtImage);
+            this.gbMain.Controls.Add(this.label14);
             this.gbMain.Enabled = false;
             this.gbMain.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.gbMain.Location = new System.Drawing.Point(1, 92);
@@ -503,12 +499,13 @@
             this.btnTitleCase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTitleCase.ForeColor = System.Drawing.Color.Transparent;
             this.btnTitleCase.Image = ((System.Drawing.Image)(resources.GetObject("btnTitleCase.Image")));
-            this.btnTitleCase.Location = new System.Drawing.Point(1014, 343);
+            this.btnTitleCase.Location = new System.Drawing.Point(1016, 283);
             this.btnTitleCase.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTitleCase.Name = "btnTitleCase";
             this.btnTitleCase.Size = new System.Drawing.Size(20, 20);
             this.btnTitleCase.TabIndex = 261;
             this.btnTitleCase.TabStop = false;
+            this.btnTitleCase.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.btnTitleCase.UseVisualStyleBackColor = false;
             this.btnTitleCase.Click += new System.EventHandler(this.btnTitleCase_Click);
             // 
@@ -516,7 +513,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.ForeColor = System.Drawing.Color.DeepPink;
-            this.label9.Location = new System.Drawing.Point(1061, 285);
+            this.label9.Location = new System.Drawing.Point(1056, 287);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(76, 20);
             this.label9.TabIndex = 258;
@@ -529,7 +526,7 @@
             this.txtReference.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtReference.Location = new System.Drawing.Point(1159, 292);
             this.txtReference.Name = "txtReference";
-            this.txtReference.Size = new System.Drawing.Size(175, 21);
+            this.txtReference.Size = new System.Drawing.Size(192, 21);
             this.txtReference.TabIndex = 259;
             // 
             // Reference
@@ -537,7 +534,7 @@
             this.Reference.AutoSize = true;
             this.Reference.Font = new System.Drawing.Font("Mitr Light", 8.5F);
             this.Reference.ForeColor = System.Drawing.Color.DimGray;
-            this.Reference.Location = new System.Drawing.Point(1061, 299);
+            this.Reference.Location = new System.Drawing.Point(1056, 302);
             this.Reference.Name = "Reference";
             this.Reference.Size = new System.Drawing.Size(58, 19);
             this.Reference.TabIndex = 260;
@@ -548,7 +545,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.label5.ForeColor = System.Drawing.Color.DeepPink;
-            this.label5.Location = new System.Drawing.Point(707, 238);
+            this.label5.Location = new System.Drawing.Point(723, 210);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(84, 20);
             this.label5.TabIndex = 256;
@@ -560,7 +557,7 @@
             this.txtOrder.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtOrder.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.txtOrder.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtOrder.Location = new System.Drawing.Point(820, 244);
+            this.txtOrder.Location = new System.Drawing.Point(821, 211);
             this.txtOrder.Name = "txtOrder";
             this.txtOrder.Size = new System.Drawing.Size(191, 21);
             this.txtOrder.TabIndex = 255;
@@ -570,7 +567,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Mitr Light", 8.5F);
             this.label8.ForeColor = System.Drawing.Color.DimGray;
-            this.label8.Location = new System.Drawing.Point(707, 252);
+            this.label8.Location = new System.Drawing.Point(723, 226);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(62, 19);
             this.label8.TabIndex = 257;
@@ -590,7 +587,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.ForeColor = System.Drawing.Color.DeepPink;
-            this.label16.Location = new System.Drawing.Point(1062, 318);
+            this.label16.Location = new System.Drawing.Point(723, 346);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(95, 20);
             this.label16.TabIndex = 5;
@@ -600,27 +597,17 @@
             // 
             this.label15.AutoSize = true;
             this.label15.ForeColor = System.Drawing.Color.DeepPink;
-            this.label15.Location = new System.Drawing.Point(1062, 174);
+            this.label15.Location = new System.Drawing.Point(723, 176);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(60, 20);
             this.label15.TabIndex = 5;
             this.label15.Text = "ส่วนลด : ";
             // 
-            // label86
-            // 
-            this.label86.AutoSize = true;
-            this.label86.ForeColor = System.Drawing.Color.DeepPink;
-            this.label86.Location = new System.Drawing.Point(1062, 140);
-            this.label86.Name = "label86";
-            this.label86.Size = new System.Drawing.Size(73, 20);
-            this.label86.TabIndex = 5;
-            this.label86.Text = "ภาษีสินค้า : ";
-            // 
             // label76
             // 
             this.label76.AutoSize = true;
             this.label76.ForeColor = System.Drawing.Color.DeepPink;
-            this.label76.Location = new System.Drawing.Point(1062, 107);
+            this.label76.Location = new System.Drawing.Point(1056, 142);
             this.label76.Name = "label76";
             this.label76.Size = new System.Drawing.Size(43, 20);
             this.label76.TabIndex = 5;
@@ -630,7 +617,7 @@
             // 
             this.label66.AutoSize = true;
             this.label66.ForeColor = System.Drawing.Color.DeepPink;
-            this.label66.Location = new System.Drawing.Point(707, 338);
+            this.label66.Location = new System.Drawing.Point(723, 278);
             this.label66.Name = "label66";
             this.label66.Size = new System.Drawing.Size(48, 20);
             this.label66.TabIndex = 126;
@@ -640,28 +627,28 @@
             // 
             this.label39.AutoSize = true;
             this.label39.ForeColor = System.Drawing.Color.DeepPink;
-            this.label39.Location = new System.Drawing.Point(707, 304);
+            this.label39.Location = new System.Drawing.Point(723, 244);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(73, 20);
+            this.label39.Size = new System.Drawing.Size(86, 20);
             this.label39.TabIndex = 5;
-            this.label39.Text = "สถานที่ซื้อ : ";
+            this.label39.Text = "ร้านจำหน่าย : ";
             // 
             // label44
             // 
             this.label44.AutoSize = true;
             this.label44.ForeColor = System.Drawing.Color.DeepPink;
-            this.label44.Location = new System.Drawing.Point(707, 269);
+            this.label44.Location = new System.Drawing.Point(723, 312);
             this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(65, 20);
+            this.label44.Size = new System.Drawing.Size(79, 20);
             this.label44.TabIndex = 5;
-            this.label44.Text = "ชำระเงิน : ";
+            this.label44.Text = "วิธีชำระเงิน : ";
             // 
             // label69
             // 
             this.label69.AutoSize = true;
             this.label69.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.label69.ForeColor = System.Drawing.Color.DeepPink;
-            this.label69.Location = new System.Drawing.Point(707, 206);
+            this.label69.Location = new System.Drawing.Point(1056, 325);
             this.label69.Name = "label69";
             this.label69.Size = new System.Drawing.Size(88, 20);
             this.label69.TabIndex = 129;
@@ -671,7 +658,7 @@
             // 
             this.label84.AutoSize = true;
             this.label84.ForeColor = System.Drawing.Color.DeepPink;
-            this.label84.Location = new System.Drawing.Point(707, 143);
+            this.label84.Location = new System.Drawing.Point(1056, 174);
             this.label84.Name = "label84";
             this.label84.Size = new System.Drawing.Size(109, 20);
             this.label84.TabIndex = 14;
@@ -681,7 +668,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.ForeColor = System.Drawing.Color.DeepPink;
-            this.label12.Location = new System.Drawing.Point(707, 111);
+            this.label12.Location = new System.Drawing.Point(723, 108);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(72, 20);
             this.label12.TabIndex = 5;
@@ -691,7 +678,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.DeepPink;
-            this.label3.Location = new System.Drawing.Point(251, 225);
+            this.label3.Location = new System.Drawing.Point(251, 206);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(65, 20);
             this.label3.TabIndex = 5;
@@ -702,7 +689,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Mitr Light", 8.5F);
             this.label6.ForeColor = System.Drawing.Color.DimGray;
-            this.label6.Location = new System.Drawing.Point(251, 239);
+            this.label6.Location = new System.Drawing.Point(251, 220);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(91, 19);
             this.label6.TabIndex = 16;
@@ -738,9 +725,9 @@
             this.txtBranch.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtBranch.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtBranch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtBranch.Location = new System.Drawing.Point(820, 343);
+            this.txtBranch.Location = new System.Drawing.Point(821, 282);
             this.txtBranch.Name = "txtBranch";
-            this.txtBranch.Size = new System.Drawing.Size(191, 21);
+            this.txtBranch.Size = new System.Drawing.Size(192, 21);
             this.txtBranch.TabIndex = 30;
             // 
             // txtReceipt
@@ -749,9 +736,9 @@
             this.txtReceipt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtReceipt.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.txtReceipt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtReceipt.Location = new System.Drawing.Point(820, 212);
+            this.txtReceipt.Location = new System.Drawing.Point(1159, 329);
             this.txtReceipt.Name = "txtReceipt";
-            this.txtReceipt.Size = new System.Drawing.Size(191, 21);
+            this.txtReceipt.Size = new System.Drawing.Size(192, 21);
             this.txtReceipt.TabIndex = 32;
             // 
             // label68
@@ -759,7 +746,7 @@
             this.label68.AutoSize = true;
             this.label68.Font = new System.Drawing.Font("Mitr Light", 8.5F);
             this.label68.ForeColor = System.Drawing.Color.DimGray;
-            this.label68.Location = new System.Drawing.Point(707, 220);
+            this.label68.Location = new System.Drawing.Point(1056, 340);
             this.label68.Name = "label68";
             this.label68.Size = new System.Drawing.Size(53, 19);
             this.label68.TabIndex = 131;
@@ -782,7 +769,7 @@
             this.label64.AutoSize = true;
             this.label64.Font = new System.Drawing.Font("Mitr Light", 8.5F);
             this.label64.ForeColor = System.Drawing.Color.DimGray;
-            this.label64.Location = new System.Drawing.Point(707, 352);
+            this.label64.Location = new System.Drawing.Point(723, 294);
             this.label64.Name = "label64";
             this.label64.Size = new System.Drawing.Size(50, 19);
             this.label64.TabIndex = 128;
@@ -804,9 +791,9 @@
             this.txtWarrantyDate.BackColor = System.Drawing.Color.White;
             this.txtWarrantyDate.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtWarrantyDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtWarrantyDate.Location = new System.Drawing.Point(1160, 78);
+            this.txtWarrantyDate.Location = new System.Drawing.Point(1160, 110);
             this.txtWarrantyDate.Name = "txtWarrantyDate";
-            this.txtWarrantyDate.Size = new System.Drawing.Size(139, 21);
+            this.txtWarrantyDate.Size = new System.Drawing.Size(155, 21);
             this.txtWarrantyDate.TabIndex = 24;
             // 
             // WarrantyDate
@@ -820,9 +807,9 @@
             this.WarrantyDate.CustomFormat = "dd/MM/yyyy";
             this.WarrantyDate.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.WarrantyDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.WarrantyDate.Location = new System.Drawing.Point(1159, 75);
+            this.WarrantyDate.Location = new System.Drawing.Point(1159, 107);
             this.WarrantyDate.Name = "WarrantyDate";
-            this.WarrantyDate.Size = new System.Drawing.Size(175, 28);
+            this.WarrantyDate.Size = new System.Drawing.Size(192, 28);
             this.WarrantyDate.TabIndex = 123;
             this.WarrantyDate.TabStop = false;
             this.WarrantyDate.ValueChanged += new System.EventHandler(this.SetDate);
@@ -831,7 +818,7 @@
             // 
             this.label59.AutoSize = true;
             this.label59.ForeColor = System.Drawing.Color.DeepPink;
-            this.label59.Location = new System.Drawing.Point(1062, 68);
+            this.label59.Location = new System.Drawing.Point(1056, 102);
             this.label59.Name = "label59";
             this.label59.Size = new System.Drawing.Size(95, 20);
             this.label59.TabIndex = 121;
@@ -842,7 +829,7 @@
             this.label60.AutoSize = true;
             this.label60.Font = new System.Drawing.Font("Mitr Light", 8.5F);
             this.label60.ForeColor = System.Drawing.Color.DimGray;
-            this.label60.Location = new System.Drawing.Point(1062, 82);
+            this.label60.Location = new System.Drawing.Point(1056, 117);
             this.label60.Name = "label60";
             this.label60.Size = new System.Drawing.Size(93, 19);
             this.label60.TabIndex = 122;
@@ -853,7 +840,7 @@
             this.txtSerialNumber.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtSerialNumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtSerialNumber.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtSerialNumber.Location = new System.Drawing.Point(346, 294);
+            this.txtSerialNumber.Location = new System.Drawing.Point(346, 275);
             this.txtSerialNumber.Name = "txtSerialNumber";
             this.txtSerialNumber.Size = new System.Drawing.Size(243, 21);
             this.txtSerialNumber.TabIndex = 10;
@@ -863,7 +850,7 @@
             this.label10.AutoSize = true;
             this.label10.BackColor = System.Drawing.Color.Transparent;
             this.label10.ForeColor = System.Drawing.Color.DeepPink;
-            this.label10.Location = new System.Drawing.Point(251, 288);
+            this.label10.Location = new System.Drawing.Point(251, 269);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(65, 20);
             this.label10.TabIndex = 118;
@@ -874,7 +861,7 @@
             this.label53.AutoSize = true;
             this.label53.Font = new System.Drawing.Font("Mitr Light", 8.5F);
             this.label53.ForeColor = System.Drawing.Color.DimGray;
-            this.label53.Location = new System.Drawing.Point(251, 302);
+            this.label53.Location = new System.Drawing.Point(251, 283);
             this.label53.Name = "label53";
             this.label53.Size = new System.Drawing.Size(63, 19);
             this.label53.TabIndex = 119;
@@ -896,9 +883,9 @@
             this.txtReceiveDate.BackColor = System.Drawing.Color.White;
             this.txtReceiveDate.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtReceiveDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtReceiveDate.Location = new System.Drawing.Point(1160, 257);
+            this.txtReceiveDate.Location = new System.Drawing.Point(1161, 257);
             this.txtReceiveDate.Name = "txtReceiveDate";
-            this.txtReceiveDate.Size = new System.Drawing.Size(139, 21);
+            this.txtReceiveDate.Size = new System.Drawing.Size(154, 21);
             this.txtReceiveDate.TabIndex = 115;
             // 
             // txtBuyDate
@@ -906,9 +893,9 @@
             this.txtBuyDate.BackColor = System.Drawing.Color.White;
             this.txtBuyDate.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtBuyDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtBuyDate.Location = new System.Drawing.Point(1160, 220);
+            this.txtBuyDate.Location = new System.Drawing.Point(1161, 220);
             this.txtBuyDate.Name = "txtBuyDate";
-            this.txtBuyDate.Size = new System.Drawing.Size(139, 21);
+            this.txtBuyDate.Size = new System.Drawing.Size(154, 21);
             this.txtBuyDate.TabIndex = 114;
             // 
             // txtExp
@@ -916,7 +903,7 @@
             this.txtExp.BackColor = System.Drawing.Color.White;
             this.txtExp.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtExp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtExp.Location = new System.Drawing.Point(820, 76);
+            this.txtExp.Location = new System.Drawing.Point(1160, 70);
             this.txtExp.Name = "txtExp";
             this.txtExp.Size = new System.Drawing.Size(155, 21);
             this.txtExp.TabIndex = 113;
@@ -926,7 +913,7 @@
             this.txtMfg.BackColor = System.Drawing.Color.White;
             this.txtMfg.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtMfg.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtMfg.Location = new System.Drawing.Point(820, 39);
+            this.txtMfg.Location = new System.Drawing.Point(825, 80);
             this.txtMfg.Name = "txtMfg";
             this.txtMfg.Size = new System.Drawing.Size(155, 21);
             this.txtMfg.TabIndex = 112;
@@ -987,7 +974,7 @@
             this.Exp.CustomFormat = "dd/MM/yyyy";
             this.Exp.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.Exp.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.Exp.Location = new System.Drawing.Point(819, 73);
+            this.Exp.Location = new System.Drawing.Point(1159, 67);
             this.Exp.Name = "Exp";
             this.Exp.Size = new System.Drawing.Size(192, 28);
             this.Exp.TabIndex = 14;
@@ -998,7 +985,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.Color.DeepPink;
-            this.label7.Location = new System.Drawing.Point(707, 67);
+            this.label7.Location = new System.Drawing.Point(1056, 63);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(81, 20);
             this.label7.TabIndex = 102;
@@ -1009,7 +996,7 @@
             this.label50.AutoSize = true;
             this.label50.Font = new System.Drawing.Font("Mitr Light", 8.5F);
             this.label50.ForeColor = System.Drawing.Color.DimGray;
-            this.label50.Location = new System.Drawing.Point(707, 81);
+            this.label50.Location = new System.Drawing.Point(1056, 78);
             this.label50.Name = "label50";
             this.label50.Size = new System.Drawing.Size(63, 19);
             this.label50.TabIndex = 103;
@@ -1026,7 +1013,7 @@
             this.Mfg.CustomFormat = "dd/MM/yyyy";
             this.Mfg.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.Mfg.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.Mfg.Location = new System.Drawing.Point(819, 35);
+            this.Mfg.Location = new System.Drawing.Point(821, 76);
             this.Mfg.Name = "Mfg";
             this.Mfg.Size = new System.Drawing.Size(192, 28);
             this.Mfg.TabIndex = 13;
@@ -1037,7 +1024,7 @@
             // 
             this.label51.AutoSize = true;
             this.label51.ForeColor = System.Drawing.Color.DeepPink;
-            this.label51.Location = new System.Drawing.Point(707, 29);
+            this.label51.Location = new System.Drawing.Point(723, 74);
             this.label51.Name = "label51";
             this.label51.Size = new System.Drawing.Size(68, 20);
             this.label51.TabIndex = 98;
@@ -1048,7 +1035,7 @@
             this.label54.AutoSize = true;
             this.label54.Font = new System.Drawing.Font("Mitr Light", 8.5F);
             this.label54.ForeColor = System.Drawing.Color.DimGray;
-            this.label54.Location = new System.Drawing.Point(707, 43);
+            this.label54.Location = new System.Drawing.Point(723, 90);
             this.label54.Name = "label54";
             this.label54.Size = new System.Drawing.Size(65, 19);
             this.label54.TabIndex = 99;
@@ -1067,7 +1054,7 @@
             this.ReceiveDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.ReceiveDate.Location = new System.Drawing.Point(1159, 253);
             this.ReceiveDate.Name = "ReceiveDate";
-            this.ReceiveDate.Size = new System.Drawing.Size(175, 28);
+            this.ReceiveDate.Size = new System.Drawing.Size(192, 28);
             this.ReceiveDate.TabIndex = 28;
             this.ReceiveDate.TabStop = false;
             this.ReceiveDate.ValueChanged += new System.EventHandler(this.SetDate);
@@ -1076,7 +1063,7 @@
             // 
             this.label45.AutoSize = true;
             this.label45.ForeColor = System.Drawing.Color.DeepPink;
-            this.label45.Location = new System.Drawing.Point(1062, 245);
+            this.label45.Location = new System.Drawing.Point(1056, 247);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(75, 20);
             this.label45.TabIndex = 94;
@@ -1087,7 +1074,7 @@
             this.label49.AutoSize = true;
             this.label49.Font = new System.Drawing.Font("Mitr Light", 8.5F);
             this.label49.ForeColor = System.Drawing.Color.DimGray;
-            this.label49.Location = new System.Drawing.Point(1062, 259);
+            this.label49.Location = new System.Drawing.Point(1056, 262);
             this.label49.Name = "label49";
             this.label49.Size = new System.Drawing.Size(86, 19);
             this.label49.TabIndex = 95;
@@ -1098,7 +1085,7 @@
             this.txtLot.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtLot.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtLot.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtLot.Location = new System.Drawing.Point(346, 262);
+            this.txtLot.Location = new System.Drawing.Point(346, 243);
             this.txtLot.Name = "txtLot";
             this.txtLot.Size = new System.Drawing.Size(243, 21);
             this.txtLot.TabIndex = 8;
@@ -1106,7 +1093,7 @@
             // pbQrcode
             // 
             this.pbQrcode.BackColor = System.Drawing.Color.Transparent;
-            this.pbQrcode.Location = new System.Drawing.Point(336, 78);
+            this.pbQrcode.Location = new System.Drawing.Point(346, 80);
             this.pbQrcode.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pbQrcode.Name = "pbQrcode";
             this.pbQrcode.Size = new System.Drawing.Size(174, 38);
@@ -1127,7 +1114,7 @@
             this.BuyDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.BuyDate.Location = new System.Drawing.Point(1159, 216);
             this.BuyDate.Name = "BuyDate";
-            this.BuyDate.Size = new System.Drawing.Size(175, 28);
+            this.BuyDate.Size = new System.Drawing.Size(192, 28);
             this.BuyDate.TabIndex = 27;
             this.BuyDate.TabStop = false;
             this.BuyDate.ValueChanged += new System.EventHandler(this.SetDate);
@@ -1137,7 +1124,7 @@
             this.label47.AutoSize = true;
             this.label47.Font = new System.Drawing.Font("Mitr Light", 8.5F);
             this.label47.ForeColor = System.Drawing.Color.DimGray;
-            this.label47.Location = new System.Drawing.Point(1062, 188);
+            this.label47.Location = new System.Drawing.Point(723, 192);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(59, 19);
             this.label47.TabIndex = 82;
@@ -1153,17 +1140,6 @@
             this.label62.Size = new System.Drawing.Size(67, 19);
             this.label62.TabIndex = 85;
             this.label62.Text = "Wholesale";
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Font = new System.Drawing.Font("Mitr Light", 8.5F);
-            this.label40.ForeColor = System.Drawing.Color.DimGray;
-            this.label40.Location = new System.Drawing.Point(1062, 154);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(81, 19);
-            this.label40.TabIndex = 81;
-            this.label40.Text = "VAT Product";
             // 
             // label80
             // 
@@ -1191,7 +1167,7 @@
             this.label38.AutoSize = true;
             this.label38.Font = new System.Drawing.Font("Mitr Light", 8.5F);
             this.label38.ForeColor = System.Drawing.Color.DimGray;
-            this.label38.Location = new System.Drawing.Point(1062, 121);
+            this.label38.Location = new System.Drawing.Point(1056, 157);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(31, 19);
             this.label38.TabIndex = 80;
@@ -1213,7 +1189,7 @@
             this.label26.AutoSize = true;
             this.label26.Font = new System.Drawing.Font("Mitr Light", 8.5F);
             this.label26.ForeColor = System.Drawing.Color.DimGray;
-            this.label26.Location = new System.Drawing.Point(707, 157);
+            this.label26.Location = new System.Drawing.Point(1056, 189);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(82, 19);
             this.label26.TabIndex = 78;
@@ -1234,11 +1210,11 @@
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Mitr Light", 8.5F);
             this.label17.ForeColor = System.Drawing.Color.DimGray;
-            this.label17.Location = new System.Drawing.Point(707, 125);
+            this.label17.Location = new System.Drawing.Point(723, 124);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(38, 19);
+            this.label17.Size = new System.Drawing.Size(83, 19);
             this.label17.TabIndex = 77;
-            this.label17.Text = "Price";
+            this.label17.Text = "Normal Price";
             // 
             // label82
             // 
@@ -1264,7 +1240,7 @@
             // 
             this.label85.AutoSize = true;
             this.label85.ForeColor = System.Drawing.Color.DeepPink;
-            this.label85.Location = new System.Drawing.Point(1196, 114);
+            this.label85.Location = new System.Drawing.Point(1193, 147);
             this.label85.Name = "label85";
             this.label85.Size = new System.Drawing.Size(19, 20);
             this.label85.TabIndex = 16;
@@ -1287,7 +1263,7 @@
             this.txtPriceExVat.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtPriceExVat.Enabled = false;
             this.txtPriceExVat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtPriceExVat.Location = new System.Drawing.Point(819, 148);
+            this.txtPriceExVat.Location = new System.Drawing.Point(1159, 177);
             this.txtPriceExVat.Name = "txtPriceExVat";
             this.txtPriceExVat.Size = new System.Drawing.Size(192, 21);
             this.txtPriceExVat.TabIndex = 15;
@@ -1341,9 +1317,9 @@
             this.txtDiscount.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtDiscount.Enabled = false;
             this.txtDiscount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtDiscount.Location = new System.Drawing.Point(1159, 180);
+            this.txtDiscount.Location = new System.Drawing.Point(821, 179);
             this.txtDiscount.Name = "txtDiscount";
-            this.txtDiscount.Size = new System.Drawing.Size(175, 21);
+            this.txtDiscount.Size = new System.Drawing.Size(192, 21);
             this.txtDiscount.TabIndex = 18;
             this.txtDiscount.TabStop = false;
             this.txtDiscount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -1363,7 +1339,7 @@
             this.txtPrice.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtPrice.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtPrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtPrice.Location = new System.Drawing.Point(819, 116);
+            this.txtPrice.Location = new System.Drawing.Point(821, 115);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(192, 21);
             this.txtPrice.TabIndex = 15;
@@ -1377,9 +1353,9 @@
             this.txtVatValue.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtVatValue.Enabled = false;
             this.txtVatValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtVatValue.Location = new System.Drawing.Point(1159, 147);
+            this.txtVatValue.Location = new System.Drawing.Point(1218, 145);
             this.txtVatValue.Name = "txtVatValue";
-            this.txtVatValue.Size = new System.Drawing.Size(175, 21);
+            this.txtVatValue.Size = new System.Drawing.Size(133, 21);
             this.txtVatValue.TabIndex = 12;
             this.txtVatValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -1388,7 +1364,7 @@
             this.txtVat.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtVat.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtVat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtVat.Location = new System.Drawing.Point(1159, 114);
+            this.txtVat.Location = new System.Drawing.Point(1159, 147);
             this.txtVat.Name = "txtVat";
             this.txtVat.Size = new System.Drawing.Size(32, 21);
             this.txtVat.TabIndex = 16;
@@ -1400,7 +1376,7 @@
             this.txtPriceSpacial.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtPriceSpacial.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtPriceSpacial.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtPriceSpacial.Location = new System.Drawing.Point(819, 180);
+            this.txtPriceSpacial.Location = new System.Drawing.Point(821, 147);
             this.txtPriceSpacial.Name = "txtPriceSpacial";
             this.txtPriceSpacial.Size = new System.Drawing.Size(192, 21);
             this.txtPriceSpacial.TabIndex = 17;
@@ -1435,18 +1411,18 @@
             // 
             this.label14.AutoSize = true;
             this.label14.ForeColor = System.Drawing.Color.DeepPink;
-            this.label14.Location = new System.Drawing.Point(707, 174);
+            this.label14.Location = new System.Drawing.Point(723, 142);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(77, 20);
+            this.label14.Size = new System.Drawing.Size(62, 20);
             this.label14.TabIndex = 5;
-            this.label14.Text = "ราคาพิเศษ : ";
+            this.label14.Text = "ราคาซื้อ : ";
             // 
             // label94
             // 
             this.label94.AutoSize = true;
             this.label94.Font = new System.Drawing.Font("Mitr Light", 8.5F);
             this.label94.ForeColor = System.Drawing.Color.DimGray;
-            this.label94.Location = new System.Drawing.Point(707, 283);
+            this.label94.Location = new System.Drawing.Point(723, 328);
             this.label94.Name = "label94";
             this.label94.Size = new System.Drawing.Size(57, 19);
             this.label94.TabIndex = 64;
@@ -1456,7 +1432,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.DeepPink;
-            this.label2.Location = new System.Drawing.Point(251, 156);
+            this.label2.Location = new System.Drawing.Point(251, 137);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 20);
             this.label2.TabIndex = 13;
@@ -1467,7 +1443,7 @@
             this.label37.AutoSize = true;
             this.label37.Font = new System.Drawing.Font("Mitr Light", 8.5F);
             this.label37.ForeColor = System.Drawing.Color.DimGray;
-            this.label37.Location = new System.Drawing.Point(707, 318);
+            this.label37.Location = new System.Drawing.Point(723, 260);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(37, 19);
             this.label37.TabIndex = 63;
@@ -1477,7 +1453,7 @@
             // 
             this.label28.AutoSize = true;
             this.label28.ForeColor = System.Drawing.Color.DeepPink;
-            this.label28.Location = new System.Drawing.Point(1062, 209);
+            this.label28.Location = new System.Drawing.Point(1056, 211);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(58, 20);
             this.label28.TabIndex = 5;
@@ -1490,7 +1466,7 @@
             this.cbbProducts.Font = new System.Drawing.Font("Mitr Light", 9.75F);
             this.cbbProducts.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbbProducts.FormattingEnabled = true;
-            this.cbbProducts.Location = new System.Drawing.Point(346, 159);
+            this.cbbProducts.Location = new System.Drawing.Point(346, 140);
             this.cbbProducts.Name = "cbbProducts";
             this.cbbProducts.Size = new System.Drawing.Size(313, 28);
             this.cbbProducts.TabIndex = 1;
@@ -1502,9 +1478,9 @@
             this.cbbShop.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cbbShop.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbbShop.FormattingEnabled = true;
-            this.cbbShop.Location = new System.Drawing.Point(820, 308);
+            this.cbbShop.Location = new System.Drawing.Point(821, 243);
             this.cbbShop.Name = "cbbShop";
-            this.cbbShop.Size = new System.Drawing.Size(191, 28);
+            this.cbbShop.Size = new System.Drawing.Size(192, 28);
             this.cbbShop.TabIndex = 29;
             // 
             // cbbUnit
@@ -1513,7 +1489,7 @@
             this.cbbUnit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cbbUnit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbbUnit.FormattingEnabled = true;
-            this.cbbUnit.Location = new System.Drawing.Point(458, 345);
+            this.cbbUnit.Location = new System.Drawing.Point(458, 329);
             this.cbbUnit.Name = "cbbUnit";
             this.cbbUnit.Size = new System.Drawing.Size(131, 28);
             this.cbbUnit.TabIndex = 6;
@@ -1523,9 +1499,9 @@
             this.txtLocation.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtLocation.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtLocation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtLocation.Location = new System.Drawing.Point(1160, 325);
+            this.txtLocation.Location = new System.Drawing.Point(821, 353);
             this.txtLocation.Name = "txtLocation";
-            this.txtLocation.Size = new System.Drawing.Size(175, 21);
+            this.txtLocation.Size = new System.Drawing.Size(192, 21);
             this.txtLocation.TabIndex = 25;
             // 
             // txtQty
@@ -1534,7 +1510,7 @@
             this.txtQty.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtQty.Font = new System.Drawing.Font("Archivo Narrow", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtQty.ForeColor = System.Drawing.Color.Crimson;
-            this.txtQty.Location = new System.Drawing.Point(346, 326);
+            this.txtQty.Location = new System.Drawing.Point(346, 307);
             this.txtQty.Multiline = true;
             this.txtQty.Name = "txtQty";
             this.txtQty.Size = new System.Drawing.Size(106, 50);
@@ -1547,9 +1523,9 @@
             this.cbbPayment.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cbbPayment.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbbPayment.FormattingEnabled = true;
-            this.cbbPayment.Location = new System.Drawing.Point(820, 273);
+            this.cbbPayment.Location = new System.Drawing.Point(821, 314);
             this.cbbPayment.Name = "cbbPayment";
-            this.cbbPayment.Size = new System.Drawing.Size(191, 28);
+            this.cbbPayment.Size = new System.Drawing.Size(192, 28);
             this.cbbPayment.TabIndex = 31;
             // 
             // txtBrand
@@ -1558,7 +1534,7 @@
             this.txtBrand.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtBrand.Enabled = false;
             this.txtBrand.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtBrand.Location = new System.Drawing.Point(346, 198);
+            this.txtBrand.Location = new System.Drawing.Point(346, 179);
             this.txtBrand.Name = "txtBrand";
             this.txtBrand.Size = new System.Drawing.Size(313, 21);
             this.txtBrand.TabIndex = 2;
@@ -1570,7 +1546,7 @@
             this.txtNameEn.Enabled = false;
             this.txtNameEn.Font = new System.Drawing.Font("Mitr Light", 10F);
             this.txtNameEn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtNameEn.Location = new System.Drawing.Point(346, 230);
+            this.txtNameEn.Location = new System.Drawing.Point(346, 211);
             this.txtNameEn.Name = "txtNameEn";
             this.txtNameEn.Size = new System.Drawing.Size(313, 21);
             this.txtNameEn.TabIndex = 4;
@@ -1581,7 +1557,7 @@
             this.label42.AutoSize = true;
             this.label42.BackColor = System.Drawing.Color.Transparent;
             this.label42.ForeColor = System.Drawing.Color.DeepPink;
-            this.label42.Location = new System.Drawing.Point(251, 255);
+            this.label42.Location = new System.Drawing.Point(251, 236);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(39, 20);
             this.label42.TabIndex = 5;
@@ -1591,7 +1567,7 @@
             // 
             this.label18.AutoSize = true;
             this.label18.ForeColor = System.Drawing.Color.DeepPink;
-            this.label18.Location = new System.Drawing.Point(251, 322);
+            this.label18.Location = new System.Drawing.Point(251, 303);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(58, 20);
             this.label18.TabIndex = 5;
@@ -1601,7 +1577,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.DeepPink;
-            this.label4.Location = new System.Drawing.Point(251, 193);
+            this.label4.Location = new System.Drawing.Point(251, 174);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(44, 20);
             this.label4.TabIndex = 5;
@@ -1633,7 +1609,7 @@
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("Mitr Light", 8.5F);
             this.label29.ForeColor = System.Drawing.Color.DimGray;
-            this.label29.Location = new System.Drawing.Point(251, 170);
+            this.label29.Location = new System.Drawing.Point(251, 151);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(54, 19);
             this.label29.TabIndex = 18;
@@ -1644,7 +1620,7 @@
             this.label30.AutoSize = true;
             this.label30.Font = new System.Drawing.Font("Mitr Light", 8.5F);
             this.label30.ForeColor = System.Drawing.Color.DimGray;
-            this.label30.Location = new System.Drawing.Point(251, 336);
+            this.label30.Location = new System.Drawing.Point(251, 317);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(54, 19);
             this.label30.TabIndex = 19;
@@ -1655,7 +1631,7 @@
             this.label41.AutoSize = true;
             this.label41.Font = new System.Drawing.Font("Mitr Light", 8.5F);
             this.label41.ForeColor = System.Drawing.Color.DimGray;
-            this.label41.Location = new System.Drawing.Point(251, 269);
+            this.label41.Location = new System.Drawing.Point(251, 250);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(49, 19);
             this.label41.TabIndex = 20;
@@ -1666,7 +1642,7 @@
             this.label32.AutoSize = true;
             this.label32.Font = new System.Drawing.Font("Mitr Light", 8.5F);
             this.label32.ForeColor = System.Drawing.Color.DimGray;
-            this.label32.Location = new System.Drawing.Point(251, 207);
+            this.label32.Location = new System.Drawing.Point(251, 188);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(43, 19);
             this.label32.TabIndex = 21;
@@ -1677,7 +1653,7 @@
             this.label96.AutoSize = true;
             this.label96.Font = new System.Drawing.Font("Mitr Light", 8.5F);
             this.label96.ForeColor = System.Drawing.Color.DimGray;
-            this.label96.Location = new System.Drawing.Point(1062, 332);
+            this.label96.Location = new System.Drawing.Point(723, 362);
             this.label96.Name = "label96";
             this.label96.Size = new System.Drawing.Size(58, 19);
             this.label96.TabIndex = 66;
@@ -1688,7 +1664,7 @@
             this.label97.AutoSize = true;
             this.label97.Font = new System.Drawing.Font("Mitr Light", 8.5F);
             this.label97.ForeColor = System.Drawing.Color.DimGray;
-            this.label97.Location = new System.Drawing.Point(1062, 223);
+            this.label97.Location = new System.Drawing.Point(1056, 226);
             this.label97.Name = "label97";
             this.label97.Size = new System.Drawing.Size(63, 19);
             this.label97.TabIndex = 67;
@@ -1699,11 +1675,11 @@
             this.label36.AutoSize = true;
             this.label36.Font = new System.Drawing.Font("Mitr Light", 8.5F);
             this.label36.ForeColor = System.Drawing.Color.DimGray;
-            this.label36.Location = new System.Drawing.Point(707, 188);
+            this.label36.Location = new System.Drawing.Point(723, 158);
             this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(84, 19);
+            this.label36.Size = new System.Drawing.Size(38, 19);
             this.label36.TabIndex = 79;
-            this.label36.Text = "Special Price";
+            this.label36.Text = "Price";
             // 
             // cb_Sale
             // 
@@ -1861,14 +1837,14 @@
             this.GridView.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.GridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.GridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Mitr Light", 9.75F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.PaleVioletRed;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.GridView.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Mitr Light", 9.75F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.PaleVioletRed;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.GridView.DefaultCellStyle = dataGridViewCellStyle5;
             this.GridView.GridColor = System.Drawing.Color.Silver;
             this.GridView.Location = new System.Drawing.Point(19, 60);
             this.GridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -1948,7 +1924,6 @@
         private System.Windows.Forms.CheckBox cb_Sale;
         private System.Windows.Forms.Label label47;
         private System.Windows.Forms.Label label62;
-        private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Label label80;
         private System.Windows.Forms.Label label61;
         private System.Windows.Forms.Label label38;
@@ -1972,7 +1947,6 @@
         private System.Windows.Forms.TextBox txtVatValue;
         private System.Windows.Forms.TextBox txtVat;
         private System.Windows.Forms.TextBox txtPriceSpacial;
-        private System.Windows.Forms.Label label86;
         private System.Windows.Forms.Label label76;
         private System.Windows.Forms.ComboBox cbbStatus;
         private System.Windows.Forms.Label label12;

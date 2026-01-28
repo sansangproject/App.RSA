@@ -26,4 +26,5 @@
 	<Inaccurate>1</Inaccurate>
 	<Request>"KTB", "KBANK", "BAY" , "QR Payment (BAY)", "QR Payment (CIMB)", "QR Payment (KTB)", "TTB", "True Wallet", "True Wallet (KTB)", "G-Wallet","GSB"</Request>
 	<AdjustTransaction>"Cash Back", "Redeem Points"</AdjustTransaction>
+	<Points>"Point", "Bangchak (3650)"</Points>
 </Setting>

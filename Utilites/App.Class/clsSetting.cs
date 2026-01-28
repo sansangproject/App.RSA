@@ -634,5 +634,30 @@ namespace SANSANG.Class
 
             return string.Empty;
         }
+
+        public string GetPointList()
+        {
+            string settingPath = Path.Combine(appPath, filePath);
+
+            if (File.Exists(settingPath))
+            {
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.Load(settingPath);
+                foreach (XmlNode valueNode in xmlDoc.DocumentElement)
+                {
+                    if (valueNode.Name == "Points")
+                    {
+                        var array = valueNode.InnerText
+                            .Split(',')
+                            .Select(s => s.Trim().Trim('"'))
+                            .ToArray();
+
+                        return string.Join(", ", array);
+                    }
+                }
+            }
+
+            return string.Empty;
+        }
     }
 }
