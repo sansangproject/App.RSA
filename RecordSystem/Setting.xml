@@ -24,7 +24,8 @@
 	<OperationDate></OperationDate>
 	<CreditDate></CreditDate>
 	<Inaccurate>1</Inaccurate>
-	<Request>"KTB", "KBANK", "BAY" , "QR Payment (BAY)", "QR Payment (CIMB)", "QR Payment (KTB)", "TTB", "True Wallet", "True Wallet (KTB)", "G-Wallet","GSB"</Request>
+	<Spread>200</Spread>
+	<Request>"KTB", "KBANK", "BAY" , "QR Payment (BAY)", "QR Payment (CIMB)", "QR Payment (KTB)", "TTB", "True Wallet", "True Wallet (KTB)", "G-Wallet","GSB","Coins (Lotus)"</Request>
 	<AdjustTransaction>"Cash Back", "Redeem Points"</AdjustTransaction>
-	<Points>"Point", "Bangchak (3650)"</Points>
+	<Points>"Point", "Bangchak (3650)", "Coins (Lotus)", "Bangchak (3650)", "AIS Points (2852)", "AIS Points (1999)", "AIS Points (1151)", "Point (The 1)", "Point (Watsons)", "Point (IKEA)"</Points>
 </Setting>

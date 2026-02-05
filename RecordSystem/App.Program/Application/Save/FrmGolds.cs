@@ -644,10 +644,11 @@ namespace SANSANG
         {
             double sell = 0.00;
             double buy = 0.00;
+            double diff = Convert.ToDouble(Setting.GetSpread());
 
             if (!string.IsNullOrWhiteSpace(txtGoldPriceBuy.Text) && double.TryParse(txtGoldPriceBuy.Text, out buy))
             {
-                sell = buy + 100.00;
+                sell = buy + diff;
             }
 
             txtGoldPriceSell.Text = sell.ToString("F2");
