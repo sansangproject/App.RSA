@@ -523,6 +523,12 @@
     <Compile Include="App.Program\Application\Setting\FrmChkID.Designer.cs">
       <DependentUpon>FrmChkID.cs</DependentUpon>
     </Compile>
+    <Compile Include="App.Program\Application\Setting\FrmCodeGenerate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App.Program\Application\Setting\FrmCodeGenerate.Designer.cs">
+      <DependentUpon>FrmCodeGenerate.cs</DependentUpon>
+    </Compile>
     <Compile Include="App.Program\Application\Setting\FrmImageRename.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -817,6 +823,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="App.Program\Application\Setting\FrmChkID.resx">
       <DependentUpon>FrmChkID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App.Program\Application\Setting\FrmCodeGenerate.resx">
+      <DependentUpon>FrmCodeGenerate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="App.Program\Application\Setting\FrmImageRename.resx">
       <DependentUpon>FrmImageRename.cs</DependentUpon>

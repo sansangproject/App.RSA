@@ -424,7 +424,7 @@ namespace SANSANG
         {
             try
             {
-                double Price = Convert.ToDouble(txtPrice.Text);
+                double Price = Convert.ToDouble(txtPriceSpacial.Text);
                 double Vat = Convert.ToDouble(txtVat.Text);
                 double VatAmount = (Price * Vat) / 100;
                 double PriceExVat = Price - VatAmount;

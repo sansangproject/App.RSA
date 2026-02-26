@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDebts));
             this.label17 = new System.Windows.Forms.Label();
             this.lblService = new System.Windows.Forms.Label();
@@ -125,6 +125,9 @@
             this.cb_Pay = new System.Windows.Forms.CheckBox();
             this.cb_Due = new System.Windows.Forms.CheckBox();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.label27 = new System.Windows.Forms.Label();
+            this.txtInvoice = new System.Windows.Forms.TextBox();
+            this.label41 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
             this.gb.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picExcel)).BeginInit();
@@ -147,7 +150,7 @@
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Mitr Light", 9F);
             this.label17.ForeColor = System.Drawing.Color.Gray;
-            this.label17.Location = new System.Drawing.Point(1001, 333);
+            this.label17.Location = new System.Drawing.Point(1356, 297);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(46, 19);
             this.label17.TabIndex = 52;
@@ -212,12 +215,11 @@
             // 
             // txtReceipt
             // 
-            this.txtReceipt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtReceipt.Font = new System.Drawing.Font("Mitr Light", 9F);
-            this.txtReceipt.Location = new System.Drawing.Point(1101, 338);
+            this.txtReceipt.Location = new System.Drawing.Point(1467, 300);
             this.txtReceipt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtReceipt.Name = "txtReceipt";
-            this.txtReceipt.Size = new System.Drawing.Size(187, 19);
+            this.txtReceipt.Size = new System.Drawing.Size(220, 26);
             this.txtReceipt.TabIndex = 46;
             // 
             // label10
@@ -387,14 +389,14 @@
             this.GridView.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.GridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.GridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Mitr Light", 9.5F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.GridView.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Mitr Light", 9.5F);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.GridView.DefaultCellStyle = dataGridViewCellStyle12;
             this.GridView.GridColor = System.Drawing.Color.Silver;
             this.GridView.Location = new System.Drawing.Point(19, 60);
             this.GridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -566,6 +568,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gbForm.BackColor = System.Drawing.Color.White;
+            this.gbForm.Controls.Add(this.label27);
+            this.gbForm.Controls.Add(this.txtInvoice);
+            this.gbForm.Controls.Add(this.label41);
             this.gbForm.Controls.Add(this.label7);
             this.gbForm.Controls.Add(this.txtReference);
             this.gbForm.Controls.Add(this.label12);
@@ -1123,7 +1128,7 @@
             this.label33.AutoSize = true;
             this.label33.Font = new System.Drawing.Font("Mitr Light", 9F);
             this.label33.ForeColor = System.Drawing.Color.Coral;
-            this.label33.Location = new System.Drawing.Point(1001, 349);
+            this.label33.Location = new System.Drawing.Point(1356, 313);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(53, 19);
             this.label33.TabIndex = 92;
@@ -1381,6 +1386,38 @@
             // 
             this.openFileDialog.FileName = "openFileDialog1";
             // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Mitr Light", 9F);
+            this.label27.ForeColor = System.Drawing.Color.Coral;
+            this.label27.Location = new System.Drawing.Point(1001, 350);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(49, 19);
+            this.label27.TabIndex = 239;
+            this.label27.Text = "Invoice";
+            // 
+            // txtInvoice
+            // 
+            this.txtInvoice.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtInvoice.Font = new System.Drawing.Font("Mitr Light", 9F);
+            this.txtInvoice.Location = new System.Drawing.Point(1105, 338);
+            this.txtInvoice.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtInvoice.Name = "txtInvoice";
+            this.txtInvoice.Size = new System.Drawing.Size(188, 19);
+            this.txtInvoice.TabIndex = 237;
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Font = new System.Drawing.Font("Mitr Light", 9F);
+            this.label41.ForeColor = System.Drawing.Color.Gray;
+            this.label41.Location = new System.Drawing.Point(1001, 334);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(57, 19);
+            this.label41.TabIndex = 238;
+            this.label41.Text = "ใบแจ้งหนี้:";
+            // 
             // FrmDebts
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1516,5 +1553,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtReference;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.TextBox txtInvoice;
+        private System.Windows.Forms.Label label41;
     }
 }

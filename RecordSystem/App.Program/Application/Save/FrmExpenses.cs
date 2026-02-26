@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using static System.Resources.ResXFileRef;
 using System.Linq;
 using DevComponents.DotNetBar.Controls;
+using System.Web.Util;
 
 namespace SANSANG
 {
@@ -299,7 +300,9 @@ namespace SANSANG
                 IsDiscountIncluded = cb_Discount.Checked ? true : false;
                 IsCalculate = cb_Calculate.Checked ? true : false;
 
-                if (cbbMoney.Text.Contains("Point") || cbbMoney.Text.Contains("Coins"))
+                var points = Setting.GetPointList();
+
+                if (points.Contains(cbbMoney.Text))
                 {
                     IsCalculate = true;
                 }
@@ -367,13 +370,8 @@ namespace SANSANG
             {
                 if (!Start)
                 {
-                    Function.GetPayment(Function.GetComboBoxId(cbbItem), out Details, out Items);
-
-                    txtItem.Text = Items;
-                    txtDetails.Text = Details;
-
                     Event.SetAutoMoney(cbbItem, cbbMoney);
-                    txtAmount.Focus();
+                    txtItem.Focus();
                 }
             }
             catch (Exception ex)

@@ -29,6 +29,7 @@ namespace SANSANG.Constant
         public string ElectricityRatesId = "[mst].[ElectricityRates] Version Id AccountId {0}";
 
         public string ProvinceId = "[mst].[Province] Name Id {0} {1}";
+        public string ProvinceCode = "[mst].[Province] Name Id {0} {1}";
         public string AmphoeId = "[mst].[Amphoe] Name Id {0} {1}";
         public string TambolId = "[mst].[Tambol] Name Id {0} {1}";
         public string GeographyId = "[mst].[Geography] Name Id Status 1000";

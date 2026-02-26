@@ -312,7 +312,7 @@ namespace SANSANG
         {
             try
             {
-                if (!string.IsNullOrEmpty(txtInvoiceNumber.Text) && Function.getComboBoxValue(cbbStatus) != "0" && !string.IsNullOrEmpty(txtMoneyPay.Text) && dtTime.Value.ToString("HH:mm:ss") != "00:00:00")
+                if (!string.IsNullOrEmpty(txtInvoiceNumber.Text) && Function.getComboBoxValue(cbbStatus) != "0" && !string.IsNullOrEmpty(txtMoneyPay.Text) && !string.IsNullOrEmpty(txtUnit.Text))
                 {
                     if (!Function.IsDuplicates(Table.Electricitys, Function.getComboBoxValue(cbbMonth), Function.getComboBoxValue(cbbYear), Detail: GetDetails()))
                     {

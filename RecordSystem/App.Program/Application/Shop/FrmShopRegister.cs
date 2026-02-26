@@ -32,7 +32,7 @@ namespace SANSANG
         private clsInsert Insert = new clsInsert();
         private clsFunction Fn = new clsFunction();
         private clsMessage Message = new clsMessage();
-       private dbConnection db = new dbConnection();
+        private dbConnection db = new dbConnection();
         private clsDataList List = new clsDataList();
         private clsLog Log = new clsLog();
         private clsTextbox TSS = new clsTextbox();

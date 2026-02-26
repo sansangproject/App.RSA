@@ -2,11 +2,11 @@
 <Setting>
 	<Language>en</Language>
 	<DateFormat>3</DateFormat>
-	<Installments>2</Installments>
+	<Installments>12</Installments>
 	<Account>1035</Account>
 	<Credit>5394-1111-7058-3767</Credit>
 	<CreditLimit>60000</CreditLimit>
-	<Outstanding>29568</Outstanding>
+	<Outstanding>19712</Outstanding>
 	<GoldReceived>1.50</GoldReceived>
 	<Wallet>1085</Wallet>
 	<TrueWallet>1141</TrueWallet>
@@ -15,14 +15,17 @@
 	<UrlAPITrack>https://trackapi.thailandpost.co.th/post/api/v1/track</UrlAPITrack>
 	<TrackToken>Token T7PqLIQcLkRGD?HjVxNDU_FHAPEYN|E+IvMYS7XnR*V:ZvSeToNjYeZ+UMFESDKrH!N@W7KFFEN*YYKmSBNcKOWkF4HIA.RBGsIF</TrackToken>
 	<Path>db</Path>
-	<NextDisplay>False</NextDisplay>
+	<NextDisplay>True</NextDisplay>
 	<MenuPath>D:\SANSANG\PROJECTs\RSAs\App.Picture\Menu\</MenuPath>
+	<SlipPath>C:\Users\tuath\Pictures\Screenshots\</SlipPath>
 	<Database>dbRSA</Database>
 	<RoundPayment></RoundPayment>
 	<NumberPrint>4</NumberPrint>
 	<OperationDate></OperationDate>
 	<CreditDate></CreditDate>
 	<Inaccurate>1</Inaccurate>
-	<Request>"KTB", "KBANK", "BAY" , "QR Payment (BAY)", "QR Payment (CIMB)", "QR Payment (KTB)", "TTB", "True Wallet", "True Wallet (KTB)", "G-Wallet"</Request>
+	<Spread>200</Spread>
+	<Request>"KTB", "KBANK", "BAY" , "QR Payment (BAY)", "QR Payment (CIMB)", "QR Payment (KTB)", "TTB", "True Wallet", "True Wallet (KTB)", "G-Wallet","GSB","Coins (Lotus)"</Request>
 	<AdjustTransaction>"Cash Back", "Redeem Points"</AdjustTransaction>
+	<Points>"Point", "Bangchak (3650)", "Coins (Lotus)", "Bangchak (3650)", "AIS Points (2852)", "AIS Points (1999)", "AIS Points (1151)", "Point (The 1)", "Point (Watsons)", "Point (IKEA)"</Points>
 </Setting>

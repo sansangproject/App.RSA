@@ -5885,7 +5885,7 @@ namespace SANSANG.Class
                     {"@Select", strShow}
                 };
 
-                db.Get("Store.FunctionGetValue", Parameter, out Error, out dt);
+                db.Get(Store.FnGetValue, Parameter, out Error, out dt);
 
                 return dt.Rows[0][strShow].ToString();
             }
