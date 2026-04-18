@@ -1135,10 +1135,42 @@ namespace SANSANG.Class
 
         public void SetDate(DateTimePicker Datepicker, TextBox Textbox, string Value)
         {
-            if (!string.IsNullOrEmpty(Value))
+            Datepicker.Value = new DateTime(1900, 1, 1);
+
+            if (!string.IsNullOrWhiteSpace(Value))
             {
-                Datepicker.Value = DateTime.Today;
-                Datepicker.Value = DateTime.ParseExact(Value, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                DateTime parsedDate;
+
+                string[] formats = {
+                    "dd-MMM-yy H:mm:ss",
+                    "dd-MMM-yyyy H:mm:ss",
+                    "dd/MM/yyyy HH:mm:ss",
+                    "dd/MM/yyyy",
+                    "MM/dd/yyyy",
+                    "yyyy-MM-dd",
+                    "yyyy-MM-dd HH:mm:ss",
+                    "yyyyMMdd",
+                    "dd-MM-yyyy",
+                    "dd.MM.yyyy",
+                    "yyyy/MM/dd",
+                    "yyyy/MM/dd HH:mm:ss",
+                    "dd MMM yyyy",
+                    "dd MMM yyyy HH:mm:ss",
+                    "MMM dd, yyyy",
+                    "MMMM dd, yyyy",
+                    "yyyy-MM-ddTHH:mm:ss",        
+                    "yyyy-MM-ddTHH:mm:ss.fff",   
+                    "yyyy-MM-ddTHH:mm:ssZ",  
+                };
+
+                if (DateTime.TryParseExact(Value, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedDate))
+                {
+                    Datepicker.Value = parsedDate;
+                }
+                else
+                {
+                    Datepicker.Value = DateTime.Today;
+                }
             }
             else
             {

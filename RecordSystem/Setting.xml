@@ -2,11 +2,11 @@
 <Setting>
 	<Language>en</Language>
 	<DateFormat>3</DateFormat>
-	<Installments>12</Installments>
+	<Installments>2</Installments>
 	<Account>1035</Account>
 	<Credit>5394-1111-7058-3767</Credit>
 	<CreditLimit>60000</CreditLimit>
-	<Outstanding>19712</Outstanding>
+	<Outstanding>44550</Outstanding>
 	<GoldReceived>1.50</GoldReceived>
 	<Wallet>1085</Wallet>
 	<TrueWallet>1141</TrueWallet>
@@ -16,7 +16,7 @@
 	<TrackToken>Token T7PqLIQcLkRGD?HjVxNDU_FHAPEYN|E+IvMYS7XnR*V:ZvSeToNjYeZ+UMFESDKrH!N@W7KFFEN*YYKmSBNcKOWkF4HIA.RBGsIF</TrackToken>
 	<Path>db</Path>
 	<NextDisplay>True</NextDisplay>
-	<MenuPath>D:\SANSANG\PROJECTs\RSAs\App.Picture\Menu\</MenuPath>
+	<MenuPath>D:\Projects\RSA\Apps\App.Picture\Menu\</MenuPath>
 	<SlipPath>C:\Users\tuath\Pictures\Screenshots\</SlipPath>
 	<Database>dbRSA</Database>
 	<RoundPayment></RoundPayment>
@@ -25,7 +25,7 @@
 	<CreditDate></CreditDate>
 	<Inaccurate>1</Inaccurate>
 	<Spread>200</Spread>
-	<Request>"KTB", "KBANK", "BAY" , "QR Payment (BAY)", "QR Payment (CIMB)", "QR Payment (KTB)", "TTB", "True Wallet", "True Wallet (KTB)", "G-Wallet","GSB","Coins (Lotus)"</Request>
+	<Request>"KTB", "KBANK", "BAY" , "QR Payment (BAY)", "QR Payment (CIMB)", "QR Payment (KTB)", "TTB", "True Wallet", "True Wallet (KTB)", "G-Wallet","GSB"</Request>
 	<AdjustTransaction>"Cash Back", "Redeem Points"</AdjustTransaction>
-	<Points>"Point", "Bangchak (3650)", "Coins (Lotus)", "Bangchak (3650)", "AIS Points (2852)", "AIS Points (1999)", "AIS Points (1151)", "Point (The 1)", "Point (Watsons)", "Point (IKEA)"</Points>
+	<Points>"Point", "Bangchak (3650)", "Coins (Lotus)", "Bangchak (3650)", "AIS Points (2852)", "AIS Points (1999)", "AIS Points (1151)", "Point (The 1)", "Point (Watsons)", "Point (IKEA)", "Blue Points (2984)", "TTB WOW", "AIS Token", "Big Point", "MEAT Club", "G-Wallet (2026)", "Point (7-11)", "Point (TFG)"</Points>
 </Setting>
