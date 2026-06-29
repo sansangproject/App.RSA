@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
@@ -21,6 +22,8 @@ using SANSANG.Database;
 using SANSANG.Utilites.App.Forms;
 using SANSANG.Utilites.App.Model;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
+using static System.Net.WebRequestMethods;
+using File = System.IO.File;
 
 namespace SANSANG.Class
 {
@@ -81,7 +84,7 @@ namespace SANSANG.Class
                 {
                     TTB(Files);
                 }
-                else if (AccountId == Accounts.SCB2378)
+                else if (AccountId == Accounts.SCB6556)
                 {
                     SCB(Files);
                 }
@@ -406,64 +409,67 @@ namespace SANSANG.Class
             }
         }
 
-        private void SCB(string strFile)
+        private void SCB(string Files)
         {
-            string strDateImport = "";
-            string strDateImportStart = "";
-            string strDateImportEnd = "";
-            var dataList = new List<SCBSTModel>();
-            var logFile = File.ReadAllLines(strFile);
-            var logList = new List<string>(logFile);
+            string DateImports = "";
+            var DataList = new List<SCBSTModel>();
 
-            int countRows = logList.Count - 1;
-            int row = 0;
+            var LogFile = File.ReadAllLines(Files);
+            var LogList = new List<string>(LogFile);
+            int Rows = LogList.Count - 1;
+            int Row = 0;
 
-            foreach (var value in logList)
+            foreach (var Value in LogList)
             {
-                SCBSTModel data = new SCBSTModel();
-                string[] statements = value.Split(new char[0]);
-                int Indexs = statements.Length - 1;
-                string Description = "";
-                strDateImportStart = row == 0 ? statements[0].ToString() : strDateImportStart;
-                strDateImportEnd = row == countRows ? statements[0].ToString() : strDateImportEnd;
+                SCBSTModel Data = new SCBSTModel();
+                string[] Statements = Value.Split(new char[0]);
 
-                data.Date = Function.formatTime(statements[0], 2);
-                data.Time = statements[1];
-                data.Code = statements[2];
-                data.Channel = statements[3];
-                data.Amount = statements[4];
-                data.Balance = statements[5];
+                DateImports += Row == 0 ? Statements[0].ToString() : "";
+                DateImports += Row == Rows ? " - " + Statements[0].ToString() : "";
 
-                for (int i = 6; i <= Indexs; i++)
+                int Length = (Statements.Length);
+                string Details = "";
+
+
+                Data.Date = Function.formatTime(Statements[0], 2);
+                Data.Time = Statements[1];
+                Data.Item = Statements[2];
+                Data.Channel = Statements[3];
+                Data.Amount = Function.MoveNumberStringComma(Statements[4]);
+                Data.Balance = Function.MoveNumberStringComma(Statements[5]);
+
+                for (int i = 6; i < Length; i++)
                 {
-                    Description += " " + statements[i];
+                    Details += i == 6 ? "" : " ";
+                    Details += Statements[i];
                 }
 
-                data.Description = Description.TrimStart();
-                dataList.Add(data);
-                row++;
+                Data.Detail = Details;
+
+                DataList.Add(Data);
+                Row++;
             }
 
-            strDateImport = strDateImportStart + " - " + strDateImportEnd;
-            Message.MessageConfirmation("I", "IMPORT SCB STATMENT", strDateImport);
+            Message.MessageConfirmation("I", "Import SCB Statment", DateImports);
 
             using (var Popup = new FrmMessagesBox(Message.strOperation, Message.strMes, "YES", "NO", Message.strImage))
             {
-                var result = Popup.ShowDialog();
-                string err = "";
+                var Result = Popup.ShowDialog();
+                string Error = "";
 
-                if (result == DialogResult.Yes)
+                if (Result == DialogResult.Yes)
                 {
                     Popup.Close();
-                    AddSCBStatment(dataList, "SCB", out err);
 
-                    if (err == "")
+                    AddSCBStatment(DataList, AccountId, out Error);
+
+                    if (Error == "")
                     {
-                        Message.MessageResult("IM", "C", err);
+                        Message.MessageResult("IM", "C", Error);
                     }
                     else
                     {
-                        Message.MessageResult("IM", "ER", err);
+                        Message.MessageResult("IM", "ER", Error);
                     }
                 }
             }
@@ -879,92 +885,89 @@ namespace SANSANG.Class
             }
         }
 
-        public void AddSCBStatment(List<SCBSTModel> datas, string Banks, out string err)
+        public void AddSCBStatment(List<SCBSTModel> Datas, string AccountId, out string Error)
         {
             try
             {
-                string chanel = "SCB00-01";
-                string strCode = "";
-                string paymentCode = "";
-                string paymentDetail = "";
-                string paymentDisplay = "";
+                string Codes = "";
+                string PaymentId = "";
+                string Item = "";
+                string Detail = "";
+                string Display = "";
+                bool IsWithdrawal = false;
 
-                Operations = "I";
+                decimal BalanceNow = 0;
+                decimal BalanceNew = 0;
 
-                for (int i = 0; i < datas.Count; i++)
+                for (int Rounds = 0; Rounds < Datas.Count; Rounds++)
                 {
-                    Function.GetPaymentSubCode(Banks, datas[i].Code, datas[i].Channel, out paymentCode, out paymentDetail, out paymentDisplay);
-                    strCode = Function.GetCodes("124", "", "Generated");
-                    string deposit = Function.GetIncome(paymentCode);
-                    decimal balance = 0;
-                    decimal newBalance = 0;
+                    Codes = Function.GetCodes(Table.StatmentId, "", "Generated");
+                    Function.GetPaymentByName(Datas[Rounds].Item, "1056", out PaymentId, out Item, out Detail, out Display, out IsWithdrawal);
+
+                    DateTime DateTime = Convert.ToDateTime(Datas[Rounds].Date);
 
                     string[,] Parameter = new string[,]
                     {
-                        {"@User", "IMPORT"},
-                        {"@StatmentCode", strCode},
-                        //{"@StatmentAccounts", Accounts},
-                        {"@StatmentDate", datas[i].Date},
-                        {"@StatmentPayment", paymentCode},
-                        {"@StatmentPaymentDetail", paymentDetail},
-                        {"@StatmentChanel", chanel},
-                        {"@StatmentNumber", ""},
-                        {"@StatmentDetail", datas[i].Description.TrimEnd()},
-                        {"@StatmentStatus", "Y"},
-                        {"@StatmentFileType", ""},
-                        {"@StatmentFileLocation", "-"},
-                        //{"@Bank", Accounts},
-                        {"@Amount", Function.MoveNumberStringComma(datas[i].Amount)},
-                        {"@WithdrawalOrDeposit", deposit},
-                        {"@StatmentTime", datas[i].Time + ":" + Function.GetTime(0)},
-                        {"@StatmentBranch", datas[i].Channel.TrimEnd()},
-                        {"@Balance", Function.MoveNumberStringComma(datas[i].Balance)}
+                        {"@Id", ""},
+                        {"@Code", Codes},
+                        {"@Status", "1000"},
+                        {"@User", "1004"},
+                        {"@IsActive", "1"},
+                        {"@IsDelete", "0"},
+                        {"@Operation", Operation.InsertAbbr},
+                        {"@AccountId", AccountId},
+                        {"@Date", Dates.GetDate(dt : DateTime, Format : 4)},
+                        {"@Time", Datas[Rounds].Time},
+                        {"@PaymentId", PaymentId},
+                        {"@Item", "รายการเดินบัญชี"},
+                        {"@MoneyId", "1110"},
+                        {"@Branch", ""},
+                        {"@Channel", Datas[Rounds].Channel},
+                        {"@Withdrawal", IsWithdrawal? Datas[Rounds].Amount : "0.00"},
+                        {"@Deposit", !IsWithdrawal? Datas[Rounds].Amount : "0.00"},
+                        {"@Balance", Datas[Rounds].Balance},
+                        {"@Number", ""},
+                        {"@Detail", Datas[Rounds].Detail},
+                        {"@Display", Display},
+                        {"@Reference", ""},
                     };
 
-                    string[,] check = new string[,]
+                    BalanceNow = CheckBalance(Accounts.SCB6556, Function.MoveNumberStringComma(Datas[Rounds].Amount), IsWithdrawal);
+                    BalanceNew = decimal.Parse(Function.MoveNumberStringComma(Datas[Rounds].Balance));
+
+                    if (!Function.IsDuplicate(
+                            Table.Statments,
+                            Value1: "SCB",
+                            Value2: AccountId,
+                            Value3: PaymentId,
+                            Value4: Dates.GetDate(dt: DateTime, Format: 4),
+                            Value5: Datas[Rounds].Amount,
+                            Value6: Datas[Rounds].Balance))
                     {
-                        //{"@StatmentAccounts", Accounts},
-                        {"@StatmentDate", datas[i].Date},
-                        {"@StatmentTime", ""},
-                        {"@StatmentPayment", paymentCode},
-                        {"@StatmentPaymentDetail", ""},
-                        {"@StatmentChanel", chanel},
-
-                        {"@StatmentDetail", ""},
-                        {"@StatmentStatus", "Y"},
-                        {"@StatmentBranch", datas[i].Channel},
-                        {"@StatmentAmount", Function.MoveNumberStringComma(datas[i].Amount)},
-                        {"@StatmentBalance", Function.MoveNumberStringComma(datas[i].Balance)},
-                    };
-
-                    //balance = CheckBalance(Accounts, Function.MoveNumberStringComma(datas[i].Amount), deposit);
-                    newBalance = decimal.Parse(Function.MoveNumberStringComma(datas[i].Balance));
-
-                    if (CheckDuplicate(check))
-                    {
-                        if (balance == newBalance)
+                        if (BalanceNow == BalanceNew)
                         {
-                            db.Operations("Spr_I_TblSaveStatment", Parameter, out Errors);
+                            db.Operations(Store.ManageStatement, Parameter, out Error);
                             Messages = "";
                         }
                         else
                         {
-                            Messages = string.Format("Balance does not match. ({0})", balance);
+                            Messages = string.Format("Balance does not match. ({0})", String.Format("{0:n}", BalanceNow));
                             break;
                         }
                     }
                     else
                     {
-                        Messages = "Last statment is duplicate.";
+                        Messages = string.Format("{0} | {1}{2}{3} is duplicate.", Datas[Rounds].Date, Item, Environment.NewLine, String.Format("{0:n}", BalanceNew));
                         break;
                     }
                 }
-                err = Messages;
+
+                Error = Messages;
             }
             catch (Exception ex)
             {
                 Log.WriteLogData("IMPORT", "SCB", "Import", ex.Message);
-                err = ex.Message;
+                Error = ex.Message;
             }
         }
 

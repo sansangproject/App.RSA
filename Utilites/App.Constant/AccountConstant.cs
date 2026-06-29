@@ -37,6 +37,7 @@ namespace SANSANG.Constant
         public string CIMB2484 = "";
         
         public string SCB2378 = "";
+        public string SCB6556 = "1037";
 
         public string KTBs = "KTB";
         public string CIMBs = "CIMB";
