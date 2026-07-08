@@ -43,9 +43,10 @@
             // 
             this.btnBrowse.Font = new System.Drawing.Font("Mitr Light", 7F);
             this.btnBrowse.ForeColor = System.Drawing.Color.Black;
-            this.btnBrowse.Location = new System.Drawing.Point(89, 107);
+            this.btnBrowse.Location = new System.Drawing.Point(163, 198);
+            this.btnBrowse.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(75, 23);
+            this.btnBrowse.Size = new System.Drawing.Size(138, 42);
             this.btnBrowse.TabIndex = 0;
             this.btnBrowse.Text = "Browse";
             this.btnBrowse.UseVisualStyleBackColor = true;
@@ -55,9 +56,10 @@
             // 
             this.btnRemovePassword.Font = new System.Drawing.Font("Mitr Light", 7F);
             this.btnRemovePassword.ForeColor = System.Drawing.Color.OrangeRed;
-            this.btnRemovePassword.Location = new System.Drawing.Point(170, 107);
+            this.btnRemovePassword.Location = new System.Drawing.Point(312, 198);
+            this.btnRemovePassword.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.btnRemovePassword.Name = "btnRemovePassword";
-            this.btnRemovePassword.Size = new System.Drawing.Size(147, 23);
+            this.btnRemovePassword.Size = new System.Drawing.Size(270, 42);
             this.btnRemovePassword.TabIndex = 2;
             this.btnRemovePassword.Text = "Remove Password";
             this.btnRemovePassword.UseVisualStyleBackColor = true;
@@ -68,9 +70,10 @@
             this.btnClose.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnClose.Font = new System.Drawing.Font("Mitr Light", 7F);
             this.btnClose.ForeColor = System.Drawing.Color.Black;
-            this.btnClose.Location = new System.Drawing.Point(323, 107);
+            this.btnClose.Location = new System.Drawing.Point(592, 198);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.Size = new System.Drawing.Size(138, 42);
             this.btnClose.TabIndex = 7;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = false;
@@ -81,9 +84,10 @@
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Mitr Light", 7F);
             this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label17.Location = new System.Drawing.Point(23, 77);
+            this.label17.Location = new System.Drawing.Point(42, 142);
+            this.label17.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(60, 15);
+            this.label17.Size = new System.Drawing.Size(100, 27);
             this.label17.TabIndex = 249;
             this.label17.Text = "PASSWORD";
             // 
@@ -92,9 +96,10 @@
             this.label30.AutoSize = true;
             this.label30.Font = new System.Drawing.Font("Mitr Light", 8F);
             this.label30.ForeColor = System.Drawing.Color.OrangeRed;
-            this.label30.Location = new System.Drawing.Point(23, 61);
+            this.label30.Location = new System.Drawing.Point(42, 113);
+            this.label30.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(48, 18);
+            this.label30.Size = new System.Drawing.Size(82, 30);
             this.label30.TabIndex = 248;
             this.label30.Text = "รหัสผ่าน:";
             // 
@@ -103,11 +108,11 @@
             this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtPassword.Font = new System.Drawing.Font("Mitr Light", 12F);
             this.txtPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.txtPassword.Location = new System.Drawing.Point(89, 69);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtPassword.Location = new System.Drawing.Point(163, 127);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(228, 26);
+            this.txtPassword.Size = new System.Drawing.Size(418, 44);
             this.txtPassword.TabIndex = 250;
             this.txtPassword.TabStop = false;
             // 
@@ -116,10 +121,10 @@
             this.txtFilePath.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtFilePath.Font = new System.Drawing.Font("Mitr Light", 9F);
             this.txtFilePath.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.txtFilePath.Location = new System.Drawing.Point(89, 40);
-            this.txtFilePath.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtFilePath.Location = new System.Drawing.Point(163, 74);
+            this.txtFilePath.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
             this.txtFilePath.Name = "txtFilePath";
-            this.txtFilePath.Size = new System.Drawing.Size(355, 19);
+            this.txtFilePath.Size = new System.Drawing.Size(651, 33);
             this.txtFilePath.TabIndex = 251;
             this.txtFilePath.TabStop = false;
             // 
@@ -128,28 +133,30 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Mitr Light", 7F);
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label3.Location = new System.Drawing.Point(23, 44);
+            this.label3.Location = new System.Drawing.Point(42, 81);
+            this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(31, 15);
+            this.label3.Size = new System.Drawing.Size(45, 27);
             this.label3.TabIndex = 253;
-            this.label3.Text = "FULE";
+            this.label3.Text = "FILE";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Mitr Light", 8F);
             this.label4.ForeColor = System.Drawing.Color.OrangeRed;
-            this.label4.Location = new System.Drawing.Point(23, 28);
+            this.label4.Location = new System.Drawing.Point(42, 52);
+            this.label4.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(29, 18);
+            this.label4.Size = new System.Drawing.Size(47, 30);
             this.label4.TabIndex = 252;
             this.label4.Text = "ไฟล์:";
             // 
             // FrmRemovePassword
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(493, 154);
+            this.ClientSize = new System.Drawing.Size(904, 284);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtFilePath);
@@ -160,6 +167,7 @@
             this.Controls.Add(this.btnRemovePassword);
             this.Controls.Add(this.btnBrowse);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "FrmRemovePassword";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.TopMost = true;

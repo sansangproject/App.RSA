@@ -100,6 +100,12 @@ namespace SANSANG.Class
                     strImage = Photos.Pay;
                 }
 
+                if (Case == "IM")
+                {
+                    strOperation = "นำเข้าข้อมูล";
+                    strImage = Photos.Import;
+                }
+
                 strMes = "";
 
                 if (Case != "F")
@@ -171,6 +177,12 @@ namespace SANSANG.Class
                 {
                     strOperation = "Payment";
                     strImage = Photos.Pay;
+                }
+
+                if (Case == "IM")
+                {
+                    strOperation = "Import Data";
+                    strImage = Photos.Import;
                 }
 
                 strMes = "";

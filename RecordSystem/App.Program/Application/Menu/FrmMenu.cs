@@ -451,8 +451,13 @@ namespace SANSANG
                 FrmCodeGenerate Frm = new FrmCodeGenerate(UserId, UserName, UserSurname, UserType);
                 Frm.Show();
             }
+            else if (((RadMenuItem)sender).Name == "CONST00")
+            {
+                FrmStatementConverter Frm = new FrmStatementConverter(UserId, UserName, UserSurname, UserType);
+                Frm.Show();
+            }
 
-            Log.WriteLogData("MENU", ((RadMenuItem)sender).Name, UserId, "Open");
+        Log.WriteLogData("MENU", ((RadMenuItem)sender).Name, UserId, "Open");
         }
     }
 }

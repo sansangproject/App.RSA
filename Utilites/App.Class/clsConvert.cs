@@ -1,17 +1,28 @@
-﻿using Microsoft.VisualBasic.Devices;
+﻿using iText.Kernel.Pdf;
+using iText.Kernel.Pdf.Canvas.Parser;
+using iText.StyledXmlParser.Css;
+using SANSANG.Utilites.App.Forms;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
+using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
+
 
 namespace SANSANG.Class
 {
     public class clsConvert
     {
         private clsLog Log = new clsLog();
+        private clsMessage Message = new clsMessage();
+        
+        public string Laguage;
 
         public string NullToString(string value)
         {
@@ -246,7 +257,7 @@ namespace SANSANG.Class
         {
             Bitmap originalBitmap = (Bitmap)pictureBox.Image;
             Bitmap newBitmap = new Bitmap(originalBitmap.Width, originalBitmap.Height);
-          
+
             using (Graphics Graphics = Graphics.FromImage(newBitmap))
             {
                 ColorMatrix colorMatrix = new ColorMatrix(
@@ -258,7 +269,7 @@ namespace SANSANG.Class
                          new float[] {0, 0, 0, 1, 0},
                          new float[] {0, 0, 0, 0, 1}
                    });
-                
+
                 using (ImageAttributes attributes = new ImageAttributes())
                 {
                     attributes.SetColorMatrix(colorMatrix);
@@ -361,6 +372,99 @@ namespace SANSANG.Class
             {
                 TextBox.Text = data;
             }
+        }
+
+        public void ConvertStatement(string FilePath, string Bank)
+        {
+            try
+            {
+                Bank = Bank.Trim().ToUpperInvariant();
+
+                if (!clsStatement.BankConfigs.TryGetValue(Bank, out StatementConstant config))
+                {
+                    Message.MessageConfirmation("IM","","This Bank is Not Yet Supported");
+
+                    using (var mes = new FrmMessagesBoxOK(
+                        Message.strOperation,
+                        Message.strMes,
+                        "OK",
+                        Message.strImage))
+                    {
+                        mes.ShowDialog();
+                    }
+
+                    return;
+                }
+
+                // อ่าน PDF
+                string text = ReadPdf(FilePath, config.Password);
+
+                // Regex
+                MatchCollection matches = Regex.Matches(
+                    text,
+                    config.Pattern,
+                    RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
+                // รวมผลลัพธ์
+                StringBuilder result = new StringBuilder();
+
+                for (int i = 0; i < matches.Count; i++)
+                {
+                    result.Append(matches[i].Value);
+
+                    if (i < matches.Count - 1)
+                    {
+                        result.AppendLine();
+                    }
+                }
+
+                // Save
+                string outputFile = Path.Combine(
+                    Path.GetDirectoryName(FilePath),
+                    $"{Bank}.txt");
+
+                File.WriteAllText(outputFile, result.ToString(), Encoding.UTF8);
+
+                Message.MessageConfirmation("IM", "", "Convert Complete");
+
+                using (var mes = new FrmMessagesBoxOK(
+                    Message.strOperation,
+                    Message.strMes,
+                    "OK",
+                    Message.strImage))
+                {
+                    mes.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        private string ReadPdf(string FileName, string Password)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            PdfReader reader = new PdfReader(
+                FileName,
+                new ReaderProperties().SetPassword(
+                    Encoding.UTF8.GetBytes(Password)));
+
+            using (PdfDocument pdf = new PdfDocument(reader))
+            {
+                for (int i = 1; i <= pdf.GetNumberOfPages(); i++)
+                {
+                    sb.AppendLine(
+                        PdfTextExtractor.GetTextFromPage(pdf.GetPage(i)));
+                }
+            }
+
+            return sb.ToString();
         }
     }
 }
