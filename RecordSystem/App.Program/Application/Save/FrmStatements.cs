@@ -221,9 +221,9 @@ namespace SANSANG
 
                 Function.showGridViewFormatFromStore(dtGrid, GridView,
                       "ลำดับ", 50, true, mr, mc
-                    , "วันที่ | เวลา", 120, true, ml, ml
+                    , "วันที่ | เวลา", 180, true, ml, ml
                     , "รายการ", 300, true, ml, ml
-                    , "ช่องทาง", 300, true, ml, ml
+                    , "ช่องทาง", 100, true, ml, ml
                     , "ประเภทเงิน", 120, true, ml, ml
                     , "จำนวนเงิน", 200, true, mr, mr
                     , "คงเหลือ", 200, true, mr, mr
