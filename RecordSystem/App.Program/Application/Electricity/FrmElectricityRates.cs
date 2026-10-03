@@ -114,6 +114,9 @@ namespace SANSANG
                 {"@AccountId", Search? Function.GetComboId(cbbAccount) : "0"},
                 {"@Version", Search? txtVersion.Text : ""},
                 {"@Rates", Search? txtRates.Text : ""},
+                {"@FirstUnit", Search? txtFirstUnit.Text : ""},
+                {"@NextUnit", Search? txtNextUnit.Text : ""},
+                {"@OverUnit", Search? txtOverUnit.Text : ""},
                 {"@FirstRates", Search? txtFirst.Text : ""},
                 {"@NextRates", Search? txtNext.Text : ""},
                 {"@OverRates", Search? txtOver.Text : ""},
@@ -321,6 +324,9 @@ namespace SANSANG
                     {"@AccountId", "0"},
                     {"@Version", ""},
                     {"@Rates", ""},
+                    {"@FirstUnit", "0"},
+                    {"@NextUnit", "0"},
+                    {"@OverUnit", "0"},
                     {"@FirstRates", ""},
                     {"@NextRates", ""},
                     {"@OverRates", ""},
@@ -353,6 +359,10 @@ namespace SANSANG
                 txtVat.Text = Data.Rows[0]["Vat"].ToString();
 
                 txtRates.Text = Data.Rows[0]["Rates"].ToString();
+
+                txtFirstUnit.Text = Data.Rows[0]["FirstUnit"].ToString();
+                txtNextUnit.Text = Data.Rows[0]["NextUnit"].ToString();
+                txtOverUnit.Text = Data.Rows[0]["OverUnit"].ToString();
 
                 txtFirst.Text = Data.Rows[0]["FirstRates"].ToString();
                 txtNext.Text = Data.Rows[0]["NextRates"].ToString();
@@ -411,6 +421,9 @@ namespace SANSANG
                             {"@AccountId", Function.GetComboId(cbbAccount)},
                             {"@Version", txtVersion.Text},
                             {"@Rates", txtFirst.Text},
+                            {"@FirstUnit", txtFirstUnit.Text},
+                            {"@NextUnit", txtNextUnit.Text},
+                            {"@OverUnit", txtOverUnit.Text},
                             {"@FirstRates", txtFirst.Text},
                             {"@NextRates", txtNext.Text},
                             {"@OverRates", txtOver.Text},
@@ -459,6 +472,9 @@ namespace SANSANG
                         {"@AccountId", Function.GetComboId(cbbAccount)},
                         {"@Version", txtVersion.Text},
                         {"@Rates", txtFirst.Text},
+                        {"@FirstUnit", txtFirstUnit.Text},
+                        {"@NextUnit", txtNextUnit.Text},
+                        {"@OverUnit", txtOverUnit.Text},
                         {"@FirstRates", txtFirst.Text},
                         {"@NextRates", txtNext.Text},
                         {"@OverRates", txtOver.Text},
@@ -502,6 +518,11 @@ namespace SANSANG
         public string GetDetails()
         {
             return txtVersion.Text + " (" + txtFirst.Text + ")";
+        }
+
+        private void txtUnit_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Event.AmountKeyPress(sender, e, (TextBox)sender);
         }
     }
 }

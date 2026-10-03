@@ -75,6 +75,9 @@ namespace SANSANG
         public int NumberOfPayment = 10;
         public int InvoiceDay = -7;
         public string Ft = "0.3972";
+        public int FirstUnit = 150;
+        public int NextUnit = 250;
+        public int OverUnit = 400;
         public double First = 3.2484;
         public double Next = 4.2218;
         public double Over = 4.4217;
@@ -207,6 +210,7 @@ namespace SANSANG
                         {"@PayDate", ""},
                         {"@Barcode", ""},
                         {"@Remark", Search? txtRemark.Text : ""},
+                        {"@ReferenceNo", Search? txtRef.Text : ""},
                     };
                }
                 else
@@ -245,6 +249,7 @@ namespace SANSANG
                         {"@PayDate", ""},
                         {"@Barcode", ""},
                         {"@Remark", ""},
+                        {"@ReferenceNo", ""},
                     };
                 }
 
@@ -354,6 +359,7 @@ namespace SANSANG
                             {"@PayDate", Date.GetDate(dtp : dtPay, Format : 4)},
                             {"@Barcode", ""},
                             {"@Remark", txtRemark.Text},
+                            {"@ReferenceNo", txtRef.Text},
                         };
 
                         if (Insert.Add(AppCode, AppName, UserId, Store.ManageElectricitys, Parameter, txtCode.Text, Details: GetDetails()))
@@ -415,6 +421,7 @@ namespace SANSANG
                         {"@PayDate", ""},
                         {"@Barcode", ""},
                         {"@Remark", ""},
+                        {"@ReferenceNo", ""},
                     };
 
                     db.Get(Store.ManageElectricitys, Parameter, out Error, out dt);
@@ -470,6 +477,7 @@ namespace SANSANG
                         {"@PayDate", Date.GetDate(dtp : dtPay, Format : 4)},
                         {"@Barcode", ""},
                         {"@Remark", txtRemark.Text},
+                        {"@ReferenceNo", txtRef.Text},
                     };
 
                     if (Edit.Update(AppCode, AppName, UserId, Store.ManageElectricitys, Parameter, txtCode.Text, Details: GetDetails()))
@@ -523,6 +531,9 @@ namespace SANSANG
                     {"@AccountId", ""},
                     {"@Version", ""},
                     {"@Rates", ""},
+                    {"@FirstUnit", ""},
+                    {"@NextUnit", ""},
+                    {"@OverUnit", ""},
                     {"@FirstRates", ""},
                     {"@NextRates", ""},
                     {"@OverRates", ""},
@@ -549,6 +560,10 @@ namespace SANSANG
                     NumberOfPayment = Convert.ToInt32(dt.Rows[0]["DueDate"].ToString());
 
                     txtPerUnit.Text = dt.Rows[0]["Rates"].ToString();
+
+                    FirstUnit = Convert.ToInt32(dt.Rows[0]["FirstUnit"].ToString());
+                    NextUnit = Convert.ToInt32(dt.Rows[0]["NextUnit"].ToString());
+                    OverUnit = Convert.ToInt32(dt.Rows[0]["OverUnit"].ToString());
 
                     First = Convert.ToDouble(dt.Rows[0]["FirstRates"].ToString());
                     Next = Convert.ToDouble(dt.Rows[0]["NextRates"].ToString());
@@ -586,7 +601,7 @@ namespace SANSANG
                 dtTime.Text = dt.Rows[0]["Time"].ToString();
                 cbbMonth.SelectedValue = dt.Rows[0]["Month"].ToString();
                 cbbYear.SelectedValue = dt.Rows[0]["Year"].ToString();
-                
+
                 dtDateNow.Text = dt.Rows[0]["Date"].ToString();
                 dtDateBefor.Value = dtDateNow.Value.AddMonths(-1);
 
@@ -621,6 +636,8 @@ namespace SANSANG
                 txtOther.Text = dt.Rows[0]["Other"].ToString();
                 txtOtherAmount.Text = dt.Rows[0]["OtherAmount"].ToString() == "0.00"? "" : dt.Rows[0]["OtherAmount"].ToString();
                 txtScan.Text = "";
+
+                txtRef.Text = dt.Rows[0]["ReferenceNo"].ToString();
 
                 GridView.Focus();
             }
@@ -712,6 +729,7 @@ namespace SANSANG
                     {"@PayDate", ""},
                     {"@Barcode", ""},
                     {"@Remark", ""},
+                    {"@ReferenceNo", ""},
                 };
 
                 db.Get(Store.ManageElectricitys, Parameter, out Error, out dt);
@@ -1026,7 +1044,7 @@ namespace SANSANG
 
                     txtUnit.Text = Units.ToString();
 
-                    txtRaw.Text = string.Format("{0:#,##0.00}", Function.CalculateElectricity(First, Next, Over, Units));
+                    txtRaw.Text = string.Format("{0:#,##0.00}", Function.CalculateElectricity(First, Next, Over, Units, FirstUnit, NextUnit, OverUnit));
                     txtMoneyFt.Text = string.Format("{0:#,##0.00}", Math.Round(Convert.ToDouble(Units) * Convert.ToDouble(Fts), 2));
 
                     txtMoney.Text = string.Format("{0:#,##0.00}", Math.Round((
@@ -1129,7 +1147,8 @@ namespace SANSANG
                 strCondition += txtDiscount.Text != "" ? ", " + lblDiscount.Text + " " + txtDiscount.Text : "";
                 strCondition += txtVat.Text != "" ? ", " + lblVat.Text + " " + txtVat.Text : "";
                 strCondition += txtFt.Text != "" ? ", " + lblFt.Text + " " + txtFt.Text : "";
-
+                strCondition += txtRef.Text != "" ? ", " + lblRef.Text + " " + txtRef.Text : "";
+                
                 strCondition += txtOther.Text != "" ? ", " + txtOther.Text + " " + txtOtherAmount.Text : "";
                 strCondition += txtRemark.Text != "" ? ", " + "หมายเหตุ :" + " " + txtRemark.Text : "";
 

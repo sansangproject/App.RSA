@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmElectricityRates));
             this.lblSearch = new System.Windows.Forms.Label();
             this.lblHSearch = new System.Windows.Forms.Label();
@@ -38,6 +38,9 @@
             this.lblResult = new System.Windows.Forms.TextBox();
             this.lblCondition = new System.Windows.Forms.Label();
             this.gbForm = new System.Windows.Forms.GroupBox();
+            this.txtOverUnit = new System.Windows.Forms.TextBox();
+            this.txtNextUnit = new System.Windows.Forms.TextBox();
+            this.txtFirstUnit = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label39 = new System.Windows.Forms.Label();
@@ -195,14 +198,14 @@
             this.GridView.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.GridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.GridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Mitr Light", 9.5F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Coral;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.GridView.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Mitr Light", 9.5F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Coral;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.GridView.DefaultCellStyle = dataGridViewCellStyle1;
             this.GridView.GridColor = System.Drawing.Color.Silver;
             this.GridView.Location = new System.Drawing.Point(19, 53);
             this.GridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -245,6 +248,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gbForm.BackColor = System.Drawing.Color.White;
+            this.gbForm.Controls.Add(this.txtOverUnit);
+            this.gbForm.Controls.Add(this.txtNextUnit);
+            this.gbForm.Controls.Add(this.txtFirstUnit);
             this.gbForm.Controls.Add(this.label14);
             this.gbForm.Controls.Add(this.label13);
             this.gbForm.Controls.Add(this.label39);
@@ -321,6 +327,45 @@
             this.gbForm.TabIndex = 46;
             this.gbForm.TabStop = false;
             // 
+            // txtOverUnit
+            // 
+            this.txtOverUnit.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtOverUnit.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtOverUnit.Font = new System.Drawing.Font("Mitr Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtOverUnit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtOverUnit.Location = new System.Drawing.Point(1057, 204);
+            this.txtOverUnit.Name = "txtOverUnit";
+            this.txtOverUnit.Size = new System.Drawing.Size(40, 21);
+            this.txtOverUnit.TabIndex = 246;
+            this.txtOverUnit.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtOverUnit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUnit_KeyPress);
+            // 
+            // txtNextUnit
+            // 
+            this.txtNextUnit.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtNextUnit.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtNextUnit.Font = new System.Drawing.Font("Mitr Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNextUnit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtNextUnit.Location = new System.Drawing.Point(1057, 166);
+            this.txtNextUnit.Name = "txtNextUnit";
+            this.txtNextUnit.Size = new System.Drawing.Size(40, 21);
+            this.txtNextUnit.TabIndex = 245;
+            this.txtNextUnit.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtNextUnit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUnit_KeyPress);
+            // 
+            // txtFirstUnit
+            // 
+            this.txtFirstUnit.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtFirstUnit.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtFirstUnit.Font = new System.Drawing.Font("Mitr Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFirstUnit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtFirstUnit.Location = new System.Drawing.Point(1057, 128);
+            this.txtFirstUnit.Name = "txtFirstUnit";
+            this.txtFirstUnit.Size = new System.Drawing.Size(40, 21);
+            this.txtFirstUnit.TabIndex = 244;
+            this.txtFirstUnit.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtFirstUnit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUnit_KeyPress);
+            // 
             // label14
             // 
             this.label14.AutoSize = true;
@@ -348,11 +393,11 @@
             this.label39.AutoSize = true;
             this.label39.Font = new System.Drawing.Font("Mitr Light", 8.249999F);
             this.label39.ForeColor = System.Drawing.Color.OrangeRed;
-            this.label39.Location = new System.Drawing.Point(927, 140);
+            this.label39.Location = new System.Drawing.Point(954, 140);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(85, 18);
+            this.label39.Size = new System.Drawing.Size(60, 18);
             this.label39.TabIndex = 141;
-            this.label39.Text = "First 150 kWh";
+            this.label39.Text = "First kWh";
             // 
             // label12
             // 
@@ -370,22 +415,22 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Mitr Light", 8.249999F);
             this.label10.ForeColor = System.Drawing.Color.OrangeRed;
-            this.label10.Location = new System.Drawing.Point(923, 215);
+            this.label10.Location = new System.Drawing.Point(953, 215);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(89, 18);
+            this.label10.Size = new System.Drawing.Size(61, 18);
             this.label10.TabIndex = 240;
-            this.label10.Text = "Over 400 kWh";
+            this.label10.Text = "Over kWh";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Mitr Light", 8.249999F);
             this.label9.ForeColor = System.Drawing.Color.OrangeRed;
-            this.label9.Location = new System.Drawing.Point(924, 177);
+            this.label9.Location = new System.Drawing.Point(952, 177);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(88, 18);
+            this.label9.Size = new System.Drawing.Size(62, 18);
             this.label9.TabIndex = 239;
-            this.label9.Text = "Next 250 kWh";
+            this.label9.Text = "Next kWh";
             // 
             // lblRates
             // 
@@ -426,10 +471,12 @@
             this.txtOver.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtOver.Font = new System.Drawing.Font("Mitr", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtOver.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.txtOver.Location = new System.Drawing.Point(1056, 204);
+            this.txtOver.Location = new System.Drawing.Point(1100, 204);
             this.txtOver.Name = "txtOver";
-            this.txtOver.Size = new System.Drawing.Size(113, 21);
+            this.txtOver.Size = new System.Drawing.Size(69, 21);
             this.txtOver.TabIndex = 235;
+            this.txtOver.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtOver.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUnit_KeyPress);
             // 
             // txtNext
             // 
@@ -437,10 +484,12 @@
             this.txtNext.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtNext.Font = new System.Drawing.Font("Mitr", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNext.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.txtNext.Location = new System.Drawing.Point(1056, 166);
+            this.txtNext.Location = new System.Drawing.Point(1100, 166);
             this.txtNext.Name = "txtNext";
-            this.txtNext.Size = new System.Drawing.Size(113, 21);
+            this.txtNext.Size = new System.Drawing.Size(69, 21);
             this.txtNext.TabIndex = 234;
+            this.txtNext.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtNext.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUnit_KeyPress);
             // 
             // lblReports
             // 
@@ -951,10 +1000,12 @@
             this.txtFirst.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtFirst.Font = new System.Drawing.Font("Mitr", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFirst.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.txtFirst.Location = new System.Drawing.Point(1056, 128);
+            this.txtFirst.Location = new System.Drawing.Point(1100, 128);
             this.txtFirst.Name = "txtFirst";
-            this.txtFirst.Size = new System.Drawing.Size(113, 21);
+            this.txtFirst.Size = new System.Drawing.Size(69, 21);
             this.txtFirst.TabIndex = 127;
+            this.txtFirst.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtFirst.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUnit_KeyPress);
             // 
             // label31
             // 
@@ -1383,5 +1434,8 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox txtOverUnit;
+        private System.Windows.Forms.TextBox txtNextUnit;
+        private System.Windows.Forms.TextBox txtFirstUnit;
     }
 }

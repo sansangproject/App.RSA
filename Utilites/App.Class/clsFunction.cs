@@ -1244,25 +1244,29 @@ namespace SANSANG.Class
             }
         }
 
-        public double CalculateElectricity(double FirstLevel, double NextLevel, double OverLevel, int Units)
+        public double CalculateElectricity(double FirstLevel, double NextLevel, double OverLevel, int Units, int FirstUnit, int NextUnit, int OverUnit)
         {
             double TotalCost = 0;
             double First = FirstLevel;
             double Next = NextLevel;
             double Over = OverLevel;
 
+            int FirstUnits = FirstUnit;
+            int NextUnits = NextUnit;
+            int OverUnits = OverUnit;
 
-            if (Units <= 150)
+
+            if (Units <= FirstUnits)
             {
                 TotalCost = Convert.ToDouble(Units * First);
             }
-            else if (Units <= 400)
+            else if (Units <= OverUnits)
             {
-                TotalCost = Convert.ToDouble((150 * First) + ((Units - 150) * Next));
+                TotalCost = Convert.ToDouble((FirstUnits * First) + ((Units - FirstUnits) * Next));
             }
             else
             {
-                TotalCost = Convert.ToDouble((150 * First) + (250 * Next) + ((Units - 400) * Over));
+                TotalCost = Convert.ToDouble((FirstUnits * First) + (NextUnits * Next) + ((Units - OverUnits) * Over));
             }
 
             return TotalCost;
