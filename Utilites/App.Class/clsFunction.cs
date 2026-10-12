@@ -310,14 +310,18 @@ namespace SANSANG.Class
 
                 if (Payments == "1070")
                 {
-                    NameEn = Codes == "โอนเงิน" ? "Transfer Withdrawal" : Codes == "ถอนเงิน" ? "Withdrawal" : "";
+                    NameEn = 
+                      Codes == "โอนเงิน" ? "Transfer Withdrawal"
+                    : Codes == "ถอนเงิน" ? "Withdrawal"
+                    : Codes == "โอนเงินพร้อมเพย์" ? "Transfer PromptPay"
+                    : "";
                 }
 
                 Parameter = new string[,]
                 {
                     {"@Id", ""},
                     {"@Code", ""},
-                    {"@Status", "0"},
+                    {"@Status", "1000"},
                     {"@User", ""},
                     {"@IsActive", ""},
                     {"@IsDelete", ""},
